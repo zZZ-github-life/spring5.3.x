@@ -92,7 +92,7 @@ public class ForwardedHeaderFilter extends OncePerRequestFilter {
 	/**
 	 * 启用一种模式，在该模式下只移除任何 "Forwarded" 或 "X-Forwarded-*" 头，
 	 * 并忽略其中的信息。
-	 * @param removeOnly whether to discard and ignore forwarded headers
+	 * @param removeOnly 是否丢弃并忽略转发头
 	 * @since 4.3.9
 	 */
 	public void setRemoveOnly(boolean removeOnly) {
@@ -106,7 +106,7 @@ public class ForwardedHeaderFilter extends OncePerRequestFilter {
 	 * <p>默认情况下（此属性为 false），会重写对
 	 * {@link HttpServletResponse#sendRedirect(String)} 的调用，以便将相对 URL
 	 * 转换为绝对 URL，同时也会考虑转发头。
-	 * @param relativeRedirects whether to use relative redirects
+	 * @param relativeRedirects 是否使用相对重定向
 	 * @since 4.3.10
 	 */
 	public void setRelativeRedirects(boolean relativeRedirects) {
@@ -327,10 +327,9 @@ public class ForwardedHeaderFilter extends OncePerRequestFilter {
 
 		/**
 		 * 使用必需信息构造实例。
-		 * @param delegateRequest supplier for the current
-		 * {@link HttpServletRequestWrapper#getRequest() delegate request} which
-		 * may change during a forward (e.g. Tomcat.
-		 * @param baseUrl the host, scheme, and port based on forwarded headers
+		 * @param delegateRequest 当前 {@link HttpServletRequestWrapper#getRequest() delegate request} 的 supplier，
+		 * 该请求在转发期间可能发生变化（例如 Tomcat。
+		 * @param baseUrl 基于转发头的主机、协议和端口
 		 */
 		public ForwardedPrefixExtractor(Supplier<HttpServletRequest> delegateRequest, String baseUrl) {
 			this.delegate = delegateRequest;

@@ -55,10 +55,10 @@ public class DefaultMultipartHttpServletRequest extends AbstractMultipartHttpSer
 
 	/**
 	 * 将给定的 HttpServletRequest 包装为 MultipartHttpServletRequest。
-	 * @param request the servlet request to wrap
-	 * @param mpFiles a map of the multipart files
-	 * @param mpParams a map of the parameters to expose,
-	 * with Strings as keys and String arrays as values
+	 * @param request 要包装的 Servlet 请求
+	 * @param mpFiles multipart 文件的映射
+	 * @param mpParams 要暴露的参数的映射，
+	 * 以 String 为键、以 String 数组为值
 	 */
 	public DefaultMultipartHttpServletRequest(HttpServletRequest request, MultiValueMap<String, MultipartFile> mpFiles,
 			Map<String, String[]> mpParams, Map<String, String> mpParamContentTypes) {
@@ -71,7 +71,7 @@ public class DefaultMultipartHttpServletRequest extends AbstractMultipartHttpSer
 
 	/**
 	 * 将给定的 HttpServletRequest 包装为 MultipartHttpServletRequest。
-	 * @param request the servlet request to wrap
+	 * @param request 要包装的 Servlet 请求
 	 */
 	public DefaultMultipartHttpServletRequest(HttpServletRequest request) {
 		super(request);

@@ -128,8 +128,8 @@ public class RSocketFrameTypeMessageCondition extends AbstractMessageCondition<R
 
 	/**
 	 * 在消息头部中查找 RSocket 帧类型。
-	 * @param message the current message
-	 * @return the frame type or {@code null} if not found
+	 * @param message 当前消息
+	 * @return 帧类型，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public static FrameType getFrameType(Message<?> message) {
@@ -197,11 +197,11 @@ public class RSocketFrameTypeMessageCondition extends AbstractMessageCondition<R
 	 * <td>Request-Channel</td>
 	 * </tr>
 	 * </table>
-	 * @param cardinalityIn -- the request cardinality: 1 for a single payload,
-	 * 2 for many payloads, and 0 if input is not handled.
-	 * @param cardinalityOut -- the response cardinality: 0 for no output
-	 * payloads, 1 for a single payload, and 2 for many payloads.
-	 * @return a condition to use for matching the interaction type
+	 * @param cardinalityIn —— 请求基数：1 表示单个负载，2 表示多个负载，
+	 * 输入不处理时为 0。
+	 * @param cardinalityOut —— 响应基数：0 表示无输出负载，1 表示单个负载，
+	 * 2 表示多个负载。
+	 * @return 用于匹配交互类型的条件
 	 * @since 5.2.2
 	 */
 	public static RSocketFrameTypeMessageCondition getCondition(int cardinalityIn, int cardinalityOut) {

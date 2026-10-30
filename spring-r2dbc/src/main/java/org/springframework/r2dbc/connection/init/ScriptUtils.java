@@ -108,11 +108,11 @@ public abstract class ScriptUtils {
 	 * 使用语句分隔符、注释分隔符和异常处理标志的默认设置执行给定的 SQL 脚本。
 	 * <p>在执行所提供脚本中的各条语句之前，语句分隔符和注释将被移除。
 	 * <p><strong>警告</strong>：此方法<em>不会</em>释放所提供的 {@link Connection}。
-	 * @param connection the R2DBC connection to use to execute the script; already
-	 * configured and ready to use
-	 * @param resource the resource to load the SQL script from; encoded with the
-	 * current platform's default encoding
-	 * @throws ScriptException if an error occurred while executing the SQL script
+	 * @param connection 用于执行脚本的 R2DBC 连接；
+	 * 已配置并可直接使用
+	 * @param resource 加载 SQL 脚本的资源；
+	 * 使用当前平台的默认编码
+	 * @throws ScriptException 如果执行 SQL 脚本时发生错误
 	 * @see #executeSqlScript(Connection, EncodedResource, DataBufferFactory, boolean, boolean, String[], String, String, String)
 	 * @see #DEFAULT_STATEMENT_SEPARATOR
 	 * @see #DEFAULT_COMMENT_PREFIXES
@@ -129,11 +129,11 @@ public abstract class ScriptUtils {
 	 * 使用语句分隔符、注释分隔符和异常处理标志的默认设置执行给定的 SQL 脚本。
 	 * <p>在执行所提供脚本中的各条语句之前，语句分隔符和注释将被移除。
 	 * <p><strong>警告</strong>：此方法<em>不会</em>释放所提供的 {@link Connection}。
-	 * @param connection the R2DBC connection to use to execute the script; already
-	 * configured and ready to use
-	 * @param resource the resource (potentially associated with a specific encoding)
-	 * to load the SQL script from
-	 * @throws ScriptException if an error occurred while executing the SQL script
+	 * @param connection 用于执行脚本的 R2DBC 连接；
+	 * 已配置并可直接使用
+	 * @param resource 用于加载 SQL 脚本的资源
+	 * （可能关联了特定编码）
+	 * @throws ScriptException 如果执行 SQL 脚本时发生错误
 	 * @see #executeSqlScript(Connection, EncodedResource, DataBufferFactory, boolean, boolean, String[], String, String, String)
 	 * @see #DEFAULT_STATEMENT_SEPARATOR
 	 * @see #DEFAULT_COMMENT_PREFIXES
@@ -152,25 +152,25 @@ public abstract class ScriptUtils {
 	 * 执行给定的 SQL 脚本。
 	 * <p>在执行所提供脚本中的各条语句之前，语句分隔符和注释将被移除。
 	 * <p><strong>警告</strong>：此方法<em>不会</em>释放所提供的 {@link Connection}。
-	 * @param connection the R2DBC connection to use to execute the script; already
-	 * configured and ready to use
-	 * @param resource the resource (potentially associated with a specific encoding)
-	 * to load the SQL script from
-	 * @param dataBufferFactory the factory to create data buffers with
-	 * @param continueOnError whether to continue without throwing an exception
-	 * in the event of an error
-	 * @param ignoreFailedDrops whether to continue in the event of specifically
-	 * an error on a {@code DROP} statement
-	 * @param commentPrefix the prefix that identifies single-line comments in the
-	 * SQL script (typically "--")
-	 * @param separator the script statement separator; defaults to
-	 * {@value #DEFAULT_STATEMENT_SEPARATOR} if not specified and falls back to
-	 * {@value #FALLBACK_STATEMENT_SEPARATOR} as a last resort; may be set to
-	 * {@value #EOF_STATEMENT_SEPARATOR} to signal that the script contains a
-	 * single statement without a separator
-	 * @param blockCommentStartDelimiter the <em>start</em> block comment delimiter
-	 * @param blockCommentEndDelimiter the <em>end</em> block comment delimiter
-	 * @throws ScriptException if an error occurred while executing the SQL script
+	 * @param connection 用于执行脚本的 R2DBC 连接；
+	 * 已配置并可直接使用
+	 * @param resource 用于加载 SQL 脚本的资源
+	 * （可能关联了特定编码）
+	 * @param dataBufferFactory 用于创建数据缓冲区的工厂
+	 * @param continueOnError 在发生错误时是否继续执行
+	 * 而不抛出异常
+	 * @param ignoreFailedDrops 在 {@code DROP} 语句发生错误时
+	 * 是否继续执行
+	 * @param commentPrefix 标识 SQL 脚本中单行注释的前缀
+	 * （通常为 "--"）
+	 * @param separator 脚本语句分隔符；如果未指定，默认为
+	 * {@value #DEFAULT_STATEMENT_SEPARATOR}，最后回退到
+	 * {@value #FALLBACK_STATEMENT_SEPARATOR}；可以设为
+	 * {@value #EOF_STATEMENT_SEPARATOR}，以表示脚本仅包含
+	 * 一个不带分隔符的语句
+	 * @param blockCommentStartDelimiter 块注释的 <em>起始</em> 分隔符
+	 * @param blockCommentEndDelimiter 块注释的 <em>结束</em> 分隔符
+	 * @throws ScriptException 如果执行 SQL 脚本时发生错误
 	 * @see #DEFAULT_STATEMENT_SEPARATOR
 	 * @see #FALLBACK_STATEMENT_SEPARATOR
 	 * @see #EOF_STATEMENT_SEPARATOR
@@ -191,25 +191,25 @@ public abstract class ScriptUtils {
 	 * 执行给定的 SQL 脚本。
 	 * <p>在执行所提供脚本中的各条语句之前，语句分隔符和注释将被移除。
 	 * <p><strong>警告</strong>：此方法<em>不会</em>释放所提供的 {@link Connection}。
-	 * @param connection the R2DBC connection to use to execute the script; already
-	 * configured and ready to use
-	 * @param resource the resource (potentially associated with a specific encoding)
-	 * to load the SQL script from
-	 * @param dataBufferFactory the factory to create data buffers with
-	 * @param continueOnError whether to continue without throwing an exception
-	 * in the event of an error
-	 * @param ignoreFailedDrops whether to continue in the event of specifically
-	 * an error on a {@code DROP} statement
-	 * @param commentPrefixes the prefixes that identify single-line comments in the
-	 * SQL script (typically "--")
-	 * @param separator the script statement separator; defaults to
-	 * {@value #DEFAULT_STATEMENT_SEPARATOR} if not specified and falls back to
-	 * {@value #FALLBACK_STATEMENT_SEPARATOR} as a last resort; may be set to
-	 * {@value #EOF_STATEMENT_SEPARATOR} to signal that the script contains a
-	 * single statement without a separator
-	 * @param blockCommentStartDelimiter the <em>start</em> block comment delimiter
-	 * @param blockCommentEndDelimiter the <em>end</em> block comment delimiter
-	 * @throws ScriptException if an error occurred while executing the SQL script
+	 * @param connection 用于执行脚本的 R2DBC 连接；
+	 * 已配置并可直接使用
+	 * @param resource 用于加载 SQL 脚本的资源
+	 * （可能关联了特定编码）
+	 * @param dataBufferFactory 用于创建数据缓冲区的工厂
+	 * @param continueOnError 在发生错误时是否继续执行
+	 * 而不抛出异常
+	 * @param ignoreFailedDrops 在 {@code DROP} 语句发生错误时
+	 * 是否继续执行
+	 * @param commentPrefixes 标识 SQL 脚本中单行注释的多个前缀
+	 * （通常为 "--"）
+	 * @param separator 脚本语句分隔符；如果未指定，默认为
+	 * {@value #DEFAULT_STATEMENT_SEPARATOR}，最后回退到
+	 * {@value #FALLBACK_STATEMENT_SEPARATOR}；可以设为
+	 * {@value #EOF_STATEMENT_SEPARATOR}，以表示脚本仅包含
+	 * 一个不带分隔符的语句
+	 * @param blockCommentStartDelimiter 块注释的 <em>起始</em> 分隔符
+	 * @param blockCommentEndDelimiter 块注释的 <em>结束</em> 分隔符
+	 * @throws ScriptException 如果执行 SQL 脚本时发生错误
 	 * @see #DEFAULT_STATEMENT_SEPARATOR
 	 * @see #FALLBACK_STATEMENT_SEPARATOR
 	 * @see #EOF_STATEMENT_SEPARATOR
@@ -265,12 +265,13 @@ public abstract class ScriptUtils {
 	/**
 	 * 从所提供的资源中读取脚本，使用给定的语句分隔符，
 	 * 并构建一个包含各行的 {@code String}。
-	 * @param resource the {@code EncodedResource} containing the script to be
-	 * processed
-	 * @param dataBufferFactory the factory to create data buffers with
-	 * @param separator the statement separator in the SQL script (typically ";")
-	 * @return a {@link Mono} of {@link String} containing the script lines that
-	 * completes once the resource has been loaded
+	 * @param resource 包含待处理脚本的
+	 * {@code EncodedResource}
+	 * @param dataBufferFactory 用于创建数据缓冲区的工厂
+	 * @param separator SQL 脚本中的语句分隔符
+	 * （通常为 ";"）
+	 * @return 包含脚本行的 {@link String} 类型的 {@link Mono}，
+	 * 在资源加载完成后完成
 	 */
 	static Mono<String> readScript(EncodedResource resource, DataBufferFactory dataBufferFactory,
 			@Nullable String separator) {
@@ -297,11 +298,12 @@ public abstract class ScriptUtils {
 	/**
 	 * 从所提供的 {@code LineNumberReader} 中读取脚本，
 	 * 并构建一个包含各行的 {@code String}。
-	 * @param lineNumberReader the {@code LineNumberReader} containing the script
-	 * to be processed
-	 * @param separator the statement separator in the SQL script (typically ";")
-	 * @return a {@code String} containing the script lines
-	 * @throws IOException in case of I/O errors
+	 * @param lineNumberReader 包含待处理脚本的
+	 * {@code LineNumberReader}
+	 * @param separator SQL 脚本中的语句分隔符
+	 * （通常为 ";"）
+	 * @return 包含脚本行的 {@code String}
+	 * @throws IOException 在发生 I/O 错误时
 	 */
 	private static String readScript(LineNumberReader lineNumberReader, @Nullable String separator) throws IOException {
 		StringBuilder scriptBuilder = new StringBuilder();
@@ -339,16 +341,15 @@ public abstract class ScriptUtils {
 	 * <p>如果脚本中出现的分隔符位于用单引号（{@code '}）或双引号（{@code "}）
 	 * 括起来的<em>字面量</em>文本块内、使用反斜杠（{@code \}）转义，
 	 * 或者位于单行注释或块注释内，则会被忽略。
-	 * @param resource the resource from which the script was read, or {@code null}
-	 * if unknown
-	 * @param script the SQL script to search within
-	 * @param separator the statement separator to search for
-	 * @param commentPrefixes the prefixes that identify single-line comments
-	 * (typically {@code "--"})
-	 * @param blockCommentStartDelimiter the <em>start</em> block comment delimiter
-	 * (typically {@code "/*"})
-	 * @param blockCommentEndDelimiter the <em>end</em> block comment delimiter
-	 * (typically <code>"*&#47;"</code>)
+	 * @param resource 读取脚本的资源，如果未知则为 {@code null}
+	 * @param script 要在其中搜索的 SQL 脚本
+	 * @param separator 要搜索的语句分隔符
+	 * @param commentPrefixes 标识单行注释的多个前缀
+	 * （通常为 {@code "--"}）
+	 * @param blockCommentStartDelimiter 块注释的 <em>起始</em> 分隔符
+	 * （通常为 {@code "/*"}）
+	 * @param blockCommentEndDelimiter 块注释的 <em>结束</em> 分隔符
+	 * （通常为 <code>"*&#47;"</code>）
 	 * @since 5.3.8
 	 */
 	static boolean containsStatementSeparator(EncodedResource resource, String script,
@@ -419,18 +420,18 @@ public abstract class ScriptUtils {
 	 * {@code blockCommentEndDelimiter} 分隔符也将得到遵循：
 	 * 任何括在块注释中的文本都将从输出中省略。此外，
 	 * 多个相邻的空白字符将被合并为一个空格。
-	 * @param resource the resource from which the script was read
-	 * @param script the SQL script
-	 * @param separator text separating each statement
-	 * (typically a ';' or newline character)
-	 * @param commentPrefixes the prefixes that identify SQL line comments
-	 * (typically "--")
-	 * @param blockCommentStartDelimiter the <em>start</em> block comment delimiter;
-	 * never {@code null} or empty
-	 * @param blockCommentEndDelimiter the <em>end</em> block comment delimiter;
-	 * never {@code null} or empty
-	 * @return a list of statements
-	 * @throws ScriptException if an error occurred while splitting the SQL script
+	 * @param resource 读取脚本的资源
+	 * @param script SQL 脚本
+	 * @param separator 分隔各语句的文本
+	 * （通常为 ';' 或换行符）
+	 * @param commentPrefixes 标识 SQL 行注释的多个前缀
+	 * （通常为 "--"）
+	 * @param blockCommentStartDelimiter 块注释的 <em>起始</em> 分隔符；
+	 * 永不为 {@code null} 或空
+	 * @param blockCommentEndDelimiter 块注释的 <em>结束</em> 分隔符；
+	 * 永不为 {@code null} 或空
+	 * @return 语句列表
+	 * @throws ScriptException 如果拆分 SQL 脚本时发生错误
 	 */
 	static List<String> splitSqlScript(EncodedResource resource, String script,
 			String separator, String[] commentPrefixes, String blockCommentStartDelimiter,

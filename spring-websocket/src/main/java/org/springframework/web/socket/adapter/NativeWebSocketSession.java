@@ -34,9 +34,9 @@ public interface NativeWebSocketSession extends WebSocketSession {
 
 	/**
 	 * 返回底层原生 WebSocketSession（如果可用）。
-	 * @param requiredType the required type of the session
-	 * @return the native session of the required type,
-	 * or {@code null} if not available
+	 * @param requiredType 会话所需的类型
+	 * @return 所需类型的原生会话，
+	 * 如果不可用则为 {@code null}
 	 */
 	@Nullable
 	<T> T getNativeSession(@Nullable Class<T> requiredType);

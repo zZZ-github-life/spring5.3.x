@@ -46,7 +46,7 @@ public class MappingJacksonValue {
 
 	/**
 	 * 创建一个新实例，包装给定的待序列化 POJO。
-	 * @param value the Object to be serialized
+	 * @param value 要序列化的对象
 	 */
 	public MappingJacksonValue(Object value) {
 		this.value = value;

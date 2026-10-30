@@ -75,8 +75,8 @@ public class JndiLocatorDelegate extends JndiLocatorSupport {
 
 	/**
 	 * 检查此 JVM 上是否可用默认的 JNDI 环境（如 Java EE 环境中的那样）。
-	 * @return {@code true} if a default InitialContext can be used,
-	 * {@code false} if not
+	 * @return 如果可以创建默认的 InitialContext 则返回 {@code true}，
+	 * 否则返回 {@code false}
 	 */
 	public static boolean isDefaultJndiEnvironmentAvailable() {
 		if (shouldIgnoreDefaultJndiEnvironment) {

@@ -46,7 +46,7 @@ class DomContentHandler implements ContentHandler {
 
 	/**
 	 * 使用给定节点创建 {@code DomContentHandler} 的新实例。
-	 * @param node the node to publish events to
+	 * @param node 要向其发布事件的节点
 	 */
 	DomContentHandler(Node node) {
 		this.node = node;

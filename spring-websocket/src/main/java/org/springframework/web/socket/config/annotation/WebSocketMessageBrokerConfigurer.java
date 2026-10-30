@@ -72,7 +72,7 @@ public interface WebSocketMessageBrokerConfigurer {
 	 * 添加解析器以支持自定义控制器方法参数类型。
 	 * <p>这不会覆盖解析处理器方法参数的内置支持。要定制参数解析的内置支持，
 	 * 请直接配置 {@code SimpAnnotationMethodMessageHandler}。
-	 * @param argumentResolvers the resolvers to register (initially an empty list)
+	 * @param argumentResolvers 要注册的解析器（初始为空列表）
 	 * @since 4.1.1
 	 */
 	default void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
@@ -82,7 +82,7 @@ public interface WebSocketMessageBrokerConfigurer {
 	 * 添加处理器以支持自定义控制器方法返回值类型。
 	 * <p>使用此选项不会覆盖处理返回值的内置支持。要定制处理返回值的内置支持，
 	 * 请直接配置 {@code SimpAnnotationMethodMessageHandler}。
-	 * @param returnValueHandlers the handlers to register (initially an empty list)
+	 * @param returnValueHandlers 要注册的处理器（初始为空列表）
 	 * @since 4.1.1
 	 */
 	default void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> returnValueHandlers) {
@@ -93,8 +93,8 @@ public interface WebSocketMessageBrokerConfigurer {
 	 * SimpMessagingTemplate）时要使用的消息转换器。
 	 * <p>提供的列表初始为空，可用于添加消息转换器，而布尔返回值
 	 * 用于确定是否还应添加默认消息转换器。
-	 * @param messageConverters the converters to configure (initially an empty list)
-	 * @return whether to also add default converter or not
+	 * @param messageConverters 要配置的转换器（初始为空列表）
+	 * @return 是否也添加默认转换器
 	 */
 	default boolean configureMessageConverters(List<MessageConverter> messageConverters) {
 		return true;

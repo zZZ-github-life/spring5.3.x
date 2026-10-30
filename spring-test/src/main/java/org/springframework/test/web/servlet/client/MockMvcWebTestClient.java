@@ -154,7 +154,7 @@ public interface MockMvcWebTestClient {
 	/**
 	 * 用于配置 {@link MockMvc} 的基础规范，以及
 	 * {@link ConfigurableMockMvcBuilder} 的简单外观。
-	 * @param <B> a self reference to the builder type
+	 * @param <B> 构建器类型的自引用
 	 */
 	interface MockMvcServerSpec<B extends MockMvcServerSpec<B>> {
 

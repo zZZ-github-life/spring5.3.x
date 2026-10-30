@@ -152,11 +152,11 @@ public class WebSphereDataSourceAdapter extends IsolationLevelDataSourceAdapter 
 	 * 可以在子类中重写以自定义 JDBCConnectionSpec 对象
 	 * （<a href="https://publib.boulder.ibm.com/infocenter/wasinfo/v6r0/topic/com.ibm.websphere.javadoc.doc/public_html/api/com/ibm/websphere/rsadapter/JDBCConnectionSpec.html">JDBCConnectionSpec javadoc</a>;
 	 * <a href="https://www.ibm.com/developerworks/websphere/library/techarticles/0404_tang/0404_tang.html">IBM developerWorks 文章</a>）。
-	 * @param isolationLevel the isolation level to apply (or {@code null} if none)
-	 * @param readOnlyFlag the read-only flag to apply (or {@code null} if none)
-	 * @param username the username to apply ({@code null} or empty indicates the default)
-	 * @param password the password to apply (may be {@code null} or empty)
-	 * @throws SQLException if thrown by JDBCConnectionSpec API methods
+	 * @param isolationLevel 要应用的隔离级别（如果没有则为 {@code null}）
+	 * @param readOnlyFlag 要应用的只读标志（如果没有则为 {@code null}）
+	 * @param username 要应用的用户名（{@code null} 或空表示默认）
+	 * @param password 要应用的密码（可以为 {@code null} 或空）
+	 * @throws SQLException 如果由 JDBCConnectionSpec API 方法抛出
 	 * @see com.ibm.websphere.rsadapter.JDBCConnectionSpec
 	 */
 	protected Object createConnectionSpec(@Nullable Integer isolationLevel, @Nullable Boolean readOnlyFlag,

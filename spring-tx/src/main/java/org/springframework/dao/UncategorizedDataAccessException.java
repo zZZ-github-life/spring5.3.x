@@ -29,8 +29,8 @@ public abstract class UncategorizedDataAccessException extends NonTransientDataA
 
 	/**
 	 * UncategorizedDataAccessException 的构造方法。
-	 * @param msg the detail message
-	 * @param cause the exception thrown by underlying data access API
+	 * @param msg 详细信息
+	 * @param cause 底层数据访问 API 抛出的异常
 	 */
 	public UncategorizedDataAccessException(@Nullable String msg, @Nullable Throwable cause) {
 		super(msg, cause);

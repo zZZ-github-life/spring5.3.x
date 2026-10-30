@@ -104,8 +104,8 @@ public class PathExtensionContentNegotiationStrategy extends AbstractMappingCont
 	 * 一个公开方法，将路径扩展名策略的知识暴露出来，以便针对给定的
 	 * {@link Resource} 将文件扩展名解析为 {@link MediaType}。此方法首先查找
 	 * 任何显式注册的文件扩展名，然后如果可用则回退到 {@link MediaTypeFactory}。
-	 * @param resource the resource to look up
-	 * @return the MediaType for the extension, or {@code null} if none found
+	 * @param resource 要查找的资源
+	 * @return 该扩展名对应的 MediaType；如果未找到则为 {@code null}
 	 * @since 4.3
 	 */
 	@Nullable

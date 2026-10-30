@@ -78,10 +78,10 @@ public class ResponseBodyEmitterReturnValueHandler implements HandlerMethodRetur
 
 	/**
 	 * 包含可插拔“响应式”类型支持的完整构造函数。
-	 * @param messageConverters converters to write emitted objects with
-	 * @param registry for reactive return value type support
-	 * @param executor for blocking I/O writes of items emitted from reactive types
-	 * @param manager for detecting streaming media types
+	 * @param messageConverters 用于写入所发出对象的转换器
+	 * @param registry 用于支持响应式返回值类型
+	 * @param executor 用于对响应式类型发出的元素进行阻塞式 I/O 写入
+	 * @param manager 用于检测流式媒体类型
 	 * @since 5.0
 	 */
 	public ResponseBodyEmitterReturnValueHandler(List<HttpMessageConverter<?>> messageConverters,

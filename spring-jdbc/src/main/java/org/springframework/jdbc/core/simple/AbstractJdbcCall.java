@@ -85,7 +85,7 @@ public abstract class AbstractJdbcCall {
 
 	/**
 	 * 使用 {@link DataSource} 进行初始化时使用的构造器。
-	 * @param dataSource the DataSource to be used
+	 * @param dataSource 要使用的 DataSource
 	 */
 	protected AbstractJdbcCall(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -93,7 +93,7 @@ public abstract class AbstractJdbcCall {
 
 	/**
 	 * 使用 {@link JdbcTemplate} 进行初始化时使用的构造器。
-	 * @param jdbcTemplate the JdbcTemplate to use
+	 * @param jdbcTemplate 要使用的 JdbcTemplate
 	 */
 	protected AbstractJdbcCall(JdbcTemplate jdbcTemplate) {
 		Assert.notNull(jdbcTemplate, "JdbcTemplate must not be null");
@@ -244,7 +244,7 @@ public abstract class AbstractJdbcCall {
 	 * <p>只有声明为 {@code SqlParameter} 和 {@code SqlInOutParameter} 的参数
 	 * 才会用于提供输入值。这与 {@code StoredProcedure} 类不同，
 	 * 后者出于向后兼容的原因允许为声明为 {@code SqlOutParameter} 的参数提供输入值。
-	 * @param parameter the {@link SqlParameter} to add
+	 * @param parameter 要添加的 {@link SqlParameter}
 	 */
 	public void addDeclaredParameter(SqlParameter parameter) {
 		Assert.notNull(parameter, "The supplied parameter must not be null");
@@ -260,8 +260,8 @@ public abstract class AbstractJdbcCall {
 
 	/**
 	 * 为指定的参数或列添加 {@link org.springframework.jdbc.core.RowMapper}。
-	 * @param parameterName name of parameter or column
-	 * @param rowMapper the RowMapper implementation to use
+	 * @param parameterName 参数或列的名称
+	 * @param rowMapper 要使用的 RowMapper 实现
 	 */
 	public void addDeclaredRowMapper(String parameterName, RowMapper<?> rowMapper) {
 		this.declaredRowMappers.put(parameterName, rowMapper);
@@ -279,8 +279,8 @@ public abstract class AbstractJdbcCall {
 	 * 使用提供的参数、元数据以及其他设置编译此 JdbcCall。
 	 * <p>这会最终确定此对象的配置，后续的编译尝试将被忽略。
 	 * 首次执行未编译的调用时将隐式调用此方法。
-	 * @throws org.springframework.dao.InvalidDataAccessApiUsageException if the object hasn't
-	 * been correctly initialized, for example if no DataSource has been provided
+	 * @throws org.springframework.dao.InvalidDataAccessApiUsageException 如果该对象尚未正确初始化，
+	 * 例如未提供 DataSource
 	 */
 	public final synchronized void compile() throws InvalidDataAccessApiUsageException {
 		if (!isCompiled()) {
@@ -336,7 +336,7 @@ public abstract class AbstractJdbcCall {
 
 	/**
 	 * 此操作是否已“编译”？
-	 * @return whether this operation is compiled and ready to use
+	 * @return 此操作是否已编译并可以使用
 	 */
 	public boolean isCompiled() {
 		return this.compiled;
@@ -361,8 +361,8 @@ public abstract class AbstractJdbcCall {
 
 	/**
 	 * 使用传入的 {@link SqlParameterSource} 执行调用的委托方法。
-	 * @param parameterSource parameter names and values to be used in call
-	 * @return a Map of out parameters
+	 * @param parameterSource 调用中要使用的参数名称和值
+	 * @return 输出参数组成的 Map
 	 */
 	protected Map<String, Object> doExecute(SqlParameterSource parameterSource) {
 		checkCompiled();
@@ -372,9 +372,8 @@ public abstract class AbstractJdbcCall {
 
 	/**
 	 * 使用传入的参数数组执行调用的委托方法。
-	 * @param args array of parameter values. The order of values must match the order
-	 * declared for the stored procedure.
-	 * @return a Map of out parameters
+	 * @param args 参数值数组。值的顺序必须与为存储过程声明的顺序一致。
+	 * @return 输出参数组成的 Map
 	 */
 	protected Map<String, Object> doExecute(Object... args) {
 		checkCompiled();
@@ -384,8 +383,8 @@ public abstract class AbstractJdbcCall {
 
 	/**
 	 * 使用传入的参数 Map 执行调用的委托方法。
-	 * @param args a Map of parameter name and values
-	 * @return a Map of out parameters
+	 * @param args 参数名称和值组成的 Map
+	 * @return 输出参数组成的 Map
 	 */
 	protected Map<String, Object> doExecute(Map<String, ?> args) {
 		checkCompiled();
@@ -431,8 +430,8 @@ public abstract class AbstractJdbcCall {
 	/**
 	 * 将提供的 in 参数值与已注册的参数以及
 	 * 通过元数据处理定义的参数进行匹配。
-	 * @param parameterSource the parameter values provided as a {@link SqlParameterSource}
-	 * @return a Map with parameter names and values
+	 * @param parameterSource 以 {@link SqlParameterSource} 形式提供的参数值
+	 * @return 包含参数名称和值的 Map
 	 */
 	protected Map<String, Object> matchInParameterValuesWithCallParameters(SqlParameterSource parameterSource) {
 		return this.callMetaDataContext.matchInParameterValuesWithCallParameters(parameterSource);
@@ -441,8 +440,8 @@ public abstract class AbstractJdbcCall {
 	/**
 	 * 将提供的 in 参数值与已注册的参数以及
 	 * 通过元数据处理定义的参数进行匹配。
-	 * @param args the parameter values provided as an array
-	 * @return a Map with parameter names and values
+	 * @param args 以数组形式提供的参数值
+	 * @return 包含参数名称和值的 Map
 	 */
 	private Map<String, ?> matchInParameterValuesWithCallParameters(Object[] args) {
 		return this.callMetaDataContext.matchInParameterValuesWithCallParameters(args);
@@ -451,8 +450,8 @@ public abstract class AbstractJdbcCall {
 	/**
 	 * 将提供的 in 参数值与已注册的参数以及
 	 * 通过元数据处理定义的参数进行匹配。
-	 * @param args the parameter values provided in a Map
-	 * @return a Map with parameter names and values
+	 * @param args 在 Map 中提供的参数值
+	 * @return 包含参数名称和值的 Map
 	 */
 	protected Map<String, ?> matchInParameterValuesWithCallParameters(Map<String, ?> args) {
 		return this.callMetaDataContext.matchInParameterValuesWithCallParameters(args);

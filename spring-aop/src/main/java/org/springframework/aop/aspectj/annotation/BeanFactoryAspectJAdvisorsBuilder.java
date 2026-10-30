@@ -53,7 +53,7 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 
 	/**
 	 * 为给定的 BeanFactory 创建一个新的 BeanFactoryAspectJAdvisorsBuilder。
-	 * @param beanFactory the ListableBeanFactory to scan
+	 * @param beanFactory 要扫描的 ListableBeanFactory
 	 */
 	public BeanFactoryAspectJAdvisorsBuilder(ListableBeanFactory beanFactory) {
 		this(beanFactory, new ReflectiveAspectJAdvisorFactory(beanFactory));
@@ -61,8 +61,8 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 
 	/**
 	 * 为给定的 BeanFactory 创建一个新的 BeanFactoryAspectJAdvisorsBuilder。
-	 * @param beanFactory the ListableBeanFactory to scan
-	 * @param advisorFactory the AspectJAdvisorFactory to build each Advisor with
+	 * @param beanFactory 要扫描的 ListableBeanFactory
+	 * @param advisorFactory 用于构建每个 Advisor 的 AspectJAdvisorFactory
 	 */
 	public BeanFactoryAspectJAdvisorsBuilder(ListableBeanFactory beanFactory, AspectJAdvisorFactory advisorFactory) {
 		Assert.notNull(beanFactory, "ListableBeanFactory must not be null");
@@ -75,7 +75,7 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 	/**
 	 * 在当前 Bean 工厂中查找带 AspectJ 注解的切面 Bean，并返回表示它们的 Spring AOP Advisor 列表。<p>
 	 * 为每个 AspectJ 通知方法创建一个 Spring Advisor。
-	 * @return the list of {@link org.springframework.aop.Advisor} beans
+	 * @return {@link org.springframework.aop.Advisor} Bean 的列表
 	 * @see #isEligibleBean
 	 */
 	public List<Advisor> buildAspectJAdvisors() {
@@ -152,8 +152,8 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 
 	/**
 	 * 返回具有给定名称的切面 Bean 是否符合条件。
-	 * @param beanName the name of the aspect bean
-	 * @return whether the bean is eligible
+	 * @param beanName 切面 Bean 的名称
+	 * @return 该 Bean 是否符合条件
 	 */
 	protected boolean isEligibleBean(String beanName) {
 		return true;

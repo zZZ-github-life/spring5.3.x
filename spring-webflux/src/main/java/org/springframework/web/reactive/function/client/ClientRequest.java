@@ -77,8 +77,8 @@ public interface ClientRequest {
 
 	/**
 	 * 如果存在，返回请求属性值。
-	 * @param name the attribute name
-	 * @return the attribute value
+	 * @param name 属性名称
+	 * @return 属性值
 	 */
 	default Optional<Object> attribute(String name) {
 		return Optional.ofNullable(attributes().get(name));
@@ -99,17 +99,17 @@ public interface ClientRequest {
 
 	/**
 	 * 返回用于关联此请求消息的日志消息前缀。该前缀基于 {@link #LOG_ID_ATTRIBUTE LOG_ID_ATTRIBUTE} 属性的值，并用 "[" 和 "]" 包围。
-	 * @return the log message prefix or an empty String if the
-	 * {@link #LOG_ID_ATTRIBUTE LOG_ID_ATTRIBUTE} is not set.
+	 * @return 日志消息前缀；如果未设置
+	 * {@link #LOG_ID_ATTRIBUTE LOG_ID_ATTRIBUTE}，则为空字符串。
 	 * @since 5.1
 	 */
 	String logPrefix();
 
 	/**
 	 * 将此请求写入给定的 {@link ClientHttpRequest}。
-	 * @param request the client http request to write to
-	 * @param strategies the strategies to use when writing
-	 * @return {@code Mono<Void>} to indicate when writing is complete
+	 * @param request 要写入的客户端 HTTP 请求
+	 * @param strategies 写入时要使用的策略
+	 * @return {@code Mono<Void>}，用于指示写入何时完成
 	 */
 	Mono<Void> writeTo(ClientHttpRequest request, ExchangeStrategies strategies);
 
@@ -118,8 +118,8 @@ public interface ClientRequest {
 
 	/**
 	 * 创建使用给定请求的 HTTP 方法、url、头、cookie、属性和正文初始化的构建器。
-	 * @param other the request to copy from
-	 * @return the builder instance
+	 * @param other 要从中复制的请求
+	 * @return 构建器实例
 	 */
 	static Builder from(ClientRequest other) {
 		return new DefaultClientRequestBuilder(other);
@@ -127,9 +127,9 @@ public interface ClientRequest {
 
 	/**
 	 * 使用给定的 HTTP 方法和 url 创建构建器。
-	 * @param method the HTTP method (GET, POST, etc)
-	 * @param url the url (as a URI instance)
-	 * @return the created builder
+	 * @param method HTTP 方法（GET、POST 等）
+	 * @param url URL（作为 URI 实例）
+	 * @return 创建的构建器
 	 * @deprecated in favor of {@link #create(HttpMethod, URI)}
 	 */
 	@Deprecated
@@ -139,9 +139,9 @@ public interface ClientRequest {
 
 	/**
 	 * 使用给定的 HTTP 方法和 url 创建请求构建器。
-	 * @param method the HTTP method (GET, POST, etc)
-	 * @param url the url (as a URI instance)
-	 * @return the created builder
+	 * @param method HTTP 方法（GET、POST 等）
+	 * @param url URL（作为 URI 实例）
+	 * @return 创建的构建器
 	 */
 	static Builder create(HttpMethod method, URI url) {
 		return new DefaultClientRequestBuilder(method, url);
@@ -155,98 +155,97 @@ public interface ClientRequest {
 
 		/**
 		 * 设置请求的方法。
-		 * @param method the new method
-		 * @return this builder
+		 * @param method 新的方法
+		 * @return 此构建器
 		 * @since 5.0.1
 		 */
 		Builder method(HttpMethod method);
 
 		/**
 		 * 设置请求的 url。
-		 * @param url the new url
-		 * @return this builder
+		 * @param url 新的 URL
+		 * @return 此构建器
 		 * @since 5.0.1
 		 */
 		Builder url(URI url);
 
 		/**
 		 * 在给定名称下添加给定的头值。
-		 * @param headerName  the header name
-		 * @param headerValues the header value(s)
-		 * @return this builder
+		 * @param headerName 头名称
+		 * @param headerValues 头值
+		 * @return 此构建器
 		 * @see HttpHeaders#add(String, String)
 		 */
 		Builder header(String headerName, String... headerValues);
 
 		/**
 		 * 使用给定的消费者操作此请求的头。提供给消费者的头是“实时”的，因此消费者可用于{@linkplain HttpHeaders#set(String, String) 覆盖}现有头值、{@linkplain HttpHeaders#remove(Object) 删除}值，或使用任何其他 {@link HttpHeaders} 方法。
-		 * @param headersConsumer a function that consumes the {@code HttpHeaders}
-		 * @return this builder
+		 * @param headersConsumer 消费 {@code HttpHeaders} 的函数
+		 * @return 此构建器
 		 */
 		Builder headers(Consumer<HttpHeaders> headersConsumer);
 
 		/**
 		 * 添加具有给定名称和值的 cookie。
-		 * @param name the cookie name
-		 * @param values the cookie value(s)
-		 * @return this builder
+		 * @param name Cookie 名称
+		 * @param values Cookie 值
+		 * @return 此构建器
 		 */
 		Builder cookie(String name, String... values);
 
 		/**
 		 * 使用给定的消费者操作此请求的 cookie。提供给消费者的映射是“实时”的，因此消费者可用于{@linkplain MultiValueMap#set(Object, Object) 覆盖}现有 cookie 值、{@linkplain MultiValueMap#remove(Object) 删除} cookie，或使用任何其他 {@link MultiValueMap} 方法。
-		 * @param cookiesConsumer a function that consumes the cookies map
-		 * @return this builder
+		 * @param cookiesConsumer 消费 Cookie 映射的函数
+		 * @return 此构建器
 		 */
 		Builder cookies(Consumer<MultiValueMap<String, String>> cookiesConsumer);
 
 		/**
 		 * 将请求正文设置为给定的 {@code BodyInserter}。
-		 * @param inserter the {@code BodyInserter} that writes to the request
-		 * @return this builder
+		 * @param inserter 写入请求的 {@code BodyInserter}
+		 * @return 此构建器
 		 */
 		Builder body(BodyInserter<?, ? super ClientHttpRequest> inserter);
 
 		/**
 		 * 将请求正文设置为给定的 {@code Publisher} 并返回该构建器。
-		 * @param publisher the {@code Publisher} to write to the request
-		 * @param elementClass the class of elements contained in the publisher
-		 * @param <S> the type of the elements contained in the publisher
-		 * @param <P> the type of the {@code Publisher}
-		 * @return the built request
+		 * @param publisher 要写入请求的 {@code Publisher}
+		 * @param elementClass publisher 中包含的元素的类
+		 * @param <S> publisher 中包含的元素的类型
+		 * @param <P> {@code Publisher} 类型
+		 * @return 构建的请求
 		 */
 		<S, P extends Publisher<S>> Builder body(P publisher, Class<S> elementClass);
 
 		/**
 		 * 将请求正文设置为给定的 {@code Publisher} 并返回该构建器。
-		 * @param publisher the {@code Publisher} to write to the request
-		 * @param typeReference a type reference describing the elements contained in the publisher
-		 * @param <S> the type of the elements contained in the publisher
-		 * @param <P> the type of the {@code Publisher}
-		 * @return the built request
+		 * @param publisher 要写入请求的 {@code Publisher}
+		 * @param typeReference 描述 publisher 中包含元素的类型引用
+		 * @param <S> publisher 中包含的元素的类型
+		 * @param <P> {@code Publisher} 类型
+		 * @return 构建的请求
 		 */
 		<S, P extends Publisher<S>> Builder body(P publisher, ParameterizedTypeReference<S> typeReference);
 
 		/**
 		 * 将具有给定名称的属性设置为给定值。
-		 * @param name the name of the attribute to add
-		 * @param value the value of the attribute to add
-		 * @return this builder
+		 * @param name 要添加的属性的名称
+		 * @param value 要添加的属性的值
+		 * @return 此构建器
 		 */
 		Builder attribute(String name, Object value);
 
 		/**
 		 * 使用给定的消费者操作请求属性。提供给消费者的属性是“实时”的，因此消费者可用于检查属性、删除属性或使用映射提供的任何其他方法。
-		 * @param attributesConsumer a function that consumes the attributes
-		 * @return this builder
+		 * @param attributesConsumer 消费属性的函数
+		 * @return 此构建器
 		 */
 		Builder attributes(Consumer<Map<String, Object>> attributesConsumer);
 
 		/**
 		 * 用于访问 {@link ClientHttpRequest} 的回调，后者进而提供对底层 HTTP 库原生请求的访问。这对于设置底层库所暴露的高级按请求选项可能很有用。
-		 * @param requestConsumer a consumer to access the
-		 * {@code ClientHttpRequest} with
-		 * @return this builder
+		 * @param requestConsumer 用于访问 {@code ClientHttpRequest} 的消费者
+		 * @return 此构建器
 		 * @since 5.3
 		 */
 		Builder httpRequest(Consumer<ClientHttpRequest> requestConsumer);

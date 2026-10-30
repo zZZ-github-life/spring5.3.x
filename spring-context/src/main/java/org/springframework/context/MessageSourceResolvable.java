@@ -33,7 +33,7 @@ public interface MessageSourceResolvable {
 
 	/**
 	 * 返回用于解析此消息的代码，按应尝试的顺序排列。因此最后一个代码将是默认代码。
-	 * @return a String array of codes which are associated with this message
+	 * @return 与此消息关联的代码 String 数组
 	 */
 	@Nullable
 	String[] getCodes();
@@ -42,8 +42,7 @@ public interface MessageSourceResolvable {
 	 * 返回用于解析此消息的参数数组。
 	 *
 	 * <p>默认实现仅返回 {@code null}。
-	 * @return an array of objects to be used as parameters to replace
-	 * placeholders within the message text
+	 * @return 用作参数以替换消息文本中占位符的对象数组
 	 * @see java.text.MessageFormat
 	 */
 	@Nullable
@@ -57,7 +56,7 @@ public interface MessageSourceResolvable {
 	 * <p>默认实现仅返回 {@code null}。请注意，默认消息可以与主消息代码（{@link #getCodes()}）相同，这
 	 * 实际上相当于对此特定消息强制启用
 	 * {@link org.springframework.context.support.AbstractMessageSource#setUseCodeAsDefaultMessage}。
-	 * @return the default message, or {@code null} if no default
+	 * @return 默认消息；如果没有默认消息，则为 {@code null}
 	 */
 	@Nullable
 	default String getDefaultMessage() {

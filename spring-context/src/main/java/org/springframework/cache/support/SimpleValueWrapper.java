@@ -34,7 +34,7 @@ public class SimpleValueWrapper implements ValueWrapper {
 
 	/**
 	 * 创建一个新的 SimpleValueWrapper 实例，用于暴露给定的值。
-	 * @param value the value to expose (may be {@code null})
+	 * @param value 要暴露的值（可能为 {@code null}）
 	 */
 	public SimpleValueWrapper(@Nullable Object value) {
 		this.value = value;

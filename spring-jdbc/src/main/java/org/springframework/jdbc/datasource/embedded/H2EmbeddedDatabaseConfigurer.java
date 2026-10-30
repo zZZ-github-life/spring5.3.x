@@ -41,8 +41,8 @@ final class H2EmbeddedDatabaseConfigurer extends AbstractEmbeddedDatabaseConfigu
 
 	/**
 	 * 获取单例 {@code H2EmbeddedDatabaseConfigurer} 实例。
-	 * @return the configurer instance
-	 * @throws ClassNotFoundException if H2 is not on the classpath
+	 * @return 配置器实例
+	 * @throws ClassNotFoundException 如果 H2 不在 classpath 上
 	 */
 	@SuppressWarnings("unchecked")
 	public static synchronized H2EmbeddedDatabaseConfigurer getInstance() throws ClassNotFoundException {

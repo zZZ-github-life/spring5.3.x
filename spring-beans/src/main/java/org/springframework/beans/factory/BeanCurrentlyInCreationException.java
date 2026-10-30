@@ -27,7 +27,7 @@ public class BeanCurrentlyInCreationException extends BeanCreationException {
 
 	/**
 	 * 创建新的 BeanCurrentlyInCreationException，并带有指示循环引用的默认错误消息。
-	 * @param beanName the name of the bean requested
+	 * @param beanName 所请求的 Bean 名称
 	 */
 	public BeanCurrentlyInCreationException(String beanName) {
 		super(beanName,
@@ -36,8 +36,8 @@ public class BeanCurrentlyInCreationException extends BeanCreationException {
 
 	/**
 	 * 创建新的 BeanCurrentlyInCreationException。
-	 * @param beanName the name of the bean requested
-	 * @param msg the detail message
+	 * @param beanName 所请求的 Bean 名称
+	 * @param msg 详细消息
 	 */
 	public BeanCurrentlyInCreationException(String beanName, String msg) {
 		super(beanName, msg);

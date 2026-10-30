@@ -60,18 +60,14 @@ public class GenericReactiveTransaction implements ReactiveTransaction {
 
 	/**
 	 * 创建一个新的 {@code DefaultReactiveTransactionStatus} 实例。
-	 * @param transaction underlying transaction object that can hold state
-	 * for the internal transaction implementation
-	 * @param newTransaction if the transaction is new, otherwise participating
-	 * in an existing transaction
-	 * @param newSynchronization if a new transaction synchronization has been
-	 * opened for the given transaction
-	 * @param readOnly whether the transaction is marked as read-only
-	 * @param debug should debug logging be enabled for the handling of this transaction?
-	 * Caching it in here can prevent repeated calls to ask the logging system whether
-	 * debug logging should be enabled.
-	 * @param suspendedResources a holder for resources that have been suspended
-	 * for this transaction, if any
+	 * @param transaction 底层事务对象，可为内部事务实现保存状态
+	 * @param newTransaction 事务是否为新事务，否则表示参与现有事务
+	 * @param newSynchronization 是否为给定事务开启了新的事务同步
+	 * @param readOnly 事务是否被标记为只读
+	 * @param debug 是否应为该事务的处理启用调试日志？
+	 * 在此处缓存可以避免反复询问日志系统
+	 * 是否应启用调试日志。
+	 * @param suspendedResources 用于保存为该事务挂起的资源的持有者（如果有）
 	 */
 	public GenericReactiveTransaction(
 			@Nullable Object transaction, boolean newTransaction, boolean newSynchronization,

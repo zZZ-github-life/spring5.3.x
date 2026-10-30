@@ -145,7 +145,7 @@ public class MockServletContext implements ServletContext {
 
 	/**
 	 * 使用 {@link DefaultResourceLoader} 创建一个新的 {@code MockServletContext}。
-	 * @param resourceBasePath the root directory of the WAR (should not end with a slash)
+	 * @param resourceBasePath WAR 的根目录（不应以斜杠结尾）
 	 * @see org.springframework.core.io.DefaultResourceLoader
 	 */
 	public MockServletContext(String resourceBasePath) {
@@ -154,7 +154,7 @@ public class MockServletContext implements ServletContext {
 
 	/**
 	 * 使用指定的 {@link ResourceLoader} 创建一个新的 {@code MockServletContext}，不使用基路径。
-	 * @param resourceLoader the ResourceLoader to use (or null for the default)
+	 * @param resourceLoader 要使用的 ResourceLoader（为 null 表示使用默认值）
 	 */
 	public MockServletContext(@Nullable ResourceLoader resourceLoader) {
 		this("", resourceLoader);
@@ -163,8 +163,8 @@ public class MockServletContext implements ServletContext {
 	/**
 	 * 使用提供的资源基路径和资源加载器创建一个新的 {@code MockServletContext}。
 	 * <p>为名为 {@literal 'default'} 的 Servlet 注册一个 {@link MockRequestDispatcher}。
-	 * @param resourceBasePath the root directory of the WAR (should not end with a slash)
-	 * @param resourceLoader the ResourceLoader to use (or null for the default)
+	 * @param resourceBasePath WAR 的根目录（不应以斜杠结尾）
+	 * @param resourceLoader 要使用的 ResourceLoader（为 null 表示使用默认值）
 	 * @see #registerNamedDispatcher
 	 */
 	public MockServletContext(String resourceBasePath, @Nullable ResourceLoader resourceLoader) {
@@ -182,8 +182,8 @@ public class MockServletContext implements ServletContext {
 
 	/**
 	 * 为给定路径构建完整的资源位置，并在前面加上此 {@code MockServletContext} 的资源基路径。
-	 * @param path the path as specified
-	 * @return the full resource path
+	 * @param path 指定的路径
+	 * @return 完整的资源路径
 	 */
 	protected String getResourceLocation(String path) {
 		if (!path.startsWith("/")) {
@@ -265,8 +265,8 @@ public class MockServletContext implements ServletContext {
 
 	/**
 	 * 添加供 {@link #getMimeType(String)} 使用的 MIME 类型映射。
-	 * @param fileExtension a file extension, such as {@code txt}, {@code gif}
-	 * @param mimeType the mime type
+	 * @param fileExtension 文件扩展名，例如 {@code txt}、{@code gif}
+	 * @param mimeType MIME 类型
 	 */
 	public void addMimeType(String fileExtension, MediaType mimeType) {
 		Assert.notNull(fileExtension, "'fileExtension' must not be null");
@@ -364,8 +364,8 @@ public class MockServletContext implements ServletContext {
 
 	/**
 	 * 注册一个 {@link RequestDispatcher}（通常是 {@link MockRequestDispatcher}），作为指定 Servlet 的包装器。
-	 * @param name the name of the wrapped Servlet
-	 * @param requestDispatcher the dispatcher that wraps the named Servlet
+	 * @param name 被包装的 Servlet 的名称
+	 * @param requestDispatcher 包装该命名 Servlet 的调度器
 	 * @see #getNamedDispatcher
 	 * @see #unregisterNamedDispatcher
 	 */
@@ -377,7 +377,7 @@ public class MockServletContext implements ServletContext {
 
 	/**
 	 * 注销具有给定名称的 {@link RequestDispatcher}。
-	 * @param name the name of the dispatcher to unregister
+	 * @param name 要注销的调度器的名称
 	 * @see #getNamedDispatcher
 	 * @see #registerNamedDispatcher
 	 */
@@ -398,8 +398,8 @@ public class MockServletContext implements ServletContext {
 	/**
 	 * 设置<em>默认</em> {@code Servlet} 的名称。
 	 * <p>还会{@link #unregisterNamedDispatcher 注销}当前的默认 {@link RequestDispatcher}，并将其{@link #registerNamedDispatcher 替换}为针对所提供的 {@code defaultServletName} 的 {@link MockRequestDispatcher}。
-	 * @param defaultServletName the name of the <em>default</em> {@code Servlet};
-	 * never {@code null} or empty
+	 * @param defaultServletName <em>默认</em> {@code Servlet} 的名称；
+	 * 永不为 {@code null} 或空
 	 * @see #getDefaultServletName
 	 */
 	public void setDefaultServletName(String defaultServletName) {

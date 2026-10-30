@@ -28,7 +28,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Simon Baslé
  * @since 5.3.26
- * @param <R> the type of the result of the function.
+ * @param <R> 函数结果的类型。
  */
 final class DelegateConnectionFunction<R> implements ConnectionFunction<R> {
 

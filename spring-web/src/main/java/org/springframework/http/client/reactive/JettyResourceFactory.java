@@ -61,7 +61,7 @@ public class JettyResourceFactory implements InitializingBean, DisposableBean {
 	/**
 	 * 配置要使用的 {@link Executor}。
 	 * <p>默认使用 {@link QueuedThreadPool} 初始化。
-	 * @param executor the executor to use
+	 * @param executor 要使用的执行器
 	 */
 	public void setExecutor(@Nullable Executor executor) {
 		this.executor = executor;
@@ -70,7 +70,7 @@ public class JettyResourceFactory implements InitializingBean, DisposableBean {
 	/**
 	 * 配置要使用的 {@link ByteBufferPool}。
 	 * <p>默认使用 {@link MappedByteBufferPool} 初始化。
-	 * @param byteBufferPool the {@link ByteBuffer} pool to use
+	 * @param byteBufferPool 要使用的 {@link ByteBuffer} 池
 	 */
 	public void setByteBufferPool(@Nullable ByteBufferPool byteBufferPool) {
 		this.byteBufferPool = byteBufferPool;
@@ -79,7 +79,7 @@ public class JettyResourceFactory implements InitializingBean, DisposableBean {
 	/**
 	 * 配置要使用的 {@link Scheduler}。
 	 * <p>默认使用 {@link ScheduledExecutorScheduler} 初始化。
-	 * @param scheduler the {@link Scheduler} to use
+	 * @param scheduler 要使用的 {@link Scheduler}
 	 */
 	public void setScheduler(@Nullable Scheduler scheduler) {
 		this.scheduler = scheduler;
@@ -90,7 +90,7 @@ public class JettyResourceFactory implements InitializingBean, DisposableBean {
 	 * 仅当未{@link #setExecutor(Executor) 提供} {@link Executor} 实例时
 	 * 使用此项。
 	 * <p>默认设置为 "jetty-http"。
-	 * @param threadPrefix the thread prefix to use
+	 * @param threadPrefix 要使用的线程前缀
 	 */
 	public void setThreadPrefix(String threadPrefix) {
 		Assert.notNull(threadPrefix, "Thread prefix is required");

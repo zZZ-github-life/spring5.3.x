@@ -34,7 +34,7 @@ public class JaxWsSoapFaultException extends SoapFaultException {
 
 	/**
 	 * JaxWsSoapFaultException 的构造函数。
-	 * @param original the original JAX-WS SOAPFaultException to wrap
+	 * @param original 要包装的原始 JAX-WS SOAPFaultException
 	 */
 	public JaxWsSoapFaultException(SOAPFaultException original) {
 		super(original.getMessage(), original);

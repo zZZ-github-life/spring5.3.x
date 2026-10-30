@@ -28,9 +28,8 @@ public interface HierarchicalThemeSource extends ThemeSource {
 
 	/**
 	 * 设置父级，当此对象无法解析主题消息时，将尝试使用该父级来解析。
-	 * @param parent the parent ThemeSource that will be used to
-	 * resolve messages that this object can't resolve.
-	 * May be {@code null}, in which case no further resolution is possible.
+	 * @param parent 用于解析此对象无法解析的消息的父 ThemeSource。
+	 * 可为 {@code null}，此时无法进一步解析。
 	 */
 	void setParentThemeSource(@Nullable ThemeSource parent);
 

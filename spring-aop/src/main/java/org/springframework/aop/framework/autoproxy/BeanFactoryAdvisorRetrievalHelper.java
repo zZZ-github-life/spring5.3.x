@@ -49,7 +49,7 @@ public class BeanFactoryAdvisorRetrievalHelper {
 
 	/**
 	 * 为给定的 BeanFactory 创建一个新的 BeanFactoryAdvisorRetrievalHelper。
-	 * @param beanFactory the ListableBeanFactory to scan
+	 * @param beanFactory 要扫描的 ListableBeanFactory
 	 */
 	public BeanFactoryAdvisorRetrievalHelper(ConfigurableListableBeanFactory beanFactory) {
 		Assert.notNull(beanFactory, "ListableBeanFactory must not be null");
@@ -59,7 +59,7 @@ public class BeanFactoryAdvisorRetrievalHelper {
 
 	/**
 	 * 查找当前 Bean 工厂中所有合格的 Advisor Bean，忽略 FactoryBean，并排除当前正在创建中的 Bean。
-	 * @return the list of {@link org.springframework.aop.Advisor} beans
+	 * @return {@link org.springframework.aop.Advisor} Bean 的列表
 	 * @see #isEligibleBean
 	 */
 	public List<Advisor> findAdvisorBeans() {
@@ -114,8 +114,8 @@ public class BeanFactoryAdvisorRetrievalHelper {
 	/**
 	 * 判断具有给定名称的切面 Bean 是否合格。
 	 * <p>默认实现始终返回 {@code true}。
-	 * @param beanName the name of the aspect bean
-	 * @return whether the bean is eligible
+	 * @param beanName 切面 Bean 的名称
+	 * @return 该 Bean 是否符合条件
 	 */
 	protected boolean isEligibleBean(String beanName) {
 		return true;

@@ -32,8 +32,8 @@ interface StereotypesProvider {
 
 	/**
 	 * 返回给定 {@link Element} 上存在的构造型。
-	 * @param element the element to handle
-	 * @return the stereotypes or an empty set if none were found
+	 * @param element 要处理的元素
+	 * @return 构造型集合；如果未找到则为空集合
 	 */
 	Set<String> getStereotypes(Element element);
 

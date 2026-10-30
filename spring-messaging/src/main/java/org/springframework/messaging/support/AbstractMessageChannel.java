@@ -54,7 +54,7 @@ public abstract class AbstractMessageChannel implements MessageChannel, Intercep
 
 	/**
 	 * 设置一个替代日志记录器，而不是基于类名的日志记录器。
-	 * @param logger the logger to use
+	 * @param logger 要使用的日志记录器
 	 * @since 5.1
 	 */
 	public void setLogger(Log logger) {

@@ -219,7 +219,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	/**
 	 * 将“此”请求映射信息（即当前实例）与另一个请求映射信息实例组合。
 	 * <p>示例：组合类型级和方法级请求映射。
-	 * @return a new request mapping info instance; never {@code null}
+	 * @return 新的请求映射信息实例；永不为 {@code null}
 	 */
 	@Override
 	public RequestMappingInfo combine(RequestMappingInfo other) {
@@ -252,7 +252,8 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	/**
 	 * 检查此请求映射信息中的所有条件是否匹配提供的请求，并返回一个可能的新请求映射信息，其中的条件针对当前请求进行了调整。
 	 * <p>例如，返回的实例可能包含与当前请求匹配的 URL 模式子集，并按最佳匹配模式排在前面排序。
-	 * @return a new instance in case all conditions match; or {@code null} otherwise
+	 * @return 如果所有条件都匹配则返回新实例；
+	 * 否则返回 {@code null}
 	 */
 	@Override
 	@Nullable
@@ -393,7 +394,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 	/**
 	 * 返回用于通过修改此实例来创建新的 RequestMappingInfo 的构建器。
-	 * @return a builder to create a new, modified instance
+	 * @return 用于创建新的修改后实例的构建器
 	 * @since 5.3.4
 	 */
 	public Builder mutate() {
@@ -402,7 +403,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 	/**
 	 * 使用给定路径创建新的 {@code RequestMappingInfo.Builder}。
-	 * @param paths the paths to use
+	 * @param paths 要使用的路径
 	 */
 	public static Builder paths(String... paths) {
 		return new DefaultBuilder(paths);

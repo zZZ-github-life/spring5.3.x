@@ -44,7 +44,7 @@ public class ConversionServiceExposingInterceptor implements HandlerInterceptor 
 
 	/**
 	 * 创建新的 {@link ConversionServiceExposingInterceptor}。
-	 * @param conversionService the conversion service to export to request scope when this interceptor is invoked
+	 * @param conversionService 调用该拦截器时要导出到请求作用域的转换服务
 	 */
 	public ConversionServiceExposingInterceptor(ConversionService conversionService) {
 		Assert.notNull(conversionService, "The ConversionService may not be null");

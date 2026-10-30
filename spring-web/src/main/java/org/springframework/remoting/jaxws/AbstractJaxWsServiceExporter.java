@@ -174,8 +174,8 @@ public abstract class AbstractJaxWsServiceExporter implements BeanFactoryAware, 
 
 	/**
 	 * 创建实际的 Endpoint 实例。
-	 * @param bean the service object to wrap
-	 * @return the Endpoint instance
+	 * @param bean 要包装的服务对象
+	 * @return Endpoint 实例
 	 * @see Endpoint#create(Object)
 	 * @see Endpoint#create(String, Object)
 	 */
@@ -188,15 +188,15 @@ public abstract class AbstractJaxWsServiceExporter implements BeanFactoryAware, 
 
 	/**
 	 * 实际发布给定的端点。由子类实现。
-	 * @param endpoint the JAX-WS Endpoint object
-	 * @param annotation the service bean's WebService annotation
+	 * @param endpoint JAX-WS 的 Endpoint 对象
+	 * @param annotation 服务 Bean 的 WebService 注解
 	 */
 	protected abstract void publishEndpoint(Endpoint endpoint, WebService annotation);
 
 	/**
 	 * 实际发布给定的提供者端点。由子类实现。
-	 * @param endpoint the JAX-WS Provider Endpoint object
-	 * @param annotation the service bean's WebServiceProvider annotation
+	 * @param endpoint JAX-WS 的 Provider Endpoint 对象
+	 * @param annotation 服务 Bean 的 WebServiceProvider 注解
 	 */
 	protected abstract void publishEndpoint(Endpoint endpoint, WebServiceProvider annotation);
 

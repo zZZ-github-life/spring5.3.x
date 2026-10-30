@@ -77,7 +77,7 @@ import org.springframework.util.StringUtils;
  * @author Juergen Hoeller
  * @author Sam Brannen
  * @since 2.5
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see DataClassRowMapper
  */
 public class BeanPropertyRowMapper<T> implements RowMapper<T> {
@@ -121,7 +121,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 
 	/**
 	 * 创建一个新的{@code BeanPropertyRowMapper}，接受目标bean中未填充的属性。
-	 * @param mappedClass the class that each row should be mapped to
+	 * @param mappedClass 每行应映射到的类
 	 */
 	public BeanPropertyRowMapper(Class<T> mappedClass) {
 		initialize(mappedClass);
@@ -129,9 +129,8 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 
 	/**
 	 * 创建一个新的{@code BeanPropertyRowMapper}。
-	 * @param mappedClass the class that each row should be mapped to
-	 * @param checkFullyPopulated whether we're strictly validating that
-	 * all bean properties have been mapped from corresponding database columns
+	 * @param mappedClass 每行应映射到的类
+	 * @param checkFullyPopulated 是否严格校验所有 Bean 属性都已从对应的数据库列映射
 	 */
 	public BeanPropertyRowMapper(Class<T> mappedClass, boolean checkFullyPopulated) {
 		initialize(mappedClass);
@@ -223,7 +222,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 
 	/**
 	 * 初始化给定类的映射元数据。
-	 * @param mappedClass the mapped class
+	 * @param mappedClass 映射的类
 	 */
 	protected void initialize(Class<T> mappedClass) {
 		this.mappedClass = mappedClass;
@@ -245,7 +244,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 
 	/**
 	 * 从映射的属性中移除指定的属性。
-	 * @param propertyName the property name (as used by property descriptors)
+	 * @param propertyName 属性名称（如属性描述符所使用的）
 	 * @since 5.3.9
 	 */
 	protected void suppressProperty(String propertyName) {
@@ -258,8 +257,8 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	/**
 	 * 将给定名称转换为小写。
 	 * 默认情况下，转换在US语言环境中进行。
-	 * @param name the original name
-	 * @return the converted name
+	 * @param name 原始名称
+	 * @return 转换后的名称
 	 * @since 4.2
 	 */
 	protected String lowerCaseName(String name) {
@@ -269,8 +268,8 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	/**
 	 * 将驼峰命名转换为小写的下划线命名。
 	 * 任何大写字母都将转换为小写，并在前面加上下划线。
-	 * @param name the original name
-	 * @return the converted name
+	 * @param name 原始名称
+	 * @return 转换后的名称
 	 * @since 4.2
 	 * @see #lowerCaseName
 	 */
@@ -360,10 +359,10 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 
 	/**
 	 * 为当前行构造映射类的实例。
-	 * @param rs the ResultSet to map (pre-initialized for the current row)
-	 * @param tc a TypeConverter with this RowMapper's conversion service
-	 * @return a corresponding instance of the mapped class
-	 * @throws SQLException if an SQLException is encountered
+	 * @param rs 要映射的 ResultSet（已为当前行预先初始化）
+	 * @param tc 使用此 RowMapper 的转换服务的 TypeConverter
+	 * @return 映射类的相应实例
+	 * @throws SQLException 如果遇到 SQLException
 	 * @since 5.3
 	 */
 	protected T constructMappedInstance(ResultSet rs, TypeConverter tc) throws SQLException  {
@@ -376,7 +375,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	 * 每行调用时都需要调用此方法。
 	 * <p>默认实现会应用配置的{@link ConversionService}（如果有的话）。
 	 * 子类可以重写此方法。
-	 * @param bw the BeanWrapper to initialize
+	 * @param bw 要初始化的 BeanWrapper
 	 * @see #getConversionService()
 	 * @see BeanWrapper#setConversionService
 	 */
@@ -390,11 +389,11 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	/**
 	 * 检索指定列的JDBC对象值。
 	 * <p>默认实现委托给{@link #getColumnValue(ResultSet, int, Class)}。
-	 * @param rs is the ResultSet holding the data
-	 * @param index is the column index
-	 * @param pd the bean property that each result object is expected to match
-	 * @return the Object value
-	 * @throws SQLException in case of extraction failure
+	 * @param rs 保存数据的 ResultSet
+	 * @param index 列索引
+	 * @param pd 每个结果对象预期匹配的 Bean 属性
+	 * @return Object 值
+	 * @throws SQLException 如果提取失败
 	 * @see #getColumnValue(ResultSet, int, Class)
 	 */
 	@Nullable
@@ -407,11 +406,11 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	 * <p>默认实现调用{@link JdbcUtils#getResultSetValue(java.sql.ResultSet, int, Class)}。
 	 * 子类可以重写此方法以预先检查特定的值类型，
 	 * 或对从{@code getResultSetValue}返回的值进行后处理。
-	 * @param rs is the ResultSet holding the data
-	 * @param index is the column index
-	 * @param paramType the target parameter type
-	 * @return the Object value
-	 * @throws SQLException in case of extraction failure
+	 * @param rs 保存数据的 ResultSet
+	 * @param index 列索引
+	 * @param paramType 目标参数类型
+	 * @return Object 值
+	 * @throws SQLException 如果提取失败
 	 * @since 5.3
 	 * @see org.springframework.jdbc.support.JdbcUtils#getResultSetValue(java.sql.ResultSet, int, Class)
 	 */
@@ -423,7 +422,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 
 	/**
 	 * 静态工厂方法，创建一个新的{@code BeanPropertyRowMapper}。
-	 * @param mappedClass the class that each row should be mapped to
+	 * @param mappedClass 每行应映射到的类
 	 * @see #newInstance(Class, ConversionService)
 	 */
 	public static <T> BeanPropertyRowMapper<T> newInstance(Class<T> mappedClass) {
@@ -432,9 +431,9 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 
 	/**
 	 * 静态工厂方法，创建一个新的{@code BeanPropertyRowMapper}。
-	 * @param mappedClass the class that each row should be mapped to
-	 * @param conversionService the {@link ConversionService} for binding
-	 * JDBC values to bean properties, or {@code null} for none
+	 * @param mappedClass 每行应映射到的类
+	 * @param conversionService 用于将 JDBC 值绑定到 Bean 属性的 {@link ConversionService}；
+	 * 如果没有则为 {@code null}
 	 * @since 5.2.3
 	 * @see #newInstance(Class)
 	 * @see #setConversionService

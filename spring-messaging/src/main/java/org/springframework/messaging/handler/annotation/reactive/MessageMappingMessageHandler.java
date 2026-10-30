@@ -154,8 +154,8 @@ public class MessageMappingMessageHandler extends AbstractMethodMessageHandler<C
 
 	/**
 	 * 获取实际使用的 {@code RouteMatcher}。
-	 * @return the RouteMatcher (never {@code null})
-	 * @throws IllegalStateException in case of no RouteMatcher set
+	 * @return RouteMatcher（永远不会为 {@code null}）
+	 * @throws IllegalStateException 如果未设置 RouteMatcher
 	 * @since 5.0
 	 */
 	protected RouteMatcher obtainRouteMatcher() {
@@ -168,7 +168,7 @@ public class MessageMappingMessageHandler extends AbstractMethodMessageHandler<C
 	 * 配置用于对基于 String 的值（例如目标变量或头中的值）进行类型转换的
 	 * {@link ConversionService}。
 	 * <p>默认使用 {@link DefaultFormattingConversionService}。
-	 * @param conversionService the conversion service to use
+	 * @param conversionService 要使用的转换服务
 	 */
 	public void setConversionService(ConversionService conversionService) {
 		this.conversionService = conversionService;
@@ -202,7 +202,7 @@ public class MessageMappingMessageHandler extends AbstractMethodMessageHandler<C
 	 *     // delegate all methods
 	 * }
 	 * </pre>
-	 * @param bean the bean to check for {@code @MessageExceptionHandler} methods
+	 * @param bean 要检查 {@code @MessageExceptionHandler} 方法的 Bean
 	 * @since 5.3.5
 	 */
 	public void registerMessagingAdvice(MessagingAdviceBean bean) {
@@ -279,8 +279,8 @@ public class MessageMappingMessageHandler extends AbstractMethodMessageHandler<C
 
 	/**
 	 * 确定给定注解元素的映射条件。
-	 * @param element the element to check
-	 * @return the condition, or {@code null}
+	 * @param element 要检查的元素
+	 * @return 条件，或 {@code null}
 	 */
 	@Nullable
 	protected CompositeMessageCondition getCondition(AnnotatedElement element) {
@@ -295,8 +295,8 @@ public class MessageMappingMessageHandler extends AbstractMethodMessageHandler<C
 
 	/**
 	 * 解析给定目标中的占位符。
-	 * @param destinations the destinations
-	 * @return new array with the processed destinations or the same array
+	 * @param destinations 目的地
+	 * @return 包含处理后目的地的新数组，或原数组
 	 */
 	protected String[] processDestinations(String[] destinations) {
 		if (this.valueResolver != null) {

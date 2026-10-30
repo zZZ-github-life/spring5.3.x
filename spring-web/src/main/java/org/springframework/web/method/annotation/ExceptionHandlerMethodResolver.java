@@ -70,7 +70,7 @@ public class ExceptionHandlerMethodResolver {
 
 	/**
 	 * 一个构造函数，用于在给定类型中查找 {@link ExceptionHandler} 方法。
-	 * @param handlerType the type to introspect
+	 * @param handlerType 要内省的类型
 	 */
 	public ExceptionHandlerMethodResolver(Class<?> handlerType) {
 		for (Method method : MethodIntrospector.selectMethods(handlerType, EXCEPTION_HANDLER_METHODS)) {
@@ -126,8 +126,8 @@ public class ExceptionHandlerMethodResolver {
 	/**
 	 * 查找用于处理给定异常的 {@link Method}。
 	 * <p>如果找到多个匹配项，则使用 {@link ExceptionDepthComparator} 进行选择。
-	 * @param exception the exception
-	 * @return a Method to handle the exception, or {@code null} if none found
+	 * @param exception 异常
+	 * @return 处理该异常的 Method，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public Method resolveMethod(Exception exception) {
@@ -137,8 +137,8 @@ public class ExceptionHandlerMethodResolver {
 	/**
 	 * 查找用于处理给定 Throwable 的 {@link Method}。
 	 * <p>如果找到多个匹配项，则使用 {@link ExceptionDepthComparator} 进行选择。
-	 * @param exception the exception
-	 * @return a Method to handle the exception, or {@code null} if none found
+	 * @param exception 异常
+	 * @return 处理该异常的 Method，如果未找到则为 {@code null}
 	 * @since 5.0
 	 */
 	@Nullable
@@ -157,8 +157,8 @@ public class ExceptionHandlerMethodResolver {
 	 * 查找用于处理给定异常类型的 {@link Method}。当 {@link Exception} 实例
 	 * 不可用时（例如供工具使用），此方法会很有用。
 	 * <p>如果找到多个匹配项，则使用 {@link ExceptionDepthComparator} 进行选择。
-	 * @param exceptionType the exception type
-	 * @return a Method to handle the exception, or {@code null} if none found
+	 * @param exceptionType 异常类型
+	 * @return 处理该异常的 Method，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public Method resolveMethodByExceptionType(Class<? extends Throwable> exceptionType) {

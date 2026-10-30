@@ -72,8 +72,8 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 	/**
 	 * 设置用于创建管理信息的接口数组。如果在 {@code interfaceMappings} 属性中找不到与该 Bean 对应的条
 	 * 目，则这些接口将用于该 Bean。
-	 * @param managedInterfaces an array of classes indicating the interfaces to use.
-	 * Each entry <strong>MUST</strong> be an interface.
+	 * @param managedInterfaces 指示要使用的接口的类数组。
+	 * 每个元素<strong>必须</strong>是接口。
 	 * @see #setInterfaceMappings
 	 */
 	public void setManagedInterfaces(@Nullable Class<?>... managedInterfaces) {
@@ -92,7 +92,7 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 	 * 设置 Bean 键到逗号分隔的接口名称列表的映射。
 	 * <p>属性键应与 Bean 键匹配，属性值应与接口名称列表匹配。在为 Bean 搜索接口时，Spring 将首先检查这
 	 * 些映射。
-	 * @param mappings the mappings of bean keys to interface names
+	 * @param mappings Bean 键到接口名称的映射
 	 */
 	public void setInterfaceMappings(@Nullable Properties mappings) {
 		this.interfaceMappings = mappings;
@@ -113,8 +113,8 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 
 	/**
 	 * 解析给定的接口映射，将类名转换为 Class 对象。
-	 * @param mappings the specified interface mappings
-	 * @return the resolved interface mappings (with Class objects as values)
+	 * @param mappings 指定的接口映射
+	 * @return 解析后的接口映射（值为 Class 对象）
 	 */
 	private Map<String, Class<?>[]> resolveInterfaceMappings(Properties mappings) {
 		Map<String, Class<?>[]> resolvedMappings = CollectionUtils.newHashMap(mappings.size());
@@ -129,9 +129,9 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 
 	/**
 	 * 将给定的类名解析为 Class 对象。
-	 * @param classNames the class names to resolve
-	 * @param beanKey the bean key that the class names are associated with
-	 * @return the resolved Class
+	 * @param classNames 要解析的类名
+	 * @param beanKey 这些类名关联的 Bean 键
+	 * @return 解析后的 Class
 	 */
 	private Class<?>[] resolveClassNames(String[] classNames, String beanKey) {
 		Class<?>[] classes = new Class<?>[classNames.length];
@@ -149,11 +149,10 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 
 	/**
 	 * 检查 {@code Method} 是否在某个已配置的接口中声明，以及它是否为 public。
-	 * @param method the accessor {@code Method}.
-	 * @param beanKey the key associated with the MBean in the
-	 * {@code beans} {@code Map}.
-	 * @return {@code true} if the {@code Method} is declared in one of the
-	 * configured interfaces, otherwise {@code false}.
+	 * @param method 访问器 {@code Method}。
+	 * @param beanKey MBean 在 {@code beans} {@code Map} 中关联的键。
+	 * @return 如果该 {@code Method} 声明在某个已配置接口中
+	 * 则返回 {@code true}，否则返回 {@code false}。
 	 */
 	@Override
 	protected boolean includeReadAttribute(Method method, String beanKey) {
@@ -162,11 +161,10 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 
 	/**
 	 * 检查 {@code Method} 是否在某个已配置的接口中声明，以及它是否为 public。
-	 * @param method the mutator {@code Method}.
-	 * @param beanKey the key associated with the MBean in the
-	 * {@code beans} {@code Map}.
-	 * @return {@code true} if the {@code Method} is declared in one of the
-	 * configured interfaces, otherwise {@code false}.
+	 * @param method 修改器 {@code Method}。
+	 * @param beanKey MBean 在 {@code beans} {@code Map} 中关联的键。
+	 * @return 如果该 {@code Method} 声明在某个已配置接口中
+	 * 则返回 {@code true}，否则返回 {@code false}。
 	 */
 	@Override
 	protected boolean includeWriteAttribute(Method method, String beanKey) {
@@ -175,11 +173,10 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 
 	/**
 	 * 检查 {@code Method} 是否在某个已配置的接口中声明，以及它是否为 public。
-	 * @param method the operation {@code Method}.
-	 * @param beanKey the key associated with the MBean in the
-	 * {@code beans} {@code Map}.
-	 * @return {@code true} if the {@code Method} is declared in one of the
-	 * configured interfaces, otherwise {@code false}.
+	 * @param method 操作 {@code Method}。
+	 * @param beanKey MBean 在 {@code beans} {@code Map} 中关联的键。
+	 * @return 如果该 {@code Method} 声明在某个已配置接口中
+	 * 则返回 {@code true}，否则返回 {@code false}。
 	 */
 	@Override
 	protected boolean includeOperation(Method method, String beanKey) {
@@ -188,10 +185,10 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 
 	/**
 	 * 检查 {@code Method} 是否同时为 public 且已在某个已配置的接口中声明。
-	 * @param method the {@code Method} to check.
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * @return {@code true} if the {@code Method} is declared in one of the
-	 * configured interfaces and is public, otherwise {@code false}.
+	 * @param method 要检查的 {@code Method}。
+	 * @param beanKey MBean 在 beans 映射中关联的键
+	 * @return 如果该 {@code Method} 声明在某个已配置接口中且为 public，
+	 * 则返回 {@code true}，否则返回 {@code false}。
 	 */
 	private boolean isPublicInInterface(Method method, String beanKey) {
 		return Modifier.isPublic(method.getModifiers()) && isDeclaredInInterface(method, beanKey);

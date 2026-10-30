@@ -59,7 +59,7 @@ public class ContentCachingResponseWrapper extends HttpServletResponseWrapper {
 
 	/**
 	 * 为给定的 Servlet 响应创建一个新的 ContentCachingResponseWrapper。
-	 * @param response the original servlet response
+	 * @param response 原始 Servlet 响应
 	 */
 	public ContentCachingResponseWrapper(HttpServletResponse response) {
 		super(response);
@@ -202,8 +202,7 @@ public class ContentCachingResponseWrapper extends HttpServletResponseWrapper {
 
 	/**
 	 * 将缓存的正文内容复制到响应。
-	 * @param complete whether to set a corresponding content length
-	 * for the complete cached body content
+	 * @param complete 是否为完整的缓存正文内容设置相应的内容长度
 	 * @since 4.2
 	 */
 	protected void copyBodyToResponse(boolean complete) throws IOException {

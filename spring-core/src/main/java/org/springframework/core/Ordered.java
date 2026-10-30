@@ -57,7 +57,7 @@ public interface Ordered {
 	 * {@code load-on-startup} 值）。
 	 *
 	 * <p>相同的 order 值将导致受影响对象的排序位置是任意的。
-	 * @return the order value
+	 * @return order 值
 	 * @see #HIGHEST_PRECEDENCE
 	 * @see #LOWEST_PRECEDENCE
 	 */

@@ -32,8 +32,8 @@ public class JobMethodInvocationFailedException extends NestedRuntimeException {
 
 	/**
 	 * 创建 JobMethodInvocationFailedException 的构造器。
-	 * @param methodInvoker the MethodInvoker used for reflective invocation
-	 * @param cause the root cause (as thrown from the target method)
+	 * @param methodInvoker 用于反射调用的 MethodInvoker
+	 * @param cause 根本原因（由目标方法抛出）
 	 */
 	public JobMethodInvocationFailedException(MethodInvoker methodInvoker, Throwable cause) {
 		super("Invocation of method '" + methodInvoker.getTargetMethod() +

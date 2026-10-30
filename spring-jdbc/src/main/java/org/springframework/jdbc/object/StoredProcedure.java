@@ -46,9 +46,8 @@ public abstract class StoredProcedure extends SqlCall {
 
 	/**
 	 * 为存储过程创建新的对象包装器。
-	 * @param ds the DataSource to use throughout the lifetime
-	 * of this object to obtain connections
-	 * @param name the name of the stored procedure in the database
+	 * @param ds 在此对象整个生命周期内用于获取连接的 DataSource
+	 * @param name 数据库中存储过程的名称
 	 */
 	protected StoredProcedure(DataSource ds, String name) {
 		setDataSource(ds);
@@ -57,8 +56,8 @@ public abstract class StoredProcedure extends SqlCall {
 
 	/**
 	 * 为存储过程创建新的对象包装器。
-	 * @param jdbcTemplate the JdbcTemplate which wraps DataSource
-	 * @param name the name of the stored procedure in the database
+	 * @param jdbcTemplate 包装 DataSource 的 JdbcTemplate
+	 * @param name 数据库中存储过程的名称
 	 */
 	protected StoredProcedure(JdbcTemplate jdbcTemplate, String name) {
 		setJdbcTemplate(jdbcTemplate);
@@ -82,9 +81,9 @@ public abstract class StoredProcedure extends SqlCall {
 	 * <b>注意：调用 declareParameter 的顺序必须与它们在数据库存储过程参数列表中
 	 * 出现的顺序一致。</b>
 	 * <p>名称纯粹用于辅助映射。
-	 * @param param the parameter object
-	 * @throws InvalidDataAccessApiUsageException if the parameter has no name, or if the
-	 * operation is already compiled, and hence cannot be configured further
+	 * @param param 参数对象
+	 * @throws InvalidDataAccessApiUsageException 如果参数没有名称，或者操作已编译，
+	 * 因此无法进一步配置
 	 */
 	@Override
 	public void declareParameter(SqlParameter param) throws InvalidDataAccessApiUsageException {
@@ -97,12 +96,13 @@ public abstract class StoredProcedure extends SqlCall {
 	/**
 	 * 使用提供的参数值执行存储过程。这是一个便捷方法，传入参数值的顺序
 	 * 必须与声明参数的顺序一致。
-	 * @param inParams variable number of input parameters. Output parameters should
-	 * not be included in this map. It is legal for values to be {@code null}, and this
-	 * will produce the correct behavior using a NULL argument to the stored procedure.
-	 * @return map of output params, keyed by name as in parameter declarations.
-	 * Output parameters will appear here, with their values after the stored procedure
-	 * has been called.
+	 * @param inParams 数量可变的输入参数。
+	 * 输出参数不应包含在此映射中。
+	 * 值可以为 {@code null} 是合法的，
+	 * 这将使用 NULL 实参调用存储过程并产生正确行为。
+	 * @return 输出参数映射，按参数声明中的名称作为键。
+	 * 调用存储过程后，
+	 * 输出参数及其值将出现在此映射中。
 	 */
 	public Map<String, Object> execute(Object... inParams) {
 		Map<String, Object> paramsToUse = new HashMap<>();
@@ -121,13 +121,13 @@ public abstract class StoredProcedure extends SqlCall {
 	 * 由该方法调用此方法，填充输入 map 并从输出 map 中提取类型化的值。
 	 * 子类的 execute 方法通常接受领域对象作为参数并返回结果值。
 	 * 也可以返回 void。
-	 * @param inParams map of input parameters, keyed by name as in parameter
-	 * declarations. Output parameters need not (but can) be included in this map.
-	 * It is legal for map entries to be {@code null}, and this will produce the
-	 * correct behavior using a NULL argument to the stored procedure.
-	 * @return map of output params, keyed by name as in parameter declarations.
-	 * Output parameters will appear here, with their values after the
-	 * stored procedure has been called.
+	 * @param inParams 输入参数映射，按参数声明中的名称作为键。
+	 * 输出参数无需（但可以）包含在此映射中。
+	 * 映射条目可以为 {@code null} 是合法的，
+	 * 这将使用 NULL 实参调用存储过程并产生正确行为。
+	 * @return 输出参数映射，按参数声明中的名称作为键。
+	 * 调用存储过程后，
+	 * 输出参数及其值将出现在此映射中。
 	 */
 	public Map<String, Object> execute(Map<String, ?> inParams) throws DataAccessException {
 		validateParameters(inParams.values().toArray());
@@ -140,13 +140,13 @@ public abstract class StoredProcedure extends SqlCall {
 	 * 由于 ParameterMapper 可以访问 Connection 对象，因此可以处理数据库特有的特性。
 	 * execute 方法还负责从输出 map 中提取类型化的值。子类的 execute 方法通常
 	 * 接受领域对象作为参数并返回结果值。也可以返回 void。
-	 * @param inParamMapper map of input parameters, keyed by name as in parameter
-	 * declarations. Output parameters need not (but can) be included in this map.
-	 * It is legal for map entries to be {@code null}, and this will produce the correct
-	 * behavior using a NULL argument to the stored procedure.
-	 * @return map of output params, keyed by name as in parameter declarations.
-	 * Output parameters will appear here, with their values after the
-	 * stored procedure has been called.
+	 * @param inParamMapper 输入参数映射，按参数声明中的名称作为键。
+	 * 输出参数无需（但可以）包含在此映射中。
+	 * 映射条目可以为 {@code null} 是合法的，
+	 * 这将使用 NULL 实参调用存储过程并产生正确行为。
+	 * @return 输出参数映射，按参数声明中的名称作为键。
+	 * 调用存储过程后，
+	 * 输出参数及其值将出现在此映射中。
 	 */
 	public Map<String, Object> execute(ParameterMapper inParamMapper) throws DataAccessException {
 		checkCompiled();

@@ -47,7 +47,7 @@ final class DateTimeConverters {
 
 	/**
 	 * 将转换器安装到转换器注册表中。
-	 * @param registry the converter registry
+	 * @param registry 转换器注册表
 	 */
 	public static void registerConverters(ConverterRegistry registry) {
 		DateFormatterRegistrar.addDateConverters(registry);

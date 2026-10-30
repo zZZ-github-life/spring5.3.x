@@ -113,7 +113,7 @@ public class ConnectorServerFactoryBean extends MBeanRegistrationSupport
 	/**
 	 * 设置用于将 {@code JMXConnectorServer} 自身注册到 {@code MBeanServer} 的 {@code ObjectName}，可以
 	 * 是 {@code ObjectName} 实例或 {@code String}。
-	 * @throws MalformedObjectNameException if the {@code ObjectName} is malformed
+	 * @throws MalformedObjectNameException 如果 {@code ObjectName} 格式错误
 	 */
 	public void setObjectName(Object objectName) throws MalformedObjectNameException {
 		this.objectName = ObjectNameManager.getInstance(objectName);
@@ -137,9 +137,8 @@ public class ConnectorServerFactoryBean extends MBeanRegistrationSupport
 	/**
 	 * 启动连接器服务器。如果 {@code threaded} 标志设置为 {@code true}，{@code JMXConnectorServer} 将在
 	 * 单独的线程中启动。如果 {@code daemon} 标志设置为 {@code true}，该线程将作为守护线程启动。
-	 * @throws JMException if a problem occurred when registering the connector server
-	 * with the {@code MBeanServer}
-	 * @throws IOException if there is a problem starting the connector server
+	 * @throws JMException 向 {@code MBeanServer} 注册连接器服务器时出现问题
+	 * @throws IOException 启动连接器服务器时出现问题
 	 */
 	@Override
 	public void afterPropertiesSet() throws JMException, IOException {
@@ -220,7 +219,7 @@ public class ConnectorServerFactoryBean extends MBeanRegistrationSupport
 
 	/**
 	 * 停止由此类实例管理的 {@code JMXConnectorServer}。会在 {@code ApplicationContext} 关闭时自动调用。
-	 * @throws IOException if there is an error stopping the connector server
+	 * @throws IOException 停止连接器服务器时出错
 	 */
 	@Override
 	public void destroy() throws IOException {

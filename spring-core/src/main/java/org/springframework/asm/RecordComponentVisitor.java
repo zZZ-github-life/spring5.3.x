@@ -49,8 +49,7 @@ public abstract class RecordComponentVisitor {
   /**
    * 构造一个新的 {@link RecordComponentVisitor}。
    *
-   * @param api the ASM API version implemented by this visitor. Must be one of {@link Opcodes#ASM8}
-   *     or {@link Opcodes#ASM9}.
+   * @param api 此访问器实现的 ASM API 版本。必须是 {@link Opcodes#ASM8} 或 {@link Opcodes#ASM9} 之一。
    */
   protected RecordComponentVisitor(final int api) {
     this(api, null);
@@ -59,9 +58,8 @@ public abstract class RecordComponentVisitor {
   /**
    * 构造一个新的 {@link RecordComponentVisitor}。
    *
-   * @param api the ASM API version implemented by this visitor. Must be {@link Opcodes#ASM8}.
-   * @param recordComponentVisitor the record component visitor to which this visitor must delegate
-   *     method calls. May be null.
+   * @param api 此访问器实现的 ASM API 版本。必须是 {@link Opcodes#ASM8}。
+   * @param recordComponentVisitor 此访问器必须将方法调用委托给的记录组件访问器。可以为 null。
    */
   protected RecordComponentVisitor(
       final int api, final RecordComponentVisitor recordComponentVisitor) {
@@ -82,8 +80,7 @@ public abstract class RecordComponentVisitor {
   /**
    * 此访问器必须将方法调用委托给它的记录访问器。可以为 {@literal null}。
    *
-   * @return the record visitor to which this visitor must delegate method calls, or {@literal
-   *     null}.
+   * @return 此访问器必须将方法调用委托给的记录访问器，或 {@literal null}。
    */
   public RecordComponentVisitor getDelegate() {
     return delegate;
@@ -92,10 +89,9 @@ public abstract class RecordComponentVisitor {
   /**
    * 访问记录组件的一个注解。
    *
-   * @param descriptor the class descriptor of the annotation class.
-   * @param visible {@literal true} if the annotation is visible at runtime.
-   * @return a visitor to visit the annotation values, or {@literal null} if this visitor is not
-   *     interested in visiting this annotation.
+   * @param descriptor 注解类的类描述符。
+   * @param visible 如果注解在运行时可见，则为 {@literal true}。
+   * @return 用于访问注解值的访问器；如果此访问器不关心访问该注解，则为 {@literal null}。
    */
   public AnnotationVisitor visitAnnotation(final String descriptor, final boolean visible) {
     if (delegate != null) {
@@ -107,17 +103,14 @@ public abstract class RecordComponentVisitor {
   /**
    * 访问记录组件签名中某个类型上的注解。
    *
-   * @param typeRef a reference to the annotated type. The sort of this type reference must be
-   *     {@link TypeReference#CLASS_TYPE_PARAMETER}, {@link
-   *     TypeReference#CLASS_TYPE_PARAMETER_BOUND} or {@link TypeReference#CLASS_EXTENDS}. See
-   *     {@link TypeReference}.
-   * @param typePath the path to the annotated type argument, wildcard bound, array element type, or
-   *     static inner type within 'typeRef'. May be {@literal null} if the annotation targets
-   *     'typeRef' as a whole.
-   * @param descriptor the class descriptor of the annotation class.
-   * @param visible {@literal true} if the annotation is visible at runtime.
-   * @return a visitor to visit the annotation values, or {@literal null} if this visitor is not
-   *     interested in visiting this annotation.
+   * @param typeRef 对被注解类型的引用。该类型引用的种类必须是 {@link TypeReference#CLASS_TYPE_PARAMETER}、
+   * {@link TypeReference#CLASS_TYPE_PARAMETER_BOUND} 或 {@link TypeReference#CLASS_EXTENDS}。
+   * 参见 {@link TypeReference}。
+   * @param typePath 指向 'typeRef' 中被注解的类型实参、通配符绑定、数组元素类型或
+   * 静态内部类型的路径。如果注解作用于整个 'typeRef'，则可以为 {@literal null}。
+   * @param descriptor 注解类的类描述符。
+   * @param visible 如果注解在运行时可见，则为 {@literal true}。
+   * @return 用于访问注解值的访问器；如果此访问器不关心访问该注解，则为 {@literal null}。
    */
   public AnnotationVisitor visitTypeAnnotation(
       final int typeRef, final TypePath typePath, final String descriptor, final boolean visible) {
@@ -130,7 +123,7 @@ public abstract class RecordComponentVisitor {
   /**
    * 访问记录组件的一个非标准属性。
    *
-   * @param attribute an attribute.
+   * @param attribute 一个属性。
    */
   public void visitAttribute(final Attribute attribute) {
     if (delegate != null) {

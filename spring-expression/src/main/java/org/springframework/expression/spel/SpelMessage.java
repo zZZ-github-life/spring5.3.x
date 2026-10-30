@@ -301,8 +301,8 @@ public enum SpelMessage {
 
 	/**
 	 * 生成完整消息，包含前缀，并将插入内容应用到消息中。
-	 * @param inserts the inserts to put into the formatted message
-	 * @return a formatted message
+	 * @param inserts 放入格式化消息中的插入内容
+	 * @return 格式化后的消息
 	 * @since 4.3.5
 	 */
 	public String formatMessage(Object... inserts) {

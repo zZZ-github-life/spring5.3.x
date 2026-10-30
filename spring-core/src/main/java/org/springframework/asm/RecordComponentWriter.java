@@ -82,10 +82,10 @@ final class RecordComponentWriter extends RecordComponentVisitor {
   /**
    * 构造一个新的 {@link RecordComponentWriter}。
    *
-   * @param symbolTable where the constants used in this RecordComponentWriter must be stored.
-   * @param name the record component name.
-   * @param descriptor the record component descriptor (see {@link Type}).
-   * @param signature the record component signature. May be {@literal null}.
+   * @param symbolTable 用于存储此 RecordComponentWriter 中所用常量的位置。
+   * @param name 记录组件的名称。
+   * @param descriptor 记录组件的描述符（参见 {@link Type}）。
+   * @param signature 记录组件的签名。可以为 {@literal null}。
    */
   RecordComponentWriter(
       final SymbolTable symbolTable,
@@ -150,7 +150,7 @@ final class RecordComponentWriter extends RecordComponentVisitor {
    * 返回此 RecordComponentWriter 生成的记录组件 JVMS 结构的大小。同时将此记录组件各属性的名称添加到
    * 常量池中。
    *
-   * @return the size in bytes of the record_component_info of the Record attribute.
+   * @return Record 属性中 record_component_info 的字节大小。
    */
   int computeRecordComponentInfoSize() {
     // name_index, descriptor_index and attributes_count fields use 6 bytes.
@@ -171,7 +171,7 @@ final class RecordComponentWriter extends RecordComponentVisitor {
   /**
    * 将此 RecordComponentWriter 生成的记录组件内容放入给定的 ByteVector 中。
    *
-   * @param output where the record_component_info structure must be put.
+   * @param output 放置 record_component_info 结构的位置。
    */
   void putRecordComponentInfo(final ByteVector output) {
     output.putShort(nameIndex).putShort(descriptorIndex);
@@ -213,7 +213,7 @@ final class RecordComponentWriter extends RecordComponentVisitor {
   /**
    * 将此记录组件的属性收集到给定的属性原型集合中。
    *
-   * @param attributePrototypes a set of attribute prototypes.
+   * @param attributePrototypes 一组属性原型。
    */
   final void collectAttributePrototypes(final Attribute.Set attributePrototypes) {
     attributePrototypes.addAttributes(firstAttribute);

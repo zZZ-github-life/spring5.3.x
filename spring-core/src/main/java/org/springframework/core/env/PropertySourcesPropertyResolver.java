@@ -36,7 +36,7 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 
 	/**
 	 * 针对给定的属性源创建一个新的解析器。
-	 * @param propertySources the set of {@link PropertySource} objects to use
+	 * @param propertySources 要使用的 {@link PropertySource} 对象集合
 	 */
 	public PropertySourcesPropertyResolver(@Nullable PropertySources propertySources) {
 		this.propertySources = propertySources;
@@ -102,9 +102,9 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 	 * <p>默认实现会写入包含键和源的 debug 日志消息。
 	 * 从 4.3.3 起，它不再记录值，以避免意外记录敏感设置。
 	 * 子类可以重写此方法以更改日志级别和/或日志消息，包括在需要时记录属性值。
-	 * @param key the key found
-	 * @param propertySource the {@code PropertySource} that the key has been found in
-	 * @param value the corresponding value
+	 * @param key 找到的键
+	 * @param propertySource 在其中找到该键的 {@code PropertySource}
+	 * @param value 对应的值
 	 * @since 4.3.1
 	 */
 	protected void logKeyFound(String key, PropertySource<?> propertySource, Object value) {

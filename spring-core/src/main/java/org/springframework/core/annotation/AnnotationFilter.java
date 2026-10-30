@@ -97,8 +97,8 @@ public interface AnnotationFilter {
 
 	/**
 	 * 测试给定注解是否匹配该过滤器。
-	 * @param annotation the annotation to test
-	 * @return {@code true} if the annotation matches
+	 * @param annotation 要测试的注解
+	 * @return 如果注解匹配则返回 {@code true}
 	 */
 	default boolean matches(Annotation annotation) {
 		return matches(annotation.annotationType());
@@ -106,8 +106,8 @@ public interface AnnotationFilter {
 
 	/**
 	 * 测试给定类型是否匹配该过滤器。
-	 * @param type the annotation type to test
-	 * @return {@code true} if the annotation matches
+	 * @param type 要测试的注解类型
+	 * @return 如果注解匹配则返回 {@code true}
 	 */
 	default boolean matches(Class<?> type) {
 		return matches(type.getName());
@@ -115,16 +115,16 @@ public interface AnnotationFilter {
 
 	/**
 	 * 测试给定类型名称是否匹配该过滤器。
-	 * @param typeName the fully qualified class name of the annotation type to test
-	 * @return {@code true} if the annotation matches
+	 * @param typeName 要测试的注解类型的全限定类名
+	 * @return 如果注解匹配则返回 {@code true}
 	 */
 	boolean matches(String typeName);
 
 
 	/**
 	 * 创建一个新的 {@link AnnotationFilter}，用于匹配指定包中的注解。
-	 * @param packages the annotation packages that should match
-	 * @return a new {@link AnnotationFilter} instance
+	 * @param packages 应当匹配的注解包
+	 * @return 一个新的 {@link AnnotationFilter} 实例
 	 */
 	static AnnotationFilter packages(String... packages) {
 		return new PackagesAnnotationFilter(packages);

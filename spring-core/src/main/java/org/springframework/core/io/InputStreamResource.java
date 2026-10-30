@@ -50,7 +50,7 @@ public class InputStreamResource extends AbstractResource {
 
 	/**
 	 * 创建一个新的 InputStreamResource。
-	 * @param inputStream the InputStream to use
+	 * @param inputStream 要使用的 InputStream
 	 */
 	public InputStreamResource(InputStream inputStream) {
 		this(inputStream, "resource loaded through InputStream");
@@ -58,8 +58,8 @@ public class InputStreamResource extends AbstractResource {
 
 	/**
 	 * 创建一个新的 InputStreamResource。
-	 * @param inputStream the InputStream to use
-	 * @param description where the InputStream comes from
+	 * @param inputStream 要使用的 InputStream
+	 * @param description 该 InputStream 的来源
 	 */
 	public InputStreamResource(InputStream inputStream, @Nullable String description) {
 		Assert.notNull(inputStream, "InputStream must not be null");

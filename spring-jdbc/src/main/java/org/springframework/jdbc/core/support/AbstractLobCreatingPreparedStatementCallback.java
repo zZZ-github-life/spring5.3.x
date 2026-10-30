@@ -60,7 +60,7 @@ public abstract class AbstractLobCreatingPreparedStatementCallback implements Pr
 	/**
 	 * 为给定的 LobHandler 创建一个新的
 	 * AbstractLobCreatingPreparedStatementCallback。
-	 * @param lobHandler the LobHandler to create LobCreators with
+	 * @param lobHandler 用于创建 LobCreator 的 LobHandler
 	 */
 	public AbstractLobCreatingPreparedStatementCallback(LobHandler lobHandler) {
 		Assert.notNull(lobHandler, "LobHandler must not be null");
@@ -79,10 +79,10 @@ public abstract class AbstractLobCreatingPreparedStatementCallback implements Pr
 	/**
 	 * 使用给定的 LobCreator 在给定的 PreparedStatement 上
 	 * 为 BLOB/CLOB 参数设置值。
-	 * @param ps the PreparedStatement to use
-	 * @param lobCreator the LobCreator to use
-	 * @throws SQLException if thrown by JDBC methods
-	 * @throws DataAccessException in case of custom exceptions
+	 * @param ps 要使用的 PreparedStatement
+	 * @param lobCreator 要使用的 LobCreator
+	 * @throws SQLException 如果由 JDBC 方法抛出
+	 * @throws DataAccessException 如果出现自定义异常
 	 */
 	protected abstract void setValues(PreparedStatement ps, LobCreator lobCreator)
 			throws SQLException, DataAccessException;

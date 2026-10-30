@@ -29,7 +29,7 @@ public class EmptyResultDataAccessException extends IncorrectResultSizeDataAcces
 
 	/**
 	 * EmptyResultDataAccessException 的构造方法。
-	 * @param expectedSize the expected result size
+	 * @param expectedSize 预期的结果大小
 	 */
 	public EmptyResultDataAccessException(int expectedSize) {
 		super(expectedSize, 0);
@@ -37,8 +37,8 @@ public class EmptyResultDataAccessException extends IncorrectResultSizeDataAcces
 
 	/**
 	 * EmptyResultDataAccessException 的构造方法。
-	 * @param msg the detail message
-	 * @param expectedSize the expected result size
+	 * @param msg 详细信息
+	 * @param expectedSize 预期的结果大小
 	 */
 	public EmptyResultDataAccessException(String msg, int expectedSize) {
 		super(msg, expectedSize, 0);
@@ -46,9 +46,9 @@ public class EmptyResultDataAccessException extends IncorrectResultSizeDataAcces
 
 	/**
 	 * EmptyResultDataAccessException 的构造方法。
-	 * @param msg the detail message
-	 * @param expectedSize the expected result size
-	 * @param ex the wrapped exception
+	 * @param msg 详细信息
+	 * @param expectedSize 预期的结果大小
+	 * @param ex 被包装的异常
 	 */
 	public EmptyResultDataAccessException(String msg, int expectedSize, Throwable ex) {
 		super(msg, expectedSize, 0, ex);

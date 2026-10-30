@@ -57,7 +57,7 @@ public class Attribute {
   /**
    * 构造一个新的空属性。
    *
-   * @param type the type of the attribute.
+   * @param type 属性的类型。
    */
   protected Attribute(final String type) {
     this.type = type;
@@ -69,7 +69,7 @@ public class Attribute {
    * 其他符号引用，而这些引用在常量池、方法字节码等发生变化时需要更新，那么这可能会导致属性无效。此方
    * 法的默认实现始终返回 {@literal true}。
    *
-   * @return {@literal true} if this type of attribute is unknown.
+   * @return 如果此类属性未知，则返回 {@literal true}。
    */
   public boolean isUnknown() {
     return true;
@@ -78,7 +78,7 @@ public class Attribute {
   /**
    * 如果此类型的属性是 Code 属性，则返回 {@literal true}。
    *
-   * @return {@literal true} if this type of attribute is a Code attribute.
+   * @return 如果此类属性是 Code 属性，则返回 {@literal true}。
    */
   public boolean isCodeAttribute() {
     return false;
@@ -87,8 +87,7 @@ public class Attribute {
   /**
    * 返回此属性对应的标签。
    *
-   * @return the labels corresponding to this attribute, or {@literal null} if this attribute is not
-   *     a Code attribute that contains labels.
+   * @return 与此属性对应的标签；如果此属性不是包含标签的 Code 属性，则为 {@literal null}。
    */
   protected Label[] getLabels() {
     return new Label[0];
@@ -98,20 +97,16 @@ public class Attribute {
    * 读取 {@link #type} 属性。此方法必须返回一个<i>新的</i> {@link Attribute} 对象，其类型为
    * {@link #type}，对应于给定 ClassReader 中从 'offset' 开始的 'length' 个字节。
    *
-   * @param classReader the class that contains the attribute to be read.
-   * @param offset index of the first byte of the attribute's content in {@link ClassReader}. The 6
-   *     attribute header bytes (attribute_name_index and attribute_length) are not taken into
-   *     account here.
-   * @param length the length of the attribute's content (excluding the 6 attribute header bytes).
-   * @param charBuffer the buffer to be used to call the ClassReader methods requiring a
-   *     'charBuffer' parameter.
-   * @param codeAttributeOffset index of the first byte of content of the enclosing Code attribute
-   *     in {@link ClassReader}, or -1 if the attribute to be read is not a Code attribute. The 6
-   *     attribute header bytes (attribute_name_index and attribute_length) are not taken into
-   *     account here.
-   * @param labels the labels of the method's code, or {@literal null} if the attribute to be read
-   *     is not a Code attribute.
-   * @return a <i>new</i> {@link Attribute} object corresponding to the specified bytes.
+   * @param classReader 包含待读取属性的类。
+   * @param offset {@link ClassReader} 中该属性内容第一个字节的索引。此处不计入 6 个属性头字节
+   * （attribute_name_index 和 attribute_length）。
+   * @param length 该属性内容的长度（不包括 6 个属性头字节）。
+   * @param charBuffer 用于调用 ClassReader 中需要 'charBuffer' 参数的方法的缓冲区。
+   * @param codeAttributeOffset 包含属性的 Code 属性内容在 {@link ClassReader} 中第一个字节的索引；如果要读取的
+   * 属性不是 Code 属性，则为 -1。此处不计入 6 个属性头字节（attribute_name_index
+   * 和 attribute_length）。
+   * @param labels 该方法代码的标签；如果要读取的属性不是 Code 属性，则为 {@literal null}。
+   * @return 与指定字节对应的<i>新</i> {@link Attribute} 对象。
    */
   protected Attribute read(
       final ClassReader classReader,
@@ -130,19 +125,14 @@ public class Attribute {
    * 返回此属性内容的字节数组形式。在返回的 ByteVector 中<i>不得</i>添加 6 个头部字节（
    * attribute_name_index 和 attribute_length）。
    *
-   * @param classWriter the class to which this attribute must be added. This parameter can be used
-   *     to add the items that corresponds to this attribute to the constant pool of this class.
-   * @param code the bytecode of the method corresponding to this Code attribute, or {@literal null}
-   *     if this attribute is not a Code attribute. Corresponds to the 'code' field of the Code
-   *     attribute.
-   * @param codeLength the length of the bytecode of the method corresponding to this code
-   *     attribute, or 0 if this attribute is not a Code attribute. Corresponds to the 'code_length'
-   *     field of the Code attribute.
-   * @param maxStack the maximum stack size of the method corresponding to this Code attribute, or
-   *     -1 if this attribute is not a Code attribute.
-   * @param maxLocals the maximum number of local variables of the method corresponding to this code
-   *     attribute, or -1 if this attribute is not a Code attribute.
-   * @return the byte array form of this attribute.
+   * @param classWriter 必须添加此属性的类。可使用此参数将与属性对应的项添加到该类的常量池。
+   * @param code 与此 Code 属性对应的方法字节码；如果此属性不是 Code 属性，则为 {@literal null}。
+   * 对应 Code 属性的 'code' 字段。
+   * @param codeLength 与此 Code 属性对应的方法字节码长度；如果此属性不是 Code 属性，则为 0。
+   * 对应 Code 属性的 'code_length' 字段。
+   * @param maxStack 与此 Code 属性对应的方法的最大操作数栈大小；如果此属性不是 Code 属性，则为 -1。
+   * @param maxLocals 与此 Code 属性对应的方法的最大局部变量数；如果此属性不是 Code 属性，则为 -1。
+   * @return 此属性的字节数组形式。
    */
   protected ByteVector write(
       final ClassWriter classWriter,
@@ -156,7 +146,7 @@ public class Attribute {
   /**
    * 返回以此属性开头的属性列表中属性的数量。
    *
-   * @return the number of attributes of the attribute list that begins with this attribute.
+   * @return 以此属性开头的属性列表中的属性数量。
    */
   final int getAttributeCount() {
     int count = 0;
@@ -172,9 +162,8 @@ public class Attribute {
    * 返回以此属性开头的属性列表中所有属性的总字节大小。该大小包括每个属性的 6 个头部字节（
    * attribute_name_index 和 attribute_length）。还会将属性类型名添加到常量池中。
    *
-   * @param symbolTable where the constants used in the attributes must be stored.
-   * @return the size of all the attributes in this attribute list. This size includes the size of
-   *     the attribute headers.
+   * @param symbolTable 存储属性中所用常量的位置。
+   * @return 此属性列表中所有属性的总大小。该大小包括属性头的大小。
    */
   final int computeAttributesSize(final SymbolTable symbolTable) {
     final byte[] code = null;
@@ -188,19 +177,14 @@ public class Attribute {
    * 返回以此属性开头的属性列表中所有属性的总字节大小。该大小包括每个属性的 6 个头部字节（
    * attribute_name_index 和 attribute_length）。还会将属性类型名添加到常量池中。
    *
-   * @param symbolTable where the constants used in the attributes must be stored.
-   * @param code the bytecode of the method corresponding to these Code attributes, or {@literal
-   *     null} if they are not Code attributes. Corresponds to the 'code' field of the Code
-   *     attribute.
-   * @param codeLength the length of the bytecode of the method corresponding to these code
-   *     attributes, or 0 if they are not Code attributes. Corresponds to the 'code_length' field of
-   *     the Code attribute.
-   * @param maxStack the maximum stack size of the method corresponding to these Code attributes, or
-   *     -1 if they are not Code attributes.
-   * @param maxLocals the maximum number of local variables of the method corresponding to these
-   *     Code attributes, or -1 if they are not Code attribute.
-   * @return the size of all the attributes in this attribute list. This size includes the size of
-   *     the attribute headers.
+   * @param symbolTable 存储属性中所用常量的位置。
+   * @param code 与这些 Code 属性对应的方法字节码；如果它们不是 Code 属性，则为 {@literal null}。
+   * 对应 Code 属性的 'code' 字段。
+   * @param codeLength 与这些 Code 属性对应的方法字节码长度；如果它们不是 Code 属性，则为 0。
+   * 对应 Code 属性的 'code_length' 字段。
+   * @param maxStack 与这些 Code 属性对应的方法的最大操作数栈大小；如果它们不是 Code 属性，则为 -1。
+   * @param maxLocals 与这些 Code 属性对应的方法的最大局部变量数；如果它们不是 Code 属性，则为 -1。
+   * @return 此属性列表中所有属性的总大小。该大小包括属性头的大小。
    */
   final int computeAttributesSize(
       final SymbolTable symbolTable,
@@ -223,11 +207,10 @@ public class Attribute {
    * 返回与给定字段、方法或类的访问标志和签名相对应的所有属性的总字节大小。该大小包括每个属性的 6 个
    * 头部字节（attribute_name_index 和 attribute_length）。还会将属性类型名添加到常量池中。
    *
-   * @param symbolTable where the constants used in the attributes must be stored.
-   * @param accessFlags some field, method or class access flags.
-   * @param signatureIndex the constant pool index of a field, method of class signature.
-   * @return the size of all the attributes in bytes. This size includes the size of the attribute
-   *     headers.
+   * @param symbolTable 存储属性中所用常量的位置。
+   * @param accessFlags 某些字段、方法或类的访问标志。
+   * @param signatureIndex 字段、方法或类签名的常量池索引。
+   * @return 所有属性的总大小（字节）。该大小包括属性头的大小。
    */
   static int computeAttributesSize(
       final SymbolTable symbolTable, final int accessFlags, final int signatureIndex) {
@@ -257,8 +240,8 @@ public class Attribute {
    * 将以此属性开头的属性列表中的所有属性放入给定的字节向量。这包括每个属性的 6 个头部字节（
    * attribute_name_index 和 attribute_length）。
    *
-   * @param symbolTable where the constants used in the attributes must be stored.
-   * @param output where the attributes must be written.
+   * @param symbolTable 存储属性中所用常量的位置。
+   * @param output 写入这些属性的位置。
    */
   final void putAttributes(final SymbolTable symbolTable, final ByteVector output) {
     final byte[] code = null;
@@ -272,18 +255,14 @@ public class Attribute {
    * 将以此属性开头的属性列表中的所有属性放入给定的字节向量。这包括每个属性的 6 个头部字节（
    * attribute_name_index 和 attribute_length）。
    *
-   * @param symbolTable where the constants used in the attributes must be stored.
-   * @param code the bytecode of the method corresponding to these Code attributes, or {@literal
-   *     null} if they are not Code attributes. Corresponds to the 'code' field of the Code
-   *     attribute.
-   * @param codeLength the length of the bytecode of the method corresponding to these code
-   *     attributes, or 0 if they are not Code attributes. Corresponds to the 'code_length' field of
-   *     the Code attribute.
-   * @param maxStack the maximum stack size of the method corresponding to these Code attributes, or
-   *     -1 if they are not Code attributes.
-   * @param maxLocals the maximum number of local variables of the method corresponding to these
-   *     Code attributes, or -1 if they are not Code attribute.
-   * @param output where the attributes must be written.
+   * @param symbolTable 存储属性中所用常量的位置。
+   * @param code 与这些 Code 属性对应的方法字节码；如果它们不是 Code 属性，则为 {@literal null}。
+   * 对应 Code 属性的 'code' 字段。
+   * @param codeLength 与这些 Code 属性对应的方法字节码长度；如果它们不是 Code 属性，则为 0。
+   * 对应 Code 属性的 'code_length' 字段。
+   * @param maxStack 与这些 Code 属性对应的方法的最大操作数栈大小；如果它们不是 Code 属性，则为 -1。
+   * @param maxLocals 与这些 Code 属性对应的方法的最大局部变量数；如果它们不是 Code 属性，则为 -1。
+   * @param output 写入这些属性的位置。
    */
   final void putAttributes(
       final SymbolTable symbolTable,
@@ -308,10 +287,10 @@ public class Attribute {
    * 将与给定字段、方法或类的访问标志和签名相对应的所有属性放入给定的字节向量。这包括每个属性的 6 个
    * 头部字节（attribute_name_index 和 attribute_length）。
    *
-   * @param symbolTable where the constants used in the attributes must be stored.
-   * @param accessFlags some field, method or class access flags.
-   * @param signatureIndex the constant pool index of a field, method of class signature.
-   * @param output where the attributes must be written.
+   * @param symbolTable 存储属性中所用常量的位置。
+   * @param accessFlags 某些字段、方法或类的访问标志。
+   * @param signatureIndex 字段、方法或类签名的常量池索引。
+   * @param output 写入这些属性的位置。
    */
   static void putAttributes(
       final SymbolTable symbolTable,

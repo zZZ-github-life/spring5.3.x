@@ -106,7 +106,7 @@ public class GroovyWebApplicationContext extends AbstractRefreshableWebApplicati
 	/**
 	 * 初始化用于加载此上下文 bean 定义的 bean 定义读取器。默认实现为空。
 	 * <p>可在子类中覆盖。
-	 * @param beanDefinitionReader the bean definition reader used by this context
+	 * @param beanDefinitionReader 此上下文使用的 Bean 定义读取器
 	 */
 	protected void initBeanDefinitionReader(GroovyBeanDefinitionReader beanDefinitionReader) {
 	}
@@ -116,7 +116,7 @@ public class GroovyWebApplicationContext extends AbstractRefreshableWebApplicati
 	 * <p>bean 工厂的生命周期由 refreshBeanFactory 方法处理；因此此方法只应负责加载和/或注册 bean 定
 	 * 义。
 	 * <p>委托给 ResourcePatternResolver 将位置模式解析为 Resource 实例。
-	 * @throws IOException if the required Groovy script or XML file isn't found
+	 * @throws IOException 如果找不到所需的 Groovy 脚本或 XML 文件
 	 * @see #refreshBeanFactory
 	 * @see #getConfigLocations
 	 * @see #getResources

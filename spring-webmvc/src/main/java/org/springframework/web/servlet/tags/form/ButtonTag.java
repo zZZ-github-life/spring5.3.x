@@ -163,7 +163,7 @@ public class ButtonTag extends AbstractHtmlElementTag {
 
 	/**
 	 * 返回默认值。
-	 * @return the default value if none supplied
+	 * @return 未提供时的默认值
 	 */
 	protected String getDefaultValue() {
 		return "Submit";

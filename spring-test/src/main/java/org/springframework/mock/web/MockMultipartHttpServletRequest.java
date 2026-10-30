@@ -69,8 +69,8 @@ public class MockMultipartHttpServletRequest extends MockHttpServletRequest impl
 
 	/**
 	 * 使用提供的 {@link ServletContext} 创建一个新的 {@code MockMultipartHttpServletRequest}。
-	 * @param servletContext the ServletContext that the request runs in
-	 * (may be {@code null} to use a default {@link MockServletContext})
+	 * @param servletContext 请求运行所在的 ServletContext
+	 * （可为 {@code null} 以使用默认的 {@link MockServletContext}）
 	 */
 	public MockMultipartHttpServletRequest(@Nullable ServletContext servletContext) {
 		super(servletContext);
@@ -82,7 +82,7 @@ public class MockMultipartHttpServletRequest extends MockHttpServletRequest impl
 	/**
 	 * 向此请求添加文件。来自 multipart
 	 * 表单的参数名取自 {@link MultipartFile#getName()}。
-	 * @param file multipart file to be added
+	 * @param file 要添加的 multipart 文件
 	 */
 	public void addFile(MultipartFile file) {
 		Assert.notNull(file, "MultipartFile must not be null");

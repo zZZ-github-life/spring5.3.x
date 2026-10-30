@@ -74,8 +74,8 @@ public class StompEncoder  {
 
 	/**
 	 * 将给定 STOMP {@code message} 编码为 {@code byte[]}。
-	 * @param message the message to encode
-	 * @return the encoded message
+	 * @param message 要编码的消息
+	 * @return 编码后的消息
 	 */
 	public byte[] encode(Message<byte[]> message) {
 		return encode(message.getHeaders(), message.getPayload());
@@ -83,9 +83,9 @@ public class StompEncoder  {
 
 	/**
 	 * 将给定载荷和头编码为 {@code byte[]}。
-	 * @param headers the headers
-	 * @param payload the payload
-	 * @return the encoded message
+	 * @param headers 消息头
+	 * @param payload 负载
+	 * @return 编码后的消息
 	 */
 	public byte[] encode(Map<String, Object> headers, byte[] payload) {
 		Assert.notNull(headers, "'headers' is required");

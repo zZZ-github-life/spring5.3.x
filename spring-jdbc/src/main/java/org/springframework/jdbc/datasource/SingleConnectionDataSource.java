@@ -79,11 +79,10 @@ public class SingleConnectionDataSource extends DriverManagerDataSource implemen
 
 	/**
 	 * 使用给定的标准 DriverManager 参数创建一个新的 SingleConnectionDataSource。
-	 * @param url the JDBC URL to use for accessing the DriverManager
-	 * @param username the JDBC username to use for accessing the DriverManager
-	 * @param password the JDBC password to use for accessing the DriverManager
-	 * @param suppressClose if the returned Connection should be a
-	 * close-suppressing proxy or the physical Connection
+	 * @param url 用于访问 DriverManager 的 JDBC URL
+	 * @param username 用于访问 DriverManager 的 JDBC 用户名
+	 * @param password 用于访问 DriverManager 的 JDBC 密码
+	 * @param suppressClose 返回的 Connection 应为抑制 close 的代理，还是物理 Connection
 	 * @see java.sql.DriverManager#getConnection(String, String, String)
 	 */
 	public SingleConnectionDataSource(String url, String username, String password, boolean suppressClose) {
@@ -93,9 +92,8 @@ public class SingleConnectionDataSource extends DriverManagerDataSource implemen
 
 	/**
 	 * 使用给定的标准 DriverManager 参数创建一个新的 SingleConnectionDataSource。
-	 * @param url the JDBC URL to use for accessing the DriverManager
-	 * @param suppressClose if the returned Connection should be a
-	 * close-suppressing proxy or the physical Connection
+	 * @param url 用于访问 DriverManager 的 JDBC URL
+	 * @param suppressClose 返回的 Connection 应为抑制 close 的代理，还是物理 Connection
 	 * @see java.sql.DriverManager#getConnection(String, String, String)
 	 */
 	public SingleConnectionDataSource(String url, boolean suppressClose) {
@@ -105,11 +103,10 @@ public class SingleConnectionDataSource extends DriverManagerDataSource implemen
 
 	/**
 	 * 使用给定的 Connection 创建一个新的 SingleConnectionDataSource。
-	 * @param target underlying target Connection
-	 * @param suppressClose if the Connection should be wrapped with a Connection that
-	 * suppresses {@code close()} calls (to allow for normal {@code close()}
-	 * usage in applications that expect a pooled Connection but do not know our
-	 * SmartDataSource interface)
+	 * @param target 底层目标 Connection
+	 * @param suppressClose 是否应将该 Connection 包装为抑制 {@code close()} 调用的 Connection
+	 * （以便在期望池化 Connection 但不知道我们的 SmartDataSource 接口的
+	 * 应用中正常使用 {@code close()}）
 	 */
 	public SingleConnectionDataSource(Connection target, boolean suppressClose) {
 		Assert.notNull(target, "Connection must not be null");
@@ -144,7 +141,7 @@ public class SingleConnectionDataSource extends DriverManagerDataSource implemen
 
 	/**
 	 * 返回是否应覆盖返回的 Connection 的 "autoCommit" 设置。
-	 * @return the "autoCommit" value, or {@code null} if none to be applied
+	 * @return “autoCommit” 值，如果没有要应用的值则为 {@code null}
 	 */
 	@Nullable
 	protected Boolean getAutoCommitValue() {
@@ -241,7 +238,7 @@ public class SingleConnectionDataSource extends DriverManagerDataSource implemen
 	 * 在暴露之前准备给定的 Connection。
 	 * <p>默认实现会在必要时应用自动提交标志。
 	 * 可以在子类中重写。
-	 * @param con the Connection to prepare
+	 * @param con 要准备的 Connection
 	 * @see #setAutoCommit
 	 */
 	protected void prepareConnection(Connection con) throws SQLException {
@@ -268,8 +265,8 @@ public class SingleConnectionDataSource extends DriverManagerDataSource implemen
 	/**
 	 * 用代理包装给定的 Connection，该代理将每个方法调用都委托给它，
 	 * 但抑制 close 调用。
-	 * @param target the original Connection to wrap
-	 * @return the wrapped Connection
+	 * @param target 要包装的原始 Connection
+	 * @return 包装后的 Connection
 	 */
 	protected Connection getCloseSuppressingConnectionProxy(Connection target) {
 		return (Connection) Proxy.newProxyInstance(

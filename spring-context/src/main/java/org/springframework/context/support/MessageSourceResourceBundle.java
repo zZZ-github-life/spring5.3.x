@@ -44,8 +44,8 @@ public class MessageSourceResourceBundle extends ResourceBundle {
 
 	/**
 	 * 为给定的 MessageSource 和 Locale 创建一个新的 MessageSourceResourceBundle。
-	 * @param source the MessageSource to retrieve messages from
-	 * @param locale the Locale to retrieve messages for
+	 * @param source 要从中获取消息的 MessageSource
+	 * @param locale 要为其获取消息的 Locale
 	 */
 	public MessageSourceResourceBundle(MessageSource source, Locale locale) {
 		Assert.notNull(source, "MessageSource must not be null");
@@ -55,9 +55,9 @@ public class MessageSourceResourceBundle extends ResourceBundle {
 
 	/**
 	 * 为给定的 MessageSource 和 Locale 创建一个新的 MessageSourceResourceBundle。
-	 * @param source the MessageSource to retrieve messages from
-	 * @param locale the Locale to retrieve messages for
-	 * @param parent the parent ResourceBundle to delegate to if no local message found
+	 * @param source 要从中获取消息的 MessageSource
+	 * @param locale 要为其获取消息的 Locale
+	 * @param parent 如果未找到本地消息，则委托给的父 ResourceBundle
 	 */
 	public MessageSourceResourceBundle(MessageSource source, Locale locale, ResourceBundle parent) {
 		this(source, locale);

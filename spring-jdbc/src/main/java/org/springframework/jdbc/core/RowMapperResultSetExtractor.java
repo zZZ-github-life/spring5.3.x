@@ -53,7 +53,7 @@ import org.springframework.util.Assert;
  *
  * @author Juergen Hoeller
  * @since 1.0.2
- * @param <T> the result element type
+ * @param <T> 结果元素类型
  * @see RowMapper
  * @see JdbcTemplate
  * @see org.springframework.jdbc.object.MappingSqlQuery
@@ -67,7 +67,7 @@ public class RowMapperResultSetExtractor<T> implements ResultSetExtractor<List<T
 
 	/**
 	 * 创建新的RowMapperResultSetExtractor。
-	 * @param rowMapper the RowMapper which creates an object for each row
+	 * @param rowMapper 为每行创建对象的 RowMapper
 	 */
 	public RowMapperResultSetExtractor(RowMapper<T> rowMapper) {
 		this(rowMapper, 0);
@@ -75,9 +75,8 @@ public class RowMapperResultSetExtractor<T> implements ResultSetExtractor<List<T
 
 	/**
 	 * 创建新的RowMapperResultSetExtractor。
-	 * @param rowMapper the RowMapper which creates an object for each row
-	 * @param rowsExpected the number of expected rows
-	 * (just used for optimized collection handling)
+	 * @param rowMapper 为每行创建对象的 RowMapper
+	 * @param rowsExpected 预期的行数（仅用于优化的集合处理）
 	 */
 	public RowMapperResultSetExtractor(RowMapper<T> rowMapper, int rowsExpected) {
 		Assert.notNull(rowMapper, "RowMapper is required");

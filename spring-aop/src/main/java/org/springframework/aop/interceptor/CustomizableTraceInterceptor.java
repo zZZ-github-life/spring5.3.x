@@ -252,18 +252,17 @@ public class CustomizableTraceInterceptor extends AbstractTraceInterceptor {
 
 	/**
 	 * 将给定消息中的占位符替换为提供的值，或由这些值派生出的值。
-	 * @param message the message template containing the placeholders to be replaced
-	 * @param methodInvocation the {@code MethodInvocation} being logged.
-	 * Used to derive values for all placeholders except {@code $[exception]}
-	 * and {@code $[returnValue]}.
-	 * @param returnValue any value returned by the invocation.
-	 * Used to replace the {@code $[returnValue]} placeholder. May be {@code null}.
-	 * @param throwable any {@code Throwable} raised during the invocation.
-	 * The value of {@code Throwable.toString()} is replaced for the
-	 * {@code $[exception]} placeholder. May be {@code null}.
-	 * @param invocationTime the value to write in place of the
-	 * {@code $[invocationTime]} placeholder
-	 * @return the formatted output to write to the log
+	 * @param message 包含待替换占位符的消息模板
+	 * @param methodInvocation 正在记录的 {@code MethodInvocation}。
+	 * 用于推导除 {@code $[exception]} 和 {@code $[returnValue]}
+	 * 之外所有占位符的值。
+	 * @param returnValue 调用返回的任意值。用于替换 {@code $[returnValue]} 占位符。
+	 * 可能为 {@code null}。
+	 * @param throwable 调用期间抛出的任意 {@code Throwable}。
+	 * 其 {@code Throwable.toString()} 的值会替换
+	 * {@code $[exception]} 占位符。可能为 {@code null}。
+	 * @param invocationTime 用于替换 {@code $[invocationTime]} 占位符的值
+	 * @return 要写入日志的格式化输出
 	 */
 	protected String replacePlaceholders(String message, MethodInvocation methodInvocation,
 			@Nullable Object returnValue, @Nullable Throwable throwable, long invocationTime) {
@@ -315,10 +314,10 @@ public class CustomizableTraceInterceptor extends AbstractTraceInterceptor {
 	/**
 	 * 将方法返回值的 {@code String} 表示形式添加到提供的 {@code StringBuffer} 中。能正确处理
 	 * {@code null} 和 {@code void} 结果。
-	 * @param methodInvocation the {@code MethodInvocation} that returned the value
-	 * @param matcher the {@code Matcher} containing the matched placeholder
-	 * @param output the {@code StringBuffer} to write output to
-	 * @param returnValue the value returned by the method invocation.
+	 * @param methodInvocation 返回该值的 {@code MethodInvocation}
+	 * @param matcher 包含所匹配占位符的 {@code Matcher}
+	 * @param output 用于写入输出的 {@code StringBuffer}
+	 * @param returnValue 方法调用返回的值。
 	 */
 	private void appendReturnValue(
 			MethodInvocation methodInvocation, Matcher matcher, StringBuffer output, @Nullable Object returnValue) {
@@ -337,10 +336,9 @@ public class CustomizableTraceInterceptor extends AbstractTraceInterceptor {
 	/**
 	 * 将方法参数类型的短 {@code Class} 名称列表（以逗号分隔）添加到输出中。例如，如果方法的签名为
 	 * {@code put(java.lang.String, java.lang.Object)}，则返回值将是 {@code String, Object}。
-	 * @param methodInvocation the {@code MethodInvocation} being logged.
-	 * Arguments will be retrieved from the corresponding {@code Method}.
-	 * @param matcher the {@code Matcher} containing the state of the output
-	 * @param output the {@code StringBuffer} containing the output
+	 * @param methodInvocation 正在记录的 {@code MethodInvocation}。参数将从对应的 {@code Method} 中获取。
+	 * @param matcher 包含输出状态的 {@code Matcher}
+	 * @param output 包含输出的 {@code StringBuffer}
 	 */
 	private void appendArgumentTypes(MethodInvocation methodInvocation, Matcher matcher, StringBuffer output) {
 		Class<?>[] argumentTypes = methodInvocation.getMethod().getParameterTypes();

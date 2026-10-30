@@ -47,9 +47,9 @@ public class JsonPathRequestMatchers {
 	 * 受保护的构造函数。
 	 * <p>请使用 {@link MockRestRequestMatchers#jsonPath(String, Matcher)} 或
 	 * {@link MockRestRequestMatchers#jsonPath(String, Object...)}。
-	 * @param expression the {@link JsonPath} expression; never {@code null} or empty
-	 * @param args arguments to parameterize the {@code JsonPath} expression with,
-	 * using formatting specifiers defined in {@link String#format(String, Object...)}
+	 * @param expression {@link JsonPath} 表达式；永不为 {@code null} 或空
+	 * @param args 用于为 {@code JsonPath} 表达式提供参数的参数，
+	 * 使用 {@link String#format(String, Object...)} 中定义的格式说明符
 	 */
 	protected JsonPathRequestMatchers(String expression, Object ... args) {
 		this.jsonPathHelper = new JsonPathExpectationsHelper(expression, args);

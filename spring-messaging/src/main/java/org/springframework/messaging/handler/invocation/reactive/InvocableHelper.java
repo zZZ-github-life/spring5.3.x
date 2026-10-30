@@ -122,8 +122,8 @@ class InvocableHelper {
 
 	/**
 	 * 使用已配置的参数解析器创建 {@link InvocableHandlerMethod}。
-	 * @param handlerMethod the target handler method to invoke
-	 * @return the created instance
+	 * @param handlerMethod 要调用的目标处理器方法
+	 * @return 创建的实例
 	 */
 
 	public InvocableHandlerMethod initMessageMappingMethod(HandlerMethod handlerMethod) {
@@ -136,9 +136,9 @@ class InvocableHelper {
 	 * 为给定异常查找异常处理方法。
 	 * <p>默认实现首先在 HandlerMethod 的类层次结构中搜索方法；如果未找到，
 	 * 则继续搜索通过 {@link #registerExceptionHandlerAdvice} 注册的其他处理方法。
-	 * @param handlerMethod the method where the exception was raised
-	 * @param ex the exception raised or signaled
-	 * @return a method to handle the exception, or {@code null}
+	 * @param handlerMethod 引发异常的方法
+	 * @param ex 引发的或信号发送的异常
+	 * @return 用于处理该异常的方法，或 {@code null}
 	 */
 	@Nullable
 	public InvocableHandlerMethod initExceptionHandlerMethod(HandlerMethod handlerMethod, Throwable ex) {

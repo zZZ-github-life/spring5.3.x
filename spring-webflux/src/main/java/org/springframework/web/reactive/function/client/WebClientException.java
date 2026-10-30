@@ -29,7 +29,7 @@ public abstract class WebClientException extends NestedRuntimeException {
 
 	/**
 	 * 使用给定消息构造 {@code WebClientException} 的新实例。
-	 * @param msg the message
+	 * @param msg 消息
 	 */
 	public WebClientException(String msg) {
 		super(msg);
@@ -37,8 +37,8 @@ public abstract class WebClientException extends NestedRuntimeException {
 
 	/**
 	 * 使用给定消息和异常构造 {@code WebClientException} 的新实例。
-	 * @param msg the message
-	 * @param ex the exception
+	 * @param msg 消息
+	 * @param ex 异常
 	 */
 	public WebClientException(String msg, Throwable ex) {
 		super(msg, ex);

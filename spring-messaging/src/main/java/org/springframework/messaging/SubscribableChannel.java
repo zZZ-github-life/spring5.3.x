@@ -27,15 +27,13 @@ public interface SubscribableChannel extends MessageChannel {
 
 	/**
 	 * 注册消息处理器。
-	 * @return {@code true} if the handler was subscribed or {@code false} if it
-	 * was already subscribed.
+	 * @return 如果处理器已订阅则返回 {@code true}，如果此前已订阅则返回 {@code false}。
 	 */
 	boolean subscribe(MessageHandler handler);
 
 	/**
 	 * 取消注册消息处理器。
-	 * @return {@code true} if the handler was un-registered, or {@code false}
-	 * if was not registered.
+	 * @return 如果处理器已注销则返回 {@code true}，如果此前未注册则返回 {@code false}。
 	 */
 	boolean unsubscribe(MessageHandler handler);
 

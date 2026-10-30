@@ -31,9 +31,9 @@ public interface TypeConverter {
 
 	/**
 	 * 如果类型转换器可以将指定类型转换为所需的目标类型，则返回 {@code true}。
-	 * @param sourceType a type descriptor that describes the source type
-	 * @param targetType a type descriptor that describes the requested result type
-	 * @return {@code true} if that conversion can be performed
+	 * @param sourceType 描述源类型的类型描述符
+	 * @param targetType 描述所请求结果类型的类型描述符
+	 * @return 如果可执行该转换则返回 {@code true}
 	 */
 	boolean canConvert(@Nullable TypeDescriptor sourceType, TypeDescriptor targetType);
 
@@ -41,13 +41,11 @@ public interface TypeConverter {
 	 * 将值从一种类型转换（或强制转换）为另一种类型，例如从 {@code boolean} 转换为 {@code String}。
 	 * <p>{@link TypeDescriptor} 参数支持带类型的集合：例如，调用方可能更希望使用 {@code List<Integer>}，
 	 * 而不是任意 {@code List}。
-	 * @param value the value to be converted
-	 * @param sourceType a type descriptor that supplies extra information about the
-	 * source object
-	 * @param targetType a type descriptor that supplies extra information about the
-	 * requested result type
-	 * @return the converted value
-	 * @throws EvaluationException if conversion failed or is not possible to begin with
+	 * @param value 要转换的值
+	 * @param sourceType 提供源对象额外信息的类型描述符
+	 * @param targetType 提供所请求结果类型额外信息的类型描述符
+	 * @return 转换后的值
+	 * @throws EvaluationException 如果转换失败或一开始就无法进行转换
 	 */
 	@Nullable
 	Object convertValue(@Nullable Object value, @Nullable TypeDescriptor sourceType, TypeDescriptor targetType);

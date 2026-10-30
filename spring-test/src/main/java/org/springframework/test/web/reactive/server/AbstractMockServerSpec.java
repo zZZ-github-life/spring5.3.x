@@ -31,7 +31,7 @@ import org.springframework.web.server.session.WebSessionManager;
  * {@link WebTestClient.MockServerSpec} 实现的基类。
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <B> a self reference to the builder type
+ * @param <B> 对构建器类型的自引用
  */
 abstract class AbstractMockServerSpec<B extends WebTestClient.MockServerSpec<B>>
 		implements WebTestClient.MockServerSpec<B> {

@@ -111,7 +111,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 
 	/**
 	 * 匹配声明在基础包下的处理器，例如 "org.example"。
-	 * @param packages one or more base package names
+	 * @param packages 一个或多个基础包名称
 	 */
 	public static HandlerTypePredicate forBasePackage(String... packages) {
 		return new Builder().basePackage(packages).build();
@@ -120,7 +120,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 	/**
 	 * {@link #forBasePackage(String...)} 的类型安全替代方法，
 	 * 通过类来指定基础包。
-	 * @param packageClasses one or more base package classes
+	 * @param packageClasses 一个或多个基础包类
 	 */
 	public static HandlerTypePredicate forBasePackageClass(Class<?>... packageClasses) {
 		return new Builder().basePackageClass(packageClasses).build();
@@ -128,7 +128,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 
 	/**
 	 * 匹配可赋值给给定类型的处理器。
-	 * @param types one or more handler supertypes
+	 * @param types 一个或多个处理器超类型
 	 */
 	public static HandlerTypePredicate forAssignableType(Class<?>... types) {
 		return new Builder().assignableType(types).build();
@@ -136,7 +136,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 
 	/**
 	 * 匹配标注了特定注解的处理器。
-	 * @param annotations one or more annotations to check for
+	 * @param annotations 一个或多个要检查的注解
 	 */
 	@SafeVarargs
 	public static HandlerTypePredicate forAnnotation(Class<? extends Annotation>... annotations) {
@@ -164,7 +164,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 
 		/**
 		 * 匹配声明在基础包下的处理器，例如 "org.example"。
-		 * @param packages one or more base package classes
+		 * @param packages 一个或多个基础包类
 		 */
 		public Builder basePackage(String... packages) {
 			Arrays.stream(packages).filter(StringUtils::hasText).forEach(this::addBasePackage);
@@ -174,7 +174,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 		/**
 		 * {@link #forBasePackage(String...)} 的类型安全替代方法，
 		 * 通过类来指定基础包。
-		 * @param packageClasses one or more base package names
+		 * @param packageClasses 一个或多个基础包名称
 		 */
 		public Builder basePackageClass(Class<?>... packageClasses) {
 			Arrays.stream(packageClasses).forEach(clazz -> addBasePackage(ClassUtils.getPackageName(clazz)));
@@ -187,7 +187,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 
 		/**
 		 * 匹配可赋值给给定类型的处理器。
-		 * @param types one or more handler supertypes
+		 * @param types 一个或多个处理器超类型
 		 */
 		public Builder assignableType(Class<?>... types) {
 			this.assignableTypes.addAll(Arrays.asList(types));
@@ -196,7 +196,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 
 		/**
 		 * 匹配标注了给定注解之一中的任意注解的类型。
-		 * @param annotations one or more annotations to check for
+		 * @param annotations 一个或多个要检查的注解
 		 */
 		@SuppressWarnings("unchecked")
 		public final Builder annotation(Class<? extends Annotation>... annotations) {

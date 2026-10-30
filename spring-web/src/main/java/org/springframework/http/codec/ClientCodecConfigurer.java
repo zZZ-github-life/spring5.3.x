@@ -97,7 +97,7 @@ public interface ClientCodecConfigurer extends CodecConfigurer {
 		 * 使用此方法可以自定义 SSE 解码器。
 		 * <p>请注意，如果配置了 {@link #maxInMemorySize(int)}，
 		 * 它将被应用于给定的解码器。
-		 * @param decoder the decoder to use
+		 * @param decoder 要使用的解码器
 		 */
 		void serverSentEventDecoder(Decoder<?> decoder);
 	}
@@ -111,7 +111,7 @@ public interface ClientCodecConfigurer extends CodecConfigurer {
 		/**
 		 * 添加一个 Part {@code Encoder}，内部使用
 		 * {@link EncoderHttpMessageWriter} 包装。
-		 * @param encoder the encoder to add
+		 * @param encoder 要添加的编码器
 		 */
 		MultipartCodecs encoder(Encoder<?> encoder);
 
@@ -119,7 +119,7 @@ public interface ClientCodecConfigurer extends CodecConfigurer {
 		 * 添加一个 Part {@link HttpMessageWriter}。对于类型为
 		 * {@link EncoderHttpMessageWriter} 的写入器，可考虑改用快捷方法
 		 * {@link #encoder(Encoder)}。
-		 * @param writer the writer to add
+		 * @param writer 要添加的写入器
 		 */
 		MultipartCodecs writer(HttpMessageWriter<?> writer);
 	}

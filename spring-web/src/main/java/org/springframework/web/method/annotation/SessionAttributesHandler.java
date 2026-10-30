@@ -58,8 +58,8 @@ public class SessionAttributesHandler {
 	/**
 	 * 创建一个新的会话属性处理器。如果给定类型上存在 {@code @SessionAttributes} 注解，
 	 * 则从该注解中提取会话属性名称和类型。
-	 * @param handlerType the controller type
-	 * @param sessionAttributeStore used for session access
+	 * @param handlerType 控制器类型
+	 * @param sessionAttributeStore 用于会话访问
 	 */
 	public SessionAttributesHandler(Class<?> handlerType, SessionAttributeStore sessionAttributeStore) {
 		Assert.notNull(sessionAttributeStore, "SessionAttributeStore may not be null");
@@ -88,8 +88,8 @@ public class SessionAttributesHandler {
 	 * <p>通过此方法成功解析的属性会被“记住”，随后在
 	 * {@link #retrieveAttributes(WebRequest)} 和
 	 * {@link #cleanupAttributes(WebRequest)} 中使用。
-	 * @param attributeName the attribute name to check
-	 * @param attributeType the type for the attribute
+	 * @param attributeName 要检查的属性名称
+	 * @param attributeType 属性的类型
 	 */
 	public boolean isHandlerSessionAttribute(String attributeName, Class<?> attributeType) {
 		Assert.notNull(attributeName, "Attribute name must not be null");
@@ -105,8 +105,8 @@ public class SessionAttributesHandler {
 	/**
 	 * 将给定属性中的一个子集存储到会话中。未通过 {@code @SessionAttributes}
 	 * 声明为会话属性的属性将被忽略。
-	 * @param request the current request
-	 * @param attributes candidate attributes for session storage
+	 * @param request 当前请求
+	 * @param attributes 用于会话存储的候选属性
 	 */
 	public void storeAttributes(WebRequest request, Map<String, ?> attributes) {
 		attributes.forEach((name, value) -> {
@@ -119,8 +119,8 @@ public class SessionAttributesHandler {
 	/**
 	 * 从会话中获取“已知”属性，即在 {@code @SessionAttributes} 中按名称列出的属性，
 	 * 或之前在模型中存储且按类型匹配的属性。
-	 * @param request the current request
-	 * @return a map with handler session attributes, possibly empty
+	 * @param request 当前请求
+	 * @return 包含处理器会话属性的 map，可能为空
 	 */
 	public Map<String, Object> retrieveAttributes(WebRequest request) {
 		Map<String, Object> attributes = new HashMap<>();
@@ -136,7 +136,7 @@ public class SessionAttributesHandler {
 	/**
 	 * 从会话中移除“已知”属性，即在 {@code @SessionAttributes} 中按名称列出的属性，
 	 * 或之前在模型中存储且按类型匹配的属性。
-	 * @param request the current request
+	 * @param request 当前请求
 	 */
 	public void cleanupAttributes(WebRequest request) {
 		for (String attributeName : this.knownAttributeNames) {
@@ -146,9 +146,9 @@ public class SessionAttributesHandler {
 
 	/**
 	 * 对底层 {@link SessionAttributeStore} 的透传调用。
-	 * @param request the current request
-	 * @param attributeName the name of the attribute of interest
-	 * @return the attribute value, or {@code null} if none
+	 * @param request 当前请求
+	 * @param attributeName 所关注属性的名称
+	 * @return 属性值，如果没有则为 {@code null}
 	 */
 	@Nullable
 	Object retrieveAttribute(WebRequest request, String attributeName) {

@@ -357,8 +357,7 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	 * 数据库中）时，不要将 Spring 管理的 bean 或
 	 * ApplicationContext 引用放入 JobDataMap 中，
 	 * 而应放入 SchedulerContext 中。
-	 * @param schedulerContextAsMap a Map with String keys and any objects as
-	 * values (for example Spring-managed beans)
+	 * @param schedulerContextAsMap 以 String 为键、任意对象为值的 Map（例如由 Spring 管理的 Bean）
 	 * @see JobDetailFactoryBean#setJobDataAsMap
 	 */
 	public void setSchedulerContextAsMap(Map<String, ?> schedulerContextAsMap) {
@@ -520,7 +519,7 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 
 	/**
 	 * 如有必要，创建 SchedulerFactory 并将本地定义的 Quartz 属性应用于其中。
-	 * @return the initialized SchedulerFactory
+	 * @return 已初始化的 SchedulerFactory
 	 */
 	private SchedulerFactory prepareSchedulerFactory() throws SchedulerException, IOException {
 		SchedulerFactory schedulerFactory = this.schedulerFactory;
@@ -543,7 +542,7 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 
 	/**
 	 * 初始化给定的 SchedulerFactory，将本地定义的 Quartz 属性应用于其中。
-	 * @param schedulerFactory the SchedulerFactory to initialize
+	 * @param schedulerFactory 要初始化的 SchedulerFactory
 	 */
 	private void initSchedulerFactory(StdSchedulerFactory schedulerFactory) throws SchedulerException, IOException {
 		Properties mergedProps = new Properties();
@@ -654,10 +653,10 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	 * 由 {@link #afterPropertiesSet} 调用。
 	 * <p>默认实现调用 SchedulerFactory 的 {@code getScheduler}
 	 * 方法。可以重写以自定义创建 Scheduler。
-	 * @param schedulerFactory the factory to create the Scheduler with
-	 * @param schedulerName the name of the scheduler to create
-	 * @return the Scheduler instance
-	 * @throws SchedulerException if thrown by Quartz methods
+	 * @param schedulerFactory 用于创建 Scheduler 的工厂
+	 * @param schedulerName 要创建的调度器名称
+	 * @return Scheduler 实例
+	 * @throws SchedulerException 由 Quartz 方法抛出时
 	 * @see #afterPropertiesSet
 	 * @see org.quartz.SchedulerFactory#getScheduler
 	 */
@@ -720,9 +719,8 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 
 	/**
 	 * 启动 Quartz Scheduler，遵循 "startupDelay" 设置。
-	 * @param scheduler the Scheduler to start
-	 * @param startupDelay the number of seconds to wait before starting
-	 * the Scheduler asynchronously
+	 * @param scheduler 要启动的 Scheduler
+	 * @param startupDelay 异步启动 Scheduler 之前等待的秒数
 	 */
 	protected void startScheduler(final Scheduler scheduler, final int startupDelay) throws SchedulerException {
 		if (startupDelay <= 0) {

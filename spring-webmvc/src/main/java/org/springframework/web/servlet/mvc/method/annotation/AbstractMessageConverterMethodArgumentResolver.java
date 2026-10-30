@@ -111,13 +111,13 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 
 	/**
 	 * 通过读取给定请求，创建预期参数类型的方法参数值。
-	 * @param <T> the expected type of the argument value to be created
-	 * @param webRequest the current request
-	 * @param parameter the method parameter descriptor (may be {@code null})
-	 * @param paramType the type of the argument value to be created
-	 * @return the created method argument value
-	 * @throws IOException if the reading from the request fails
-	 * @throws HttpMediaTypeNotSupportedException if no suitable message converter is found
+	 * @param <T> 要创建的参数值的预期类型
+	 * @param webRequest 当前请求
+	 * @param parameter 方法参数描述符（可能为 {@code null}）
+	 * @param paramType 要创建的参数值的类型
+	 * @return 创建的方法参数值
+	 * @throws IOException 从请求读取失败时
+	 * @throws HttpMediaTypeNotSupportedException 未找到合适的消息转换器时
 	 */
 	@Nullable
 	protected <T> Object readWithMessageConverters(NativeWebRequest webRequest, MethodParameter parameter,
@@ -129,14 +129,13 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 
 	/**
 	 * 通过读取给定的 HttpInputMessage，创建预期参数类型的方法参数值。
-	 * @param <T> the expected type of the argument value to be created
-	 * @param inputMessage the HTTP input message representing the current request
-	 * @param parameter the method parameter descriptor
-	 * @param targetType the target type, not necessarily the same as the method
-	 * parameter type, e.g. for {@code HttpEntity<String>}.
-	 * @return the created method argument value
-	 * @throws IOException if the reading from the request fails
-	 * @throws HttpMediaTypeNotSupportedException if no suitable message converter is found
+	 * @param <T> 要创建的参数值的预期类型
+	 * @param inputMessage 表示当前请求的 HTTP 输入消息
+	 * @param parameter 方法参数描述符
+	 * @param targetType 目标类型，不一定与方法参数类型相同，例如对于 {@code HttpEntity<String>}。
+	 * @return 创建的方法参数值
+	 * @throws IOException 从请求读取失败时
+	 * @throws HttpMediaTypeNotSupportedException 未找到合适的消息转换器时
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable
@@ -220,8 +219,8 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 
 	/**
 	 * 根据给定的 {@link NativeWebRequest} 创建一个新的 {@link HttpInputMessage}。
-	 * @param webRequest the web request to create an input message from
-	 * @return the input message
+	 * @param webRequest 要从中创建输入消息的 Web 请求
+	 * @return 输入消息
 	 */
 	protected ServletServerHttpRequest createInputMessage(NativeWebRequest webRequest) {
 		HttpServletRequest servletRequest = webRequest.getNativeRequest(HttpServletRequest.class);
@@ -234,8 +233,8 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 	 * <p>默认实现会检查 {@code @javax.validation.Valid}、
 	 * Spring 的 {@link org.springframework.validation.annotation.Validated}
 	 * 以及名称以 "Valid" 开头的自定义注解。
-	 * @param binder the DataBinder to be used
-	 * @param parameter the method parameter descriptor
+	 * @param binder 要使用的 DataBinder
+	 * @param parameter 方法参数描述符
 	 * @since 4.1.5
 	 * @see #isBindExceptionRequired
 	 */
@@ -252,9 +251,9 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 
 	/**
 	 * 在校验错误时是否抛出致命的绑定异常。
-	 * @param binder the data binder used to perform data binding
-	 * @param parameter the method parameter descriptor
-	 * @return {@code true} if the next method argument is not of type {@link Errors}
+	 * @param binder 用于执行数据绑定的数据绑定器
+	 * @param parameter 方法参数描述符
+	 * @return 如果下一个方法参数不是 {@link Errors} 类型，则为 {@code true}
 	 * @since 4.1.5
 	 */
 	protected boolean isBindExceptionRequired(WebDataBinder binder, MethodParameter parameter) {
@@ -281,9 +280,9 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 
 	/**
 	 * 如有必要，针对方法参数调整给定参数。
-	 * @param arg the resolved argument
-	 * @param parameter the method parameter descriptor
-	 * @return the adapted argument, or the original resolved argument as-is
+	 * @param arg 解析后的参数
+	 * @param parameter 方法参数描述符
+	 * @return 适配后的参数，或原样返回的原始解析参数
 	 * @since 4.3.5
 	 */
 	@Nullable

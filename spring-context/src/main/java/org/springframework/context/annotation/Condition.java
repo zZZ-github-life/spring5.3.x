@@ -39,11 +39,11 @@ public interface Condition {
 
 	/**
 	 * 确定条件是否匹配。
-	 * @param context the condition context
-	 * @param metadata the metadata of the {@link org.springframework.core.type.AnnotationMetadata class}
-	 * or {@link org.springframework.core.type.MethodMetadata method} being checked
-	 * @return {@code true} if the condition matches and the component can be registered,
-	 * or {@code false} to veto the annotated component's registration
+	 * @param context 条件上下文
+	 * @param metadata 正在检查的 {@link org.springframework.core.type.AnnotationMetadata 类}
+	 * 或 {@link org.springframework.core.type.MethodMetadata 方法}的元数据
+	 * @return 如果条件匹配且该组件可以注册，则返回 {@code true}；
+	 * 返回 {@code false} 则否决带注解组件的注册
 	 */
 	boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata);
 

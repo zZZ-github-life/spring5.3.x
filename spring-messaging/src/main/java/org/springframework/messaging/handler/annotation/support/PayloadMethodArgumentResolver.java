@@ -63,7 +63,7 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 
 	/**
 	 * 使用给定 {@link MessageConverter} 创建新的 {@code PayloadArgumentResolver}。
-	 * @param messageConverter the MessageConverter to use (required)
+	 * @param messageConverter 要使用的 MessageConverter（必需）
 	 */
 	public PayloadMethodArgumentResolver(MessageConverter messageConverter) {
 		this(messageConverter, null);
@@ -72,8 +72,8 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 	/**
 	 * 使用给定 {@link MessageConverter} 和 {@link Validator}
 	 * 创建新的 {@code PayloadArgumentResolver}。
-	 * @param messageConverter the MessageConverter to use (required)
-	 * @param validator the Validator to use (optional)
+	 * @param messageConverter 要使用的 MessageConverter（必需）
+	 * @param validator 要使用的 Validator（可选）
 	 */
 	public PayloadMethodArgumentResolver(MessageConverter messageConverter, @Nullable Validator validator) {
 		this(messageConverter, validator, true);
@@ -82,11 +82,10 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 	/**
 	 * 使用给定 {@link MessageConverter} 和 {@link Validator}
 	 * 创建新的 {@code PayloadArgumentResolver}。
-	 * @param messageConverter the MessageConverter to use (required)
-	 * @param validator the Validator to use (optional)
-	 * @param useDefaultResolution if "true" (the default) this resolver supports
-	 * all parameters; if "false" then only arguments with the {@code @Payload}
-	 * annotation are supported.
+	 * @param messageConverter 要使用的 MessageConverter（必需）
+	 * @param validator 要使用的 Validator（可选）
+	 * @param useDefaultResolution 如果为 "true"（默认值），则该解析器支持所有参数；
+	 * 如果为 "false"，则仅支持带有 {@code @Payload} 注解的参数。
 	 */
 	public PayloadMethodArgumentResolver(MessageConverter messageConverter, @Nullable Validator validator,
 			boolean useDefaultResolution) {
@@ -154,7 +153,7 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 
 	/**
 	 * 指定给定 {@code payload} 是否为空。
-	 * @param payload the payload to check (can be {@code null})
+	 * @param payload 要检查的载荷（可以为 {@code null}）
 	 */
 	protected boolean isEmptyPayload(@Nullable Object payload) {
 		if (payload == null) {
@@ -176,9 +175,9 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 	 * <p>默认情况下，这只是 {@link MethodParameter#getParameterType()}，
 	 * 但可以重写此方法，以便在同时考虑 "Content-Type" 后选择更具体的目标类型，
 	 * 例如当目标类型为 {@code Object} 且 {@code "Content-Type:text/**"} 时返回 {@code String}。
-	 * @param parameter the target method parameter
-	 * @param message the message being processed
-	 * @return the target type to use
+	 * @param parameter 目标方法参数
+	 * @param message 正在处理的消息
+	 * @return 要使用的目标类型
 	 * @since 5.2
 	 */
 	protected Class<?> resolveTargetClass(MethodParameter parameter, Message<?> message) {
@@ -189,10 +188,10 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 	 * 在适用时校验载荷。
 	 * <p>默认实现会检查 {@code @javax.validation.Valid}、Spring 的 {@link Validated}
 	 * 以及名称以 "Valid" 开头的自定义注解。
-	 * @param message the currently processed message
-	 * @param parameter the method parameter
-	 * @param target the target payload object
-	 * @throws MethodArgumentNotValidException in case of binding errors
+	 * @param message 当前正在处理的消息
+	 * @param parameter 方法参数
+	 * @param target 目标载荷对象
+	 * @throws MethodArgumentNotValidException 如果发生绑定错误
 	 */
 	protected void validate(Message<?> message, MethodParameter parameter, Object target) {
 		if (this.validator == null) {

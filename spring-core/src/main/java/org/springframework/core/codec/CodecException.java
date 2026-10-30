@@ -31,7 +31,7 @@ public class CodecException extends NestedRuntimeException {
 
 	/**
 	 * 创建一个新的 CodecException。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public CodecException(String msg) {
 		super(msg);
@@ -39,8 +39,8 @@ public class CodecException extends NestedRuntimeException {
 
 	/**
 	 * 创建一个新的 CodecException。
-	 * @param msg the detail message
-	 * @param cause root cause for the exception, if any
+	 * @param msg 详细消息
+	 * @param cause 异常的根本原因（如果有）
 	 */
 	public CodecException(String msg, @Nullable Throwable cause) {
 		super(msg, cause);

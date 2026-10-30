@@ -36,8 +36,8 @@ public interface RemoteInvocationFactory {
 	/**
 	 * 根据给定的 AOP MethodInvocation 创建可序列化的 RemoteInvocation 对象。
 	 * <p>可以实现此方法，以便为远程调用添加自定义上下文信息，例如用户凭据。
-	 * @param methodInvocation the original AOP MethodInvocation object
-	 * @return the RemoteInvocation object
+	 * @param methodInvocation 原始 AOP MethodInvocation 对象
+	 * @return RemoteInvocation 对象
 	 */
 	RemoteInvocation createRemoteInvocation(MethodInvocation methodInvocation);
 

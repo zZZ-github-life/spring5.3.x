@@ -68,9 +68,9 @@ public class StaticMessageSource extends AbstractMessageSource {
 
 	/**
 	 * 将给定消息与给定代码关联。
-	 * @param code the lookup code
-	 * @param locale the locale that the message should be found within
-	 * @param msg the message associated with this lookup code
+	 * @param code 查找代码
+	 * @param locale 应在其内找到该消息的 Locale
+	 * @param msg 与此查找代码关联的消息
 	 */
 	public void addMessage(String code, Locale locale, String msg) {
 		Assert.notNull(code, "Code must not be null");
@@ -84,9 +84,8 @@ public class StaticMessageSource extends AbstractMessageSource {
 
 	/**
 	 * 将给定的消息值与作为代码的给定键关联。
-	 * @param messages the messages to register, with messages codes
-	 * as keys and message texts as values
-	 * @param locale the locale that the messages should be found within
+	 * @param messages 要注册的消息，以消息代码为键、消息文本为值
+	 * @param locale 应在其内找到这些消息的 Locale
 	 */
 	public void addMessages(Map<String, String> messages, Locale locale) {
 		Assert.notNull(messages, "Messages Map must not be null");

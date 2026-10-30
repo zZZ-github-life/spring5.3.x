@@ -73,9 +73,9 @@ public class SimpleJaxWsServiceExporter extends AbstractJaxWsServiceExporter {
 
 	/**
 	 * 计算给定端点的完整端点地址。
-	 * @param endpoint the JAX-WS Provider Endpoint object
-	 * @param serviceName the given service name
-	 * @return the full endpoint address
+	 * @param endpoint JAX-WS 的 Provider Endpoint 对象
+	 * @param serviceName 给定的服务名称
+	 * @return 完整的端点地址
 	 */
 	protected String calculateEndpointAddress(Endpoint endpoint, String serviceName) {
 		String fullAddress = this.baseAddress + serviceName;

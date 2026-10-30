@@ -54,9 +54,9 @@ public class CodebaseAwareObjectInputStream extends ConfigurableObjectInputStrea
 
 	/**
 	 * 为给定的 InputStream 和 codebase 创建一个新的 CodebaseAwareObjectInputStream。
-	 * @param in the InputStream to read from
-	 * @param codebaseUrl the codebase URL to load classes from if not found locally
-	 * (can consist of multiple URLs, separated by spaces)
+	 * @param in 要从中读取的 InputStream
+	 * @param codebaseUrl 在本地找不到类时用于加载类的 codebase URL
+	 * （可由多个 URL 组成，以空格分隔）
 	 * @see java.io.ObjectInputStream#ObjectInputStream(java.io.InputStream)
 	 */
 	public CodebaseAwareObjectInputStream(InputStream in, String codebaseUrl) throws IOException {
@@ -65,11 +65,11 @@ public class CodebaseAwareObjectInputStream extends ConfigurableObjectInputStrea
 
 	/**
 	 * 为给定的 InputStream 和 codebase 创建一个新的 CodebaseAwareObjectInputStream。
-	 * @param in the InputStream to read from
-	 * @param classLoader the ClassLoader to use for loading local classes
-	 * (may be {@code null} to indicate RMI's default ClassLoader)
-	 * @param codebaseUrl the codebase URL to load classes from if not found locally
-	 * (can consist of multiple URLs, separated by spaces)
+	 * @param in 要从中读取的 InputStream
+	 * @param classLoader 用于加载本地类的 ClassLoader
+	 * （可以为 {@code null}，表示使用 RMI 的默认 ClassLoader）
+	 * @param codebaseUrl 在本地找不到类时用于加载类的 codebase URL
+	 * （可由多个 URL 组成，以空格分隔）
 	 * @see java.io.ObjectInputStream#ObjectInputStream(java.io.InputStream)
 	 */
 	public CodebaseAwareObjectInputStream(
@@ -81,11 +81,10 @@ public class CodebaseAwareObjectInputStream extends ConfigurableObjectInputStrea
 
 	/**
 	 * 为给定的 InputStream 和 codebase 创建一个新的 CodebaseAwareObjectInputStream。
-	 * @param in the InputStream to read from
-	 * @param classLoader the ClassLoader to use for loading local classes
-	 * (may be {@code null} to indicate RMI's default ClassLoader)
-	 * @param acceptProxyClasses whether to accept deserialization of proxy classes
-	 * (may be deactivated as a security measure)
+	 * @param in 要从中读取的 InputStream
+	 * @param classLoader 用于加载本地类的 ClassLoader
+	 * （可以为 {@code null}，表示使用 RMI 的默认 ClassLoader）
+	 * @param acceptProxyClasses 是否接受代理类的反序列化（可作为安全措施禁用）
 	 * @see java.io.ObjectInputStream#ObjectInputStream(java.io.InputStream)
 	 */
 	public CodebaseAwareObjectInputStream(

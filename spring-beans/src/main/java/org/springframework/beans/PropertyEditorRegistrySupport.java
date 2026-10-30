@@ -164,8 +164,8 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	 * 使用给定的属性编辑器覆盖指定类型的默认编辑器。
 	 * <p>请注意，这与注册自定义编辑器不同，因为该编辑器在语义上仍然是默认编辑器。ConversionService 会
 	 * 覆盖这样的默认编辑器，而自定义编辑器通常会覆盖 ConversionService。
-	 * @param requiredType the type of the property
-	 * @param propertyEditor the editor to register
+	 * @param requiredType 属性的类型
+	 * @param propertyEditor 要注册的编辑器
 	 * @see #registerCustomEditor(Class, PropertyEditor)
 	 */
 	public void overrideDefaultEditor(Class<?> requiredType, PropertyEditor propertyEditor) {
@@ -178,8 +178,8 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	/**
 	 * 检索给定属性类型的默认编辑器（如果有）。
 	 * <p>如果默认编辑器处于激活状态，则延迟注册它们。
-	 * @param requiredType type of the property
-	 * @return the default editor, or {@code null} if none found
+	 * @param requiredType 属性的类型
+	 * @return 默认编辑器，如果未找到则为 {@code null}
 	 * @see #registerDefaultEditors
 	 */
 	@Nullable
@@ -277,7 +277,7 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 
 	/**
 	 * 将此实例中注册的默认编辑器复制到给定的目标注册表。
-	 * @param target the target registry to copy to
+	 * @param target 要复制到的目标注册表
 	 */
 	protected void copyDefaultEditorsTo(PropertyEditorRegistrySupport target) {
 		target.defaultEditorsActive = this.defaultEditorsActive;
@@ -346,11 +346,10 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 
 	/**
 	 * 确定此注册表是否包含针对指定数组/集合元素的自定义编辑器。
-	 * @param elementType the target type of the element
-	 * (can be {@code null} if not known)
-	 * @param propertyPath the property path (typically of the array/collection;
-	 * can be {@code null} if not known)
-	 * @return whether a matching custom editor has been found
+	 * @param elementType 元素的目标类型（如果未知可以为 {@code null}）
+	 * @param propertyPath 属性路径（通常是数组/集合的属性路径；
+	 * 如果未知可以为 {@code null}）
+	 * @return 是否找到了匹配的自定义编辑器
 	 */
 	public boolean hasCustomEditorForElement(@Nullable Class<?> elementType, @Nullable String propertyPath) {
 		if (propertyPath != null && this.customEditorsForPath != null) {
@@ -371,8 +370,8 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	 * 型的编辑器。
 	 * <p>默认实现始终返回 {@code null}。BeanWrapperImpl 使用 BeanWrapper 接口定义的标准
 	 * {@code getPropertyType} 方法重写此方法。
-	 * @param propertyPath the property path to determine the type for
-	 * @return the type of the property, or {@code null} if not determinable
+	 * @param propertyPath 要为其确定类型的属性路径
+	 * @return 属性的类型，如果无法确定则为 {@code null}
 	 * @see BeanWrapper#getPropertyType(String)
 	 */
 	@Nullable
@@ -382,9 +381,9 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 
 	/**
 	 * 获取为给定属性注册的自定义编辑器。
-	 * @param propertyName the property path to look for
-	 * @param requiredType the type to look for
-	 * @return the custom editor, or {@code null} if none specific for this property
+	 * @param propertyName 要查找的属性路径
+	 * @param requiredType 要查找的类型
+	 * @return 自定义编辑器，如果没有特定于此属性的则为 {@code null}
 	 */
 	@Nullable
 	private PropertyEditor getCustomEditor(String propertyName, @Nullable Class<?> requiredType) {
@@ -396,8 +395,8 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	/**
 	 * 获取给定类型的自定义编辑器。如果未找到直接匹配项，则尝试超类的自定义编辑器（无论如何，它都能通过
 	 * {@code getAsText} 将值渲染为 String）。
-	 * @param requiredType the type to look for
-	 * @return the custom editor, or {@code null} if none found for this type
+	 * @param requiredType 要查找的类型
+	 * @return 自定义编辑器，如果未找到此类型的则为 {@code null}
 	 * @see java.beans.PropertyEditor#getAsText()
 	 */
 	@Nullable
@@ -436,8 +435,8 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 
 	/**
 	 * 从已注册的自定义编辑器中推测指定属性的属性类型（前提是它们是为特定类型注册的）。
-	 * @param propertyName the name of the property
-	 * @return the property type, or {@code null} if not determinable
+	 * @param propertyName 属性的名称
+	 * @return 属性类型，如果无法确定则为 {@code null}
 	 */
 	@Nullable
 	protected Class<?> guessPropertyTypeFromEditors(String propertyName) {
@@ -460,10 +459,10 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 
 	/**
 	 * 将此实例中注册的自定义编辑器复制到给定的目标注册表。
-	 * @param target the target registry to copy to
-	 * @param nestedProperty the nested property path of the target registry, if any.
-	 * If this is non-null, only editors registered for a path below this nested property
-	 * will be copied. If this is null, all editors will be copied.
+	 * @param target 要复制到的目标注册表
+	 * @param nestedProperty 目标注册表的嵌套属性路径（如果有）。
+	 * 如果非 null，则只复制为嵌套属性之下路径注册的编辑器。
+	 * 如果为 null，则复制所有编辑器。
 	 */
 	protected void copyCustomEditorsTo(PropertyEditorRegistry target, @Nullable String nestedProperty) {
 		String actualPropertyName =
@@ -495,9 +494,9 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 
 	/**
 	 * 添加所有去除键和/或索引变体的属性路径。对嵌套路径递归调用自身。
-	 * @param strippedPaths the result list to add to
-	 * @param nestedPath the current nested path
-	 * @param propertyPath the property path to check for keys/indexes to strip
+	 * @param strippedPaths 要添加到的结果列表
+	 * @param nestedPath 当前的嵌套路径
+	 * @param propertyPath 要检查需要去除的键/索引的属性路径
 	 */
 	private void addStrippedPropertyPaths(List<String> strippedPaths, String nestedPath, String propertyPath) {
 		int startIndex = propertyPath.indexOf(PropertyAccessor.PROPERTY_KEY_PREFIX_CHAR);

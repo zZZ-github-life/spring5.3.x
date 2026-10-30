@@ -29,7 +29,7 @@ import org.springframework.messaging.converter.MessageConverter;
  * @author Rossen Stoyanchev
  * @author Stephane Nicoll
  * @since 4.1
- * @param <D> the destination type
+ * @param <D> 目标类型
  */
 public abstract class AbstractMessageReceivingTemplate<D> extends AbstractMessageSendingTemplate<D>
 		implements MessageReceivingOperations<D> {
@@ -48,9 +48,9 @@ public abstract class AbstractMessageReceivingTemplate<D> extends AbstractMessag
 
 	/**
 	 * 实际从给定目标接收消息。
-	 * @param destination the target destination
-	 * @return the received message, possibly {@code null} if the message could not
-	 * be received, for example due to a timeout
+	 * @param destination 目标目的地
+	 * @return 接收到的消息；如果无法接收消息（例如因超时），
+	 * 则可能为 {@code null}
 	 */
 	@Nullable
 	protected abstract Message<?> doReceive(D destination);
@@ -76,9 +76,9 @@ public abstract class AbstractMessageReceivingTemplate<D> extends AbstractMessag
 
 	/**
 	 * 将给定消息转换为给定目标类。
-	 * @param message the message to convert
-	 * @param targetClass the target class to convert the payload to
-	 * @return the converted payload of the reply message (never {@code null})
+	 * @param message 要转换的消息
+	 * @param targetClass 载荷要转换成的目标类
+	 * @return 回复消息转换后的载荷（永远不会为 {@code null}）
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable

@@ -43,9 +43,8 @@ public interface NativeWebRequest extends WebRequest {
 
 	/**
 	 * 返回底层的原生请求对象（如果可用）。
-	 * @param requiredType the desired type of request object
-	 * @return the matching request object, or {@code null} if none
-	 * of that type is available
+	 * @param requiredType 期望的请求对象类型
+	 * @return 匹配的请求对象；如果没有该类型的对象可用则为 {@code null}
 	 * @see javax.servlet.http.HttpServletRequest
 	 */
 	@Nullable
@@ -53,9 +52,8 @@ public interface NativeWebRequest extends WebRequest {
 
 	/**
 	 * 返回底层的原生响应对象（如果可用）。
-	 * @param requiredType the desired type of response object
-	 * @return the matching response object, or {@code null} if none
-	 * of that type is available
+	 * @param requiredType 期望的响应对象类型
+	 * @return 匹配的响应对象；如果没有该类型的对象可用则为 {@code null}
 	 * @see javax.servlet.http.HttpServletResponse
 	 */
 	@Nullable

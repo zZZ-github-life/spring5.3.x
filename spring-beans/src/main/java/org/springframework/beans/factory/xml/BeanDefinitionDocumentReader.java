@@ -36,10 +36,9 @@ public interface BeanDefinitionDocumentReader {
 
 	/**
 	 * 从给定的 DOM 文档读取 Bean 定义，并将它们注册到给定读取器上下文中的注册表。
-	 * @param doc the DOM document
-	 * @param readerContext the current context of the reader
-	 * (includes the target registry and the resource being parsed)
-	 * @throws BeanDefinitionStoreException in case of parsing errors
+	 * @param doc DOM 文档
+	 * @param readerContext 读取器的当前上下文（包含目标注册表以及正在解析的资源）
+	 * @throws BeanDefinitionStoreException 如果发生解析错误
 	 */
 	void registerBeanDefinitions(Document doc, XmlReaderContext readerContext)
 			throws BeanDefinitionStoreException;

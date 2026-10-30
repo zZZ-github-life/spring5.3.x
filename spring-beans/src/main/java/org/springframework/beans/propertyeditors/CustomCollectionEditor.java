@@ -52,8 +52,8 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 
 	/**
 	 * 为给定目标类型创建新的 CustomCollectionEditor，传入的 {@code null} 保持原样。
-	 * @param collectionType the target type, which needs to be a
-	 * sub-interface of Collection or a concrete Collection class
+	 * @param collectionType 目标类型，必须是 Collection 的子接口
+	 * 或具体的 Collection 类
 	 * @see java.util.Collection
 	 * @see java.util.ArrayList
 	 * @see java.util.TreeSet
@@ -69,10 +69,9 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 	 * 果它是其他 Collection 类型或数组，则将其转换为给定 Collection 类型的默认实现。如果值属于其他任何
 	 * 类型，则将创建一个仅包含该值的目标 Collection。<p>默认的 Collection 实现为：List 使用 ArrayList，
 	 * SortedSet 使用 TreeSet，Set 使用 LinkedHashSet。
-	 * @param collectionType the target type, which needs to be a
-	 * sub-interface of Collection or a concrete Collection class
-	 * @param nullAsEmptyCollection whether to convert an incoming {@code null}
-	 * value to an empty Collection (of the appropriate type)
+	 * @param collectionType 目标类型，必须是 Collection 的子接口
+	 * 或具体的 Collection 类
+	 * @param nullAsEmptyCollection 是否将传入的 {@code null} 值转换为空的 Collection（相应类型的）
 	 * @see java.util.Collection
 	 * @see java.util.ArrayList
 	 * @see java.util.TreeSet
@@ -138,9 +137,9 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 
 	/**
 	 * 创建给定类型的 Collection，并使用给定的初始容量（如果该 Collection 类型支持）。
-	 * @param collectionType a sub-interface of Collection
-	 * @param initialCapacity the initial capacity
-	 * @return the new Collection instance
+	 * @param collectionType Collection 的子接口
+	 * @param initialCapacity 初始容量
+	 * @return 新的 Collection 实例
 	 */
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	protected Collection<Object> createCollection(Class<? extends Collection> collectionType, int initialCapacity) {
@@ -179,8 +178,8 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 	 * Integer。<p>仅在确实创建新 Collection 时才调用！如果传入 Collection 的类型已经匹配，默认情况下不
 	 * 会创建新 Collection。覆盖 {@link #alwaysCreateNewCollection()} 以强制在每种情况下都创建新的
 	 * Collection。
-	 * @param element the source element
-	 * @return the element to be used in the target Collection
+	 * @param element 源元素
+	 * @return 要在目标 Collection 中使用的元素
 	 * @see #alwaysCreateNewCollection()
 	 */
 	protected Object convertElement(Object element) {

@@ -71,7 +71,7 @@ public class InstrumentationLoadTimeWeaver implements LoadTimeWeaver {
 
 	/**
 	 * 为给定的 ClassLoader 创建一个新的 InstrumentationLoadTimeWeaver。
-	 * @param classLoader the ClassLoader that registered transformers are supposed to apply to
+	 * @param classLoader 已注册的转换器应作用于的 ClassLoader
 	 */
 	public InstrumentationLoadTimeWeaver(@Nullable ClassLoader classLoader) {
 		this.classLoader = classLoader;
@@ -134,7 +134,7 @@ public class InstrumentationLoadTimeWeaver implements LoadTimeWeaver {
 
 	/**
 	 * 获取当前 VM 的 Instrumentation 实例（如果可用）。
-	 * @return the Instrumentation instance, or {@code null} if none found
+	 * @return Instrumentation 实例，如果未找到则为 {@code null}
 	 * @see #isInstrumentationAvailable()
 	 */
 	@Nullable

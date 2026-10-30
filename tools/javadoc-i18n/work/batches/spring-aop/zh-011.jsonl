@@ -1,9 +1,0 @@
-{"id": "spring-aop/src/main/java/org/springframework/aop/target/dynamic/BeanFactoryRefreshableTargetSource.java::22::0", "zh": ["从 BeanFactory 获取全新目标 Bean 的 Refreshable TargetSource。"]}
-{"id": "spring-aop/src/main/java/org/springframework/aop/target/dynamic/BeanFactoryRefreshableTargetSource.java::22::1", "zh": ["<p>可以派生子类并覆盖 {@code requiresRefresh()}，以抑制不必要的刷新。默认情况下，每当 \"refreshCheckDelay\" 指定的时间到期后都会执行一次刷新。"]}
-{"id": "spring-aop/src/main/java/org/springframework/aop/target/dynamic/BeanFactoryRefreshableTargetSource.java::45::0", "zh": ["为给定的 Bean 工厂和 Bean 名称创建一个新的 BeanFactoryRefreshableTargetSource。", "<p>请注意，传入的 BeanFactory 应该已为给定的 Bean 名称配置好相应的 Bean 定义。"]}
-{"id": "spring-aop/src/main/java/org/springframework/aop/target/dynamic/BeanFactoryRefreshableTargetSource.java::61::0", "zh": ["获取一个全新的目标对象。"]}
-{"id": "spring-aop/src/main/java/org/springframework/aop/target/dynamic/BeanFactoryRefreshableTargetSource.java::69::0", "zh": ["模板方法，子类可以覆盖它以针对给定的 Bean 工厂和 Bean 名称提供全新的目标对象。", "<p>该默认实现从 Bean 工厂获取一个新的目标 Bean 实例。"]}
-{"id": "spring-aop/src/main/java/org/springframework/aop/target/dynamic/Refreshable.java::19::0", "zh": ["由动态目标对象实现的接口，这些对象支持重新加载，并可选地轮询更新。"]}
-{"id": "spring-aop/src/main/java/org/springframework/aop/target/dynamic/Refreshable.java::29::0", "zh": ["刷新底层目标对象。"]}
-{"id": "spring-aop/src/main/java/org/springframework/aop/target/dynamic/Refreshable.java::34::0", "zh": ["返回自启动以来实际刷新的次数。"]}
-{"id": "spring-aop/src/main/java/org/springframework/aop/target/dynamic/Refreshable.java::39::0", "zh": ["返回最近一次实际刷新发生的时间（时间戳）。"]}

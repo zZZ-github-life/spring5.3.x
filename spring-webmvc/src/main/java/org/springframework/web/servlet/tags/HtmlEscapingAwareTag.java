@@ -93,8 +93,8 @@ public abstract class HtmlEscapingAwareTag extends RequestContextAwareTag {
 	 * 对给定的 String 进行 HTML 编码，仅在启用 "htmlEscape" 设置时才执行。
 	 * <p>如果同时启用了 "responseEncodedHtmlEscape" 设置，
 	 * 则会考虑响应编码。
-	 * @param content the String to escape
-	 * @return the escaped String
+	 * @param content 要转义的 String
+	 * @return 转义后的 String
 	 * @since 4.1.2
 	 * @see #isHtmlEscape()
 	 * @see #isResponseEncodedHtmlEscape()

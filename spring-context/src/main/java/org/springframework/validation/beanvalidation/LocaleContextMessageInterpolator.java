@@ -38,7 +38,7 @@ public class LocaleContextMessageInterpolator implements MessageInterpolator {
 
 	/**
 	 * 创建一个新的 LocaleContextMessageInterpolator，包装给定的目标插值器。
-	 * @param targetInterpolator the target MessageInterpolator to wrap
+	 * @param targetInterpolator 要包装的目标 MessageInterpolator。
 	 */
 	public LocaleContextMessageInterpolator(MessageInterpolator targetInterpolator) {
 		Assert.notNull(targetInterpolator, "Target MessageInterpolator must not be null");

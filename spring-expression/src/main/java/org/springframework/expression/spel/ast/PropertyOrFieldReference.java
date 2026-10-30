@@ -169,8 +169,8 @@ public class PropertyOrFieldReference extends SpelNodeImpl {
 
 	/**
 	 * 尝试从当前上下文对象中读取指定名称的属性。
-	 * @return the value of the property
-	 * @throws EvaluationException if any problem accessing the property, or if it cannot be found
+	 * @return 属性的值
+	 * @throws EvaluationException 如果访问该属性出现任何问题，或找不到该属性
 	 */
 	private TypedValue readProperty(TypedValue contextObject, EvaluationContext evalContext, String name)
 			throws EvaluationException {
@@ -297,8 +297,8 @@ public class PropertyOrFieldReference extends SpelNodeImpl {
 	 * 在列表开头。此外，还有一些专门精确指定相关类的解析器，以及指定某个特定类、但该类是我们所用类的超
 	 * 类型的解析器。这些解析器会被放在特定解析器集合的末尾，并会在完全匹配的访问器之后、通用访问器之前
 	 * 被尝试。
-	 * @param contextObject the object upon which property access is being attempted
-	 * @return a list of resolvers that should be tried in order to access the property
+	 * @param contextObject 尝试进行属性访问所针对的对象
+	 * @return 为访问该属性而应依次尝试的解析器列表
 	 */
 	private List<PropertyAccessor> getPropertyAccessorsToTry(
 			@Nullable Object contextObject, List<PropertyAccessor> propertyAccessors) {

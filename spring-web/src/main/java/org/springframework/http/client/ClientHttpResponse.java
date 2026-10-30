@@ -39,9 +39,9 @@ public interface ClientHttpResponse extends HttpInputMessage, Closeable {
 	 * 以 {@link HttpStatus} 枚举值形式获取 HTTP 状态码。
 	 * <p>对于 {@code HttpStatus} 不支持的状态码，请改用
 	 * {@link #getRawStatusCode()}。
-	 * @return the HTTP status as an HttpStatus enum value (never {@code null})
-	 * @throws IOException in case of I/O errors
-	 * @throws IllegalArgumentException in case of an unknown HTTP status code
+	 * @return 以 HttpStatus 枚举值表示的 HTTP 状态（永不为 {@code null}）
+	 * @throws IOException 如果发生 I/O 错误
+	 * @throws IllegalArgumentException 如果 HTTP 状态码未知
 	 * @since #getRawStatusCode()
 	 * @see HttpStatus#valueOf(int)
 	 */
@@ -50,8 +50,8 @@ public interface ClientHttpResponse extends HttpInputMessage, Closeable {
 	/**
 	 * 以整数形式获取 HTTP 状态码（可能非标准且
 	 * 无法通过 {@link HttpStatus} 枚举解析）。
-	 * @return the HTTP status as an integer value
-	 * @throws IOException in case of I/O errors
+	 * @return 以整数值表示的 HTTP 状态
+	 * @throws IOException 如果发生 I/O 错误
 	 * @since 3.1.1
 	 * @see #getStatusCode()
 	 * @see HttpStatus#resolve(int)
@@ -60,8 +60,8 @@ public interface ClientHttpResponse extends HttpInputMessage, Closeable {
 
 	/**
 	 * 获取响应的 HTTP 状态文本。
-	 * @return the HTTP status text
-	 * @throws IOException in case of I/O errors
+	 * @return HTTP 状态文本
+	 * @throws IOException 如果发生 I/O 错误
 	 */
 	String getStatusText() throws IOException;
 

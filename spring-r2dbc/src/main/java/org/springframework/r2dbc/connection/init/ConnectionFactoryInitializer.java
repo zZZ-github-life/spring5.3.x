@@ -50,7 +50,7 @@ public class ConnectionFactoryInitializer implements InitializingBean, Disposabl
 	/**
 	 * 用于在组件初始化时填充、并在组件关闭时清理的数据库 {@link ConnectionFactory}。
 	 * <p>此属性为必需项，没有提供默认值。
-	 * @param connectionFactory the R2DBC {@link ConnectionFactory}
+	 * @param connectionFactory R2DBC 的 {@link ConnectionFactory}
 	 */
 	public void setConnectionFactory(ConnectionFactory connectionFactory) {
 		this.connectionFactory = connectionFactory;
@@ -58,7 +58,7 @@ public class ConnectionFactoryInitializer implements InitializingBean, Disposabl
 
 	/**
 	 * 设置要在 bean 初始化阶段执行的 {@link DatabasePopulator}。
-	 * @param databasePopulator the {@link DatabasePopulator} to use during initialization
+	 * @param databasePopulator 初始化期间要使用的 {@link DatabasePopulator}
 	 * @see #setDatabaseCleaner
 	 */
 	public void setDatabasePopulator(DatabasePopulator databasePopulator) {
@@ -68,7 +68,7 @@ public class ConnectionFactoryInitializer implements InitializingBean, Disposabl
 	/**
 	 * 设置要在 bean 销毁阶段执行的 {@link DatabasePopulator}，
 	 * 用于清理数据库，并使其恢复为供其他使用者使用的已知状态。
-	 * @param databaseCleaner the {@code DatabasePopulator} to use during destruction
+	 * @param databaseCleaner 销毁期间要使用的 {@code DatabasePopulator}
 	 * @see #setDatabasePopulator
 	 */
 	public void setDatabaseCleaner(DatabasePopulator databaseCleaner) {
@@ -78,8 +78,8 @@ public class ConnectionFactoryInitializer implements InitializingBean, Disposabl
 	/**
 	 * 用于显式启用或禁用 {@linkplain #setDatabasePopulator database populator}
 	 * 和 {@linkplain #setDatabaseCleaner database cleaner} 的标志。
-	 * @param enabled {@code true} if the database populator and database cleaner
-	 * should be called on startup and shutdown, respectively
+	 * @param enabled 如果数据库填充器和数据库清理器应分别在启动和
+	 * 关闭时被调用，则为 {@code true}
 	 */
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;

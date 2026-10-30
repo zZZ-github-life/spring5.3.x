@@ -48,7 +48,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Arjen Poutsma
  * @since 3.0.2
- * @param <T> the converted object type
+ * @param <T> 转换后的对象类型
  * @see AtomFeedHttpMessageConverter
  * @see RssChannelHttpMessageConverter
  */

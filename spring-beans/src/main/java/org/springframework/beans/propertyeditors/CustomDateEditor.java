@@ -50,8 +50,8 @@ public class CustomDateEditor extends PropertyEditorSupport {
 	/**
 	 * 使用给定的 DateFormat 进行解析和渲染，创建新的 CustomDateEditor 实例。<p>"allowEmpty" 参数表明解
 	 * 析时是否应允许空 String，即将其解释为 null 值。否则，在这种情况下将抛出 IllegalArgumentException。
-	 * @param dateFormat the DateFormat to use for parsing and rendering
-	 * @param allowEmpty if empty strings should be allowed
+	 * @param dateFormat 用于解析和渲染的 DateFormat
+	 * @param allowEmpty 是否应允许空字符串
 	 */
 	public CustomDateEditor(DateFormat dateFormat, boolean allowEmpty) {
 		this.dateFormat = dateFormat;
@@ -67,9 +67,9 @@ public class CustomDateEditor extends PropertyEditorSupport {
 	 * 用 {@code setLenient(false)} 也是如此。如果未指定 "exactDateLength"，"01/01/05" 会被解析为
 	 * "01/01/0005"。然而，即使指定了 "exactDateLength"，日期或月份部分的前导零仍可能允许较短的年份部分，
 	 * 因此请将其视为只是让您更接近预期日期格式的又一项断言。
-	 * @param dateFormat the DateFormat to use for parsing and rendering
-	 * @param allowEmpty if empty strings should be allowed
-	 * @param exactDateLength the exact expected length of the date String
+	 * @param dateFormat 用于解析和渲染的 DateFormat
+	 * @param allowEmpty 是否应允许空字符串
+	 * @param exactDateLength 日期字符串的精确期望长度
 	 */
 	public CustomDateEditor(DateFormat dateFormat, boolean allowEmpty, int exactDateLength) {
 		this.dateFormat = dateFormat;

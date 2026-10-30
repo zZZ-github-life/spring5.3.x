@@ -61,10 +61,10 @@ public class UserRegistryMessageHandler implements MessageHandler, ApplicationLi
 
 	/**
 	 * 构造函数。
-	 * @param userRegistry the registry with local and remote user registry information
-	 * @param brokerTemplate template for broadcasting local registry information
-	 * @param broadcastDestination the destination to broadcast to
-	 * @param scheduler the task scheduler to use
+	 * @param userRegistry 包含本地和远程用户注册表信息的注册表
+	 * @param brokerTemplate 用于广播本地注册表信息的模板
+	 * @param broadcastDestination 要广播到的目标地址
+	 * @param scheduler 要使用的任务调度器
 	 */
 	public UserRegistryMessageHandler(MultiServerUserRegistry userRegistry,
 			SimpMessagingTemplate brokerTemplate, String broadcastDestination, TaskScheduler scheduler) {
@@ -91,7 +91,7 @@ public class UserRegistryMessageHandler implements MessageHandler, ApplicationLi
 	/**
 	 * 配置远程用户注册表快照被视为过期之前的时间量（以毫秒为单位）。
 	 * <p>默认设置为 20 秒（值 20000）。
-	 * @param milliseconds the expiration period in milliseconds
+	 * @param milliseconds 过期时间，单位为毫秒
 	 */
 	@SuppressWarnings("unused")
 	public void setRegistryExpirationPeriod(long milliseconds) {

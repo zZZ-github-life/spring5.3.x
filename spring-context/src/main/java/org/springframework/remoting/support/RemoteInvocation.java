@@ -62,7 +62,7 @@ public class RemoteInvocation implements Serializable {
 
 	/**
 	 * 为给定的 AOP 方法调用创建一个新的 RemoteInvocation。
-	 * @param methodInvocation the AOP invocation to convert
+	 * @param methodInvocation 要转换的 AOP 调用
 	 */
 	public RemoteInvocation(MethodInvocation methodInvocation) {
 		this.methodName = methodInvocation.getMethod().getName();
@@ -72,9 +72,9 @@ public class RemoteInvocation implements Serializable {
 
 	/**
 	 * 为给定的参数创建一个新的 RemoteInvocation。
-	 * @param methodName the name of the method to invoke
-	 * @param parameterTypes the parameter types of the method
-	 * @param arguments the arguments for the invocation
+	 * @param methodName 要调用的方法名
+	 * @param parameterTypes 该方法的参数类型
+	 * @param arguments 调用的参数
 	 */
 	public RemoteInvocation(String methodName, Class<?>[] parameterTypes, Object[] arguments) {
 		this.methodName = methodName;
@@ -139,9 +139,9 @@ public class RemoteInvocation implements Serializable {
 	 * 添加一个额外的调用属性。可用于在不进行 RemoteInvocation 子类化的情况下添加额外的调用上下文。
 	 * <p>属性键必须唯一，且不允许覆盖已有的属性。
 	 * <p>该实现会避免不必要地创建属性 Map，以尽量减小序列化体积。
-	 * @param key the attribute key
-	 * @param value the attribute value
-	 * @throws IllegalStateException if the key is already bound
+	 * @param key 属性键
+	 * @param value 属性值
+	 * @throws IllegalStateException 如果该键已被绑定
 	 */
 	public void addAttribute(String key, Serializable value) throws IllegalStateException {
 		if (this.attributes == null) {
@@ -156,8 +156,8 @@ public class RemoteInvocation implements Serializable {
 	/**
 	 * 获取给定键对应的属性（如果有）。
 	 * <p>该实现会避免不必要地创建属性 Map，以尽量减小序列化体积。
-	 * @param key the attribute key
-	 * @return the attribute value, or {@code null} if not defined
+	 * @param key 属性键
+	 * @return 属性值，如果未定义则为 {@code null}
 	 */
 	@Nullable
 	public Serializable getAttribute(String key) {
@@ -169,7 +169,7 @@ public class RemoteInvocation implements Serializable {
 
 	/**
 	 * 设置属性 Map。仅用于特殊目的：最好使用 {@link #addAttribute} 和 {@link #getAttribute}。
-	 * @param attributes the attributes Map
+	 * @param attributes 属性 Map
 	 * @see #addAttribute
 	 * @see #getAttribute
 	 */
@@ -179,7 +179,7 @@ public class RemoteInvocation implements Serializable {
 
 	/**
 	 * 返回属性 Map。主要用于调试目的：最好使用 {@link #addAttribute} 和 {@link #getAttribute}。
-	 * @return the attributes Map, or {@code null} if none created
+	 * @return 属性 Map，如果尚未创建则为 {@code null}
 	 * @see #addAttribute
 	 * @see #getAttribute
 	 */
@@ -191,11 +191,11 @@ public class RemoteInvocation implements Serializable {
 
 	/**
 	 * 在给定的目标对象上执行此调用。通常当服务器收到 RemoteInvocation 时调用。
-	 * @param targetObject the target object to apply the invocation to
-	 * @return the invocation result
-	 * @throws NoSuchMethodException if the method name could not be resolved
-	 * @throws IllegalAccessException if the method could not be accessed
-	 * @throws InvocationTargetException if the method invocation resulted in an exception
+	 * @param targetObject 要对其应用该调用的目标对象
+	 * @return 调用结果
+	 * @throws NoSuchMethodException 如果无法解析方法名
+	 * @throws IllegalAccessException 如果无法访问该方法
+	 * @throws InvocationTargetException 如果方法调用导致异常
 	 * @see java.lang.reflect.Method#invoke
 	 */
 	public Object invoke(Object targetObject)

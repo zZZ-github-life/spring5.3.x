@@ -28,14 +28,14 @@ public interface AnnotationConfigRegistry {
 	 * 注册一个或多个要处理的组件类。
 	 *
 	 * <p>对 {@code register} 的调用是幂等的；多次添加相同的组件类不会产生额外效果。
-	 * @param componentClasses one or more component classes,
-	 * e.g. {@link Configuration @Configuration} classes
+	 * @param componentClasses 一个或多个组件类，
+	 * 例如 {@link Configuration @Configuration} 类
 	 */
 	void register(Class<?>... componentClasses);
 
 	/**
 	 * 在指定的基础包中执行扫描。
-	 * @param basePackages the packages to scan for component classes
+	 * @param basePackages 要扫描组件类的包
 	 */
 	void scan(String... basePackages);
 

@@ -33,10 +33,10 @@ public interface MBeanInfoAssembler {
 
 	/**
 	 * 为给定受管理资源创建 ModelMBeanInfo。
-	 * @param managedBean the bean that will be exposed (might be an AOP proxy)
-	 * @param beanKey the key associated with the managed bean
-	 * @return the ModelMBeanInfo metadata object
-	 * @throws JMException in case of errors
+	 * @param managedBean 将被公开的 Bean（可能是 AOP 代理）
+	 * @param beanKey 受管 Bean 关联的键
+	 * @return ModelMBeanInfo 元数据对象
+	 * @throws JMException 如果发生错误
 	 */
 	ModelMBeanInfo getMBeanInfo(Object managedBean, String beanKey) throws JMException;
 

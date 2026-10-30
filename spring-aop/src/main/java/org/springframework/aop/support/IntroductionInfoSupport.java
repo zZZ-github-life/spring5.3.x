@@ -49,7 +49,7 @@ public class IntroductionInfoSupport implements IntroductionInfo, Serializable {
 	/**
 	 * 抑制指定的接口，该接口可能因委托实现了它而被自动检测到。调用此方法可将内部接口排除在代理层可见范
 	 * 围之外。<p>如果委托未实现该接口，则此方法不执行任何操作。
-	 * @param ifc the interface to suppress
+	 * @param ifc 要抑制的接口
 	 */
 	public void suppressInterface(Class<?> ifc) {
 		this.publishedInterfaces.remove(ifc);
@@ -62,8 +62,8 @@ public class IntroductionInfoSupport implements IntroductionInfo, Serializable {
 
 	/**
 	 * 检查指定的接口是否为已发布的引入接口。
-	 * @param ifc the interface to check
-	 * @return whether the interface is part of this introduction
+	 * @param ifc 要检查的接口
+	 * @return 该接口是否属于此引介
 	 */
 	public boolean implementsInterface(Class<?> ifc) {
 		for (Class<?> pubIfc : this.publishedInterfaces) {
@@ -76,7 +76,7 @@ public class IntroductionInfoSupport implements IntroductionInfo, Serializable {
 
 	/**
 	 * 在代理层发布给定委托所实现的所有接口。
-	 * @param delegate the delegate object
+	 * @param delegate 委托对象
 	 */
 	protected void implementInterfacesOnObject(Object delegate) {
 		this.publishedInterfaces.addAll(ClassUtils.getAllInterfacesAsSet(delegate));
@@ -84,8 +84,8 @@ public class IntroductionInfoSupport implements IntroductionInfo, Serializable {
 
 	/**
 	 * 此方法是否位于已引入的接口上？
-	 * @param mi the method invocation
-	 * @return whether the invoked method is on an introduced interface
+	 * @param mi 方法调用
+	 * @return 所调用的方法是否位于被引介的接口上
 	 */
 	protected final boolean isMethodOnIntroducedInterface(MethodInvocation mi) {
 		Boolean rememberedResult = this.rememberedMethods.get(mi.getMethod());

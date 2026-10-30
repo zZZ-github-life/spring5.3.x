@@ -35,9 +35,9 @@ public class TypeMismatchNamingException extends NamingException {
 
 	/**
 	 * 构造一个新的 TypeMismatchNamingException，根据给定参数构建说明文本。
-	 * @param jndiName the JNDI name
-	 * @param requiredType the required type for the lookup
-	 * @param actualType the actual type that the lookup returned
+	 * @param jndiName JNDI 名称
+	 * @param requiredType 查找所需的类型
+	 * @param actualType 查找返回的实际类型
 	 */
 	public TypeMismatchNamingException(String jndiName, Class<?> requiredType, Class<?> actualType) {
 		super("Object of type [" + actualType + "] available at JNDI location [" +

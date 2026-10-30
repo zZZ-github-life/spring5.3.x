@@ -31,7 +31,7 @@ import org.springframework.cache.interceptor.KeyGenerator;
  *
  * @author Stephane Nicoll
  * @since 4.1
- * @param <A> the annotation type
+ * @param <A> 注解类型
  */
 abstract class AbstractJCacheKeyOperation<A extends Annotation> extends AbstractJCacheOperation<A> {
 
@@ -42,9 +42,9 @@ abstract class AbstractJCacheKeyOperation<A extends Annotation> extends Abstract
 
 	/**
 	 * 创建一个新实例。
-	 * @param methodDetails the {@link CacheMethodDetails} related to the cached method
-	 * @param cacheResolver the cache resolver to resolve regular caches
-	 * @param keyGenerator the key generator to compute cache keys
+	 * @param methodDetails 与已缓存方法相关的 {@link CacheMethodDetails}
+	 * @param cacheResolver 用于解析常规缓存的缓存解析器
+	 * @param keyGenerator 用于计算缓存键的键生成器
 	 */
 	protected AbstractJCacheKeyOperation(CacheMethodDetails<A> methodDetails,
 			CacheResolver cacheResolver, KeyGenerator keyGenerator) {
@@ -68,9 +68,8 @@ abstract class AbstractJCacheKeyOperation<A extends Annotation> extends Abstract
 	 * 参与构成键。如果没有任何参数带该注解，则除带 {@link javax.cache.annotation.CacheValue} 注解的参
 	 * 数外，其余所有参数都应参与构成键。
 	 * <p>方法参数必须与相关方法调用的签名一致
-	 * @param values the parameters value for a particular invocation
-	 * @return the {@link CacheInvocationParameter} instances for the parameters to be
-	 * used to compute the key
+	 * @param values 特定调用的参数值
+	 * @return 用于计算键的参数的 {@link CacheInvocationParameter} 实例
 	 */
 	public CacheInvocationParameter[] getKeyParameters(Object... values) {
 		List<CacheInvocationParameter> result = new ArrayList<>();

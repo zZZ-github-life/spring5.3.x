@@ -274,7 +274,7 @@ public class ResourceHttpRequestHandler extends WebContentGenerator
 	/**
 	 * 添加从静态 {@link Resource} 的文件名中提取的文件扩展名与要在响应中设置的相应媒体类型之间的映射。
 	 * <p>通常不需要使用此方法，因为映射会通过 {@link javax.servlet.ServletContext#getMimeType(String)} 或 {@link MediaTypeFactory#getMediaType(Resource)} 来确定。
-	 * @param mediaTypes media type mappings
+	 * @param mediaTypes 媒体类型映射
 	 * @since 5.2.4
 	 */
 	public void setMediaTypes(Map<String, MediaType> mediaTypes) {
@@ -627,8 +627,8 @@ public class ResourceHttpRequestHandler extends WebContentGenerator
 
 	/**
 	 * 检查给定路径是否包含无效的转义序列。
-	 * @param path the path to validate
-	 * @return {@code true} if the path is invalid, {@code false} otherwise
+	 * @param path 要校验的路径
+	 * @return 如果路径无效则返回 {@code true}，否则返回 {@code false}
 	 */
 	private boolean isInvalidEncodedPath(String path) {
 		if (path.contains("%")) {
@@ -661,8 +661,8 @@ public class ResourceHttpRequestHandler extends WebContentGenerator
 	 * <li>表示{@link org.springframework.util.ResourceUtils#isUrl 有效 URL} 的路径，或在移除前导斜杠后将表示有效 URL 的路径。
 	 * </ul>
 	 * <p><strong>注意：</strong>此方法假定前导斜杠、重复的 '/' 或控制字符（例如空白字符）已被去除，因此路径可以预期地以单个 '/' 开头或不以斜杠开头。
-	 * @param path the path to validate
-	 * @return {@code true} if the path is invalid, {@code false} otherwise
+	 * @param path 要校验的路径
+	 * @return 如果路径无效则返回 {@code true}，否则返回 {@code false}
 	 * @since 3.0.6
 	 */
 	protected boolean isInvalidPath(String path) {
@@ -700,9 +700,9 @@ public class ResourceHttpRequestHandler extends WebContentGenerator
 	 * <li>{@link #getMediaTypes()}
 	 * <li>{@link MediaTypeFactory#getMediaType(String)}
 	 * </ol>
-	 * @param request the current request
-	 * @param resource the resource to check
-	 * @return the corresponding media type, or {@code null} if none found
+	 * @param request 当前请求
+	 * @param resource 要检查的资源
+	 * @return 对应的媒体类型；如果未找到，则为 {@code null}
 	 */
 	@Nullable
 	protected MediaType getMediaType(HttpServletRequest request, Resource resource) {
@@ -733,10 +733,10 @@ public class ResourceHttpRequestHandler extends WebContentGenerator
 
 	/**
 	 * 在给定的 servlet 响应上设置头。对 GET 请求和 HEAD 请求都会调用。
-	 * @param response current servlet response
-	 * @param resource the identified resource (never {@code null})
-	 * @param mediaType the resource's media type (never {@code null})
-	 * @throws IOException in case of errors while setting the headers
+	 * @param response 当前 servlet 响应
+	 * @param resource 已确定的资源（永不为 {@code null}）
+	 * @param mediaType 资源的媒体类型（永不为 {@code null}）
+	 * @throws IOException 在设置头信息时发生错误的情况下
 	 */
 	protected void setHeaders(HttpServletResponse response, Resource resource, @Nullable MediaType mediaType)
 			throws IOException {

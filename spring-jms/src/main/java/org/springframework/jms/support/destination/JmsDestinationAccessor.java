@@ -82,8 +82,8 @@ public abstract class JmsDestinationAccessor extends JmsAccessor {
 	 * 配置目的地访问器，使其了解所使用的 JMS 域。
 	 * 默认是点对点（队列）。
 	 * <p>如果启用了动态目的地，此设置主要指示要解析的目的地类型。
-	 * @param pubSubDomain "true" for the Publish/Subscribe domain ({@link javax.jms.Topic Topics}),
-	 * "false" for the Point-to-Point domain ({@link javax.jms.Queue Queues})
+	 * @param pubSubDomain 发布/订阅域（{@link javax.jms.Topic Topics}）为 "true"，
+	 * 点对点域（{@link javax.jms.Queue Queues}）为 "false"
 	 * @see #setDestinationResolver
 	 */
 	public void setPubSubDomain(boolean pubSubDomain) {
@@ -102,10 +102,10 @@ public abstract class JmsDestinationAccessor extends JmsAccessor {
 	/**
 	 * 通过此访问器的 {@link DestinationResolver} 将给定的目的地名称解析为
 	 * JMS {@link Destination}。
-	 * @param session the current JMS {@link Session}
-	 * @param destinationName the name of the destination
-	 * @return the located {@link Destination}
-	 * @throws javax.jms.JMSException if resolution failed
+	 * @param session 当前的 JMS {@link Session}
+	 * @param destinationName 目标的名称
+	 * @return 定位到的 {@link Destination}
+	 * @throws javax.jms.JMSException 解析失败时
 	 * @see #setDestinationResolver
 	 */
 	protected Destination resolveDestinationName(Session session, String destinationName) throws JMSException {
@@ -114,11 +114,10 @@ public abstract class JmsDestinationAccessor extends JmsAccessor {
 
 	/**
 	 * 实际从给定的消费者接收一条消息。
-	 * @param consumer the JMS MessageConsumer to receive with
-	 * @param timeout the receive timeout (a negative value indicates
-	 * a no-wait receive; 0 indicates an indefinite wait attempt)
-	 * @return the JMS Message received, or {@code null} if none
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param consumer 用于接收消息的 JMS MessageConsumer
+	 * @param timeout 接收超时（负值表示不等待直接接收；0 表示无限期等待）
+	 * @return 收到的 JMS Message；如果没有，则为 {@code null}
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 * @since 4.3
 	 * @see #RECEIVE_TIMEOUT_NO_WAIT
 	 * @see #RECEIVE_TIMEOUT_INDEFINITE_WAIT

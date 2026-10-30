@@ -92,7 +92,7 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 
 	/**
 	 * 为给定的 WorkManager 创建新的 WorkManagerTaskExecutor。
-	 * @param workManager the JCA WorkManager to delegate to
+	 * @param workManager 要委托给的 JCA WorkManager
 	 */
 	public WorkManagerTaskExecutor(WorkManager workManager) {
 		setWorkManager(workManager);

@@ -27,7 +27,7 @@ import java.util.Set;
  *
  * @author Keith Donald
  * @since 3.0
- * @param <A> the annotation type that should trigger formatting
+ * @param <A> 应触发格式化操作的注解类型
  */
 public interface AnnotationFormatterFactory<A extends Annotation> {
 
@@ -40,9 +40,9 @@ public interface AnnotationFormatterFactory<A extends Annotation> {
 	 * 获取 Printer，用于打印标注了 {@code annotation} 的 {@code fieldType} 类型字段的值。
 	 * <p>如果 Printer 接受的类型 T 不能赋值给 {@code fieldType}，则在调用 Printer 之前会尝试将
 	 * {@code fieldType} 强制转换为 T。
-	 * @param annotation the annotation instance
-	 * @param fieldType the type of field that was annotated
-	 * @return the printer
+	 * @param annotation 注解实例
+	 * @param fieldType 被注解的字段的类型
+	 * @return 该 Printer
 	 */
 	Printer<?> getPrinter(A annotation, Class<?> fieldType);
 
@@ -50,9 +50,9 @@ public interface AnnotationFormatterFactory<A extends Annotation> {
 	 * 获取 Parser，用于解析标注了 {@code annotation} 的 {@code fieldType} 类型字段的提交值。
 	 * <p>如果解析器返回的对象不能赋值给 {@code fieldType}，则在设置字段之前会尝试强制转换为
 	 * {@code fieldType}。
-	 * @param annotation the annotation instance
-	 * @param fieldType the type of field that was annotated
-	 * @return the parser
+	 * @param annotation 注解实例
+	 * @param fieldType 被注解的字段的类型
+	 * @return 该 Parser
 	 */
 	Parser<?> getParser(A annotation, Class<?> fieldType);
 

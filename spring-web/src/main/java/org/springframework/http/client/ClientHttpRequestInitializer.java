@@ -38,7 +38,7 @@ public interface ClientHttpRequestInitializer {
 
 	/**
 	 * 初始化给定的客户端 HTTP 请求。
-	 * @param request the request to configure
+	 * @param request 要配置的请求
 	 */
 	void initialize(ClientHttpRequest request);
 

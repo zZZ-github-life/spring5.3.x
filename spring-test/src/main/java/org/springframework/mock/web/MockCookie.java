@@ -50,8 +50,8 @@ public class MockCookie extends Cookie {
 
 	/**
 	 * 使用提供的名称和值构造一个新的 {@link MockCookie}。
-	 * @param name the name
-	 * @param value the value
+	 * @param name 名称
+	 * @param value 值
 	 * @see Cookie#Cookie(String, String)
 	 */
 	public MockCookie(String name, String value) {
@@ -68,7 +68,8 @@ public class MockCookie extends Cookie {
 
 	/**
 	 * 获取此 Cookie 的 "Expires" 属性。
-	 * @return the "Expires" attribute for this cookie, or {@code null} if not set
+	 * @return 此 Cookie 的 "Expires" 属性，
+	 * 如果未设置则为 {@code null}
 	 * @since 5.1.11
 	 */
 	@Nullable
@@ -89,7 +90,8 @@ public class MockCookie extends Cookie {
 
 	/**
 	 * 获取此 Cookie 的 "SameSite" 属性。
-	 * @return the "SameSite" attribute for this cookie, or {@code null} if not set
+	 * @return 此 Cookie 的 "SameSite" 属性，
+	 * 如果未设置则为 {@code null}
 	 */
 	@Nullable
 	public String getSameSite() {
@@ -99,8 +101,8 @@ public class MockCookie extends Cookie {
 
 	/**
 	 * 解析提供的 "Set-Cookie" 头值的工厂方法。
-	 * @param setCookieHeader the "Set-Cookie" value; never {@code null} or empty
-	 * @return the created cookie
+	 * @param setCookieHeader "Set-Cookie" 值；永不为 {@code null} 或空
+	 * @return 所创建的 Cookie
 	 */
 	public static MockCookie parse(String setCookieHeader) {
 		Assert.notNull(setCookieHeader, "Set-Cookie header must not be null");

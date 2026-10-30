@@ -23,7 +23,7 @@ import org.springframework.util.Assert;
  *
  * @author Juergen Hoeller
  * @since 2.5.2
- * @param <T> the value type
+ * @param <T> 值类型
  * @see NamedThreadLocal
  */
 public class NamedInheritableThreadLocal<T> extends InheritableThreadLocal<T> {
@@ -33,7 +33,7 @@ public class NamedInheritableThreadLocal<T> extends InheritableThreadLocal<T> {
 
 	/**
 	 * 使用给定名称创建一个新的 NamedInheritableThreadLocal。
-	 * @param name a descriptive name for this ThreadLocal
+	 * @param name 此 ThreadLocal 的描述性名称
 	 */
 	public NamedInheritableThreadLocal(String name) {
 		Assert.hasText(name, "Name must not be empty");

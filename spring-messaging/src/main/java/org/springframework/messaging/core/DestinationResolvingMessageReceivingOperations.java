@@ -27,22 +27,22 @@ import org.springframework.messaging.MessagingException;
  * @author Mark Fisher
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <D> the type of destination to receive messages from
+ * @param <D> 接收消息的目的地类型
  * @see DestinationResolver
  */
 public interface DestinationResolvingMessageReceivingOperations<D> extends MessageReceivingOperations<D> {
 
 	/**
 	 * 解析给定目标名称并从该目标接收消息。
-	 * @param destinationName the destination name to resolve
+	 * @param destinationName 要解析的目的地名
 	 */
 	@Nullable
 	Message<?> receive(String destinationName) throws MessagingException;
 
 	/**
 	 * 解析给定目标名称，从该目标接收消息，并将载荷转换为指定目标类型。
-	 * @param destinationName the destination name to resolve
-	 * @param targetClass the target class for the converted payload
+	 * @param destinationName 要解析的目的地名
+	 * @param targetClass 转换后载荷的目标类
 	 */
 	@Nullable
 	<T> T receiveAndConvert(String destinationName, Class<T> targetClass) throws MessagingException;

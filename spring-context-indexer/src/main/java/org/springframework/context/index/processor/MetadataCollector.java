@@ -47,8 +47,8 @@ class MetadataCollector {
 
 	/**
 	 * 创建一个新的 {@code MetadataProcessor} 实例。
-	 * @param processingEnvironment the processing environment of the build
-	 * @param previousMetadata any previous metadata or {@code null}
+	 * @param processingEnvironment 构建的注解处理环境
+	 * @param previousMetadata 任何先前的元数据，或 {@code null}
 	 */
 	public MetadataCollector(ProcessingEnvironment processingEnvironment,
 			CandidateComponentsMetadata previousMetadata) {

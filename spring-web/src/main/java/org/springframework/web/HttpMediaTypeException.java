@@ -37,7 +37,7 @@ public abstract class HttpMediaTypeException extends ServletException {
 
 	/**
 	 * 创建一个新的 HttpMediaTypeException。
-	 * @param message the exception message
+	 * @param message 异常消息
 	 */
 	protected HttpMediaTypeException(String message) {
 		super(message);
@@ -46,7 +46,7 @@ public abstract class HttpMediaTypeException extends ServletException {
 
 	/**
 	 * 使用受支持媒体类型列表创建一个新的 HttpMediaTypeException。
-	 * @param supportedMediaTypes the list of supported media types
+	 * @param supportedMediaTypes 受支持的媒体类型列表
 	 */
 	protected HttpMediaTypeException(String message, List<MediaType> supportedMediaTypes) {
 		super(message);

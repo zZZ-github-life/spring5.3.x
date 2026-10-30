@@ -54,10 +54,10 @@ public abstract class AbstractSpringPreparerFactory implements PreparerFactory {
 	/**
 	 * 基于给定的 Spring WebApplicationContext，为给定的 preparer 名称
 	 * 获取 preparer 实例。
-	 * @param name the name of the preparer
-	 * @param context the current Spring WebApplicationContext
-	 * @return the preparer instance
-	 * @throws TilesException in case of failure
+	 * @param name preparer 的名称
+	 * @param context 当前的 Spring WebApplicationContext
+	 * @return preparer 实例
+	 * @throws TilesException 如果失败
 	 */
 	protected abstract ViewPreparer getPreparer(String name, WebApplicationContext context) throws TilesException;
 

@@ -94,7 +94,7 @@ public class JettyRequestUpgradeStrategy implements RequestUpgradeStrategy, Serv
 	/**
 	 * 接受 {@link WebSocketPolicy} 的构造函数，在创建
 	 * {@link WebSocketServerFactory} 实例时使用。
-	 * @param policy the policy to use
+	 * @param policy 要使用的策略
 	 * @since 4.3.5
 	 */
 	public JettyRequestUpgradeStrategy(WebSocketPolicy policy) {
@@ -104,7 +104,7 @@ public class JettyRequestUpgradeStrategy implements RequestUpgradeStrategy, Serv
 
 	/**
 	 * 接受 {@link WebSocketServerFactory} 的构造函数。
-	 * @param factory the pre-configured factory to use
+	 * @param factory 要使用的预配置工厂
 	 */
 	public JettyRequestUpgradeStrategy(WebSocketServerFactory factory) {
 		Assert.notNull(factory, "WebSocketServerFactory must not be null");

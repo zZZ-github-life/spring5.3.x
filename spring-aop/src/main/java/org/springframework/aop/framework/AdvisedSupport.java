@@ -99,7 +99,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 	/**
 	 * 使用给定参数创建 AdvisedSupport 实例。
-	 * @param interfaces the proxied interfaces
+	 * @param interfaces 被代理的接口
 	 */
 	public AdvisedSupport(Class<?>... interfaces) {
 		this();
@@ -185,7 +185,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 	/**
 	 * 添加一个新的被代理接口。
-	 * @param intf the additional interface to proxy
+	 * @param intf 要额外代理的接口
 	 */
 	public void addInterface(Class<?> intf) {
 		Assert.notNull(intf, "Interface must not be null");
@@ -201,9 +201,9 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	/**
 	 * 移除被代理的接口。
 	 * <p>如果给定的接口未被代理，则不做任何操作。
-	 * @param intf the interface to remove from the proxy
-	 * @return {@code true} if the interface was removed; {@code false}
-	 * if the interface was not found and hence could not be removed
+	 * @param intf 要从代理中移除的接口
+	 * @return 如果该接口已被移除，则返回 {@code true}；如果未找到该接口
+	 * 因而无法移除，则返回 {@code false}
 	 */
 	public boolean removeInterface(Class<?> intf) {
 		return this.interfaces.remove(intf);
@@ -304,7 +304,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 	/**
 	 * 将给定的所有 advisor 添加到此代理配置中。
-	 * @param advisors the advisors to register
+	 * @param advisors 要注册的通知器
 	 */
 	public void addAdvisors(Advisor... advisors) {
 		addAdvisors(Arrays.asList(advisors));
@@ -312,7 +312,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 	/**
 	 * 将给定的所有 advisor 添加到此代理配置中。
-	 * @param advisors the advisors to register
+	 * @param advisors 要注册的通知器
 	 */
 	public void addAdvisors(Collection<Advisor> advisors) {
 		if (isFrozen()) {
@@ -412,8 +412,8 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 	/**
 	 * 给定的通知是否包含在此代理配置中的任一 advisor 内？
-	 * @param advice the advice to check inclusion of
-	 * @return whether this advice instance is included
+	 * @param advice 要检查是否包含的通知
+	 * @return 是否包含此通知实例
 	 */
 	public boolean adviceIncluded(@Nullable Advice advice) {
 		if (advice != null) {
@@ -428,8 +428,8 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 	/**
 	 * 统计给定类的通知数量。
-	 * @param adviceClass the advice class to check
-	 * @return the count of the interceptors of this class or subclasses
+	 * @param adviceClass 要检查的通知类
+	 * @return 此类或其子类的拦截器数量
 	 */
 	public int countAdvicesOfType(@Nullable Class<?> adviceClass) {
 		int count = 0;
@@ -446,9 +446,10 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 	/**
 	 * 根据此配置，为给定的方法确定一组 {@link org.aopalliance.intercept.MethodInterceptor} 对象。
-	 * @param method the proxied method
-	 * @param targetClass the target class
-	 * @return a List of MethodInterceptors (may also include InterceptorAndDynamicMethodMatchers)
+	 * @param method 被代理的方法
+	 * @param targetClass 目标类
+	 * @return MethodInterceptor 列表（也可能包含
+	 * InterceptorAndDynamicMethodMatchers）
 	 */
 	public List<Object> getInterceptorsAndDynamicInterceptionAdvice(Method method, @Nullable Class<?> targetClass) {
 		MethodCacheKey cacheKey = new MethodCacheKey(method);
@@ -470,7 +471,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 	/**
 	 * 在通过无参构造方法创建的新实例上调用此方法，以根据给定的对象创建配置的独立副本。
-	 * @param other the AdvisedSupport object to copy configuration from
+	 * @param other 要从中复制配置的 AdvisedSupport 对象
 	 */
 	protected void copyConfigurationFrom(AdvisedSupport other) {
 		copyConfigurationFrom(other, other.targetSource, new ArrayList<>(other.advisors));
@@ -478,9 +479,9 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 	/**
 	 * 从给定的 AdvisedSupport 对象复制 AOP 配置，但允许替换为新的 TargetSource 和给定的拦截器链。
-	 * @param other the AdvisedSupport object to take proxy configuration from
-	 * @param targetSource the new TargetSource
-	 * @param advisors the Advisors for the chain
+	 * @param other 要从中获取代理配置的 AdvisedSupport 对象
+	 * @param targetSource 新的 TargetSource
+	 * @param advisors 用于该链的 Advisor
 	 */
 	protected void copyConfigurationFrom(AdvisedSupport other, TargetSource targetSource, List<Advisor> advisors) {
 		copyFrom(other);

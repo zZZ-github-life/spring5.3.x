@@ -79,10 +79,10 @@ public interface LobHandler {
 	 * 从给定 ResultSet 中检索给定列，以字节形式返回。
 	 * 可能只是调用 {@code ResultSet.getBytes}，也可能使用
 	 * {@code ResultSet.getBlob}，具体取决于数据库和驱动。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnName the column name to use
-	 * @return the content as byte array, or {@code null} in case of SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnName 要使用的列名
+	 * @return 以字节数组表示的内容，遇到 SQL NULL 时为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getBytes
 	 */
 	@Nullable
@@ -92,10 +92,10 @@ public interface LobHandler {
 	 * 从给定 ResultSet 中检索给定列，以字节形式返回。
 	 * 可能只是调用 {@code ResultSet.getBytes}，也可能使用
 	 * {@code ResultSet.getBlob}，具体取决于数据库和驱动。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnIndex the column index to use
-	 * @return the content as byte array, or {@code null} in case of SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnIndex 要使用的列索引
+	 * @return 以字节数组表示的内容，遇到 SQL NULL 时为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getBytes
 	 */
 	@Nullable
@@ -105,10 +105,10 @@ public interface LobHandler {
 	 * 从给定 ResultSet 中检索给定列，以二进制流形式返回。
 	 * 可能只是调用 {@code ResultSet.getBinaryStream}，也可能使用
 	 * {@code ResultSet.getBlob}，具体取决于数据库和驱动。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnName the column name to use
-	 * @return the content as binary stream, or {@code null} in case of SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnName 要使用的列名
+	 * @return 以二进制流表示的内容，遇到 SQL NULL 时为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getBinaryStream
 	 */
 	@Nullable
@@ -118,10 +118,10 @@ public interface LobHandler {
 	 * 从给定 ResultSet 中检索给定列，以二进制流形式返回。
 	 * 可能只是调用 {@code ResultSet.getBinaryStream}，也可能使用
 	 * {@code ResultSet.getBlob}，具体取决于数据库和驱动。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnIndex the column index to use
-	 * @return the content as binary stream, or {@code null} in case of SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnIndex 要使用的列索引
+	 * @return 以二进制流表示的内容，遇到 SQL NULL 时为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getBinaryStream
 	 */
 	@Nullable
@@ -131,10 +131,10 @@ public interface LobHandler {
 	 * 从给定 ResultSet 中检索给定列，以 String 形式返回。
 	 * 可能只是调用 {@code ResultSet.getString}，也可能使用
 	 * {@code ResultSet.getClob}，具体取决于数据库和驱动。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnName the column name to use
-	 * @return the content as String, or {@code null} in case of SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnName 要使用的列名
+	 * @return 以 String 表示的内容，遇到 SQL NULL 时为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getString
 	 */
 	@Nullable
@@ -144,10 +144,10 @@ public interface LobHandler {
 	 * 从给定 ResultSet 中检索给定列，以 String 形式返回。
 	 * 可能只是调用 {@code ResultSet.getString}，也可能使用
 	 * {@code ResultSet.getClob}，具体取决于数据库和驱动。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnIndex the column index to use
-	 * @return the content as String, or {@code null} in case of SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnIndex 要使用的列索引
+	 * @return 以 String 表示的内容，遇到 SQL NULL 时为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getString
 	 */
 	@Nullable
@@ -157,10 +157,10 @@ public interface LobHandler {
 	 * 从给定 ResultSet 中检索给定列，以 ASCII 流形式返回。
 	 * 可能只是调用 {@code ResultSet.getAsciiStream}，也可能使用
 	 * {@code ResultSet.getClob}，具体取决于数据库和驱动。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnName the column name to use
-	 * @return the content as ASCII stream, or {@code null} in case of SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnName 要使用的列名
+	 * @return 以 ASCII 流表示的内容，遇到 SQL NULL 时为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getAsciiStream
 	 */
 	@Nullable
@@ -170,10 +170,10 @@ public interface LobHandler {
 	 * 从给定 ResultSet 中检索给定列，以 ASCII 流形式返回。
 	 * 可能只是调用 {@code ResultSet.getAsciiStream}，也可能使用
 	 * {@code ResultSet.getClob}，具体取决于数据库和驱动。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnIndex the column index to use
-	 * @return the content as ASCII stream, or {@code null} in case of SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnIndex 要使用的列索引
+	 * @return 以 ASCII 流表示的内容，遇到 SQL NULL 时为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getAsciiStream
 	 */
 	@Nullable
@@ -183,10 +183,10 @@ public interface LobHandler {
 	 * 从给定 ResultSet 中检索给定列，以字符流形式返回。
 	 * 可能只是调用 {@code ResultSet.getCharacterStream}，也可能使用
 	 * {@code ResultSet.getClob}，具体取决于数据库和驱动。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnName the column name to use
-	 * @return the content as character stream
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnName 要使用的列名
+	 * @return 以字符流表示的内容
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getCharacterStream
 	 */
 	Reader getClobAsCharacterStream(ResultSet rs, String columnName) throws SQLException;
@@ -195,10 +195,10 @@ public interface LobHandler {
 	 * 从给定 ResultSet 中检索给定列，以字符流形式返回。
 	 * 可能只是调用 {@code ResultSet.getCharacterStream}，也可能使用
 	 * {@code ResultSet.getClob}，具体取决于数据库和驱动。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnIndex the column index to use
-	 * @return the content as character stream
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnIndex 要使用的列索引
+	 * @return 以字符流表示的内容
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getCharacterStream
 	 */
 	Reader getClobAsCharacterStream(ResultSet rs, int columnIndex) throws SQLException;
@@ -207,7 +207,7 @@ public interface LobHandler {
 	 * 创建一个新的 {@link LobCreator} 实例，即一个用于创建 BLOB 和 CLOB 的会话。
 	 * 在创建的 LOB 不再需要之后需要关闭它，
 	 * 通常是在语句执行或事务完成之后。
-	 * @return the new LobCreator instance
+	 * @return 新的 LobCreator 实例
 	 * @see LobCreator#close()
 	 */
 	LobCreator getLobCreator();

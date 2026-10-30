@@ -39,7 +39,7 @@ import org.springframework.lang.Nullable;
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
  * @since 5.0
- * @param <T> the type of objects in the input stream
+ * @param <T> 输入流中的对象类型
  */
 public interface HttpMessageWriter<T> {
 
@@ -49,7 +49,7 @@ public interface HttpMessageWriter<T> {
 	 * {@link #canWrite(ResolvableType, MediaType) canWrite(elementType, null)}
 	 * 进行保护。该列表还可能不包含仅针对特定元素类型支持的媒体类型。
 	 * 或者，使用 {@link #getWritableMediaTypes(ResolvableType)} 获取更精确的列表。
-	 * @return the general list of supported media types
+	 * @return 所支持媒体类型的通用列表
 	 */
 	List<MediaType> getWritableMediaTypes();
 
@@ -57,8 +57,8 @@ public interface HttpMessageWriter<T> {
 	 * 返回此写入器针对给定元素类型所支持的媒体类型列表。如果写入器
 	 * 不支持该元素类型，或仅支持其中的一部分媒体类型，此列表可能与
 	 * {@link #getWritableMediaTypes()} 不同。
-	 * @param elementType the type of element to encode
-	 * @return the list of media types supported for the given class
+	 * @param elementType 要编码的元素类型
+	 * @return 针对给定类所支持的媒体类型列表
 	 * @since 5.3.4
 	 */
 	default List<MediaType> getWritableMediaTypes(ResolvableType elementType) {
@@ -67,22 +67,21 @@ public interface HttpMessageWriter<T> {
 
 	/**
 	 * 此写入器是否支持给定的对象类型。
-	 * @param elementType the type of object to check
-	 * @param mediaType the media type for the write (possibly {@code null})
-	 * @return {@code true} if writable, {@code false} otherwise
+	 * @param elementType 要检查的对象类型
+	 * @param mediaType 用于写入的媒体类型（可能为 {@code null}）
+	 * @return 如果可写则返回 {@code true}，否则返回 {@code false}
 	 */
 	boolean canWrite(ResolvableType elementType, @Nullable MediaType mediaType);
 
 	/**
 	 * 将给定的对象流写入输出消息。
-	 * @param inputStream the objects to write
-	 * @param elementType the type of objects in the stream which must have been
-	 * previously checked via {@link #canWrite(ResolvableType, MediaType)}
-	 * @param mediaType the content type for the write (possibly {@code null} to
-	 * indicate that the default content type of the writer must be used)
-	 * @param message the message to write to
-	 * @param hints additional information about how to encode and write
-	 * @return indicates completion or error
+	 * @param inputStream 要写入的对象
+	 * @param elementType 流中的对象类型，且必须已通过
+	 * {@link #canWrite(ResolvableType, MediaType)} 检查
+	 * @param mediaType 用于写入的内容类型（可能为 {@code null}，表示必须使用写入器的默认内容类型）
+	 * @param message 要写入到的消息
+	 * @param hints 关于如何编码和写入的附加信息
+	 * @return 表示完成或出错
 	 */
 	Mono<Void> write(Publisher<? extends T> inputStream, ResolvableType elementType,
 			@Nullable MediaType mediaType, ReactiveHttpOutputMessage message, Map<String, Object> hints);
@@ -91,15 +90,13 @@ public interface HttpMessageWriter<T> {
 	 * 仅限服务器端的替代方法，用于
 	 * {@link #write(Publisher, ResolvableType, MediaType, ReactiveHttpOutputMessage, Map)}，
 	 * 可提供额外的上下文。
-	 * @param actualType the actual return type of the method that returned the
-	 * value; for annotated controllers, the {@link MethodParameter} can be
-	 * accessed via {@link ResolvableType#getSource()}.
-	 * @param elementType the type of Objects in the input stream
-	 * @param mediaType the content type to use (possibly {@code null} indicating
-	 * the default content type of the writer should be used)
-	 * @param request the current request
-	 * @param response the current response
-	 * @return a {@link Mono} that indicates completion of writing or error
+	 * @param actualType 返回值方法的实际返回类型；对于注解控制器，可以通过
+	 * {@link ResolvableType#getSource()} 访问 {@link MethodParameter}。
+	 * @param elementType 输入流中的对象类型
+	 * @param mediaType 要使用的内容类型（可能为 {@code null}，表示应使用写入器的默认内容类型）
+	 * @param request 当前请求
+	 * @param response 当前响应
+	 * @return 表示写入完成或出错的 {@link Mono}
 	 */
 	default Mono<Void> write(Publisher<? extends T> inputStream, ResolvableType actualType,
 			ResolvableType elementType, @Nullable MediaType mediaType, ServerHttpRequest request,

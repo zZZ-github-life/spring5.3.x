@@ -34,7 +34,7 @@ import org.springframework.lang.Nullable;
  * 子类而异。
  *
  * @author Thomas Risberg
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see org.springframework.jdbc.object.SqlQuery
  */
 public abstract class UpdatableSqlQuery<T> extends SqlQuery<T> {
@@ -48,8 +48,8 @@ public abstract class UpdatableSqlQuery<T> extends SqlQuery<T> {
 
 	/**
 	 * 使用 DataSource 和 SQL 字符串的便捷构造函数。
-	 * @param ds the DataSource to use to get connections
-	 * @param sql the SQL to run
+	 * @param ds 用于获取连接的 DataSource
+	 * @param sql 要运行的 SQL
 	 */
 	public UpdatableSqlQuery(DataSource ds, String sql) {
 		super(ds, sql);
@@ -67,17 +67,17 @@ public abstract class UpdatableSqlQuery<T> extends SqlQuery<T> {
 
 	/**
 	 * 子类必须实现此方法以更新 ResultSet 的每一行，并可选地创建结果类型的对象。
-	 * @param rs the ResultSet we're working through
-	 * @param rowNum row number (from 0) we're up to
-	 * @param context passed to the {@code execute()} method.
-	 * It can be {@code null} if no contextual information is need.  If you
-	 * need to pass in data for each row, you can pass in a HashMap with
-	 * the primary key of the row being the key for the HashMap.  That way
-	 * it is easy to locate the updates for each row
-	 * @return an object of the result type
-	 * @throws SQLException if there's an error updating data.
-	 * Subclasses can simply not catch SQLExceptions, relying on the
-	 * framework to clean up.
+	 * @param rs 正在处理的 ResultSet
+	 * @param rowNum 当前行号（从 0 开始）
+	 * @param context 传递给 {@code execute()} 方法的上下文。
+	 * 如果不需要上下文信息，则可以为 {@code null}。
+	 * 如果需要为每一行传入数据，可以传入一个 HashMap，
+	 * 以该行的主键作为 HashMap 的键。
+	 * 这样就可以方便地定位每一行的更新
+	 * @return 结果类型的对象
+	 * @throws SQLException 如果更新数据时出错。
+	 * 子类可以简单地不捕获 SQLExceptions，
+	 * 并依赖框架进行清理。
 	 */
 	protected abstract T updateRow(ResultSet rs, int rowNum, @Nullable Map<?, ?> context) throws SQLException;
 

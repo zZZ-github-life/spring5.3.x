@@ -77,7 +77,7 @@ public class ServletWebRequest extends ServletRequestAttributes implements Nativ
 
 	/**
 	 * 为给定的请求创建一个新的 ServletWebRequest 实例。
-	 * @param request current HTTP request
+	 * @param request 当前 HTTP 请求
 	 */
 	public ServletWebRequest(HttpServletRequest request) {
 		super(request);
@@ -85,8 +85,8 @@ public class ServletWebRequest extends ServletRequestAttributes implements Nativ
 
 	/**
 	 * 为给定的请求/响应对创建一个新的 ServletWebRequest 实例。
-	 * @param request current HTTP request
-	 * @param response current HTTP response (for automatic last-modified handling)
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应（用于自动处理 Last-Modified）
 	 */
 	public ServletWebRequest(HttpServletRequest request, @Nullable HttpServletResponse response) {
 		super(request, response);

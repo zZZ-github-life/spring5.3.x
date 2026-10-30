@@ -41,8 +41,8 @@ public class ResultSetSupportingSqlParameter extends SqlParameter {
 
 	/**
 	 * 创建新的ResultSetSupportingSqlParameter。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
 	 */
 	public ResultSetSupportingSqlParameter(String name, int sqlType) {
 		super(name, sqlType);
@@ -50,10 +50,9 @@ public class ResultSetSupportingSqlParameter extends SqlParameter {
 
 	/**
 	 * 创建新的ResultSetSupportingSqlParameter。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
-	 * @param scale the number of digits after the decimal point
-	 * (for DECIMAL and NUMERIC types)
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param scale 小数点后的位数（用于 DECIMAL 和 NUMERIC 类型）
 	 */
 	public ResultSetSupportingSqlParameter(String name, int sqlType, int scale) {
 		super(name, sqlType, scale);
@@ -61,9 +60,9 @@ public class ResultSetSupportingSqlParameter extends SqlParameter {
 
 	/**
 	 * 创建新的ResultSetSupportingSqlParameter。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
-	 * @param typeName the type name of the parameter (optional)
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param typeName 参数的类型名称（可选）
 	 */
 	public ResultSetSupportingSqlParameter(String name, int sqlType, @Nullable String typeName) {
 		super(name, sqlType, typeName);
@@ -71,9 +70,9 @@ public class ResultSetSupportingSqlParameter extends SqlParameter {
 
 	/**
 	 * 创建新的ResultSetSupportingSqlParameter。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
-	 * @param rse the {@link ResultSetExtractor} to use for parsing the {@link ResultSet}
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param rse 用于解析 {@link ResultSet} 的 {@link ResultSetExtractor}
 	 */
 	public ResultSetSupportingSqlParameter(String name, int sqlType, ResultSetExtractor<?> rse) {
 		super(name, sqlType);
@@ -82,9 +81,9 @@ public class ResultSetSupportingSqlParameter extends SqlParameter {
 
 	/**
 	 * 创建新的ResultSetSupportingSqlParameter。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
-	 * @param rch the {@link RowCallbackHandler} to use for parsing the {@link ResultSet}
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param rch 用于解析 {@link ResultSet} 的 {@link RowCallbackHandler}
 	 */
 	public ResultSetSupportingSqlParameter(String name, int sqlType, RowCallbackHandler rch) {
 		super(name, sqlType);
@@ -93,9 +92,9 @@ public class ResultSetSupportingSqlParameter extends SqlParameter {
 
 	/**
 	 * 创建新的ResultSetSupportingSqlParameter。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
-	 * @param rm the {@link RowMapper} to use for parsing the {@link ResultSet}
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param rm 用于解析 {@link ResultSet} 的 {@link RowMapper}
 	 */
 	public ResultSetSupportingSqlParameter(String name, int sqlType, RowMapper<?> rm) {
 		super(name, sqlType);

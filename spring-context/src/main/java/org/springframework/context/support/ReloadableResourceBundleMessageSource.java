@@ -105,10 +105,8 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 	/**
 	 * 设置用于解析属性文件的按文件字符集。
 	 * <p>仅适用于传统的属性文件，不适用于 XML 文件。
-	 * @param fileEncodings a Properties with filenames as keys and charset
-	 * names as values. Filenames have to match the basename syntax,
-	 * with optional locale-specific components: e.g. "WEB-INF/messages"
-	 * or "WEB-INF/messages_en".
+	 * @param fileEncodings 以文件名为键、字符集名称为值的 Properties。文件名必须符合基名语法，
+	 * 可带可选的区域设置特定组成部分：例如 "WEB-INF/messages" 或 "WEB-INF/messages_en"。
 	 * @see #setBasenames
 	 * @see org.springframework.util.PropertiesPersister#load
 	 */
@@ -248,9 +246,9 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 	/**
 	 * 计算给定资源包基名和 Locale 的所有文件名。将计算给定 Locale、系统 Locale（如果适用）以及默认文件
 	 * 的文件名。
-	 * @param basename the basename of the bundle
-	 * @param locale the locale
-	 * @return the List of filenames to check
+	 * @param basename 资源包的基名
+	 * @param locale 该 Locale
+	 * @return 要检查的文件名 List
 	 * @see #setFallbackToSystemLocale
 	 * @see #calculateFilenamesForLocale
 	 */
@@ -298,9 +296,9 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 	 * <p>例如，基名 "messages"、Locale "de_AT_oo" &rarr; "messages_de_AT_OO"、"messages_de_AT"、
 	 * "messages_de"。
 	 * <p>遵循 {@link java.util.Locale#toString()} 定义的规则。
-	 * @param basename the basename of the bundle
-	 * @param locale the locale
-	 * @return the List of filenames to check
+	 * @param basename 资源包的基名
+	 * @param locale 该 Locale
+	 * @return 要检查的文件名 List
 	 */
 	protected List<String> calculateFilenamesForLocale(String basename, Locale locale) {
 		List<String> result = new ArrayList<>(3);
@@ -332,8 +330,8 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 
 	/**
 	 * 获取给定文件名的 PropertiesHolder，或来自缓存，或重新加载。
-	 * @param filename the bundle filename (basename + Locale)
-	 * @return the current PropertiesHolder for the bundle
+	 * @param filename 资源包文件名（基名 + Locale）
+	 * @return 该资源包当前的 PropertiesHolder
 	 */
 	protected PropertiesHolder getProperties(String filename) {
 		PropertiesHolder propHolder = this.cachedProperties.get(filename);
@@ -381,8 +379,8 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 	/**
 	 * 刷新给定资源包文件名的 PropertiesHolder。如果之前未缓存，该 holder 可以为 {@code null}，也可以是
 	 * 已超时的缓存条目（可能会根据当前的最后修改时间戳重新校验）。
-	 * @param filename the bundle filename (basename + Locale)
-	 * @param propHolder the current PropertiesHolder for the bundle
+	 * @param filename 资源包文件名（基名 + Locale）
+	 * @param propHolder 该资源包当前的 PropertiesHolder
 	 */
 	protected PropertiesHolder refreshProperties(String filename, @Nullable PropertiesHolder propHolder) {
 		long refreshTimestamp = (getCacheMillis() < 0 ? -1 : System.currentTimeMillis());
@@ -443,10 +441,10 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 
 	/**
 	 * 从给定资源加载属性。
-	 * @param resource the resource to load from
-	 * @param filename the original bundle filename (basename + Locale)
-	 * @return the populated Properties instance
-	 * @throws IOException if properties loading failed
+	 * @param resource 要从中加载的资源
+	 * @param filename 原始资源包文件名（基名 + Locale）
+	 * @return 填充后的 Properties 实例
+	 * @throws IOException 如果属性加载失败
 	 */
 	protected Properties loadProperties(Resource resource, String filename) throws IOException {
 		Properties props = newProperties();
@@ -488,7 +486,7 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 	 * {@link Properties#Properties()}。
 	 * <p>允许在子类中返回自定义的 {@link Properties} 扩展。覆盖方法只需实例化一个自定义的
 	 * {@link Properties} 子类，此时不应执行进一步的初始化或填充。
-	 * @return a plain Properties instance
+	 * @return 一个普通的 Properties 实例
 	 * @since 4.2
 	 */
 	protected Properties newProperties() {

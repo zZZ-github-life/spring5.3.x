@@ -44,9 +44,9 @@ public class FieldError extends ObjectError {
 
 	/**
 	 * 创建一个新的 FieldError 实例。
-	 * @param objectName the name of the affected object
-	 * @param field the affected field of the object
-	 * @param defaultMessage the default message to be used to resolve this message
+	 * @param objectName 受影响对象的名称。
+	 * @param field 该对象中受影响的字段。
+	 * @param defaultMessage 用于解析此消息的默认消息。
 	 */
 	public FieldError(String objectName, String field, String defaultMessage) {
 		this(objectName, field, null, false, null, null, defaultMessage);
@@ -54,14 +54,14 @@ public class FieldError extends ObjectError {
 
 	/**
 	 * 创建一个新的 FieldError 实例。
-	 * @param objectName the name of the affected object
-	 * @param field the affected field of the object
-	 * @param rejectedValue the rejected field value
-	 * @param bindingFailure whether this error represents a binding failure
-	 * (like a type mismatch); else, it is a validation failure
-	 * @param codes the codes to be used to resolve this message
-	 * @param arguments the array of arguments to be used to resolve this message
-	 * @param defaultMessage the default message to be used to resolve this message
+	 * @param objectName 受影响对象的名称。
+	 * @param field 该对象中受影响的字段。
+	 * @param rejectedValue 被拒绝的字段值。
+	 * @param bindingFailure 此错误是否表示绑定失败
+	 * （例如类型不匹配）；否则为校验失败。
+	 * @param codes 用于解析此消息的代码。
+	 * @param arguments 用于解析此消息的参数数组。
+	 * @param defaultMessage 用于解析此消息的默认消息。
 	 */
 	public FieldError(String objectName, String field, @Nullable Object rejectedValue, boolean bindingFailure,
 			@Nullable String[] codes, @Nullable Object[] arguments, @Nullable String defaultMessage) {

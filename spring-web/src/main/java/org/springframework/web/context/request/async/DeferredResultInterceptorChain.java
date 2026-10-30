@@ -84,8 +84,8 @@ class DeferredResultInterceptorChain {
 
 	/**
 	 * 确定是否应跳过后续的错误处理。
-	 * @return {@code true} to continue error handling, or false to bypass any further
-	 * error handling
+	 * @return 返回 {@code true} 以继续错误处理，
+	 * 或返回 false 以跳过任何后续错误处理
 	 */
 	public boolean triggerAfterError(NativeWebRequest request, DeferredResult<?> deferredResult, Throwable ex)
 			throws Exception {

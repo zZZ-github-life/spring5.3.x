@@ -33,8 +33,8 @@ public class PassThroughSourceExtractor implements SourceExtractor {
 
 	/**
 	 * 仅按原样返回给定的 {@code sourceCandidate}。
-	 * @param sourceCandidate the source metadata
-	 * @return the supplied {@code sourceCandidate}
+	 * @param sourceCandidate 源元数据
+	 * @return 提供的 {@code sourceCandidate}
 	 */
 	@Override
 	public Object extractSource(Object sourceCandidate, @Nullable Resource definingResource) {

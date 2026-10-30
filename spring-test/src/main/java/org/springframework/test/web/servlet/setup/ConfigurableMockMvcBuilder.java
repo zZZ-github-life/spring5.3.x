@@ -31,7 +31,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
  * @author Rossen Stoyanchev
  * @author Sam Brannen
  * @since 4.1
- * @param <B> a self reference to the builder type
+ * @param <B> 构建器类型的自引用
  */
 public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder<B>> extends MockMvcBuilder {
 
@@ -48,7 +48,7 @@ public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder
 	 * &lt;/filter-mapping&gt;
 	 * </pre>
 	 * <p>过滤器将按提供它们的顺序被调用。
-	 * @param filters the filters to add
+	 * @param filters 要添加的过滤器
 	 */
 	<T extends B> T addFilters(Filter... filters);
 
@@ -65,8 +65,8 @@ public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder
 	 * &lt;/filter-mapping&gt;
 	 * </pre>
 	 * <p>过滤器将按提供它们的顺序被调用。
-	 * @param filter the filter to add
-	 * @param urlPatterns the URL patterns to map to; if empty, "/*" is used by default
+	 * @param filter 要添加的过滤器
+	 * @param urlPatterns 要映射到的 URL 模式；如果为空，则默认使用“/*”
 	 */
 	<T extends B> T addFilter(Filter filter, String... urlPatterns);
 
@@ -76,8 +76,8 @@ public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder
 	 * 例如内容类型、请求参数、会话属性以及任何其他请求属性。
 	 *
 	 * <p>执行请求时指定的属性会覆盖此处定义的默认属性。
-	 * @param requestBuilder a RequestBuilder; see static factory methods in
-	 * {@link org.springframework.test.web.servlet.request.MockMvcRequestBuilders}
+	 * @param requestBuilder 一个 RequestBuilder；
+	 * 参见 {@link org.springframework.test.web.servlet.request.MockMvcRequestBuilders} 中的静态工厂方法
 	 */
 	<T extends B> T defaultRequest(RequestBuilder requestBuilder);
 
@@ -86,7 +86,7 @@ public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder
 	 * <p>此方法的默认实现会抛出
 	 * {@link UnsupportedOperationException}。因此，鼓励具体实现
 	 * 重写此方法。
-	 * @param defaultResponseCharacterEncoding the default response character encoding
+	 * @param defaultResponseCharacterEncoding 默认的响应字符编码
 	 * @since 5.3.10
 	 */
 	default <T extends B> T defaultResponseCharacterEncoding(Charset defaultResponseCharacterEncoding) {
@@ -97,16 +97,16 @@ public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder
 	 * 定义一个应<em>始终</em>应用于每个响应的全局预期。
 	 * 例如，状态码 200（OK）、内容类型
 	 * {@code "application/json"} 等。
-	 * @param resultMatcher a ResultMatcher; see static factory methods in
-	 * {@link org.springframework.test.web.servlet.result.MockMvcResultMatchers}
+	 * @param resultMatcher 一个 ResultMatcher；
+	 * 参见 {@link org.springframework.test.web.servlet.result.MockMvcResultMatchers} 中的静态工厂方法
 	 */
 	<T extends B> T alwaysExpect(ResultMatcher resultMatcher);
 
 	/**
 	 * 定义一个应<em>始终</em>应用于每个响应的全局操作。
 	 * 例如，将已执行请求和结果响应的详细信息写入 {@code System.out}。
-	 * @param resultHandler a ResultHandler; see static factory methods in
-	 * {@link org.springframework.test.web.servlet.result.MockMvcResultHandlers}
+	 * @param resultHandler 一个 ResultHandler；
+	 * 参见 {@link org.springframework.test.web.servlet.result.MockMvcResultHandlers} 中的静态工厂方法
 	 */
 	<T extends B> T alwaysDo(ResultHandler resultHandler);
 

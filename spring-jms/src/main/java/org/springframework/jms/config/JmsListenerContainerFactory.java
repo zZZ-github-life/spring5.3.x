@@ -24,15 +24,15 @@ import org.springframework.jms.listener.MessageListenerContainer;
  *
  * @author Stephane Nicoll
  * @since 4.1
- * @param <C> the container type
+ * @param <C> 容器类型
  * @see JmsListenerEndpoint
  */
 public interface JmsListenerContainerFactory<C extends MessageListenerContainer> {
 
 	/**
 	 * 为给定的 {@link JmsListenerEndpoint} 创建一个 {@link MessageListenerContainer}。
-	 * @param endpoint the endpoint to configure
-	 * @return the created container
+	 * @param endpoint 要配置的端点
+	 * @return 创建的容器
 	 */
 	C createListenerContainer(JmsListenerEndpoint endpoint);
 

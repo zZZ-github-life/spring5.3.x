@@ -84,8 +84,8 @@ public interface MultipartResolver {
 	 * 判断给定请求是否包含 multipart 内容。
 	 * <p>通常会检查内容类型是否为 "multipart/form-data"，
 	 * 但实际接受的请求可能取决于解析器实现的能力。
-	 * @param request the servlet request to be evaluated
-	 * @return whether the request contains multipart content
+	 * @param request 要评估的 Servlet 请求
+	 * @return 该请求是否包含 multipart 内容
 	 */
 	boolean isMultipart(HttpServletRequest request);
 
@@ -95,10 +95,10 @@ public interface MultipartResolver {
 	 * {@link org.springframework.web.multipart.MultipartHttpServletRequest}
 	 * 对象中，该对象提供对文件描述符的访问，
 	 * 并通过标准 ServletRequest 方法使所含参数可访问。
-	 * @param request the servlet request to wrap (must be of a multipart content type)
-	 * @return the wrapped servlet request
-	 * @throws MultipartException if the servlet request is not multipart, or if
-	 * implementation-specific problems are encountered (such as exceeding file size limits)
+	 * @param request 要包装的 Servlet 请求（必须是 multipart 内容类型）
+	 * @return 包装后的 Servlet 请求
+	 * @throws MultipartException 如果 Servlet 请求不是 multipart，或遇到实现特定的问题
+	 * （例如超出文件大小限制）
 	 * @see MultipartHttpServletRequest#getFile
 	 * @see MultipartHttpServletRequest#getFileNames
 	 * @see MultipartHttpServletRequest#getFileMap
@@ -111,7 +111,7 @@ public interface MultipartResolver {
 	/**
 	 * 清理 multipart 处理所使用的任何资源，
 	 * 例如上传文件的存储。
-	 * @param request the request to clean up resources for
+	 * @param request 要为其清理资源的请求
 	 */
 	void cleanupMultipart(MultipartHttpServletRequest request);
 

@@ -77,7 +77,7 @@ public abstract class AbstractMessageReaderArgumentResolver extends HandlerMetho
 
 	/**
 	 * 使用 {@link HttpMessageReader} 和 {@link Validator} 的构造函数。
-	 * @param readers the readers to convert from the request body
+	 * @param readers 用于从请求体转换的读取器
 	 */
 	protected AbstractMessageReaderArgumentResolver(List<HttpMessageReader<?>> readers) {
 		this(readers, ReactiveAdapterRegistry.getSharedInstance());
@@ -85,8 +85,8 @@ public abstract class AbstractMessageReaderArgumentResolver extends HandlerMetho
 
 	/**
 	 * 还接受 {@link ReactiveAdapterRegistry} 的构造函数。
-	 * @param messageReaders readers to convert from the request body
-	 * @param adapterRegistry for adapting to other reactive types from Flux and Mono
+	 * @param messageReaders 用于从请求体转换的读取器
+	 * @param adapterRegistry 用于从 Flux 和 Mono 适配为其他响应式类型
 	 */
 	protected AbstractMessageReaderArgumentResolver(
 			List<HttpMessageReader<?>> messageReaders, ReactiveAdapterRegistry adapterRegistry) {
@@ -108,11 +108,11 @@ public abstract class AbstractMessageReaderArgumentResolver extends HandlerMetho
 
 	/**
 	 * 使用 {@link HttpMessageReader} 从方法参数读取正文。
-	 * @param bodyParameter the {@link MethodParameter} to read
-	 * @param isBodyRequired true if the body is required
-	 * @param bindingContext the binding context to use
-	 * @param exchange the current exchange
-	 * @return the body
+	 * @param bodyParameter 要读取的 {@link MethodParameter}
+	 * @param isBodyRequired 如果正文是必需的，则为 true
+	 * @param bindingContext 要使用的绑定上下文
+	 * @param exchange 当前交换
+	 * @return 正文
 	 * @see #readBody(MethodParameter, MethodParameter, boolean, BindingContext, ServerWebExchange)
 	 */
 	protected Mono<Object> readBody(MethodParameter bodyParameter, boolean isBodyRequired,
@@ -123,13 +123,13 @@ public abstract class AbstractMessageReaderArgumentResolver extends HandlerMetho
 
 	/**
 	 * 使用 {@link HttpMessageReader} 从方法参数读取正文。
-	 * @param bodyParam represents the element type for the body
-	 * @param actualParam the actual method argument type; possibly different
-	 * from {@code bodyParam}, e.g. for an {@code HttpEntity} argument
-	 * @param isBodyRequired true if the body is required
-	 * @param bindingContext the binding context to use
-	 * @param exchange the current exchange
-	 * @return a Mono with the value to use for the method argument
+	 * @param bodyParam 表示正文的元素类型
+	 * @param actualParam 实际的方法参数类型；可能与 {@code bodyParam} 不同，
+	 * 例如对于 {@code HttpEntity} 参数。
+	 * @param isBodyRequired 如果正文是必需的则返回 true。
+	 * @param bindingContext 要使用的绑定上下文
+	 * @param exchange 当前交换
+	 * @return 包含用于方法参数的值的 Mono
 	 * @since 5.0.2
 	 */
 	protected Mono<Object> readBody(MethodParameter bodyParam, @Nullable MethodParameter actualParam,

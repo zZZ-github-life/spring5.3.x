@@ -58,8 +58,8 @@ import org.springframework.web.server.ServerWebExchange;
  * @author Brian Clozel
  * @author Sam Brannen
  * @since 5.0
- * @param <T> the mapping for a {@link HandlerMethod} containing the conditions
- * needed to match the handler method to an incoming request.
+ * @param <T> 用于 {@link HandlerMethod} 的映射，
+ * 包含将处理方法与传入请求进行匹配所需的条件。
  */
 public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMapping implements InitializingBean {
 
@@ -117,9 +117,9 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	/**
 	 * 注册给定的映射。
 	 * <p>此方法可以在初始化完成后于运行时调用。
-	 * @param mapping the mapping for the handler method
-	 * @param handler the handler
-	 * @param method the method
+	 * @param mapping 处理方法对应的映射
+	 * @param handler 处理器
+	 * @param method 方法
 	 */
 	public void registerMapping(T mapping, Object handler, Method method) {
 		if (logger.isTraceEnabled()) {
@@ -131,7 +131,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	/**
 	 * 注销给定的映射。
 	 * <p>此方法可以在初始化完成后于运行时调用。
-	 * @param mapping the mapping to unregister
+	 * @param mapping 要取消注册的映射
 	 */
 	public void unregisterMapping(T mapping) {
 		if (logger.isTraceEnabled()) {
@@ -188,7 +188,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 	/**
 	 * 在处理器中查找处理器方法。
-	 * @param handler the bean name of a handler or a handler instance
+	 * @param handler 处理器的 Bean 名称或处理器实例
 	 */
 	protected void detectHandlerMethods(final Object handler) {
 		Class<?> handlerType = (handler instanceof String ?
@@ -231,11 +231,11 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 	/**
 	 * 注册处理器方法及其唯一映射。在启动时为每个检测到的处理器方法调用。
-	 * @param handler the bean name of the handler or the handler instance
-	 * @param method the method to register
-	 * @param mapping the mapping conditions associated with the handler method
-	 * @throws IllegalStateException if another method was already registered
-	 * under the same mapping
+	 * @param handler 处理器的 Bean 名称或处理器实例
+	 * @param method 要注册的方法
+	 * @param mapping 与处理方法关联的映射条件
+	 * @throws IllegalStateException 如果已有另一个方法
+	 * 注册在同一映射下
 	 */
 	protected void registerHandlerMethod(Object handler, Method method, T mapping) {
 		this.mappingRegistry.register(mapping, handler, method);
@@ -243,9 +243,9 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 	/**
 	 * 创建 HandlerMethod 实例。
-	 * @param handler either a bean name or an actual handler instance
-	 * @param method the target method
-	 * @return the created HandlerMethod
+	 * @param handler Bean 名称或实际的处理器实例
+	 * @param method 目标方法
+	 * @return 创建的 HandlerMethod
 	 */
 	protected HandlerMethod createHandlerMethod(Object handler, Method method) {
 		if (handler instanceof String) {
@@ -267,7 +267,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 	/**
 	 * 在所有处理器方法检测完成后调用。
-	 * @param handlerMethods a read-only map with handler methods and mappings.
+	 * @param handlerMethods 包含处理方法与映射的只读 Map。
 	 */
 	protected void handlerMethodsInitialized(Map<T, HandlerMethod> handlerMethods) {
 	}
@@ -277,7 +277,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 	/**
 	 * 为给定请求查找处理器方法。
-	 * @param exchange the current exchange
+	 * @param exchange 当前交换
 	 */
 	@Override
 	public Mono<HandlerMethod> getHandlerInternal(ServerWebExchange exchange) {
@@ -302,8 +302,8 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 	/**
 	 * 为当前请求查找最佳匹配的处理器方法。如果找到多个匹配，则选择最佳匹配。
-	 * @param exchange the current exchange
-	 * @return the best-matching handler method, or {@code null} if no match
+	 * @param exchange 当前交换
+	 * @return 最匹配的处理方法；如果没有匹配则为 {@code null}
 	 * @see #handleMatch
 	 * @see #handleNoMatch
 	 */
@@ -362,9 +362,9 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 	/**
 	 * 在找到匹配的映射时调用。
-	 * @param mapping the matching mapping
-	 * @param handlerMethod the matching method
-	 * @param exchange the current exchange
+	 * @param mapping 匹配的映射
+	 * @param handlerMethod 匹配的方法
+	 * @param exchange 当前交换
 	 */
 	protected void handleMatch(T mapping, HandlerMethod handlerMethod, ServerWebExchange exchange) {
 		String lookupPath = exchange.getRequest().getPath().pathWithinApplication().value();
@@ -373,10 +373,10 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 	/**
 	 * 在未找到匹配的映射时调用。
-	 * @param mappings all registered mappings
-	 * @param exchange the current exchange
-	 * @return an alternative HandlerMethod or {@code null}
-	 * @throws Exception provides details that can be translated into an error status code
+	 * @param mappings 所有已注册的映射
+	 * @param exchange 当前交换
+	 * @return 备选的 HandlerMethod 或 {@code null}
+	 * @throws Exception 提供可转换为错误状态码的详细信息
 	 */
 	@Nullable
 	protected HandlerMethod handleNoMatch(Set<T> mappings, ServerWebExchange exchange) throws Exception {
@@ -408,17 +408,17 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 	/**
 	 * 给定类型是否是带有处理器方法的处理器。
-	 * @param beanType the type of the bean being checked
-	 * @return "true" if this a handler type, "false" otherwise.
+	 * @param beanType 正在检查的 Bean 的类型
+	 * @return 如果是处理器类型则返回 "true"，否则返回 "false"。
 	 */
 	protected abstract boolean isHandler(Class<?> beanType);
 
 	/**
 	 * 为处理器方法提供映射。无法提供映射的方法不是处理器方法。
-	 * @param method the method to provide a mapping for
-	 * @param handlerType the handler type, possibly a subtype of the method's
-	 * declaring class
-	 * @return the mapping, or {@code null} if the method is not mapped
+	 * @param method 要为其提供映射的方法
+	 * @param handlerType 处理器类型，
+	 * 可能是该方法声明类的子类型
+	 * @return 映射；如果该方法未映射则为 {@code null}
 	 */
 	@Nullable
 	protected abstract T getMappingForMethod(Method method, Class<?> handlerType);
@@ -433,17 +433,17 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 	/**
 	 * 检查映射是否匹配当前请求，并返回一个（可能是新的）映射，其中包含与当前请求相关的条件。
-	 * @param mapping the mapping to get a match for
-	 * @param exchange the current exchange
-	 * @return the match, or {@code null} if the mapping doesn't match
+	 * @param mapping 要获取匹配的映射
+	 * @param exchange 当前交换
+	 * @return 匹配结果；如果该映射不匹配则为 {@code null}
 	 */
 	@Nullable
 	protected abstract T getMatchingMapping(T mapping, ServerWebExchange exchange);
 
 	/**
 	 * 返回用于对匹配映射排序的比较器。返回的比较器应将“更好”的匹配排在前面。
-	 * @param exchange the current exchange
-	 * @return the comparator (never {@code null})
+	 * @param exchange 当前交换
+	 * @return 比较器（永不为 {@code null}）
 	 */
 	protected abstract Comparator<T> getMappingComparator(ServerWebExchange exchange);
 

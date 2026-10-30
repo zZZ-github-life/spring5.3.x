@@ -48,8 +48,8 @@ public abstract class MappingCommAreaOperation extends MappingRecordOperation {
 
 	/**
 	 * 创建新的 MappingCommAreaQuery。
-	 * @param connectionFactory the ConnectionFactory to use to obtain connections
-	 * @param interactionSpec specification to configure the interaction
+	 * @param connectionFactory 用于获取连接的 ConnectionFactory
+	 * @param interactionSpec 用于配置该交互的规范
 	 */
 	public MappingCommAreaOperation(ConnectionFactory connectionFactory, InteractionSpec interactionSpec) {
 		super(connectionFactory, interactionSpec);
@@ -81,19 +81,19 @@ public abstract class MappingCommAreaOperation extends MappingRecordOperation {
 
 	/**
 	 * 将对象转换为 COMMAREA 字节的方法。
-	 * @param inObject the input data
-	 * @return the COMMAREA's bytes
-	 * @throws IOException if thrown by I/O methods
-	 * @throws DataAccessException if conversion failed
+	 * @param inObject 输入数据
+	 * @return COMMAREA 的字节
+	 * @throws IOException 如果由 I/O 方法抛出
+	 * @throws DataAccessException 如果转换失败
 	 */
 	protected abstract byte[] objectToBytes(Object inObject) throws IOException, DataAccessException;
 
 	/**
 	 * 将 COMMAREA 字节转换为对象的方法。
-	 * @param bytes the COMMAREA's bytes
-	 * @return the output data
-	 * @throws IOException if thrown by I/O methods
-	 * @throws DataAccessException if conversion failed
+	 * @param bytes COMMAREA 的字节
+	 * @return 输出数据
+	 * @throws IOException 如果由 I/O 方法抛出
+	 * @throws DataAccessException 如果转换失败
 	 */
 	protected abstract Object bytesToObject(byte[] bytes) throws IOException, DataAccessException;
 

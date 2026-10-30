@@ -111,9 +111,9 @@ public class Jsr310DateTimeFormatAnnotationFormatterFactory extends EmbeddedValu
 
 	/**
 	 * 用于创建 {@link DateTimeFormatter} 的工厂方法。
-	 * @param annotation the format annotation for the field
-	 * @param fieldType the declared type of the field
-	 * @return a {@link DateTimeFormatter} instance
+	 * @param annotation 该字段的格式注解
+	 * @param fieldType 字段的声明类型
+	 * @return {@link DateTimeFormatter} 实例
 	 */
 	protected DateTimeFormatter getFormatter(DateTimeFormat annotation, Class<?> fieldType) {
 		DateTimeFormatterFactory factory = new DateTimeFormatterFactory();

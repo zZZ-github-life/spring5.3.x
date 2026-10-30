@@ -60,8 +60,8 @@ public class MarshallingSource extends SAXSource {
 
 	/**
 	 * 使用给定的 marshaller 和内容创建一个新的 {@code MarshallingSource}。
-	 * @param marshaller the marshaller to use
-	 * @param content the object to be marshalled
+	 * @param marshaller 要使用的 marshaller
+	 * @param content 要编组的对象
 	 */
 	public MarshallingSource(Marshaller marshaller, Object content) {
 		super(new MarshallingXMLReader(marshaller, content), new InputSource());

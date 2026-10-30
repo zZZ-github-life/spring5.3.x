@@ -50,17 +50,17 @@ public interface StatementFilterFunction {
 	 * <p>给定的 {@link ExecuteFunction} 表示链中的下一个实体，
 	 * 应通过 {@link ExecuteFunction#execute(Statement)} 调用它
 	 * 以继续执行，或者不调用它来短路该链。
-	 * @param statement the current {@link Statement}
-	 * @param next the next execute function in the chain
-	 * @return the filtered {@link Result}s.
+	 * @param statement 当前 {@link Statement}
+	 * @param next 链中的下一个执行函数
+	 * @return 过滤后的 {@link Result}。
 	 */
 	Publisher<? extends Result> filter(Statement statement, ExecuteFunction next);
 
 	/**
 	 * 返回一个组合过滤器函数，它先应用此过滤器，
 	 * 然后应用给定的 {@code "after"} 过滤器。
-	 * @param afterFilter the filter to apply after this filter
-	 * @return the composed filter.
+	 * @param afterFilter 在此过滤器之后应用的过滤器
+	 * @return 组合后的过滤器。
 	 */
 	default StatementFilterFunction andThen(StatementFilterFunction afterFilter) {
 		Assert.notNull(afterFilter, "StatementFilterFunction must not be null");

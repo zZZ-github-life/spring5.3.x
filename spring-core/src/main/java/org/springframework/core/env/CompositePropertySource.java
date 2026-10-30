@@ -46,7 +46,7 @@ public class CompositePropertySource extends EnumerablePropertySource<Object> {
 
 	/**
 	 * 创建一个新的 {@code CompositePropertySource}。
-	 * @param name the name of the property source
+	 * @param name 属性源的名称
 	 */
 	public CompositePropertySource(String name) {
 		super(name);
@@ -91,7 +91,7 @@ public class CompositePropertySource extends EnumerablePropertySource<Object> {
 
 	/**
 	 * 将给定的 {@link PropertySource} 添加到链的末尾。
-	 * @param propertySource the PropertySource to add
+	 * @param propertySource 要添加的 PropertySource
 	 */
 	public void addPropertySource(PropertySource<?> propertySource) {
 		this.propertySources.add(propertySource);
@@ -99,7 +99,7 @@ public class CompositePropertySource extends EnumerablePropertySource<Object> {
 
 	/**
 	 * 将给定的 {@link PropertySource} 添加到链的开头。
-	 * @param propertySource the PropertySource to add
+	 * @param propertySource 要添加的 PropertySource
 	 * @since 4.1
 	 */
 	public void addFirstPropertySource(PropertySource<?> propertySource) {

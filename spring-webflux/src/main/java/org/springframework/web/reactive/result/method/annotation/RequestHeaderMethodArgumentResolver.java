@@ -43,10 +43,10 @@ public class RequestHeaderMethodArgumentResolver extends AbstractNamedValueSyncA
 
 	/**
 	 * 创建新的 {@link RequestHeaderMethodArgumentResolver} 实例。
-	 * @param factory a bean factory to use for resolving {@code ${...}}
-	 * placeholder and {@code #{...}} SpEL expressions in default values;
-	 * or {@code null} if default values are not expected to have expressions
-	 * @param registry for checking reactive type wrappers
+	 * @param factory 用于解析默认值中的 {@code ${...}} 占位符
+	 * 和 {@code #{...}} SpEL 表达式的 Bean 工厂；
+	 * 如果默认值预计没有表达式则为 {@code null}
+	 * @param registry 用于检查响应式类型包装
 	 */
 	public RequestHeaderMethodArgumentResolver(@Nullable ConfigurableBeanFactory factory,
 			ReactiveAdapterRegistry registry) {

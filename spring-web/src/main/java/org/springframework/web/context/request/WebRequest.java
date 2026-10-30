@@ -148,12 +148,9 @@ public interface WebRequest extends RequestAttributes {
 	 * Last-Modified 值，则应使用 {@link #checkNotModified(String, long)}。
 	 * <p>如果设置了 "If-Modified-Since" 头但无法解析为日期值，此方法将忽略该头，并继续在响应上设置最
 	 * 后修改时间戳。
-	 * @param lastModifiedTimestamp the last-modified timestamp in
-	 * milliseconds that the application determined for the underlying
-	 * resource
-	 * @return whether the request qualifies as not modified,
-	 * allowing to abort request processing and relying on the response
-	 * telling the client that the content has not been modified
+	 * @param lastModifiedTimestamp 应用为底层资源确定的最后修改时间戳，单位为毫秒
+	 * @return 该请求是否可视为未修改，从而允许中止请求处理，
+	 * 并依赖响应告知客户端内容未被修改
 	 */
 	boolean checkNotModified(long lastModifiedTimestamp);
 
@@ -175,10 +172,9 @@ public interface WebRequest extends RequestAttributes {
 	 * <p><strong>注意：</strong>你可以使用此 {@code #checkNotModified(String)} 方法，或者使用
 	 * {@link #checkNotModified(long)}。如果希望按照 HTTP 规范的建议同时强制使用强实体标签和
 	 * Last-Modified 值，则应使用 {@link #checkNotModified(String, long)}。
-	 * @param etag the entity tag that the application determined
-	 * for the underlying resource. This parameter will be padded
-	 * with quotes (") if necessary.
-	 * @return true if the request does not require further processing.
+	 * @param etag 应用为底层资源确定的实体标签。
+	 * 必要时会为此参数补上引号（"）。
+	 * @return 如果请求不需要进一步处理则返回 true。
 	 */
 	boolean checkNotModified(String etag);
 
@@ -203,22 +199,18 @@ public interface WebRequest extends RequestAttributes {
 	 * <p><strong>注意：</strong>HTTP 规范建议同时设置 ETag 和 Last-Modified 值，
 	 * 但你也可以使用 {@code #checkNotModified(String)} 或
 	 * {@link #checkNotModified(long)}。
-	 * @param etag the entity tag that the application determined
-	 * for the underlying resource. This parameter will be padded
-	 * with quotes (") if necessary.
-	 * @param lastModifiedTimestamp the last-modified timestamp in
-	 * milliseconds that the application determined for the underlying
-	 * resource
-	 * @return true if the request does not require further processing.
+	 * @param etag 应用为底层资源确定的实体标签。
+	 * 必要时会为此参数补上引号（"）。
+	 * @param lastModifiedTimestamp 应用为底层资源确定的最后修改时间戳，单位为毫秒
+	 * @return 如果请求不需要进一步处理则返回 true。
 	 * @since 4.2
 	 */
 	boolean checkNotModified(@Nullable String etag, long lastModifiedTimestamp);
 
 	/**
 	 * 获取此请求的简短描述，通常包含请求 URI 和会话 id。
-	 * @param includeClientInfo whether to include client-specific
-	 * information such as session id and user name
-	 * @return the requested description as String
+	 * @param includeClientInfo 是否包含客户端特定信息，例如会话 ID 和用户名
+	 * @return 以 String 表示的所请求的描述
 	 */
 	String getDescription(boolean includeClientInfo);
 

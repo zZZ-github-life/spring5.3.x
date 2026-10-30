@@ -46,7 +46,7 @@ public class BeanGenerator extends AbstractClassGenerator
 
     /**
      * 设置生成的类所要继承的类。该类不能声明为 final，并且必须具有非私有的无参构造方法。
-     * @param superclass class to extend, or null to extend Object
+     * @param superclass 要扩展的类，为 null 则扩展 Object
      */
     public void setSuperclass(Class superclass) {
         if (superclass != null && superclass.equals(Object.class)) {

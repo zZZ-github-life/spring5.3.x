@@ -50,7 +50,7 @@ final class JodaTimeConverters {
 
 	/**
 	 * 将转换器安装到转换器注册表中。
-	 * @param registry the converter registry
+	 * @param registry 转换器注册表
 	 */
 	@SuppressWarnings("deprecation")
 	public static void registerConverters(ConverterRegistry registry) {

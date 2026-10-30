@@ -53,8 +53,8 @@ public class SerializationDelegate implements Serializer<Object>, Deserializer<O
 
 	/**
 	 * 使用给定的序列化器/反序列化器创建一个 {@code SerializationDelegate}。
-	 * @param serializer the {@link Serializer} to use (never {@code null)}
-	 * @param deserializer the {@link Deserializer} to use (never {@code null)}
+	 * @param serializer 要使用的 {@link Serializer}（永不为 {@code null)}
+	 * @param deserializer 要使用的 {@link Deserializer}（永不为 {@code null)}
 	 */
 	public SerializationDelegate(Serializer<Object> serializer, Deserializer<Object> deserializer) {
 		Assert.notNull(serializer, "Serializer must not be null");

@@ -122,7 +122,7 @@ public class MessageHeaders implements Map<String, Object>, Serializable {
 	/**
 	 * 使用给定头构造 {@link MessageHeaders}。还会添加 {@link #ID} 和
 	 * {@link #TIMESTAMP} 头，并覆盖任何现有值。
-	 * @param headers a map with headers to add
+	 * @param headers 包含要添加的消息头的 Map
 	 */
 	public MessageHeaders(@Nullable Map<String, Object> headers) {
 		this(headers, null, null);
@@ -130,9 +130,9 @@ public class MessageHeaders implements Map<String, Object>, Serializable {
 
 	/**
 	 * 提供对 ID 和 TIMESTAMP 头值控制的构造函数。
-	 * @param headers a map with headers to add
-	 * @param id the {@link #ID} header value
-	 * @param timestamp the {@link #TIMESTAMP} header value
+	 * @param headers 包含要添加的消息头的 Map
+	 * @param id {@link #ID} 消息头的值
+	 * @param timestamp {@link #TIMESTAMP} 消息头的值
 	 */
 	protected MessageHeaders(@Nullable Map<String, Object> headers, @Nullable UUID id, @Nullable Long timestamp) {
 		this.headers = (headers != null ? new HashMap<>(headers) : new HashMap<>());
@@ -161,8 +161,8 @@ public class MessageHeaders implements Map<String, Object>, Serializable {
 	/**
 	 * 允许忽略某些条目的拷贝构造函数。
 	 * 用于不包含不可序列化条目的序列化。
-	 * @param original the MessageHeaders to copy
-	 * @param keysToIgnore the keys of the entries to ignore
+	 * @param original 要复制的 MessageHeaders
+	 * @param keysToIgnore 要忽略的条目的键
 	 */
 	private MessageHeaders(MessageHeaders original, Set<String> keysToIgnore) {
 		this.headers = CollectionUtils.newHashMap(original.headers.size());

@@ -31,14 +31,14 @@ public interface MediaTypeFileExtensionResolver {
 
 	/**
 	 * 将给定的媒体类型解析为文件扩展名列表。
-	 * @param mediaType the media type to resolve
-	 * @return a list of extensions or an empty list (never {@code null})
+	 * @param mediaType 要解析的媒体类型
+	 * @return 扩展名列表；如果没有则为空列表（永不为 {@code null}）
 	 */
 	List<String> resolveFileExtensions(MediaType mediaType);
 
 	/**
 	 * 获取所有已注册的文件扩展名。
-	 * @return a list of extensions or an empty list (never {@code null})
+	 * @return 扩展名列表；如果没有则为空列表（永不为 {@code null}）
 	 */
 	List<String> getAllFileExtensions();
 

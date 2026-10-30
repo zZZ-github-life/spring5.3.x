@@ -63,9 +63,8 @@ public final class TypePath {
   /**
    * 构造一个新的 TypePath。
    *
-   * @param typePathContainer a byte array containing a type_path JVMS structure.
-   * @param typePathOffset the offset of the first byte of the type_path structure in
-   *     typePathContainer.
+   * @param typePathContainer 包含 type_path JVMS 结构的字节数组。
+   * @param typePathOffset type_path 结构首字节在 typePathContainer 中的偏移量。
    */
   TypePath(final byte[] typePathContainer, final int typePathOffset) {
     this.typePathContainer = typePathContainer;
@@ -75,7 +74,7 @@ public final class TypePath {
   /**
    * 返回此路径的长度，即其步数。
    *
-   * @return the length of this path.
+   * @return 此路径的长度。
    */
   public int getLength() {
     // path_length is stored in the first byte of a type_path.
@@ -85,9 +84,9 @@ public final class TypePath {
   /**
    * 返回此路径中给定步骤的值。
    *
-   * @param index an index between 0 and {@link #getLength()}, exclusive.
-   * @return one of {@link #ARRAY_ELEMENT}, {@link #INNER_TYPE}, {@link #WILDCARD_BOUND}, or {@link
-   *     #TYPE_ARGUMENT}.
+   * @param index 介于 0 和 {@link #getLength()} 之间（不包含）的索引。
+   * @return {@link #ARRAY_ELEMENT}、{@link #INNER_TYPE}、
+   * {@link #WILDCARD_BOUND} 或 {@link #TYPE_ARGUMENT} 之一。
    */
   public int getStep(final int index) {
     // Returns the type_path_kind of the path element of the given index.
@@ -97,8 +96,8 @@ public final class TypePath {
   /**
    * 返回给定步骤所进入的类型参数的索引。此方法只能用于值为 {@link #TYPE_ARGUMENT} 的步骤。
    *
-   * @param index an index between 0 and {@link #getLength()}, exclusive.
-   * @return the index of the type argument that the given step is stepping into.
+   * @param index 介于 0 和 {@link #getLength()} 之间（不包含）的索引。
+   * @return 给定步骤所进入的类型实参的索引。
    */
   public int getStepArgument(final int index) {
     // Returns the type_argument_index of the path element of the given index.
@@ -108,9 +107,8 @@ public final class TypePath {
   /**
    * 将字符串形式的类型路径（格式与 {@link #toString()} 所用格式相同）转换为 TypePath 对象。
    *
-   * @param typePath a type path in string form, in the format used by {@link #toString()}. May be
-   *     {@literal null} or empty.
-   * @return the corresponding TypePath object, or {@literal null} if the path is empty.
+   * @param typePath 字符串形式的类型路径，格式与 {@link #toString()} 使用的相同。可以为 {@literal null} 或空。
+   * @return 对应的 TypePath 对象，若路径为空则为 {@literal null}。
    */
   public static TypePath fromString(final String typePath) {
     if (typePath == null || typePath.length() == 0) {
@@ -182,8 +180,8 @@ public final class TypePath {
   /**
    * 将给定 TypePath 对应的 type_path JVMS 结构放入给定的 ByteVector。
    *
-   * @param typePath a TypePath instance, or {@literal null} for empty paths.
-   * @param output where the type path must be put.
+   * @param typePath 一个 TypePath 实例，空路径则为 {@literal null}。
+   * @param output 必须写入类型路径的目标。
    */
   static void put(final TypePath typePath, final ByteVector output) {
     if (typePath == null) {

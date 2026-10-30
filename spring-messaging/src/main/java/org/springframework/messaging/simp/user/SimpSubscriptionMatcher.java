@@ -27,8 +27,8 @@ public interface SimpSubscriptionMatcher {
 
 	/**
 	 * 匹配给定订阅。
-	 * @param subscription the subscription to match
-	 * @return {@code true} in case of a match, {@code false} otherwise
+	 * @param subscription 要匹配的订阅
+	 * @return 匹配时为 {@code true}，否则为 {@code false}
 	 */
 	boolean match(SimpSubscription subscription);
 

@@ -44,9 +44,9 @@ public abstract class JdbcTestUtils {
 
 	/**
 	 * 统计给定表中的行数。
-	 * @param jdbcTemplate the JdbcTemplate with which to perform JDBC operations
-	 * @param tableName name of the table to count rows in
-	 * @return the number of rows in the table
+	 * @param jdbcTemplate 用于执行 JDBC 操作的 JdbcTemplate
+	 * @param tableName 要统计行数的表名
+	 * @return 表中的行数
 	 */
 	public static int countRowsInTable(JdbcTemplate jdbcTemplate, String tableName) {
 		Integer result = jdbcTemplate.queryForObject("SELECT COUNT(0) FROM " + tableName, Integer.class);
@@ -56,11 +56,10 @@ public abstract class JdbcTestUtils {
 	/**
 	 * 使用所提供的 {@code WHERE} 子句统计给定表中的行数。
 	 * <p>如果所提供的 {@code WHERE} 子句包含文本，则会在其前面加上 {@code " WHERE "}，然后追加到生成的 {@code SELECT} 语句中。例如，如果所提供的表名为 {@code "person"}，所提供的 where 子句为 {@code "name = 'Bob' and age > 25"}，则要执行的生成 SQL 语句为 {@code "SELECT COUNT(0) FROM person WHERE name = 'Bob' and age > 25"}。
-	 * @param jdbcTemplate the JdbcTemplate with which to perform JDBC operations
-	 * @param tableName the name of the table to count rows in
-	 * @param whereClause the {@code WHERE} clause to append to the query
-	 * @return the number of rows in the table that match the provided
-	 * {@code WHERE} clause
+	 * @param jdbcTemplate 用于执行 JDBC 操作的 JdbcTemplate
+	 * @param tableName 要统计行数的表的名称
+	 * @param whereClause 要追加到查询中的 {@code WHERE} 子句
+	 * @return 表中与所提供的 {@code WHERE} 子句匹配的行数
 	 */
 	public static int countRowsInTableWhere(JdbcTemplate jdbcTemplate, String tableName, String whereClause) {
 		String sql = "SELECT COUNT(0) FROM " + tableName;
@@ -73,9 +72,9 @@ public abstract class JdbcTestUtils {
 
 	/**
 	 * 删除指定表中的所有行。
-	 * @param jdbcTemplate the JdbcTemplate with which to perform JDBC operations
-	 * @param tableNames the names of the tables to delete from
-	 * @return the total number of rows deleted from all specified tables
+	 * @param jdbcTemplate 用于执行 JDBC 操作的 JdbcTemplate
+	 * @param tableNames 要从中删除记录的表名
+	 * @return 从所有指定表中删除的行总数
 	 */
 	public static int deleteFromTables(JdbcTemplate jdbcTemplate, String... tableNames) {
 		int totalRowCount = 0;
@@ -93,14 +92,13 @@ public abstract class JdbcTestUtils {
 	 * 使用所提供的 {@code WHERE} 子句从给定表中删除行。
 	 * <p>如果所提供的 {@code WHERE} 子句包含文本，则会在其前面加上 {@code " WHERE "}，然后追加到生成的 {@code DELETE} 语句中。例如，如果所提供的表名为 {@code "person"}，所提供的 where 子句为 {@code "name = 'Bob' and age > 25"}，则要执行的生成 SQL 语句为 {@code "DELETE FROM person WHERE name = 'Bob' and age > 25"}。
 	 * <p>作为硬编码值的替代，可以在 {@code WHERE} 子句中使用 {@code "?"} 占位符，并绑定到给定的参数。
-	 * @param jdbcTemplate the JdbcTemplate with which to perform JDBC operations
-	 * @param tableName the name of the table to delete rows from
-	 * @param whereClause the {@code WHERE} clause to append to the query
-	 * @param args arguments to bind to the query (leaving it to the PreparedStatement
-	 * to guess the corresponding SQL type); may also contain {@link SqlParameterValue}
-	 * objects which indicate not only the argument value but also the SQL type and
-	 * optionally the scale.
-	 * @return the number of rows deleted from the table
+	 * @param jdbcTemplate 用于执行 JDBC 操作的 JdbcTemplate
+	 * @param tableName 要从中删除记录的表名
+	 * @param whereClause 要追加到查询中的 {@code WHERE} 子句
+	 * @param args 绑定到查询的参数（由 PreparedStatement 自行推断对应的 SQL 类型）；
+	 * 还可包含 {@link SqlParameterValue} 对象，这些对象不仅指示参数值，
+	 * 还指示 SQL 类型以及可选的标度。
+	 * @return 从表中删除的行数
 	 */
 	public static int deleteFromTableWhere(
 			JdbcTemplate jdbcTemplate, String tableName, String whereClause, Object... args) {
@@ -118,8 +116,8 @@ public abstract class JdbcTestUtils {
 
 	/**
 	 * 删除指定的表。
-	 * @param jdbcTemplate the JdbcTemplate with which to perform JDBC operations
-	 * @param tableNames the names of the tables to drop
+	 * @param jdbcTemplate 用于执行 JDBC 操作的 JdbcTemplate
+	 * @param tableNames 要删除的表的名称
 	 */
 	public static void dropTables(JdbcTemplate jdbcTemplate, String... tableNames) {
 		for (String tableName : tableNames) {

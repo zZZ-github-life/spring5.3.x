@@ -95,11 +95,10 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 
 	/**
 	 * 为给定 Bean 创建一个新的 DisposableBeanAdapter。
-	 * @param bean the bean instance (never {@code null})
-	 * @param beanName the name of the bean
-	 * @param beanDefinition the merged bean definition
-	 * @param postProcessors the List of BeanPostProcessors
-	 * (potentially DestructionAwareBeanPostProcessor), if any
+	 * @param bean Bean 实例（永不为 {@code null}）
+	 * @param beanName Bean 的名称
+	 * @param beanDefinition 合并后的 Bean 定义
+	 * @param postProcessors BeanPostProcessor（可能是 DestructionAwareBeanPostProcessor）的 List（如果有的话）
 	 */
 	public DisposableBeanAdapter(Object bean, String beanName, RootBeanDefinition beanDefinition,
 			List<DestructionAwareBeanPostProcessor> postProcessors, @Nullable AccessControlContext acc) {
@@ -150,9 +149,8 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 
 	/**
 	 * 为给定 Bean 创建一个新的 DisposableBeanAdapter。
-	 * @param bean the bean instance (never {@code null})
-	 * @param postProcessors the List of BeanPostProcessors
-	 * (potentially DestructionAwareBeanPostProcessor), if any
+	 * @param bean Bean 实例（永不为 {@code null}）
+	 * @param postProcessors BeanPostProcessor（可能是 DestructionAwareBeanPostProcessor）的 List（如果有的话）
 	 */
 	public DisposableBeanAdapter(
 			Object bean, List<DestructionAwareBeanPostProcessor> postProcessors, AccessControlContext acc) {
@@ -366,8 +364,8 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 
 	/**
 	 * 检查给定 Bean 是否有任何类型的销毁方法可供调用。
-	 * @param bean the bean instance
-	 * @param beanDefinition the corresponding bean definition
+	 * @param bean Bean 实例
+	 * @param beanDefinition 对应的 Bean 定义
 	 */
 	public static boolean hasDestroyMethod(Object bean, RootBeanDefinition beanDefinition) {
 		return (bean instanceof DisposableBean || inferDestroyMethodIfNecessary(bean, beanDefinition) != null);
@@ -421,8 +419,8 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 
 	/**
 	 * 检查给定 Bean 是否有适用于它的、感知销毁的后处理器。
-	 * @param bean the bean instance
-	 * @param postProcessors the post-processor candidates
+	 * @param bean Bean 实例
+	 * @param postProcessors 后处理器候选
 	 */
 	public static boolean hasApplicableProcessors(Object bean, List<DestructionAwareBeanPostProcessor> postProcessors) {
 		if (!CollectionUtils.isEmpty(postProcessors)) {
@@ -437,8 +435,8 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 
 	/**
 	 * 在 List 中查找所有 DestructionAwareBeanPostProcessor。
-	 * @param processors the List to search
-	 * @return the filtered List of DestructionAwareBeanPostProcessors
+	 * @param processors 要搜索的 List
+	 * @return 过滤后的 DestructionAwareBeanPostProcessor 的 List
 	 */
 	@Nullable
 	private static List<DestructionAwareBeanPostProcessor> filterPostProcessors(

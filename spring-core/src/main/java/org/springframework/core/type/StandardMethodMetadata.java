@@ -49,7 +49,7 @@ public class StandardMethodMetadata implements MethodMetadata {
 
 	/**
 	 * 为给定的 Method 创建一个新的 StandardMethodMetadata 包装器。
-	 * @param introspectedMethod the Method to introspect
+	 * @param introspectedMethod 要内省的 Method
 	 * @deprecated since 5.2 in favor of obtaining instances via {@link AnnotationMetadata}
 	 */
 	@Deprecated
@@ -61,10 +61,10 @@ public class StandardMethodMetadata implements MethodMetadata {
 	 * 为给定的 Method 创建一个新的 StandardMethodMetadata 包装器，并提供以
 	 * {@link org.springframework.core.annotation.AnnotationAttributes} 的形式而非实际的
 	 * {@link java.lang.annotation.Annotation} 实例返回任何嵌套注解或注解数组的选项。
-	 * @param introspectedMethod the Method to introspect
-	 * @param nestedAnnotationsAsMap return nested annotations and annotation arrays as
-	 * {@link org.springframework.core.annotation.AnnotationAttributes} for compatibility
-	 * with ASM-based {@link AnnotationMetadata} implementations
+	 * @param introspectedMethod 要内省的 Method
+	 * @param nestedAnnotationsAsMap 将嵌套注解和注解数组返回为
+	 * {@link org.springframework.core.annotation.AnnotationAttributes}，
+	 * 以兼容基于 ASM 的 {@link AnnotationMetadata} 实现
 	 * @since 3.1.1
 	 * @deprecated since 5.2 in favor of obtaining instances via {@link AnnotationMetadata}
 	 */

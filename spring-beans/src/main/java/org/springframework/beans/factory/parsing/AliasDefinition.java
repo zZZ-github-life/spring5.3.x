@@ -39,8 +39,8 @@ public class AliasDefinition implements BeanMetadataElement {
 
 	/**
 	 * 创建一个新的 AliasDefinition。
-	 * @param beanName the canonical name of the bean
-	 * @param alias the alias registered for the bean
+	 * @param beanName 该 Bean 的规范名称
+	 * @param alias 为该 Bean 注册的别名
 	 */
 	public AliasDefinition(String beanName, String alias) {
 		this(beanName, alias, null);
@@ -48,9 +48,9 @@ public class AliasDefinition implements BeanMetadataElement {
 
 	/**
 	 * 创建一个新的 AliasDefinition。
-	 * @param beanName the canonical name of the bean
-	 * @param alias the alias registered for the bean
-	 * @param source the source object (may be {@code null})
+	 * @param beanName 该 Bean 的规范名称
+	 * @param alias 为该 Bean 注册的别名
+	 * @param source 源对象（可能为 {@code null}）
 	 */
 	public AliasDefinition(String beanName, String alias, @Nullable Object source) {
 		Assert.notNull(beanName, "Bean name must not be null");

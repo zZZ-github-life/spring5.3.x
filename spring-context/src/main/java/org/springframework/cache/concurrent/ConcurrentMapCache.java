@@ -55,7 +55,7 @@ public class ConcurrentMapCache extends AbstractValueAdaptingCache {
 
 	/**
 	 * 使用指定名称创建一个新的 ConcurrentMapCache。
-	 * @param name the name of the cache
+	 * @param name 缓存的名称
 	 */
 	public ConcurrentMapCache(String name) {
 		this(name, new ConcurrentHashMap<>(256), true);
@@ -63,9 +63,8 @@ public class ConcurrentMapCache extends AbstractValueAdaptingCache {
 
 	/**
 	 * 使用指定名称创建一个新的 ConcurrentMapCache。
-	 * @param name the name of the cache
-	 * @param allowNullValues whether to accept and convert {@code null}
-	 * values for this cache
+	 * @param name 缓存的名称
+	 * @param allowNullValues 是否为此缓存接受并转换 {@code null} 值
 	 */
 	public ConcurrentMapCache(String name, boolean allowNullValues) {
 		this(name, new ConcurrentHashMap<>(256), allowNullValues);
@@ -73,10 +72,9 @@ public class ConcurrentMapCache extends AbstractValueAdaptingCache {
 
 	/**
 	 * 使用指定名称和给定的内部 {@link ConcurrentMap} 创建一个新的 ConcurrentMapCache。
-	 * @param name the name of the cache
-	 * @param store the ConcurrentMap to use as an internal store
-	 * @param allowNullValues whether to allow {@code null} values
-	 * (adapting them to an internal null holder value)
+	 * @param name 缓存的名称
+	 * @param store 用作内部存储的 ConcurrentMap
+	 * @param allowNullValues 是否允许 {@code null} 值（将其适配为内部的 null 占位值）
 	 */
 	public ConcurrentMapCache(String name, ConcurrentMap<Object, Object> store, boolean allowNullValues) {
 		this(name, store, allowNullValues, null);
@@ -85,12 +83,11 @@ public class ConcurrentMapCache extends AbstractValueAdaptingCache {
 	/**
 	 * 使用指定名称和给定的内部 {@link ConcurrentMap} 创建一个新的 ConcurrentMapCache。如果指定了
 	 * {@link SerializationDelegate}，则启用 {@link #isStoreByValue() 按值存储}
-	 * @param name the name of the cache
-	 * @param store the ConcurrentMap to use as an internal store
-	 * @param allowNullValues whether to allow {@code null} values
-	 * (adapting them to an internal null holder value)
-	 * @param serialization the {@link SerializationDelegate} to use
-	 * to serialize cache entry or {@code null} to store the reference
+	 * @param name 缓存的名称
+	 * @param store 用作内部存储的 ConcurrentMap
+	 * @param allowNullValues 是否允许 {@code null} 值（将其适配为内部的 null 占位值）
+	 * @param serialization 用于序列化缓存条目的 {@link SerializationDelegate}，
+	 * 或 {@code null} 以存储引用
 	 * @since 4.3
 	 */
 	protected ConcurrentMapCache(String name, ConcurrentMap<Object, Object> store,

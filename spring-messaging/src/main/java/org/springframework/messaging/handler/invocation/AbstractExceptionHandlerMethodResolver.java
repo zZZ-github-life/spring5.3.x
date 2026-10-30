@@ -93,8 +93,8 @@ public abstract class AbstractExceptionHandlerMethodResolver {
 	/**
 	 * 查找用于处理给定异常的 {@link Method}。
 	 * <p>如果找到多个匹配项，则使用 {@link ExceptionDepthComparator}。
-	 * @param exception the exception
-	 * @return a Method to handle the exception, or {@code null} if none found
+	 * @param exception 异常
+	 * @return 用于处理该异常的 Method；如果未找到则返回 {@code null}
 	 */
 	@Nullable
 	public Method resolveMethod(Throwable exception) {
@@ -112,8 +112,8 @@ public abstract class AbstractExceptionHandlerMethodResolver {
 	 * 查找用于处理给定异常类型的 {@link Method}。当 {@link Exception} 实例不可用时
 	 * （例如对于工具），这可能很有用。
 	 * <p>如果找到多个匹配项，则使用 {@link ExceptionDepthComparator}。
-	 * @param exceptionType the exception type
-	 * @return a Method to handle the exception, or {@code null} if none found
+	 * @param exceptionType 异常类型
+	 * @return 用于处理该异常的 Method；如果未找到则返回 {@code null}
 	 * @since 4.3.1
 	 */
 	@Nullable

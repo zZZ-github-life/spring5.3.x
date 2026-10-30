@@ -146,10 +146,10 @@ public interface HandlerMapping {
 	 * <p>如果未找到匹配项则返回 {@code null}。这并非错误。
 	 * DispatcherServlet 会查询所有已注册的 HandlerMapping bean 以寻找匹配项，
 	 * 只有所有 bean 都找不到处理器时才会认定为错误。
-	 * @param request current HTTP request
-	 * @return a HandlerExecutionChain instance containing handler object and
-	 * any interceptors, or {@code null} if no mapping found
-	 * @throws Exception if there is an internal error
+	 * @param request 当前 HTTP 请求
+	 * @return 包含处理器对象和任何拦截器的 HandlerExecutionChain 实例；
+	 * 如果未找到映射则为 {@code null}
+	 * @throws Exception 如果出现内部错误
 	 */
 	@Nullable
 	HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception;

@@ -38,8 +38,8 @@ public class DelegatingErrorHandlingRunnable implements Runnable {
 
 	/**
 	 * 创建一个新的 DelegatingErrorHandlingRunnable。
-	 * @param delegate the Runnable implementation to delegate to
-	 * @param errorHandler the ErrorHandler for handling any exceptions
+	 * @param delegate 要委托的 Runnable 实现
+	 * @param errorHandler 用于处理任何异常的 ErrorHandler
 	 */
 	public DelegatingErrorHandlingRunnable(Runnable delegate, ErrorHandler errorHandler) {
 		Assert.notNull(delegate, "Delegate must not be null");

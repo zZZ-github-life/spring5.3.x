@@ -35,22 +35,22 @@ public interface SimpleJdbcCallOperations {
 
 	/**
 	 * 指定要使用的过程名——这意味着我们将调用一个存储过程。
-	 * @param procedureName the name of the stored procedure
-	 * @return the instance of this SimpleJdbcCall
+	 * @param procedureName 存储过程的名称
+	 * @return 此 SimpleJdbcCall 的实例
 	 */
 	SimpleJdbcCallOperations withProcedureName(String procedureName);
 
 	/**
 	 * 指定要使用的函数名——这意味着我们将调用一个存储函数。
-	 * @param functionName the name of the stored function
-	 * @return the instance of this SimpleJdbcCall
+	 * @param functionName 存储函数的名称
+	 * @return 此 SimpleJdbcCall 的实例
 	 */
 	SimpleJdbcCallOperations withFunctionName(String functionName);
 
 	/**
 	 * 可选：指定包含该存储过程的 schema 名称。
-	 * @param schemaName the name of the schema
-	 * @return the instance of this SimpleJdbcCall
+	 * @param schemaName schema 的名称
+	 * @return 此 SimpleJdbcCall 的实例
 	 */
 	SimpleJdbcCallOperations withSchemaName(String schemaName);
 
@@ -58,14 +58,14 @@ public interface SimpleJdbcCallOperations {
 	 * 可选：指定包含该存储过程的 catalog 名称。
 	 * <p>为与 Oracle DatabaseMetaData 保持一致，如果过程是作为包的一部分声明的，
 	 * 此参数用于指定包名。
-	 * @param catalogName the catalog or package name
-	 * @return the instance of this SimpleJdbcCall
+	 * @param catalogName catalog 或包的名称
+	 * @return 此 SimpleJdbcCall 的实例
 	 */
 	SimpleJdbcCallOperations withCatalogName(String catalogName);
 
 	/**
 	 * 表示过程的返回值应包含在返回的结果中。
-	 * @return the instance of this SimpleJdbcCall
+	 * @return 此 SimpleJdbcCall 的实例
 	 */
 	SimpleJdbcCallOperations withReturnValue();
 
@@ -75,8 +75,8 @@ public interface SimpleJdbcCallOperations {
 	 * <p>请注意，只有声明为 {@code SqlParameter} 和 {@code SqlInOutParameter} 的参数
 	 * 才会用于提供输入值。这与 {@code StoredProcedure} 类不同，
 	 * 后者出于向后兼容的原因允许为声明为 {@code SqlOutParameter} 的参数提供输入值。
-	 * @param sqlParameters the parameters to use
-	 * @return the instance of this SimpleJdbcCall
+	 * @param sqlParameters 要使用的参数
+	 * @return 此 SimpleJdbcCall 的实例
 	 */
 	SimpleJdbcCallOperations declareParameters(SqlParameter... sqlParameters);
 
@@ -88,20 +88,20 @@ public interface SimpleJdbcCallOperations {
 	 * 结果将使用指定的参数名返回。多个 ResultSet 必须按正确的顺序声明。
 	 * <p>如果你使用的数据库使用 ref cursor，则指定的名称必须与数据库中
 	 * 为该过程声明的参数名称一致。
-	 * @param parameterName the name of the returned results and/or the name of the ref cursor parameter
-	 * @param rowMapper the RowMapper implementation that will map the data returned for each row
+	 * @param parameterName 返回的结果集的名称和/或 ref cursor 参数的名称
+	 * @param rowMapper 将映射每行返回数据的 RowMapper 实现
 	 * */
 	SimpleJdbcCallOperations returningResultSet(String parameterName, RowMapper<?> rowMapper);
 
 	/**
 	 * 关闭通过 JDBC 获取的参数元数据信息的所有处理。
-	 * @return the instance of this SimpleJdbcCall
+	 * @return 此 SimpleJdbcCall 的实例
 	 */
 	SimpleJdbcCallOperations withoutProcedureColumnMetaDataAccess();
 
 	/**
 	 * 表示应按名称绑定参数。
-	 * @return the instance of this SimpleJdbcCall
+	 * @return 此 SimpleJdbcCall 的实例
 	 * @since 4.2
 	 */
 	SimpleJdbcCallOperations withNamedBinding();
@@ -109,73 +109,70 @@ public interface SimpleJdbcCallOperations {
 
 	/**
 	 * 执行存储函数，并将获得的结果作为指定返回类型的对象返回。
-	 * @param returnType the type of the value to return
-	 * @param args optional array containing the in parameter values to be used in the call.
-	 * Parameter values must be provided in the same order as the parameters are defined
-	 * for the stored procedure.
+	 * @param returnType 要返回的值的类型
+	 * @param args 包含调用中要使用的入参值的可选数组。
+	 * 参数值必须按为存储过程定义参数的顺序提供。
 	 */
 	<T> T executeFunction(Class<T> returnType, Object... args);
 
 	/**
 	 * 执行存储函数，并将获得的结果作为指定返回类型的对象返回。
-	 * @param returnType the type of the value to return
-	 * @param args a Map containing the parameter values to be used in the call
+	 * @param returnType 要返回的值的类型
+	 * @param args 包含调用中要使用的参数值的 Map
 	 */
 	<T> T executeFunction(Class<T> returnType, Map<String, ?> args);
 
 	/**
 	 * 执行存储函数，并将获得的结果作为指定返回类型的对象返回。
-	 * @param returnType the type of the value to return
-	 * @param args the MapSqlParameterSource containing the parameter values to be used in the call
+	 * @param returnType 要返回的值的类型
+	 * @param args 包含调用中要使用的参数值的 MapSqlParameterSource
 	 */
 	<T> T executeFunction(Class<T> returnType, SqlParameterSource args);
 
 	/**
 	 * 执行存储过程，并将单个 out 参数作为指定返回类型的对象返回。
 	 * 在有多个 out 参数的情况下，返回第一个，其他 out 参数将被忽略。
-	 * @param returnType the type of the value to return
-	 * @param args optional array containing the in parameter values to be used in the call.
-	 * Parameter values must be provided in the same order as the parameters are defined for
-	 * the stored procedure.
+	 * @param returnType 要返回的值的类型
+	 * @param args 包含调用中要使用的入参值的可选数组。
+	 * 参数值必须按为存储过程定义参数的顺序提供。
 	 */
 	<T> T executeObject(Class<T> returnType, Object... args);
 
 	/**
 	 * 执行存储过程，并将单个 out 参数作为指定返回类型的对象返回。
 	 * 在有多个 out 参数的情况下，返回第一个，其他 out 参数将被忽略。
-	 * @param returnType the type of the value to return
-	 * @param args a Map containing the parameter values to be used in the call
+	 * @param returnType 要返回的值的类型
+	 * @param args 包含调用中要使用的参数值的 Map
 	 */
 	<T> T executeObject(Class<T> returnType, Map<String, ?> args);
 
 	/**
 	 * 执行存储过程，并将单个 out 参数作为指定返回类型的对象返回。
 	 * 在有多个 out 参数的情况下，返回第一个，其他 out 参数将被忽略。
-	 * @param returnType the type of the value to return
-	 * @param args the MapSqlParameterSource containing the parameter values to be used in the call
+	 * @param returnType 要返回的值的类型
+	 * @param args 包含调用中要使用的参数值的 MapSqlParameterSource
 	 */
 	<T> T executeObject(Class<T> returnType, SqlParameterSource args);
 
 	/**
 	 * 执行存储过程，并返回按名称（与参数声明中一致）索引的 output 参数 Map。
-	 * @param args optional array containing the in parameter values to be used in the call.
-	 * Parameter values must be provided in the same order as the parameters are defined for
-	 * the stored procedure.
-	 * @return a Map of output params
+	 * @param args 包含调用中要使用的入参值的可选数组。
+	 * 参数值必须按为存储过程定义参数的顺序提供。
+	 * @return 输出参数组成的 Map
 	 */
 	Map<String, Object> execute(Object... args);
 
 	/**
 	 * 执行存储过程，并返回按名称（与参数声明中一致）索引的 output 参数 Map。
-	 * @param args a Map containing the parameter values to be used in the call
-	 * @return a Map of output params
+	 * @param args 包含调用中要使用的参数值的 Map
+	 * @return 输出参数组成的 Map
 	 */
 	Map<String, Object> execute(Map<String, ?> args);
 
 	/**
 	 * 执行存储过程，并返回按名称（与参数声明中一致）索引的 output 参数 Map。
-	 * @param args the SqlParameterSource containing the parameter values to be used in the call
-	 * @return a Map of output params
+	 * @param args 包含调用中要使用的参数值的 SqlParameterSource
+	 * @return 输出参数组成的 Map
 	 */
 	Map<String, Object> execute(SqlParameterSource args);
 

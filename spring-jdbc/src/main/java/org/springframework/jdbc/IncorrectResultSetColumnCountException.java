@@ -36,8 +36,8 @@ public class IncorrectResultSetColumnCountException extends DataRetrievalFailure
 
 	/**
 	 * 创建IncorrectResultSetColumnCountException实例。
-	 * @param expectedCount the expected column count
-	 * @param actualCount the actual column count
+	 * @param expectedCount 预期的列数
+	 * @param actualCount 实际的列数
 	 */
 	public IncorrectResultSetColumnCountException(int expectedCount, int actualCount) {
 		super("Incorrect column count: expected " + expectedCount + ", actual " + actualCount);
@@ -47,9 +47,9 @@ public class IncorrectResultSetColumnCountException extends DataRetrievalFailure
 
 	/**
 	 * 创建IncorrectResultCountDataAccessException实例。
-	 * @param msg the detail message
-	 * @param expectedCount the expected column count
-	 * @param actualCount the actual column count
+	 * @param msg 详细消息
+	 * @param expectedCount 预期的列数
+	 * @param actualCount 实际的列数
 	 */
 	public IncorrectResultSetColumnCountException(String msg, int expectedCount, int actualCount) {
 		super(msg);

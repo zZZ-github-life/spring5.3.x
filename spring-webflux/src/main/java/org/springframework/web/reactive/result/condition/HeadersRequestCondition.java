@@ -44,8 +44,8 @@ public final class HeadersRequestCondition extends AbstractRequestCondition<Head
 
 	/**
 	 * 根据给定的头表达式创建新实例。头名称为 'Accept' 或 'Content-Type' 的表达式将被忽略。相关处理请参见 {@link ConsumesRequestCondition} 和 {@link ProducesRequestCondition}。
-	 * @param headers media type expressions with syntax defined in {@link RequestMapping#headers()};
-	 * if 0, the condition will match to every request
+	 * @param headers 媒体类型表达式，语法由 {@link RequestMapping#headers()} 定义；
+	 * 如果为 0 个，则该条件将匹配所有请求
 	 */
 	public HeadersRequestCondition(String... headers) {
 		this.expressions = parseExpressions(headers);

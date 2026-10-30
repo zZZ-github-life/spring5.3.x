@@ -74,8 +74,7 @@ public class SimpleJndiBeanFactory extends JndiLocatorSupport implements BeanFac
 
 	/**
 	 * 添加可共享 JNDI 资源的名称，该工厂在获取该资源后可以对其进行缓存。
-	 * @param shareableResource the JNDI name
-	 * (typically within the "java:comp/env/" namespace)
+	 * @param shareableResource JNDI 名称（通常位于 "java:comp/env/" 命名空间内）
 	 */
 	public void addShareableResource(String shareableResource) {
 		this.shareableResources.add(shareableResource);
@@ -83,8 +82,7 @@ public class SimpleJndiBeanFactory extends JndiLocatorSupport implements BeanFac
 
 	/**
 	 * 设置可共享 JNDI 资源名称的列表，该工厂在获取这些资源后可以对其进行缓存。
-	 * @param shareableResources the JNDI names
-	 * (typically within the "java:comp/env/" namespace)
+	 * @param shareableResources JNDI 名称（通常位于 "java:comp/env/" 命名空间内）
 	 */
 	public void setShareableResources(String... shareableResources) {
 		Collections.addAll(this.shareableResources, shareableResources);

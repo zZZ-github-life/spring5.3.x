@@ -85,7 +85,7 @@ public abstract class HandlerResultHandlerSupport implements Ordered {
 	/**
 	 * 设置此结果处理器相对于其他处理器的顺序。
 	 * <p>默认设置为 {@link Ordered#LOWEST_PRECEDENCE}，但请参阅可能更改此默认值的子类的 Javadoc。
-	 * @param order the order
+	 * @param order 顺序
 	 */
 	public void setOrder(int order) {
 		this.order = order;
@@ -99,7 +99,7 @@ public abstract class HandlerResultHandlerSupport implements Ordered {
 
 	/**
 	 * 获取顶层返回值类型的 {@code ReactiveAdapter}。
-	 * @return the matching adapter, or {@code null} if none
+	 * @return 匹配的适配器；如果没有则为 {@code null}
 	 */
 	@Nullable
 	protected ReactiveAdapter getAdapter(HandlerResult result) {
@@ -108,9 +108,9 @@ public abstract class HandlerResultHandlerSupport implements Ordered {
 
 	/**
 	 * 通过内容协商算法为当前请求选择最佳媒体类型。
-	 * @param exchange the current request
-	 * @param producibleTypesSupplier the media types that can be produced for the current request
-	 * @return the selected media type, or {@code null} if none
+	 * @param exchange 当前请求
+	 * @param producibleTypesSupplier 可为当前请求生成的媒体类型
+	 * @return 选定的媒体类型；如果没有则为 {@code null}
 	 */
 	@Nullable
 	protected MediaType selectMediaType(

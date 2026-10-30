@@ -33,8 +33,8 @@ public interface PreFlightRequestHandler {
 	 * 通过查找并应用与预期实际请求匹配的 CORS 配置来处理预检请求。
 	 * 处理完成后，应使用 CORS 头更新响应，或以
 	 * {@link org.springframework.http.HttpStatus#FORBIDDEN} 拒绝请求。
-	 * @param exchange the exchange for the request
-	 * @return a completion handle
+	 * @param exchange 请求对应的交换
+	 * @return 一个完成句柄
 	 */
 	Mono<Void> handlePreFlight(ServerWebExchange exchange);
 

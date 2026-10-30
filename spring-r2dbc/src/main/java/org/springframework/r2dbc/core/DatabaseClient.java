@@ -56,7 +56,7 @@ public interface DatabaseClient extends ConnectionAccessor {
 
 	/**
 	 * 返回此客户端使用的 {@link ConnectionFactory}。
-	 * @return the connection factory
+	 * @return 连接工厂
 	 */
 	ConnectionFactory getConnectionFactory();
 
@@ -65,8 +65,8 @@ public interface DatabaseClient extends ConnectionAccessor {
 	 * 以及导致执行的各项选项。当启用 {@link NamedParameterExpander} 时，
 	 * SQL 字符串既可包含原生参数绑定标记，也可包含命名参数
 	 * （例如 {@literal :foo, :bar}）。
-	 * @param sql the SQL statement
-	 * @return a new {@link GenericExecuteSpec}
+	 * @param sql SQL 语句
+	 * @return 新的 {@link GenericExecuteSpec}
 	 * @see NamedParameterExpander
 	 * @see DatabaseClient.Builder#namedParameters(boolean)
 	 */
@@ -80,8 +80,8 @@ public interface DatabaseClient extends ConnectionAccessor {
 	 * <p>接受 {@link PreparedOperation} 作为 SQL，以及绑定 {@link Supplier}。
 	 * <p>{@code DatabaseClient} 实现应尽可能延迟 SQL 字符串的解析，
 	 * 理想情况下延迟到 {@code Subscription} 发生之时。默认实现即是如此。
-	 * @param sqlSupplier a supplier for the SQL statement
-	 * @return a new {@link GenericExecuteSpec}
+	 * @param sqlSupplier SQL 语句的提供者
+	 * @return 新的 {@link GenericExecuteSpec}
 	 * @see NamedParameterExpander
 	 * @see DatabaseClient.Builder#namedParameters(boolean)
 	 * @see PreparedOperation
@@ -93,8 +93,9 @@ public interface DatabaseClient extends ConnectionAccessor {
 
 	/**
 	 * 创建一个将使用所提供 {@link ConnectionFactory} 的 {@code DatabaseClient}。
-	 * @param factory the {@code ConnectionFactory} to use for obtaining connections
-	 * @return a new {@code DatabaseClient}. Guaranteed to be not {@code null}.
+	 * @param factory 用于获取连接的 {@code ConnectionFactory}
+	 * @return 新的 {@code DatabaseClient}。
+	 * 保证不为 {@code null}。
 	 */
 	static DatabaseClient create(ConnectionFactory factory) {
 		return new DefaultDatabaseClientBuilder().connectionFactory(factory).build();
@@ -132,8 +133,8 @@ public interface DatabaseClient extends ConnectionAccessor {
 		/**
 		 * 配置是否使用命名参数展开。
 		 * 默认值为 {@code true}。
-		 * @param enabled {@code true} to use named parameter expansion;
-		 * {@code false} to disable named parameter expansion
+		 * @param enabled {@code true} 表示使用命名参数展开；
+		 * {@code false} 表示禁用命名参数展开
 		 * @see NamedParameterExpander
 		 */
 		Builder namedParameters(boolean enabled);
@@ -158,29 +159,29 @@ public interface DatabaseClient extends ConnectionAccessor {
 		/**
 		 * 将一个非 {@code null} 值绑定到由其 {@code index} 标识的参数。
 		 * {@code value} 可以是标量值，也可以是 {@link Parameter}。
-		 * @param index zero based index to bind the parameter to
-		 * @param value either a scalar value or {@link Parameter}
+		 * @param index 要绑定参数的从零开始的索引
+		 * @param value 标量值或 {@link Parameter}
 		 */
 		GenericExecuteSpec bind(int index, Object value);
 
 		/**
 		 * 将一个 {@code null} 值绑定到由其 {@code index} 标识的参数。
-		 * @param index zero based index to bind the parameter to
-		 * @param type the parameter type
+		 * @param index 要绑定参数的从零开始的索引
+		 * @param type 参数类型
 		 */
 		GenericExecuteSpec bindNull(int index, Class<?> type);
 
 		/**
 		 * 将一个非 {@code null} 值绑定到由其 {@code name} 标识的参数。
-		 * @param name the name of the parameter
-		 * @param value the value to bind
+		 * @param name 参数名称
+		 * @param value 要绑定的值
 		 */
 		GenericExecuteSpec bind(String name, Object value);
 
 		/**
 		 * 将一个 {@code null} 值绑定到由其 {@code name} 标识的参数。
-		 * @param name the name of the parameter
-		 * @param type the parameter type
+		 * @param name 参数名称
+		 * @param type 参数类型
 		 */
 		GenericExecuteSpec bindNull(String name, Class<?> type);
 
@@ -191,7 +192,7 @@ public interface DatabaseClient extends ConnectionAccessor {
 		 * DatabaseClient client = …;
 		 * client.sql("SELECT book_id FROM book").filter(statement -&gt; statement.fetchSize(100))
 		 * </pre>
-		 * @param filterFunction the filter to be added to the chain
+		 * @param filterFunction 要添加到链中的过滤器
 		 */
 		default GenericExecuteSpec filter(Function<? super Statement, ? extends Statement> filterFunction) {
 			Assert.notNull(filterFunction, "Filter function must not be null");
@@ -205,15 +206,15 @@ public interface DatabaseClient extends ConnectionAccessor {
 		 * DatabaseClient client = …;
 		 * client.sql("SELECT book_id FROM book").filter((statement, next) -&gt; next.execute(statement.fetchSize(100)))
 		 * </pre>
-		 * @param filter the filter to be added to the chain
+		 * @param filter 要添加到链中的过滤器
 		 */
 		GenericExecuteSpec filter(StatementFilterFunction filter);
 
 		/**
 		 * 配置结果映射 {@link Function 函数}并进入执行阶段。
-		 * @param mappingFunction a function that maps from {@link Row} to the result type
-		 * @param <R> the result type
-		 * @return a {@link FetchSpec} for configuration what to fetch
+		 * @param mappingFunction 将 {@link Row} 映射为结果类型的函数
+		 * @param <R> 结果类型
+		 * @return 用于配置获取内容的 {@link FetchSpec}
 		 */
 		default <R> RowsFetchSpec<R> map(Function<Row, R> mappingFunction) {
 			Assert.notNull(mappingFunction, "Mapping function must not be null");
@@ -222,10 +223,10 @@ public interface DatabaseClient extends ConnectionAccessor {
 
 		/**
 		 * 配置结果映射 {@link BiFunction 函数}并进入执行阶段。
-		 * @param mappingFunction a function that maps from {@link Row} and {@link RowMetadata}
-		 * to the result type
-		 * @param <R> the result type
-		 * @return a {@link FetchSpec} for configuration what to fetch
+		 * @param mappingFunction 将 {@link Row} 和 {@link RowMetadata}
+		 * 映射为结果类型的函数
+		 * @param <R> 结果类型
+		 * @return 用于配置获取内容的 {@link FetchSpec}
 		 */
 		<R> RowsFetchSpec<R> map(BiFunction<Row, RowMetadata, R> mappingFunction);
 
@@ -236,7 +237,7 @@ public interface DatabaseClient extends ConnectionAccessor {
 
 		/**
 		 * 执行 SQL 调用，并返回一个在语句完成时不带结果地完成的 {@link Mono}。
-		 * @return a {@link Mono} ignoring its payload (actively dropping)
+		 * @return 忽略其负载的 {@link Mono}（主动丢弃）
 		 */
 		Mono<Void> then();
 	}

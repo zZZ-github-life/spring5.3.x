@@ -41,9 +41,8 @@ public class AnnotationAsyncExecutionInterceptor extends AsyncExecutionIntercept
 	/**
 	 * 使用给定的执行器和一个简单的 {@link AsyncUncaughtExceptionHandler} 创建一个新的
 	 * {@code AnnotationAsyncExecutionInterceptor}。
-	 * @param defaultExecutor the executor to be used by default if no more specific
-	 * executor has been qualified at the method level using {@link Async#value()};
-	 * as of 4.2.6, a local executor for this interceptor will be built otherwise
+	 * @param defaultExecutor 在未通过 {@link Async#value()} 在方法级别限定更具体的执行器时
+	 * 默认使用的执行器；从 4.2.6 起，否则将为该拦截器构建本地执行器
 	 */
 	public AnnotationAsyncExecutionInterceptor(@Nullable Executor defaultExecutor) {
 		super(defaultExecutor);
@@ -51,12 +50,10 @@ public class AnnotationAsyncExecutionInterceptor extends AsyncExecutionIntercept
 
 	/**
 	 * 使用给定的执行器创建一个新的 {@code AnnotationAsyncExecutionInterceptor}。
-	 * @param defaultExecutor the executor to be used by default if no more specific
-	 * executor has been qualified at the method level using {@link Async#value()};
-	 * as of 4.2.6, a local executor for this interceptor will be built otherwise
-	 * @param exceptionHandler the {@link AsyncUncaughtExceptionHandler} to use to
-	 * handle exceptions thrown by asynchronous method executions with {@code void}
-	 * return type
+	 * @param defaultExecutor 在未通过 {@link Async#value()} 在方法级别限定更具体的执行器时
+	 * 默认使用的执行器；从 4.2.6 起，否则将为该拦截器构建本地执行器
+	 * @param exceptionHandler 用于处理返回类型为 {@code void} 的异步方法执行所抛出异常的
+	 * {@link AsyncUncaughtExceptionHandler}
 	 */
 	public AnnotationAsyncExecutionInterceptor(@Nullable Executor defaultExecutor, AsyncUncaughtExceptionHandler exceptionHandler) {
 		super(defaultExecutor, exceptionHandler);
@@ -67,9 +64,9 @@ public class AnnotationAsyncExecutionInterceptor extends AsyncExecutionIntercept
 	 * 返回执行给定方法时要使用的执行器的限定符或 Bean 名称，它通过方法或声明类级别的
 	 * {@link Async#value} 指定。如果在方法级别和类级别都指定了 {@code @Async}，则方法的 {@code #value}
 	 * 优先（即使为空字符串，也表示应优先使用默认执行器）。
-	 * @param method the method to inspect for executor qualifier metadata
-	 * @return the qualifier if specified, otherwise empty string indicating that the
-	 * {@linkplain #setExecutor(Executor) default executor} should be used
+	 * @param method 要检查执行器限定符元数据的方法
+	 * @return 如果指定了限定符则返回该限定符，否则返回空字符串，
+	 * 表示应使用 {@linkplain #setExecutor(Executor) 默认执行器}
 	 * @see #determineAsyncExecutor(Method)
 	 */
 	@Override

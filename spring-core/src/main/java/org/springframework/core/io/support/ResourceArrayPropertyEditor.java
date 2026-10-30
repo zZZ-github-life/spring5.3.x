@@ -80,8 +80,8 @@ public class ResourceArrayPropertyEditor extends PropertyEditorSupport {
 	/**
 	 * 使用给定的 {@link ResourcePatternResolver} 和 {@link PropertyResolver}
 	 * （通常是 {@link Environment}）创建一个新的 ResourceArrayPropertyEditor。
-	 * @param resourcePatternResolver the ResourcePatternResolver to use
-	 * @param propertyResolver the PropertyResolver to use
+	 * @param resourcePatternResolver 要使用的 ResourcePatternResolver
+	 * @param propertyResolver 要使用的 PropertyResolver
 	 */
 	public ResourceArrayPropertyEditor(
 			ResourcePatternResolver resourcePatternResolver, @Nullable PropertyResolver propertyResolver) {
@@ -92,10 +92,10 @@ public class ResourceArrayPropertyEditor extends PropertyEditorSupport {
 	/**
 	 * 使用给定的 {@link ResourcePatternResolver} 和 {@link PropertyResolver}
 	 * （通常是 {@link Environment}）创建一个新的 ResourceArrayPropertyEditor。
-	 * @param resourcePatternResolver the ResourcePatternResolver to use
-	 * @param propertyResolver the PropertyResolver to use
-	 * @param ignoreUnresolvablePlaceholders whether to ignore unresolvable placeholders
-	 * if no corresponding system property could be found
+	 * @param resourcePatternResolver 要使用的 ResourcePatternResolver
+	 * @param propertyResolver 要使用的 PropertyResolver
+	 * @param ignoreUnresolvablePlaceholders 是否忽略无法解析的占位符
+	 * （即找不到对应的系统属性时）
 	 */
 	public ResourceArrayPropertyEditor(ResourcePatternResolver resourcePatternResolver,
 			@Nullable PropertyResolver propertyResolver, boolean ignoreUnresolvablePlaceholders) {
@@ -169,8 +169,8 @@ public class ResourceArrayPropertyEditor extends PropertyEditorSupport {
 	/**
 	 * 解析给定路径，必要时将占位符替换为
 	 * 相应的系统属性值。
-	 * @param path the original file path
-	 * @return the resolved file path
+	 * @param path 原始文件路径
+	 * @return 解析后的文件路径
 	 * @see PropertyResolver#resolvePlaceholders
 	 * @see PropertyResolver#resolveRequiredPlaceholders(String)
 	 */

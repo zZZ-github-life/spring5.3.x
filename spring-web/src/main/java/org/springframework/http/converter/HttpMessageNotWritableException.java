@@ -30,7 +30,7 @@ public class HttpMessageNotWritableException extends HttpMessageConversionExcept
 
 	/**
 	 * 创建一个新的 HttpMessageNotWritableException。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public HttpMessageNotWritableException(String msg) {
 		super(msg);
@@ -38,8 +38,8 @@ public class HttpMessageNotWritableException extends HttpMessageConversionExcept
 
 	/**
 	 * 创建一个新的 HttpMessageNotWritableException。
-	 * @param msg the detail message
-	 * @param cause the root cause (if any)
+	 * @param msg 详细消息
+	 * @param cause 根本原因（如果有）
 	 */
 	public HttpMessageNotWritableException(String msg, @Nullable Throwable cause) {
 		super(msg, cause);

@@ -74,10 +74,10 @@ public abstract class DataBufferUtils {
 	/**
 	 * 从给定的 supplier 获取 {@link InputStream}，并将其读入由 {@code DataBuffer} 组成的 {@code Flux}。
 	 * 当 Flux 终止时关闭该输入流。
-	 * @param inputStreamSupplier the supplier for the input stream to read from
-	 * @param bufferFactory the factory to create data buffers with
-	 * @param bufferSize the maximum size of the data buffers
-	 * @return a Flux of data buffers read from the given channel
+	 * @param inputStreamSupplier 用于提供待读取输入流的提供者
+	 * @param bufferFactory 用于创建数据缓冲区的工厂
+	 * @param bufferSize 数据缓冲区的最大大小
+	 * @return 从给定通道读取的数据缓冲区 Flux
 	 */
 	public static Flux<DataBuffer> readInputStream(
 			Callable<InputStream> inputStreamSupplier, DataBufferFactory bufferFactory, int bufferSize) {
@@ -89,10 +89,10 @@ public abstract class DataBufferUtils {
 	/**
 	 * 从给定的 supplier 获取 {@link ReadableByteChannel}，并将其读入由 {@code DataBuffer} 组成的
 	 * {@code Flux}。当 Flux 终止时关闭该通道。
-	 * @param channelSupplier the supplier for the channel to read from
-	 * @param bufferFactory the factory to create data buffers with
-	 * @param bufferSize the maximum size of the data buffers
-	 * @return a Flux of data buffers read from the given channel
+	 * @param channelSupplier 用于提供待读取通道的提供者
+	 * @param bufferFactory 用于创建数据缓冲区的工厂
+	 * @param bufferSize 数据缓冲区的最大大小
+	 * @return 从给定通道读取的数据缓冲区 Flux
 	 */
 	public static Flux<DataBuffer> readByteChannel(
 			Callable<ReadableByteChannel> channelSupplier, DataBufferFactory bufferFactory, int bufferSize) {
@@ -111,10 +111,10 @@ public abstract class DataBufferUtils {
 	/**
 	 * 从给定的 supplier 获取 {@code AsynchronousFileChannel}，并将其读入由 {@code DataBuffer} 组成的
 	 * {@code Flux}。当 Flux 终止时关闭该通道。
-	 * @param channelSupplier the supplier for the channel to read from
-	 * @param bufferFactory the factory to create data buffers with
-	 * @param bufferSize the maximum size of the data buffers
-	 * @return a Flux of data buffers read from the given channel
+	 * @param channelSupplier 用于提供待读取通道的提供者
+	 * @param bufferFactory 用于创建数据缓冲区的工厂
+	 * @param bufferSize 数据缓冲区的最大大小
+	 * @return 从给定通道读取的数据缓冲区 Flux
 	 */
 	public static Flux<DataBuffer> readAsynchronousFileChannel(
 			Callable<AsynchronousFileChannel> channelSupplier, DataBufferFactory bufferFactory, int bufferSize) {
@@ -125,11 +125,11 @@ public abstract class DataBufferUtils {
 	/**
 	 * 从给定的 supplier 获取 {@code AsynchronousFileChannel}，并从给定位置开始将其读入由
 	 * {@code DataBuffer} 组成的 {@code Flux}。当 Flux 终止时关闭该通道。
-	 * @param channelSupplier the supplier for the channel to read from
-	 * @param position the position to start reading from
-	 * @param bufferFactory the factory to create data buffers with
-	 * @param bufferSize the maximum size of the data buffers
-	 * @return a Flux of data buffers read from the given channel
+	 * @param channelSupplier 用于提供待读取通道的提供者
+	 * @param position 开始读取的位置
+	 * @param bufferFactory 用于创建数据缓冲区的工厂
+	 * @param bufferSize 数据缓冲区的最大大小
+	 * @return 从给定通道读取的数据缓冲区 Flux
 	 */
 	public static Flux<DataBuffer> readAsynchronousFileChannel(
 			Callable<AsynchronousFileChannel> channelSupplier, long position,
@@ -158,10 +158,10 @@ public abstract class DataBufferUtils {
 	/**
 	 * 从给定的文件 {@code Path} 读取字节到由 {@code DataBuffer} 组成的 {@code Flux}。该方法确保在 flux
 	 * 终止时关闭该文件。
-	 * @param path the path to read bytes from
-	 * @param bufferFactory the factory to create data buffers with
-	 * @param bufferSize the maximum size of the data buffers
-	 * @return a Flux of data buffers read from the given channel
+	 * @param path 要读取字节的路径
+	 * @param bufferFactory 用于创建数据缓冲区的工厂
+	 * @param bufferSize 数据缓冲区的最大大小
+	 * @return 从给定通道读取的数据缓冲区 Flux
 	 * @since 5.2
 	 */
 	public static Flux<DataBuffer> read(
@@ -186,10 +186,10 @@ public abstract class DataBufferUtils {
 	 * <p>如果该资源是文件，则将其读入 {@code AsynchronousFileChannel}，并通过
 	 * {@link #readAsynchronousFileChannel(Callable, DataBufferFactory, int)} 转换为 {@code Flux}，否则
 	 * 回退到 {@link #readByteChannel(Callable, DataBufferFactory, int)}。当 flux 终止时关闭该通道。
-	 * @param resource the resource to read from
-	 * @param bufferFactory the factory to create data buffers with
-	 * @param bufferSize the maximum size of the data buffers
-	 * @return a Flux of data buffers read from the given channel
+	 * @param resource 要从中读取的资源
+	 * @param bufferFactory 用于创建数据缓冲区的工厂
+	 * @param bufferSize 数据缓冲区的最大大小
+	 * @return 从给定通道读取的数据缓冲区 Flux
 	 */
 	public static Flux<DataBuffer> read(Resource resource, DataBufferFactory bufferFactory, int bufferSize) {
 		return read(resource, 0, bufferFactory, bufferSize);
@@ -200,11 +200,11 @@ public abstract class DataBufferUtils {
 	 * <p>如果该资源是文件，则将其读入 {@code AsynchronousFileChannel}，并通过
 	 * {@link #readAsynchronousFileChannel(Callable, DataBufferFactory, int)} 转换为 {@code Flux}，否则
 	 * 回退到 {@link #readByteChannel(Callable, DataBufferFactory, int)}。当 flux 终止时关闭该通道。
-	 * @param resource the resource to read from
-	 * @param position the position to start reading from
-	 * @param bufferFactory the factory to create data buffers with
-	 * @param bufferSize the maximum size of the data buffers
-	 * @return a Flux of data buffers read from the given channel
+	 * @param resource 要从中读取的资源
+	 * @param position 开始读取的位置
+	 * @param bufferFactory 用于创建数据缓冲区的工厂
+	 * @param bufferSize 数据缓冲区的最大大小
+	 * @return 从给定通道读取的数据缓冲区 Flux
 	 */
 	public static Flux<DataBuffer> read(
 			Resource resource, long position, DataBufferFactory bufferFactory, int bufferSize) {
@@ -235,11 +235,11 @@ public abstract class DataBufferUtils {
 	 * {@linkplain #release(DataBuffer) release} 源中的数据缓冲区。如果需要释放，则使用
 	 * {@link #releaseConsumer()} 订阅返回的 {@code Flux}。
 	 * <p>请注意，写入过程只有在订阅了返回的 {@code Flux} 之后才会开始。
-	 * @param source the stream of data buffers to be written
-	 * @param outputStream the output stream to write to
-	 * @return a Flux containing the same buffers as in {@code source}, that
-	 * starts the writing process when subscribed to, and that publishes any
-	 * writing errors and the completion signal
+	 * @param source 要写入的数据缓冲区流
+	 * @param outputStream 要写入的输出流
+	 * @return 包含与 {@code source} 相同缓冲区的 Flux，
+	 * 在订阅时启动写入过程，并发布所有
+	 * 写入错误和完成信号
 	 */
 	public static Flux<DataBuffer> write(Publisher<DataBuffer> source, OutputStream outputStream) {
 		Assert.notNull(source, "'source' must not be null");
@@ -255,11 +255,11 @@ public abstract class DataBufferUtils {
 	 * {@linkplain #release(DataBuffer) release} 源中的数据缓冲区。如果需要释放，则使用
 	 * {@link #releaseConsumer()} 订阅返回的 {@code Flux}。
 	 * <p>请注意，写入过程只有在订阅了返回的 {@code Flux} 之后才会开始。
-	 * @param source the stream of data buffers to be written
-	 * @param channel the channel to write to
-	 * @return a Flux containing the same buffers as in {@code source}, that
-	 * starts the writing process when subscribed to, and that publishes any
-	 * writing errors and the completion signal
+	 * @param source 要写入的数据缓冲区流
+	 * @param channel 要写入的通道
+	 * @return 包含与 {@code source} 相同缓冲区的 Flux，
+	 * 在订阅时启动写入过程，并发布所有
+	 * 写入错误和完成信号
 	 */
 	public static Flux<DataBuffer> write(Publisher<DataBuffer> source, WritableByteChannel channel) {
 		Assert.notNull(source, "'source' must not be null");
@@ -279,11 +279,11 @@ public abstract class DataBufferUtils {
 	 * {@linkplain #release(DataBuffer) release} 源中的数据缓冲区。如果需要释放，则使用
 	 * {@link #releaseConsumer()} 订阅返回的 {@code Flux}。
 	 * <p>请注意，写入过程只有在订阅了返回的 {@code Flux} 之后才会开始。
-	 * @param source the stream of data buffers to be written
-	 * @param channel the channel to write to
-	 * @return a Flux containing the same buffers as in {@code source}, that
-	 * starts the writing process when subscribed to, and that publishes any
-	 * writing errors and the completion signal
+	 * @param source 要写入的数据缓冲区流
+	 * @param channel 要写入的通道
+	 * @return 包含与 {@code source} 相同缓冲区的 Flux，
+	 * 在订阅时启动写入过程，并发布所有
+	 * 写入错误和完成信号
 	 * @since 5.0.10
 	 */
 	public static Flux<DataBuffer> write(Publisher<DataBuffer> source, AsynchronousFileChannel channel) {
@@ -296,12 +296,12 @@ public abstract class DataBufferUtils {
 	 * {@linkplain #release(DataBuffer) release} 源中的数据缓冲区。如果需要释放，则使用
 	 * {@link #releaseConsumer()} 订阅返回的 {@code Flux}。
 	 * <p>请注意，写入过程只有在订阅了返回的 {@code Flux} 之后才会开始。
-	 * @param source the stream of data buffers to be written
-	 * @param channel the channel to write to
-	 * @param position the file position where writing is to begin; must be non-negative
-	 * @return a flux containing the same buffers as in {@code source}, that
-	 * starts the writing process when subscribed to, and that publishes any
-	 * writing errors and the completion signal
+	 * @param source 要写入的数据缓冲区流
+	 * @param channel 要写入的通道
+	 * @param position 开始写入的文件位置；必须为非负数
+	 * @return 包含与 {@code source} 相同缓冲区的 Flux，
+	 * 在订阅时启动写入过程，并发布所有
+	 * 写入错误和完成信号
 	 */
 	public static Flux<DataBuffer> write(
 			Publisher<? extends DataBuffer> source, AsynchronousFileChannel channel, long position) {
@@ -325,10 +325,10 @@ public abstract class DataBufferUtils {
 	 * 指定文件的创建或打开方式（默认为 {@link StandardOpenOption#CREATE CREATE}、
 	 * {@link StandardOpenOption#TRUNCATE_EXISTING TRUNCATE_EXISTING} 和
 	 * {@link StandardOpenOption#WRITE WRITE}）。
-	 * @param source the stream of data buffers to be written
-	 * @param destination the path to the file
-	 * @param options the options specifying how the file is opened
-	 * @return a {@link Mono} that indicates completion or error
+	 * @param source 要写入的数据缓冲区流
+	 * @param destination 文件的路径
+	 * @param options 指定文件打开方式的选项
+	 * @return 表示完成或错误的 {@link Mono}
 	 * @since 5.2
 	 */
 	public static Mono<Void> write(Publisher<DataBuffer> source, Path destination, OpenOption... options) {
@@ -390,9 +390,9 @@ public abstract class DataBufferUtils {
 	 * 从给定的 {@link Publisher} 中转发缓冲区，直到总
 	 * {@linkplain DataBuffer#readableByteCount() byte count} 达到给定的最大字节数，或者直到 publisher
 	 * 完成。
-	 * @param publisher the publisher to filter
-	 * @param maxByteCount the maximum byte count
-	 * @return a flux whose maximum byte count is {@code maxByteCount}
+	 * @param publisher 要过滤的发布者
+	 * @param maxByteCount 最大字节数
+	 * @return 最大字节数为 {@code maxByteCount} 的 Flux
 	 */
 	public static Flux<DataBuffer> takeUntilByteCount(Publisher<? extends DataBuffer> publisher, long maxByteCount) {
 		Assert.notNull(publisher, "Publisher must not be null");
@@ -421,9 +421,9 @@ public abstract class DataBufferUtils {
 	 * 从给定的 {@link Publisher} 中跳过缓冲区，直到总
 	 * {@linkplain DataBuffer#readableByteCount() byte count} 达到给定的最大字节数，或者直到 publisher
 	 * 完成。
-	 * @param publisher the publisher to filter
-	 * @param maxByteCount the maximum byte count
-	 * @return a flux with the remaining part of the given publisher
+	 * @param publisher 要过滤的发布者
+	 * @param maxByteCount 最大字节数
+	 * @return 包含给定发布者剩余部分的 Flux
 	 */
 	public static Flux<DataBuffer> skipUntilByteCount(Publisher<? extends DataBuffer> publisher, long maxByteCount) {
 		Assert.notNull(publisher, "Publisher must not be null");
@@ -453,8 +453,8 @@ public abstract class DataBufferUtils {
 
 	/**
 	 * 如果给定的数据缓冲区是 {@link PooledDataBuffer}，则保留它。
-	 * @param dataBuffer the data buffer to retain
-	 * @return the retained buffer
+	 * @param dataBuffer 要保留的数据缓冲区
+	 * @return 保留的缓冲区
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends DataBuffer> T retain(T dataBuffer) {
@@ -468,9 +468,9 @@ public abstract class DataBufferUtils {
 
 	/**
 	 * 如果给定的数据缓冲区是池化缓冲区并且支持泄漏跟踪，则将其与给定的提示关联起来。
-	 * @param dataBuffer the data buffer to attach the hint to
-	 * @param hint the hint to attach
-	 * @return the input buffer
+	 * @param dataBuffer 要附加提示的数据缓冲区
+	 * @param hint 要附加的提示
+	 * @return 输入缓冲区
 	 * @since 5.3.2
 	 */
 	@SuppressWarnings("unchecked")
@@ -486,8 +486,8 @@ public abstract class DataBufferUtils {
 	/**
 	 * 如果给定的数据缓冲区是 {@link PooledDataBuffer} 且已被
 	 * {@linkplain PooledDataBuffer#isAllocated() allocated}，则释放它。
-	 * @param dataBuffer the data buffer to release
-	 * @return {@code true} if the buffer was released; {@code false} otherwise.
+	 * @param dataBuffer 要释放的数据缓冲区
+	 * @return 如果缓冲区已释放则返回 {@code true}；否则返回 {@code false}。
 	 */
 	public static boolean release(@Nullable DataBuffer dataBuffer) {
 		if (dataBuffer instanceof PooledDataBuffer) {
@@ -523,8 +523,8 @@ public abstract class DataBufferUtils {
 	 * {@linkplain #release(DataBuffer) released}。
 	 * <p>请注意，给定的数据缓冲区 <strong>不必</strong> 被释放。它们会作为返回的复合缓冲区的一部分被释
 	 * 放。
-	 * @param dataBuffers the data buffers that are to be composed
-	 * @return a buffer that is composed of the {@code dataBuffers} argument
+	 * @param dataBuffers 要组合的数据缓冲区
+	 * @return 由 {@code dataBuffers} 参数组合而成的缓冲区
 	 * @since 5.0.3
 	 */
 	public static Mono<DataBuffer> join(Publisher<? extends DataBuffer> dataBuffers) {
@@ -534,11 +534,11 @@ public abstract class DataBufferUtils {
 	/**
 	 * {@link #join(Publisher)} 的变体，其行为在达到指定的最大缓冲字节数之前保持不变。一旦超过该限制，
 	 * 将抛出 {@link DataBufferLimitException}。
-	 * @param buffers the data buffers that are to be composed
-	 * @param maxByteCount the max number of bytes to buffer, or -1 for unlimited
-	 * @return a buffer with the aggregated content, possibly an empty Mono if
-	 * the max number of bytes to buffer is exceeded.
-	 * @throws DataBufferLimitException if maxByteCount is exceeded
+	 * @param buffers 要组合的数据缓冲区
+	 * @param maxByteCount 要缓冲的最大字节数；-1 表示不限制
+	 * @return 包含聚合内容的缓冲区；如果超出要缓冲的最大字节数，
+	 * 则可能是空 Mono。
+	 * @throws DataBufferLimitException 如果超出 maxByteCount
 	 * @since 5.1.11
 	 */
 	@SuppressWarnings("unchecked")
@@ -558,8 +558,8 @@ public abstract class DataBufferUtils {
 
 	/**
 	 * 为给定分隔符返回一个 {@link Matcher}。该 matcher 可用于在数据缓冲区流中查找分隔符。
-	 * @param delimiter the delimiter bytes to find
-	 * @return the matcher
+	 * @param delimiter 要查找的分隔符字节
+	 * @return 匹配器
 	 * @since 5.2
 	 */
 	public static Matcher matcher(byte[] delimiter) {
@@ -568,8 +568,8 @@ public abstract class DataBufferUtils {
 
 	/**
 	 * 为给定的多个分隔符返回一个 {@link Matcher}。该 matcher 可用于在数据缓冲区流中查找分隔符。
-	 * @param delimiters the delimiters bytes to find
-	 * @return the matcher
+	 * @param delimiters 要查找的多个分隔符字节
+	 * @return 匹配器
 	 * @since 5.2
 	 */
 	public static Matcher matcher(byte[]... delimiters) {

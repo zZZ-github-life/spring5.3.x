@@ -48,9 +48,9 @@ class SmartMimeMessage extends MimeMessage {
 
 	/**
 	 * 创建新的 SmartMimeMessage。
-	 * @param session the JavaMail Session to create the message for
-	 * @param defaultEncoding the default encoding, or {@code null} if none
-	 * @param defaultFileTypeMap the default FileTypeMap, or {@code null} if none
+	 * @param session 要为其创建消息的 JavaMail Session
+	 * @param defaultEncoding 默认编码；如果没有，则为 {@code null}
+	 * @param defaultFileTypeMap 默认 FileTypeMap；如果没有，则为 {@code null}
 	 */
 	public SmartMimeMessage(
 			Session session, @Nullable String defaultEncoding, @Nullable FileTypeMap defaultFileTypeMap) {

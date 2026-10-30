@@ -41,11 +41,11 @@ public interface RequestUpgradeStrategy {
 
 	/**
 	 * 升级为 WebSocket 会话并使用给定处理器处理它。
-	 * @param exchange the current exchange
-	 * @param webSocketHandler handler for the WebSocket session
-	 * @param subProtocol the selected sub-protocol got the handler
-	 * @return completion {@code Mono<Void>} to indicate the outcome of the
-	 * WebSocket session handling.
+	 * @param exchange 当前交换
+	 * @param webSocketHandler WebSocket 会话的处理器
+	 * @param subProtocol 为处理器选定的子协议
+	 * @return 用于指示 WebSocket 会话处理结果的
+	 * 完成信号 {@code Mono<Void>}。
 	 * @deprecated as of 5.1 in favor of
 	 * {@link #upgrade(ServerWebExchange, WebSocketHandler, String, Supplier)}
 	 */
@@ -58,12 +58,12 @@ public interface RequestUpgradeStrategy {
 
 	/**
 	 * 升级为 WebSocket 会话并使用给定处理器处理它。
-	 * @param exchange the current exchange
-	 * @param webSocketHandler handler for the WebSocket session
-	 * @param subProtocol the selected sub-protocol got the handler
-	 * @param handshakeInfoFactory factory to create HandshakeInfo for the WebSocket session
-	 * @return completion {@code Mono<Void>} to indicate the outcome of the
-	 * WebSocket session handling.
+	 * @param exchange 当前交换
+	 * @param webSocketHandler WebSocket 会话的处理器
+	 * @param subProtocol 为处理器选定的子协议
+	 * @param handshakeInfoFactory 为 WebSocket 会话创建 HandshakeInfo 的工厂
+	 * @return 用于指示 WebSocket 会话处理结果的
+	 * 完成信号 {@code Mono<Void>}。
 	 * @since 5.1
 	 */
 	default Mono<Void> upgrade(ServerWebExchange exchange, WebSocketHandler webSocketHandler,

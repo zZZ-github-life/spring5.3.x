@@ -136,7 +136,7 @@ public abstract class AbstractFlashMapManager implements FlashMapManager {
 
 	/**
 	 * 返回给定列表中与请求匹配的 FlashMap。
-	 * @return a matching FlashMap or {@code null}
+	 * @return 匹配的 FlashMap，或 {@code null}
 	 */
 	@Nullable
 	private FlashMap getMatchingFlashMap(List<FlashMap> allMaps, HttpServletRequest request) {
@@ -231,17 +231,17 @@ public abstract class AbstractFlashMapManager implements FlashMapManager {
 
 	/**
 	 * 从底层存储中获取已保存的 FlashMap 实例。
-	 * @param request the current request
-	 * @return a List with FlashMap instances, or {@code null} if none found
+	 * @param request 当前请求
+	 * @return 包含 FlashMap 实例的 List；如果未找到，则为 {@code null}
 	 */
 	@Nullable
 	protected abstract List<FlashMap> retrieveFlashMaps(HttpServletRequest request);
 
 	/**
 	 * 更新底层存储中的 FlashMap 实例。
-	 * @param flashMaps a (potentially empty) list of FlashMap instances to save
-	 * @param request the current request
-	 * @param response the current response
+	 * @param flashMaps 要保存的 FlashMap 实例列表（可能为空）
+	 * @param request 当前请求
+	 * @param response 当前响应
 	 */
 	protected abstract void updateFlashMaps(
 			List<FlashMap> flashMaps, HttpServletRequest request, HttpServletResponse response);
@@ -249,8 +249,8 @@ public abstract class AbstractFlashMapManager implements FlashMapManager {
 	/**
 	 * 获取用于修改由 {@link #retrieveFlashMaps} 和 {@link #updateFlashMaps} 处理的 FlashMap 列表的互斥锁，
 	 * <p>默认实现返回共享的静态互斥锁。鼓励子类返回更具体的互斥锁，或返回 {@code null} 表示不需要同步。
-	 * @param request the current request
-	 * @return the mutex to use (may be {@code null} if none applicable)
+	 * @param request 当前请求
+	 * @return 要使用的互斥体（如果不可用，可以为 {@code null}）
 	 * @since 4.0.3
 	 */
 	@Nullable

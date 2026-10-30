@@ -62,8 +62,8 @@ public abstract class CorsUtils {
 	 * <p><strong>注意：</strong>从 5.1 开始，此方法会忽略指定客户端发起地址的
 	 * {@code "Forwarded"} 和 {@code "X-Forwarded-*"} 头。可以考虑使用
 	 * {@code ForwardedHeaderFilter} 来提取并使用，或丢弃此类头。
-	 * @return {@code true} if the request is a same-origin one, {@code false} in case
-	 * of a cross-origin request
+	 * @return 如果请求是同源的则返回 {@code true}，
+	 * 如果是跨源请求则返回 {@code false}
 	 * @deprecated as of 5.2, same-origin checks are performed directly by {@link #isCorsRequest}
 	 */
 	@Deprecated

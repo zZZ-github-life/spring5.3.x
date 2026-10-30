@@ -59,7 +59,7 @@ public abstract class AopUtils {
 	/**
 	 * 检查给定对象是 JDK 动态代理还是 CGLIB 代理。
 	 * <p>此方法还会检查给定对象是否为 {@link SpringProxy} 的实例。
-	 * @param object the object to check
+	 * @param object 要检查的对象
 	 * @see #isJdkDynamicProxy
 	 * @see #isCglibProxy
 	 */
@@ -72,7 +72,7 @@ public abstract class AopUtils {
 	 * 检查给定对象是否为 JDK 动态代理。
 	 * <p>此方法超出了 {@link Proxy#isProxyClass(Class)} 的实现，还会检查给定对象是否为
 	 * {@link SpringProxy} 的实例。
-	 * @param object the object to check
+	 * @param object 要检查的对象
 	 * @see java.lang.reflect.Proxy#isProxyClass
 	 */
 	public static boolean isJdkDynamicProxy(@Nullable Object object) {
@@ -83,7 +83,7 @@ public abstract class AopUtils {
 	 * 检查给定对象是否为 CGLIB 代理。
 	 * <p>此方法超出了 {@link ClassUtils#isCglibProxy(Object)} 的实现，还会检查给定对象是否为
 	 * {@link SpringProxy} 的实例。
-	 * @param object the object to check
+	 * @param object 要检查的对象
 	 * @see ClassUtils#isCglibProxy(Object)
 	 */
 	public static boolean isCglibProxy(@Nullable Object object) {
@@ -94,9 +94,8 @@ public abstract class AopUtils {
 	/**
 	 * 确定给定 Bean 实例的目标类，该实例可能是 AOP 代理。
 	 * <p>如果该实例是 AOP 代理，则返回目标类，否则返回其普通类。
-	 * @param candidate the instance to check (might be an AOP proxy)
-	 * @return the target class (or the plain class of the given object as fallback;
-	 * never {@code null})
+	 * @param candidate 要检查的实例（可能是 AOP 代理）
+	 * @return 目标类（回退时为给定对象的普通类；永不为 {@code null}）
 	 * @see org.springframework.aop.TargetClassAware#getTargetClass()
 	 * @see org.springframework.aop.framework.AopProxyUtils#ultimateTargetClass(Object)
 	 */
@@ -115,11 +114,10 @@ public abstract class AopUtils {
 	/**
 	 * 在目标类型上选择可调用的方法：如果给定方法确实暴露在目标类型上，则使用该方法本身；否则使用目标类
 	 * 型的某个接口上或目标类型本身上的对应方法。
-	 * @param method the method to check
-	 * @param targetType the target type to search methods on (typically an AOP proxy)
-	 * @return a corresponding invocable method on the target type
-	 * @throws IllegalStateException if the given method is not invocable on the given
-	 * target type (typically due to a proxy mismatch)
+	 * @param method 要检查的方法
+	 * @param targetType 要在其上搜索方法的目标类型（通常是 AOP 代理）
+	 * @return 目标类型上对应的可调用方法
+	 * @throws IllegalStateException 如果给定方法无法在给定目标类型上调用（通常是因为代理不匹配）
 	 * @since 4.3
 	 * @see MethodIntrospector#selectInvocableMethod(Method, Class)
 	 */
@@ -177,11 +175,10 @@ public abstract class AopUtils {
 	 * {@code DefaultFoo.bar()}。这样便能找到该方法上的属性。
 	 * <p><b>NOTE:</b> 与 {@link org.springframework.util.ClassUtils#getMostSpecificMethod} 不同，此方
 	 * 法会解析桥接方法，以便从<i>原始</i>方法定义中获取属性。
-	 * @param method the method to be invoked, which may come from an interface
-	 * @param targetClass the target class for the current invocation.
-	 * May be {@code null} or may not even implement the method.
-	 * @return the specific target method, or the original method if the
-	 * {@code targetClass} doesn't implement it or is {@code null}
+	 * @param method 要调用的方法，可能来自某个接口
+	 * @param targetClass 当前调用的目标类。可能为 {@code null}，甚至可能未实现该方法。
+	 * @return 具体的目标方法；如果 {@code targetClass} 未实现该方法
+	 * 或为 {@code null}，则返回原方法
 	 * @see org.springframework.util.ClassUtils#getMostSpecificMethod
 	 */
 	public static Method getMostSpecificMethod(Method method, @Nullable Class<?> targetClass) {
@@ -194,9 +191,9 @@ public abstract class AopUtils {
 	/**
 	 * 给定的切点是否能在给定类上应用？
 	 * <p>这是一项重要的检查，因为它可用于优化掉某个类的切点。
-	 * @param pc the static or dynamic pointcut to check
-	 * @param targetClass the class to test
-	 * @return whether the pointcut can apply on any method
+	 * @param pc 要检查的静态或动态切点
+	 * @param targetClass 要测试的类
+	 * @return 该切点是否能应用于任意方法
 	 */
 	public static boolean canApply(Pointcut pc, Class<?> targetClass) {
 		return canApply(pc, targetClass, false);
@@ -205,11 +202,10 @@ public abstract class AopUtils {
 	/**
 	 * 给定的切点是否能在给定类上应用？
 	 * <p>这是一项重要的检查，因为它可用于优化掉某个类的切点。
-	 * @param pc the static or dynamic pointcut to check
-	 * @param targetClass the class to test
-	 * @param hasIntroductions whether the advisor chain
-	 * for this bean includes any introductions
-	 * @return whether the pointcut can apply on any method
+	 * @param pc 要检查的静态或动态切点
+	 * @param targetClass 要测试的类
+	 * @param hasIntroductions 该 Bean 的 advisor 链是否包含任何引介
+	 * @return 该切点是否能应用于任意方法
 	 */
 	public static boolean canApply(Pointcut pc, Class<?> targetClass, boolean hasIntroductions) {
 		Assert.notNull(pc, "Pointcut must not be null");
@@ -250,9 +246,9 @@ public abstract class AopUtils {
 
 	/**
 	 * 给定的通知器是否能在给定类上应用？这是一项重要的检查，因为它可用于优化掉某个类的通知器。
-	 * @param advisor the advisor to check
-	 * @param targetClass class we're testing
-	 * @return whether the pointcut can apply on any method
+	 * @param advisor 要检查的 advisor
+	 * @param targetClass 我们正在测试的类
+	 * @return 该切点是否能应用于任意方法
 	 */
 	public static boolean canApply(Advisor advisor, Class<?> targetClass) {
 		return canApply(advisor, targetClass, false);
@@ -262,11 +258,10 @@ public abstract class AopUtils {
 	 * 给定的通知器是否能在给定类上应用？
 	 * <p>这是一项重要的检查，因为它可用于优化掉某个类的通知器。此版本还会考虑引入（针对
 	 * IntroductionAwareMethodMatchers）。
-	 * @param advisor the advisor to check
-	 * @param targetClass class we're testing
-	 * @param hasIntroductions whether the advisor chain for this bean includes
-	 * any introductions
-	 * @return whether the pointcut can apply on any method
+	 * @param advisor 要检查的 advisor
+	 * @param targetClass 我们正在测试的类
+	 * @param hasIntroductions 该 Bean 的 advisor 链是否包含任何引介
+	 * @return 该切点是否能应用于任意方法
 	 */
 	public static boolean canApply(Advisor advisor, Class<?> targetClass, boolean hasIntroductions) {
 		if (advisor instanceof IntroductionAdvisor) {
@@ -284,10 +279,9 @@ public abstract class AopUtils {
 
 	/**
 	 * 确定 {@code candidateAdvisors} 列表中适用于给定类的子列表。
-	 * @param candidateAdvisors the Advisors to evaluate
-	 * @param clazz the target class
-	 * @return sublist of Advisors that can apply to an object of the given class
-	 * (may be the incoming List as-is)
+	 * @param candidateAdvisors 要评估的 Advisor
+	 * @param clazz 目标类
+	 * @return 可应用于给定类的对象的 Advisor 子列表（可能原样返回传入的 List）
 	 */
 	public static List<Advisor> findAdvisorsThatCanApply(List<Advisor> candidateAdvisors, Class<?> clazz) {
 		if (candidateAdvisors.isEmpty()) {
@@ -314,12 +308,12 @@ public abstract class AopUtils {
 
 	/**
 	 * 作为 AOP 方法调用的一部分，通过反射调用给定目标。
-	 * @param target the target object
-	 * @param method the method to invoke
-	 * @param args the arguments for the method
-	 * @return the invocation result, if any
-	 * @throws Throwable if thrown by the target method
-	 * @throws org.springframework.aop.AopInvocationException in case of a reflection error
+	 * @param target 目标对象
+	 * @param method 要调用的方法
+	 * @param args 该方法的参数
+	 * @return 调用结果（如果有）
+	 * @throws Throwable 如果由目标方法抛出
+	 * @throws org.springframework.aop.AopInvocationException 如果发生反射错误
 	 */
 	@Nullable
 	public static Object invokeJoinpointUsingReflection(@Nullable Object target, Method method, Object[] args)

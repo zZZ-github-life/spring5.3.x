@@ -71,7 +71,7 @@ public class MethodValidationInterceptor implements MethodInterceptor {
 
 	/**
 	 * 使用给定的 JSR-303 ValidatorFactory 创建一个新的 MethodValidationInterceptor。
-	 * @param validatorFactory the JSR-303 ValidatorFactory to use
+	 * @param validatorFactory 要使用的 JSR-303 ValidatorFactory。
 	 */
 	public MethodValidationInterceptor(ValidatorFactory validatorFactory) {
 		this(validatorFactory.getValidator());
@@ -79,7 +79,7 @@ public class MethodValidationInterceptor implements MethodInterceptor {
 
 	/**
 	 * 使用给定的 JSR-303 Validator 创建一个新的 MethodValidationInterceptor。
-	 * @param validator the JSR-303 Validator to use
+	 * @param validator 要使用的 JSR-303 Validator。
 	 */
 	public MethodValidationInterceptor(Validator validator) {
 		this.validator = validator;
@@ -152,8 +152,8 @@ public class MethodValidationInterceptor implements MethodInterceptor {
 	/**
 	 * 确定针对给定方法调用要依据的校验分组。
 	 * <p>默认为该方法所属目标类上 {@link Validated} 注解中指定的校验分组。
-	 * @param invocation the current MethodInvocation
-	 * @return the applicable validation groups as a Class array
+	 * @param invocation 当前的 MethodInvocation。
+	 * @return 适用的校验组，以 Class 数组表示。
 	 */
 	protected Class<?>[] determineValidationGroups(MethodInvocation invocation) {
 		Validated validatedAnn = AnnotationUtils.findAnnotation(invocation.getMethod(), Validated.class);

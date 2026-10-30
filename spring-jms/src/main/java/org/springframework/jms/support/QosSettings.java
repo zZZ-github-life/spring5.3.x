@@ -58,7 +58,7 @@ public class QosSettings {
 	/**
 	 * 设置发送消息时要使用的投递模式。
 	 * 默认是 JMS Message 的默认值："PERSISTENT"。
-	 * @param deliveryMode the delivery mode to use
+	 * @param deliveryMode 要使用的传递模式
 	 * @see javax.jms.DeliveryMode#PERSISTENT
 	 * @see javax.jms.DeliveryMode#NON_PERSISTENT
 	 * @see javax.jms.Message#DEFAULT_DELIVERY_MODE
@@ -93,7 +93,7 @@ public class QosSettings {
 
 	/**
 	 * 设置发送时消息的生存时间。
-	 * @param timeToLive the message's lifetime (in milliseconds)
+	 * @param timeToLive 消息的生存期（以毫秒为单位）
 	 * @see javax.jms.Message#DEFAULT_TIME_TO_LIVE
 	 * @see javax.jms.MessageProducer#send(javax.jms.Message, int, int, long)
 	 */

@@ -41,7 +41,7 @@ public class ManagedTransactionAdapter implements Transaction {
 
 	/**
 	 * 为给定的TransactionManager创建一个新的ManagedTransactionAdapter。
-	 * @param transactionManager the JTA TransactionManager to wrap
+	 * @param transactionManager 要包装的 JTA TransactionManager
 	 */
 	public ManagedTransactionAdapter(TransactionManager transactionManager) throws SystemException {
 		Assert.notNull(transactionManager, "TransactionManager must not be null");

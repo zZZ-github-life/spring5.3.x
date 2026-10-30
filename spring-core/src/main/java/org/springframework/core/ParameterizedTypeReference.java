@@ -37,7 +37,7 @@ import org.springframework.util.Assert;
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @since 3.2
- * @param <T> the referenced type
+ * @param <T> 所引用的类型
  * @see <a href="https://gafter.blogspot.nl/2006/12/super-type-tokens.html">Neal Gafter on Super Type Tokens</a>
  */
 public abstract class ParameterizedTypeReference<T> {
@@ -83,10 +83,8 @@ public abstract class ParameterizedTypeReference<T> {
 
 	/**
 	 * 构建一个包装给定类型的 {@code ParameterizedTypeReference}。
-	 * @param type a generic type (possibly obtained via reflection,
-	 * e.g. from {@link java.lang.reflect.Method#getGenericReturnType()})
-	 * @return a corresponding reference which may be passed into
-	 * {@code ParameterizedTypeReference}-accepting methods
+	 * @param type 泛型类型（可能通过反射获取，例如来自 {@link java.lang.reflect.Method#getGenericReturnType()}）
+	 * @return 对应的引用，可传入接受 {@code ParameterizedTypeReference} 的方法
 	 * @since 4.3.12
 	 */
 	public static <T> ParameterizedTypeReference<T> forType(Type type) {

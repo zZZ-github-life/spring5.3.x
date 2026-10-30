@@ -37,8 +37,8 @@ public interface ConfigurableWebEnvironment extends ConfigurableEnvironment {
 	 * 使用给定参数，将任何充当占位符的
 	 * {@linkplain org.springframework.core.env.PropertySource.StubPropertySource 存根属性源}
 	 * 实例替换为真实的 servlet context/config 属性源。
-	 * @param servletContext the {@link ServletContext} (may not be {@code null})
-	 * @param servletConfig the {@link ServletConfig} ({@code null} if not available)
+	 * @param servletContext {@link ServletContext}（不能为 {@code null}）
+	 * @param servletConfig {@link ServletConfig}（不可用时为 {@code null}）
 	 * @see org.springframework.web.context.support.WebApplicationContextUtils#initServletPropertySources(
 	 * org.springframework.core.env.MutablePropertySources, ServletContext, ServletConfig)
 	 */

@@ -44,7 +44,7 @@ public class SpelExpressionParser extends TemplateAwareExpressionParser {
 
 	/**
 	 * 使用指定的配置创建解析器。
-	 * @param configuration custom configuration options
+	 * @param configuration 自定义配置选项
 	 */
 	public SpelExpressionParser(SpelParserConfiguration configuration) {
 		Assert.notNull(configuration, "SpelParserConfiguration must not be null");

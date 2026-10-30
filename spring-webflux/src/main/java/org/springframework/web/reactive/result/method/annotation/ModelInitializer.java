@@ -63,10 +63,10 @@ class ModelInitializer {
 
 	/**
 	 * 基于（类型级）{@code @SessionAttributes} 注解和 {@code @ModelAttribute} 方法初始化 {@link org.springframework.ui.Model Model}。
-	 * @param handlerMethod the target controller method
-	 * @param bindingContext the context containing the model
-	 * @param exchange the current exchange
-	 * @return a {@code Mono} for when the model is populated.
+	 * @param handlerMethod 目标控制器方法
+	 * @param bindingContext 包含模型的上下文
+	 * @param exchange 当前交换
+	 * @return 模型填充完成时的 {@code Mono}。
 	 */
 	@SuppressWarnings("Convert2MethodRef")
 	public Mono<Void> initModel(HandlerMethod handlerMethod, InitBinderBindingContext bindingContext,
@@ -157,8 +157,8 @@ class ModelInitializer {
 
 	/**
 	 * 根据 {@code @ModelAttribute} 参数注解（如果存在）或基于参数类型的约定，推导给定方法参数的模型属性名称。
-	 * @param parameter a descriptor for the method parameter
-	 * @return the derived name
+	 * @param parameter 方法参数的描述符
+	 * @return 推导出的名称
 	 * @see Conventions#getVariableNameForParameter(MethodParameter)
 	 */
 	public static String getNameForParameter(MethodParameter parameter) {

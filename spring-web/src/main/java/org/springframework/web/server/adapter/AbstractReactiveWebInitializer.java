@@ -119,9 +119,9 @@ public abstract class AbstractReactiveWebInitializer implements WebApplicationIn
 	/**
 	 * 注册一个 {@link ServletContextListener}，在 Servlet 上下文被销毁时
 	 * 关闭给定的应用上下文。
-	 * @param servletContext the servlet context to listen to
-	 * @param applicationContext the application context that is to be
-	 * closed when {@code servletContext} is destroyed
+	 * @param servletContext 要监听的 Servlet 上下文
+	 * @param applicationContext 当 {@code servletContext} 被销毁时
+	 * 要关闭的应用上下文
 	 */
 	protected void registerCloseListener(ServletContext servletContext, ApplicationContext applicationContext) {
 		if (applicationContext instanceof ConfigurableApplicationContext) {

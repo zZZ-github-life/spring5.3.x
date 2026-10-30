@@ -32,7 +32,7 @@ public interface ReactiveHttpInputMessage extends HttpMessage {
 
 	/**
 	 * 以 {@link Publisher} 形式返回消息正文。
-	 * @return the body content publisher
+	 * @return 正文内容发布者
 	 */
 	Flux<DataBuffer> getBody();
 

@@ -144,12 +144,10 @@ public class MBeanServerFactoryBean implements FactoryBean<MBeanServer>, Initial
 	 * 尝试定位已有的 {@code MBeanServer}。当 {@code locateExistingServerIfPossible} 设置为
 	 * {@code true} 时调用。
 	 * <p>默认实现使用标准查找来尝试找到 {@code MBeanServer}。子类可以重写以添加额外的定位逻辑。
-	 * @param agentId the agent identifier of the MBeanServer to retrieve.
-	 * If this parameter is {@code null}, all registered MBeanServers are
-	 * considered.
-	 * @return the {@code MBeanServer} if found
-	 * @throws org.springframework.jmx.MBeanServerNotFoundException
-	 * if no {@code MBeanServer} could be found
+	 * @param agentId 要获取的 MBeanServer 的代理标识符。
+	 * 如果该参数为 {@code null}，则考虑所有已注册的 MBeanServer。
+	 * @return 找到的 {@code MBeanServer}（如果存在）
+	 * @throws org.springframework.jmx.MBeanServerNotFoundException 如果找不到任何 {@code MBeanServer}
 	 * @see #setLocateExistingServerIfPossible
 	 * @see JmxUtils#locateMBeanServer(String)
 	 * @see javax.management.MBeanServerFactory#findMBeanServer(String)
@@ -160,9 +158,8 @@ public class MBeanServerFactoryBean implements FactoryBean<MBeanServer>, Initial
 
 	/**
 	 * 创建新的 {@code MBeanServer} 实例，并根据需要将其注册到 {@code MBeanServerFactory}。
-	 * @param defaultDomain the default domain, or {@code null} if none
-	 * @param registerWithFactory whether to register the {@code MBeanServer}
-	 * with the {@code MBeanServerFactory}
+	 * @param defaultDomain 默认域；如果没有则为 {@code null}
+	 * @param registerWithFactory 是否向 {@code MBeanServerFactory} 注册该 {@code MBeanServer}
 	 * @see javax.management.MBeanServerFactory#createMBeanServer
 	 * @see javax.management.MBeanServerFactory#newMBeanServer
 	 */

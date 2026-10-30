@@ -42,7 +42,7 @@ public class DelegatingJob implements Job {
 
 	/**
 	 * 创建一个新的 DelegatingJob。
-	 * @param delegate the Runnable implementation to delegate to
+	 * @param delegate 要委托给的 Runnable 实现
 	 */
 	public DelegatingJob(Runnable delegate) {
 		Assert.notNull(delegate, "Delegate must not be null");

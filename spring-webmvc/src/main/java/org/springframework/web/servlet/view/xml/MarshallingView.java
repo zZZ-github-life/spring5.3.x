@@ -123,10 +123,9 @@ public class MarshallingView extends AbstractView {
 	 * <p>默认实现会首先尝试在已配置的
 	 * {@linkplain #setModelKey(String) model key}（如果有）下查找，
 	 * 然后再尝试定位 {@linkplain Marshaller#supports(Class) 受支持类型}的对象。
-	 * @param model the model Map
-	 * @return the Object to be marshalled (or {@code null} if none found)
-	 * @throws IllegalStateException if the model object specified by the
-	 * {@linkplain #setModelKey(String) model key} is not supported by the marshaller
+	 * @param model 模型 Map
+	 * @return 要编组的对象（如果未找到则为 {@code null}）
+	 * @throws IllegalStateException 如果由 {@linkplain #setModelKey(String) model key} 指定的模型对象不受编组器支持
 	 * @see #setModelKey(String)
 	 */
 	@Nullable
@@ -156,9 +155,9 @@ public class MarshallingView extends AbstractView {
 	 * 检查当前视图 model 中的给定值是否适合通过已配置的 {@link Marshaller} 进行编组。
 	 * <p>默认实现会调用 {@link Marshaller#supports(Class)}，
 	 * 并在适用时先对给定的 {@link JAXBElement} 进行解包。
-	 * @param modelKey the value's key in the model (never {@code null})
-	 * @param value the value to check (never {@code null})
-	 * @return whether the given value is to be considered as eligible
+	 * @param modelKey 该值在模型中的键（从不为 {@code null}）
+	 * @param value 要检查的值（从不为 {@code null}）
+	 * @return 给定值是否应被视为符合条件
 	 * @see Marshaller#supports(Class)
 	 */
 	protected boolean isEligibleForMarshalling(String modelKey, Object value) {

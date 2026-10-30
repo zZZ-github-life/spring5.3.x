@@ -42,7 +42,7 @@ public interface MockServerConfigurer {
 
 	/**
 	 * 立即调用，即在此方法返回之前。
-	 * @param serverSpec the serverSpec to which the configurer is added
+	 * @param serverSpec 添加该配置器的 serverSpec
 	 */
 	default void afterConfigureAdded(WebTestClient.MockServerSpec<?> serverSpec) {
 	}
@@ -50,8 +50,7 @@ public interface MockServerConfigurer {
 	/**
 	 * 在构建模拟服务器之前调用。使用此钩子检查
 	 * 和/或修改应用程序声明的过滤器和异常处理器。
-	 * @param builder the builder for the {@code HttpHandler} that will handle
-	 * requests (i.e. the mock server)
+	 * @param builder 用于处理请求（即模拟服务器）的 {@code HttpHandler} 的构建器
 	 */
 	default void beforeServerCreated(WebHttpHandlerBuilder builder) {
 	}

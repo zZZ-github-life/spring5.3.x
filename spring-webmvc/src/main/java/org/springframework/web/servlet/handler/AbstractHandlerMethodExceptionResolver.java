@@ -84,12 +84,12 @@ public abstract class AbstractHandlerMethodExceptionResolver extends AbstractHan
 	 * 请注意，此模板方法会在检查此解析器是否适用（"mappedHandlers" 等）
 	 * <i>之后</i>被调用，因此实现可以简单地继续执行
 	 * 实际的异常处理。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handlerMethod the executed handler method, or {@code null} if none chosen at the time
-	 * of the exception (for example, if multipart resolution failed)
-	 * @param ex the exception that got thrown during handler execution
-	 * @return a corresponding ModelAndView to forward to, or {@code null} for default processing
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handlerMethod 已执行的处理器方法；如果在异常发生时尚未选择任何处理器方法
+	 * （例如 multipart 解析失败），则为 {@code null}
+	 * @param ex 处理器执行期间抛出的异常
+	 * @return 要转发到的相应 ModelAndView；如果进行默认处理，则为 {@code null}
 	 */
 	@Nullable
 	protected abstract ModelAndView doResolveHandlerMethodException(

@@ -22,7 +22,7 @@ import reactor.core.publisher.Mono;
  * 表示处理{@linkplain ServerRequest 请求}的函数。
  * @author Arjen Poutsma
  * @since 5.0
- * @param <T> the type of the response of the function
+ * @param <T> 该函数响应的类型
  * @see RouterFunction
  */
 @FunctionalInterface
@@ -30,8 +30,8 @@ public interface HandlerFunction<T extends ServerResponse> {
 
 	/**
 	 * 处理给定的请求。
-	 * @param request the request to handle
-	 * @return the response
+	 * @param request 要处理的请求
+	 * @return 响应
 	 */
 	Mono<T> handle(ServerRequest request);
 

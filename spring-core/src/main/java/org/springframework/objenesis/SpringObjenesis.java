@@ -58,7 +58,7 @@ public class SpringObjenesis implements Objenesis {
 
 	/**
 	 * 使用给定的标准实例化器策略创建一个新的 {@code SpringObjenesis} 实例。
-	 * @param strategy the instantiator strategy to use
+	 * @param strategy 要使用的实例化策略
 	 */
 	public SpringObjenesis(InstantiatorStrategy strategy) {
 		this.strategy = (strategy != null ? strategy : new StdInstantiatorStrategy());
@@ -81,12 +81,12 @@ public class SpringObjenesis implements Objenesis {
 
 	/**
 	 * 通过 Objenesis 创建给定类的新实例。
-	 * @param clazz the class to create an instance of
-	 * @param useCache whether to use the instantiator cache
-	 * (typically {@code true} but can be set to {@code false}
-	 * e.g. for reloadable classes)
-	 * @return the new instance (never {@code null})
-	 * @throws ObjenesisException if instance creation failed
+	 * @param clazz 要创建实例的类
+	 * @param useCache 是否使用实例化器缓存
+	 * （通常为 {@code true}，但也可以设为 {@code false}，
+	 * 例如对于可重新加载的类）
+	 * @return 新实例（永不为 {@code null}）
+	 * @throws ObjenesisException 如果实例创建失败
 	 */
 	public <T> T newInstance(Class<T> clazz, boolean useCache) {
 		if (!useCache) {

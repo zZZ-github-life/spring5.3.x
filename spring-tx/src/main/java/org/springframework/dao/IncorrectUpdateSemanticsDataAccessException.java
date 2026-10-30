@@ -27,7 +27,7 @@ public class IncorrectUpdateSemanticsDataAccessException extends InvalidDataAcce
 
 	/**
 	 * IncorrectUpdateSemanticsDataAccessException 的构造方法。
-	 * @param msg the detail message
+	 * @param msg 详细信息
 	 */
 	public IncorrectUpdateSemanticsDataAccessException(String msg) {
 		super(msg);
@@ -35,8 +35,8 @@ public class IncorrectUpdateSemanticsDataAccessException extends InvalidDataAcce
 
 	/**
 	 * IncorrectUpdateSemanticsDataAccessException 的构造方法。
-	 * @param msg the detail message
-	 * @param cause the root cause from the underlying API, such as JDBC
+	 * @param msg 详细信息
+	 * @param cause 来自底层 API（例如 JDBC）的根本原因
 	 */
 	public IncorrectUpdateSemanticsDataAccessException(String msg, Throwable cause) {
 		super(msg, cause);

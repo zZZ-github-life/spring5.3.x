@@ -64,8 +64,7 @@ public class StandardScriptFactory implements ScriptFactory, BeanClassLoaderAwar
 
 	/**
 	 * 为给定的脚本源创建一个新的 StandardScriptFactory。
-	 * @param scriptSourceLocator a locator that points to the source of the script.
-	 * Interpreted by the post-processor that actually creates the script.
+	 * @param scriptSourceLocator 指向脚本源的定位符。由实际创建脚本的后处理器进行解释。
 	 */
 	public StandardScriptFactory(String scriptSourceLocator) {
 		this(null, scriptSourceLocator, (Class<?>[]) null);
@@ -73,10 +72,8 @@ public class StandardScriptFactory implements ScriptFactory, BeanClassLoaderAwar
 
 	/**
 	 * 为给定的脚本源创建一个新的 StandardScriptFactory。
-	 * @param scriptSourceLocator a locator that points to the source of the script.
-	 * Interpreted by the post-processor that actually creates the script.
-	 * @param scriptInterfaces the Java interfaces that the scripted object
-	 * is supposed to implement
+	 * @param scriptSourceLocator 指向脚本源的定位符。由实际创建脚本的后处理器进行解释。
+	 * @param scriptInterfaces 脚本化对象应实现的 Java 接口
 	 */
 	public StandardScriptFactory(String scriptSourceLocator, Class<?>... scriptInterfaces) {
 		this(null, scriptSourceLocator, scriptInterfaces);
@@ -84,10 +81,9 @@ public class StandardScriptFactory implements ScriptFactory, BeanClassLoaderAwar
 
 	/**
 	 * 为给定的脚本源创建一个新的 StandardScriptFactory。
-	 * @param scriptEngineName the name of the JSR-223 ScriptEngine to use
-	 * (explicitly given instead of inferred from the script source)
-	 * @param scriptSourceLocator a locator that points to the source of the script.
-	 * Interpreted by the post-processor that actually creates the script.
+	 * @param scriptEngineName 要使用的 JSR-223 ScriptEngine 名称
+	 * （显式指定，而非从脚本源推断）
+	 * @param scriptSourceLocator 指向脚本源的定位符。由实际创建脚本的后处理器进行解释。
 	 */
 	public StandardScriptFactory(String scriptEngineName, String scriptSourceLocator) {
 		this(scriptEngineName, scriptSourceLocator, (Class<?>[]) null);
@@ -95,12 +91,10 @@ public class StandardScriptFactory implements ScriptFactory, BeanClassLoaderAwar
 
 	/**
 	 * 为给定的脚本源创建一个新的 StandardScriptFactory。
-	 * @param scriptEngineName the name of the JSR-223 ScriptEngine to use
-	 * (explicitly given instead of inferred from the script source)
-	 * @param scriptSourceLocator a locator that points to the source of the script.
-	 * Interpreted by the post-processor that actually creates the script.
-	 * @param scriptInterfaces the Java interfaces that the scripted object
-	 * is supposed to implement
+	 * @param scriptEngineName 要使用的 JSR-223 ScriptEngine 名称
+	 * （显式指定，而非从脚本源推断）
+	 * @param scriptSourceLocator 指向脚本源的定位符。由实际创建脚本的后处理器进行解释。
+	 * @param scriptInterfaces 脚本化对象应实现的 Java 接口
 	 */
 	public StandardScriptFactory(
 			@Nullable String scriptEngineName, String scriptSourceLocator, @Nullable Class<?>... scriptInterfaces) {

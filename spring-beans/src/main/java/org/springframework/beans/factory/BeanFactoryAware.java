@@ -39,9 +39,9 @@ public interface BeanFactoryAware extends Aware {
 	/**
 	 * 向 Bean 实例提供其所拥有工厂的回调。<p>在填充普通 Bean 属性之后、在诸如
 	 * {@link InitializingBean#afterPropertiesSet()} 之类的初始化回调或自定义 init-method 之前调用。
-	 * @param beanFactory owning BeanFactory (never {@code null}).
-	 * The bean can immediately call methods on the factory.
-	 * @throws BeansException in case of initialization errors
+	 * @param beanFactory 所属的 BeanFactory（从不为 {@code null}）。
+	 * 该 Bean 可以立即调用工厂上的方法。
+	 * @throws BeansException 如果发生初始化错误
 	 * @see BeanInitializationException
 	 */
 	void setBeanFactory(BeanFactory beanFactory) throws BeansException;

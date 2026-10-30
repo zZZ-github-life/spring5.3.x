@@ -48,9 +48,9 @@ public class HandlerResult {
 
 	/**
 	 * 创建一个新的 {@code HandlerResult}。
-	 * @param handler the handler that handled the request
-	 * @param returnValue the return value from the handler possibly {@code null}
-	 * @param returnType the return value type
+	 * @param handler 处理该请求的处理器
+	 * @param returnValue 处理器的返回值，可能为 {@code null}
+	 * @param returnType 返回值类型
 	 */
 	public HandlerResult(Object handler, @Nullable Object returnValue, MethodParameter returnType) {
 		this(handler, returnValue, returnType, null);
@@ -58,10 +58,10 @@ public class HandlerResult {
 
 	/**
 	 * 创建一个新的 {@code HandlerResult}。
-	 * @param handler the handler that handled the request
-	 * @param returnValue the return value from the handler possibly {@code null}
-	 * @param returnType the return value type
-	 * @param context the binding context used for request handling
+	 * @param handler 处理该请求的处理器
+	 * @param returnValue 处理器的返回值，可能为 {@code null}
+	 * @param returnType 返回值类型
+	 * @param context 用于请求处理的绑定上下文
 	 */
 	public HandlerResult(Object handler, @Nullable Object returnValue, MethodParameter returnType,
 			@Nullable BindingContext context) {
@@ -120,8 +120,8 @@ public class HandlerResult {
 
 	/**
 	 * 配置异常处理器，用于在结果处理失败时生成替代结果。特别是对于异步返回值，错误可能在处理器调用之后才发生。
-	 * @param function the error handler
-	 * @return the current instance
+	 * @param function 错误处理器
+	 * @return 当前实例
 	 */
 	public HandlerResult setExceptionHandler(Function<Throwable, Mono<HandlerResult>> function) {
 		this.exceptionHandler = function;
@@ -137,8 +137,8 @@ public class HandlerResult {
 
 	/**
 	 * 应用异常处理器并返回替代结果。
-	 * @param failure the exception
-	 * @return the new result or the same error if there is no exception handler
+	 * @param failure 该异常
+	 * @return 新的结果；如果没有异常处理器，则为相同的错误
 	 */
 	public Mono<HandlerResult> applyExceptionHandler(Throwable failure) {
 		return (this.exceptionHandler != null ? this.exceptionHandler.apply(failure) : Mono.error(failure));

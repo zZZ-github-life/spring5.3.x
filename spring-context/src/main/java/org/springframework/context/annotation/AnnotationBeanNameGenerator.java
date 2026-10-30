@@ -86,8 +86,8 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 
 	/**
 	 * 从类上的某个注解派生 Bean 名称。
-	 * @param annotatedDef the annotation-aware bean definition
-	 * @return the bean name, or {@code null} if none is found
+	 * @param annotatedDef 支持注解的 Bean 定义
+	 * @return Bean 名称；如果未找到，则为 {@code null}
 	 */
 	@Nullable
 	protected String determineBeanNameFromAnnotation(AnnotatedBeanDefinition annotatedDef) {
@@ -121,10 +121,10 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 
 	/**
 	 * 检查给定注解是否是一种构造型注解，允许其通过注解的 {@code value()} 建议组件名称。
-	 * @param annotationType the name of the annotation class to check
-	 * @param metaAnnotationTypes the names of meta-annotations on the given annotation
-	 * @param attributes the map of attributes for the given annotation
-	 * @return whether the annotation qualifies as a stereotype with component name
+	 * @param annotationType 要检查的注解类的名称
+	 * @param metaAnnotationTypes 给定注解上的元注解名称
+	 * @param attributes 给定注解的属性映射
+	 * @return 该注解是否属于带组件名称的构造型注解
 	 */
 	protected boolean isStereotypeWithNameValue(String annotationType,
 			Set<String> metaAnnotationTypes, @Nullable Map<String, Object> attributes) {
@@ -141,9 +141,9 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 	 * 从给定的 Bean 定义派生默认 Bean 名称。
 	 *
 	 * <p>默认实现委托给 {@link #buildDefaultBeanName(BeanDefinition)}。
-	 * @param definition the bean definition to build a bean name for
-	 * @param registry the registry that the given bean definition is being registered with
-	 * @return the default bean name (never {@code null})
+	 * @param definition 要为其构建 Bean 名称的 Bean 定义
+	 * @param registry 给定 Bean 定义正在注册到的注册表
+	 * @return 默认 Bean 名称（永不为 {@code null}）
 	 */
 	protected String buildDefaultBeanName(BeanDefinition definition, BeanDefinitionRegistry registry) {
 		return buildDefaultBeanName(definition);
@@ -156,8 +156,8 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 	 *
 	 * <p>请注意，因此内部类将具有 "outerClassName.InnerClassName" 形式的名称，由于名称中含有句点，在按
 	 * 名称自动注入时可能会成为问题。
-	 * @param definition the bean definition to build a bean name for
-	 * @return the default bean name (never {@code null})
+	 * @param definition 要为其构建 Bean 名称的 Bean 定义
+	 * @return 默认 Bean 名称（永不为 {@code null}）
 	 */
 	protected String buildDefaultBeanName(BeanDefinition definition) {
 		String beanClassName = definition.getBeanClassName();

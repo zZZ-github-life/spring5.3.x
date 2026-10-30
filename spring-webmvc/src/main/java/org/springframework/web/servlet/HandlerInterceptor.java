@@ -73,13 +73,13 @@ public interface HandlerInterceptor {
 	 * <p><strong>注意：</strong>异步请求处理有特殊的注意事项。
 	 * 更多细节请参见 {@link org.springframework.web.servlet.AsyncHandlerInterceptor}。
 	 * <p>默认实现返回 {@code true}。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler chosen handler to execute, for type and/or instance evaluation
-	 * @return {@code true} if the execution chain should proceed with the
-	 * next interceptor or the handler itself. Else, DispatcherServlet assumes
-	 * that this interceptor has already dealt with the response itself.
-	 * @throws Exception in case of errors
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 所选的要执行的处理器，用于评估类型和/或实例
+	 * @return 如果执行链应继续下一个拦截器或处理器本身，则返回 {@code true}。
+	 * 否则，DispatcherServlet 假定
+	 * 该拦截器已自行处理了响应。
+	 * @throws Exception 如果发生错误
 	 */
 	default boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -97,13 +97,13 @@ public interface HandlerInterceptor {
 	 * <p><strong>注意：</strong>异步请求处理有特殊的注意事项。
 	 * 更多细节请参见 {@link org.springframework.web.servlet.AsyncHandlerInterceptor}。
 	 * <p>默认实现为空。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the handler (or {@link HandlerMethod}) that started asynchronous
-	 * execution, for type and/or instance examination
-	 * @param modelAndView the {@code ModelAndView} that the handler returned
-	 * (can also be {@code null})
-	 * @throws Exception in case of errors
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 启动了异步执行的处理器（或 {@link HandlerMethod}），
+	 * 用于检查类型和/或实例
+	 * @param modelAndView 处理器返回的 {@code ModelAndView}
+	 * （也可以为 {@code null}）
+	 * @throws Exception 如果发生错误
 	 */
 	default void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			@Nullable ModelAndView modelAndView) throws Exception {
@@ -118,13 +118,13 @@ public interface HandlerInterceptor {
 	 * <p><strong>注意：</strong>异步请求处理有特殊的注意事项。
 	 * 更多细节请参见 {@link org.springframework.web.servlet.AsyncHandlerInterceptor}。
 	 * <p>默认实现为空。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the handler (or {@link HandlerMethod}) that started asynchronous
-	 * execution, for type and/or instance examination
-	 * @param ex any exception thrown on handler execution, if any; this does not
-	 * include exceptions that have been handled through an exception resolver
-	 * @throws Exception in case of errors
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 启动了异步执行的处理器（或 {@link HandlerMethod}），
+	 * 用于检查类型和/或实例
+	 * @param ex 处理器执行时抛出的任何异常（如果有）；
+	 * 不包括已通过异常解析器处理的异常
+	 * @throws Exception 如果发生错误
 	 */
 	default void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
 			@Nullable Exception ex) throws Exception {

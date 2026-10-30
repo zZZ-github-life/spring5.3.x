@@ -62,7 +62,7 @@ public class ShadowingClassLoader extends DecoratingClassLoader {
 	/**
 	 * 创建一个新的 ShadowingClassLoader，装饰给定的 ClassLoader，并应用
 	 * {@link #DEFAULT_EXCLUDED_PACKAGES}。
-	 * @param enclosingClassLoader the ClassLoader to decorate
+	 * @param enclosingClassLoader 要装饰的 ClassLoader
 	 * @see #ShadowingClassLoader(ClassLoader, boolean)
 	 */
 	public ShadowingClassLoader(ClassLoader enclosingClassLoader) {
@@ -71,8 +71,8 @@ public class ShadowingClassLoader extends DecoratingClassLoader {
 
 	/**
 	 * 创建一个新的 ShadowingClassLoader，装饰给定的 ClassLoader。
-	 * @param enclosingClassLoader the ClassLoader to decorate
-	 * @param defaultExcludes whether to apply {@link #DEFAULT_EXCLUDED_PACKAGES}
+	 * @param enclosingClassLoader 要装饰的 ClassLoader
+	 * @param defaultExcludes 是否应用 {@link #DEFAULT_EXCLUDED_PACKAGES}
 	 * @since 4.3.8
 	 */
 	public ShadowingClassLoader(ClassLoader enclosingClassLoader, boolean defaultExcludes) {
@@ -88,7 +88,7 @@ public class ShadowingClassLoader extends DecoratingClassLoader {
 
 	/**
 	 * 将给定的 ClassFileTransformer 添加到此 ClassLoader 要应用的转换器列表中。
-	 * @param transformer the ClassFileTransformer
+	 * @param transformer 该 ClassFileTransformer
 	 */
 	public void addTransformer(ClassFileTransformer transformer) {
 		Assert.notNull(transformer, "Transformer must not be null");
@@ -97,7 +97,7 @@ public class ShadowingClassLoader extends DecoratingClassLoader {
 
 	/**
 	 * 将给定 ClassLoader 中的所有 ClassFileTransformer 复制到此 ClassLoader 要应用的转换器列表中。
-	 * @param other the ClassLoader to copy from
+	 * @param other 要从中复制的 ClassLoader
 	 */
 	public void copyTransformers(ShadowingClassLoader other) {
 		Assert.notNull(other, "Other ClassLoader must not be null");
@@ -121,8 +121,8 @@ public class ShadowingClassLoader extends DecoratingClassLoader {
 
 	/**
 	 * 确定给定类是否应排除在遮蔽之外。
-	 * @param className the name of the class
-	 * @return whether the specified class should be shadowed
+	 * @param className 类的名称
+	 * @return 指定的类是否应被遮蔽
 	 */
 	private boolean shouldShadow(String className) {
 		return (!className.equals(getClass().getName()) && !className.endsWith("ShadowingClassLoader") &&
@@ -131,8 +131,8 @@ public class ShadowingClassLoader extends DecoratingClassLoader {
 
 	/**
 	 * 确定指定的类是否适合由此类加载器进行遮蔽。
-	 * @param className the class name to check
-	 * @return whether the specified class is eligible
+	 * @param className 要检查的类名
+	 * @return 指定的类是否符合条件
 	 * @see #isExcluded
 	 */
 	protected boolean isEligibleForShadowing(String className) {

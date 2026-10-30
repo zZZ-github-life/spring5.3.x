@@ -60,15 +60,15 @@ public interface StartupStep {
 
 	/**
 	 * 向该步骤添加一个 {@link Tag}。
-	 * @param key tag key
-	 * @param value tag value
+	 * @param key 标签键
+	 * @param value 标签值
 	 */
 	StartupStep tag(String key, String value);
 
 	/**
 	 * 向该步骤添加一个 {@link Tag}。
-	 * @param key tag key
-	 * @param value {@link Supplier} for the tag value
+	 * @param key 标签键
+	 * @param value 标签值的 {@link Supplier}
 	 */
 	StartupStep tag(String key, Supplier<String> value);
 

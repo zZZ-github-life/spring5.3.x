@@ -103,7 +103,7 @@ public class SimpleNamespaceContext implements NamespaceContext {
 
 	/**
 	 * 将给定命名空间绑定为默认命名空间。
-	 * @param namespaceUri the namespace uri
+	 * @param namespaceUri 命名空间 URI
 	 */
 	public void bindDefaultNamespaceUri(String namespaceUri) {
 		bindNamespaceUri(XMLConstants.DEFAULT_NS_PREFIX, namespaceUri);
@@ -111,8 +111,8 @@ public class SimpleNamespaceContext implements NamespaceContext {
 
 	/**
 	 * 将给定前缀绑定到给定命名空间。
-	 * @param prefix the namespace prefix
-	 * @param namespaceUri the namespace uri
+	 * @param prefix 命名空间前缀
+	 * @param namespaceUri 命名空间 URI
 	 */
 	public void bindNamespaceUri(String prefix, String namespaceUri) {
 		Assert.notNull(prefix, "No prefix given");
@@ -130,7 +130,7 @@ public class SimpleNamespaceContext implements NamespaceContext {
 
 	/**
 	 * 从此上下文中移除给定前缀。
-	 * @param prefix the prefix to be removed
+	 * @param prefix 要移除的前缀
 	 */
 	public void removeBinding(@Nullable String prefix) {
 		if (XMLConstants.DEFAULT_NS_PREFIX.equals(prefix)) {

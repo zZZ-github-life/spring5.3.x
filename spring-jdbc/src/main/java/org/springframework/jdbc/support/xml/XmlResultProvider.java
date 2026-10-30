@@ -30,7 +30,7 @@ public interface XmlResultProvider {
 	/**
 	 * 实现类必须实现此方法，以为 {@code Result} 提供 XML 内容。
 	 * 具体实现因所使用的 {@code Result} 实现而异。
-	 * @param result the {@code Result} object being used to provide the XML input
+	 * @param result 用于提供 XML 输入的 {@code Result} 对象
 	 */
 	void provideXml(Result result);
 

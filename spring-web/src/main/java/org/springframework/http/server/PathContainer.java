@@ -45,8 +45,8 @@ public interface PathContainer {
 
 	/**
 	 * 从元素列表中的给定偏移量提取子路径。
-	 * @param index the start element index (inclusive)
-	 * @return the sub-path
+	 * @param index 起始元素索引（含）
+	 * @return 子路径
 	 */
 	default PathContainer subPath(int index) {
 		return subPath(index, elements().size());
@@ -55,9 +55,9 @@ public interface PathContainer {
 	/**
 	 * 从元素列表的给定起始偏移量（含）到结束偏移量（不含）
 	 * 提取子路径。
-	 * @param startIndex the start element index (inclusive)
-	 * @param endIndex the end element index (exclusive)
-	 * @return the sub-path
+	 * @param startIndex 起始元素索引（含）
+	 * @param endIndex 结束元素索引（不含）
+	 * @return 子路径
 	 */
 	default PathContainer subPath(int startIndex, int endIndex) {
 		return DefaultPathContainer.subPath(this, startIndex, endIndex);
@@ -67,8 +67,8 @@ public interface PathContainer {
 	/**
 	 * 将路径值解析为一系列 {@code "/"} {@link Separator Separator}
 	 * 和 {@link PathSegment PathSegment} 元素。
-	 * @param path the encoded, raw path value to parse
-	 * @return the parsed path
+	 * @param path 要解析的已编码原始路径值
+	 * @return 解析后的路径
 	 */
 	static PathContainer parsePath(String path) {
 		return DefaultPathContainer.createFromUrlPath(path, Options.HTTP_PATH);
@@ -77,9 +77,9 @@ public interface PathContainer {
 	/**
 	 * 将路径值解析为一系列 {@link Separator Separator} 和
 	 * {@link PathSegment PathSegment} 元素。
-	 * @param path the encoded, raw path value to parse
-	 * @param options to customize parsing
-	 * @return the parsed path
+	 * @param path 要解析的已编码原始路径值
+	 * @param options 用于自定义解析
+	 * @return 解析后的路径
 	 * @since 5.2
 	 */
 	static PathContainer parsePath(String path, Options options) {
@@ -123,7 +123,7 @@ public interface PathContainer {
 
 		/**
 		 * 与此路径段关联的路径参数。
-		 * @return an unmodifiable map containing the parameters
+		 * @return 包含这些参数的不可修改映射
 		 */
 		MultiValueMap<String, String> parameters();
 	}
@@ -167,11 +167,10 @@ public interface PathContainer {
 
 		/**
 		 * 使用给定设置创建 {@link Options} 实例。
-		 * @param separator the separator for parsing the path into segments;
-		 * currently this must be slash or dot.
-		 * @param decodeAndParseSegments whether to URL decode path segment
-		 * values and parse path parameters. If set to false, only escape
-		 * sequences for the separator char are decoded.
+		 * @param separator 用于将路径解析为各段的间隔符；
+		 * 目前必须为斜杠或点。
+		 * @param decodeAndParseSegments 是否对路径段值进行 URL 解码并解析路径参数。
+		 * 如果设为 false，则只对间隔符的转义序列进行解码。
 		 */
 		public static Options create(char separator, boolean decodeAndParseSegments) {
 			return new Options(separator, decodeAndParseSegments);

@@ -113,9 +113,9 @@ public abstract class AbstractCachingConfiguration implements ImportAware {
 		/**
 		 * 将 {@link CachingConfigurer} 供应器适配为指定映射函数提供的另一个供应器。如果底层
 		 * {@link CachingConfigurer} 为 {@code null}，则返回 {@code null}，并且不会调用该映射函数。
-		 * @param provider the provider to use to adapt the supplier
-		 * @param <T> the type of the supplier
-		 * @return another supplier mapped by the specified function
+		 * @param provider 用于适配该 supplier 的 provider
+		 * @param <T> 该 supplier 的类型
+		 * @return 由指定函数映射得到的另一个 supplier
 		 */
 		@Nullable
 		public <T> Supplier<T> adapt(Function<CachingConfigurer, T> provider) {

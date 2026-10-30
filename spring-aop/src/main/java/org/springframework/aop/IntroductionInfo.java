@@ -30,7 +30,7 @@ public interface IntroductionInfo {
 
 	/**
 	 * 返回此 Advisor 或 Advice 所引入的附加接口。
-	 * @return the introduced interfaces
+	 * @return 被引入的接口
 	 */
 	Class<?>[] getInterfaces();
 

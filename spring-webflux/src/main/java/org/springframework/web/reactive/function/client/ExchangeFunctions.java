@@ -45,8 +45,8 @@ public abstract class ExchangeFunctions {
 
 	/**
 	 * 使用给定的 {@code ClientHttpConnector} 创建 {@code ExchangeFunction}。这与调用 {@link #create(ClientHttpConnector, ExchangeStrategies)} 并传入 {@link ExchangeStrategies#withDefaults()} 相同。
-	 * @param connector the connector to use for connecting to servers
-	 * @return the created {@code ExchangeFunction}
+	 * @param connector 用于连接服务器的连接器
+	 * @return 创建的 {@code ExchangeFunction}
 	 */
 	public static ExchangeFunction create(ClientHttpConnector connector) {
 		return create(connector, ExchangeStrategies.withDefaults());
@@ -54,9 +54,9 @@ public abstract class ExchangeFunctions {
 
 	/**
 	 * 使用给定的 {@code ClientHttpConnector} 和 {@code ExchangeStrategies} 创建 {@code ExchangeFunction}。
-	 * @param connector the connector to use for connecting to servers
-	 * @param strategies the {@code ExchangeStrategies} to use
-	 * @return the created {@code ExchangeFunction}
+	 * @param connector 用于连接服务器的连接器
+	 * @param strategies 要使用的 {@code ExchangeStrategies}
+	 * @return 创建的 {@code ExchangeFunction}
 	 */
 	public static ExchangeFunction create(ClientHttpConnector connector, ExchangeStrategies strategies) {
 		return new DefaultExchangeFunction(connector, strategies);

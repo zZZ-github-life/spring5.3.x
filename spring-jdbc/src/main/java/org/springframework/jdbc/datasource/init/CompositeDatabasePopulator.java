@@ -50,7 +50,7 @@ public class CompositeDatabasePopulator implements DatabasePopulator {
 
 	/**
 	 * 使用给定的填充器创建一个 {@code CompositeDatabasePopulator}。
-	 * @param populators one or more populators to delegate to
+	 * @param populators 一个或多个要委托的填充器
 	 * @since 4.3
 	 */
 	public CompositeDatabasePopulator(Collection<DatabasePopulator> populators) {
@@ -60,7 +60,7 @@ public class CompositeDatabasePopulator implements DatabasePopulator {
 
 	/**
 	 * 使用给定的填充器创建一个 {@code CompositeDatabasePopulator}。
-	 * @param populators one or more populators to delegate to
+	 * @param populators 一个或多个要委派给的 populator
 	 * @since 4.3
 	 */
 	public CompositeDatabasePopulator(DatabasePopulator... populators) {

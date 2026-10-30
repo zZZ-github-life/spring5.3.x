@@ -182,10 +182,10 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 	/**
 	 * 为 Driver 构建属性（包括给定的用户名和密码，如果有），
 	 * 并获取相应的 Connection。
-	 * @param username the name of the user
-	 * @param password the password to use
-	 * @return the obtained Connection
-	 * @throws SQLException in case of failure
+	 * @param username 用户的名称
+	 * @param password 要使用的密码
+	 * @return 获取到的 Connection
+	 * @throws SQLException 如果发生失败
 	 * @see java.sql.Driver#connect(String, java.util.Properties)
 	 */
 	protected Connection getConnectionFromDriver(@Nullable String username, @Nullable String password) throws SQLException {
@@ -214,9 +214,9 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 	/**
 	 * 使用给定属性获取一个 Connection。
 	 * <p>这是一个模板方法，由子类实现。
-	 * @param props the merged connection properties
-	 * @return the obtained Connection
-	 * @throws SQLException in case of failure
+	 * @param props 合并后的连接属性
+	 * @return 获取到的 Connection
+	 * @throws SQLException 如果发生失败
 	 */
 	protected abstract Connection getConnectionFromDriver(Properties props) throws SQLException;
 

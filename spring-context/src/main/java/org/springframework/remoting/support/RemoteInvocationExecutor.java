@@ -34,12 +34,12 @@ public interface RemoteInvocationExecutor {
 
 	/**
 	 * 在给定的目标对象上执行此调用。通常在服务器端接收到 RemoteInvocation 时调用。
-	 * @param invocation the RemoteInvocation
-	 * @param targetObject the target object to apply the invocation to
-	 * @return the invocation result
-	 * @throws NoSuchMethodException if the method name could not be resolved
-	 * @throws IllegalAccessException if the method could not be accessed
-	 * @throws InvocationTargetException if the method invocation resulted in an exception
+	 * @param invocation RemoteInvocation 对象
+	 * @param targetObject 要对其应用该调用的目标对象
+	 * @return 调用结果
+	 * @throws NoSuchMethodException 如果无法解析方法名
+	 * @throws IllegalAccessException 如果无法访问该方法
+	 * @throws InvocationTargetException 如果方法调用导致异常
 	 * @see java.lang.reflect.Method#invoke
 	 */
 	Object invoke(RemoteInvocation invocation, Object targetObject)

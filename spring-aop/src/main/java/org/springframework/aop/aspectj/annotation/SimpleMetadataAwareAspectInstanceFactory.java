@@ -35,8 +35,8 @@ public class SimpleMetadataAwareAspectInstanceFactory extends SimpleAspectInstan
 
 	/**
 	 * 为给定的切面类创建一个新的 SimpleMetadataAwareAspectInstanceFactory。
-	 * @param aspectClass the aspect class
-	 * @param aspectName the aspect name
+	 * @param aspectClass 切面类
+	 * @param aspectName 切面名称
 	 */
 	public SimpleMetadataAwareAspectInstanceFactory(Class<?> aspectClass, String aspectName) {
 		super(aspectClass);

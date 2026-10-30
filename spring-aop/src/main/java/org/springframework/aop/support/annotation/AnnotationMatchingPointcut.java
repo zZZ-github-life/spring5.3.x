@@ -44,7 +44,7 @@ public class AnnotationMatchingPointcut implements Pointcut {
 
 	/**
 	 * 为给定的注解类型创建一个新的 AnnotationMatchingPointcut。
-	 * @param classAnnotationType the annotation type to look for at the class level
+	 * @param classAnnotationType 要在类级别查找的注解类型
 	 */
 	public AnnotationMatchingPointcut(Class<? extends Annotation> classAnnotationType) {
 		this(classAnnotationType, false);
@@ -52,9 +52,8 @@ public class AnnotationMatchingPointcut implements Pointcut {
 
 	/**
 	 * 为给定的注解类型创建一个新的 AnnotationMatchingPointcut。
-	 * @param classAnnotationType the annotation type to look for at the class level
-	 * @param checkInherited whether to also check the superclasses and interfaces
-	 * as well as meta-annotations for the annotation type
+	 * @param classAnnotationType 要在类级别查找的注解类型
+	 * @param checkInherited 是否还检查父类、接口以及元注解中的该注解类型
 	 * @see AnnotationClassFilter#AnnotationClassFilter(Class, boolean)
 	 */
 	public AnnotationMatchingPointcut(Class<? extends Annotation> classAnnotationType, boolean checkInherited) {
@@ -64,10 +63,8 @@ public class AnnotationMatchingPointcut implements Pointcut {
 
 	/**
 	 * 为给定的注解类型创建一个新的 AnnotationMatchingPointcut。
-	 * @param classAnnotationType the annotation type to look for at the class level
-	 * (can be {@code null})
-	 * @param methodAnnotationType the annotation type to look for at the method level
-	 * (can be {@code null})
+	 * @param classAnnotationType 要在类级别查找的注解类型（可以为 {@code null}）
+	 * @param methodAnnotationType 要在方法级别查找的注解类型（可以为 {@code null}）
 	 */
 	public AnnotationMatchingPointcut(@Nullable Class<? extends Annotation> classAnnotationType,
 			@Nullable Class<? extends Annotation> methodAnnotationType) {
@@ -77,12 +74,9 @@ public class AnnotationMatchingPointcut implements Pointcut {
 
 	/**
 	 * 为给定的注解类型创建一个新的 AnnotationMatchingPointcut。
-	 * @param classAnnotationType the annotation type to look for at the class level
-	 * (can be {@code null})
-	 * @param methodAnnotationType the annotation type to look for at the method level
-	 * (can be {@code null})
-	 * @param checkInherited whether to also check the superclasses and interfaces
-	 * as well as meta-annotations for the annotation type
+	 * @param classAnnotationType 要在类级别查找的注解类型（可以为 {@code null}）
+	 * @param methodAnnotationType 要在方法级别查找的注解类型（可以为 {@code null}）
+	 * @param checkInherited 是否还检查父类、接口以及元注解中的该注解类型
 	 * @since 5.0
 	 * @see AnnotationClassFilter#AnnotationClassFilter(Class, boolean)
 	 * @see AnnotationMethodMatcher#AnnotationMethodMatcher(Class, boolean)
@@ -144,8 +138,8 @@ public class AnnotationMatchingPointcut implements Pointcut {
 
 	/**
 	 * 用于创建 AnnotationMatchingPointcut 的工厂方法，它在类级别匹配指定的注解。
-	 * @param annotationType the annotation type to look for at the class level
-	 * @return the corresponding AnnotationMatchingPointcut
+	 * @param annotationType 要在类级别查找的注解类型
+	 * @return 对应的 AnnotationMatchingPointcut
 	 */
 	public static AnnotationMatchingPointcut forClassAnnotation(Class<? extends Annotation> annotationType) {
 		Assert.notNull(annotationType, "Annotation type must not be null");
@@ -154,8 +148,8 @@ public class AnnotationMatchingPointcut implements Pointcut {
 
 	/**
 	 * 用于创建 AnnotationMatchingPointcut 的工厂方法，它在方法级别匹配指定的注解。
-	 * @param annotationType the annotation type to look for at the method level
-	 * @return the corresponding AnnotationMatchingPointcut
+	 * @param annotationType 要在方法级别查找的注解类型
+	 * @return 对应的 AnnotationMatchingPointcut
 	 */
 	public static AnnotationMatchingPointcut forMethodAnnotation(Class<? extends Annotation> annotationType) {
 		Assert.notNull(annotationType, "Annotation type must not be null");

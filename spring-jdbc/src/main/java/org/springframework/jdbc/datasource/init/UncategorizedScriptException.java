@@ -28,7 +28,7 @@ public class UncategorizedScriptException extends ScriptException {
 
 	/**
 	 * 创建一个新的 {@code UncategorizedScriptException}。
-	 * @param message detailed message
+	 * @param message 详细消息
 	 */
 	public UncategorizedScriptException(String message) {
 		super(message);
@@ -36,8 +36,8 @@ public class UncategorizedScriptException extends ScriptException {
 
 	/**
 	 * 创建一个新的 {@code UncategorizedScriptException}。
-	 * @param message detailed message
-	 * @param cause the root cause
+	 * @param message 详细消息
+	 * @param cause 根本原因
 	 */
 	public UncategorizedScriptException(String message, Throwable cause) {
 		super(message, cause);

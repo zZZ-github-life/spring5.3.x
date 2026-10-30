@@ -39,7 +39,7 @@ public class FacesWebRequest extends FacesRequestAttributes implements NativeWeb
 
 	/**
 	 * 为给定的 FacesContext 创建一个新的 FacesWebRequest 适配器。
-	 * @param facesContext the current FacesContext
+	 * @param facesContext 当前的 FacesContext
 	 * @see javax.faces.context.FacesContext#getCurrentInstance()
 	 */
 	public FacesWebRequest(FacesContext facesContext) {

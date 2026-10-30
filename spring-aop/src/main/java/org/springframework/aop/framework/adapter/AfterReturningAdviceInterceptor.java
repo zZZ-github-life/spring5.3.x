@@ -42,7 +42,7 @@ public class AfterReturningAdviceInterceptor implements MethodInterceptor, After
 
 	/**
 	 * 为给定 advice 创建一个新的 AfterReturningAdviceInterceptor。
-	 * @param advice the AfterReturningAdvice to wrap
+	 * @param advice 要包装的 AfterReturningAdvice
 	 */
 	public AfterReturningAdviceInterceptor(AfterReturningAdvice advice) {
 		Assert.notNull(advice, "Advice must not be null");

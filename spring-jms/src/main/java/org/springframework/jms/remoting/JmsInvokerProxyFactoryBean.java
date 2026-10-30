@@ -58,9 +58,8 @@ public class JmsInvokerProxyFactoryBean extends JmsInvokerClientInterceptor
 
 	/**
 	 * 设置代理必须实现的接口。
-	 * @param serviceInterface the interface that the proxy must implement
-	 * @throws IllegalArgumentException if the supplied {@code serviceInterface}
-	 * is not an interface type
+	 * @param serviceInterface 代理必须实现的接口
+	 * @throws IllegalArgumentException 如果提供的 {@code serviceInterface} 不是接口类型
 	 */
 	public void setServiceInterface(Class<?> serviceInterface) {
 		Assert.notNull(serviceInterface, "'serviceInterface' must not be null");

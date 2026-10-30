@@ -27,7 +27,7 @@ public interface ConverterRegistry {
 
 	/**
 	 * 向此注册表添加一个普通转换器。可转换的源/目标类型对由该转换器的参数化类型推导得出。
-	 * @throws IllegalArgumentException if the parameterized types could not be resolved
+	 * @throws IllegalArgumentException 如果无法解析参数化类型
 	 */
 	void addConverter(Converter<?, ?> converter);
 
@@ -45,14 +45,14 @@ public interface ConverterRegistry {
 
 	/**
 	 * 向此注册表添加一个范围转换器工厂。可转换的源/目标类型对由该 ConverterFactory 的参数化类型推导。
-	 * @throws IllegalArgumentException if the parameterized types could not be resolved
+	 * @throws IllegalArgumentException 如果无法解析参数化类型
 	 */
 	void addConverterFactory(ConverterFactory<?, ?> factory);
 
 	/**
 	 * 移除从 {@code sourceType} 到 {@code targetType} 的所有转换器。
-	 * @param sourceType the source type
-	 * @param targetType the target type
+	 * @param sourceType 源类型
+	 * @param targetType 目标类型
 	 */
 	void removeConvertible(Class<?> sourceType, Class<?> targetType);
 

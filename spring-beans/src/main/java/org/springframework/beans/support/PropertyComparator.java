@@ -34,7 +34,7 @@ import org.springframework.util.StringUtils;
  * @author Juergen Hoeller
  * @author Jean-Pierre Pawlak
  * @since 19.05.2003
- * @param <T> the type of objects that may be compared by this comparator
+ * @param <T> 此比较器可以比较的对象类型
  * @see org.springframework.beans.BeanWrapper
  */
 public class PropertyComparator<T> implements Comparator<T> {
@@ -54,9 +54,9 @@ public class PropertyComparator<T> implements Comparator<T> {
 
 	/**
 	 * 为给定设置创建一个 PropertyComparator。
-	 * @param property the property to compare
-	 * @param ignoreCase whether upper and lower case in String values should be ignored
-	 * @param ascending whether to sort ascending (true) or descending (false)
+	 * @param property 要比较的属性
+	 * @param ignoreCase 是否应忽略 String 值中字母的大小写
+	 * @param ascending 是升序排序（true）还是降序排序（false）
 	 */
 	public PropertyComparator(String property, boolean ignoreCase, boolean ascending) {
 		this.sortDefinition = new MutableSortDefinition(property, ignoreCase, ascending);
@@ -103,8 +103,8 @@ public class PropertyComparator<T> implements Comparator<T> {
 
 	/**
 	 * 获取给定对象对应的 SortDefinition 属性值。
-	 * @param obj the object to get the property value for
-	 * @return the property value
+	 * @param obj 要获取其属性值的对象
+	 * @return 属性值
 	 */
 	@Nullable
 	private Object getPropertyValue(Object obj) {
@@ -126,9 +126,9 @@ public class PropertyComparator<T> implements Comparator<T> {
 	/**
 	 * 根据给定的排序定义对给定的 List 进行排序。
 	 * <p>注意：包含的对象必须以 Bean 属性的形式（即 getXXX 方法）提供给定的属性。
-	 * @param source the input List
-	 * @param sortDefinition the parameters to sort by
-	 * @throws java.lang.IllegalArgumentException in case of a missing propertyName
+	 * @param source 输入的 List
+	 * @param sortDefinition 排序依据的参数
+	 * @throws java.lang.IllegalArgumentException 在缺少 propertyName 时
 	 */
 	public static void sort(List<?> source, SortDefinition sortDefinition) throws BeansException {
 		if (StringUtils.hasText(sortDefinition.getProperty())) {
@@ -139,9 +139,9 @@ public class PropertyComparator<T> implements Comparator<T> {
 	/**
 	 * 根据给定的排序定义对给定的源进行排序。
 	 * <p>注意：包含的对象必须以 Bean 属性的形式（即 getXXX 方法）提供给定的属性。
-	 * @param source input source
-	 * @param sortDefinition the parameters to sort by
-	 * @throws java.lang.IllegalArgumentException in case of a missing propertyName
+	 * @param source 输入源
+	 * @param sortDefinition 排序依据的参数
+	 * @throws java.lang.IllegalArgumentException 在缺少 propertyName 时
 	 */
 	public static void sort(Object[] source, SortDefinition sortDefinition) throws BeansException {
 		if (StringUtils.hasText(sortDefinition.getProperty())) {

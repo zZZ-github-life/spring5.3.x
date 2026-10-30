@@ -103,7 +103,7 @@ public class BeanValidationPostProcessor implements BeanPostProcessor, Initializ
 
 	/**
 	 * 对给定 Bean 执行校验。
-	 * @param bean the bean instance to validate
+	 * @param bean 要校验的 Bean 实例。
 	 * @see javax.validation.Validator#validate
 	 */
 	protected void doValidate(Object bean) {

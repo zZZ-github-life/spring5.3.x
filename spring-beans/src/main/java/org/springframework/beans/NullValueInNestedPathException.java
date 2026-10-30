@@ -29,8 +29,8 @@ public class NullValueInNestedPathException extends InvalidPropertyException {
 
 	/**
 	 * 创建一个新的 NullValueInNestedPathException。
-	 * @param beanClass the offending bean class
-	 * @param propertyName the offending property
+	 * @param beanClass 出错的 Bean 类
+	 * @param propertyName 出错的属性
 	 */
 	public NullValueInNestedPathException(Class<?> beanClass, String propertyName) {
 		super(beanClass, propertyName, "Value of nested property '" + propertyName + "' is null");
@@ -38,9 +38,9 @@ public class NullValueInNestedPathException extends InvalidPropertyException {
 
 	/**
 	 * 创建一个新的 NullValueInNestedPathException。
-	 * @param beanClass the offending bean class
-	 * @param propertyName the offending property
-	 * @param msg the detail message
+	 * @param beanClass 出错的 Bean 类
+	 * @param propertyName 出错的属性
+	 * @param msg 详细消息
 	 */
 	public NullValueInNestedPathException(Class<?> beanClass, String propertyName, String msg) {
 		super(beanClass, propertyName, msg);
@@ -48,10 +48,10 @@ public class NullValueInNestedPathException extends InvalidPropertyException {
 
 	/**
 	 * 创建一个新的 NullValueInNestedPathException。
-	 * @param beanClass the offending bean class
-	 * @param propertyName the offending property
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param beanClass 出错的 Bean 类
+	 * @param propertyName 出错的属性
+	 * @param msg 详细消息
+	 * @param cause 根本原因
 	 * @since 4.3.2
 	 */
 	public NullValueInNestedPathException(Class<?> beanClass, String propertyName, String msg, Throwable cause) {

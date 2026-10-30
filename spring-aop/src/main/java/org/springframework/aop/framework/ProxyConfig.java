@@ -131,7 +131,7 @@ public class ProxyConfig implements Serializable {
 
 	/**
 	 * 从另一个配置对象复制配置。
-	 * @param other object to copy configuration from
+	 * @param other 要从中复制配置的对象
 	 */
 	public void copyFrom(ProxyConfig other) {
 		Assert.notNull(other, "Other ProxyConfig object must not be null");

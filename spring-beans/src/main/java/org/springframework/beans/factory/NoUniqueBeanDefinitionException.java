@@ -42,9 +42,9 @@ public class NoUniqueBeanDefinitionException extends NoSuchBeanDefinitionExcepti
 
 	/**
 	 * 创建一个新的 {@code NoUniqueBeanDefinitionException}。
-	 * @param type required type of the non-unique bean
-	 * @param numberOfBeansFound the number of matching beans
-	 * @param message detailed message describing the problem
+	 * @param type 非唯一 Bean 的所需类型
+	 * @param numberOfBeansFound 匹配的 Bean 数量
+	 * @param message 描述该问题的详细消息
 	 */
 	public NoUniqueBeanDefinitionException(Class<?> type, int numberOfBeansFound, String message) {
 		super(type, message);
@@ -54,8 +54,8 @@ public class NoUniqueBeanDefinitionException extends NoSuchBeanDefinitionExcepti
 
 	/**
 	 * 创建一个新的 {@code NoUniqueBeanDefinitionException}。
-	 * @param type required type of the non-unique bean
-	 * @param beanNamesFound the names of all matching beans (as a Collection)
+	 * @param type 非唯一 Bean 的所需类型
+	 * @param beanNamesFound 所有匹配的 Bean 名称（作为 Collection）
 	 */
 	public NoUniqueBeanDefinitionException(Class<?> type, Collection<String> beanNamesFound) {
 		super(type, "expected single matching bean but found " + beanNamesFound.size() + ": " +
@@ -66,8 +66,8 @@ public class NoUniqueBeanDefinitionException extends NoSuchBeanDefinitionExcepti
 
 	/**
 	 * 创建一个新的 {@code NoUniqueBeanDefinitionException}。
-	 * @param type required type of the non-unique bean
-	 * @param beanNamesFound the names of all matching beans (as an array)
+	 * @param type 非唯一 Bean 的所需类型
+	 * @param beanNamesFound 所有匹配的 Bean 名称（作为数组）
 	 */
 	public NoUniqueBeanDefinitionException(Class<?> type, String... beanNamesFound) {
 		this(type, Arrays.asList(beanNamesFound));
@@ -75,8 +75,8 @@ public class NoUniqueBeanDefinitionException extends NoSuchBeanDefinitionExcepti
 
 	/**
 	 * 创建一个新的 {@code NoUniqueBeanDefinitionException}。
-	 * @param type required type of the non-unique bean
-	 * @param beanNamesFound the names of all matching beans (as a Collection)
+	 * @param type 非唯一 Bean 的所需类型
+	 * @param beanNamesFound 所有匹配的 Bean 名称（作为 Collection）
 	 * @since 5.1
 	 */
 	public NoUniqueBeanDefinitionException(ResolvableType type, Collection<String> beanNamesFound) {
@@ -88,8 +88,8 @@ public class NoUniqueBeanDefinitionException extends NoSuchBeanDefinitionExcepti
 
 	/**
 	 * 创建一个新的 {@code NoUniqueBeanDefinitionException}。
-	 * @param type required type of the non-unique bean
-	 * @param beanNamesFound the names of all matching beans (as an array)
+	 * @param type 非唯一 Bean 的所需类型
+	 * @param beanNamesFound 所有匹配的 Bean 名称（作为数组）
 	 * @since 5.1
 	 */
 	public NoUniqueBeanDefinitionException(ResolvableType type, String... beanNamesFound) {

@@ -31,8 +31,8 @@ import java.util.Map;
  * @author Arjen Poutsma
  * @author Juergen Hoeller
  * @since 3.0
- * @param <K> the key type
- * @param <V> the value element type
+ * @param <K> 键类型
+ * @param <V> 值元素类型
  */
 public class LinkedMultiValueMap<K, V> extends MultiValueMapAdapter<K, V>  // new public base class in 5.3
 		implements Serializable, Cloneable {
@@ -50,8 +50,8 @@ public class LinkedMultiValueMap<K, V> extends MultiValueMapAdapter<K, V>  // ne
 	/**
 	 * 创建一个新的 LinkedMultiValueMap，它包装一个 {@link LinkedHashMap}，其初始容量可容纳指定数量的元
 	 * 素，预计不会立即发生调整大小/重新哈希操作。
-	 * @param expectedSize the expected number of elements (with a corresponding
-	 * capacity to be derived so that no resize/rehash operations are needed)
+	 * @param expectedSize 预期的元素数量
+	 * （会据此推导相应容量，以免需要扩容或重新哈希）
 	 * @see CollectionUtils#newLinkedHashMap(int)
 	 */
 	public LinkedMultiValueMap(int expectedSize) {
@@ -61,7 +61,7 @@ public class LinkedMultiValueMap<K, V> extends MultiValueMapAdapter<K, V>  // ne
 	/**
 	 * 复制构造函数：创建一个与指定 Map 具有相同映射的新 LinkedMultiValueMap。注意，这是浅拷贝；其持有
 	 * 值的 List 条目将被复用，因此无法独立修改。
-	 * @param otherMap the Map whose mappings are to be placed in this Map
+	 * @param otherMap 映射关系要放入此 Map 的 Map
 	 * @see #clone()
 	 * @see #deepCopy()
 	 */
@@ -72,9 +72,9 @@ public class LinkedMultiValueMap<K, V> extends MultiValueMapAdapter<K, V>  // ne
 
 	/**
 	 * 创建此 Map 的深拷贝。
-	 * @return a copy of this Map, including a copy of each value-holding List entry
-	 * (consistently using an independent modifiable {@link ArrayList} for each entry)
-	 * along the lines of {@code MultiValueMap.addAll} semantics
+	 * @return 此 Map 的副本，包括每个存放值的 List 条目的副本
+	 * （每个条目均一致地使用独立的可修改 {@link ArrayList}），
+	 * 遵循 {@code MultiValueMap.addAll} 的语义
 	 * @since 4.2
 	 * @see #addAll(MultiValueMap)
 	 * @see #clone()
@@ -87,9 +87,9 @@ public class LinkedMultiValueMap<K, V> extends MultiValueMapAdapter<K, V>  // ne
 
 	/**
 	 * 创建此 Map 的常规拷贝。
-	 * @return a shallow copy of this Map, reusing this Map's value-holding List entries
-	 * (even if some entries are shared or unmodifiable) along the lines of standard
-	 * {@code Map.put} semantics
+	 * @return 此 Map 的浅副本，复用此 Map 中存放值的 List 条目
+	 * （即使某些条目是共享的或不可修改的），
+	 * 遵循标准 {@code Map.put} 的语义
 	 * @since 4.2
 	 * @see #put(Object, List)
 	 * @see #putAll(Map)

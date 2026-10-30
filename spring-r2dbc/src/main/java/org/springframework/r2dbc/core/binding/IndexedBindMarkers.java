@@ -43,8 +43,8 @@ class IndexedBindMarkers implements BindMarkers {
 
 	/**
 	 * 根据 {@code prefix} 和 {@code beginWith} 创建一个新的 {@link IndexedBindMarker} 实例。
-	 * @param prefix bind parameter prefix
-	 * @param beginWith the first index to use
+	 * @param prefix 绑定参数前缀
+	 * @param beginWith 要使用的第一个索引
 	 */
 	IndexedBindMarkers(String prefix, int beginWith) {
 		this.counter = 0;

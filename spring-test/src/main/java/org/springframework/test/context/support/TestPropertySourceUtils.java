@@ -173,11 +173,10 @@ public abstract class TestPropertySourceUtils {
 	/**
 	 * 将给定资源 {@code locations} 中的 {@link Properties} 文件添加到所提供 {@code context} 的 {@link Environment} 中。
 	 * <p>此方法简单地委托给 {@link #addPropertiesFilesToEnvironment(ConfigurableEnvironment, ResourceLoader, String...)}。
-	 * @param context the application context whose environment should be updated;
-	 * never {@code null}
-	 * @param locations the resource locations of {@code Properties} files to add
-	 * to the environment; potentially empty but never {@code null}
-	 * @throws IllegalStateException if an error occurs while processing a properties file
+	 * @param context 应更新其环境的应用程序上下文；从不为 {@code null}
+	 * @param locations 要添加到环境的 {@code Properties} 文件的资源位置；
+	 * 可以为空，但从不为 {@code null}
+	 * @throws IllegalStateException 如果处理属性文件时发生错误
 	 * @since 4.1.5
 	 * @see ResourcePropertySource
 	 * @see TestPropertySource#locations
@@ -193,12 +192,11 @@ public abstract class TestPropertySourceUtils {
 	 * 将给定资源 {@code locations} 中的 {@link Properties} 文件添加到所提供的 {@link ConfigurableEnvironment environment} 中。
 	 * <p>资源位置中的属性占位符（即 <code>${...}</code>）将根据 {@code Environment} 进行{@linkplain Environment#resolveRequiredPlaceholders(String) 解析}。
 	 * <p>每个属性文件将被转换为 {@link ResourcePropertySource}，并以最高优先级添加到环境的 {@link PropertySources} 中。
-	 * @param environment the environment to update; never {@code null}
-	 * @param resourceLoader the {@code ResourceLoader} to use to load each resource;
-	 * never {@code null}
-	 * @param locations the resource locations of {@code Properties} files to add
-	 * to the environment; potentially empty but never {@code null}
-	 * @throws IllegalStateException if an error occurs while processing a properties file
+	 * @param environment 要更新的环境；从不为 {@code null}
+	 * @param resourceLoader 用于加载每个资源的 {@code ResourceLoader}；从不为 {@code null}
+	 * @param locations 要添加到环境的 {@code Properties} 文件的资源位置；
+	 * 可以为空，但从不为 {@code null}
+	 * @throws IllegalStateException 如果处理属性文件时发生错误
 	 * @since 4.3
 	 * @see ResourcePropertySource
 	 * @see TestPropertySource#locations
@@ -225,10 +223,8 @@ public abstract class TestPropertySourceUtils {
 	/**
 	 * 将给定的<em>内联属性</em>添加到所提供 {@code context} 的 {@link Environment} 中。
 	 * <p>此方法简单地委托给 {@link #addInlinedPropertiesToEnvironment(ConfigurableEnvironment, String[])}。
-	 * @param context the application context whose environment should be updated;
-	 * never {@code null}
-	 * @param inlinedProperties the inlined properties to add to the environment;
-	 * potentially empty but never {@code null}
+	 * @param context 应更新其环境的应用程序上下文；从不为 {@code null}
+	 * @param inlinedProperties 要添加到环境的内联属性；可以为空，但从不为 {@code null}
 	 * @since 4.1.5
 	 * @see TestPropertySource#properties
 	 * @see #addInlinedPropertiesToEnvironment(ConfigurableEnvironment, String[])
@@ -243,9 +239,8 @@ public abstract class TestPropertySourceUtils {
 	 * 将给定的<em>内联属性</em>（以<em>键值</em>对形式）添加到所提供的 {@link ConfigurableEnvironment environment} 中。
 	 * <p>所有键值对将作为单个具有最高优先级的 {@link MapPropertySource} 添加到 {@code Environment} 中。
 	 * <p>有关<em>内联属性</em>解析的详细信息，请查阅 {@link #convertInlinedPropertiesToMap} 的 Javadoc。
-	 * @param environment the environment to update; never {@code null}
-	 * @param inlinedProperties the inlined properties to add to the environment;
-	 * potentially empty but never {@code null}
+	 * @param environment 要更新的环境；从不为 {@code null}
+	 * @param inlinedProperties 要添加到环境的内联属性；可以为空，但从不为 {@code null}
 	 * @since 4.1.5
 	 * @see MapPropertySource
 	 * @see #INLINED_PROPERTIES_PROPERTY_SOURCE_NAME
@@ -274,11 +269,10 @@ public abstract class TestPropertySourceUtils {
 	 * 将所提供的<em>内联属性</em>（以<em>键值</em>对形式）转换为以属性名为键的映射，并在返回的映射中保留属性名的顺序。
 	 * <p>键值对的解析通过将所有对转换为内存中的<em>虚拟</em>属性文件，并委托给 {@link Properties#load(java.io.Reader)} 解析每个虚拟文件来实现。
 	 * <p>有关<em>内联属性</em>的完整讨论，请查阅 {@link TestPropertySource#properties} 的 Javadoc。
-	 * @param inlinedProperties the inlined properties to convert; potentially empty
-	 * but never {@code null}
-	 * @return a new, ordered map containing the converted properties
-	 * @throws IllegalStateException if a given key-value pair cannot be parsed, or if
-	 * a given inlined property contains multiple key-value pairs
+	 * @param inlinedProperties 要转换的内联属性；可以为空，但从不为 {@code null}
+	 * @return 包含转换后属性的新有序映射
+	 * @throws IllegalStateException 如果无法解析给定的键值对，
+	 * 或者给定的内联属性包含多个键值对
 	 * @since 4.1.5
 	 * @see #addInlinedPropertiesToEnvironment(ConfigurableEnvironment, String[])
 	 */

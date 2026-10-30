@@ -128,7 +128,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	 * 可以使用{@code TransactionInfo.hasTransaction()}方法进行查询。
 	 * <p>要了解特定的事务特征, 请考虑使用TransactionSynchronizationManager的
 	 * {@code isSynchronizationActive()}和/或{@code isActualTransactionActive()}方法。
-	 * @return the TransactionInfo bound to this thread, or {@code null} if none
+	 * @return 绑定到该线程的 TransactionInfo；如果没有，则为 {@code null}
 	 * @see TransactionInfo#hasTransaction()
 	 * @see org.springframework.transaction.support.TransactionSynchronizationManager#isSynchronizationActive()
 	 * @see org.springframework.transaction.support.TransactionSynchronizationManager#isActualTransactionActive()
@@ -141,8 +141,8 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	/**
 	 * 返回当前方法调用的事务状态。
 	 * 主要用于希望将当前事务设置为仅回滚但不抛出应用异常的代码。
-	 * @throws NoTransactionException if the transaction info cannot be found,
-	 * because the method was invoked outside an AOP invocation context
+	 * @throws NoTransactionException 如果找不到事务信息，
+	 * 因为该方法是在 AOP 调用上下文之外被调用的
 	 */
 	public static TransactionStatus currentTransactionStatus() throws NoTransactionException {
 		TransactionInfo info = currentTransactionInfo();
@@ -311,11 +311,11 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	 * 能够处理{@link CallbackPreferringPlatformTransactionManager}以及常规的
 	 * {@link PlatformTransactionManager}实现和用于响应式返回类型的
 	 * {@link ReactiveTransactionManager}实现。
-	 * @param method the Method being invoked
-	 * @param targetClass the target class that we're invoking the method on
-	 * @param invocation the callback to use for proceeding with the target invocation
-	 * @return the return value of the method, if any
-	 * @throws Throwable propagated from the target invocation
+	 * @param method 正在被调用的 Method
+	 * @param targetClass 我们正在其上调用该方法的目标类
+	 * @param invocation 用于继续执行目标调用的回调
+	 * @return 该方法的返回值（如果有）
+	 * @throws Throwable 从目标调用中传播出的异常
 	 */
 	@Nullable
 	protected Object invokeWithinTransaction(Method method, @Nullable Class<?> targetClass,
@@ -537,9 +537,9 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	 * <p>默认实现返回{@code null}, 表示改用
 	 * {@link DefaultTransactionAttribute#getDescriptor()},
 	 * 最终使用{@link ClassUtils#getQualifiedMethodName(Method, Class)}。
-	 * @param method the method we're interested in
-	 * @param targetClass the class that the method is being invoked on
-	 * @return a String representation identifying this method
+	 * @param method 我们关注的方法
+	 * @param targetClass 正在其上调用该方法的类
+	 * @return 标识该方法的 String 表示
 	 * @see org.springframework.util.ClassUtils#getQualifiedMethodName
 	 */
 	@Nullable
@@ -550,12 +550,12 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	/**
 	 * 必要时根据给定的TransactionAttribute创建事务。
 	 * <p>允许调用者通过TransactionAttributeSource执行自定义的TransactionAttribute查找。
-	 * @param txAttr the TransactionAttribute (may be {@code null})
-	 * @param joinpointIdentification the fully qualified method name
-	 * (used for monitoring and logging purposes)
-	 * @return a TransactionInfo object, whether a transaction was created.
-	 * The {@code hasTransaction()} method on TransactionInfo can be used to
-	 * tell if there was a transaction created.
+	 * @param txAttr 该 TransactionAttribute（可能为 {@code null}）
+	 * @param joinpointIdentification 完全限定的方法名称
+	 * （用于监控和日志记录）
+	 * @return 一个 TransactionInfo 对象，无论是否创建了事务。
+	 * 可以用 TransactionInfo 上的 {@code hasTransaction()} 方法
+	 * 判断是否创建了事务。
 	 * @see #getTransactionAttributeSource()
 	 */
 	@SuppressWarnings("serial")
@@ -589,11 +589,11 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 
 	/**
 	 * 为给定的属性和状态对象准备TransactionInfo。
-	 * @param txAttr the TransactionAttribute (may be {@code null})
-	 * @param joinpointIdentification the fully qualified method name
-	 * (used for monitoring and logging purposes)
-	 * @param status the TransactionStatus for the current transaction
-	 * @return the prepared TransactionInfo object
+	 * @param txAttr 该 TransactionAttribute（可能为 {@code null}）
+	 * @param joinpointIdentification 完全限定的方法名称
+	 * （用于监控和日志记录）
+	 * @param status 当前事务的 TransactionStatus
+	 * @return 准备好的 TransactionInfo 对象
 	 */
 	protected TransactionInfo prepareTransactionInfo(@Nullable PlatformTransactionManager tm,
 			@Nullable TransactionAttribute txAttr, String joinpointIdentification,
@@ -627,7 +627,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	/**
 	 * 在调用成功完成后执行, 但在异常处理之后不执行。
 	 * 如果我们没有创建事务, 则不执行任何操作。
-	 * @param txInfo information about the current transaction
+	 * @param txInfo 当前事务的信息
 	 */
 	protected void commitTransactionAfterReturning(@Nullable TransactionInfo txInfo) {
 		if (txInfo != null && txInfo.getTransactionStatus() != null) {
@@ -641,8 +641,8 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	/**
 	 * 处理异常, 完成事务。
 	 * 我们可以根据配置进行提交或回滚。
-	 * @param txInfo information about the current transaction
-	 * @param ex throwable encountered
+	 * @param txInfo 当前事务的信息
+	 * @param ex 遇到的 throwable
 	 */
 	protected void completeTransactionAfterThrowing(@Nullable TransactionInfo txInfo, Throwable ex) {
 		if (txInfo != null && txInfo.getTransactionStatus() != null) {
@@ -686,7 +686,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	/**
 	 * 重置TransactionInfo的ThreadLocal。
 	 * <p>在所有情况下都要调用此方法: 异常或正常返回!
-	 * @param txInfo information about the current transaction (may be {@code null})
+	 * @param txInfo 当前事务的信息（可能为 {@code null}）
 	 */
 	protected void cleanupTransactionInfo(@Nullable TransactionInfo txInfo) {
 		if (txInfo != null) {

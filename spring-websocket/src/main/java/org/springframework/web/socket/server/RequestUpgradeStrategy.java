@@ -46,19 +46,19 @@ public interface RequestUpgradeStrategy {
 
 	/**
 	 * 执行运行时特定的步骤以完成升级。在握手请求成功协商后调用。
-	 * @param request the current request
-	 * @param response the current response
-	 * @param selectedProtocol the selected sub-protocol, if any
-	 * @param selectedExtensions the selected WebSocket protocol extensions
-	 * @param user the user to associate with the WebSocket session
-	 * @param wsHandler the handler for WebSocket messages
-	 * @param attributes handshake request specific attributes to be set on the WebSocket
-	 * session via {@link org.springframework.web.socket.server.HandshakeInterceptor} and
-	 * thus made available to the {@link org.springframework.web.socket.WebSocketHandler}
-	 * @throws HandshakeFailureException thrown when handshake processing failed to
-	 * complete due to an internal, unrecoverable error, i.e. a server error as
-	 * opposed to a failure to successfully negotiate the requirements of the
-	 * handshake request.
+	 * @param request 当前请求
+	 * @param response 当前响应
+	 * @param selectedProtocol 选定的子协议（如果有）
+	 * @param selectedExtensions 选定的 WebSocket 协议扩展
+	 * @param user 要与 WebSocket 会话关联的用户
+	 * @param wsHandler WebSocket 消息处理器
+	 * @param attributes 通过 {@link org.springframework.web.socket.server.HandshakeInterceptor}
+	 * 设置在 WebSocket 会话上的、握手请求特有的属性，
+	 * 从而可供 {@link org.springframework.web.socket.WebSocketHandler} 使用
+	 * @throws HandshakeFailureException 当握手处理因内部不可恢复的错误
+	 * 而未能完成时抛出，即服务器错误，
+	 * 而不是未能成功协商
+	 * 握手请求的各项要求。
 	 */
 	void upgrade(ServerHttpRequest request, ServerHttpResponse response,
 			@Nullable String selectedProtocol, List<WebSocketExtension> selectedExtensions,

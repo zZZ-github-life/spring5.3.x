@@ -123,9 +123,9 @@ public class ServerHttpRequestDecorator implements ServerHttpRequest {
 	/**
 	 * 返回底层服务器 API 的原生请求（如果可能），
 	 * 必要时还会解包 {@link ServerHttpRequestDecorator}。
-	 * @param request the request to check
-	 * @param <T> the expected native request type
-	 * @throws IllegalArgumentException if the native request can't be obtained
+	 * @param request 要检查的请求
+	 * @param <T> 期望的原生请求类型
+	 * @throws IllegalArgumentException 如果无法获取原生请求则抛出
 	 * @since 5.3.3
 	 */
 	public static <T> T getNativeRequest(ServerHttpRequest request) {

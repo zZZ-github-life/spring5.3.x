@@ -31,7 +31,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @since 3.2
- * @param <V> the value type
+ * @param <V> 值类型
  */
 public class WebAsyncTask<V> implements BeanFactoryAware {
 
@@ -54,7 +54,7 @@ public class WebAsyncTask<V> implements BeanFactoryAware {
 
 	/**
 	 * 创建一个包装给定 {@link Callable} 的 {@code WebAsyncTask}。
-	 * @param callable the callable for concurrent handling
+	 * @param callable 用于并发处理的 Callable
 	 */
 	public WebAsyncTask(Callable<V> callable) {
 		Assert.notNull(callable, "Callable must not be null");
@@ -63,8 +63,8 @@ public class WebAsyncTask<V> implements BeanFactoryAware {
 
 	/**
 	 * 创建一个带有超时值和 {@link Callable} 的 {@code WebAsyncTask}。
-	 * @param timeout a timeout value in milliseconds
-	 * @param callable the callable for concurrent handling
+	 * @param timeout 超时值，单位为毫秒
+	 * @param callable 用于并发处理的 Callable
 	 */
 	public WebAsyncTask(long timeout, Callable<V> callable) {
 		this(callable);
@@ -73,9 +73,9 @@ public class WebAsyncTask<V> implements BeanFactoryAware {
 
 	/**
 	 * 创建一个带有超时值、执行器名称和 {@link Callable} 的 {@code WebAsyncTask}。
-	 * @param timeout the timeout value in milliseconds; ignored if {@code null}
-	 * @param executorName the name of an executor bean to use
-	 * @param callable the callable for concurrent handling
+	 * @param timeout 超时值，单位为毫秒；如果为 {@code null} 则忽略
+	 * @param executorName 要使用的执行器 Bean 的名称
+	 * @param callable 用于并发处理的 callable
 	 */
 	public WebAsyncTask(@Nullable Long timeout, String executorName, Callable<V> callable) {
 		this(callable);
@@ -86,9 +86,9 @@ public class WebAsyncTask<V> implements BeanFactoryAware {
 
 	/**
 	 * 创建一个带有超时值、执行器实例和 Callable 的 {@code WebAsyncTask}。
-	 * @param timeout the timeout value in milliseconds; ignored if {@code null}
-	 * @param executor the executor to use
-	 * @param callable the callable for concurrent handling
+	 * @param timeout 超时值，单位为毫秒；如果为 {@code null} 则忽略
+	 * @param executor 要使用的执行器
+	 * @param callable 用于并发处理的 callable
 	 */
 	public WebAsyncTask(@Nullable Long timeout, AsyncTaskExecutor executor, Callable<V> callable) {
 		this(callable);

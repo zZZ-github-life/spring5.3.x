@@ -48,7 +48,7 @@ public interface StompEndpointRegistry {
 
 	/**
 	 * 配置一个处理器，用于定制或处理发送给客户端的 STOMP ERROR 帧。
-	 * @param errorHandler the error handler
+	 * @param errorHandler 错误处理器
 	 * @since 4.2
 	 */
 	WebMvcStompEndpointRegistry setErrorHandler(StompSubProtocolErrorHandler errorHandler);

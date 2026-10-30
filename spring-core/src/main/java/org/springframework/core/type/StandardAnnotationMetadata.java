@@ -55,7 +55,7 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 
 	/**
 	 * 为给定 Class 创建新的 {@code StandardAnnotationMetadata} 包装器。
-	 * @param introspectedClass the Class to introspect
+	 * @param introspectedClass 要内省的 Class
 	 * @see #StandardAnnotationMetadata(Class, boolean)
 	 * @deprecated since 5.2 in favor of the factory method {@link AnnotationMetadata#introspect(Class)}
 	 */
@@ -68,10 +68,10 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 	 * 为给定 Class 创建新的 {@link StandardAnnotationMetadata} 包装器，并提供以
 	 * {@link org.springframework.core.annotation.AnnotationAttributes} 形式而非实际 {@link Annotation}
 	 * 实例返回任何嵌套注解或注解数组的选项。
-	 * @param introspectedClass the Class to introspect
-	 * @param nestedAnnotationsAsMap return nested annotations and annotation arrays as
-	 * {@link org.springframework.core.annotation.AnnotationAttributes} for compatibility
-	 * with ASM-based {@link AnnotationMetadata} implementations
+	 * @param introspectedClass 要内省的 Class
+	 * @param nestedAnnotationsAsMap 将嵌套注解和注解数组返回为
+	 * {@link org.springframework.core.annotation.AnnotationAttributes}，
+	 * 以兼容基于 ASM 的 {@link AnnotationMetadata} 实现
 	 * @since 3.1.1
 	 * @deprecated since 5.2 in favor of the factory method {@link AnnotationMetadata#introspect(Class)}.
 	 * Use {@link MergedAnnotation#asMap(org.springframework.core.annotation.MergedAnnotation.Adapt...) MergedAnnotation.asMap}

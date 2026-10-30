@@ -32,7 +32,7 @@ import org.springframework.lang.Nullable;
  * @author Sebastien Deleuze
  * @author Juergen Hoeller
  * @since 4.2
- * @param <T> the converted object type
+ * @param <T> 所转换的对象类型
  */
 public abstract class AbstractGenericHttpMessageConverter<T> extends AbstractHttpMessageConverter<T>
 		implements GenericHttpMessageConverter<T> {
@@ -46,7 +46,7 @@ public abstract class AbstractGenericHttpMessageConverter<T> extends AbstractHtt
 
 	/**
 	 * 构造一个支持一种媒体类型的 {@code AbstractGenericHttpMessageConverter}。
-	 * @param supportedMediaType the supported media type
+	 * @param supportedMediaType 支持的媒体类型
 	 */
 	protected AbstractGenericHttpMessageConverter(MediaType supportedMediaType) {
 		super(supportedMediaType);
@@ -54,7 +54,7 @@ public abstract class AbstractGenericHttpMessageConverter<T> extends AbstractHtt
 
 	/**
 	 * 构造一个支持多种媒体类型的 {@code AbstractGenericHttpMessageConverter}。
-	 * @param supportedMediaTypes the supported media types
+	 * @param supportedMediaTypes 支持的媒体类型
 	 */
 	protected AbstractGenericHttpMessageConverter(MediaType... supportedMediaTypes) {
 		super(supportedMediaTypes);
@@ -115,11 +115,11 @@ public abstract class AbstractGenericHttpMessageConverter<T> extends AbstractHtt
 
 	/**
 	 * 写入实际正文的抽象模板方法。由 {@link #write} 调用。
-	 * @param t the object to write to the output message
-	 * @param type the type of object to write (may be {@code null})
-	 * @param outputMessage the HTTP output message to write to
-	 * @throws IOException in case of I/O errors
-	 * @throws HttpMessageNotWritableException in case of conversion errors
+	 * @param t 要写入输出消息的对象
+	 * @param type 要写入对象的类型（可能为 {@code null}）
+	 * @param outputMessage 要写入到的 HTTP 输出消息
+	 * @throws IOException 如果发生 I/O 错误
+	 * @throws HttpMessageNotWritableException 如果发生转换错误
 	 */
 	protected abstract void writeInternal(T t, @Nullable Type type, HttpOutputMessage outputMessage)
 			throws IOException, HttpMessageNotWritableException;

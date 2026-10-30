@@ -40,8 +40,8 @@ class CaptureVariablePathElement extends PathElement {
 
 	/**
 	 * 创建一个新的 {@link CaptureVariablePathElement} 实例。
-	 * @param pos the position in the pattern of this capture element
-	 * @param captureDescriptor is of the form {AAAAA[:pattern]}
+	 * @param pos 此捕获元素在模式中的位置
+	 * @param captureDescriptor 形式为 {AAAAA[:pattern]}
 	 */
 	CaptureVariablePathElement(int pos, char[] captureDescriptor, boolean caseSensitive, char separator) {
 		super(pos, separator);

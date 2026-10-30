@@ -53,8 +53,8 @@ public abstract class AbstractDataFieldMaxValueIncrementer implements DataFieldM
 
 	/**
 	 * 便捷构造函数。
-	 * @param dataSource the DataSource to use
-	 * @param incrementerName the name of the sequence/table to use
+	 * @param dataSource 要使用的 DataSource
+	 * @param incrementerName 要使用的序列/表的名称
 	 */
 	public AbstractDataFieldMaxValueIncrementer(DataSource dataSource, String incrementerName) {
 		Assert.notNull(dataSource, "DataSource must not be null");
@@ -145,8 +145,8 @@ public abstract class AbstractDataFieldMaxValueIncrementer implements DataFieldM
 
 	/**
 	 * 确定下一个要使用的键，以 long 形式表示。
-	 * @return the key to use as a long. It will eventually be converted later
-	 * in another format by the public concrete methods of this class.
+	 * @return 以 long 形式使用的键。
+	 * 最终会由本类的公共具体方法转换为另一种格式。
 	 */
 	protected abstract long getNextKey();
 

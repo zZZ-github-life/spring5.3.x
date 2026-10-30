@@ -74,9 +74,9 @@ public interface TransactionSynchronization {
 	 * 例如将SQL语句刷新到数据库。
 	 * <p>请注意，异常将传播到提交调用者，
 	 * 并导致事务回滚。
-	 * @param readOnly whether the transaction is defined as read-only transaction
-	 * @throws RuntimeException in case of errors; will be <b>propagated to the caller</b>
-	 * (note: do not throw TransactionException subclasses here!)
+	 * @param readOnly 事务是否被定义为只读事务
+	 * @throws RuntimeException 发生错误时；将被 <b>传播给调用者</b>
+	 * （注意：此处不要抛出 TransactionException 子类！）
 	 * @see #beforeCompletion
 	 */
 	default Mono<Void> beforeCommit(boolean readOnly) {
@@ -89,8 +89,8 @@ public interface TransactionSynchronization {
 	 * <p>此方法将在{@code beforeCommit}之后被调用，
 	 * 即使{@code beforeCommit}抛出了异常。此回调允许
 	 * 在事务完成之前关闭资源，无论结果如何。
-	 * @throws RuntimeException in case of errors; will be <b>logged but not propagated</b>
-	 * (note: do not throw TransactionException subclasses here!)
+	 * @throws RuntimeException 发生错误时；将被 <b>记录日志但不传播</b>
+	 * （注意：此处不要抛出 TransactionException 子类！）
 	 * @see #beforeCommit
 	 * @see #afterCompletion
 	 */
@@ -109,8 +109,8 @@ public interface TransactionSynchronization {
 	 * 除非它显式声明需要在单独的事务中运行。
 	 * 因此：<b>对于从此处调用的任何事务操作，
 	 * 使用{@code PROPAGATION_REQUIRES_NEW}。</b>
-	 * @throws RuntimeException in case of errors; will be <b>propagated to the caller</b>
-	 * (note: do not throw TransactionException subclasses here!)
+	 * @throws RuntimeException 发生错误时；将被 <b>传播给调用者</b>
+	 * （注意：此处不要抛出 TransactionException 子类！）
 	 */
 	default Mono<Void> afterCommit() {
 		return Mono.empty();
@@ -126,9 +126,9 @@ public interface TransactionSynchronization {
 	 * 除非它显式声明需要在单独的事务中运行。
 	 * 因此：<b>对于从此处调用的任何事务操作，
 	 * 使用{@code PROPAGATION_REQUIRES_NEW}。</b>
-	 * @param status completion status according to the {@code STATUS_*} constants
-	 * @throws RuntimeException in case of errors; will be <b>logged but not propagated</b>
-	 * (note: do not throw TransactionException subclasses here!)
+	 * @param status 根据 {@code STATUS_*} 常量表示的完成状态
+	 * @throws RuntimeException 发生错误时；将被 <b>记录日志但不传播</b>
+	 * （注意：此处不要抛出 TransactionException 子类！）
 	 * @see #STATUS_COMMITTED
 	 * @see #STATUS_ROLLED_BACK
 	 * @see #STATUS_UNKNOWN

@@ -28,9 +28,9 @@ public abstract class PropertyAccessorUtils {
 
 	/**
 	 * 返回给定属性路径的实际属性名。
-	 * @param propertyPath the property path to determine the property name
-	 * for (can include property keys, for example for specifying a map entry)
-	 * @return the actual property name, without any key elements
+	 * @param propertyPath 要为其确定属性名称的属性路径
+	 * （可以包含属性键，例如用于指定 Map 条目）
+	 * @return 实际的属性名称，不含任何键元素
 	 */
 	public static String getPropertyName(String propertyPath) {
 		int separatorIndex = (propertyPath.endsWith(PropertyAccessor.PROPERTY_KEY_SUFFIX) ?
@@ -40,8 +40,8 @@ public abstract class PropertyAccessorUtils {
 
 	/**
 	 * 检查给定属性路径是否表示索引属性或嵌套属性。
-	 * @param propertyPath the property path to check
-	 * @return whether the path indicates an indexed or nested property
+	 * @param propertyPath 要检查的属性路径
+	 * @return 该路径是否表示索引属性或嵌套属性
 	 */
 	public static boolean isNestedOrIndexedProperty(@Nullable String propertyPath) {
 		if (propertyPath == null) {
@@ -59,8 +59,8 @@ public abstract class PropertyAccessorUtils {
 
 	/**
 	 * 确定给定属性路径中第一个嵌套属性分隔符，忽略键中的点（如“map[my.key]”）。
-	 * @param propertyPath the property path to check
-	 * @return the index of the nested property separator, or -1 if none
+	 * @param propertyPath 要检查的属性路径
+	 * @return 嵌套属性分隔符的索引，如果没有则为 -1
 	 */
 	public static int getFirstNestedPropertySeparatorIndex(String propertyPath) {
 		return getNestedPropertySeparatorIndex(propertyPath, false);
@@ -68,8 +68,8 @@ public abstract class PropertyAccessorUtils {
 
 	/**
 	 * 确定给定属性路径中第一个嵌套属性分隔符，忽略键中的点（如“map[my.key]”）。
-	 * @param propertyPath the property path to check
-	 * @return the index of the nested property separator, or -1 if none
+	 * @param propertyPath 要检查的属性路径
+	 * @return 嵌套属性分隔符的索引，如果没有则为 -1
 	 */
 	public static int getLastNestedPropertySeparatorIndex(String propertyPath) {
 		return getNestedPropertySeparatorIndex(propertyPath, true);
@@ -77,9 +77,9 @@ public abstract class PropertyAccessorUtils {
 
 	/**
 	 * 确定给定属性路径中第一个（或最后一个）嵌套属性分隔符，忽略键中的点（如“map[my.key]”）。
-	 * @param propertyPath the property path to check
-	 * @param last whether to return the last separator rather than the first
-	 * @return the index of the nested property separator, or -1 if none
+	 * @param propertyPath 要检查的属性路径
+	 * @param last 是否返回最后一个分隔符而不是第一个
+	 * @return 嵌套属性分隔符的索引，如果没有则为 -1
 	 */
 	private static int getNestedPropertySeparatorIndex(String propertyPath, boolean last) {
 		boolean inKey = false;
@@ -108,9 +108,9 @@ public abstract class PropertyAccessorUtils {
 
 	/**
 	 * 确定给定的已注册路径是否与给定的属性路径匹配，即表示该属性本身或该属性的索引元素。
-	 * @param propertyPath the property path (typically without index)
-	 * @param registeredPath the registered path (potentially with index)
-	 * @return whether the paths match
+	 * @param propertyPath 属性路径（通常不含索引）
+	 * @param registeredPath 已注册的路径（可能包含索引）
+	 * @return 这些路径是否匹配
 	 */
 	public static boolean matchesProperty(String registeredPath, String propertyPath) {
 		if (!registeredPath.startsWith(propertyPath)) {
@@ -129,8 +129,8 @@ public abstract class PropertyAccessorUtils {
 	/**
 	 * 确定给定属性路径的规范名称。移除映射键两侧的引号：<br> {@code map['key']} &rarr;
 	 * {@code map[key]}<br> {@code map["key"]} &rarr; {@code map[key]}
-	 * @param propertyName the bean property path
-	 * @return the canonical representation of the property path
+	 * @param propertyName Bean 属性路径
+	 * @return 属性路径的规范表示形式
 	 */
 	public static String canonicalPropertyName(@Nullable String propertyName) {
 		if (propertyName == null) {
@@ -161,9 +161,8 @@ public abstract class PropertyAccessorUtils {
 
 	/**
 	 * 确定给定属性路径的规范名称。
-	 * @param propertyNames the bean property paths (as array)
-	 * @return the canonical representation of the property paths
-	 * (as array of the same size)
+	 * @param propertyNames Bean 属性路径（作为数组）
+	 * @return 属性路径的规范表示形式（作为同样大小的数组）
 	 * @see #canonicalPropertyName(String)
 	 */
 	@Nullable

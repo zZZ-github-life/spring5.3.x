@@ -44,8 +44,8 @@ public interface ConnectionAccessor {
 	 * 该函数负责创建一个 {@link Mono}。连接在 {@link Mono} 终止
 	 * （或订阅被取消）后释放。连接资源不得传递到
 	 * {@link Function} 闭包之外，否则资源可能会失效。
-	 * @param action the callback object that specifies the connection action
-	 * @return the resulting {@link Mono}
+	 * @param action 指定连接操作的回调对象
+	 * @return 结果 {@link Mono}
 	 */
 	<T> Mono<T> inConnection(Function<Connection, Mono<T>> action) throws DataAccessException;
 
@@ -54,8 +54,8 @@ public interface ConnectionAccessor {
 	 * 该函数负责创建一个 {@link Flux}。连接在 {@link Flux} 终止
 	 * （或订阅被取消）后释放。连接资源不得传递到
 	 * {@link Function} 闭包之外，否则资源可能会失效。
-	 * @param action the callback object that specifies the connection action
-	 * @return the resulting {@link Flux}
+	 * @param action 指定连接操作的回调对象
+	 * @return 结果 {@link Flux}
 	 */
 	<T> Flux<T> inConnectionMany(Function<Connection, Flux<T>> action) throws DataAccessException;
 

@@ -30,17 +30,15 @@ import org.springframework.lang.Nullable;
  * @author Rossen Stoyanchev
  * @author Arjen Poutsma
  * @since 3.1
- * @param <T> the type of objects that this RequestCondition can be combined
- * with and compared to
+ * @param <T> 该 RequestCondition 可与之组合和比较的对象类型
  */
 public interface RequestCondition<T> {
 
 	/**
 	 * 将此条件与另一个条件组合，例如来自类型级别和方法级别
 	 * {@code @RequestMapping} 注解的条件。
-	 * @param other the condition to combine with.
-	 * @return a request condition instance that is the result of combining
-	 * the two condition instances.
+	 * @param other 要与之组合的条件。
+	 * @return 两个条件实例组合后得到的请求条件实例。
 	 */
 	T combine(T other);
 
@@ -53,7 +51,7 @@ public interface RequestCondition<T> {
 	 * "Access-Control-Request-Method" 头的 HTTP 方法）。如果某个条件无法
 	 * 匹配预检请求，它应返回一个内容为空的实例，
 	 * 从而不会导致匹配失败。
-	 * @return a condition instance in case of a match or {@code null} otherwise.
+	 * @return 匹配时的条件实例，否则为 {@code null}。
 	 */
 	@Nullable
 	T getMatchingCondition(HttpServletRequest request);

@@ -29,20 +29,19 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
  *
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <T> the type of elements in the output stream
+ * @param <T> 输出流中的元素类型
  */
 public interface HttpMessageDecoder<T> extends Decoder<T> {
 
 	/**
 	 * 根据服务器请求或目标控制器方法参数上的注解获取解码提示。
-	 * @param actualType the actual target type to decode to, possibly a reactive
-	 * wrapper and sourced from {@link org.springframework.core.MethodParameter},
-	 * i.e. providing access to method parameter annotations
-	 * @param elementType the element type within {@code Flux/Mono} that we're
-	 * trying to decode to
-	 * @param request the current request
-	 * @param response the current response
-	 * @return a Map with hints, possibly empty
+	 * @param actualType 要解码成的实际目标类型，可能是响应式包装类型，
+	 * 来源于 {@link org.springframework.core.MethodParameter}，
+	 * 即提供对方法参数注解的访问
+	 * @param elementType 我们要解码成的 {@code Flux/Mono} 中的元素类型
+	 * @param request 当前请求
+	 * @param response 当前响应
+	 * @return 包含提示的 Map，可能为空
 	 */
 	Map<String, Object> getDecodeHints(ResolvableType actualType, ResolvableType elementType,
 			ServerHttpRequest request, ServerHttpResponse response);

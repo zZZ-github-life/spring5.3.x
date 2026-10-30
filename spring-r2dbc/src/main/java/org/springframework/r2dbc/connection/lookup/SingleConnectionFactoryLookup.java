@@ -35,7 +35,7 @@ public class SingleConnectionFactoryLookup implements ConnectionFactoryLookup {
 
 	/**
 	 * 创建一个新的 {@link SingleConnectionFactoryLookup} 类实例。
-	 * @param connectionFactory the single {@link ConnectionFactory} to wrap
+	 * @param connectionFactory 要包装的单个 {@link ConnectionFactory}
 	 */
 	public SingleConnectionFactoryLookup(ConnectionFactory connectionFactory) {
 		Assert.notNull(connectionFactory, "ConnectionFactory must not be null");

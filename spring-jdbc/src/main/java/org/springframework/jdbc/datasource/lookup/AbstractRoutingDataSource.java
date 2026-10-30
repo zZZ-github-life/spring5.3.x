@@ -130,8 +130,8 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 	 * 给定查找键对象解析为实际用于与
 	 * {@link #determineCurrentLookupKey() 当前查找键} 匹配的查找键。
 	 * <p>默认实现只是按原样返回给定的键。
-	 * @param lookupKey the lookup key object as specified by the user
-	 * @return the lookup key as needed for matching
+	 * @param lookupKey 用户指定的查找键对象
+	 * @return 匹配所需的查找键
 	 */
 	protected Object resolveSpecifiedLookupKey(Object lookupKey) {
 		return lookupKey;
@@ -141,10 +141,9 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 	 * 将指定的数据源对象解析为 DataSource 实例。
 	 * <p>默认实现处理 DataSource 实例和数据源名称
 	 * （通过 {@link #setDataSourceLookup DataSourceLookup} 解析）。
-	 * @param dataSource the data source value object as specified in the
-	 * {@link #setTargetDataSources targetDataSources} map
-	 * @return the resolved DataSource (never {@code null})
-	 * @throws IllegalArgumentException in case of an unsupported value type
+	 * @param dataSource {@link #setTargetDataSources targetDataSources} 映射中指定的数据源值对象
+	 * @return 解析后的 DataSource（永不为 {@code null}）
+	 * @throws IllegalArgumentException 如果值类型不受支持
 	 */
 	protected DataSource resolveSpecifiedDataSource(Object dataSource) throws IllegalArgumentException {
 		if (dataSource instanceof DataSource) {
@@ -161,8 +160,8 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 
 	/**
 	 * 返回此路由器管理的已解析目标 DataSource。
-	 * @return an unmodifiable map of resolved lookup keys and DataSources
-	 * @throws IllegalStateException if the target DataSources are not resolved yet
+	 * @return 解析后的查找键与 DataSource 的不可修改映射
+	 * @throws IllegalStateException 如果目标 DataSource 尚未解析
 	 * @since 5.2.9
 	 * @see #setTargetDataSources
 	 */
@@ -173,7 +172,7 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 
 	/**
 	 * 返回已解析的默认目标 DataSource（如果有）。
-	 * @return the default DataSource, or {@code null} if none or not resolved yet
+	 * @return 默认 DataSource，如果没有或尚未解析则为 {@code null}
 	 * @since 5.2.9
 	 * @see #setDefaultTargetDataSource
 	 */

@@ -29,20 +29,20 @@ public interface TypeComparator {
 
 	/**
 	 * 如果比较器可以比较这两个对象，则返回 {@code true}。
-	 * @param firstObject the first object
-	 * @param secondObject the second object
-	 * @return {@code true} if the comparator can compare these objects
+	 * @param firstObject 第一个对象
+	 * @param secondObject 第二个对象
+	 * @return 如果比较器能够比较这些对象则返回 {@code true}
 	 */
 	boolean canCompare(@Nullable Object firstObject, @Nullable Object secondObject);
 
 	/**
 	 * 比较两个给定的对象。
-	 * @param firstObject the first object
-	 * @param secondObject the second object
-	 * @return 0 if they are equal, a negative integer if the first is smaller than
-	 * the second, or a positive integer if the first is larger than the second
-	 * @throws EvaluationException if a problem occurs during comparison
-	 * (or if they are not comparable in the first place)
+	 * @param firstObject 第一个对象
+	 * @param secondObject 第二个对象
+	 * @return 如果两者相等则为 0；如果第一个小于第二个则为负数；
+	 * 如果第一个大于第二个则为正数
+	 * @throws EvaluationException 如果比较过程中出现问题
+	 * （或两者本来就不可比较）
 	 * @see Comparable#compareTo
 	 */
 	int compare(@Nullable Object firstObject, @Nullable Object secondObject) throws EvaluationException;

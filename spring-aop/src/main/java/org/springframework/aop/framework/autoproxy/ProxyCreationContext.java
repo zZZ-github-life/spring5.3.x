@@ -40,7 +40,7 @@ public final class ProxyCreationContext {
 
 	/**
 	 * 返回当前被代理的 Bean 实例的名称。
-	 * @return the name of the bean, or {@code null} if none available
+	 * @return 该 Bean 的名称，如果没有则返回 {@code null}
 	 */
 	@Nullable
 	public static String getCurrentProxiedBeanName() {
@@ -49,7 +49,7 @@ public final class ProxyCreationContext {
 
 	/**
 	 * 设置当前被代理的 Bean 实例的名称。
-	 * @param beanName the name of the bean, or {@code null} to reset it
+	 * @param beanName 该 Bean 的名称；传入 {@code null} 则重置
 	 */
 	static void setCurrentProxiedBeanName(@Nullable String beanName) {
 		if (beanName != null) {

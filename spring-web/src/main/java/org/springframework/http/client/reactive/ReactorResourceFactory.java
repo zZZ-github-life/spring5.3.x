@@ -72,7 +72,7 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 	 * <p>默认值为 "true"，此时此工厂会在 Spring 的
 	 * {@code ApplicationContext} 生命周期内初始化和停止全局 Reactor Netty 资源。
 	 * 如果设置为 "false"，则工厂将独立于全局资源管理其资源。
-	 * @param useGlobalResources whether to expose and manage the global resources
+	 * @param useGlobalResources 是否公开并管理全局资源
 	 * @see #addGlobalResourcesConsumer(Consumer)
 	 */
 	public void setUseGlobalResources(boolean useGlobalResources) {
@@ -90,7 +90,7 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 	/**
 	 * 添加一个 Consumer，用于在启动时配置全局 Reactor Netty 资源。
 	 * 使用此选项时，也会启用 {@link #setUseGlobalResources}。
-	 * @param consumer the consumer to apply
+	 * @param consumer 要应用的 consumer
 	 * @see #setUseGlobalResources(boolean)
 	 */
 	public void addGlobalResourcesConsumer(Consumer<HttpResources> consumer) {
@@ -105,7 +105,7 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 	 * <p>默认使用 {@code ConnectionProvider.elastic("http")}。
 	 * <p>请注意，如果 {@code userGlobalResources=false} 或
 	 * 设置了 {@link #setConnectionProvider(ConnectionProvider)}，则忽略此选项。
-	 * @param supplier the supplier to use
+	 * @param supplier 要使用的 supplier
 	 */
 	public void setConnectionProviderSupplier(Supplier<ConnectionProvider> supplier) {
 		this.connectionProviderSupplier = supplier;
@@ -114,7 +114,7 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 	/**
 	 * 当你希望提供外部管理的
 	 * {@link ConnectionProvider} 实例时，请使用此项。
-	 * @param connectionProvider the connection provider to use as is
+	 * @param connectionProvider 要按原样使用的连接提供者
 	 */
 	public void setConnectionProvider(ConnectionProvider connectionProvider) {
 		this.connectionProvider = connectionProvider;
@@ -134,7 +134,7 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 	 * <p>默认使用 {@code LoopResources.create("reactor-http")}。
 	 * <p>请注意，如果 {@code userGlobalResources=false} 或
 	 * 设置了 {@link #setLoopResources(LoopResources)}，则忽略此选项。
-	 * @param supplier the supplier to use
+	 * @param supplier 要使用的 supplier
 	 */
 	public void setLoopResourcesSupplier(Supplier<LoopResources> supplier) {
 		this.loopResourcesSupplier = supplier;
@@ -143,7 +143,7 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 	/**
 	 * 当你希望提供外部管理的
 	 * {@link LoopResources} 实例时，请使用此选项。
-	 * @param loopResources the loop resources to use as is
+	 * @param loopResources 要按原样使用的 loop 资源
 	 */
 	public void setLoopResources(LoopResources loopResources) {
 		this.loopResources = loopResources;

@@ -67,7 +67,7 @@ public class MethodInvocationProceedingJoinPoint implements ProceedingJoinPoint,
 
 	/**
 	 * 创建一个新的 MethodInvocationProceedingJoinPoint，包装给定的 Spring ProxyMethodInvocation 对象。
-	 * @param methodInvocation the Spring ProxyMethodInvocation object
+	 * @param methodInvocation Spring 的 ProxyMethodInvocation 对象
 	 */
 	public MethodInvocationProceedingJoinPoint(ProxyMethodInvocation methodInvocation) {
 		Assert.notNull(methodInvocation, "MethodInvocation must not be null");

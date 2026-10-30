@@ -35,7 +35,7 @@ public class ExceptionCollector {
 
 	/**
 	 * 执行所提供的 {@link Executable} 并跟踪抛出的任何异常。
-	 * @param executable the {@code Executable} to execute
+	 * @param executable 要执行的 {@code Executable}
 	 * @see #getExceptions()
 	 * @see #assertEmpty()
 	 */
@@ -50,7 +50,7 @@ public class ExceptionCollector {
 
 	/**
 	 * 获取在 {@link #execute(Executable)} 中遇到的异常列表。
-	 * @return an unmodifiable copy of the list of exceptions, potentially empty
+	 * @return 异常列表的不可修改副本，可能为空
 	 * @see #assertEmpty()
 	 */
 	public List<Throwable> getExceptions() {

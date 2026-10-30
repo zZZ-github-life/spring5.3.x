@@ -43,8 +43,8 @@ public abstract class FacesContextUtils {
 	 * {@link org.springframework.web.context.ContextLoaderListener} 加载。
 	 * <p>将重新抛出根上下文启动时发生的异常，
 	 * 以区分上下文启动失败和完全没有上下文两种情况。
-	 * @param fc the FacesContext to find the web application context for
-	 * @return the root WebApplicationContext for this web app, or {@code null} if none
+	 * @param fc 要为其查找 Web 应用上下文的 FacesContext
+	 * @return 此 Web 应用的根 WebApplicationContext，如果没有则为 {@code null}
 	 * @see org.springframework.web.context.WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE
 	 */
 	@Nullable
@@ -72,9 +72,9 @@ public abstract class FacesContextUtils {
 	 * {@link org.springframework.web.context.ContextLoaderListener} 加载。
 	 * <p>将重新抛出根上下文启动时发生的异常，
 	 * 以区分上下文启动失败和完全没有上下文两种情况。
-	 * @param fc the FacesContext to find the web application context for
-	 * @return the root WebApplicationContext for this web app
-	 * @throws IllegalStateException if the root WebApplicationContext could not be found
+	 * @param fc 要为其查找 Web 应用上下文的 FacesContext
+	 * @return 此 Web 应用的根 WebApplicationContext
+	 * @throws IllegalStateException 如果找不到根 WebApplicationContext
 	 * @see org.springframework.web.context.WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE
 	 */
 	public static WebApplicationContext getRequiredWebApplicationContext(FacesContext fc) throws IllegalStateException {
@@ -95,8 +95,8 @@ public abstract class FacesContextUtils {
 	 * <p>在许多情况下，Session 引用本身也是安全的互斥锁，
 	 * 因为对于同一个活动逻辑会话，它始终是同一个对象引用。不过，这在不同 Servlet
 	 * 容器之间并无保证；唯一 100% 安全的方式是使用会话互斥锁。
-	 * @param fc the FacesContext to find the session mutex for
-	 * @return the mutex object (never {@code null})
+	 * @param fc 要为其查找会话互斥体的 FacesContext
+	 * @return 互斥体对象（永不为 {@code null}）
 	 * @see org.springframework.web.util.WebUtils#SESSION_MUTEX_ATTRIBUTE
 	 * @see org.springframework.web.util.HttpSessionMutexListener
 	 */

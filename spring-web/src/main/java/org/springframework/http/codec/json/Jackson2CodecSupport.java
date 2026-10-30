@@ -105,7 +105,7 @@ public abstract class Jackson2CodecSupport {
 
 	/**
 	 * 配置要使用的默认 ObjectMapper 实例。
-	 * @param objectMapper the ObjectMapper instance
+	 * @param objectMapper ObjectMapper 实例
 	 * @since 5.3.4
 	 */
 	public void setObjectMapper(ObjectMapper objectMapper) {
@@ -129,9 +129,9 @@ public abstract class Jackson2CodecSupport {
 	 * {@link #getMimeTypes() MimeTypes} 的使用。因此，此处配置的映射
 	 * 必须{@link MediaType#includes(MediaType) 包含}给定类必须支持的
 	 * 每一种 MediaType，这一点很重要。
-	 * @param clazz the type of Object to register ObjectMapper instances for
-	 * @param registrar a consumer to populate or otherwise update the
-	 * MediaType-to-ObjectMapper associations for the given Class
+	 * @param clazz 要为其注册 ObjectMapper 实例的对象类型
+	 * @param registrar 用于填充或以其他方式更新给定类的
+	 * MediaType 到 ObjectMapper 关联的 consumer
 	 * @since 5.3.4
 	 */
 	public void registerObjectMappersForType(Class<?> clazz, Consumer<Map<MimeType, ObjectMapper>> registrar) {
@@ -145,9 +145,9 @@ public abstract class Jackson2CodecSupport {
 
 	/**
 	 * 返回给定类的 ObjectMapper 注册信息（如果有）。
-	 * @param clazz the class to look up for registrations for
-	 * @return a map with registered MediaType-to-ObjectMapper registrations,
-	 * or empty if in case of no registrations for the given class.
+	 * @param clazz 要查找其注册信息的类
+	 * @return 已注册的 MediaType 到 ObjectMapper 注册映射，
+	 * 如果给定类没有任何注册则为空。
 	 * @since 5.3.4
 	 */
 	@Nullable
@@ -198,9 +198,8 @@ public abstract class Jackson2CodecSupport {
 	/**
 	 * 确定是否记录来自
 	 * {@link ObjectMapper#canDeserialize} / {@link ObjectMapper#canSerialize} 检查的给定异常。
-	 * @param type the class that Jackson tested for (de-)serializability
-	 * @param cause the Jackson-thrown exception to evaluate
-	 * (typically a {@link JsonMappingException})
+	 * @param type Jackson 检查其（反）序列化能力的类
+	 * @param cause 要评估的 Jackson 抛出的异常（通常是 {@link JsonMappingException}）
 	 * @since 5.3.1
 	 */
 	protected void logWarningIfNecessary(Type type, @Nullable Throwable cause) {

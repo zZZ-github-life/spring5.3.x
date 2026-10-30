@@ -133,9 +133,9 @@ public class StaticApplicationContext extends GenericApplicationContext {
 
 	/**
 	 * 将给定消息与给定代码关联。
-	 * @param code lookup code
-	 * @param locale the locale message should be found within
-	 * @param defaultMessage message associated with this lookup code
+	 * @param code 查找代码
+	 * @param locale 应在其内找到消息的 Locale
+	 * @param defaultMessage 与此查找代码关联的消息
 	 * @see #getStaticMessageSource
 	 */
 	public void addMessage(String code, Locale locale, String defaultMessage) {

@@ -45,7 +45,7 @@ class MapBindParameterSource implements BindParameterSource {
 
 	/**
 	 * 根据给定的 {@link Parameter} {@link Map} 创建一个新的 {@link MapBindParameterSource}。
-	 * @param values the parameter mapping
+	 * @param values 参数映射
 	 */
 	MapBindParameterSource(Map<String, Parameter> values) {
 		Assert.notNull(values, "Values must not be null");
@@ -55,8 +55,8 @@ class MapBindParameterSource implements BindParameterSource {
 
 	/**
 	 * 向 {@link MapBindParameterSource} 添加一个键值对。
-	 * @param paramName the name of the parameter
-	 * @param value the parameter value to add (must not be {@code null})
+	 * @param paramName 参数名称
+	 * @param value 要添加的参数值（不得为 {@code null}）
 	 */
 	MapBindParameterSource addValue(String paramName, Object value) {
 		Assert.notNull(paramName, "Parameter name must not be null");

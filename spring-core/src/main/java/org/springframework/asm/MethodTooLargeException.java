@@ -43,10 +43,10 @@ public final class MethodTooLargeException extends IndexOutOfBoundsException {
   /**
    * 构造一个新的 {@link MethodTooLargeException}。
    *
-   * @param className the internal name of the owner class (see {@link Type#getInternalName()}).
-   * @param methodName the name of the method.
-   * @param descriptor the descriptor of the method.
-   * @param codeSize the size of the method's Code attribute, in bytes.
+   * @param className 所有者类的内部名称（参见 {@link Type#getInternalName()}）。
+   * @param methodName 方法的名称。
+   * @param descriptor 方法的描述符。
+   * @param codeSize 方法 Code 属性的字节大小。
    */
   public MethodTooLargeException(
       final String className,
@@ -63,7 +63,7 @@ public final class MethodTooLargeException extends IndexOutOfBoundsException {
   /**
    * 返回所有者类的内部名称。
    *
-   * @return the internal name of the owner class (see {@link Type#getInternalName()}).
+   * @return 所有者类的内部名称（参见 {@link Type#getInternalName()}）。
    */
   public String getClassName() {
     return className;
@@ -72,7 +72,7 @@ public final class MethodTooLargeException extends IndexOutOfBoundsException {
   /**
    * 返回方法的名称。
    *
-   * @return the name of the method.
+   * @return 方法的名称。
    */
   public String getMethodName() {
     return methodName;
@@ -81,7 +81,7 @@ public final class MethodTooLargeException extends IndexOutOfBoundsException {
   /**
    * 返回方法的描述符。
    *
-   * @return the descriptor of the method.
+   * @return 方法的描述符。
    */
   public String getDescriptor() {
     return descriptor;
@@ -90,7 +90,7 @@ public final class MethodTooLargeException extends IndexOutOfBoundsException {
   /**
    * 返回方法 Code 属性的大小，以字节为单位。
    *
-   * @return the size of the method's Code attribute, in bytes.
+   * @return 方法 Code 属性的字节大小。
    */
   public int getCodeSize() {
     return codeSize;

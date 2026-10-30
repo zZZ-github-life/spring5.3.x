@@ -34,7 +34,7 @@ import org.springframework.http.converter.HttpMessageConversionException;
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @since 3.0
- * @param <T> the converted object type
+ * @param <T> 转换后的对象类型
  */
 public abstract class AbstractJaxb2HttpMessageConverter<T> extends AbstractXmlHttpMessageConverter<T> {
 
@@ -43,9 +43,9 @@ public abstract class AbstractJaxb2HttpMessageConverter<T> extends AbstractXmlHt
 
 	/**
 	 * 为给定的类创建新的 {@link Marshaller}。
-	 * @param clazz the class to create the marshaller for
-	 * @return the {@code Marshaller}
-	 * @throws HttpMessageConversionException in case of JAXB errors
+	 * @param clazz 要为其创建编组器的类
+	 * @return 该 {@code Marshaller}
+	 * @throws HttpMessageConversionException 发生 JAXB 错误时抛出
 	 */
 	protected final Marshaller createMarshaller(Class<?> clazz) {
 		try {
@@ -63,7 +63,7 @@ public abstract class AbstractJaxb2HttpMessageConverter<T> extends AbstractXmlHt
 	/**
 	 * 在此消息转换器使用 {@link Marshaller} 将对象写入输出之前，
 	 * 自定义该 Marshaller。
-	 * @param marshaller the marshaller to customize
+	 * @param marshaller 要自定义的编组器
 	 * @since 4.0.3
 	 * @see #createMarshaller(Class)
 	 */
@@ -72,9 +72,9 @@ public abstract class AbstractJaxb2HttpMessageConverter<T> extends AbstractXmlHt
 
 	/**
 	 * 为给定的类创建新的 {@link Unmarshaller}。
-	 * @param clazz the class to create the unmarshaller for
-	 * @return the {@code Unmarshaller}
-	 * @throws HttpMessageConversionException in case of JAXB errors
+	 * @param clazz 要为其创建解组器的类
+	 * @return 该 {@code Unmarshaller}
+	 * @throws HttpMessageConversionException 发生 JAXB 错误时抛出
 	 */
 	protected final Unmarshaller createUnmarshaller(Class<?> clazz) {
 		try {
@@ -92,7 +92,7 @@ public abstract class AbstractJaxb2HttpMessageConverter<T> extends AbstractXmlHt
 	/**
 	 * 在此消息转换器使用 {@link Unmarshaller} 从输入读取对象之前，
 	 * 自定义该 Unmarshaller。
-	 * @param unmarshaller the unmarshaller to customize
+	 * @param unmarshaller 要自定义的解组器
 	 * @since 4.0.3
 	 * @see #createUnmarshaller(Class)
 	 */
@@ -101,9 +101,9 @@ public abstract class AbstractJaxb2HttpMessageConverter<T> extends AbstractXmlHt
 
 	/**
 	 * 返回给定类的 {@link JAXBContext}。
-	 * @param clazz the class to return the context for
-	 * @return the {@code JAXBContext}
-	 * @throws HttpMessageConversionException in case of JAXB errors
+	 * @param clazz 要返回其上下文的类
+	 * @return 该 {@code JAXBContext}
+	 * @throws HttpMessageConversionException 发生 JAXB 错误时抛出
 	 */
 	protected final JAXBContext getJaxbContext(Class<?> clazz) {
 		return this.jaxbContexts.computeIfAbsent(clazz, key -> {

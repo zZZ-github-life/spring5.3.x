@@ -31,7 +31,7 @@ import org.springframework.util.Assert;
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <T> the callback result type
+ * @param <T> 回调结果类型
  */
 public class ListenableFutureCallbackRegistry<T> {
 
@@ -49,7 +49,7 @@ public class ListenableFutureCallbackRegistry<T> {
 
 	/**
 	 * 将给定的回调添加到此注册表。
-	 * @param callback the callback to add
+	 * @param callback 要添加的回调
 	 */
 	public void addCallback(ListenableFutureCallback<? super T> callback) {
 		Assert.notNull(callback, "'callback' must not be null");
@@ -91,7 +91,7 @@ public class ListenableFutureCallbackRegistry<T> {
 
 	/**
 	 * 将给定的成功回调添加到此注册表。
-	 * @param callback the success callback to add
+	 * @param callback 要添加的成功回调
 	 * @since 4.1
 	 */
 	public void addSuccessCallback(SuccessCallback<? super T> callback) {
@@ -110,7 +110,7 @@ public class ListenableFutureCallbackRegistry<T> {
 
 	/**
 	 * 将给定的失败回调添加到此注册表。
-	 * @param callback the failure callback to add
+	 * @param callback 要添加的失败回调
 	 * @since 4.1
 	 */
 	public void addFailureCallback(FailureCallback callback) {
@@ -129,7 +129,7 @@ public class ListenableFutureCallbackRegistry<T> {
 
 	/**
 	 * 使用给定结果对所有已添加的回调触发 {@link ListenableFutureCallback#onSuccess(Object)} 调用。
-	 * @param result the result to trigger the callbacks with
+	 * @param result 用于触发回调的结果
 	 */
 	public void success(@Nullable T result) {
 		synchronized (this.mutex) {
@@ -145,7 +145,7 @@ public class ListenableFutureCallbackRegistry<T> {
 	/**
 	 * 使用给定的 {@code Throwable} 对所有已添加的回调触发
 	 * {@link ListenableFutureCallback#onFailure(Throwable)} 调用。
-	 * @param ex the exception to trigger the callbacks with
+	 * @param ex 用于触发回调的异常
 	 */
 	public void failure(Throwable ex) {
 		synchronized (this.mutex) {

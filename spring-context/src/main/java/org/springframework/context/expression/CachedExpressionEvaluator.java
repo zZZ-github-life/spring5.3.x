@@ -75,9 +75,9 @@ public abstract class CachedExpressionEvaluator {
 	/**
 	 * 返回指定 SpEL 值对应的 {@link Expression}。<p>如果尚未解析，则
 	 * {@link #parseExpression(String) Parse the expression}。
-	 * @param cache the cache to use
-	 * @param elementKey the element on which the expression is defined
-	 * @param expression the expression to parse
+	 * @param cache 要使用的缓存
+	 * @param elementKey 定义该表达式的元素
+	 * @param expression 要解析的表达式
 	 */
 	protected Expression getExpression(Map<ExpressionKey, Expression> cache,
 			AnnotatedElementKey elementKey, String expression) {
@@ -93,7 +93,7 @@ public abstract class CachedExpressionEvaluator {
 
 	/**
 	 * 解析指定的 {@code expression}。
-	 * @param expression the expression to parse
+	 * @param expression 要解析的表达式
 	 * @since 5.3.13
 	 */
 	protected Expression parseExpression(String expression) {

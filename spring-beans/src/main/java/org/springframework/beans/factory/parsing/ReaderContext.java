@@ -39,10 +39,10 @@ public class ReaderContext {
 
 	/**
 	 * 构造一个新的 {@code ReaderContext}。
-	 * @param resource the XML bean definition resource
-	 * @param problemReporter the problem reporter in use
-	 * @param eventListener the event listener in use
-	 * @param sourceExtractor the source extractor in use
+	 * @param resource XML Bean 定义资源
+	 * @param problemReporter 正在使用的问题报告器
+	 * @param eventListener 正在使用的事件监听器
+	 * @param sourceExtractor 正在使用的源提取器
 	 */
 	public ReaderContext(Resource resource, ProblemReporter problemReporter,
 			ReaderEventListener eventListener, SourceExtractor sourceExtractor) {
@@ -197,8 +197,8 @@ public class ReaderContext {
 
 	/**
 	 * 针对给定的源对象调用源提取器。
-	 * @param sourceCandidate the original source object
-	 * @return the source object to store, or {@code null} for none.
+	 * @param sourceCandidate 原始源对象
+	 * @return 要存储的源对象；若没有则为 {@code null}。
 	 * @see #getSourceExtractor()
 	 * @see SourceExtractor#extractSource
 	 */

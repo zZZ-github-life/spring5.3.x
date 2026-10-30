@@ -109,14 +109,14 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	 *
 	 * <p>请注意，父上下文不应被更改：只有在创建此类的对象时父上下文不可用（例如在
 	 * WebApplicationContext 设置的情况下）时，才应在构造函数之外设置它。
-	 * @param parent the parent context
+	 * @param parent 父上下文
 	 * @see org.springframework.web.context.ConfigurableWebApplicationContext
 	 */
 	void setParent(@Nullable ApplicationContext parent);
 
 	/**
 	 * 为此应用上下文设置 {@code Environment}。
-	 * @param environment the new environment
+	 * @param environment 新的环境
 	 * @since 3.1
 	 */
 	void setEnvironment(ConfigurableEnvironment environment);
@@ -132,7 +132,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	 * 为此应用上下文设置 {@link ApplicationStartup}。
 	 *
 	 * <p>这允许应用上下文在启动期间记录指标。
-	 * @param applicationStartup the new context event factory
+	 * @param applicationStartup 新的上下文事件工厂
 	 * @since 5.3
 	 */
 	void setApplicationStartup(ApplicationStartup applicationStartup);
@@ -146,7 +146,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	/**
 	 * 添加一个新的 BeanFactoryPostProcessor，它将在刷新时、在任何 Bean 定义被求值之前应用于此应用上下
 	 * 文的内部 Bean 工厂。应在上下文配置期间调用。
-	 * @param postProcessor the factory processor to register
+	 * @param postProcessor 要注册的工厂处理器
 	 */
 	void addBeanFactoryPostProcessor(BeanFactoryPostProcessor postProcessor);
 
@@ -155,7 +155,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	 *
 	 * <p>请注意，在此注册的任何 ApplicationListener，如果上下文尚未激活，则会在刷新时应用；如果上下文
 	 * 已经激活，则会通过当前的事件广播器即时应用。
-	 * @param listener the ApplicationListener to register
+	 * @param listener 要注册的 ApplicationListener
 	 * @see org.springframework.context.event.ContextRefreshedEvent
 	 * @see org.springframework.context.event.ContextClosedEvent
 	 */
@@ -185,9 +185,8 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	 *
 	 * <p>由于这是一个启动方法，因此如果失败，它应销毁已经创建的单例，以避免资源悬空。换言之，在调用此
 	 * 方法之后，要么所有单例都已实例化，要么一个单例都没有实例化。
-	 * @throws BeansException if the bean factory could not be initialized
-	 * @throws IllegalStateException if already initialized and multiple refresh
-	 * attempts are not supported
+	 * @throws BeansException 如果无法初始化 Bean 工厂
+	 * @throws IllegalStateException 如果已经初始化且不支持多次刷新尝试
 	 */
 	void refresh() throws BeansException, IllegalStateException;
 
@@ -215,7 +214,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 
 	/**
 	 * 确定此应用上下文是否处于活动状态，即它是否已至少刷新过一次且尚未关闭。
-	 * @return whether the context is still active
+	 * @return 上下文是否仍处于活动状态
 	 * @see #refresh()
 	 * @see #close()
 	 * @see #getBeanFactory()
@@ -231,10 +230,10 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	 *
 	 * <p>通常，只有上下文处于活动状态时（即在 {@link #refresh()} 和 {@link #close()} 之间），才能访问
 	 * 此内部工厂。可以使用 {@link #isActive()} 标志检查上下文是否处于适当状态。
-	 * @return the underlying bean factory
-	 * @throws IllegalStateException if the context does not hold an internal
-	 * bean factory (usually if {@link #refresh()} hasn't been called yet or
-	 * if {@link #close()} has already been called)
+	 * @return 底层 Bean 工厂
+	 * @throws IllegalStateException 如果上下文未持有内部 Bean 工厂
+	 * （通常是因为尚未调用 {@link #refresh()}，
+	 * 或已经调用了 {@link #close()}）
 	 * @see #isActive()
 	 * @see #refresh()
 	 * @see #close()

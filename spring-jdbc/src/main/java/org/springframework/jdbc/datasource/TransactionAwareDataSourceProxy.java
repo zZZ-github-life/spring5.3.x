@@ -86,7 +86,7 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 
 	/**
 	 * 创建一个新的 TransactionAwareDataSourceProxy。
-	 * @param targetDataSource the target DataSource
+	 * @param targetDataSource 目标 DataSource
 	 */
 	public TransactionAwareDataSourceProxy(DataSource targetDataSource) {
 		super(targetDataSource);
@@ -110,7 +110,7 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 	 * 如果有原始 SQLException 则抛出。
 	 * <p>返回的 Connection 句柄实现 ConnectionProxy 接口，
 	 * 从而可以获取底层的目标 Connection。
-	 * @return a transactional Connection if any, a new one else
+	 * @return 事务性 Connection（如果有），否则为新的 Connection
 	 * @see DataSourceUtils#doGetConnection
 	 * @see ConnectionProxy#getTargetConnection
 	 */
@@ -122,8 +122,8 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 	/**
 	 * 用代理包装给定的 Connection，该代理将每个方法调用都委托给它，
 	 * 但将 {@code close()} 调用委托给 DataSourceUtils。
-	 * @param targetDataSource the DataSource that the Connection came from
-	 * @return the wrapped Connection
+	 * @param targetDataSource 该 Connection 来源的 DataSource
+	 * @return 包装后的 Connection
 	 * @see java.sql.Connection#close()
 	 * @see DataSourceUtils#doReleaseConnection
 	 */
@@ -141,7 +141,7 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 	 * 这可以通过 {@link #setReobtainTransactionalConnections "reobtainTransactionalConnections"}
 	 * 标志来覆盖，该标志会在活动事务内强制使用非固定的目标 Connection。
 	 * 请注意，非事务性访问将始终使用固定的 Connection。
-	 * @param targetDataSource the target DataSource
+	 * @param targetDataSource 目标 DataSource
 	 */
 	protected boolean shouldObtainFixedConnection(DataSource targetDataSource) {
 		return (!TransactionSynchronizationManager.isSynchronizationActive() ||

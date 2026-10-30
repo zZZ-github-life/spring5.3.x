@@ -28,7 +28,7 @@ public interface UpdatedRowsFetchSpec {
 
 	/**
 	 * 获取更新的行数。
-	 * @return a Mono emitting the number of updated rows
+	 * @return 发出更新行数的 Mono
 	 */
 	Mono<Integer> rowsUpdated();
 

@@ -70,43 +70,43 @@ public interface BindingResult extends Errors {
 
 	/**
 	 * 提取给定字段的原始字段值。通常用于比较目的。
-	 * @param field the field to check
-	 * @return the current value of the field in its raw form, or {@code null} if not known
+	 * @param field 要检查的字段
+	 * @return 字段当前值的原始形式，如果未知则为 {@code null}
 	 */
 	@Nullable
 	Object getRawFieldValue(String field);
 
 	/**
 	 * 查找给定类型和属性的自定义属性编辑器。
-	 * @param field the path of the property (name or nested path), or
-	 * {@code null} if looking for an editor for all properties of the given type
-	 * @param valueType the type of the property (can be {@code null} if a property
-	 * is given but should be specified in any case for consistency checking)
-	 * @return the registered editor, or {@code null} if none
+	 * @param field 属性的路径（名称或嵌套路径）；如果查找适用于给定类型的
+	 * 所有属性的编辑器，则为 {@code null}
+	 * @param valueType 属性的类型（如果给定了属性则可为 {@code null}，
+	 * 但为了进行一致性检查，无论如何都应指定）
+	 * @return 注册的编辑器，如果没有则为 {@code null}
 	 */
 	@Nullable
 	PropertyEditor findEditor(@Nullable String field, @Nullable Class<?> valueType);
 
 	/**
 	 * 返回底层的 PropertyEditorRegistry。
-	 * @return the PropertyEditorRegistry, or {@code null} if none
-	 * available for this BindingResult
+	 * @return PropertyEditorRegistry；如果此 BindingResult 没有可用的，
+	 * 则为 {@code null}
 	 */
 	@Nullable
 	PropertyEditorRegistry getPropertyEditorRegistry();
 
 	/**
 	 * 将给定错误代码解析为消息代码。<p>使用适当的参数调用已配置的 {@link MessageCodesResolver}。
-	 * @param errorCode the error code to resolve into message codes
-	 * @return the resolved message codes
+	 * @param errorCode 要解析为消息码的错误码
+	 * @return 解析得到的消息码
 	 */
 	String[] resolveMessageCodes(String errorCode);
 
 	/**
 	 * 将给定字段的错误代码解析为消息代码。<p>使用适当的参数调用已配置的 {@link MessageCodesResolver}。
-	 * @param errorCode the error code to resolve into message codes
-	 * @param field the field to resolve message codes for
-	 * @return the resolved message codes
+	 * @param errorCode 要解析为消息码的错误码
+	 * @param field 要为其解析消息码的字段
+	 * @return 解析得到的消息码
 	 */
 	String[] resolveMessageCodes(String errorCode, String field);
 
@@ -122,9 +122,9 @@ public interface BindingResult extends Errors {
 	/**
 	 * 记录指定字段的给定值。<p>用于无法构造目标对象的情况，使原始字段值可通过 {@link #getFieldValue}
 	 * 获得。如果注册了错误，则对于每个受影响的字段将暴露被拒绝的值。
-	 * @param field the field to record the value for
-	 * @param type the type of the field
-	 * @param value the original value
+	 * @param field 要为其记录值的字段
+	 * @param type 字段的类型
+	 * @param value 原始值
 	 * @since 5.0.4
 	 */
 	default void recordFieldValue(String field, Class<?> type, @Nullable Object value) {

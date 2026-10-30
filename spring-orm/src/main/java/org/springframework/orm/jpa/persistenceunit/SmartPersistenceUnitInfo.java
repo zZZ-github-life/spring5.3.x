@@ -35,7 +35,7 @@ public interface SmartPersistenceUnitInfo extends PersistenceUnitInfo {
 	/**
 	 * 返回托管 Java 包的列表，供持久化提供者进行内省。
 	 * 通常通过扫描找到，但无法通过 {@link #getManagedClassNames()} 暴露。
-	 * @return a list of names of managed Java packages (potentially empty)
+	 * @return 受管理的 Java 包名列表（可能为空）
 	 * @since 4.1
 	 */
 	List<String> getManagedPackages();

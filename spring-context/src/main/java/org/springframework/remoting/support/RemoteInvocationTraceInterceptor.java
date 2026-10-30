@@ -56,8 +56,8 @@ public class RemoteInvocationTraceInterceptor implements MethodInterceptor {
 
 	/**
 	 * 创建一个新的 RemoteInvocationTraceInterceptor。
-	 * @param exporterName the name of the remote exporter
-	 * (to be used as context information in log messages)
+	 * @param exporterName 远程导出器的名称
+	 * （用作日志消息中的上下文信息）
 	 */
 	public RemoteInvocationTraceInterceptor(String exporterName) {
 		this.exporterNameClause = exporterName + " ";

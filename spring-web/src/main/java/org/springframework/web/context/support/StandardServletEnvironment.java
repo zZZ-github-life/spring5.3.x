@@ -68,7 +68,7 @@ public class StandardServletEnvironment extends StandardEnvironment implements C
 	/**
 	 * 使用特定的 {@link MutablePropertySources} 实例创建一个新的 {@code StandardServletEnvironment}
 	 * 实例。
-	 * @param propertySources property sources to use
+	 * @param propertySources 要使用的属性源
 	 * @since 5.3.4
 	 */
 	protected StandardServletEnvironment(MutablePropertySources propertySources) {

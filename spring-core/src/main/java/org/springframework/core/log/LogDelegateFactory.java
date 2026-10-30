@@ -49,10 +49,10 @@ public final class LogDelegateFactory {
 	 * 并未恰好共享合适的父包（例如 web 包以及
 	 * 较低层 http 和 codec 包的日志记录）。对于这种情况，可以将主（基于类的）
 	 * 日志记录器包装在一个共享的回退日志记录器周围。
-	 * @param primaryLogger primary logger to try first
-	 * @param secondaryLogger secondary logger
-	 * @param tertiaryLoggers optional vararg of further fallback loggers
-	 * @return the resulting composite logger for the related categories
+	 * @param primaryLogger 首先尝试的主日志记录器
+	 * @param secondaryLogger 次级日志记录器
+	 * @param tertiaryLoggers 可选的变长参数，用于指定更多回退日志记录器
+	 * @return 相关类别对应的组合日志记录器
 	 */
 	public static Log getCompositeLog(Log primaryLogger, Log secondaryLogger, Log... tertiaryLoggers) {
 		List<Log> loggers = new ArrayList<>(2 + tertiaryLoggers.length);
@@ -67,8 +67,8 @@ public final class LogDelegateFactory {
 	 * 使其无法与同一包中的其他日志类别一起启用。
 	 * 这对于过于冗长、或者在其他方面属于可选
 	 * 或无需始终查看的专门输出很有用。
-	 * @param clazz the class for which to create a logger
-	 * @return a Log with the category {@code "_" + fully-qualified class name}
+	 * @param clazz 要为其创建日志记录器的类
+	 * @return 类别为 {@code "_" + fully-qualified class name} 的 Log
 	 */
 	public static Log getHiddenLog(Class<?> clazz) {
 		return getHiddenLog(clazz.getName());
@@ -79,8 +79,8 @@ public final class LogDelegateFactory {
 	 * 使其无法与同一包中的其他日志类别一起启用。
 	 * 这对于过于冗长、或者在其他方面属于可选
 	 * 或无需始终查看的专门输出很有用。
-	 * @param category the log category to use
-	 * @return a Log with the category {@code "_" + category}
+	 * @param category 要使用的日志类别
+	 * @return 类别为 {@code "_" + category} 的 Log
 	 * @since 5.3.5
 	 */
 	public static Log getHiddenLog(String category) {

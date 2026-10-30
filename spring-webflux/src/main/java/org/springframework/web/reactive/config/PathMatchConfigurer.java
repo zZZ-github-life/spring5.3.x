@@ -63,8 +63,8 @@ public class PathMatchConfigurer {
 	 * 配置要应用到匹配的控制器方法上的路径前缀。
 	 * <p>前缀用于丰富每个 {@code @RequestMapping} 方法的映射，这些方法的控制器类型需与相应的 {@code Predicate} 匹配。将使用第一个匹配的谓词对应的前缀。
 	 * <p>可考虑使用 {@link org.springframework.web.method.HandlerTypePredicate HandlerTypePredicate} 对控制器进行分组。
-	 * @param prefix the path prefix to apply
-	 * @param predicate a predicate for matching controller types
+	 * @param prefix 要应用的路径前缀
+	 * @param predicate 用于匹配控制器类型的谓词
 	 * @since 5.1
 	 */
 	public PathMatchConfigurer addPathPrefix(String prefix, Predicate<Class<?>> predicate) {

@@ -89,11 +89,11 @@ public abstract class EntityManagerFactoryUtils {
 	 * 假定 EntityManagerFactory 的 bean 名称遵循该约定。
 	 * <p>如果未指定单元名称，此方法将通过
 	 * {@link ListableBeanFactory#getBean(Class)} 搜索默认的 EntityManagerFactory。
-	 * @param beanFactory the ListableBeanFactory to search
-	 * @param unitName the name of the persistence unit (may be {@code null} or empty,
-	 * in which case a single bean of type EntityManagerFactory will be searched for)
-	 * @return the EntityManagerFactory
-	 * @throws NoSuchBeanDefinitionException if there is no such EntityManagerFactory in the context
+	 * @param beanFactory 要搜索的 ListableBeanFactory
+	 * @param unitName 持久化单元的名称
+	 * （可以为 {@code null} 或为空，此时将搜索单个 EntityManagerFactory 类型的 Bean）
+	 * @return 该 EntityManagerFactory
+	 * @throws NoSuchBeanDefinitionException 如果上下文中没有这样的 EntityManagerFactory
 	 * @see EntityManagerFactoryInfo#getPersistenceUnitName()
 	 */
 	public static EntityManagerFactory findEntityManagerFactory(
@@ -125,9 +125,9 @@ public abstract class EntityManagerFactoryUtils {
 	 * 从给定的工厂获取一个 JPA EntityManager。它能感知绑定到当前线程的
 	 * 相应 EntityManager，例如在使用 JpaTransactionManager 时。
 	 * <p>注意：如果找不到线程绑定的 EntityManager，将返回 {@code null}！
-	 * @param emf the EntityManagerFactory to create the EntityManager with
-	 * @return the EntityManager, or {@code null} if none found
-	 * @throws DataAccessResourceFailureException if the EntityManager couldn't be obtained
+	 * @param emf 用于创建 EntityManager 的 EntityManagerFactory
+	 * @return EntityManager；如果未找到则返回 {@code null}
+	 * @throws DataAccessResourceFailureException 如果无法获取 EntityManager
 	 * @see JpaTransactionManager
 	 */
 	@Nullable
@@ -141,11 +141,10 @@ public abstract class EntityManagerFactoryUtils {
 	 * 从给定的工厂获取一个 JPA EntityManager。它能感知绑定到当前线程的
 	 * 相应 EntityManager，例如在使用 JpaTransactionManager 时。
 	 * <p>注意：如果找不到线程绑定的 EntityManager，将返回 {@code null}！
-	 * @param emf the EntityManagerFactory to create the EntityManager with
-	 * @param properties the properties to be passed into the {@code createEntityManager}
-	 * call (may be {@code null})
-	 * @return the EntityManager, or {@code null} if none found
-	 * @throws DataAccessResourceFailureException if the EntityManager couldn't be obtained
+	 * @param emf 用于创建 EntityManager 的 EntityManagerFactory
+	 * @param properties 要传入 {@code createEntityManager} 调用的属性（可以为 {@code null}）
+	 * @return EntityManager；如果未找到则返回 {@code null}
+	 * @throws DataAccessResourceFailureException 如果无法获取 EntityManager
 	 * @see JpaTransactionManager
 	 */
 	@Nullable
@@ -163,11 +162,10 @@ public abstract class EntityManagerFactoryUtils {
 	 * 从给定的工厂获取一个 JPA EntityManager。它能感知绑定到当前线程的
 	 * 相应 EntityManager，例如在使用 JpaTransactionManager 时。
 	 * <p>与 {@code getEntityManager} 相同，但会抛出原始的 PersistenceException。
-	 * @param emf the EntityManagerFactory to create the EntityManager with
-	 * @param properties the properties to be passed into the {@code createEntityManager}
-	 * call (may be {@code null})
-	 * @return the EntityManager, or {@code null} if none found
-	 * @throws javax.persistence.PersistenceException if the EntityManager couldn't be created
+	 * @param emf 用于创建 EntityManager 的 EntityManagerFactory
+	 * @param properties 要传入 {@code createEntityManager} 调用的属性（可以为 {@code null}）
+	 * @return EntityManager；如果未找到则返回 {@code null}
+	 * @throws javax.persistence.PersistenceException 如果无法创建 EntityManager
 	 * @see #getTransactionalEntityManager(javax.persistence.EntityManagerFactory)
 	 * @see JpaTransactionManager
 	 */
@@ -182,13 +180,11 @@ public abstract class EntityManagerFactoryUtils {
 	 * 从给定的工厂获取一个 JPA EntityManager。它能感知绑定到当前线程的
 	 * 相应 EntityManager，例如在使用 JpaTransactionManager 时。
 	 * <p>与 {@code getEntityManager} 相同，但会抛出原始的 PersistenceException。
-	 * @param emf the EntityManagerFactory to create the EntityManager with
-	 * @param properties the properties to be passed into the {@code createEntityManager}
-	 * call (may be {@code null})
-	 * @param synchronizedWithTransaction whether to automatically join ongoing
-	 * transactions (according to the JPA 2.1 SynchronizationType rules)
-	 * @return the EntityManager, or {@code null} if none found
-	 * @throws javax.persistence.PersistenceException if the EntityManager couldn't be created
+	 * @param emf 用于创建 EntityManager 的 EntityManagerFactory
+	 * @param properties 要传入 {@code createEntityManager} 调用的属性（可以为 {@code null}）
+	 * @param synchronizedWithTransaction 是否自动加入正在进行的事务（遵循 JPA 2.1 SynchronizationType 规则）
+	 * @return EntityManager；如果未找到则返回 {@code null}
+	 * @throws javax.persistence.PersistenceException 如果无法创建 EntityManager
 	 * @see #getTransactionalEntityManager(javax.persistence.EntityManagerFactory)
 	 * @see JpaTransactionManager
 	 */
@@ -294,10 +290,9 @@ public abstract class EntityManagerFactoryUtils {
 
 	/**
 	 * 在给定的 EntityManager 上准备事务（如果可能）。
-	 * @param em the EntityManager to prepare
-	 * @param emf the EntityManagerFactory that the EntityManager has been created with
-	 * @return an arbitrary object that holds transaction data, if any
-	 * (to be passed into cleanupTransaction)
+	 * @param em 要准备的 EntityManager
+	 * @param emf 创建 EntityManager 时所用的 EntityManagerFactory
+	 * @return 保存事务数据的任意对象（如果有）（将传入 cleanupTransaction）
 	 * @see JpaDialect#prepareTransaction
 	 */
 	@Nullable
@@ -316,9 +311,8 @@ public abstract class EntityManagerFactoryUtils {
 
 	/**
 	 * 在给定的 EntityManager 上清理事务（如果可能）。
-	 * @param transactionData arbitrary object that holds transaction data, if any
-	 * (as returned by prepareTransaction)
-	 * @param emf the EntityManagerFactory that the EntityManager has been created with
+	 * @param transactionData 保存事务数据的任意对象（如果有）（由 prepareTransaction 返回）
+	 * @param emf 创建 EntityManager 时所用的 EntityManagerFactory
 	 * @see JpaDialect#cleanupTransaction
 	 */
 	private static void cleanupTransaction(@Nullable Object transactionData, EntityManagerFactory emf) {
@@ -334,8 +328,8 @@ public abstract class EntityManagerFactoryUtils {
 	/**
 	 * 将当前事务超时（如果有）应用于给定的 JPA Query 对象。
 	 * <p>此方法会相应地设置 JPA 2.0 查询提示 "javax.persistence.query.timeout"。
-	 * @param query the JPA Query object
-	 * @param emf the JPA EntityManagerFactory that the Query was created for
+	 * @param query JPA Query 对象
+	 * @param emf 创建 Query 时所用的 JPA EntityManagerFactory
 	 */
 	public static void applyTransactionTimeout(Query query, EntityManagerFactory emf) {
 		EntityManagerHolder emHolder = (EntityManagerHolder) TransactionSynchronizationManager.getResource(emf);
@@ -357,9 +351,9 @@ public abstract class EntityManagerFactoryUtils {
 	 * <p>此处涵盖了最重要的情形，如对象未找到或乐观锁失败。
 	 * 对于更细粒度的转换，JpaTransactionManager 等支持
 	 * 通过 JpaDialect 进行复杂的异常转换。
-	 * @param ex runtime exception that occurred
-	 * @return the corresponding DataAccessException instance,
-	 * or {@code null} if the exception should not be translated
+	 * @param ex 发生的运行时异常
+	 * @return 相应的 DataAccessException 实例，
+	 * 如果不应翻译该异常则为 {@code null}
 	 */
 	@Nullable
 	public static DataAccessException convertJpaAccessExceptionIfPossible(RuntimeException ex) {
@@ -415,7 +409,7 @@ public abstract class EntityManagerFactoryUtils {
 	/**
 	 * 关闭给定的 JPA EntityManager，
 	 * 并捕获和记录任何清理异常。
-	 * @param em the JPA EntityManager to close (may be {@code null})
+	 * @param em 要关闭的 JPA EntityManager（可以为 {@code null}）
 	 * @see javax.persistence.EntityManager#close()
 	 */
 	public static void closeEntityManager(@Nullable EntityManager em) {

@@ -101,7 +101,7 @@ public class AntPathMatcher implements PathMatcher {
 
 	/**
 	 * 用于自定义路径分隔符的便捷替代构造函数。
-	 * @param pathSeparator the path separator to use, must not be {@code null}.
+	 * @param pathSeparator 要使用的路径分隔符，不能为 {@code null}。
 	 * @since 4.1
 	 */
 	public AntPathMatcher(String pathSeparator) {
@@ -190,11 +190,12 @@ public class AntPathMatcher implements PathMatcher {
 
 	/**
 	 * 实际将给定的 {@code path} 与给定的 {@code pattern} 进行匹配。
-	 * @param pattern the pattern to match against
-	 * @param path the path to test
-	 * @param fullMatch whether a full pattern match is required (else a pattern match
-	 * as far as the given base path goes is sufficient)
-	 * @return {@code true} if the supplied {@code path} matched, {@code false} if it didn't
+	 * @param pattern 要匹配的模式
+	 * @param path 要测试的路径
+	 * @param fullMatch 是否要求完整的模式匹配（否则只需匹配到
+	 * 给定基础路径的范围即可）
+	 * @return 如果提供的 {@code path} 匹配则返回 {@code true}，
+	 * 否则返回 {@code false}
 	 */
 	protected boolean doMatch(String pattern, @Nullable String path, boolean fullMatch,
 			@Nullable Map<String, String> uriTemplateVariables) {
@@ -380,8 +381,8 @@ public class AntPathMatcher implements PathMatcher {
 	 * 根据此匹配器的设置将给定的路径模式分词为多个部分。
 	 * <p>根据 {@link #setCachePatterns} 执行缓存，实际的词法分析算法委托给
 	 * {@link #tokenizePath(String)}。
-	 * @param pattern the pattern to tokenize
-	 * @return the tokenized pattern parts
+	 * @param pattern 要分词的模式
+	 * @return 分词后的模式各部分
 	 */
 	protected String[] tokenizePattern(String pattern) {
 		String[] tokenized = null;
@@ -407,8 +408,8 @@ public class AntPathMatcher implements PathMatcher {
 
 	/**
 	 * 根据此匹配器的设置将给定的路径分词为多个部分。
-	 * @param path the path to tokenize
-	 * @return the tokenized path parts
+	 * @param path 要分词的路径
+	 * @return 分词后的路径各部分
 	 */
 	protected String[] tokenizePath(String path) {
 		return StringUtils.tokenizeToStringArray(path, this.pathSeparator, this.trimTokens, true);
@@ -416,9 +417,10 @@ public class AntPathMatcher implements PathMatcher {
 
 	/**
 	 * 测试某个字符串是否与模式匹配。
-	 * @param pattern the pattern to match against (never {@code null})
-	 * @param str the String which must be matched against the pattern (never {@code null})
-	 * @return {@code true} if the string matches against the pattern, or {@code false} otherwise
+	 * @param pattern 要匹配的模式（永不为 {@code null}）
+	 * @param str 必须与模式匹配的 String（永不为 {@code null}）
+	 * @return 如果字符串与模式匹配则返回 {@code true}，
+	 * 否则返回 {@code false}
 	 */
 	private boolean matchStrings(String pattern, String str,
 			@Nullable Map<String, String> uriTemplateVariables) {
@@ -433,8 +435,8 @@ public class AntPathMatcher implements PathMatcher {
 	 * <p>当运行时遇到过多需要缓存的模式（阈值为 65536）时，它会关闭默认缓存，其前提是假定会有任意排列
 	 * 的模式进来，极少出现重复的模式。
 	 * <p>可以重写此方法以实现自定义的缓存策略。
-	 * @param pattern the pattern to match against (never {@code null})
-	 * @return a corresponding AntPathStringMatcher (never {@code null})
+	 * @param pattern 要匹配的模式（永不为 {@code null}）
+	 * @return 对应的 AntPathStringMatcher（永不为 {@code null}）
 	 * @see #setCachePatterns
 	 */
 	protected AntPathStringMatcher getStringMatcher(String pattern) {
@@ -526,10 +528,10 @@ public class AntPathMatcher implements PathMatcher {
 	 * <tr><td>/*.html</td><td>/hotels</td><td>/hotels.html</td></tr>
 	 * <tr><td>/*.html</td><td>/*.txt</td><td>{@code IllegalArgumentException}</td></tr>
 	 * </table>
-	 * @param pattern1 the first pattern
-	 * @param pattern2 the second pattern
-	 * @return the combination of the two patterns
-	 * @throws IllegalArgumentException if the two patterns cannot be combined
+	 * @param pattern1 第一个模式
+	 * @param pattern2 第二个模式
+	 * @return 两个模式的组合
+	 * @throws IllegalArgumentException 如果两个模式无法组合
 	 */
 	@Override
 	public String combine(String pattern1, String pattern2) {
@@ -608,8 +610,8 @@ public class AntPathMatcher implements PathMatcher {
 	 * </ol>
 	 * <p>作为参数传入的完整路径用于测试精确匹配。因此当给定路径为 {@code /hotels/2} 时，模式
 	 * {@code /hotels/2} 会排在 {@code /hotels/1} 之前。
-	 * @param path the full path to use for comparison
-	 * @return a comparator capable of sorting patterns in order of explicitness
+	 * @param path 用于比较的完整路径
+	 * @return 能够按明确程度对模式排序的比较器
 	 */
 	@Override
 	public Comparator<String> getPatternComparator(String path) {
@@ -697,7 +699,8 @@ public class AntPathMatcher implements PathMatcher {
 
 		/**
 		 * 主入口点。
-		 * @return {@code true} if the string matches against the pattern, or {@code false} otherwise.
+		 * @return 如果字符串与模式匹配则返回 {@code true}，
+		 * 否则返回 {@code false}。
 		 */
 		public boolean matchStrings(String str, @Nullable Map<String, String> uriTemplateVariables) {
 			if (this.exactMatch) {
@@ -754,8 +757,8 @@ public class AntPathMatcher implements PathMatcher {
 
 		/**
 		 * 比较两个模式以确定哪个应先匹配，即相对于当前路径哪个更具体。
-		 * @return a negative integer, zero, or a positive integer as pattern1 is
-		 * more specific, equally specific, or less specific than pattern2.
+		 * @return 当 pattern1 比 pattern2 更具体、同样具体
+		 * 或更不具体时，分别返回负数、零或正数。
 		 */
 		@Override
 		public int compare(String pattern1, String pattern2) {

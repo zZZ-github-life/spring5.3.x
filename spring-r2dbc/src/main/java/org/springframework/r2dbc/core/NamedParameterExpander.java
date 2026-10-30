@@ -51,8 +51,8 @@ class NamedParameterExpander {
 	/**
 	 * 获取给定 SQL 语句的已解析表示。
 	 * <p>默认实现使用上限为 256 个条目的 LRU 缓存。
-	 * @param sql the original SQL statement
-	 * @return a representation of the parsed SQL statement
+	 * @param sql 原始 SQL 语句
+	 * @return 解析后 SQL 语句的表示
 	 */
 	private ParsedSql getParsedSql(String sql) {
 		return this.parsedSqlCache.get(sql);
@@ -70,11 +70,11 @@ class NamedParameterExpander {
 	 * <p>传入的参数值用于确定选择列表要使用的占位符数量。
 	 * 选择列表应限制为 100 个或更少的元素。数据库不保证支持更多元素，
 	 * 并且这严格取决于数据库供应商。
-	 * @param sql sql the original SQL statement
-	 * @param bindMarkersFactory the bind marker factory
-	 * @param paramSource the source for named parameters
-	 * @return the expanded sql that accepts bind parameters and allows for execution
-	 * without further translation wrapped as {@link PreparedOperation}.
+	 * @param sql 原始 SQL 语句
+	 * @param bindMarkersFactory 绑定标记工厂
+	 * @param paramSource 命名参数的来源
+	 * @return 展开后的 sql，接受绑定参数并可直接执行，
+	 * 无需进一步转换，且包装为 {@link PreparedOperation}。
 	 */
 	public PreparedOperation<String> expand(
 			String sql, BindMarkersFactory bindMarkersFactory, BindParameterSource paramSource) {
@@ -86,7 +86,7 @@ class NamedParameterExpander {
 	/**
 	 * 解析 SQL 语句并定位任何占位符或命名参数。
 	 * 命名参数作为此方法调用的结果返回。
-	 * @return the parameter names
+	 * @return 参数名称
 	 */
 	public List<String> getParameterNames(String sql) {
 		return getParsedSql(sql).getParameterNames();

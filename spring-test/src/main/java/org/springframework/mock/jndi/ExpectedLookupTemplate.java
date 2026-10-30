@@ -50,8 +50,8 @@ public class ExpectedLookupTemplate extends JndiTemplate {
 	/**
 	 * 构造一个新的 JndiTemplate，它将始终返回给定对象，
 	 * 但仅响应对给定名称的请求。
-	 * @param name the name the client is expected to look up
-	 * @param object the object that will be returned
+	 * @param name 客户端预期查找的名称
+	 * @param object 将返回的对象
 	 */
 	public ExpectedLookupTemplate(String name, Object object) {
 		addObject(name, object);
@@ -60,8 +60,8 @@ public class ExpectedLookupTemplate extends JndiTemplate {
 
 	/**
 	 * 将给定对象添加到此模板将暴露的 JNDI 对象列表中。
-	 * @param name the name the client is expected to look up
-	 * @param object the object that will be returned
+	 * @param name 客户端预期查找的名称
+	 * @param object 将返回的对象
 	 */
 	public void addObject(String name, Object object) {
 		this.jndiObjects.put(name, object);

@@ -50,13 +50,13 @@ public interface WebSocketSession {
 
 	/**
 	 * 返回用于创建消息负载的 {@code DataBuffer} 工厂。
-	 * @return the buffer factory for the session
+	 * @return 会话的缓冲区工厂
 	 */
 	DataBufferFactory bufferFactory();
 
 	/**
 	 * 返回与 WebSocket 会话关联的属性 Map。
-	 * @return a Map with the session attributes (never {@code null})
+	 * @return 包含会话属性的 Map（永不为 {@code null}）
 	 * @since 5.1
 	 */
 	Map<String, Object> getAttributes();
@@ -93,7 +93,7 @@ public interface WebSocketSession {
 
 	/**
 	 * 使用给定状态关闭 WebSocket 会话。
-	 * @param status the close status
+	 * @param status 关闭状态
 	 */
 	Mono<Void> close(CloseStatus status);
 

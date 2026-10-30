@@ -79,15 +79,15 @@ public @interface Scheduled {
 	 * </ul>
 	 * <p>特殊值 {@link #CRON_DISABLED "-"} 表示禁用的 cron 触发器，主要用于通过 <code>${...}</code> 占
 	 * 位符解析的外部指定值。
-	 * @return an expression that can be parsed to a cron schedule
+	 * @return 可解析为 cron 计划的表达式
 	 * @see org.springframework.scheduling.support.CronExpression#parse(String)
 	 */
 	String cron() default "";
 
 	/**
 	 * 用于解析 cron 表达式的时区。默认情况下，该属性为空字符串（即使用服务器的本地时区）。
-	 * @return a zone id accepted by {@link java.util.TimeZone#getTimeZone(String)},
-	 * or an empty String to indicate the server's default time zone
+	 * @return {@link java.util.TimeZone#getTimeZone(String)} 接受的时区 id，
+	 * 或空字符串表示服务器的默认时区
 	 * @since 4.0
 	 * @see org.springframework.scheduling.support.CronTrigger#CronTrigger(String, java.util.TimeZone)
 	 * @see java.util.TimeZone
@@ -97,15 +97,15 @@ public @interface Scheduled {
 	/**
 	 * 在最后一次调用结束与下一次调用开始之间以固定周期执行带注解的方法。
 	 * <p>时间单位默认为毫秒，但可以通过 {@link #timeUnit} 覆盖。
-	 * @return the delay
+	 * @return 延迟时间
 	 */
 	long fixedDelay() default -1;
 
 	/**
 	 * 在最后一次调用结束与下一次调用开始之间以固定周期执行带注解的方法。
 	 * <p>时间单位默认为毫秒，但可以通过 {@link #timeUnit} 覆盖。
-	 * @return the delay as a String value &mdash; for example, a placeholder
-	 * or a {@link java.time.Duration#parse java.time.Duration} compliant value
+	 * @return 以 String 值表示的延迟 &mdash; 例如，占位符
+	 * 或符合 {@link java.time.Duration#parse java.time.Duration} 的值
 	 * @since 3.2.2
 	 */
 	String fixedDelayString() default "";
@@ -113,15 +113,15 @@ public @interface Scheduled {
 	/**
 	 * 以调用之间的固定周期执行带注解的方法。
 	 * <p>时间单位默认为毫秒，但可以通过 {@link #timeUnit} 覆盖。
-	 * @return the period
+	 * @return 周期
 	 */
 	long fixedRate() default -1;
 
 	/**
 	 * 以调用之间的固定周期执行带注解的方法。
 	 * <p>时间单位默认为毫秒，但可以通过 {@link #timeUnit} 覆盖。
-	 * @return the period as a String value &mdash; for example, a placeholder
-	 * or a {@link java.time.Duration#parse java.time.Duration} compliant value
+	 * @return 以 String 值表示的周期 &mdash; 例如，占位符
+	 * 或符合 {@link java.time.Duration#parse java.time.Duration} 的值
 	 * @since 3.2.2
 	 */
 	String fixedRateString() default "";
@@ -129,7 +129,7 @@ public @interface Scheduled {
 	/**
 	 * 在 {@link #fixedRate} 或 {@link #fixedDelay} 任务首次执行之前延迟的时间单位数。
 	 * <p>时间单位默认为毫秒，但可以通过 {@link #timeUnit} 覆盖。
-	 * @return the initial
+	 * @return 初始延迟
 	 * @since 3.2
 	 */
 	long initialDelay() default -1;
@@ -137,8 +137,8 @@ public @interface Scheduled {
 	/**
 	 * 在 {@link #fixedRate} 或 {@link #fixedDelay} 任务首次执行之前延迟的时间单位数。
 	 * <p>时间单位默认为毫秒，但可以通过 {@link #timeUnit} 覆盖。
-	 * @return the initial delay as a String value &mdash; for example, a placeholder
-	 * or a {@link java.time.Duration#parse java.time.Duration} compliant value
+	 * @return 以 String 值表示的初始延迟 &mdash; 例如，占位符
+	 * 或符合 {@link java.time.Duration#parse java.time.Duration} 的值
 	 * @since 3.2.2
 	 */
 	String initialDelayString() default "";
@@ -151,7 +151,7 @@ public @interface Scheduled {
 	 * <p>对于 {@linkplain #cron() cron 表达式}以及通过 {@link #fixedDelayString}、
 	 * {@link #fixedRateString} 或 {@link #initialDelayString} 提供的 {@link java.time.Duration} 值，此
 	 * 属性会被忽略。
-	 * @return the {@code TimeUnit} to use
+	 * @return 要使用的 {@code TimeUnit}
 	 * @since 5.3.10
 	 */
 	TimeUnit timeUnit() default TimeUnit.MILLISECONDS;

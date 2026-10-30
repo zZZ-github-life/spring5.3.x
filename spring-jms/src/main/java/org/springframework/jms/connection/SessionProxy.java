@@ -33,7 +33,7 @@ public interface SessionProxy extends Session {
 	/**
 	 * 返回此代理的目标 Session。
 	 * <p>这通常是原生提供者的 Session，或会话池中的包装器。
-	 * @return the underlying Session (never {@code null})
+	 * @return 底层 Session（永不为 {@code null}）
 	 */
 	Session getTargetSession();
 

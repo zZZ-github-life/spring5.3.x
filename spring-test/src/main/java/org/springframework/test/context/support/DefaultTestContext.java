@@ -65,8 +65,7 @@ public class DefaultTestContext implements TestContext {
 	/**
 	 * <em>复制构造器</em>，用于根据所提供的上下文的<em>属性</em>和不可变状态创建新的 {@code DefaultTestContext}。
 	 * <p><em>不可变状态</em>包括传递给{@linkplain #DefaultTestContext(Class, MergedContextConfiguration, CacheAwareContextLoaderDelegate) 标准构造器}的所有参数。
-	 * @throws NullPointerException if the supplied {@code DefaultTestContext}
-	 * is {@code null}
+	 * @throws NullPointerException 如果所提供的 {@code DefaultTestContext} 为 {@code null}
 	 */
 	public DefaultTestContext(DefaultTestContext testContext) {
 		this(testContext.testClass, testContext.mergedContextConfiguration,
@@ -76,11 +75,9 @@ public class DefaultTestContext implements TestContext {
 
 	/**
 	 * 根据所提供的参数构造新的 {@code DefaultTestContext}。
-	 * @param testClass the test class for this test context
-	 * @param mergedContextConfiguration the merged application context
-	 * configuration for this test context
-	 * @param cacheAwareContextLoaderDelegate the delegate to use for loading
-	 * and closing the application context for this test context
+	 * @param testClass 此测试上下文的测试类
+	 * @param mergedContextConfiguration 此测试上下文的合并应用上下文配置
+	 * @param cacheAwareContextLoaderDelegate 用于为此测试上下文加载和关闭应用上下文的委托
 	 */
 	public DefaultTestContext(Class<?> testClass, MergedContextConfiguration mergedContextConfiguration,
 			CacheAwareContextLoaderDelegate cacheAwareContextLoaderDelegate) {
@@ -95,8 +92,7 @@ public class DefaultTestContext implements TestContext {
 
 	/**
 	 * 确定此测试上下文的{@linkplain ApplicationContext 应用上下文}是否存在于上下文缓存中。
-	 * @return {@code true} if the application context has already been loaded
-	 * and stored in the context cache
+	 * @return 如果应用上下文已加载并存储在上下文缓存中，则为 {@code true}
 	 * @since 5.2
 	 * @see #getApplicationContext()
 	 * @see CacheAwareContextLoaderDelegate#isContextLoaded
@@ -109,8 +105,7 @@ public class DefaultTestContext implements TestContext {
 	/**
 	 * 获取此测试上下文的{@linkplain ApplicationContext 应用上下文}。
 	 * <p>默认实现委托给构造此 {@code TestContext} 时提供的 {@link CacheAwareContextLoaderDelegate}。
-	 * @throws IllegalStateException if the context returned by the context
-	 * loader delegate is not <em>active</em> (i.e., has been closed)
+	 * @throws IllegalStateException 如果上下文加载器委托返回的上下文不是<em>活动的</em>（即已关闭）
 	 * @see CacheAwareContextLoaderDelegate#loadContext
 	 */
 	@Override

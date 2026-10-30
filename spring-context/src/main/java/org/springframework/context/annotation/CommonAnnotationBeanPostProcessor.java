@@ -199,7 +199,7 @@ public class CommonAnnotationBeanPostProcessor extends InitDestroyAnnotationBean
 	/**
 	 * 在解析 {@code @Resource} 注解时忽略给定的资源类型。<p>默认情况下，
 	 * {@code javax.xml.ws.WebServiceContext} 接口会被忽略，因为它将由 JAX-WS 运行时解析。
-	 * @param resourceType the resource type to ignore
+	 * @param resourceType 要忽略的资源类型
 	 */
 	public void ignoreResourceType(String resourceType) {
 		Assert.notNull(resourceType, "Ignored resource type must not be null");
@@ -420,9 +420,9 @@ public class CommonAnnotationBeanPostProcessor extends InitDestroyAnnotationBean
 
 	/**
 	 * 为给定的名称和类型获取一个延迟解析的资源代理，在方法调用到来时按需委托给 {@link #getResource}。
-	 * @param element the descriptor for the annotated field/method
-	 * @param requestingBeanName the name of the requesting bean
-	 * @return the resource object (never {@code null})
+	 * @param element 带注解字段/方法的描述符
+	 * @param requestingBeanName 发起请求的 Bean 的名称
+	 * @return 资源对象（永不为 {@code null}）
 	 * @since 4.2
 	 * @see #getResource
 	 * @see Lazy
@@ -458,10 +458,10 @@ public class CommonAnnotationBeanPostProcessor extends InitDestroyAnnotationBean
 
 	/**
 	 * 获取给定名称和类型的资源对象。
-	 * @param element the descriptor for the annotated field/method
-	 * @param requestingBeanName the name of the requesting bean
-	 * @return the resource object (never {@code null})
-	 * @throws NoSuchBeanDefinitionException if no corresponding target resource found
+	 * @param element 带注解字段/方法的描述符
+	 * @param requestingBeanName 发起请求的 Bean 的名称
+	 * @return 资源对象（永不为 {@code null}）
+	 * @throws NoSuchBeanDefinitionException 如果未找到相应的目标资源
 	 */
 	protected Object getResource(LookupElement element, @Nullable String requestingBeanName)
 			throws NoSuchBeanDefinitionException {
@@ -492,11 +492,11 @@ public class CommonAnnotationBeanPostProcessor extends InitDestroyAnnotationBean
 
 	/**
 	 * 基于给定的工厂通过自动装配获取给定名称和类型的资源对象。
-	 * @param factory the factory to autowire against
-	 * @param element the descriptor for the annotated field/method
-	 * @param requestingBeanName the name of the requesting bean
-	 * @return the resource object (never {@code null})
-	 * @throws NoSuchBeanDefinitionException if no corresponding target resource found
+	 * @param factory 用于自动装配的工厂
+	 * @param element 带注解字段/方法的描述符
+	 * @param requestingBeanName 发起请求的 Bean 的名称
+	 * @return 资源对象（永不为 {@code null}）
+	 * @throws NoSuchBeanDefinitionException 如果未找到相应的目标资源
 	 */
 	protected Object autowireResource(BeanFactory factory, LookupElement element, @Nullable String requestingBeanName)
 			throws NoSuchBeanDefinitionException {

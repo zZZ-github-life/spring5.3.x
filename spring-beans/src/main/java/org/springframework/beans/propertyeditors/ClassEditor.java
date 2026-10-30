@@ -49,8 +49,8 @@ public class ClassEditor extends PropertyEditorSupport {
 
 	/**
 	 * 使用给定的 ClassLoader 创建默认的 ClassEditor。
-	 * @param classLoader the ClassLoader to use
-	 * (or {@code null} for the thread context ClassLoader)
+	 * @param classLoader 要使用的 ClassLoader
+	 * （或 {@code null} 以使用线程上下文 ClassLoader）
 	 */
 	public ClassEditor(@Nullable ClassLoader classLoader) {
 		this.classLoader = (classLoader != null ? classLoader : ClassUtils.getDefaultClassLoader());

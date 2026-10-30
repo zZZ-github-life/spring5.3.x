@@ -39,25 +39,25 @@ public interface SockJsMessageCodec {
 	 * JSON 引用外，还有一些额外的 JSON Unicode 转义
 	 * 规则。请参阅 SockJS 协议的 "JSON Unicode Encoding" 部分（即
 	 * 协议测试套件）。
-	 * @param messages the messages to encode
-	 * @return the content for a SockJS message frame (never {@code null})
+	 * @param messages 要编码的消息
+	 * @return SockJS 消息帧的内容（永不为 {@code null}）
 	 */
 	String encode(String... messages);
 
 	/**
 	 * 解码给定的 SockJS 消息帧。
-	 * @param content the SockJS message frame
-	 * @return an array of messages, or {@code null} if none
-	 * @throws IOException if the content could not be parsed
+	 * @param content SockJS 消息帧
+	 * @return 消息数组；如果没有则为 {@code null}
+	 * @throws IOException 如果无法解析该内容
 	 */
 	@Nullable
 	String[] decode(String content) throws IOException;
 
 	/**
 	 * 解码给定的 SockJS 消息帧。
-	 * @param content the SockJS message frame
-	 * @return an array of messages, or {@code null} if none
-	 * @throws IOException if the content could not be parsed
+	 * @param content SockJS 消息帧
+	 * @return 消息数组；如果没有则为 {@code null}
+	 * @throws IOException 如果无法解析该内容
 	 */
 	@Nullable
 	String[] decodeInputStream(InputStream content) throws IOException;

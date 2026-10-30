@@ -55,7 +55,7 @@ public class ReflectiveMethodExecutor implements MethodExecutor {
 
 	/**
 	 * 为给定方法创建一个新的执行器。
-	 * @param method the method to invoke
+	 * @param method 要调用的方法
 	 */
 	public ReflectiveMethodExecutor(Method method) {
 		this(method, null);
@@ -63,8 +63,8 @@ public class ReflectiveMethodExecutor implements MethodExecutor {
 
 	/**
 	 * 为给定方法创建一个新的执行器。
-	 * @param method the method to invoke
-	 * @param targetClass the target class to invoke the method on
+	 * @param method 要调用的方法
+	 * @param targetClass 要在其上调用方法的目标类
 	 * @since 5.3.16
 	 */
 	public ReflectiveMethodExecutor(Method method, @Nullable Class<?> targetClass) {

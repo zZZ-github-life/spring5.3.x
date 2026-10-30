@@ -37,8 +37,8 @@ public class DelegatingWork implements Work {
 
 	/**
 	 * 创建一个新的 DelegatingWork。
-	 * @param delegate the Runnable implementation to delegate to
-	 * (may be a SchedulingAwareRunnable for extended support)
+	 * @param delegate 要委托给的 Runnable 实现
+	 * （可以是 SchedulingAwareRunnable 以获得扩展支持）
 	 * @see org.springframework.scheduling.SchedulingAwareRunnable
 	 * @see #isDaemon()
 	 */

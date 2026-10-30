@@ -53,11 +53,10 @@ public class RequestHandledEvent extends ApplicationEvent {
 
 	/**
 	 * 创建一个带有会话信息的 RequestHandledEvent。
-	 * @param source the component that published the event
-	 * @param sessionId the id of the HTTP session, if any
-	 * @param userName the name of the user that was associated with the
-	 * request, if any (usually the UserPrincipal)
-	 * @param processingTimeMillis the processing time of the request in milliseconds
+	 * @param source 发布该事件的组件
+	 * @param sessionId HTTP 会话的 id（如果有）
+	 * @param userName 与请求关联的用户名称（如果有，通常是 UserPrincipal）
+	 * @param processingTimeMillis 请求的处理时间，单位为毫秒
 	 */
 	public RequestHandledEvent(Object source, @Nullable String sessionId, @Nullable String userName,
 			long processingTimeMillis) {
@@ -70,12 +69,11 @@ public class RequestHandledEvent extends ApplicationEvent {
 
 	/**
 	 * 创建一个带有会话信息的 RequestHandledEvent。
-	 * @param source the component that published the event
-	 * @param sessionId the id of the HTTP session, if any
-	 * @param userName the name of the user that was associated with the
-	 * request, if any (usually the UserPrincipal)
-	 * @param processingTimeMillis the processing time of the request in milliseconds
-	 * @param failureCause the cause of failure, if any
+	 * @param source 发布该事件的组件
+	 * @param sessionId HTTP 会话的 id（如果有）
+	 * @param userName 与请求关联的用户名称（如果有，通常是 UserPrincipal）
+	 * @param processingTimeMillis 请求的处理时间，单位为毫秒
+	 * @param failureCause 失败原因（如果有）
 	 */
 	public RequestHandledEvent(Object source, @Nullable String sessionId, @Nullable String userName,
 			long processingTimeMillis, @Nullable Throwable failureCause) {

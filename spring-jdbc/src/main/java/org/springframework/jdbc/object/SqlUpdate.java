@@ -71,8 +71,8 @@ public class SqlUpdate extends SqlOperation {
 
 	/**
 	 * 使用给定的 DataSource 和 SQL 构造更新对象。
-	 * @param ds the DataSource to use to obtain connections
-	 * @param sql the SQL statement to execute
+	 * @param ds 用于获取连接的 DataSource
+	 * @param sql 要执行的 SQL 语句
 	 */
 	public SqlUpdate(DataSource ds, String sql) {
 		setDataSource(ds);
@@ -81,10 +81,10 @@ public class SqlUpdate extends SqlOperation {
 
 	/**
 	 * 使用给定的 DataSource、SQL 和匿名参数构造更新对象。
-	 * @param ds the DataSource to use to obtain connections
-	 * @param sql the SQL statement to execute
-	 * @param types the SQL types of the parameters, as defined in the
-	 * {@code java.sql.Types} class
+	 * @param ds 用于获取连接的 DataSource
+	 * @param sql 要执行的 SQL 语句
+	 * @param types 参数的 SQL 类型，定义于
+	 * {@code java.sql.Types} 类中
 	 * @see java.sql.Types
 	 */
 	public SqlUpdate(DataSource ds, String sql, int[] types) {
@@ -96,12 +96,11 @@ public class SqlUpdate extends SqlOperation {
 	/**
 	 * 使用给定的 DataSource、SQL、匿名参数构造更新对象，
 	 * 并指定最多可影响的行数。
-	 * @param ds the DataSource to use to obtain connections
-	 * @param sql the SQL statement to execute
-	 * @param types the SQL types of the parameters, as defined in the
-	 * {@code java.sql.Types} class
-	 * @param maxRowsAffected the maximum number of rows that may
-	 * be affected by the update
+	 * @param ds 用于获取连接的 DataSource
+	 * @param sql 要执行的 SQL 语句
+	 * @param types 参数的 SQL 类型，定义于
+	 * {@code java.sql.Types} 类中
+	 * @param maxRowsAffected 该更新可能影响的最大行数
 	 * @see java.sql.Types
 	 */
 	public SqlUpdate(DataSource ds, String sql, int[] types, int maxRowsAffected) {
@@ -115,8 +114,8 @@ public class SqlUpdate extends SqlOperation {
 	/**
 	 * 设置此更新最多可影响的行数。
 	 * 默认值为 0，表示不限制受影响的行数。
-	 * @param maxRowsAffected the maximum number of rows that can be affected by
-	 * this update without this class's update method considering it an error
+	 * @param maxRowsAffected 此更新最多可影响的行数，
+	 * 超过时该类的 update 方法会将其视为错误
 	 */
 	public void setMaxRowsAffected(int maxRowsAffected) {
 		this.maxRowsAffected = maxRowsAffected;
@@ -126,8 +125,8 @@ public class SqlUpdate extends SqlOperation {
 	 * 设置此更新必须影响的<i>确切</i>行数。
 	 * 默认值为 0，表示允许影响任意数量的行。
 	 * <p>这是设置<i>最大</i>可影响行数的替代方案。
-	 * @param requiredRowsAffected the exact number of rows that must be affected
-	 * by this update without this class's update method considering it an error
+	 * @param requiredRowsAffected 此更新必须影响的确切行数，
+	 * 否则该类的 update 方法会将其视为错误
 	 */
 	public void setRequiredRowsAffected(int requiredRowsAffected) {
 		this.requiredRowsAffected = requiredRowsAffected;
@@ -135,9 +134,8 @@ public class SqlUpdate extends SqlOperation {
 
 	/**
 	 * 根据指定的最大行数或必需行数检查给定的受影响行数。
-	 * @param rowsAffected the number of affected rows
-	 * @throws JdbcUpdateAffectedIncorrectNumberOfRowsException
-	 * if the actually affected rows are out of bounds
+	 * @param rowsAffected 受影响的行数
+	 * @throws JdbcUpdateAffectedIncorrectNumberOfRowsException 如果实际受影响的行数超出范围
 	 * @see #setMaxRowsAffected
 	 * @see #setRequiredRowsAffected
 	 */
@@ -154,8 +152,8 @@ public class SqlUpdate extends SqlOperation {
 	/**
 	 * 根据参数执行更新的通用方法。
 	 * 所有其他 update 方法都会调用此方法。
-	 * @param params array of parameters objects
-	 * @return the number of rows affected by the update
+	 * @param params 参数对象数组
+	 * @return 更新影响的行数
 	 */
 	public int update(Object... params) throws DataAccessException {
 		validateParameters(params);
@@ -166,9 +164,9 @@ public class SqlUpdate extends SqlOperation {
 
 	/**
 	 * 执行更新并获取参数，通过 KeyHolder 获取生成的键。
-	 * @param params array of parameter objects
-	 * @param generatedKeyHolder the KeyHolder that will hold the generated keys
-	 * @return the number of rows affected by the update
+	 * @param params 参数对象数组
+	 * @param generatedKeyHolder 用于存放生成键的 KeyHolder
+	 * @return 更新影响的行数
 	 */
 	public int update(Object[] params, KeyHolder generatedKeyHolder) throws DataAccessException {
 		if (!isReturnGeneratedKeys() && getGeneratedKeysColumnNames() == null) {
@@ -235,9 +233,9 @@ public class SqlUpdate extends SqlOperation {
 	/**
 	 * 根据命名参数执行更新的通用方法。
 	 * 所有其他 update 方法都会调用此方法。
-	 * @param paramMap a Map of parameter name to parameter object,
-	 * matching named parameters specified in the SQL statement
-	 * @return the number of rows affected by the update
+	 * @param paramMap 参数名到参数对象的 Map，
+	 * 与 SQL 语句中指定的命名参数相匹配
+	 * @return 更新影响的行数
 	 */
 	public int updateByNamedParam(Map<String, ?> paramMap) throws DataAccessException {
 		validateNamedParameters(paramMap);
@@ -252,10 +250,10 @@ public class SqlUpdate extends SqlOperation {
 
 	/**
 	 * 执行更新并获取参数，通过 KeyHolder 获取生成的键。
-	 * @param paramMap a Map of parameter name to parameter object,
-	 * matching named parameters specified in the SQL statement
-	 * @param generatedKeyHolder the KeyHolder that will hold the generated keys
-	 * @return the number of rows affected by the update
+	 * @param paramMap 参数名到参数对象的 Map，
+	 * 与 SQL 语句中指定的命名参数相匹配
+	 * @param generatedKeyHolder 用于存放生成键的 KeyHolder
+	 * @return 更新影响的行数
 	 */
 	public int updateByNamedParam(Map<String, ?> paramMap, KeyHolder generatedKeyHolder) throws DataAccessException {
 		validateNamedParameters(paramMap);

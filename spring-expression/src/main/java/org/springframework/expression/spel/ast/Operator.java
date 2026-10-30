@@ -252,9 +252,9 @@ public abstract class Operator extends SpelNodeImpl {
 	 * 对给定的操作数值执行相等性检查。
 	 * <p>此方法不仅用于子类中的反射比较，也用于编译后的表达式代码，因此需要在此处声明为
 	 * {@code public static}。
-	 * @param context the current evaluation context
-	 * @param left the left-hand operand value
-	 * @param right the right-hand operand value
+	 * @param context 当前的求值上下文
+	 * @param left 左侧操作数的值
+	 * @param right 右侧操作数的值
 	 */
 	public static boolean equalityCheck(EvaluationContext context, @Nullable Object left, @Nullable Object right) {
 		if (left instanceof Number && right instanceof Number) {
@@ -345,11 +345,11 @@ public abstract class Operator extends SpelNodeImpl {
 		 * 返回实际对象的类型，两者可能不同。
 		 * <p>对于带有未绑定类型变量的泛型类型，发现的声明描述符可能是 'Object'，但从实际描述符可以观察到这
 		 * 些对象实际上是数值（例如 int）。
-		 * @param leftDeclaredDescriptor the statically determinable left descriptor
-		 * @param rightDeclaredDescriptor the statically determinable right descriptor
-		 * @param leftActualDescriptor the dynamic/runtime left object descriptor
-		 * @param rightActualDescriptor the dynamic/runtime right object descriptor
-		 * @return a DescriptorComparison object indicating the type of compatibility, if any
+		 * @param leftDeclaredDescriptor 可静态确定的左侧描述符
+		 * @param rightDeclaredDescriptor 可静态确定的右侧描述符
+		 * @param leftActualDescriptor 动态/运行时的左侧对象描述符
+		 * @param rightActualDescriptor 动态/运行时的右侧对象描述符
+		 * @return 指示兼容类型（如果有）的 DescriptorComparison 对象
 		 */
 		public static DescriptorComparison checkNumericCompatibility(
 				@Nullable String leftDeclaredDescriptor, @Nullable String rightDeclaredDescriptor,

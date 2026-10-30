@@ -153,9 +153,9 @@ public class RequiredAnnotationBeanPostProcessor implements SmartInstantiationAw
 	 * 检查给定的 Bean 定义是否不受此后处理器所执行的基于注解的必需属性检查约束。<p>默认实现会检查 Bean
 	 * 定义中是否存在 {@link #SKIP_REQUIRED_CHECK_ATTRIBUTE} 属性（如果有的话）。它还建议在 Bean 定义设
 	 * 置了 "factory-bean" 引用的情况下跳过检查，假设基于实例的工厂会预先填充该 Bean。
-	 * @param beanFactory the BeanFactory to check against
-	 * @param beanName the name of the bean to check against
-	 * @return {@code true} to skip the bean; {@code false} to process it
+	 * @param beanFactory 要检查的 BeanFactory
+	 * @param beanName 要检查的 Bean 的名称
+	 * @return 如果要跳过该 Bean 则返回 {@code true}；如果要处理它则返回 {@code false}
 	 */
 	protected boolean shouldSkip(@Nullable ConfigurableListableBeanFactory beanFactory, String beanName) {
 		if (beanFactory == null || !beanFactory.containsBeanDefinition(beanName)) {
@@ -173,9 +173,9 @@ public class RequiredAnnotationBeanPostProcessor implements SmartInstantiationAw
 	 * 所提供的属性是否要求必须有值（即通过依赖注入获得值）？<p>此实现会查找所提供的
 	 * {@link PropertyDescriptor property} 上是否存在
 	 * {@link #setRequiredAnnotationType "required" annotation}。
-	 * @param propertyDescriptor the target PropertyDescriptor (never {@code null})
-	 * @return {@code true} if the supplied property has been marked as being required;
-	 * {@code false} if not, or if the supplied property does not have a setter method
+	 * @param propertyDescriptor 目标 PropertyDescriptor（永不为 {@code null}）
+	 * @return 如果提供的属性已被标记为必需则返回 {@code true}；
+	 * 如果不是，或提供的属性没有 setter 方法，则返回 {@code false}
 	 */
 	protected boolean isRequiredProperty(PropertyDescriptor propertyDescriptor) {
 		Method setter = propertyDescriptor.getWriteMethod();
@@ -184,9 +184,9 @@ public class RequiredAnnotationBeanPostProcessor implements SmartInstantiationAw
 
 	/**
 	 * 为给定的无效属性列表构建异常消息。
-	 * @param invalidProperties the list of names of invalid properties
-	 * @param beanName the name of the bean
-	 * @return the exception message
+	 * @param invalidProperties 无效属性名称的列表
+	 * @param beanName 该 Bean 的名称
+	 * @return 异常消息
 	 */
 	private String buildExceptionMessage(List<String> invalidProperties, String beanName) {
 		int size = invalidProperties.size();

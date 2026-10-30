@@ -66,8 +66,8 @@ public class ColumnMapRowMapper implements BiFunction<Row, RowMetadata, Map<Stri
 	/**
 	 * 创建一个用作列映射的 {@link Map} 实例。
 	 * <p>默认情况下，将创建一个链式的不区分大小写 Map。
-	 * @param columnCount the column count, to be used as initial capacity for the Map
-	 * @return the new {@link Map} instance
+	 * @param columnCount 列数，用作 Map 的初始容量
+	 * @return 新的 {@link Map} 实例
 	 * @see LinkedCaseInsensitiveMap
 	 */
 	protected Map<String, Object> createColumnMap(int columnCount) {
@@ -76,8 +76,8 @@ public class ColumnMapRowMapper implements BiFunction<Row, RowMetadata, Map<Stri
 
 	/**
 	 * 确定列 {@link Map} 中给定列要使用的键。
-	 * @param columnName the column name as returned by the {@link Row}
-	 * @return the column key to use
+	 * @param columnName {@link Row} 返回的列名
+	 * @return 要使用的列键
 	 * @see ColumnMetadata#getName()
 	 */
 	protected String getColumnKey(String columnName) {
@@ -87,9 +87,9 @@ public class ColumnMapRowMapper implements BiFunction<Row, RowMetadata, Map<Stri
 	/**
 	 * 获取指定列的 R2DBC 对象值。
 	 * <p>默认实现使用 {@link Row#get(int)} 方法。
-	 * @param row is the {@link Row} holding the data
-	 * @param index is the column index
-	 * @return the Object returned
+	 * @param row 是持有数据的 {@link Row}
+	 * @param index 是列索引
+	 * @return 返回的 Object
 	 */
 	@Nullable
 	protected Object getColumnValue(Row row, int index) {

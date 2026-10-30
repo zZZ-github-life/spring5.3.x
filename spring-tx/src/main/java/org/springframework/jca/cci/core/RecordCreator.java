@@ -53,12 +53,12 @@ public interface RecordCreator {
 	 * <p>用作 CciTemplate 的 {@code execute} 方法的<i>输入</i>创建器时，
 	 * 此方法应创建<i>已填充</i>的 Record 实例。用作<i>输出</i> Record 创建器时，
 	 * 应返回<i>空</i>的 Record 实例。
-	 * @param recordFactory the CCI RecordFactory (never {@code null}, but not guaranteed to be
-	 * supported by the connector: its create methods might throw NotSupportedException)
-	 * @return the Record instance
-	 * @throws ResourceException if thrown by a CCI method, to be auto-converted
-	 * to a DataAccessException
-	 * @throws DataAccessException in case of custom exceptions
+	 * @param recordFactory CCI RecordFactory（永不为 {@code null}，但不能保证
+	 * 连接器支持：其 create 方法可能抛出 NotSupportedException）
+	 * @return 该 Record 实例
+	 * @throws ResourceException 如果由 CCI 方法抛出，
+	 * 将自动转换为 DataAccessException
+	 * @throws DataAccessException 在出现自定义异常的情况下
 	 */
 	Record createRecord(RecordFactory recordFactory) throws ResourceException, DataAccessException;
 

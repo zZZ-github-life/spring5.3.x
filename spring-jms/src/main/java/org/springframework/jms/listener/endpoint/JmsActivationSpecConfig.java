@@ -183,7 +183,7 @@ public class JmsActivationSpecConfig {
 	 * （参见 Spring 的 {@link StandardJmsActivationSpecFactory}）。ActiveMQ 还
 	 * 以 RA 管理事务的形式支持 "SESSION_TRANSACTED"
 	 * （由 Spring 的 {@link DefaultJmsActivationSpecFactory} 自动转换）。
-	 * @param constantName the name of the {@link Session} acknowledge mode constant
+	 * @param constantName {@link Session} 确认模式常量的名称
 	 * @see javax.jms.Session#AUTO_ACKNOWLEDGE
 	 * @see javax.jms.Session#CLIENT_ACKNOWLEDGE
 	 * @see javax.jms.Session#DUPS_OK_ACKNOWLEDGE
@@ -272,7 +272,7 @@ public class JmsActivationSpecConfig {
 
 	/**
 	 * 设置用于转换 JMS 消息的 {@link MessageConverter} 策略。
-	 * @param messageConverter the message converter to use
+	 * @param messageConverter 要使用的消息转换器
 	 */
 	public void setMessageConverter(@Nullable MessageConverter messageConverter) {
 		this.messageConverter = messageConverter;

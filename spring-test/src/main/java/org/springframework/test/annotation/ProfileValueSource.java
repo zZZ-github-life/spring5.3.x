@@ -45,9 +45,9 @@ public interface ProfileValueSource {
 
 	/**
 	 * 获取由指定键指示的<em>配置值</em>。
-	 * @param key the name of the <em>profile value</em>
-	 * @return the String value of the <em>profile value</em>, or {@code null}
-	 * if there is no <em>profile value</em> with that key
+	 * @param key <em>profile 值</em>的名称
+	 * @return <em>profile 值</em>的 String 值，
+	 * 如果该键没有对应的 <em>profile 值</em>，则为 {@code null}
 	 */
 	@Nullable
 	String get(String key);

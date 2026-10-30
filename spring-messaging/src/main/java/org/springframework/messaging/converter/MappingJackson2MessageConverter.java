@@ -79,7 +79,7 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 	/**
 	 * 构造一个支持一个或多个自定义 MIME 类型的
 	 * {@code MappingJackson2MessageConverter}。
-	 * @param supportedMimeTypes the supported MIME types
+	 * @param supportedMimeTypes 支持的 MIME 类型
 	 * @since 4.1.5
 	 */
 	public MappingJackson2MessageConverter(MimeType... supportedMimeTypes) {
@@ -168,9 +168,8 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 	/**
 	 * 确定是否记录来自 {@link ObjectMapper#canDeserialize} /
 	 * {@link ObjectMapper#canSerialize} 检查的给定异常。
-	 * @param type the class that Jackson tested for (de-)serializability
-	 * @param cause the Jackson-thrown exception to evaluate
-	 * (typically a {@link JsonMappingException})
+	 * @param type Jackson 检查其（反）序列化能力的类
+	 * @param cause 要评估的 Jackson 抛出的异常（通常是 {@link JsonMappingException}）
 	 * @since 4.3
 	 */
 	protected void logWarningIfNecessary(Type type, @Nullable Throwable cause) {
@@ -275,9 +274,8 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 
 	/**
 	 * 根据给定的转换提示确定 Jackson 序列化视图。
-	 * @param conversionHint the conversion hint Object as passed into the
-	 * converter for the current conversion attempt
-	 * @return the serialization view class, or {@code null} if none
+	 * @param conversionHint 传入转换器用于当前转换尝试的转换提示对象
+	 * @return 序列化视图类；如果没有则返回 {@code null}
 	 * @since 4.2
 	 */
 	@Nullable
@@ -312,8 +310,8 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 
 	/**
 	 * 确定用于给定内容类型的 JSON 编码。
-	 * @param contentType the MIME type from the MessageHeaders, if any
-	 * @return the JSON encoding to use (never {@code null})
+	 * @param contentType 来自 MessageHeaders 的 MIME 类型（如果有）
+	 * @return 要使用的 JSON 编码（永远不会为 {@code null}）
 	 */
 	protected JsonEncoding getJsonEncoding(@Nullable MimeType contentType) {
 		if (contentType != null && contentType.getCharset() != null) {

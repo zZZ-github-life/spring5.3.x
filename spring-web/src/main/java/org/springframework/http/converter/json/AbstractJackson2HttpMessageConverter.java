@@ -162,9 +162,9 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 	 * {@link #setSupportedMediaTypes(List) supportedMediaTypes} 的使用。
 	 * 因此，此处配置的映射必须{@link MediaType#includes(MediaType) 包含}
 	 * 给定类必须支持的每一种 MediaType，这一点很重要。
-	 * @param clazz the type of Object to register ObjectMapper instances for
-	 * @param registrar a consumer to populate or otherwise update the
-	 * MediaType-to-ObjectMapper associations for the given Class
+	 * @param clazz 要为其注册 ObjectMapper 实例的对象类型
+	 * @param registrar 用于填充或以其他方式更新给定 Class 的
+	 * MediaType 到 ObjectMapper 关联的消费者
 	 * @since 5.3.4
 	 */
 	public void registerObjectMappersForType(Class<?> clazz, Consumer<Map<MediaType, ObjectMapper>> registrar) {
@@ -178,9 +178,9 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 
 	/**
 	 * 返回给定类的 ObjectMapper 注册信息（如果有）。
-	 * @param clazz the class to look up for registrations for
-	 * @return a map with registered MediaType-to-ObjectMapper registrations,
-	 * or empty if in case of no registrations for the given class.
+	 * @param clazz 要查找其注册项的类
+	 * @return 已注册的 MediaType 到 ObjectMapper 关联的映射，
+	 * 如果给定类没有任何注册项则为空映射。
 	 * @since 5.3.4
 	 */
 	@Nullable
@@ -304,9 +304,9 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 	/**
 	 * 确定是否记录来自
 	 * {@link ObjectMapper#canDeserialize} / {@link ObjectMapper#canSerialize} 检查的给定异常。
-	 * @param type the class that Jackson tested for (de-)serializability
-	 * @param cause the Jackson-thrown exception to evaluate
-	 * (typically a {@link JsonMappingException})
+	 * @param type Jackson 测试过（反）序列化能力的类
+	 * @param cause 要评估的由 Jackson 抛出的异常
+	 * （通常是 {@link JsonMappingException}）
 	 * @since 4.3
 	 */
 	protected void logWarningIfNecessary(Type type, @Nullable Throwable cause) {
@@ -393,8 +393,8 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 	 * 确定用于 JSON 输入的字符集。
 	 * <p>默认情况下，使用输入 {@code MediaType} 中的字符集，
 	 * 否则回退到 {@code UTF-8}。可在子类中重写。
-	 * @param contentType the content type of the HTTP input message
-	 * @return the charset to use
+	 * @param contentType HTTP 输入消息的内容类型
+	 * @return 要使用的字符集
 	 * @since 5.1.18
 	 */
 	protected Charset getCharset(@Nullable MediaType contentType) {
@@ -465,26 +465,26 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 
 	/**
 	 * 在主内容之前写入前缀。
-	 * @param generator the generator to use for writing content.
-	 * @param object the object to write to the output message.
+	 * @param generator 用于写入内容的生成器。
+	 * @param object 要写入输出消息的对象。
 	 */
 	protected void writePrefix(JsonGenerator generator, Object object) throws IOException {
 	}
 
 	/**
 	 * 在主内容之后写入后缀。
-	 * @param generator the generator to use for writing content.
-	 * @param object the object to write to the output message.
+	 * @param generator 用于写入内容的生成器。
+	 * @param object 要写入输出消息的对象。
 	 */
 	protected void writeSuffix(JsonGenerator generator, Object object) throws IOException {
 	}
 
 	/**
 	 * 返回指定类型和上下文类的 Jackson {@link JavaType}。
-	 * @param type the generic type to return the Jackson JavaType for
-	 * @param contextClass a context class for the target type, for example a class
-	 * in which the target type appears in a method signature (can be {@code null})
-	 * @return the Jackson JavaType
+	 * @param type 要返回其 Jackson JavaType 的泛型类型
+	 * @param contextClass 目标类型的上下文类，例如目标类型出现在方法签名中时
+	 * 所在的类（可以为 {@code null}）
+	 * @return Jackson 的 JavaType
 	 */
 	protected JavaType getJavaType(Type type, @Nullable Class<?> contextClass) {
 		return this.defaultObjectMapper.constructType(GenericTypeResolver.resolveType(type, contextClass));
@@ -492,8 +492,8 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 
 	/**
 	 * 确定用于给定内容类型的 JSON 编码。
-	 * @param contentType the media type as requested by the caller
-	 * @return the JSON encoding to use (never {@code null})
+	 * @param contentType 调用方请求的媒体类型
+	 * @return 要使用的 JSON 编码（永不为 {@code null}）
 	 */
 	protected JsonEncoding getJsonEncoding(@Nullable MediaType contentType) {
 		if (contentType != null && contentType.getCharset() != null) {

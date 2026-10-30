@@ -31,8 +31,8 @@ import org.springframework.util.Assert;
  *
  * @author Arjen Poutsma
  * @since 4.0
- * @param <T> the type of this {@code Future}
- * @param <S> the type of the adaptee's {@code Future}
+ * @param <T> 该 {@code Future} 的类型
+ * @param <S> 被适配对象的 {@code Future} 的类型
  */
 public abstract class FutureAdapter<T, S> implements Future<T> {
 
@@ -48,7 +48,7 @@ public abstract class FutureAdapter<T, S> implements Future<T> {
 
 	/**
 	 * 使用给定的被适配对象构造一个新的 {@code FutureAdapter}。
-	 * @param adaptee the future to delegate to
+	 * @param adaptee 要委托的 future
 	 */
 	protected FutureAdapter(Future<S> adaptee) {
 		Assert.notNull(adaptee, "Delegate must not be null");
@@ -126,7 +126,7 @@ public abstract class FutureAdapter<T, S> implements Future<T> {
 
 	/**
 	 * 将给定被适配对象的结果适配为 T。
-	 * @return the adapted result
+	 * @return 适配后的结果
 	 */
 	@Nullable
 	protected abstract T adapt(S adapteeResult) throws ExecutionException;

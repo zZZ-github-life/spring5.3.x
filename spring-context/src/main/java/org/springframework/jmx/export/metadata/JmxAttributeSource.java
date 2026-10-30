@@ -34,9 +34,9 @@ public interface JmxAttributeSource {
 	/**
 	 * 如果提供的 {@code Class} 具有相应的元数据，实现类应返回一个 {@code ManagedResource} 实例。否则应
 	 * 返回 {@code null}。
-	 * @param clazz the class to read the attribute data from
-	 * @return the attribute, or {@code null} if not found
-	 * @throws InvalidMetadataException in case of invalid attributes
+	 * @param clazz 要从中读取属性数据的类
+	 * @return 属性，如果未找到则为 {@code null}
+	 * @throws InvalidMetadataException 如果属性无效
 	 */
 	@Nullable
 	ManagedResource getManagedResource(Class<?> clazz) throws InvalidMetadataException;
@@ -44,9 +44,9 @@ public interface JmxAttributeSource {
 	/**
 	 * 如果提供的 {@code Method} 具有相应的元数据，实现类应返回一个 {@code ManagedAttribute} 实例。否则
 	 * 应返回 {@code null}。
-	 * @param method the method to read the attribute data from
-	 * @return the attribute, or {@code null} if not found
-	 * @throws InvalidMetadataException in case of invalid attributes
+	 * @param method 要从中读取属性数据的方法
+	 * @return 属性，如果未找到则为 {@code null}
+	 * @throws InvalidMetadataException 如果属性无效
 	 */
 	@Nullable
 	ManagedAttribute getManagedAttribute(Method method) throws InvalidMetadataException;
@@ -54,9 +54,9 @@ public interface JmxAttributeSource {
 	/**
 	 * 如果提供的 {@code Method} 具有相应的元数据，实现类应返回一个 {@code ManagedMetric} 实例。否则应
 	 * 返回 {@code null}。
-	 * @param method the method to read the attribute data from
-	 * @return the metric, or {@code null} if not found
-	 * @throws InvalidMetadataException in case of invalid attributes
+	 * @param method 要从中读取属性数据的方法
+	 * @return 指标，如果未找到则为 {@code null}
+	 * @throws InvalidMetadataException 如果属性无效
 	 */
 	@Nullable
 	ManagedMetric getManagedMetric(Method method) throws InvalidMetadataException;
@@ -64,9 +64,9 @@ public interface JmxAttributeSource {
 	/**
 	 * 如果提供的 {@code Method} 具有相应的元数据，实现类应返回一个 {@code ManagedOperation} 实例。否则
 	 * 应返回 {@code null}。
-	 * @param method the method to read the attribute data from
-	 * @return the attribute, or {@code null} if not found
-	 * @throws InvalidMetadataException in case of invalid attributes
+	 * @param method 要从中读取属性数据的方法
+	 * @return 属性，如果未找到则为 {@code null}
+	 * @throws InvalidMetadataException 如果属性无效
 	 */
 	@Nullable
 	ManagedOperation getManagedOperation(Method method) throws InvalidMetadataException;
@@ -74,18 +74,18 @@ public interface JmxAttributeSource {
 	/**
 	 * 如果提供的 {@code Method} 具有相应的元数据，实现类应返回 {@code ManagedOperationParameter} 数组。
 	 * 否则，如果未找到元数据，应返回空数组。
-	 * @param method the {@code Method} to read the metadata from
-	 * @return the parameter information.
-	 * @throws InvalidMetadataException in the case of invalid attributes.
+	 * @param method 要从中读取元数据的 {@code Method}
+	 * @return 参数信息。
+	 * @throws InvalidMetadataException 在属性无效的情况下
 	 */
 	ManagedOperationParameter[] getManagedOperationParameters(Method method) throws InvalidMetadataException;
 
 	/**
 	 * 如果提供的 {@code Class} 具有相应的元数据，实现类应返回
 	 * {@link ManagedNotification ManagedNotifications} 数组。否则应返回空数组。
-	 * @param clazz the {@code Class} to read the metadata from
-	 * @return the notification information
-	 * @throws InvalidMetadataException in the case of invalid metadata
+	 * @param clazz 要从中读取元数据的 {@code Class}
+	 * @return 通知信息
+	 * @throws InvalidMetadataException 在元数据无效的情况下
 	 */
 	ManagedNotification[] getManagedNotifications(Class<?> clazz) throws InvalidMetadataException;
 

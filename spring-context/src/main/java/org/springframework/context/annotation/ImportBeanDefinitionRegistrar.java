@@ -63,14 +63,13 @@ public interface ImportBeanDefinitionRegistrar {
 	 * {@link BeanDefinitionRegistryPostProcessor} 类型<em>不能</em>在此处注册。
 	 * <p>默认实现会委托给 {@link #registerBeanDefinitions(AnnotationMetadata, BeanDefinitionRegistry)}。
 	 *
-	 * @param importingClassMetadata annotation metadata of the importing class
-	 * @param registry current bean definition registry
-	 * @param importBeanNameGenerator the bean name generator strategy for imported beans:
-	 * {@link ConfigurationClassPostProcessor#IMPORT_BEAN_NAME_GENERATOR} by default, or a
-	 * user-provided one if {@link ConfigurationClassPostProcessor#setBeanNameGenerator}
-	 * has been set. In the latter case, the passed-in strategy will be the same used for
-	 * component scanning in the containing application context (otherwise, the default
-	 * component-scan naming strategy is {@link AnnotationBeanNameGenerator#INSTANCE}).
+	 * @param importingClassMetadata 导入类的注解元数据
+	 * @param registry 当前的 Bean 定义注册表
+	 * @param importBeanNameGenerator 用于导入 Bean 的 Bean 名称生成器策略：
+	 * 默认为 {@link ConfigurationClassPostProcessor#IMPORT_BEAN_NAME_GENERATOR}，
+	 * 如果设置了 {@link ConfigurationClassPostProcessor#setBeanNameGenerator}，则为用户提供的策略。
+	 * 在后一种情况下，传入的策略与所属应用上下文中组件扫描所用的一致
+	 * （否则，默认的组件扫描命名策略为 {@link AnnotationBeanNameGenerator#INSTANCE}）。
 	 * @since 5.2
 	 * @see ConfigurationClassPostProcessor#IMPORT_BEAN_NAME_GENERATOR
 	 * @see ConfigurationClassPostProcessor#setBeanNameGenerator
@@ -86,8 +85,8 @@ public interface ImportBeanDefinitionRegistrar {
 	 * <p>请注意，由于与 {@code @Configuration} 类处理相关的生命周期约束，
 	 * {@link BeanDefinitionRegistryPostProcessor} 类型<em>不能</em>在此处注册。
 	 * <p>默认实现为空。
-	 * @param importingClassMetadata annotation metadata of the importing class
-	 * @param registry current bean definition registry
+	 * @param importingClassMetadata 导入类的注解元数据
+	 * @param registry 当前的 Bean 定义注册表
 	 */
 	default void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
 	}

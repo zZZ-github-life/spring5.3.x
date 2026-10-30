@@ -24,18 +24,18 @@ import java.util.Locale;
  *
  * @author Keith Donald
  * @since 3.0
- * @param <T> the type of object this Parser produces
+ * @param <T> 此 Parser 生成的对象类型
  */
 @FunctionalInterface
 public interface Parser<T> {
 
 	/**
 	 * 解析文本字符串以产生一个 T。
-	 * @param text the text string
-	 * @param locale the current user locale
-	 * @return an instance of T
-	 * @throws ParseException when a parse exception occurs in a java.text parsing library
-	 * @throws IllegalArgumentException when a parse exception occurs
+	 * @param text 文本字符串
+	 * @param locale 当前用户区域设置
+	 * @return T 的实例
+	 * @throws ParseException 当 java.text 解析库中发生解析异常时
+	 * @throws IllegalArgumentException 当发生解析异常时
 	 */
 	T parse(String text, Locale locale) throws ParseException;
 

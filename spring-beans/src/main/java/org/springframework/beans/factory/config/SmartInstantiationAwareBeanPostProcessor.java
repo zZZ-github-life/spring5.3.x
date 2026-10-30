@@ -37,10 +37,10 @@ public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationA
 	/**
 	 * 预测最终将从此处理器的 {@link #postProcessBeforeInstantiation} 回调返回的 Bean 类型。
 	 * <p>默认实现返回 {@code null}。
-	 * @param beanClass the raw class of the bean
-	 * @param beanName the name of the bean
-	 * @return the type of the bean, or {@code null} if not predictable
-	 * @throws org.springframework.beans.BeansException in case of errors
+	 * @param beanClass 该 Bean 的原始类
+	 * @param beanName 该 Bean 的名称
+	 * @return 该 Bean 的类型；如果无法预测则为 {@code null}
+	 * @throws org.springframework.beans.BeansException 如果出错则抛出
 	 */
 	@Nullable
 	default Class<?> predictBeanType(Class<?> beanClass, String beanName) throws BeansException {
@@ -50,10 +50,10 @@ public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationA
 	/**
 	 * 确定要用于给定 Bean 的候选构造器。
 	 * <p>默认实现返回 {@code null}。
-	 * @param beanClass the raw class of the bean (never {@code null})
-	 * @param beanName the name of the bean
-	 * @return the candidate constructors, or {@code null} if none specified
-	 * @throws org.springframework.beans.BeansException in case of errors
+	 * @param beanClass 该 Bean 的原始类（永不为 {@code null}）
+	 * @param beanName 该 Bean 的名称
+	 * @return 候选构造方法；如果未指定则为 {@code null}
+	 * @throws org.springframework.beans.BeansException 如果出错则抛出
 	 */
 	@Nullable
 	default Constructor<?>[] determineCandidateConstructors(Class<?> beanClass, String beanName)
@@ -70,11 +70,11 @@ public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationA
 	 * 换言之：这些后处理回调最终可以暴露相同的引用，或者从后续回调中返回原始 Bean 实例（如果受影响
 	 * Bean 的包装器已经为此方法的调用而构建，默认情况下它将作为最终 Bean 引用暴露）。
 	 * <p>默认实现按原样返回给定的 {@code bean}。
-	 * @param bean the raw bean instance
-	 * @param beanName the name of the bean
-	 * @return the object to expose as bean reference
-	 * (typically with the passed-in bean instance as default)
-	 * @throws org.springframework.beans.BeansException in case of errors
+	 * @param bean 原始 Bean 实例
+	 * @param beanName 该 Bean 的名称
+	 * @return 要暴露为 Bean 引用的对象
+	 * （通常默认使用传入的 Bean 实例）
+	 * @throws org.springframework.beans.BeansException 如果出错则抛出
 	 */
 	default Object getEarlyBeanReference(Object bean, String beanName) throws BeansException {
 		return bean;

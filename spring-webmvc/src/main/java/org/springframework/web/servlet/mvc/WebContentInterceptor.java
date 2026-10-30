@@ -165,8 +165,7 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	 * <p><b>注意：</b>路径模式不应重叠。如果某个请求
 	 * 匹配多个映射，实际上无法确定哪个映射会生效
 	 * （因为 {@code java.util.Properties} 不保证键的顺序）。
-	 * @param cacheMappings a mapping between URL paths (as keys) and
-	 * cache seconds (as values, need to be integer-parsable)
+	 * @param cacheMappings URL 路径（作为键）与缓存秒数（作为值，需可解析为整数）之间的映射
 	 * @see #setCacheSeconds
 	 */
 	public void setCacheMappings(Properties cacheMappings) {
@@ -191,8 +190,8 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	 * <p><b>注意：</b>路径模式不应重叠。如果某个请求
 	 * 匹配多个映射，实际上无法确定哪个映射会生效
 	 * （因为底层 {@code java.util.HashMap} 不保证键的顺序）。
-	 * @param cacheControl the {@code CacheControl} to use
-	 * @param paths the URL paths that will map to the given {@code CacheControl}
+	 * @param cacheControl 要使用的 {@code CacheControl}
+	 * @param paths 将映射到给定 {@code CacheControl} 的 URL 路径
 	 * @since 4.2
 	 * @see #setCacheSeconds
 	 */
@@ -246,8 +245,8 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	 * 为给定已解析的 {@link PathContainer path} 查找
 	 * {@link org.springframework.http.CacheControl} 实例。当
 	 * {@code HandlerMapping} 使用解析后的 {@code PathPatterns} 时会使用此方法。
-	 * @param path the path to match to
-	 * @return the matched {@code CacheControl}, or {@code null} if no match
+	 * @param path 要匹配的路径
+	 * @return 匹配的 {@code CacheControl}，若无匹配则为 {@code null}
 	 * @since 5.3
 	 */
 	@Nullable
@@ -264,8 +263,8 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	 * 为给定的字符串 lookupPath 查找
 	 * {@link org.springframework.http.CacheControl} 实例。当 {@code HandlerMapping}
 	 * 依赖 {@link PathMatcher} 进行字符串模式匹配时会使用此方法。
-	 * @param lookupPath the path to match to
-	 * @return the matched {@code CacheControl}, or {@code null} if no match
+	 * @param lookupPath 要匹配的路径
+	 * @return 匹配的 {@code CacheControl}，若无匹配则为 {@code null}
 	 */
 	@Nullable
 	protected CacheControl lookupCacheControl(String lookupPath) {
@@ -280,8 +279,8 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	/**
 	 * 为给定已解析的 {@link PathContainer path} 查找 cacheSeconds 值。
 	 * 当 {@code HandlerMapping} 使用解析后的 {@code PathPatterns} 时会使用此方法。
-	 * @param path the path to match to
-	 * @return the matched cacheSeconds, or {@code null} if there is no match
+	 * @param path 要匹配的路径
+	 * @return 匹配的 cacheSeconds，若无匹配则为 {@code null}
 	 * @since 5.3
 	 */
 	@Nullable
@@ -298,8 +297,8 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	 * 为给定的字符串 lookupPath 查找 cacheSeconds 实例。
 	 * 当 {@code HandlerMapping} 依赖 {@link PathMatcher} 进行字符串模式
 	 * 匹配时会使用此方法。
-	 * @param lookupPath the path to match to
-	 * @return the matched cacheSeconds, or {@code null} if there is no match
+	 * @param lookupPath 要匹配的路径
+	 * @return 匹配的 cacheSeconds，若无匹配则为 {@code null}
 	 */
 	@Nullable
 	protected Integer lookupCacheSeconds(String lookupPath) {

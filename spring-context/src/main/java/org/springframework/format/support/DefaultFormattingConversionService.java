@@ -67,7 +67,7 @@ public class DefaultFormattingConversionService extends FormattingConversionServ
 	 * 创建一个新的 {@code DefaultFormattingConversionService}，其中包含
 	 * {@linkplain DefaultConversionService#addDefaultConverters 默认转换器}，并根据
 	 * {@code registerDefaultFormatters} 的值包含 {@linkplain #addDefaultFormatters 默认格式化器}。
-	 * @param registerDefaultFormatters whether to register default formatters
+	 * @param registerDefaultFormatters 是否注册默认格式化器
 	 */
 	public DefaultFormattingConversionService(boolean registerDefaultFormatters) {
 		this(null, registerDefaultFormatters);
@@ -77,9 +77,9 @@ public class DefaultFormattingConversionService extends FormattingConversionServ
 	 * 创建一个新的 {@code DefaultFormattingConversionService}，其中包含
 	 * {@linkplain DefaultConversionService#addDefaultConverters 默认转换器}，并根据
 	 * {@code registerDefaultFormatters} 的值包含 {@linkplain #addDefaultFormatters 默认格式化器}。
-	 * @param embeddedValueResolver delegated to {@link #setEmbeddedValueResolver(StringValueResolver)}
-	 * prior to calling {@link #addDefaultFormatters}.
-	 * @param registerDefaultFormatters whether to register default formatters
+	 * @param embeddedValueResolver 在调用 {@link #addDefaultFormatters} 之前，委托给
+	 * {@link #setEmbeddedValueResolver(StringValueResolver)}。
+	 * @param registerDefaultFormatters 是否注册默认格式化器
 	 */
 	public DefaultFormattingConversionService(
 			@Nullable StringValueResolver embeddedValueResolver, boolean registerDefaultFormatters) {
@@ -97,7 +97,7 @@ public class DefaultFormattingConversionService extends FormattingConversionServ
 	/**
 	 * 添加适用于大多数环境的格式化器：包括数字格式化器、JSR-354 Money &amp; Currency 格式化器、JSR-310
 	 * Date-Time 和/或 Joda-Time 格式化器，具体取决于类路径上是否存在相应的 API。
-	 * @param formatterRegistry the service to register default formatters with
+	 * @param formatterRegistry 要在其中注册默认格式化器的服务
 	 */
 	@SuppressWarnings("deprecation")
 	public static void addDefaultFormatters(FormatterRegistry formatterRegistry) {

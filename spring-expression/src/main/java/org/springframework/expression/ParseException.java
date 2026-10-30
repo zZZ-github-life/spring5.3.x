@@ -29,9 +29,9 @@ public class ParseException extends ExpressionException {
 
 	/**
 	 * 创建一个新的表达式解析异常。
-	 * @param expressionString the expression string that could not be parsed
-	 * @param position the position in the expression string where the problem occurred
-	 * @param message description of the problem that occurred
+	 * @param expressionString 无法解析的表达式字符串
+	 * @param position 问题在表达式字符串中出现的位置
+	 * @param message 所发生问题的描述
 	 */
 	public ParseException(@Nullable String expressionString, int position, String message) {
 		super(expressionString, position, message);
@@ -39,9 +39,9 @@ public class ParseException extends ExpressionException {
 
 	/**
 	 * 创建一个新的表达式解析异常。
-	 * @param position the position in the expression string where the problem occurred
-	 * @param message description of the problem that occurred
-	 * @param cause the underlying cause of this exception
+	 * @param position 问题在表达式字符串中出现的位置
+	 * @param message 所发生问题的描述
+	 * @param cause 此异常的根本原因
 	 */
 	public ParseException(int position, String message, Throwable cause) {
 		super(position, message, cause);
@@ -49,8 +49,8 @@ public class ParseException extends ExpressionException {
 
 	/**
 	 * 创建一个新的表达式解析异常。
-	 * @param position the position in the expression string where the problem occurred
-	 * @param message description of the problem that occurred
+	 * @param position 问题在表达式字符串中出现的位置
+	 * @param message 所发生问题的描述
 	 */
 	public ParseException(int position, String message) {
 		super(position, message);

@@ -43,7 +43,7 @@ public abstract class ApplicationEventsHolder {
 
 	/**
 	 * 获取当前线程的 {@link ApplicationEvents}。
-	 * @return the current {@code ApplicationEvents}, or {@code null} if not registered
+	 * @return 当前的 {@code ApplicationEvents}；如果未注册，则为 {@code null}
 	 */
 	@Nullable
 	public static ApplicationEvents getApplicationEvents() {
@@ -52,9 +52,8 @@ public abstract class ApplicationEventsHolder {
 
 	/**
 	 * 获取当前线程的 {@link ApplicationEvents}。
-	 * @return the current {@code ApplicationEvents}
-	 * @throws IllegalStateException if an instance of {@code ApplicationEvents}
-	 * has not been registered for the current thread
+	 * @return 当前的 {@code ApplicationEvents}
+	 * @throws IllegalStateException 如果当前线程尚未注册 {@code ApplicationEvents} 实例
 	 */
 	public static ApplicationEvents getRequiredApplicationEvents() {
 		ApplicationEvents events = applicationEvents.get();

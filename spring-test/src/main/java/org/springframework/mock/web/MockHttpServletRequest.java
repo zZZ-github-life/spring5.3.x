@@ -291,8 +291,8 @@ public class MockHttpServletRequest implements HttpServletRequest {
 	/**
 	 * 使用默认的
 	 * {@link MockServletContext} 创建一个新的 {@code MockHttpServletRequest}。
-	 * @param method the request method (may be {@code null})
-	 * @param requestURI the request URI (may be {@code null})
+	 * @param method 请求方法（可为 {@code null}）
+	 * @param requestURI 请求 URI（可为 {@code null}）
 	 * @see #setMethod
 	 * @see #setRequestURI
 	 * @see #MockHttpServletRequest(ServletContext, String, String)
@@ -303,8 +303,8 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
 	/**
 	 * 使用提供的 {@link ServletContext} 创建一个新的 {@code MockHttpServletRequest}。
-	 * @param servletContext the ServletContext that the request runs in
-	 * (may be {@code null} to use a default {@link MockServletContext})
+	 * @param servletContext 请求运行所在的 ServletContext
+	 * （可为 {@code null} 以使用默认的 {@link MockServletContext}）
 	 * @see #MockHttpServletRequest(ServletContext, String, String)
 	 */
 	public MockHttpServletRequest(@Nullable ServletContext servletContext) {
@@ -315,10 +315,10 @@ public class MockHttpServletRequest implements HttpServletRequest {
 	 * 使用提供的 {@link ServletContext}、
 	 * {@code method} 和 {@code requestURI} 创建一个新的 {@code MockHttpServletRequest}。
 	 * <p>首选区域设置将设置为 {@link Locale#ENGLISH}。
-	 * @param servletContext the ServletContext that the request runs in (may be
-	 * {@code null} to use a default {@link MockServletContext})
-	 * @param method the request method (may be {@code null})
-	 * @param requestURI the request URI (may be {@code null})
+	 * @param servletContext 请求运行所在的 ServletContext
+	 * （可为 {@code null} 以使用默认的 {@link MockServletContext}）
+	 * @param method 请求方法（可为 {@code null}）
+	 * @param requestURI 请求 URI（可为 {@code null}）
 	 * @see #setMethod
 	 * @see #setRequestURI
 	 * @see #setPreferredLocales
@@ -430,7 +430,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
 	/**
 	 * 以字节数组形式获取请求正文的内容。
-	 * @return the content as a byte array (potentially {@code null})
+	 * @return 内容字节数组（可能为 {@code null}）
 	 * @since 5.0
 	 * @see #setContent(byte[])
 	 * @see #getContentAsString()
@@ -443,9 +443,9 @@ public class MockHttpServletRequest implements HttpServletRequest {
 	/**
 	 * 使用配置的
 	 * {@linkplain #getCharacterEncoding 字符编码}，以 {@code String} 形式获取请求正文的内容。
-	 * @return the content as a {@code String}, potentially {@code null}
-	 * @throws IllegalStateException if the character encoding has not been set
-	 * @throws UnsupportedEncodingException if the character encoding is not supported
+	 * @return 内容，类型为 {@code String}，可能为 {@code null}
+	 * @throws IllegalStateException 如果尚未设置字符编码
+	 * @throws UnsupportedEncodingException 如果不支持该字符编码
 	 * @since 5.0
 	 * @see #setContent(byte[])
 	 * @see #setCharacterEncoding(String)
@@ -1079,7 +1079,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
 	 * <li>"EEE, dd-MMM-yy HH:mm:ss zzz"</li>
 	 * <li>"EEE MMM dd HH:mm:ss yyyy"</li>
 	 * </ul>
-	 * @param name the header name
+	 * @param name 头名称
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-7.1.1.1">Section 7.1.1.1 of RFC 7231</a>
 	 */
 	@Override

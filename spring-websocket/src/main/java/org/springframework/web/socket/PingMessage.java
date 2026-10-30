@@ -35,7 +35,7 @@ public final class PingMessage extends AbstractWebSocketMessage<ByteBuffer> {
 
 	/**
 	 * 使用给定的 ByteBuffer 负载创建一个 ping 消息。
-	 * @param payload the non-null payload
+	 * @param payload 非 null 的负载
 	 */
 	public PingMessage(ByteBuffer payload) {
 		super(payload);

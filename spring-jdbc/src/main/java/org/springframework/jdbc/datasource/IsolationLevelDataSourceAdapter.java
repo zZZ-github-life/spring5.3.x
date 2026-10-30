@@ -64,7 +64,7 @@ public class IsolationLevelDataSourceAdapter extends UserCredentialsDataSourceAd
 	 * 相应常量的名称设置默认隔离级别，例如 "ISOLATION_SERIALIZABLE"。
 	 * <p>如果未指定，将使用目标 DataSource 的默认值。
 	 * 请注意，事务特定的隔离值将始终覆盖在 DataSource 级别指定的任何隔离设置。
-	 * @param constantName name of the constant
+	 * @param constantName 常量的名称
 	 * @see org.springframework.transaction.TransactionDefinition#ISOLATION_READ_UNCOMMITTED
 	 * @see org.springframework.transaction.TransactionDefinition#ISOLATION_READ_COMMITTED
 	 * @see org.springframework.transaction.TransactionDefinition#ISOLATION_REPEATABLE_READ
@@ -135,7 +135,7 @@ public class IsolationLevelDataSourceAdapter extends UserCredentialsDataSourceAd
 	/**
 	 * 确定当前的隔离级别：要么是事务的隔离级别，
 	 * 要么是静态定义的隔离级别。
-	 * @return the current isolation level, or {@code null} if none
+	 * @return 当前隔离级别，如果没有则为 {@code null}
 	 * @see org.springframework.transaction.support.TransactionSynchronizationManager#getCurrentTransactionIsolationLevel()
 	 * @see #setIsolationLevel
 	 */
@@ -150,7 +150,7 @@ public class IsolationLevelDataSourceAdapter extends UserCredentialsDataSourceAd
 
 	/**
 	 * 确定当前的只读标志：默认为事务的只读提示。
-	 * @return whether there is a read-only hint for the current scope
+	 * @return 当前作用域是否有只读提示
 	 * @see org.springframework.transaction.support.TransactionSynchronizationManager#isCurrentTransactionReadOnly()
 	 */
 	@Nullable

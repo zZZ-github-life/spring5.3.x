@@ -36,13 +36,13 @@ public interface SmartMessageConverter extends MessageConverter {
 	/**
 	 * {@link #toMessage(Object, Session)} 的变体，额外接受一个转换上下文
 	 * 作为参数，从而可以考虑例如负载参数上的注解。
-	 * @param object the object to convert
-	 * @param session the Session to use for creating a JMS Message
-	 * @param conversionHint an extra object passed to the {@link MessageConverter},
-	 * e.g. the associated {@code MethodParameter} (may be {@code null}}
-	 * @return the JMS Message
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
-	 * @throws MessageConversionException in case of conversion failure
+	 * @param object 要转换的对象
+	 * @param session 用于创建 JMS Message 的 Session
+	 * @param conversionHint 传递给 {@link MessageConverter} 的额外对象，
+	 * 例如关联的 {@code MethodParameter}（可能为 {@code null}}
+	 * @return 该 JMS Message
+	 * @throws javax.jms.JMSException 如果由 JMS API 方法抛出
+	 * @throws MessageConversionException 转换失败时
 	 * @see #toMessage(Object, Session)
 	 */
 	Message toMessage(Object object, Session session, @Nullable Object conversionHint)

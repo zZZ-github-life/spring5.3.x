@@ -38,9 +38,8 @@ public final class MethodClassKey implements Comparable<MethodClassKey> {
 
 	/**
 	 * 为给定的方法和目标类创建一个键对象。
-	 * @param method the method to wrap (must not be {@code null})
-	 * @param targetClass the target class that the method will be invoked
-	 * on (may be {@code null} if identical to the declaring class)
+	 * @param method 要包装的方法（不能为 {@code null}）
+	 * @param targetClass 方法将被调用的目标类（如果与声明类相同，则可以为 {@code null}）
 	 */
 	public MethodClassKey(Method method, @Nullable Class<?> targetClass) {
 		this.method = method;

@@ -28,7 +28,7 @@ public interface HttpResource extends Resource {
 
 	/**
 	 * 要贡献给提供当前资源的 HTTP 响应的 HTTP 头。
-	 * @return the HTTP response headers
+	 * @return HTTP 响应标头
 	 */
 	HttpHeaders getResponseHeaders();
 }

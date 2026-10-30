@@ -60,7 +60,7 @@ public class ObjectToStringHttpMessageConverter extends AbstractHttpMessageConve
 	 * 接受一个 {@code ConversionService} 的构造函数，用于将
 	 * （String）消息体与目标类类型相互转换。此构造函数使用
 	 * {@link StringHttpMessageConverter#DEFAULT_CHARSET} 作为默认字符集。
-	 * @param conversionService the conversion service
+	 * @param conversionService 转换服务
 	 */
 	public ObjectToStringHttpMessageConverter(ConversionService conversionService) {
 		this(conversionService, StringHttpMessageConverter.DEFAULT_CHARSET);
@@ -68,8 +68,8 @@ public class ObjectToStringHttpMessageConverter extends AbstractHttpMessageConve
 
 	/**
 	 * 同时接受 {@code ConversionService} 和默认字符集的构造函数。
-	 * @param conversionService the conversion service
-	 * @param defaultCharset the default charset
+	 * @param conversionService 转换服务
+	 * @param defaultCharset 默认字符集
 	 */
 	public ObjectToStringHttpMessageConverter(ConversionService conversionService, Charset defaultCharset) {
 		super(defaultCharset, MediaType.TEXT_PLAIN);

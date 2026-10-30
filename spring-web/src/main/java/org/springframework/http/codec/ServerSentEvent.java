@@ -28,7 +28,7 @@ import org.springframework.lang.Nullable;
  * @author Sebastien Deleuze
  * @author Arjen Poutsma
  * @since 5.0
- * @param <T> the type of data that this event contains
+ * @param <T> 此事件所包含数据的类型
  * @see ServerSentEventHttpMessageWriter
  * @see <a href="https://www.w3.org/TR/eventsource/">Server-Sent Events W3C recommendation</a>
  */
@@ -111,8 +111,8 @@ public final class ServerSentEvent<T> {
 
 	/**
 	 * 返回 {@code SseEvent} 的构建器。
-	 * @param <T> the type of data that this event contains
-	 * @return the builder
+	 * @param <T> 此事件所包含数据的类型
+	 * @return 构建器
 	 */
 	public static <T> Builder<T> builder() {
 		return new BuilderImpl<>();
@@ -120,8 +120,8 @@ public final class ServerSentEvent<T> {
 
 	/**
 	 * 返回 {@code SseEvent} 的构建器，并使用给定的{@linkplain #data() 数据}填充。
-	 * @param <T> the type of data that this event contains
-	 * @return the builder
+	 * @param <T> 此事件所包含数据的类型
+	 * @return 构建器
 	 */
 	public static <T> Builder<T> builder(T data) {
 		return new BuilderImpl<>(data);
@@ -131,36 +131,36 @@ public final class ServerSentEvent<T> {
 	/**
 	 * {@code SseEvent} 的可变构建器。
 	 *
-	 * @param <T> the type of data that this event contains
+	 * @param <T> 此事件所包含数据的类型
 	 */
 	public interface Builder<T> {
 
 		/**
 		 * 设置 {@code id} 字段的值。
-		 * @param id the value of the id field
-		 * @return {@code this} builder
+		 * @param id id 字段的值
+		 * @return {@code this} 构建器
 		 */
 		Builder<T> id(String id);
 
 		/**
 		 * 设置 {@code event} 字段的值。
-		 * @param event the value of the event field
-		 * @return {@code this} builder
+		 * @param event event 字段的值
+		 * @return {@code this} 构建器
 		 */
 		Builder<T> event(String event);
 
 		/**
 		 * 设置 {@code retry} 字段的值。
-		 * @param retry the value of the retry field
-		 * @return {@code this} builder
+		 * @param retry retry 字段的值
+		 * @return {@code this} 构建器
 		 */
 		Builder<T> retry(Duration retry);
 
 		/**
 		 * 设置 SSE 注释。如果提供的是多行注释，将按照
 		 * Server-Sent Events W3C 建议转换为多行 SSE 注释。
-		 * @param comment the comment to set
-		 * @return {@code this} builder
+		 * @param comment 要设置的注释
+		 * @return {@code this} 构建器
 		 */
 		Builder<T> comment(String comment);
 
@@ -169,14 +169,14 @@ public final class ServerSentEvent<T> {
 		 * {@code String}，将按照 Server-Sent Events W3C 建议转换为
 		 * 多行 {@code data} 字段。如果 {@code data} 不是 String，
 		 * 将被{@linkplain org.springframework.http.codec.json.Jackson2JsonEncoder 编码}为 JSON。
-		 * @param data the value of the data field
-		 * @return {@code this} builder
+		 * @param data data 字段的值
+		 * @return {@code this} 构建器
 		 */
 		Builder<T> data(@Nullable T data);
 
 		/**
 		 * 构建事件。
-		 * @return the built event
+		 * @return 构建的事件
 		 */
 		ServerSentEvent<T> build();
 	}

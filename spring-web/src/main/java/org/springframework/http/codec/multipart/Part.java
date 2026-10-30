@@ -42,7 +42,7 @@ public interface Part {
 
 	/**
 	 * 返回该部件在 multipart 表单中的名称。
-	 * @return the name of the part, never {@code null} or empty
+	 * @return 部分的名称，永不为 {@code null} 或空
 	 */
 	String name();
 

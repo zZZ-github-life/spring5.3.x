@@ -42,7 +42,7 @@ public interface WebFluxConfigurer {
 
 	/**
 	 * 配置在使用注解式控制器处理请求时如何解析为响应请求的内容类型。
-	 * @param builder for configuring the resolvers to use
+	 * @param builder 用于配置要使用的解析器
 	 */
 	default void configureContentTypeResolver(RequestedContentTypeResolverBuilder builder) {
 	}
@@ -59,7 +59,7 @@ public interface WebFluxConfigurer {
 	/**
 	 * 配置路径匹配选项。
 	 * <p>所配置的路径匹配选项将用于映射到注解式控制器以及{@link #addResourceHandlers(ResourceHandlerRegistry) 静态资源}。
-	 * @param configurer the {@link PathMatchConfigurer} instance
+	 * @param configurer {@link PathMatchConfigurer} 实例
 	 */
 	default void configurePathMatching(PathMatchConfigurer configurer) {
 	}
@@ -73,7 +73,7 @@ public interface WebFluxConfigurer {
 
 	/**
 	 * 为自定义 {@code @RequestMapping} 方法参数配置解析器。
-	 * @param configurer to configurer to use
+	 * @param configurer 要使用的配置器
 	 */
 	default void configureArgumentResolvers(ArgumentResolverConfigurer configurer) {
 	}
@@ -81,7 +81,7 @@ public interface WebFluxConfigurer {
 	/**
 	 * 配置 HTTP 消息读写器，用于在注解式控制器和函数式端点中读取请求体以及写入响应体。
 	 * <p>默认情况下，只要类路径上存在相应的第三方库（如 Jackson JSON、JAXB2 等），就会配置所有内置读写器。
-	 * @param configurer the configurer to customize readers and writers
+	 * @param configurer 用于自定义读取器和写入器的配置器
 	 */
 	default void configureHttpMessageCodecs(ServerCodecConfigurer configurer) {
 	}

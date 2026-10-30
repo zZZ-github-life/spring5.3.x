@@ -63,8 +63,8 @@ public class SockJsHttpRequestHandler
 
 	/**
 	 * 创建一个新的 SockJsHttpRequestHandler。
-	 * @param sockJsService the SockJS service
-	 * @param webSocketHandler the websocket handler
+	 * @param sockJsService SockJS 服务
+	 * @param webSocketHandler WebSocket 处理器
 	 */
 	public SockJsHttpRequestHandler(SockJsService sockJsService, WebSocketHandler webSocketHandler) {
 		Assert.notNull(sockJsService, "SockJsService must not be null");

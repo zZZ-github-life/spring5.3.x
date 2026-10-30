@@ -31,7 +31,7 @@ public class LobRetrievalFailureException extends DataRetrievalFailureException 
 
 	/**
 	 * 创建LobRetrievalFailureException实例。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public LobRetrievalFailureException(String msg) {
 		super(msg);
@@ -39,8 +39,8 @@ public class LobRetrievalFailureException extends DataRetrievalFailureException 
 
 	/**
 	 * 创建LobRetrievalFailureException实例。
-	 * @param msg the detail message
-	 * @param ex the root cause IOException
+	 * @param msg 详细消息
+	 * @param ex 根本原因 IOException
 	 */
 	public LobRetrievalFailureException(String msg, IOException ex) {
 		super(msg, ex);

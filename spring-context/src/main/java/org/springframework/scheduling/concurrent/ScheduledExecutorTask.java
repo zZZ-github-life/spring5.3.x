@@ -61,7 +61,7 @@ public class ScheduledExecutorTask {
 
 	/**
 	 * 创建一个新的 ScheduledExecutorTask，默认为无延迟的一次性执行。
-	 * @param executorTask the Runnable to schedule
+	 * @param executorTask 要调度的 Runnable
 	 */
 	public ScheduledExecutorTask(Runnable executorTask) {
 		this.runnable = executorTask;
@@ -69,8 +69,8 @@ public class ScheduledExecutorTask {
 
 	/**
 	 * 创建一个新的 ScheduledExecutorTask，默认为带给定延迟的一次性执行。
-	 * @param executorTask the Runnable to schedule
-	 * @param delay the delay before starting the task for the first time (ms)
+	 * @param executorTask 要调度的 Runnable
+	 * @param delay 首次启动任务之前的延迟（毫秒）
 	 */
 	public ScheduledExecutorTask(Runnable executorTask, long delay) {
 		this.runnable = executorTask;
@@ -79,10 +79,10 @@ public class ScheduledExecutorTask {
 
 	/**
 	 * 创建一个新的 ScheduledExecutorTask。
-	 * @param executorTask the Runnable to schedule
-	 * @param delay the delay before starting the task for the first time (ms)
-	 * @param period the period between repeated task executions (ms)
-	 * @param fixedRate whether to schedule as fixed-rate execution
+	 * @param executorTask 要调度的 Runnable
+	 * @param delay 首次启动任务之前的延迟（毫秒）
+	 * @param period 重复执行任务之间的周期间隔（毫秒）
+	 * @param fixedRate 是否以固定速率方式调度
 	 */
 	public ScheduledExecutorTask(Runnable executorTask, long delay, long period, boolean fixedRate) {
 		this.runnable = executorTask;
@@ -145,7 +145,7 @@ public class ScheduledExecutorTask {
 
 	/**
 	 * 此任务是否只会执行一次？
-	 * @return {@code true} if this task is only ever going to execute once
+	 * @return 如果此任务只会执行一次，则返回 {@code true}
 	 * @see #getPeriod()
 	 */
 	public boolean isOneTimeTask() {

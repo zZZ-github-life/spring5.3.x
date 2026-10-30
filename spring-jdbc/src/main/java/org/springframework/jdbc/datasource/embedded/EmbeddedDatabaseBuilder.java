@@ -70,7 +70,7 @@ public class EmbeddedDatabaseBuilder {
 
 	/**
 	 * 使用给定的 {@link ResourceLoader} 创建一个新的嵌入式数据库构建器。
-	 * @param resourceLoader the {@code ResourceLoader} to delegate to
+	 * @param resourceLoader 要委托给它的 {@code ResourceLoader}
 	 */
 	public EmbeddedDatabaseBuilder(ResourceLoader resourceLoader) {
 		this.databaseFactory = new EmbeddedDatabaseFactory();
@@ -85,8 +85,8 @@ public class EmbeddedDatabaseBuilder {
 	 * 则应<em>启用</em>此标志（即设置为 {@code true}），
 	 * 以确保每个应用程序上下文都获得自己的嵌入式数据库。
 	 * <p>启用此标志将覆盖通过 {@link #setName} 设置的任何显式名称。
-	 * @param flag {@code true} if a unique database name should be generated
-	 * @return {@code this}, to facilitate method chaining
+	 * @param flag 如果应生成唯一的数据库名称，则为 {@code true}
+	 * @return {@code this}，以便进行方法链式调用
 	 * @since 4.2
 	 * @see #setName
 	 */
@@ -99,8 +99,8 @@ public class EmbeddedDatabaseBuilder {
 	 * 设置嵌入式数据库的名称。
 	 * <p>如果未调用，则默认为 {@link EmbeddedDatabaseFactory#DEFAULT_DATABASE_NAME}。
 	 * <p>如果 {@code generateUniqueName} 标志已设置为 {@code true}，则会被覆盖。
-	 * @param databaseName the name of the embedded database to build
-	 * @return {@code this}, to facilitate method chaining
+	 * @param databaseName 要构建的内嵌数据库的名称
+	 * @return {@code this}，以便进行方法链式调用
 	 * @see #generateUniqueName
 	 */
 	public EmbeddedDatabaseBuilder setName(String databaseName) {
@@ -111,8 +111,8 @@ public class EmbeddedDatabaseBuilder {
 	/**
 	 * 设置嵌入式数据库的类型。
 	 * <p>如果未调用，则默认为 HSQL。
-	 * @param databaseType the type of embedded database to build
-	 * @return {@code this}, to facilitate method chaining
+	 * @param databaseType 要构建的内嵌数据库类型
+	 * @return {@code this}，以便进行方法链式调用
 	 */
 	public EmbeddedDatabaseBuilder setType(EmbeddedDatabaseType databaseType) {
 		this.databaseFactory.setDatabaseType(databaseType);
@@ -123,7 +123,7 @@ public class EmbeddedDatabaseBuilder {
 	 * 设置用于创建连接嵌入式数据库的 {@link DataSource} 实例的工厂。
 	 * <p>默认为 {@link SimpleDriverDataSourceFactory}，但可以重写，
 	 * 例如为了引入连接池。
-	 * @return {@code this}, to facilitate method chaining
+	 * @return {@code this}，以便进行方法链式调用
 	 * @since 4.0.3
 	 */
 	public EmbeddedDatabaseBuilder setDataSourceFactory(DataSourceFactory dataSourceFactory) {
@@ -136,7 +136,7 @@ public class EmbeddedDatabaseBuilder {
 	 * 添加要执行的默认 SQL 脚本以填充数据库。
 	 * <p>默认脚本为 {@code "schema.sql"}（用于创建数据库 schema）
 	 * 和 {@code "data.sql"}（用于向数据库填充数据）。
-	 * @return {@code this}, to facilitate method chaining
+	 * @return {@code this}，以便进行方法链式调用
 	 */
 	public EmbeddedDatabaseBuilder addDefaultScripts() {
 		return addScripts("schema.sql", "data.sql");
@@ -144,8 +144,8 @@ public class EmbeddedDatabaseBuilder {
 
 	/**
 	 * 添加要执行的 SQL 脚本以初始化或填充数据库。
-	 * @param script the script to execute
-	 * @return {@code this}, to facilitate method chaining
+	 * @param script 要执行的脚本
+	 * @return {@code this}，以便进行方法链式调用
 	 */
 	public EmbeddedDatabaseBuilder addScript(String script) {
 		this.databasePopulator.addScript(this.resourceLoader.getResource(script));
@@ -154,8 +154,8 @@ public class EmbeddedDatabaseBuilder {
 
 	/**
 	 * 添加多个要执行的 SQL 脚本以初始化或填充数据库。
-	 * @param scripts the scripts to execute
-	 * @return {@code this}, to facilitate method chaining
+	 * @param scripts 要执行的脚本
+	 * @return {@code this}，以便进行方法链式调用
 	 * @since 4.0.3
 	 */
 	public EmbeddedDatabaseBuilder addScripts(String... scripts) {
@@ -167,8 +167,8 @@ public class EmbeddedDatabaseBuilder {
 
 	/**
 	 * 指定所有 SQL 脚本中使用的字符编码（如果与平台编码不同）。
-	 * @param scriptEncoding the encoding used in scripts
-	 * @return {@code this}, to facilitate method chaining
+	 * @param scriptEncoding 脚本中使用的编码
+	 * @return {@code this}，以便进行方法链式调用
 	 * @since 4.0.3
 	 */
 	public EmbeddedDatabaseBuilder setScriptEncoding(String scriptEncoding) {
@@ -181,8 +181,8 @@ public class EmbeddedDatabaseBuilder {
 	 * <p>如果未指定，则默认为 {@code ";"}，最后的手段是回退到 {@code "\n"}；
 	 * 可以设置为 {@link ScriptUtils#EOF_STATEMENT_SEPARATOR}，
 	 * 以表示每个脚本只包含一个不带分隔符的语句。
-	 * @param separator the statement separator
-	 * @return {@code this}, to facilitate method chaining
+	 * @param separator 语句分隔符
+	 * @return {@code this}，以便进行方法链式调用
 	 * @since 4.0.3
 	 */
 	public EmbeddedDatabaseBuilder setSeparator(String separator) {
@@ -193,8 +193,8 @@ public class EmbeddedDatabaseBuilder {
 	/**
 	 * 指定所有 SQL 脚本中使用的单行注释前缀。
 	 * <p>默认为 {@code "--"}。
-	 * @param commentPrefix the prefix for single-line comments
-	 * @return {@code this}, to facilitate method chaining
+	 * @param commentPrefix 单行注释的前缀
+	 * @return {@code this}，以便进行方法链式调用
 	 * @since 4.0.3
 	 * @see #setCommentPrefixes(String...)
 	 */
@@ -206,8 +206,8 @@ public class EmbeddedDatabaseBuilder {
 	/**
 	 * 指定用于标识所有 SQL 脚本中单行注释的前缀。
 	 * <p>默认为 {@code ["--"]}。
-	 * @param commentPrefixes the prefixes for single-line comments
-	 * @return {@code this}, to facilitate method chaining
+	 * @param commentPrefixes 单行注释的前缀
+	 * @return {@code this}，以便进行方法链式调用
 	 * @since 5.2
 	 */
 	public EmbeddedDatabaseBuilder setCommentPrefixes(String... commentPrefixes) {
@@ -218,8 +218,8 @@ public class EmbeddedDatabaseBuilder {
 	/**
 	 * 指定所有 SQL 脚本中块注释的起始分隔符。
 	 * <p>默认为 {@code "/*"}。
-	 * @param blockCommentStartDelimiter the start delimiter for block comments
-	 * @return {@code this}, to facilitate method chaining
+	 * @param blockCommentStartDelimiter 块注释的起始分隔符
+	 * @return {@code this}，以便进行方法链式调用
 	 * @since 4.0.3
 	 * @see #setBlockCommentEndDelimiter
 	 */
@@ -231,8 +231,8 @@ public class EmbeddedDatabaseBuilder {
 	/**
 	 * 指定所有 SQL 脚本中块注释的结束分隔符。
 	 * <p>默认为 <code>"*&#47;"</code>。
-	 * @param blockCommentEndDelimiter the end delimiter for block comments
-	 * @return {@code this}, to facilitate method chaining
+	 * @param blockCommentEndDelimiter 块注释的结束分隔符
+	 * @return {@code this}，以便进行方法链式调用
 	 * @since 4.0.3
 	 * @see #setBlockCommentStartDelimiter
 	 */
@@ -244,8 +244,8 @@ public class EmbeddedDatabaseBuilder {
 	/**
 	 * 指定执行 SQL 脚本时发生的所有失败都应记录日志，但不应导致失败。
 	 * <p>默认为 {@code false}。
-	 * @param flag {@code true} if script execution should continue on error
-	 * @return {@code this}, to facilitate method chaining
+	 * @param flag 如果脚本执行应在出错时继续，则为 {@code true}
+	 * @return {@code this}，以便进行方法链式调用
 	 * @since 4.0.3
 	 */
 	public EmbeddedDatabaseBuilder continueOnError(boolean flag) {
@@ -259,8 +259,8 @@ public class EmbeddedDatabaseBuilder {
 	 * 子句的数据库很有用。
 	 * <p>默认值为 {@code false}，因此如果脚本以 {@code DROP} 语句开头，
 	 * {@link #build 构建}将快速失败。
-	 * @param flag {@code true} if failed drop statements should be ignored
-	 * @return {@code this}, to facilitate method chaining
+	 * @param flag 如果应忽略失败的 drop 语句，则为 {@code true}
+	 * @return {@code this}，以便进行方法链式调用
 	 * @since 4.0.3
 	 */
 	public EmbeddedDatabaseBuilder ignoreFailedDrops(boolean flag) {
@@ -270,7 +270,7 @@ public class EmbeddedDatabaseBuilder {
 
 	/**
 	 * 构建嵌入式数据库。
-	 * @return the embedded database
+	 * @return 该内嵌数据库
 	 */
 	public EmbeddedDatabase build() {
 		return this.databaseFactory.getDatabase();

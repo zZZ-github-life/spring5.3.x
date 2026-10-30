@@ -69,10 +69,10 @@ class BeanDefinitionValueResolver {
 
 	/**
 	 * 为给定的 BeanFactory 和 BeanDefinition 创建一个 BeanDefinitionValueResolver。
-	 * @param beanFactory the BeanFactory to resolve against
-	 * @param beanName the name of the bean that we work on
-	 * @param beanDefinition the BeanDefinition of the bean that we work on
-	 * @param typeConverter the TypeConverter to use for resolving TypedStringValues
+	 * @param beanFactory 要用于解析的 BeanFactory
+	 * @param beanName 我们正在处理的 Bean 的名称
+	 * @param beanDefinition 我们正在处理的 Bean 的 BeanDefinition
+	 * @param typeConverter 用于解析 TypedStringValue 的 TypeConverter
 	 */
 	public BeanDefinitionValueResolver(AbstractAutowireCapableBeanFactory beanFactory, String beanName,
 			BeanDefinition beanDefinition, TypeConverter typeConverter) {
@@ -91,9 +91,9 @@ class BeanDefinitionValueResolver {
 	 * 可能包含需要解析的 RuntimeBeanReference 或 Collection。<li>一个 ManagedSet。同样可能包含需要解析
 	 * 的 RuntimeBeanReference 或 Collection。<li>一个 ManagedMap。此时值可能是需要解析的
 	 * RuntimeBeanReference 或 Collection。<li>一个普通对象或 {@code null}，此时保持原样。
-	 * @param argName the name of the argument that the value is defined for
-	 * @param value the value object to resolve
-	 * @return the resolved object
+	 * @param argName 为其定义该值的参数名称
+	 * @param value 要解析的值对象
+	 * @return 解析后的对象
 	 */
 	@Nullable
 	public Object resolveValueIfNecessary(Object argName, @Nullable Object value) {
@@ -220,8 +220,8 @@ class BeanDefinitionValueResolver {
 
 	/**
 	 * 如有必要，将给定值作为表达式求值。
-	 * @param value the candidate value (may be an expression)
-	 * @return the resolved value
+	 * @param value 候选值（可能是表达式）
+	 * @return 解析后的值
 	 */
 	@Nullable
 	protected Object evaluate(TypedStringValue value) {
@@ -234,8 +234,8 @@ class BeanDefinitionValueResolver {
 
 	/**
 	 * 如有必要，将给定值作为表达式求值。
-	 * @param value the original value (may be an expression)
-	 * @return the resolved value if necessary, or the original value
+	 * @param value 原始值（可能是表达式）
+	 * @return 如有必要则返回解析后的值，否则返回原始值
 	 */
 	@Nullable
 	protected Object evaluate(@Nullable Object value) {
@@ -263,8 +263,8 @@ class BeanDefinitionValueResolver {
 
 	/**
 	 * 如有必要，将给定的 String 值作为表达式求值。
-	 * @param value the original value (may be an expression)
-	 * @return the resolved value if necessary, or the original String value
+	 * @param value 原始值（可能是表达式）
+	 * @return 如有必要则返回解析后的值，否则返回原始 String 值
 	 */
 	@Nullable
 	private Object doEvaluate(@Nullable String value) {
@@ -273,9 +273,9 @@ class BeanDefinitionValueResolver {
 
 	/**
 	 * 解析给定 TypedStringValue 中的目标类型。
-	 * @param value the TypedStringValue to resolve
-	 * @return the resolved target type (or {@code null} if none specified)
-	 * @throws ClassNotFoundException if the specified type cannot be resolved
+	 * @param value 要解析的 TypedStringValue
+	 * @return 解析后的目标类型（如果未指定则为 {@code null}）
+	 * @throws ClassNotFoundException 如果无法解析指定的类型
 	 * @see TypedStringValue#resolveTargetType
 	 */
 	@Nullable
@@ -336,10 +336,10 @@ class BeanDefinitionValueResolver {
 
 	/**
 	 * 解析内部 Bean 定义。
-	 * @param argName the name of the argument that the inner bean is defined for
-	 * @param innerBeanName the name of the inner bean
-	 * @param innerBd the bean definition for the inner bean
-	 * @return the resolved inner bean instance
+	 * @param argName 为其定义内部 Bean 的参数名称
+	 * @param innerBeanName 内部 Bean 的名称
+	 * @param innerBd 内部 Bean 的 Bean 定义
+	 * @return 解析后的内部 Bean 实例
 	 */
 	@Nullable
 	private Object resolveInnerBean(Object argName, String innerBeanName, BeanDefinition innerBd) {
@@ -384,8 +384,8 @@ class BeanDefinitionValueResolver {
 
 	/**
 	 * 检查给定 bean 名称是否唯一。如果尚不唯一，则添加一个计数器，递增计数器直到名称唯一。
-	 * @param innerBeanName the original name for the inner bean
-	 * @return the adapted name for the inner bean
+	 * @param innerBeanName 内部 Bean 的原始名称
+	 * @return 内部 Bean 调整后的名称
 	 */
 	private String adaptInnerBeanName(String innerBeanName) {
 		String actualInnerBeanName = innerBeanName;

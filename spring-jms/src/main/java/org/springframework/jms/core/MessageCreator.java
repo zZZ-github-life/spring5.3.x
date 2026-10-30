@@ -37,10 +37,10 @@ public interface MessageCreator {
 
 	/**
 	 * 创建一个要发送的 {@link Message}。
-	 * @param session the JMS {@link Session} to be used to create the
-	 * {@code Message} (never {@code null})
-	 * @return the {@code Message} to be sent
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
+	 * @param session 用于创建 {@code Message} 的 JMS {@link Session}
+	 * （永不为 {@code null}）
+	 * @return 要发送的 {@code Message}
+	 * @throws javax.jms.JMSException 如果由 JMS API 方法抛出
 	 */
 	Message createMessage(Session session) throws JMSException;
 

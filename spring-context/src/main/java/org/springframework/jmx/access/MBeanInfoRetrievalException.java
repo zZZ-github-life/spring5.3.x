@@ -32,7 +32,7 @@ public class MBeanInfoRetrievalException extends JmxException {
 
 	/**
 	 * 使用指定的错误消息创建新的 {@code MBeanInfoRetrievalException}。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public MBeanInfoRetrievalException(String msg) {
 		super(msg);
@@ -40,8 +40,8 @@ public class MBeanInfoRetrievalException extends JmxException {
 
 	/**
 	 * 使用指定的错误消息和根本原因创建新的 {@code MBeanInfoRetrievalException}。
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param msg 详细消息
+	 * @param cause 根本原因
 	 */
 	public MBeanInfoRetrievalException(String msg, Throwable cause) {
 		super(msg, cause);

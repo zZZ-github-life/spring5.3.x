@@ -65,7 +65,7 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 	 * 针对给定的 servlet 上下文注册 {@link DispatcherServlet}。
 	 * <p>此方法将使用 {@link #getServletName()} 返回的名称创建一个 {@code DispatcherServlet}，用 {@link #createServletApplicationContext()} 返回的应用上下文对其进行初始化，并将其映射到 {@link #getServletMappings()} 返回的模式。
 	 * <p>可以通过重写 {@link #customizeRegistration(ServletRegistration.Dynamic)} 或 {@link #createDispatcherServlet(WebApplicationContext)} 实现进一步的定制。
-	 * @param servletContext the context to register the servlet against
+	 * @param servletContext 要在其中注册该 servlet 的上下文
 	 */
 	protected void registerDispatcherServlet(ServletContext servletContext) {
 		String servletName = getServletName();
@@ -141,7 +141,7 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 
 	/**
 	 * 指定要添加并映射到 {@code DispatcherServlet} 的过滤器。
-	 * @return an array of filters or {@code null}
+	 * @return 过滤器数组，或 {@code null}
 	 * @see #registerServletFilter(ServletContext, Filter)
 	 */
 	@Nullable
@@ -157,9 +157,9 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 	 * <li>创建一个过滤器映射，其 dispatcher 类型为 {@code REQUEST}、{@code FORWARD}、{@code INCLUDE}，并根据 {@link #isAsyncSupported() asyncSupported} 的返回值有条件地包含 {@code ASYNC}
 	 * </ul>
 	 * <p>如果上述默认设置不合适或不充分，请重写此方法并直接将过滤器注册到 {@code ServletContext}。
-	 * @param servletContext the servlet context to register filters with
-	 * @param filter the filter to be registered
-	 * @return the filter registration
+	 * @param servletContext 要在其中注册过滤器的 servlet 上下文
+	 * @param filter 要注册的过滤器
+	 * @return 过滤器注册对象
 	 */
 	protected FilterRegistration.Dynamic registerServletFilter(ServletContext servletContext, Filter filter) {
 		String filterName = Conventions.getVariableName(filter);
@@ -198,7 +198,7 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 
 	/**
 	 * 可选：在 {@link #registerDispatcherServlet(ServletContext)} 完成后执行进一步的注册定制。
-	 * @param registration the {@code DispatcherServlet} registration to be customized
+	 * @param registration 要自定义的 {@code DispatcherServlet} 注册对象
 	 * @see #registerDispatcherServlet(ServletContext)
 	 */
 	protected void customizeRegistration(ServletRegistration.Dynamic registration) {

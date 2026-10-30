@@ -185,9 +185,9 @@ public class MethodInvoker {
 	/**
 	 * 将给定的类名解析为 Class。
 	 * <p>默认实现使用 {@code ClassUtils.forName}，并使用线程上下文类加载器。
-	 * @param className the class name to resolve
-	 * @return the resolved Class
-	 * @throws ClassNotFoundException if the class name was invalid
+	 * @param className 要解析的类名
+	 * @return 解析后的 Class
+	 * @throws ClassNotFoundException 如果类名无效
 	 */
 	protected Class<?> resolveClassName(String className) throws ClassNotFoundException {
 		return ClassUtils.forName(className, ClassUtils.getDefaultClassLoader());
@@ -195,7 +195,7 @@ public class MethodInvoker {
 
 	/**
 	 * 查找与指定参数匹配的、具有指定名称的方法。
-	 * @return a matching method, or {@code null} if none
+	 * @return 匹配的方法，如果没有则为 {@code null}
 	 * @see #getTargetClass()
 	 * @see #getTargetMethod()
 	 * @see #getArguments()
@@ -231,8 +231,8 @@ public class MethodInvoker {
 	/**
 	 * 返回将要调用的已准备 Method 对象。
 	 * <p>例如可用于确定返回类型。
-	 * @return the prepared Method object (never {@code null})
-	 * @throws IllegalStateException if the invoker hasn't been prepared yet
+	 * @return 准备好的 Method 对象（永不为 {@code null}）
+	 * @throws IllegalStateException 如果调用器尚未准备好
 	 * @see #prepare
 	 * @see #invoke
 	 */
@@ -253,10 +253,10 @@ public class MethodInvoker {
 	/**
 	 * 调用指定的方法。
 	 * <p>调用器必须事先已经准备好。
-	 * @return the object (possibly null) returned by the method invocation,
-	 * or {@code null} if the method has a void return type
-	 * @throws InvocationTargetException if the target method threw an exception
-	 * @throws IllegalAccessException if the target method couldn't be accessed
+	 * @return 方法调用返回的对象（可能为 null），
+	 * 如果方法返回类型为 void 则为 {@code null}
+	 * @throws InvocationTargetException 如果目标方法抛出异常
+	 * @throws IllegalAccessException 如果无法访问目标方法
 	 * @see #prepare
 	 */
 	@Nullable
@@ -282,9 +282,9 @@ public class MethodInvoker {
 	 * 优先于构造函数 (Object)。所有参数权重都会被累加。
 	 * <p>注意：这是 MethodInvoker 自身使用的算法，也是 Spring 的 Bean 容器中用于选择构造函数和工厂方法
 	 * 的算法（在宽松构造函数解析的情况下，这也是常规 Bean 定义的默认方式）。
-	 * @param paramTypes the parameter types to match
-	 * @param args the arguments to match
-	 * @return the accumulated weight for all arguments
+	 * @param paramTypes 要匹配的参数类型
+	 * @param args 要匹配的参数
+	 * @return 所有参数累积的权重
 	 */
 	public static int getTypeDifferenceWeight(Class<?>[] paramTypes, Object[] args) {
 		int result = 0;

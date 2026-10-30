@@ -38,10 +38,9 @@ public interface JmsActivationSpecFactory {
 	/**
 	 * 基于给定的 {@link JmsActivationSpecConfig} 对象创建
 	 * JCA 1.5 ActivationSpec 对象。
-	 * @param adapter the ResourceAdapter to create an ActivationSpec object for
-	 * @param config the configured object holding common JMS settings
-	 * @return the provider-specific JCA ActivationSpec object,
-	 * representing the same settings
+	 * @param adapter 要为其创建 ActivationSpec 对象的 ResourceAdapter
+	 * @param config 保存通用 JMS 设置的已配置对象
+	 * @return 特定于提供者的 JCA ActivationSpec 对象，表示相同的设置
 	 */
 	ActivationSpec createActivationSpec(ResourceAdapter adapter, JmsActivationSpecConfig config);
 

@@ -39,7 +39,7 @@ public abstract class ResourceTransformerSupport implements ResourceTransformer 
 
 	/**
 	 * 配置在解析被转换资源中链接的公共 URL（例如 CSS 文件中的 import 链接）时要使用的 {@link ResourceUrlProvider}。仅对于以完整路径表示的链接需要此配置，相对链接不需要。
-	 * @param resourceUrlProvider the URL provider to use
+	 * @param resourceUrlProvider 要使用的 URL 提供者
 	 */
 	public void setResourceUrlProvider(@Nullable ResourceUrlProvider resourceUrlProvider) {
 		this.resourceUrlProvider = resourceUrlProvider;
@@ -56,11 +56,11 @@ public abstract class ResourceTransformerSupport implements ResourceTransformer 
 
 	/**
 	 * 当被转换的资源包含指向其他资源的链接时，转换器可以使用此方法。此类链接需要替换为资源解析器链确定的对外公共链接（例如公共 URL 中可能插入了版本）。
-	 * @param resourcePath the path to a resource that needs to be re-written
-	 * @param exchange the current exchange
-	 * @param resource the resource being transformed
-	 * @param transformerChain the transformer chain
-	 * @return the resolved URL or an empty {@link Mono}
+	 * @param resourcePath 需要重写的资源路径
+	 * @param exchange 当前交换
+	 * @param resource 正在转换的资源
+	 * @param transformerChain 转换器链
+	 * @return 解析出的 URL 或空的 {@link Mono}
 	 */
 	protected Mono<String> resolveUrlPath(String resourcePath, ServerWebExchange exchange,
 			Resource resource, ResourceTransformerChain transformerChain) {
@@ -79,9 +79,9 @@ public abstract class ResourceTransformerSupport implements ResourceTransformer 
 
 	/**
 	 * 将给定的相对请求路径转换为绝对路径，并以给定请求的路径作为参考点。结果路径还会清除 "path/.." 之类的序列。
-	 * @param path the relative path to transform
-	 * @param exchange the current exchange
-	 * @return the absolute request path for the given resource path
+	 * @param path 要转换的相对路径
+	 * @param exchange 当前交换
+	 * @return 给定资源路径对应的绝对请求路径
 	 */
 	protected String toAbsolutePath(String path, ServerWebExchange exchange) {
 		String requestPath = exchange.getRequest().getURI().getPath();

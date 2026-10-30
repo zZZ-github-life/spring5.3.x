@@ -41,9 +41,9 @@ public class InterceptorRegistry {
 
 	/**
 	 * 添加所提供的 {@link HandlerInterceptor}。
-	 * @param interceptor the interceptor to add
-	 * @return an {@link InterceptorRegistration} that allows you optionally configure the
-	 * registered interceptor further for example adding URL patterns it should apply to.
+	 * @param interceptor 要添加的拦截器
+	 * @return 一个 {@link InterceptorRegistration}，可用于进一步配置
+	 * 已注册的拦截器，例如添加其应适用的 URL 模式。
 	 */
 	public InterceptorRegistration addInterceptor(HandlerInterceptor interceptor) {
 		InterceptorRegistration registration = new InterceptorRegistration(interceptor);
@@ -53,9 +53,9 @@ public class InterceptorRegistry {
 
 	/**
 	 * 添加所提供的 {@link WebRequestInterceptor}。
-	 * @param interceptor the interceptor to add
-	 * @return an {@link InterceptorRegistration} that allows you optionally configure the
-	 * registered interceptor further for example adding URL patterns it should apply to.
+	 * @param interceptor 要添加的拦截器
+	 * @return 一个 {@link InterceptorRegistration}，可用于进一步配置
+	 * 已注册的拦截器，例如添加其应适用的 URL 模式。
 	 */
 	public InterceptorRegistration addWebRequestInterceptor(WebRequestInterceptor interceptor) {
 		WebRequestHandlerInterceptorAdapter adapted = new WebRequestHandlerInterceptorAdapter(interceptor);

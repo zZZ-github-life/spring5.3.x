@@ -66,8 +66,8 @@ public class DefaultResourceLoader implements ResourceLoader {
 
 	/**
 	 * 创建一个新的 DefaultResourceLoader。
-	 * @param classLoader the ClassLoader to load class path resources with, or {@code null}
-	 * for using the thread context class loader at the time of actual resource access
+	 * @param classLoader 用于加载类路径资源的 ClassLoader；若为 {@code null}，
+	 * 则在实际访问资源时使用线程上下文类加载器
 	 */
 	public DefaultResourceLoader(@Nullable ClassLoader classLoader) {
 		this.classLoader = classLoader;
@@ -117,8 +117,8 @@ public class DefaultResourceLoader implements ResourceLoader {
 
 	/**
 	 * 获取针对给定值类型的缓存，以 {@link Resource} 为键。
-	 * @param valueType the value type, e.g. an ASM {@code MetadataReader}
-	 * @return the cache {@link Map}, shared at the {@code ResourceLoader} level
+	 * @param valueType 值类型，例如 ASM {@code MetadataReader}
+	 * @return 缓存的 {@link Map}，在 {@code ResourceLoader} 级别共享
 	 * @since 5.0
 	 */
 	@SuppressWarnings("unchecked")
@@ -174,8 +174,8 @@ public class DefaultResourceLoader implements ResourceLoader {
 	/**
 	 * 返回给定路径处资源的 Resource 句柄。
 	 * <p>默认实现支持类路径位置。这应适用于独立实现，但也可以覆盖，例如针对 Servlet 容器的实现。
-	 * @param path the path to the resource
-	 * @return the corresponding Resource handle
+	 * @param path 资源的路径
+	 * @return 对应的 Resource 句柄
 	 * @see ClassPathResource
 	 * @see org.springframework.context.support.FileSystemXmlApplicationContext#getResourceByPath
 	 * @see org.springframework.web.context.support.XmlWebApplicationContext#getResourceByPath

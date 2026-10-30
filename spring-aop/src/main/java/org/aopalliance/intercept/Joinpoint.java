@@ -39,8 +39,8 @@ public interface Joinpoint {
 	/**
 	 * 继续执行链中的下一个拦截器。
 	 * <p>此方法的实现和语义取决于实际的连接点类型（参见子接口）。
-	 * @return see the children interfaces' proceed definition
-	 * @throws Throwable if the joinpoint throws an exception
+	 * @return 参见子接口中的 proceed 定义
+	 * @throws Throwable 如果连接点抛出异常
 	 */
 	@Nullable
 	Object proceed() throws Throwable;
@@ -48,7 +48,7 @@ public interface Joinpoint {
 	/**
 	 * 返回持有当前连接点静态部分的对象。
 	 * <p>例如，对于调用而言，就是目标对象。
-	 * @return the object (can be null if the accessible object is static)
+	 * @return 该对象（如果可访问对象是静态的，则可以为 null）
 	 */
 	@Nullable
 	Object getThis();

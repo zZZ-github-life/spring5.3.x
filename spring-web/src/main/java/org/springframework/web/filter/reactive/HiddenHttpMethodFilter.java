@@ -71,9 +71,9 @@ public class HiddenHttpMethodFilter implements WebFilter {
 
 	/**
 	 * 根据 {@code methodParamName} 将 HTTP POST 转换为另一种方法。
-	 * @param exchange the current server exchange
-	 * @param chain provides a way to delegate to the next filter
-	 * @return {@code Mono<Void>} to indicate when request processing is complete
+	 * @param exchange 当前服务器交换
+	 * @param chain 提供委托给下一个过滤器的方式
+	 * @return 表示请求处理何时完成的 {@code Mono<Void>}
 	 */
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {

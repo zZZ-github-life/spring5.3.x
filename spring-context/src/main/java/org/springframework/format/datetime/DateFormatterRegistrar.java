@@ -70,7 +70,7 @@ public class DateFormatterRegistrar implements FormatterRegistrar {
 
 	/**
 	 * 将日期转换器添加到指定的注册表。
-	 * @param converterRegistry the registry of converters to add to
+	 * @param converterRegistry 要添加转换器的注册表
 	 */
 	public static void addDateConverters(ConverterRegistry converterRegistry) {
 		converterRegistry.addConverter(new DateToLongConverter());

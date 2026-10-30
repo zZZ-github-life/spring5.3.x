@@ -49,39 +49,39 @@ public interface SubProtocolHandler {
 
 	/**
 	 * 处理从客户端接收到的给定 {@link WebSocketMessage}。
-	 * @param session the client session
-	 * @param message the client message
-	 * @param outputChannel an output channel to send messages to
+	 * @param session 客户端会话
+	 * @param message 客户端消息
+	 * @param outputChannel 用于发送消息的输出通道
 	 */
 	void handleMessageFromClient(WebSocketSession session, WebSocketMessage<?> message, MessageChannel outputChannel)
 			throws Exception;
 
 	/**
 	 * 处理发往与给定 WebSocket 会话关联的客户端的给定 {@link Message}。
-	 * @param session the client session
-	 * @param message the client message
+	 * @param session 客户端会话
+	 * @param message 客户端消息
 	 */
 	void handleMessageToClient(WebSocketSession session, Message<?> message) throws Exception;
 
 	/**
 	 * 从给定消息中解析会话 ID，或返回 {@code null}。
-	 * @param message the message to resolve the session id from
+	 * @param message 用于解析会话 ID 的消息
 	 */
 	@Nullable
 	String resolveSessionId(Message<?> message);
 
 	/**
 	 * 在 {@link WebSocketSession} 启动后调用。
-	 * @param session the client session
-	 * @param outputChannel a channel
+	 * @param session 客户端会话
+	 * @param outputChannel 一个通道
 	 */
 	void afterSessionStarted(WebSocketSession session, MessageChannel outputChannel) throws Exception;
 
 	/**
 	 * 在 {@link WebSocketSession} 结束后调用。
-	 * @param session the client session
-	 * @param closeStatus the reason why the session was closed
-	 * @param outputChannel a channel
+	 * @param session 客户端会话
+	 * @param closeStatus 会话关闭的原因
+	 * @param outputChannel 一个通道
 	 */
 	void afterSessionEnded(WebSocketSession session, CloseStatus closeStatus, MessageChannel outputChannel)
 			throws Exception;

@@ -31,7 +31,7 @@ public class PointcutEntry implements ParseState.Entry {
 
 	/**
 	 * 创建一个新的 {@code PointcutEntry} 实例。
-	 * @param name the bean name of the pointcut
+	 * @param name 切点的 Bean 名称
 	 */
 	public PointcutEntry(String name) {
 		this.name = name;

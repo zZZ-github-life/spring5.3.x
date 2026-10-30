@@ -45,7 +45,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * @author Juergen Hoeller
  * @author Rob Winch
  * @since 3.2
- * @param <T> the result type
+ * @param <T> 结果类型
  */
 public class DeferredResult<T> {
 
@@ -83,7 +83,7 @@ public class DeferredResult<T> {
 	 * 创建一个带有自定义超时值的 DeferredResult。
 	 * <p>默认不设置，此时将使用 MVC Java 配置或 MVC 命名空间中配置的默认值；如果也未设置，则超时取决
 	 * 于底层服务器的默认值。
-	 * @param timeoutValue timeout value in milliseconds
+	 * @param timeoutValue 超时值，单位为毫秒
 	 */
 	public DeferredResult(Long timeoutValue) {
 		this(timeoutValue, () -> RESULT_NONE);
@@ -91,8 +91,8 @@ public class DeferredResult<T> {
 
 	/**
 	 * 创建一个带有超时值和默认结果的 DeferredResult，在超时时使用该默认结果。
-	 * @param timeoutValue timeout value in milliseconds (ignored if {@code null})
-	 * @param timeoutResult the result to use
+	 * @param timeoutValue 超时值，单位为毫秒（若为 {@code null} 则忽略）
+	 * @param timeoutResult 要使用的结果
 	 */
 	public DeferredResult(@Nullable Long timeoutValue, Object timeoutResult) {
 		this.timeoutValue = timeoutValue;
@@ -101,8 +101,8 @@ public class DeferredResult<T> {
 
 	/**
 	 * {@link #DeferredResult(Long, Object)} 的变体，接受基于 {@link Supplier} 的动态回退值。
-	 * @param timeoutValue timeout value in milliseconds (ignored if {@code null})
-	 * @param timeoutResult the result supplier to use
+	 * @param timeoutValue 超时值，单位为毫秒（若为 {@code null} 则忽略）
+	 * @param timeoutResult 要使用的结果提供者
 	 * @since 5.1.1
 	 */
 	public DeferredResult(@Nullable Long timeoutValue, Supplier<?> timeoutResult) {
@@ -179,7 +179,7 @@ public class DeferredResult<T> {
 
 	/**
 	 * 提供用于处理结果值的处理器。
-	 * @param resultHandler the handler
+	 * @param resultHandler 处理器
 	 * @see DeferredResultProcessingInterceptor
 	 */
 	public final void setResultHandler(DeferredResultHandler resultHandler) {
@@ -214,9 +214,9 @@ public class DeferredResult<T> {
 
 	/**
 	 * 设置 DeferredResult 的值并进行处理。
-	 * @param result the value to set
-	 * @return {@code true} if the result was set and passed on for handling;
-	 * {@code false} if the result was already set or the async request expired
+	 * @param result 要设置的值
+	 * @return 如果结果已设置并传递以进行处理则返回 {@code true}；
+	 * 如果结果已被设置或异步请求已过期则返回 {@code false}
 	 * @see #isSetOrExpired()
 	 */
 	public boolean setResult(T result) {
@@ -256,10 +256,9 @@ public class DeferredResult<T> {
 	/**
 	 * 为 {@link DeferredResult} 设置错误值并进行处理。该值可以是 {@link Exception} 或
 	 * {@link Throwable}，此时会像处理器抛出该异常一样进行处理。
-	 * @param result the error result value
-	 * @return {@code true} if the result was set to the error value and passed on
-	 * for handling; {@code false} if the result was already set or the async
-	 * request expired
+	 * @param result 错误结果值
+	 * @return 如果结果已设置为错误值并传递以进行处理则返回 {@code true}；
+	 * 如果结果已被设置或异步请求已过期则返回 {@code false}
 	 * @see #isSetOrExpired()
 	 */
 	public boolean setErrorResult(Object result) {

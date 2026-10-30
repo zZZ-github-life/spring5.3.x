@@ -42,8 +42,8 @@ public class ResourceAdapterApplicationContext extends GenericApplicationContext
 
 	/**
 	 * 为给定的 BootstrapContext 创建新的 ResourceAdapterApplicationContext。
-	 * @param bootstrapContext the JCA BootstrapContext that the ResourceAdapter
-	 * has been started with
+	 * @param bootstrapContext 启动该 ResourceAdapter 时所用的
+	 * JCA BootstrapContext
 	 */
 	public ResourceAdapterApplicationContext(BootstrapContext bootstrapContext) {
 		Assert.notNull(bootstrapContext, "BootstrapContext must not be null");

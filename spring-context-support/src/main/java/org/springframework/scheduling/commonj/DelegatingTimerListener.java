@@ -39,7 +39,7 @@ public class DelegatingTimerListener implements TimerListener {
 
 	/**
 	 * 创建一个新的 DelegatingTimerListener。
-	 * @param runnable the Runnable implementation to delegate to
+	 * @param runnable 要委托给的 Runnable 实现
 	 */
 	public DelegatingTimerListener(Runnable runnable) {
 		Assert.notNull(runnable, "Runnable is required");

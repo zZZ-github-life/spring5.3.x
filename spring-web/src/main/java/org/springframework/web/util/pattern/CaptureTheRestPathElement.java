@@ -38,9 +38,9 @@ class CaptureTheRestPathElement extends PathElement {
 
 	/**
 	 * 创建一个新的 {@link CaptureTheRestPathElement} 实例。
-	 * @param pos position of the path element within the path pattern text
-	 * @param captureDescriptor a character array containing contents like '{' '*' 'a' 'b' '}'
-	 * @param separator the separator used in the path pattern
+	 * @param pos 路径元素在路径模式文本中的位置
+	 * @param captureDescriptor 包含类似 '{' '*' 'a' 'b' '}' 内容的字符数组
+	 * @param separator 路径模式中使用的分隔符
 	 */
 	CaptureTheRestPathElement(int pos, char[] captureDescriptor, char separator) {
 		super(pos, separator);

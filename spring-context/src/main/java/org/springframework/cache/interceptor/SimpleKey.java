@@ -50,7 +50,7 @@ public class SimpleKey implements Serializable {
 
 	/**
 	 * 创建新的 {@link SimpleKey} 实例。
-	 * @param elements the elements of the key
+	 * @param elements 该键的各个元素
 	 */
 	public SimpleKey(Object... elements) {
 		Assert.notNull(elements, "Elements must not be null");

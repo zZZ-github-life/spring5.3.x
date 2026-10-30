@@ -32,9 +32,9 @@ public class ScopeNotActiveException extends BeanCreationException {
 
 	/**
 	 * 创建一个新的 ScopeNotActiveException。
-	 * @param beanName the name of the bean requested
-	 * @param scopeName the name of the target scope
-	 * @param cause the root cause, typically from {@link org.springframework.beans.factory.config.Scope#get}
+	 * @param beanName 所请求 Bean 的名称
+	 * @param scopeName 目标作用域的名称
+	 * @param cause 根本原因，通常来自 {@link org.springframework.beans.factory.config.Scope#get}
 	 */
 	public ScopeNotActiveException(String beanName, String scopeName, IllegalStateException cause) {
 		super(beanName, "Scope '" + scopeName + "' is not active for the current thread; consider " +

@@ -41,7 +41,7 @@ public abstract class HttpStatusCodeException extends RestClientResponseExceptio
 
 	/**
 	 * 使用 {@link HttpStatus} 构造新实例。
-	 * @param statusCode the status code
+	 * @param statusCode 状态码
 	 */
 	protected HttpStatusCodeException(HttpStatus statusCode) {
 		this(statusCode, statusCode.name(), null, null, null);
@@ -49,8 +49,8 @@ public abstract class HttpStatusCodeException extends RestClientResponseExceptio
 
 	/**
 	 * 使用 {@link HttpStatus} 和状态文本构造新实例。
-	 * @param statusCode the status code
-	 * @param statusText the status text
+	 * @param statusCode 状态码
+	 * @param statusText 状态文本
 	 */
 	protected HttpStatusCodeException(HttpStatus statusCode, String statusText) {
 		this(statusCode, statusText, null, null, null);
@@ -58,10 +58,10 @@ public abstract class HttpStatusCodeException extends RestClientResponseExceptio
 
 	/**
 	 * 使用 {@link HttpStatus}、状态文本和内容构造实例。
-	 * @param statusCode the status code
-	 * @param statusText the status text
-	 * @param responseBody the response body content, may be {@code null}
-	 * @param responseCharset the response body charset, may be {@code null}
+	 * @param statusCode 状态码
+	 * @param statusText 状态文本
+	 * @param responseBody 响应正文内容，可能为 {@code null}
+	 * @param responseCharset 响应正文字符集，可能为 {@code null}
 	 * @since 3.0.5
 	 */
 	protected HttpStatusCodeException(HttpStatus statusCode, String statusText,
@@ -72,11 +72,11 @@ public abstract class HttpStatusCodeException extends RestClientResponseExceptio
 
 	/**
 	 * 使用 {@link HttpStatus}、状态文本、内容和响应字符集构造实例。
-	 * @param statusCode the status code
-	 * @param statusText the status text
-	 * @param responseHeaders the response headers, may be {@code null}
-	 * @param responseBody the response body content, may be {@code null}
-	 * @param responseCharset the response body charset, may be {@code null}
+	 * @param statusCode 状态码
+	 * @param statusText 状态文本
+	 * @param responseHeaders 响应头，可能为 {@code null}
+	 * @param responseBody 响应体内容，可能为 {@code null}
+	 * @param responseCharset 响应体字符集，可能为 {@code null}
 	 * @since 3.1.2
 	 */
 	protected HttpStatusCodeException(HttpStatus statusCode, String statusText,
@@ -88,12 +88,12 @@ public abstract class HttpStatusCodeException extends RestClientResponseExceptio
 
 	/**
 	 * 使用 {@link HttpStatus}、状态文本、内容和响应字符集构造实例。
-	 * @param message the exception message
-	 * @param statusCode the status code
-	 * @param statusText the status text
-	 * @param responseHeaders the response headers, may be {@code null}
-	 * @param responseBody the response body content, may be {@code null}
-	 * @param responseCharset the response body charset, may be {@code null}
+	 * @param message 异常消息
+	 * @param statusCode 状态码
+	 * @param statusText 状态文本
+	 * @param responseHeaders 响应头，可能为 {@code null}
+	 * @param responseBody 响应体内容，可能为 {@code null}
+	 * @param responseCharset 响应体字符集，可能为 {@code null}
 	 * @since 5.2.2
 	 */
 	protected HttpStatusCodeException(String message, HttpStatus statusCode, String statusText,

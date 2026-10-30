@@ -72,10 +72,9 @@ public abstract class AbstractFallbackCacheOperationSource implements CacheOpera
 	/**
 	 * 确定此方法调用的缓存属性。
 	 * <p>如果未找到方法属性，则默认为类的缓存属性。
-	 * @param method the method for the current invocation (never {@code null})
-	 * @param targetClass the target class for this invocation (may be {@code null})
-	 * @return {@link CacheOperation} for this method, or {@code null} if the method
-	 * is not cacheable
+	 * @param method 当前调用的方法（永不为 {@code null}）
+	 * @param targetClass 本次调用的目标类（可能为 {@code null}）
+	 * @return 此方法的 {@link CacheOperation}；如果该方法不可缓存，则为 {@code null}
 	 */
 	@Override
 	@Nullable
@@ -108,9 +107,9 @@ public abstract class AbstractFallbackCacheOperationSource implements CacheOpera
 	/**
 	 * 为给定方法和目标类确定缓存键。
 	 * <p>对于重载方法不得产生相同的键。对于同一方法的不同实例必须产生相同的键。
-	 * @param method the method (never {@code null})
-	 * @param targetClass the target class (may be {@code null})
-	 * @return the cache key (never {@code null})
+	 * @param method 方法（永不为 {@code null}）
+	 * @param targetClass 目标类（可能为 {@code null}）
+	 * @return 缓存键（永不为 {@code null}）
 	 */
 	protected Object getCacheKey(Method method, @Nullable Class<?> targetClass) {
 		return new MethodClassKey(method, targetClass);
@@ -158,16 +157,16 @@ public abstract class AbstractFallbackCacheOperationSource implements CacheOpera
 
 	/**
 	 * 子类需要实现此方法，以返回给定类的缓存属性（如果有）。
-	 * @param clazz the class to retrieve the attribute for
-	 * @return all caching attribute associated with this class, or {@code null} if none
+	 * @param clazz 要为其获取属性的类
+	 * @return 与此类关联的所有缓存属性；如果没有，则为 {@code null}
 	 */
 	@Nullable
 	protected abstract Collection<CacheOperation> findCacheOperations(Class<?> clazz);
 
 	/**
 	 * 子类需要实现此方法，以返回给定方法的缓存属性（如果有）。
-	 * @param method the method to retrieve the attribute for
-	 * @return all caching attribute associated with this method, or {@code null} if none
+	 * @param method 要为其获取属性的方法
+	 * @return 与此方法关联的所有缓存属性；如果没有，则为 {@code null}
 	 */
 	@Nullable
 	protected abstract Collection<CacheOperation> findCacheOperations(Method method);

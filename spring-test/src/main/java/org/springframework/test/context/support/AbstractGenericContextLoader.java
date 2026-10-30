@@ -66,7 +66,7 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	 * <li>调用 {@link #customizeContext(ConfigurableApplicationContext, MergedContextConfiguration)} 以允许在刷新上下文之前定制上下文。</li>
 	 * <li>{@link ConfigurableApplicationContext#refresh 刷新}上下文并为其注册 JVM 关闭钩子。</li>
 	 * </ul>
-	 * @return a new application context
+	 * @return 新的应用上下文
 	 * @since 3.1
 	 * @see org.springframework.test.context.SmartContextLoader#loadContext(MergedContextConfiguration)
 	 * @see GenericApplicationContext
@@ -103,9 +103,8 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	/**
 	 * 针对此上下文加载器所支持的内容，验证所提供的 {@link MergedContextConfiguration}。
 	 * <p>默认实现是<em>无操作</em>，但子类可以视需要重写它。
-	 * @param mergedConfig the merged configuration to validate
-	 * @throws IllegalStateException if the supplied configuration is not valid
-	 * for this context loader
+	 * @param mergedConfig 要验证的合并配置
+	 * @throws IllegalStateException 如果所提供的配置对此上下文加载器无效
 	 * @since 4.0.4
 	 */
 	protected void validateMergedContextConfiguration(MergedContextConfiguration mergedConfig) {
@@ -125,7 +124,7 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	 * <li>{@link ConfigurableApplicationContext#refresh 刷新}上下文并为其注册 JVM 关闭钩子。</li>
 	 * </ul>
 	 * <p><b>注意</b>：此方法不提供为所加载的上下文设置活动 Bean 定义配置文件的手段。有关替代方案，请参见 {@link #loadContext(MergedContextConfiguration)} 和 {@link AbstractContextLoader#prepareContext(ConfigurableApplicationContext, MergedContextConfiguration)}。
-	 * @return a new application context
+	 * @return 新的应用上下文
 	 * @since 2.5
 	 * @see org.springframework.test.context.ContextLoader#loadContext
 	 * @see GenericApplicationContext
@@ -155,7 +154,7 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	/**
 	 * 创建由此 {@code ContextLoader} 使用的 {@link GenericApplicationContext} 的工厂方法。
 	 * <p>默认实现使用默认构造器创建 {@code GenericApplicationContext}。此方法可以被重写 &mdash; 例如，用于使用自定义上下文子类，或创建带有自定义 {@link DefaultListableBeanFactory} 实现的 {@code GenericApplicationContext}。
-	 * @return a newly instantiated {@code GenericApplicationContext}
+	 * @return 新实例化的 {@code GenericApplicationContext}
 	 * @since 5.2.9
 	 */
 	protected GenericApplicationContext createContext() {
@@ -165,7 +164,7 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	/**
 	 * 准备由此 {@code ContextLoader} 创建的 {@link GenericApplicationContext}。在读取 Bean 定义<i>之前</i>调用。
 	 * <p>默认实现为空。可在子类中重写，以定制 {@code GenericApplicationContext} 的标准设置。
-	 * @param context the context that should be prepared
+	 * @param context 应准备的上下文
 	 * @since 2.5
 	 * @see #loadContext(MergedContextConfiguration)
 	 * @see #loadContext(String...)
@@ -180,7 +179,7 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	/**
 	 * 定制由此 {@code ContextLoader} 创建的 ApplicationContext 的内部 Bean 工厂。
 	 * <p>默认实现为空，但可在子类中重写，以定制 {@code DefaultListableBeanFactory} 的标准设置。
-	 * @param beanFactory the bean factory created by this {@code ContextLoader}
+	 * @param beanFactory 由此 {@code ContextLoader} 创建的 Bean 工厂
 	 * @since 2.5
 	 * @see #loadContext(MergedContextConfiguration)
 	 * @see #loadContext(String...)
@@ -196,8 +195,8 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	 * 从所提供的 {@code MergedContextConfiguration} 中的位置或类，将 Bean 定义加载到所提供的 {@link GenericApplicationContext context} 中。
 	 * <p>默认实现委托给由 {@link #createBeanDefinitionReader(GenericApplicationContext)} 返回的 {@link BeanDefinitionReader}，以{@link BeanDefinitionReader#loadBeanDefinitions(String) 加载} Bean 定义。
 	 * <p>子类必须提供 {@link #createBeanDefinitionReader(GenericApplicationContext)} 的适当实现。或者，子类可以提供 {@code createBeanDefinitionReader()} 的<em>无操作</em>实现，并重写此方法以提供加载或注册 Bean 定义的自定义策略。
-	 * @param context the context into which the bean definitions should be loaded
-	 * @param mergedConfig the merged context configuration
+	 * @param context 应将 Bean 定义加载到的上下文
+	 * @param mergedConfig 合并后的上下文配置
 	 * @since 3.1
 	 * @see #loadContext(MergedContextConfiguration)
 	 */
@@ -207,9 +206,8 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 
 	/**
 	 * 为将 Bean 定义加载到所提供的 {@link GenericApplicationContext context} 中而创建新的 {@link BeanDefinitionReader} 的工厂方法。
-	 * @param context the context for which the {@code BeanDefinitionReader}
-	 * should be created
-	 * @return a {@code BeanDefinitionReader} for the supplied context
+	 * @param context 应为其创建 {@code BeanDefinitionReader} 的上下文
+	 * @return 用于所提供上下文的 {@code BeanDefinitionReader}
 	 * @since 2.5
 	 * @see #loadContext(String...)
 	 * @see #loadBeanDefinitions
@@ -220,7 +218,7 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	/**
 	 * 在 Bean 定义已加载到上下文<i>之后</i>但上下文刷新<i>之前</i>，定制由该 {@code ContextLoader} 创建的 {@link GenericApplicationContext}。
 	 * <p>默认实现为空，但可在子类中重写，以定制应用上下文。
-	 * @param context the newly created application context
+	 * @param context 新创建的应用上下文
 	 * @since 2.5
 	 * @see #loadContext(MergedContextConfiguration)
 	 * @see #loadContext(String...)

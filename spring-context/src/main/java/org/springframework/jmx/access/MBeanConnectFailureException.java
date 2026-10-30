@@ -30,8 +30,8 @@ public class MBeanConnectFailureException extends JmxException {
 
 	/**
 	 * 使用指定的错误消息和根本原因创建新的 {@code MBeanConnectFailureException}。
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param msg 详细消息
+	 * @param cause 根本原因
 	 */
 	public MBeanConnectFailureException(String msg, Throwable cause) {
 		super(msg, cause);

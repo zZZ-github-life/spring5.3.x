@@ -113,7 +113,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 
 	/**
 	 * 使用给定的 DefaultListableBeanFactory 创建一个新的 GenericApplicationContext。
-	 * @param beanFactory the DefaultListableBeanFactory instance to use for this context
+	 * @param beanFactory 要用于此上下文的 DefaultListableBeanFactory 实例
 	 * @see #registerBeanDefinition
 	 * @see #refresh
 	 */
@@ -124,7 +124,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 
 	/**
 	 * 使用给定的父上下文创建一个新的 GenericApplicationContext。
-	 * @param parent the parent application context
+	 * @param parent 父应用上下文
 	 * @see #registerBeanDefinition
 	 * @see #refresh
 	 */
@@ -135,8 +135,8 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 
 	/**
 	 * 使用给定的 DefaultListableBeanFactory 创建一个新的 GenericApplicationContext。
-	 * @param beanFactory the DefaultListableBeanFactory instance to use for this context
-	 * @param parent the parent application context
+	 * @param beanFactory 要用于此上下文的 DefaultListableBeanFactory 实例
+	 * @param parent 父应用上下文
 	 * @see #registerBeanDefinition
 	 * @see #refresh
 	 */
@@ -297,7 +297,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	/**
 	 * 返回此上下文的底层 Bean 工厂，可用于注册 Bean 定义。<p><b>注意：</b>需要调用 {@link #refresh()}，
 	 * 以应用上下文语义初始化该 Bean 工厂及其包含的 Bean（自动检测 BeanFactoryPostProcessors 等）。
-	 * @return the internal bean factory (as DefaultListableBeanFactory)
+	 * @return 内部 Bean 工厂（作为 DefaultListableBeanFactory）
 	 */
 	public final DefaultListableBeanFactory getDefaultListableBeanFactory() {
 		return this.beanFactory;
@@ -358,11 +358,9 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 
 	/**
 	 * 从给定的 Bean 类注册一个 Bean，可选地提供显式构造函数参数，供自动装配过程考虑。
-	 * @param beanClass the class of the bean
-	 * @param constructorArgs custom argument values to be fed into Spring's
-	 * constructor resolution algorithm, resolving either all arguments or just
-	 * specific ones, with the rest to be resolved through regular autowiring
-	 * (may be {@code null} or empty)
+	 * @param beanClass Bean 的类
+	 * @param constructorArgs 提供给 Spring 构造器解析算法的自定义参数值，可解析所有参数或仅特定参数，
+	 * 其余参数通过常规自动装配解析（可以为 {@code null} 或为空）
 	 * @since 5.2 (since 5.0 on the AnnotationConfigApplicationContext subclass)
 	 */
 	public <T> void registerBean(Class<T> beanClass, Object... constructorArgs) {
@@ -371,12 +369,10 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 
 	/**
 	 * 从给定的 Bean 类注册一个 Bean，可选地提供显式构造函数参数，供自动装配过程考虑。
-	 * @param beanName the name of the bean (may be {@code null})
-	 * @param beanClass the class of the bean
-	 * @param constructorArgs custom argument values to be fed into Spring's
-	 * constructor resolution algorithm, resolving either all arguments or just
-	 * specific ones, with the rest to be resolved through regular autowiring
-	 * (may be {@code null} or empty)
+	 * @param beanName Bean 的名称（可以为 {@code null}）
+	 * @param beanClass Bean 的类
+	 * @param constructorArgs 提供给 Spring 构造器解析算法的自定义参数值，可解析所有参数或仅特定参数，
+	 * 其余参数通过常规自动装配解析（可以为 {@code null} 或为空）
 	 * @since 5.2 (since 5.0 on the AnnotationConfigApplicationContext subclass)
 	 */
 	public <T> void registerBean(@Nullable String beanName, Class<T> beanClass, Object... constructorArgs) {
@@ -390,10 +386,9 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 
 	/**
 	 * 从给定的 Bean 类注册一个 Bean，可选地自定义其 Bean 定义元数据（通常声明为 lambda 表达式）。
-	 * @param beanClass the class of the bean (resolving a public constructor
-	 * to be autowired, possibly simply the default constructor)
-	 * @param customizers one or more callbacks for customizing the factory's
-	 * {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
+	 * @param beanClass Bean 的类（解析要自动装配的公共构造器，可能只是默认构造器）
+	 * @param customizers 用于自定义工厂 {@link BeanDefinition} 的一个或多个回调，
+	 * 例如设置 lazy-init 或 primary 标志
 	 * @since 5.0
 	 * @see #registerBean(String, Class, Supplier, BeanDefinitionCustomizer...)
 	 */
@@ -403,11 +398,10 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 
 	/**
 	 * 从给定的 Bean 类注册一个 Bean，可选地自定义其 Bean 定义元数据（通常声明为 lambda 表达式）。
-	 * @param beanName the name of the bean (may be {@code null})
-	 * @param beanClass the class of the bean (resolving a public constructor
-	 * to be autowired, possibly simply the default constructor)
-	 * @param customizers one or more callbacks for customizing the factory's
-	 * {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
+	 * @param beanName Bean 的名称（可以为 {@code null}）
+	 * @param beanClass Bean 的类（解析要自动装配的公共构造器，可能只是默认构造器）
+	 * @param customizers 用于自定义工厂 {@link BeanDefinition} 的一个或多个回调，
+	 * 例如设置 lazy-init 或 primary 标志
 	 * @since 5.0
 	 * @see #registerBean(String, Class, Supplier, BeanDefinitionCustomizer...)
 	 */
@@ -420,10 +414,10 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	/**
 	 * 从给定的 Bean 类注册一个 Bean，使用给定的 supplier 获取新实例（通常声明为 lambda 表达式或方法引
 	 * 用），并可选择自定义其 Bean 定义元数据（同样通常声明为 lambda 表达式）。
-	 * @param beanClass the class of the bean
-	 * @param supplier a callback for creating an instance of the bean
-	 * @param customizers one or more callbacks for customizing the factory's
-	 * {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
+	 * @param beanClass Bean 的类
+	 * @param supplier 用于创建 Bean 实例的回调
+	 * @param customizers 用于自定义工厂 {@link BeanDefinition} 的一个或多个回调，
+	 * 例如设置 lazy-init 或 primary 标志
 	 * @since 5.0
 	 * @see #registerBean(String, Class, Supplier, BeanDefinitionCustomizer...)
 	 */
@@ -437,12 +431,11 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	 * 从给定的 Bean 类注册一个 Bean，使用给定的 supplier 获取新实例（通常声明为 lambda 表达式或方法引
 	 * 用），并可选择自定义其 Bean 定义元数据（同样通常声明为 lambda 表达式）。<p>此方法可以覆盖，以调
 	 * 整所有 {@code registerBean} 方法的注册机制（因为它们都委托给此方法）。
-	 * @param beanName the name of the bean (may be {@code null})
-	 * @param beanClass the class of the bean
-	 * @param supplier a callback for creating an instance of the bean (in case
-	 * of {@code null}, resolving a public constructor to be autowired instead)
-	 * @param customizers one or more callbacks for customizing the factory's
-	 * {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
+	 * @param beanName Bean 的名称（可以为 {@code null}）
+	 * @param beanClass Bean 的类
+	 * @param supplier 用于创建 Bean 实例的回调（如果为 {@code null}，则改为解析要自动装配的公共构造器）
+	 * @param customizers 用于自定义工厂 {@link BeanDefinition} 的一个或多个回调，
+	 * 例如设置 lazy-init 或 primary 标志
 	 * @since 5.0
 	 */
 	public <T> void registerBean(@Nullable String beanName, Class<T> beanClass,

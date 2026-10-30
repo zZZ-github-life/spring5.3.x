@@ -79,7 +79,7 @@ public class StopWatch {
 	 * 使用给定 ID 构造一个新的 {@code StopWatch}。
 	 * <p>当存在多个秒表的输出并需要在它们之间进行区分时，该 ID 很方便。
 	 * <p>不会启动任何任务。
-	 * @param id identifier for this stop watch
+	 * @param id 该秒表的标识符
 	 */
 	public StopWatch(String id) {
 		this.id = id;
@@ -88,7 +88,7 @@ public class StopWatch {
 
 	/**
 	 * 获取此 {@code StopWatch} 的 ID，即在构造时指定的 ID。
-	 * @return the ID (empty String by default)
+	 * @return ID（默认为空 String）
 	 * @since 4.2.2
 	 * @see #StopWatch(String)
 	 */
@@ -120,7 +120,7 @@ public class StopWatch {
 	/**
 	 * 启动一个命名任务。
 	 * <p>如果未先调用此方法就调用 {@link #stop()} 或计时方法，则结果是不确定的。
-	 * @param taskName the name of the task to start
+	 * @param taskName 要启动的任务名称
 	 * @see #start()
 	 * @see #stop()
 	 */

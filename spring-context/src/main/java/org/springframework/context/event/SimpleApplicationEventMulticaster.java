@@ -138,8 +138,8 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 
 	/**
 	 * 使用给定事件调用给定监听器。
-	 * @param listener the ApplicationListener to invoke
-	 * @param event the current event to propagate
+	 * @param listener 要调用的 ApplicationListener
+	 * @param event 要传播的当前事件
 	 * @since 4.1
 	 */
 	protected void invokeListener(ApplicationListener<?> listener, ApplicationEvent event) {

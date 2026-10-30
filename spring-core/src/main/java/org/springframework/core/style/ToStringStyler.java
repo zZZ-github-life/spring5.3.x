@@ -29,36 +29,36 @@ public interface ToStringStyler {
 
 	/**
 	 * 在样式化其字段之前，为已调用 {@code toString()} 的对象设置样式。
-	 * @param buffer the buffer to print to
-	 * @param obj the object to style
+	 * @param buffer 要输出到的缓冲区
+	 * @param obj 要设置样式的对象
 	 */
 	void styleStart(StringBuilder buffer, Object obj);
 
 	/**
 	 * 在其字段被样式化之后，为已调用 {@code toString()} 的对象设置样式。
-	 * @param buffer the buffer to print to
-	 * @param obj the object to style
+	 * @param buffer 要输出到的缓冲区
+	 * @param obj 要设置样式的对象
 	 */
 	void styleEnd(StringBuilder buffer, Object obj);
 
 	/**
 	 * 将字段值样式化为字符串。
-	 * @param buffer the buffer to print to
-	 * @param fieldName the name of the field
-	 * @param value the field value
+	 * @param buffer 要输出到的缓冲区
+	 * @param fieldName 字段名称
+	 * @param value 字段值
 	 */
 	void styleField(StringBuilder buffer, String fieldName, @Nullable Object value);
 
 	/**
 	 * 为给定的值设置样式。
-	 * @param buffer the buffer to print to
-	 * @param value the field value
+	 * @param buffer 要输出到的缓冲区
+	 * @param value 字段值
 	 */
 	void styleValue(StringBuilder buffer, Object value);
 
 	/**
 	 * 为字段分隔符设置样式。
-	 * @param buffer the buffer to print to
+	 * @param buffer 要输出到的缓冲区
 	 */
 	void styleFieldSeparator(StringBuilder buffer);
 

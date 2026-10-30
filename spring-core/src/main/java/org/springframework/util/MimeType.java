@@ -113,8 +113,8 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	/**
 	 * 为给定的主类型创建一个新的 {@code MimeType}。
 	 * <p>{@linkplain #getSubtype() subtype} 被设置为 <code>"&#42;"</code>，并且参数为空。
-	 * @param type the primary type
-	 * @throws IllegalArgumentException if any of the parameters contains illegal characters
+	 * @param type 主要类型
+	 * @throws IllegalArgumentException 如果任一参数包含非法字符
 	 */
 	public MimeType(String type) {
 		this(type, WILDCARD_TYPE);
@@ -123,9 +123,9 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	/**
 	 * 为给定的主类型和子类型创建一个新的 {@code MimeType}。
 	 * <p>参数为空。
-	 * @param type the primary type
-	 * @param subtype the subtype
-	 * @throws IllegalArgumentException if any of the parameters contains illegal characters
+	 * @param type 主要类型
+	 * @param subtype 子类型
+	 * @throws IllegalArgumentException 如果任一参数包含非法字符
 	 */
 	public MimeType(String type, String subtype) {
 		this(type, subtype, Collections.emptyMap());
@@ -133,10 +133,10 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * 为给定的类型、子类型和字符集创建一个新的 {@code MimeType}。
-	 * @param type the primary type
-	 * @param subtype the subtype
-	 * @param charset the character set
-	 * @throws IllegalArgumentException if any of the parameters contains illegal characters
+	 * @param type 主要类型
+	 * @param subtype 子类型
+	 * @param charset 字符集
+	 * @throws IllegalArgumentException 如果任一参数包含非法字符
 	 */
 	public MimeType(String type, String subtype, Charset charset) {
 		this(type, subtype, Collections.singletonMap(PARAM_CHARSET, charset.name()));
@@ -145,9 +145,9 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * 复制构造函数，复制给定 {@code MimeType} 的类型、子类型和参数，并允许设置指定的字符集。
-	 * @param other the other MimeType
-	 * @param charset the character set
-	 * @throws IllegalArgumentException if any of the parameters contains illegal characters
+	 * @param other 另一个 MimeType
+	 * @param charset 字符集
+	 * @throws IllegalArgumentException 如果任一参数包含非法字符
 	 * @since 4.3
 	 */
 	public MimeType(MimeType other, Charset charset) {
@@ -157,9 +157,9 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * 复制构造函数，复制给定 {@code MimeType} 的类型和子类型，并允许使用不同的参数。
-	 * @param other the other MimeType
-	 * @param parameters the parameters (may be {@code null})
-	 * @throws IllegalArgumentException if any of the parameters contains illegal characters
+	 * @param other 另一个 MimeType
+	 * @param parameters 参数（可以为 {@code null}）
+	 * @throws IllegalArgumentException 如果任一参数包含非法字符
 	 */
 	public MimeType(MimeType other, @Nullable Map<String, String> parameters) {
 		this(other.getType(), other.getSubtype(), parameters);
@@ -167,10 +167,10 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * 为给定的类型、子类型和参数创建一个新的 {@code MimeType}。
-	 * @param type the primary type
-	 * @param subtype the subtype
-	 * @param parameters the parameters (may be {@code null})
-	 * @throws IllegalArgumentException if any of the parameters contains illegal characters
+	 * @param type 主要类型
+	 * @param subtype 子类型
+	 * @param parameters 参数（可为 {@code null}）
+	 * @throws IllegalArgumentException 如果任一参数包含非法字符
 	 */
 	public MimeType(String type, String subtype, @Nullable Map<String, String> parameters) {
 		Assert.hasLength(type, "'type' must not be empty");
@@ -194,7 +194,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * 复制构造函数，复制给定 {@code MimeType} 的类型、子类型和参数，跳过其他构造函数中执行的检查。
-	 * @param other the other MimeType
+	 * @param other 另一个 MimeType
 	 * @since 5.3
 	 */
 	protected MimeType(MimeType other) {
@@ -207,7 +207,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * 检查给定 token 字符串中是否有 RFC 2616 第 2.2 节所定义的非法字符。
-	 * @throws IllegalArgumentException in case of illegal characters
+	 * @throws IllegalArgumentException 在出现非法字符的情况下
 	 * @see <a href="https://tools.ietf.org/html/rfc2616#section-2.2">HTTP 1.1, section 2.2</a>
 	 */
 	private void checkToken(String token) {
@@ -256,7 +256,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	/**
 	 * 指示 {@linkplain #getSubtype() subtype} 是通配符 <code>&#42;</code>，还是通配符后跟后缀（例如
 	 * <code>&#42;+xml</code>）。
-	 * @return whether the subtype is a wildcard
+	 * @return 子类型是否为通配符
 	 */
 	public boolean isWildcardSubtype() {
 		return WILDCARD_TYPE.equals(getSubtype()) || getSubtype().startsWith("*+");
@@ -264,7 +264,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * 指示此 MIME 类型是否为具体类型，即类型和子类型都不是通配符 <code>&#42;</code>。
-	 * @return whether this MIME Type is concrete
+	 * @return 该 MIME 类型是否为具体类型
 	 */
 	public boolean isConcrete() {
 		return !isWildcardType() && !isWildcardSubtype();
@@ -299,7 +299,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * 返回由 {@code charset} 参数指示的字符集（如果有）。
-	 * @return the character set, or {@code null} if not available
+	 * @return 字符集，如果不可用则为 {@code null}
 	 * @since 4.3
 	 */
 	@Nullable
@@ -309,8 +309,8 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * 根据给定的参数名返回通用的参数值。
-	 * @param name the parameter name
-	 * @return the parameter value, or {@code null} if not present
+	 * @param name 参数名称
+	 * @return 参数值，如果不存在则为 {@code null}
 	 */
 	@Nullable
 	public String getParameter(String name) {
@@ -319,7 +319,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * 返回所有通用参数值。
-	 * @return a read-only map (possibly empty, never {@code null})
+	 * @return 只读映射（可能为空，但绝不为 {@code null}）
 	 */
 	public Map<String, String> getParameters() {
 		return this.parameters;
@@ -330,9 +330,9 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	 * <p>例如，{@code text/*} 包含 {@code text/plain} 和 {@code text/html}，{@code application/*+xml}
 	 * 包含 {@code application/soap+xml}，等等。
 	 * 此方法<b>不是</b>对称的。
-	 * @param other the reference MIME Type with which to compare
-	 * @return {@code true} if this MIME Type includes the given MIME Type;
-	 * {@code false} otherwise
+	 * @param other 用于比较的参考 MIME 类型
+	 * @return 如果该 MIME 类型包含给定的 MIME 类型，则返回 {@code true}；
+	 * 否则返回 {@code false}
 	 */
 	public boolean includes(@Nullable MimeType other) {
 		if (other == null) {
@@ -373,9 +373,9 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	 * 指示此 MIME 类型是否与给定的 MIME 类型兼容。
 	 * <p>例如，{@code text/*} 与 {@code text/plain}、{@code text/html} 兼容，反之亦然。
 	 * 实际上，此方法类似于 {@link #includes}，不同之处在于它<b>是</b>对称的。
-	 * @param other the reference MIME Type with which to compare
-	 * @return {@code true} if this MIME Type is compatible with the given MIME Type;
-	 * {@code false} otherwise
+	 * @param other 用于比较的参考 MIME 类型
+	 * @return 如果该 MIME 类型与给定的 MIME 类型兼容，则返回 {@code true}；
+	 * 否则返回 {@code false}
 	 */
 	public boolean isCompatibleWith(@Nullable MimeType other) {
 		if (other == null) {
@@ -407,8 +407,8 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * 类似于 {@link #equals(Object)}，但仅基于类型和子类型，即忽略参数。
-	 * @param other the other mime type to compare to
-	 * @return whether the two mime types have the same type and subtype
+	 * @param other 用于比较的另一个 MIME 类型
+	 * @return 两个 MIME 类型是否具有相同的类型和子类型
 	 * @since 5.1.4
 	 */
 	public boolean equalsTypeAndSubtype(@Nullable MimeType other) {
@@ -421,8 +421,8 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	/**
 	 * 与依赖 {@link MimeType#equals(Object)} 的 {@link Collection#contains(Object)} 不同，此方法只检查
 	 * 类型和子类型，其他方面忽略参数。
-	 * @param mimeTypes the list of mime types to perform the check against
-	 * @return whether the list contains the given mime type
+	 * @param mimeTypes 用于执行检查的 MIME 类型列表
+	 * @return 该列表是否包含给定的 MIME 类型
 	 * @since 5.1.4
 	 */
 	public boolean isPresentIn(Collection<? extends MimeType> mimeTypes) {
@@ -515,7 +515,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * 按字母顺序将此 MIME 类型与另一个进行比较。
-	 * @param other the MIME Type to compare to
+	 * @param other 用于比较的 MIME 类型
 	 * @see MimeTypeUtils#sortBySpecificity(List)
 	 */
 	@Override
@@ -610,7 +610,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	/**
 	 * 用于按具体程度对 {@link MimeType MimeTypes} 排序的比较器。
 	 *
-	 * @param <T> the type of mime types that may be compared by this comparator
+	 * @param <T> 可由该比较器比较的 MIME 类型所属的类型
 	 */
 	public static class SpecificityComparator<T extends MimeType> implements Comparator<T> {
 

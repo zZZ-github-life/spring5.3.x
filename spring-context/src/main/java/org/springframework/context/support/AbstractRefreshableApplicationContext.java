@@ -78,7 +78,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 
 	/**
 	 * 使用给定的父上下文创建一个新的 AbstractRefreshableApplicationContext。
-	 * @param parent the parent context
+	 * @param parent 父上下文
 	 */
 	public AbstractRefreshableApplicationContext(@Nullable ApplicationContext parent) {
 		super(parent);
@@ -177,7 +177,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}，并将此上下文父级的
 	 * {@linkplain #getInternalParentBeanFactory() internal bean factory}作为父 Bean 工厂。可以在子类中
 	 * 重写，例如自定义 DefaultListableBeanFactory 的设置。
-	 * @return the bean factory for this context
+	 * @return 此上下文的 Bean 工厂
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowBeanDefinitionOverriding
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowEagerClassLoading
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowCircularReferences
@@ -194,7 +194,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * {@linkplain #setAllowBeanDefinitionOverriding "allowBeanDefinitionOverriding"} 和
 	 * {@linkplain #setAllowCircularReferences "allowCircularReferences"} 设置。可以在子类中重写，以自
 	 * 定义 {@link DefaultListableBeanFactory} 的任意设置。
-	 * @param beanFactory the newly created bean factory for this context
+	 * @param beanFactory 为此上下文新创建的 Bean 工厂
 	 * @see DefaultListableBeanFactory#setAllowBeanDefinitionOverriding
 	 * @see DefaultListableBeanFactory#setAllowCircularReferences
 	 * @see DefaultListableBeanFactory#setAllowRawInjectionDespiteWrapping
@@ -211,9 +211,9 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 
 	/**
 	 * 将 Bean 定义加载到给定的 Bean 工厂中，通常通过委托给一个或多个 Bean 定义读取器来完成。
-	 * @param beanFactory the bean factory to load bean definitions into
-	 * @throws BeansException if parsing of the bean definitions failed
-	 * @throws IOException if loading of bean definition files failed
+	 * @param beanFactory 要向其加载 Bean 定义的 Bean 工厂
+	 * @throws BeansException 如果 Bean 定义解析失败
+	 * @throws IOException 如果 Bean 定义文件加载失败
 	 * @see org.springframework.beans.factory.support.PropertiesBeanDefinitionReader
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 	 */

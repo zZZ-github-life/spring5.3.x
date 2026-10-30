@@ -36,8 +36,8 @@ public abstract class AstUtils {
 	 * 都排在列表开头。此外，还有一些特定解析器，它们精确命名了所涉的类，另一些则命名了某个特定类、但该
 	 * 类是当前类的超类型。后者被放在特定解析器集合的末尾，会在精确匹配的访问器之后、通用访问器之前被尝
 	 * 试。
-	 * @param targetType the type upon which property access is being attempted
-	 * @return a list of resolvers that should be tried in order to access the property
+	 * @param targetType 尝试进行属性访问所针对的类型
+	 * @return 为访问该属性而应依次尝试的解析器列表
 	 */
 	public static List<PropertyAccessor> getPropertyAccessorsToTry(
 			@Nullable Class<?> targetType, List<PropertyAccessor> propertyAccessors) {

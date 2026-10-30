@@ -150,8 +150,7 @@ public class ScheduledAnnotationBeanPostProcessor
 	/**
 	 * 创建一个委托给指定 {@link ScheduledTaskRegistrar} 的
 	 * {@code ScheduledAnnotationBeanPostProcessor}。
-	 * @param registrar the ScheduledTaskRegistrar to register {@code @Scheduled}
-	 * tasks on
+	 * @param registrar 用于注册 {@code @Scheduled} 任务的 ScheduledTaskRegistrar
 	 * @since 5.1
 	 */
 	public ScheduledAnnotationBeanPostProcessor(ScheduledTaskRegistrar registrar) {
@@ -380,9 +379,9 @@ public class ScheduledAnnotationBeanPostProcessor
 
 	/**
 	 * 处理给定 Bean 上给定的 {@code @Scheduled} 方法声明。
-	 * @param scheduled the {@code @Scheduled} annotation
-	 * @param method the method that the annotation has been declared on
-	 * @param bean the target bean instance
+	 * @param scheduled {@code @Scheduled} 注解
+	 * @param method 声明该注解的方法
+	 * @param bean 目标 Bean 实例
 	 * @see #createRunnable(Object, Method)
 	 */
 	protected void processScheduled(Scheduled scheduled, Method method, Object bean) {
@@ -513,8 +512,8 @@ public class ScheduledAnnotationBeanPostProcessor
 	/**
 	 * 为给定 Bean 实例创建一个 {@link Runnable}，用于调用指定的定时方法。
 	 * <p>默认实现会创建一个 {@link ScheduledMethodRunnable}。
-	 * @param target the target bean instance
-	 * @param method the scheduled method to call
+	 * @param target 目标 Bean 实例
+	 * @param method 要调用的计划方法
 	 * @since 5.1
 	 * @see ScheduledMethodRunnable#ScheduledMethodRunnable(Object, Method)
 	 */

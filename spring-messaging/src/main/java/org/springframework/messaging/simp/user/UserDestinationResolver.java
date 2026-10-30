@@ -38,9 +38,9 @@ public interface UserDestinationResolver {
 	/**
 	 * 将带有用户目标的给定消息解析为一个或多个带有实际目标的消息，
 	 * 每个活跃用户会话对应一个。
-	 * @param message the message to try to resolve
-	 * @return 0 or more target messages (one for each active session), or
-	 * {@code null} if the source message does not contain a user destination.
+	 * @param message 要尝试解析的消息
+	 * @return 0 个或多个目标消息（每个活动会话一个），
+	 * 如果源消息不包含用户目标地址则为 {@code null}。
 	 */
 	@Nullable
 	UserDestinationResult resolveDestination(Message<?> message);

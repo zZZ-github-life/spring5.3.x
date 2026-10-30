@@ -93,7 +93,7 @@ public abstract class AttributeAccessorSupport implements AttributeAccessor, Ser
 
 	/**
 	 * 将提供的 AttributeAccessor 中的属性复制到此访问器。
-	 * @param source the AttributeAccessor to copy from
+	 * @param source 要从中复制的 AttributeAccessor
 	 */
 	protected void copyAttributesFrom(AttributeAccessor source) {
 		Assert.notNull(source, "Source must not be null");

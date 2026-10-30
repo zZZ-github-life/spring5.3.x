@@ -125,9 +125,8 @@ public class StandardJmsActivationSpecFactory implements JmsActivationSpecFactor
 	/**
 	 * 如果可能，为给定的 ResourceAdapter 确定 ActivationSpec 类。
 	 * 在未显式设置 'activationSpecClass' 时调用。
-	 * @param adapter the ResourceAdapter to check
-	 * @return the corresponding ActivationSpec class, or {@code null}
-	 * if not determinable
+	 * @param adapter 要检查的 ResourceAdapter
+	 * @return 相应的 ActivationSpec 类；如果无法确定，则为 {@code null}
 	 * @see #setActivationSpecClass
 	 */
 	@Nullable
@@ -139,8 +138,8 @@ public class StandardJmsActivationSpecFactory implements JmsActivationSpecFactor
 	 * 使用给定配置对象中定义的设置填充给定的 ApplicationSpec 对象。
 	 * <p>此实现应用所有标准 JMS 设置，但忽略
 	 * "maxConcurrency" 和 "prefetchSize"——标准 JCA 1.5 不支持它们。
-	 * @param bw the BeanWrapper wrapping the ActivationSpec object
-	 * @param config the configured object holding common JMS settings
+	 * @param bw 包装 ActivationSpec 对象的 BeanWrapper
+	 * @param config 保存通用 JMS 设置的已配置对象
 	 */
 	protected void populateActivationSpecProperties(BeanWrapper bw, JmsActivationSpecConfig config) {
 		String destinationName = config.getDestinationName();
@@ -189,9 +188,8 @@ public class StandardJmsActivationSpecFactory implements JmsActivationSpecFactor
 	 * "Auto-acknowledge" 和 "Dups-ok-acknowledge"。
 	 * 如果请求了 {@code CLIENT_ACKNOWLEDGE} 或 {@code SESSION_TRANSACTED}，
 	 * 则抛出异常。
-	 * @param bw the BeanWrapper wrapping the ActivationSpec object
-	 * @param ackMode the configured acknowledgment mode
-	 * (according to the constants in {@link javax.jms.Session})
+	 * @param bw 包装 ActivationSpec 对象的 BeanWrapper
+	 * @param ackMode 配置的确认模式（依据 {@link javax.jms.Session} 中的常量）
 	 * @see javax.jms.Session#AUTO_ACKNOWLEDGE
 	 * @see javax.jms.Session#DUPS_OK_ACKNOWLEDGE
 	 * @see javax.jms.Session#CLIENT_ACKNOWLEDGE

@@ -78,8 +78,7 @@ public class DefaultTransactionAttribute extends DefaultTransactionDefinition im
 	/**
 	 * 使用给定的传播行为创建一个新的DefaultTransactionAttribute。
 	 * 可以通过bean属性setter进行修改。
-	 * @param propagationBehavior one of the propagation constants in the
-	 * TransactionDefinition interface
+	 * @param propagationBehavior TransactionDefinition 接口中的某个传播常量
 	 * @see #setIsolationLevel
 	 * @see #setTimeout
 	 * @see #setReadOnly
@@ -182,7 +181,7 @@ public class DefaultTransactionAttribute extends DefaultTransactionDefinition im
 	 * 解析定义为可解析字符串的属性值:
 	 * {@link #setTimeoutString}、{@link #setQualifier}、{@link #setLabels}。
 	 * 这通常用于解析"${...}"占位符。
-	 * @param resolver the embedded value resolver to apply, if any
+	 * @param resolver 要应用的嵌入式值解析器（如果有）
 	 * @since 5.3
 	 */
 	public void resolveAttributeStrings(@Nullable StringValueResolver resolver) {

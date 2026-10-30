@@ -42,7 +42,7 @@ public class JspAwareRequestContext extends RequestContext {
 
 	/**
 	 * 为给定的页面上下文创建一个新的 JspAwareRequestContext，使用请求属性来获取 Errors。
-	 * @param pageContext current JSP page context
+	 * @param pageContext 当前 JSP 页面上下文
 	 */
 	public JspAwareRequestContext(PageContext pageContext) {
 		this(pageContext, null);
@@ -50,9 +50,9 @@ public class JspAwareRequestContext extends RequestContext {
 
 	/**
 	 * 为给定的页面上下文创建一个新的 JspAwareRequestContext，使用给定的模型属性来获取 Errors。
-	 * @param pageContext current JSP page context
-	 * @param model the model attributes for the current view
-	 * (can be {@code null}, using the request attributes for Errors retrieval)
+	 * @param pageContext 当前 JSP 页面上下文
+	 * @param model 当前视图的模型属性（可以为 {@code null}，
+	 * 此时使用请求属性来获取 Errors）
 	 */
 	public JspAwareRequestContext(PageContext pageContext, @Nullable Map<String, Object> model) {
 		super((HttpServletRequest) pageContext.getRequest(), (HttpServletResponse) pageContext.getResponse(),

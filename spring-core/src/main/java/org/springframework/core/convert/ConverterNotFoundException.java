@@ -36,8 +36,8 @@ public class ConverterNotFoundException extends ConversionException {
 
 	/**
 	 * 创建一个新的转换执行器未找到异常。
-	 * @param sourceType the source type requested to convert from
-	 * @param targetType the target type requested to convert to
+	 * @param sourceType 请求转换的源类型
+	 * @param targetType 请求转换到的目标类型
 	 */
 	public ConverterNotFoundException(@Nullable TypeDescriptor sourceType, TypeDescriptor targetType) {
 		super("No converter found capable of converting from type [" + sourceType + "] to type [" + targetType + "]");

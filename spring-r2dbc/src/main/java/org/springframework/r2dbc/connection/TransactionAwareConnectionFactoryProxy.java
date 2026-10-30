@@ -69,7 +69,7 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 
 	/**
 	 * 创建一个新的 {@link TransactionAwareConnectionFactoryProxy}。
-	 * @param targetConnectionFactory the target {@link ConnectionFactory}
+	 * @param targetConnectionFactory 目标 {@link ConnectionFactory}
 	 */
 	public TransactionAwareConnectionFactoryProxy(ConnectionFactory targetConnectionFactory) {
 		super(targetConnectionFactory);
@@ -78,7 +78,7 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 
 	/**
 	 * 委托给 {@link ConnectionFactoryUtils} 以自动参与 Spring 管理的事务。
-	 * @return a transactional {@link Connection} if any, a new one else.
+	 * @return 如果存在则返回事务性 {@link Connection}，否则返回新的连接。
 	 * @see ConnectionFactoryUtils#doGetConnection
 	 */
 	@Override
@@ -89,8 +89,8 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 	/**
 	 * 用代理包装给定的 {@link Connection}，该代理将所有方法调用委托给目标，
 	 * 但将 {@code close()} 调用委托给 {@link ConnectionFactoryUtils}。
-	 * @param targetConnectionFactory the {@link ConnectionFactory} that the {@link Connection} came from
-	 * @return the wrapped {@link Connection}.
+	 * @param targetConnectionFactory {@link Connection} 来源的 {@link ConnectionFactory}
+	 * @return 包装后的 {@link Connection}。
 	 * @see Connection#close()
 	 * @see ConnectionFactoryUtils#doReleaseConnection
 	 */

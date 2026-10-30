@@ -125,7 +125,7 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 
 	/**
 	 * 创建一个始终返回给定 Connection 的新 SingleConnectionFactory。
-	 * @param targetConnection the single Connection
+	 * @param targetConnection 单个 Connection
 	 */
 	public SingleConnectionFactory(Connection targetConnection) {
 		Assert.notNull(targetConnection, "Target Connection must not be null");
@@ -135,7 +135,7 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	/**
 	 * 创建一个新的 SingleConnectionFactory，它始终返回同一个 Connection，
 	 * 并会通过给定的目标 ConnectionFactory 延迟创建该 Connection。
-	 * @param targetConnectionFactory the target ConnectionFactory
+	 * @param targetConnectionFactory 目标 ConnectionFactory
 	 */
 	public SingleConnectionFactory(ConnectionFactory targetConnectionFactory) {
 		Assert.notNull(targetConnectionFactory, "Target ConnectionFactory must not be null");
@@ -307,8 +307,8 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 
 	/**
 	 * 获取一个已初始化的共享 Connection。
-	 * @return the Connection (never {@code null})
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
+	 * @return 该 Connection（永不为 {@code null}）
+	 * @throws javax.jms.JMSException 如果由 JMS API 方法抛出
 	 * @see #initConnection()
 	 */
 	protected Connection getConnection() throws JMSException {
@@ -323,7 +323,7 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	/**
 	 * 初始化底层的共享 Connection。
 	 * <p>如果底层 Connection 已存在，则关闭并重新初始化它。
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
+	 * @throws javax.jms.JMSException 如果由 JMS API 方法抛出
 	 * @see #prepareConnection
 	 */
 	public void initConnection() throws JMSException {
@@ -401,8 +401,8 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 
 	/**
 	 * 通过此模板的 ConnectionFactory 创建 JMS Connection。
-	 * @return the new JMS Connection
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
+	 * @return 新的 JMS Connection
+	 * @throws javax.jms.JMSException 如果由 JMS API 方法抛出
 	 */
 	protected Connection doCreateConnection() throws JMSException {
 		ConnectionFactory cf = getTargetConnectionFactory();
@@ -420,8 +420,8 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	/**
 	 * 在公开之前准备给定的 Connection。
 	 * <p>默认实现会应用 ExceptionListener 和客户端 ID。可在子类中重写。
-	 * @param con the Connection to prepare
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param con 要准备的 Connection
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 * @see #setExceptionListener
 	 * @see #setReconnectOnException
 	 */
@@ -451,12 +451,10 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	 * <p>默认实现始终返回 {@code null}。子类可以重写此方法以公开特定的
 	 * Session 句柄，也可以委托给 {@link #createSession} 创建原始 Session 对象，
 	 * 然后在此处包装并返回。
-	 * @param con the JMS Connection to operate on
-	 * @param mode the Session acknowledgement mode
-	 * ({@code Session.TRANSACTED} or one of the common modes)
-	 * @return the Session to use, or {@code null} to indicate
-	 * creation of a raw standard Session
-	 * @throws JMSException if thrown by the JMS API
+	 * @param con 要操作的 JMS Connection
+	 * @param mode Session 确认模式（{@code Session.TRANSACTED} 或某种常见模式）
+	 * @return 要使用的 Session，或 {@code null} 表示创建原始标准 Session
+	 * @throws JMSException 如果由 JMS API 抛出
 	 */
 	@Nullable
 	protected Session getSession(Connection con, Integer mode) throws JMSException {
@@ -466,11 +464,10 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	/**
 	 * 为此 ConnectionFactory 创建默认 Session，
 	 * 必要时适配 JMS 1.0.2 风格的队列/主题模式。
-	 * @param con the JMS Connection to operate on
-	 * @param mode the Session acknowledgement mode
-	 * ({@code Session.TRANSACTED} or one of the common modes)
-	 * @return the newly created Session
-	 * @throws JMSException if thrown by the JMS API
+	 * @param con 要操作的 JMS Connection
+	 * @param mode Session 确认模式（{@code Session.TRANSACTED} 或某种常见模式）
+	 * @return 新创建的 Session
+	 * @throws JMSException 如果由 JMS API 抛出
 	 */
 	protected Session createSession(Connection con, Integer mode) throws JMSException {
 		// Determine JMS API arguments...
@@ -490,7 +487,7 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 
 	/**
 	 * 关闭给定的 Connection。
-	 * @param con the Connection to close
+	 * @param con 要关闭的 Connection
 	 */
 	protected void closeConnection(Connection con) {
 		if (logger.isDebugEnabled()) {
@@ -518,8 +515,8 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	 * 用代理包装给定的 Connection，该代理将每个方法调用都委托给它，
 	 * 但会抑制 close 调用。这对于允许应用代码像处理来自 JMS ConnectionFactory
 	 * 的普通 Connection 一样处理特殊的框架 Connection 很有用。
-	 * @param target the original Connection to wrap
-	 * @return the wrapped Connection
+	 * @param target 要包装的原始 Connection
+	 * @return 包装后的 Connection
 	 */
 	protected Connection getSharedConnectionProxy(Connection target) {
 		List<Class<?>> classes = new ArrayList<>(3);

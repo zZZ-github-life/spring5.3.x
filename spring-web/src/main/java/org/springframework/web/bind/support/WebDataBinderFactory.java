@@ -30,12 +30,11 @@ public interface WebDataBinderFactory {
 
 	/**
 	 * 为给定对象创建 {@link WebDataBinder}。
-	 * @param webRequest the current request
-	 * @param target the object to create a data binder for,
-	 * or {@code null} if creating a binder for a simple type
-	 * @param objectName the name of the target object
-	 * @return the created {@link WebDataBinder} instance, never null
-	 * @throws Exception raised if the creation and initialization of the data binder fails
+	 * @param webRequest 当前请求
+	 * @param target 要为其创建数据绑定器的对象；如果为简单类型创建绑定器则为 {@code null}
+	 * @param objectName 目标对象的名称
+	 * @return 创建的 {@link WebDataBinder} 实例，永不为 null
+	 * @throws Exception 如果数据绑定器的创建和初始化失败则抛出
 	 */
 	WebDataBinder createBinder(NativeWebRequest webRequest, @Nullable Object target, String objectName)
 			throws Exception;

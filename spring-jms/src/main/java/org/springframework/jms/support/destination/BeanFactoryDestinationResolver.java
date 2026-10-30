@@ -56,7 +56,7 @@ public class BeanFactoryDestinationResolver implements DestinationResolver, Bean
 	 * 因为所提供的 {@link BeanFactory} 会被创建它的 {@link BeanFactory} 替换
 	 * （参见 {@link BeanFactoryAware} 契约）。因此，只有在 Spring IoC 容器之外的
 	 * 上下文中使用此类时才应使用此构造函数。
-	 * @param beanFactory the bean factory to be used to lookup {@link javax.jms.Destination Destination}
+	 * @param beanFactory 用于查找 {@link javax.jms.Destination Destination} 的 Bean 工厂
 	 */
 	public BeanFactoryDestinationResolver(BeanFactory beanFactory) {
 		Assert.notNull(beanFactory, "BeanFactory is required");

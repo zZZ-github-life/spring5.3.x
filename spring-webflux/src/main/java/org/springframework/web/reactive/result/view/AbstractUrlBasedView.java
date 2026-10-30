@@ -71,10 +71,10 @@ public abstract class AbstractUrlBasedView extends AbstractView implements Initi
 
 	/**
 	 * 检查配置的 URL 对应资源是否实际存在。
-	 * @param locale the desired Locale that we're looking for
-	 * @return {@code false} if the resource exists
-	 * {@code false} if we know that it does not exist
-	 * @throws Exception if the resource exists but is invalid (e.g. could not be parsed)
+	 * @param locale 我们要查找的目标 Locale
+	 * @return 如果资源存在则为 {@code false}
+	 * 如果确定其不存在则为 {@code false}
+	 * @throws Exception 如果资源存在但无效（例如无法解析）
 	 */
 	public abstract boolean checkResourceExists(Locale locale) throws Exception;
 

@@ -143,7 +143,7 @@ final class AnnotationTypeMappings {
 
 	/**
 	 * 获取所包含映射的总数。
-	 * @return the total number of mappings
+	 * @return 映射的总数
 	 */
 	int size() {
 		return this.mappings.size();
@@ -152,10 +152,10 @@ final class AnnotationTypeMappings {
 	/**
 	 * 获取此实例中的单个映射。
 	 * <p>索引 {@code 0} 始终返回根映射；更高的索引将返回元注解映射。
-	 * @param index the index to return
-	 * @return the {@link AnnotationTypeMapping}
-	 * @throws IndexOutOfBoundsException if the index is out of range
-	 * ({@code index < 0 || index >= size()})
+	 * @param index 要返回的索引
+	 * @return 该 {@link AnnotationTypeMapping}
+	 * @throws IndexOutOfBoundsException 如果索引超出范围
+	 * （{@code index < 0 || index >= size()}）
 	 */
 	AnnotationTypeMapping get(int index) {
 		return this.mappings.get(index);
@@ -164,8 +164,8 @@ final class AnnotationTypeMappings {
 
 	/**
 	 * 为指定的注解类型创建 {@link AnnotationTypeMappings}。
-	 * @param annotationType the source annotation type
-	 * @return type mappings for the annotation type
+	 * @param annotationType 源注解类型
+	 * @return 该注解类型的类型映射
 	 */
 	static AnnotationTypeMappings forAnnotationType(Class<? extends Annotation> annotationType) {
 		return forAnnotationType(annotationType, new HashSet<>());
@@ -173,11 +173,11 @@ final class AnnotationTypeMappings {
 
 	/**
 	 * 为指定的注解类型创建 {@link AnnotationTypeMappings}。
-	 * @param annotationType the source annotation type
-	 * @param visitedAnnotationTypes the set of annotations that we have already
-	 * visited; used to avoid infinite recursion for recursive annotations which
-	 * some JVM languages support (such as Kotlin)
-	 * @return type mappings for the annotation type
+	 * @param annotationType 源注解类型
+	 * @param visitedAnnotationTypes 我们已经访问过的注解集合；用于避免
+	 * 某些 JVM 语言（如 Kotlin）所支持的递归注解
+	 * 引发的无限递归
+	 * @return 该注解类型的类型映射
 	 */
 	static AnnotationTypeMappings forAnnotationType(Class<? extends Annotation> annotationType,
 			Set<Class<? extends Annotation>> visitedAnnotationTypes) {
@@ -188,12 +188,10 @@ final class AnnotationTypeMappings {
 
 	/**
 	 * 为指定的注解类型创建 {@link AnnotationTypeMappings}。
-	 * @param annotationType the source annotation type
-	 * @param repeatableContainers the repeatable containers that may be used by
-	 * the meta-annotations
-	 * @param annotationFilter the annotation filter used to limit which
-	 * annotations are considered
-	 * @return type mappings for the annotation type
+	 * @param annotationType 源注解类型
+	 * @param repeatableContainers 元注解可能使用的可重复容器
+	 * @param annotationFilter 用于限定考虑哪些注解的注解过滤器
+	 * @return 该注解类型的类型映射
 	 */
 	static AnnotationTypeMappings forAnnotationType(Class<? extends Annotation> annotationType,
 			RepeatableContainers repeatableContainers, AnnotationFilter annotationFilter) {
@@ -203,15 +201,13 @@ final class AnnotationTypeMappings {
 
 	/**
 	 * 为指定的注解类型创建 {@link AnnotationTypeMappings}。
-	 * @param annotationType the source annotation type
-	 * @param repeatableContainers the repeatable containers that may be used by
-	 * the meta-annotations
-	 * @param annotationFilter the annotation filter used to limit which
-	 * annotations are considered
-	 * @param visitedAnnotationTypes the set of annotations that we have already
-	 * visited; used to avoid infinite recursion for recursive annotations which
-	 * some JVM languages support (such as Kotlin)
-	 * @return type mappings for the annotation type
+	 * @param annotationType 源注解类型
+	 * @param repeatableContainers 元注解可能使用的可重复容器
+	 * @param annotationFilter 用于限定考虑哪些注解的注解过滤器
+	 * @param visitedAnnotationTypes 我们已经访问过的注解集合；用于避免
+	 * 某些 JVM 语言（如 Kotlin）所支持的递归注解
+	 * 引发的无限递归
+	 * @return 该注解类型的类型映射
 	 */
 	private static AnnotationTypeMappings forAnnotationType(Class<? extends Annotation> annotationType,
 			RepeatableContainers repeatableContainers, AnnotationFilter annotationFilter,
@@ -247,7 +243,7 @@ final class AnnotationTypeMappings {
 
 		/**
 		 * 使用指定的过滤器创建缓存实例。
-		 * @param filter the annotation filter
+		 * @param filter 注解过滤器
 		 */
 		Cache(RepeatableContainers repeatableContainers, AnnotationFilter filter) {
 			this.repeatableContainers = repeatableContainers;
@@ -257,11 +253,11 @@ final class AnnotationTypeMappings {
 
 		/**
 		 * 获取或创建指定注解类型的 {@link AnnotationTypeMappings}。
-		 * @param annotationType the annotation type
-		 * @param visitedAnnotationTypes the set of annotations that we have already
-		 * visited; used to avoid infinite recursion for recursive annotations which
-		 * some JVM languages support (such as Kotlin)
-		 * @return a new or existing {@link AnnotationTypeMappings} instance
+		 * @param annotationType 注解类型
+		 * @param visitedAnnotationTypes 我们已经访问过的注解集合；用于避免
+		 * 某些 JVM 语言（如 Kotlin）所支持的递归注解
+		 * 引发的无限递归
+		 * @return 一个新的或已有的 {@link AnnotationTypeMappings} 实例
 		 */
 		AnnotationTypeMappings get(Class<? extends Annotation> annotationType,
 				Set<Class<? extends Annotation>> visitedAnnotationTypes) {

@@ -36,8 +36,8 @@ public class FileSystemResourceLoader extends DefaultResourceLoader {
 	/**
 	 * 将资源路径解析为文件系统路径。
 	 * <p>注意：即使给定路径以斜杠开头，也会被解释为相对于当前 VM 工作目录。
-	 * @param path the path to the resource
-	 * @return the corresponding Resource handle
+	 * @param path 资源的路径
+	 * @return 对应的 Resource 句柄
 	 * @see FileSystemResource
 	 * @see org.springframework.web.context.support.ServletContextResourceLoader#getResourceByPath
 	 */

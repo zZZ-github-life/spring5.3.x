@@ -85,10 +85,10 @@ public abstract class AbstractFallbackTransactionAttributeSource
 	/**
 	 * 确定此方法调用的事务属性。
 	 * <p>如果未找到方法属性, 则默认使用类的事务属性。
-	 * @param method the method for the current invocation (never {@code null})
-	 * @param targetClass the target class for this invocation (may be {@code null})
-	 * @return a TransactionAttribute for this method, or {@code null} if the method
-	 * is not transactional
+	 * @param method 当前调用的方法（永不为 {@code null}）
+	 * @param targetClass 本次调用的目标类（可能为 {@code null}）
+	 * @return 该方法的 TransactionAttribute；如果该方法不是事务性的，
+	 * 则为 {@code null}
 	 */
 	@Override
 	@Nullable
@@ -136,9 +136,9 @@ public abstract class AbstractFallbackTransactionAttributeSource
 	/**
 	 * 确定给定方法和目标类的缓存键。
 	 * <p>不能为重载方法生成相同的键。必须为同一方法的不同实例生成相同的键。
-	 * @param method the method (never {@code null})
-	 * @param targetClass the target class (may be {@code null})
-	 * @return the cache key (never {@code null})
+	 * @param method 该方法（永不为 {@code null}）
+	 * @param targetClass 目标类（可能为 {@code null}）
+	 * @return 缓存键（永不为 {@code null}）
 	 */
 	protected Object getCacheKey(Method method, @Nullable Class<?> targetClass) {
 		return new MethodClassKey(method, targetClass);
@@ -193,16 +193,16 @@ public abstract class AbstractFallbackTransactionAttributeSource
 
 	/**
 	 * 子类需要实现此方法以返回给定类的事务属性(如果有的话)。
-	 * @param clazz the class to retrieve the attribute for
-	 * @return all transaction attribute associated with this class, or {@code null} if none
+	 * @param clazz 要为其获取属性的类
+	 * @return 该类所关联的所有事务属性；如果没有，则为 {@code null}
 	 */
 	@Nullable
 	protected abstract TransactionAttribute findTransactionAttribute(Class<?> clazz);
 
 	/**
 	 * 子类需要实现此方法以返回给定方法的事务属性(如果有的话)。
-	 * @param method the method to retrieve the attribute for
-	 * @return all transaction attribute associated with this method, or {@code null} if none
+	 * @param method 要为其获取属性的方法
+	 * @return 该方法所关联的所有事务属性；如果没有，则为 {@code null}
 	 */
 	@Nullable
 	protected abstract TransactionAttribute findTransactionAttribute(Method method);

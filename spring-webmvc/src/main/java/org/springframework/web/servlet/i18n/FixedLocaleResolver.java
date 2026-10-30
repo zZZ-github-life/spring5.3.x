@@ -46,7 +46,7 @@ public class FixedLocaleResolver extends AbstractLocaleContextResolver {
 
 	/**
 	 * 创建一个公开给定区域设置的 FixedLocaleResolver。
-	 * @param locale the locale to expose
+	 * @param locale 要暴露的 Locale
 	 */
 	public FixedLocaleResolver(Locale locale) {
 		setDefaultLocale(locale);
@@ -54,8 +54,8 @@ public class FixedLocaleResolver extends AbstractLocaleContextResolver {
 
 	/**
 	 * 创建一个公开给定区域设置和时区的 FixedLocaleResolver。
-	 * @param locale the locale to expose
-	 * @param timeZone the time zone to expose
+	 * @param locale 要暴露的 Locale
+	 * @param timeZone 要暴露的时区
 	 */
 	public FixedLocaleResolver(Locale locale, TimeZone timeZone) {
 		setDefaultLocale(locale);

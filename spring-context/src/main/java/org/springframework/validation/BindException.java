@@ -47,7 +47,7 @@ public class BindException extends Exception implements BindingResult {
 
 	/**
 	 * 为 BindingResult 创建新的 BindException 实例。
-	 * @param bindingResult the BindingResult instance to wrap
+	 * @param bindingResult 要包装的 BindingResult 实例
 	 */
 	public BindException(BindingResult bindingResult) {
 		Assert.notNull(bindingResult, "BindingResult must not be null");
@@ -56,8 +56,8 @@ public class BindException extends Exception implements BindingResult {
 
 	/**
 	 * 为目标 Bean 创建新的 BindException 实例。
-	 * @param target the target bean to bind onto
-	 * @param objectName the name of the target object
+	 * @param target 要绑定到的目标 Bean
+	 * @param objectName 目标对象的名称
 	 * @see BeanPropertyBindingResult
 	 */
 	public BindException(Object target, String objectName) {

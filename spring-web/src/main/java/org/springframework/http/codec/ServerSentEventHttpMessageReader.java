@@ -88,7 +88,7 @@ public class ServerSentEventHttpMessageReader implements HttpMessageReader<Objec
 	 * 也必须相应地定制以提高限制（如有必要），
 	 * 以便能够解析事件的数据部分。
 	 * <p>默认设置为 256K。
-	 * @param byteCount the max number of bytes to buffer, or -1 for unlimited
+	 * @param byteCount 要缓冲的最大字节数，-1 表示不限
 	 * @since 5.1.13
 	 */
 	public void setMaxInMemorySize(int byteCount) {

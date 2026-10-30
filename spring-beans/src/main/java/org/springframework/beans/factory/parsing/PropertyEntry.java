@@ -31,7 +31,7 @@ public class PropertyEntry implements ParseState.Entry {
 
 	/**
 	 * 创建一个新的 {@code PropertyEntry} 实例。
-	 * @param name the name of the JavaBean property represented by this instance
+	 * @param name 此实例所表示的 JavaBean 属性的名称
 	 */
 	public PropertyEntry(String name) {
 		if (!StringUtils.hasText(name)) {

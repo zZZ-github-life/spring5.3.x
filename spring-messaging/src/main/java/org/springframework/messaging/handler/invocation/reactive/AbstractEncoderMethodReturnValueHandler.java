@@ -194,12 +194,12 @@ public abstract class AbstractEncoderMethodReturnValueHandler implements Handler
 
 	/**
 	 * 子类实现此方法以某种方式处理编码值，例如创建并发送消息。
-	 * @param encodedContent the encoded content; each {@code DataBuffer}
-	 * represents the fully-aggregated, encoded content for one value
-	 * (i.e. payload) returned from the HandlerMethod.
-	 * @param returnType return type of the handler method that produced the data
-	 * @param message the input message handled by the handler method
-	 * @return completion {@code Mono<Void>} for the handling
+	 * @param encodedContent 编码后的内容；每个 {@code DataBuffer}
+	 * 表示 HandlerMethod 返回的一个值（即载荷）的
+	 * 完全聚合的编码内容。
+	 * @param returnType 生成该数据的处理器方法的返回类型
+	 * @param message 处理器方法处理的输入消息
+	 * @return 用于表示处理完成的 {@code Mono<Void>}
 	 */
 	protected abstract Mono<Void> handleEncodedContent(
 			Flux<DataBuffer> encodedContent, MethodParameter returnType, Message<?> message);
@@ -207,9 +207,9 @@ public abstract class AbstractEncoderMethodReturnValueHandler implements Handler
 	/**
 	 * 当返回值为 {@code null} 时调用，这可能表示 void 方法，
 	 * 或返回以 void 参数化的异步类型的方法。
-	 * @param returnType return type of the handler method that produced the data
-	 * @param message the input message handled by the handler method
-	 * @return completion {@code Mono<Void>} for the handling
+	 * @param returnType 生成该数据的处理器方法的返回类型
+	 * @param message 处理器方法处理的输入消息
+	 * @return 用于表示处理完成的 {@code Mono<Void>}
 	 */
 	protected abstract Mono<Void> handleNoContent(MethodParameter returnType, Message<?> message);
 

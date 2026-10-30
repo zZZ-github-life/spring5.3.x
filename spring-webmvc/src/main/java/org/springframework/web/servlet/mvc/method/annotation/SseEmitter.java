@@ -53,7 +53,7 @@ public class SseEmitter extends ResponseBodyEmitter {
 	 * <p>默认不设置，此时将使用 MVC Java 配置或 MVC 命名空间
 	 * 中配置的默认值；如果也未设置，则超时取决于
 	 * 底层服务器的默认值。
-	 * @param timeout the timeout value in milliseconds
+	 * @param timeout 超时值，单位为毫秒
 	 * @since 4.2.2
 	 */
 	public SseEmitter(Long timeout) {
@@ -81,9 +81,9 @@ public class SseEmitter extends ResponseBodyEmitter {
 	 * </pre>
 	 * <p>有关异常处理的重要说明，请参见
 	 * {@link ResponseBodyEmitter#send(Object) parent Javadoc}。
-	 * @param object the object to write
-	 * @throws IOException raised when an I/O error occurs
-	 * @throws java.lang.IllegalStateException wraps any other errors
+	 * @param object 要写入的对象
+	 * @throws IOException 发生 I/O 错误时抛出
+	 * @throws java.lang.IllegalStateException 包装任何其他错误
 	 */
 	@Override
 	public void send(Object object) throws IOException {
@@ -100,9 +100,9 @@ public class SseEmitter extends ResponseBodyEmitter {
 	 * </pre>
 	 * <p>有关异常处理的重要说明，请参见
 	 * {@link ResponseBodyEmitter#send(Object) parent Javadoc}。
-	 * @param object the object to write
-	 * @param mediaType a MediaType hint for selecting an HttpMessageConverter
-	 * @throws IOException raised when an I/O error occurs
+	 * @param object 要写入的对象
+	 * @param mediaType 用于选择 HttpMessageConverter 的 MediaType 提示
+	 * @throws IOException 发生 I/O 错误时抛出
 	 */
 	@Override
 	public void send(Object object, @Nullable MediaType mediaType) throws IOException {
@@ -116,8 +116,8 @@ public class SseEmitter extends ResponseBodyEmitter {
 	 * SseEmitter emitter = new SseEmitter();
 	 * emitter.send(event().name("update").id("1").data(myObject));
 	 * </pre>
-	 * @param builder a builder for an SSE formatted event.
-	 * @throws IOException raised when an I/O error occurs
+	 * @param builder 用于构建 SSE 格式事件的构建器。
+	 * @throws IOException 发生 I/O 错误时抛出
 	 */
 	public void send(SseEventBuilder builder) throws IOException {
 		Set<DataWithMediaType> dataToSend = builder.build();

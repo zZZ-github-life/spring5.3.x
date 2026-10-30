@@ -89,8 +89,7 @@ public abstract class WebApplicationObjectSupport extends ApplicationObjectSuppo
 	 * <p>默认实现为空。由
 	 * {@link #initApplicationContext(org.springframework.context.ApplicationContext)}
 	 * 以及 {@link #setServletContext(javax.servlet.ServletContext)} 调用。
-	 * @param servletContext the ServletContext that this application object runs in
-	 * (never {@code null})
+	 * @param servletContext 此应用对象运行所在的 ServletContext（永不为 {@code null}）
 	 */
 	protected void initServletContext(ServletContext servletContext) {
 	}
@@ -101,7 +100,7 @@ public abstract class WebApplicationObjectSupport extends ApplicationObjectSuppo
 	 * 其他情况下最好使用 {@code getApplicationContext()} 或
 	 * {@code getServletContext()}，以便同样能够在非 WebApplicationContext
 	 * 环境中运行。
-	 * @throws IllegalStateException if not running in a WebApplicationContext
+	 * @throws IllegalStateException 如果未运行在 WebApplicationContext 中
 	 * @see #getApplicationContext()
 	 */
 	@Nullable
@@ -121,7 +120,7 @@ public abstract class WebApplicationObjectSupport extends ApplicationObjectSuppo
 
 	/**
 	 * 返回当前的 ServletContext。
-	 * @throws IllegalStateException if not running within a required ServletContext
+	 * @throws IllegalStateException 如果未运行在所需的 ServletContext 中
 	 * @see #isContextRequired()
 	 */
 	@Nullable
@@ -143,8 +142,8 @@ public abstract class WebApplicationObjectSupport extends ApplicationObjectSuppo
 
 	/**
 	 * 返回当前 Web 应用的临时目录，由 Servlet 容器提供。
-	 * @return the File representing the temporary directory
-	 * @throws IllegalStateException if not running within a ServletContext
+	 * @return 表示临时目录的 File
+	 * @throws IllegalStateException 如果未运行在 ServletContext 中
 	 * @see org.springframework.web.util.WebUtils#getTempDir(javax.servlet.ServletContext)
 	 */
 	protected final File getTempDir() throws IllegalStateException {

@@ -93,7 +93,7 @@ public abstract class ReflectionUtils {
 	 * <p>仅当目标方法不应抛出受检异常，或在访问方法或字段时发生错误时才应调用。
 	 * <p>如果 InvocationTargetException 具有此类根因，则抛出底层的 RuntimeException 或 Error。否则抛出
 	 * 带有适当消息的 IllegalStateException 或 UndeclaredThrowableException。
-	 * @param ex the reflection exception to handle
+	 * @param ex 要处理的反射异常
 	 */
 	public static void handleReflectionException(Exception ex) {
 		if (ex instanceof NoSuchMethodException) {
@@ -115,7 +115,7 @@ public abstract class ReflectionUtils {
 	 * 处理给定的调用目标异常。仅当目标方法不应抛出受检异常时才应调用。
 	 * <p>如果存在此类根因，则抛出底层的 RuntimeException 或 Error。否则抛出
 	 * UndeclaredThrowableException。
-	 * @param ex the invocation target exception to handle
+	 * @param ex 要处理的调用目标异常
 	 */
 	public static void handleInvocationTargetException(InvocationTargetException ex) {
 		rethrowRuntimeException(ex.getTargetException());
@@ -126,8 +126,8 @@ public abstract class ReflectionUtils {
 	 * target exception</em>。仅当目标方法不应抛出受检异常时才应调用。
 	 * <p>如果合适，将底层异常强制转换为 {@link RuntimeException} 或 {@link Error} 后重新抛出；否则抛出
 	 * {@link UndeclaredThrowableException}。
-	 * @param ex the exception to rethrow
-	 * @throws RuntimeException the rethrown exception
+	 * @param ex 要重新抛出的异常
+	 * @throws RuntimeException 重新抛出的异常
 	 */
 	public static void rethrowRuntimeException(Throwable ex) {
 		if (ex instanceof RuntimeException) {
@@ -144,8 +144,8 @@ public abstract class ReflectionUtils {
 	 * target exception</em>。仅当目标方法不应抛出受检异常时才应调用。
 	 * <p>如果合适，将底层异常强制转换为 {@link Exception} 或 {@link Error} 后重新抛出；否则抛出
 	 * {@link UndeclaredThrowableException}。
-	 * @param ex the exception to rethrow
-	 * @throws Exception the rethrown exception (in case of a checked exception)
+	 * @param ex 要重新抛出的异常
+	 * @throws Exception 重新抛出的异常（对于受检异常）
 	 */
 	public static void rethrowException(Throwable ex) throws Exception {
 		if (ex instanceof Exception) {
@@ -162,10 +162,10 @@ public abstract class ReflectionUtils {
 
 	/**
 	 * 为给定类和参数获取可访问的构造函数。
-	 * @param clazz the clazz to check
-	 * @param parameterTypes the parameter types of the desired constructor
-	 * @return the constructor reference
-	 * @throws NoSuchMethodException if no such constructor exists
+	 * @param clazz 要检查的类
+	 * @param parameterTypes 所需构造器的参数类型
+	 * @return 构造器引用
+	 * @throws NoSuchMethodException 如果不存在这样的构造器
 	 * @since 5.0
 	 */
 	public static <T> Constructor<T> accessibleConstructor(Class<T> clazz, Class<?>... parameterTypes)
@@ -179,7 +179,7 @@ public abstract class ReflectionUtils {
 	/**
 	 * 使给定的构造函数可访问，必要时显式将其设置为可访问。仅在确实需要时才调用
 	 * {@code setAccessible(true)} 方法，以避免与 JVM SecurityManager（若启用）产生不必要的冲突。
-	 * @param ctor the constructor to make accessible
+	 * @param ctor 要使其可访问的构造器
 	 * @see java.lang.reflect.Constructor#setAccessible
 	 */
 	@SuppressWarnings("deprecation")  // on JDK 9
@@ -197,9 +197,9 @@ public abstract class ReflectionUtils {
 	 * 尝试在所提供的类上查找具有所提供名称且无参数的 {@link Method}。会搜索直至 {@code Object} 的所有
 	 * 超类。
 	 * <p>如果找不到 {@link Method}，则返回 {@code null}。
-	 * @param clazz the class to introspect
-	 * @param name the name of the method
-	 * @return the Method object, or {@code null} if none found
+	 * @param clazz 要内省的类
+	 * @param name 方法的名称
+	 * @return Method 对象，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public static Method findMethod(Class<?> clazz, String name) {
@@ -210,11 +210,11 @@ public abstract class ReflectionUtils {
 	 * 尝试在所提供的类上查找具有所提供名称和参数类型的 {@link Method}。会搜索直至 {@code Object} 的所
 	 * 有超类。
 	 * <p>如果找不到 {@link Method}，则返回 {@code null}。
-	 * @param clazz the class to introspect
-	 * @param name the name of the method
-	 * @param paramTypes the parameter types of the method
-	 * (may be {@code null} to indicate any signature)
-	 * @return the Method object, or {@code null} if none found
+	 * @param clazz 要内省的类
+	 * @param name 方法的名称
+	 * @param paramTypes 方法的参数类型
+	 * （可为 {@code null} 以表示任意签名）
+	 * @return Method 对象，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public static Method findMethod(Class<?> clazz, String name, @Nullable Class<?>... paramTypes) {
@@ -243,9 +243,9 @@ public abstract class ReflectionUtils {
 	 * 使用无参数在所提供的目标对象上调用指定的 {@link Method}。调用静态 {@link Method} 时目标对象可以
 	 * 为 {@code null}。
 	 * <p>抛出的异常通过调用 {@link #handleReflectionException} 进行处理。
-	 * @param method the method to invoke
-	 * @param target the target object to invoke the method on
-	 * @return the invocation result, if any
+	 * @param method 要调用的方法
+	 * @param target 要在其上调用该方法的目标对象
+	 * @return 调用结果（如果有）
 	 * @see #invokeMethod(java.lang.reflect.Method, Object, Object[])
 	 */
 	@Nullable
@@ -257,10 +257,10 @@ public abstract class ReflectionUtils {
 	 * 使用所提供的参数在所提供的目标对象上调用指定的 {@link Method}。调用静态 {@link Method} 时目标对
 	 * 象可以为 {@code null}。
 	 * <p>抛出的异常通过调用 {@link #handleReflectionException} 进行处理。
-	 * @param method the method to invoke
-	 * @param target the target object to invoke the method on
-	 * @param args the invocation arguments (may be {@code null})
-	 * @return the invocation result, if any
+	 * @param method 要调用的方法
+	 * @param target 要在其上调用该方法的目标对象
+	 * @param args 调用参数（可为 {@code null}）
+	 * @return 调用结果（如果有）
 	 */
 	@Nullable
 	public static Object invokeMethod(Method method, @Nullable Object target, @Nullable Object... args) {
@@ -275,10 +275,10 @@ public abstract class ReflectionUtils {
 
 	/**
 	 * 判断给定方法是否显式声明了给定异常或其某个超类，这意味着该类型的异常可以在反射调用中按原样传播。
-	 * @param method the declaring method
-	 * @param exceptionType the exception to throw
-	 * @return {@code true} if the exception can be thrown as-is;
-	 * {@code false} if it needs to be wrapped
+	 * @param method 声明该方法的方法
+	 * @param exceptionType 要抛出的异常
+	 * @return 如果异常可以直接抛出，则返回 {@code true}；
+	 * 如果需要包装，则返回 {@code false}
 	 */
 	public static boolean declaresException(Method method, Class<?> exceptionType) {
 		Assert.notNull(method, "Method must not be null");
@@ -294,9 +294,9 @@ public abstract class ReflectionUtils {
 	/**
 	 * 对给定类的所有匹配方法执行给定的回调操作，这些方法是在该类本地声明的或其等效项（例如给定类所实现
 	 * 的基于 Java 8 的接口上的默认方法）。
-	 * @param clazz the class to introspect
-	 * @param mc the callback to invoke for each method
-	 * @throws IllegalStateException if introspection fails
+	 * @param clazz 要内省的类
+	 * @param mc 为每个方法调用的回调
+	 * @throws IllegalStateException 如果内省失败
 	 * @since 4.2
 	 * @see #doWithMethods
 	 */
@@ -315,9 +315,9 @@ public abstract class ReflectionUtils {
 	/**
 	 * 对给定类及其超类的所有匹配方法执行给定的回调操作。
 	 * <p>出现在子类和超类上的同名方法将出现两次，除非被 {@link MethodFilter} 排除。
-	 * @param clazz the class to introspect
-	 * @param mc the callback to invoke for each method
-	 * @throws IllegalStateException if introspection fails
+	 * @param clazz 要内省的类
+	 * @param mc 为每个方法调用的回调
+	 * @throws IllegalStateException 如果内省失败
 	 * @see #doWithMethods(Class, MethodCallback, MethodFilter)
 	 */
 	public static void doWithMethods(Class<?> clazz, MethodCallback mc) {
@@ -327,10 +327,10 @@ public abstract class ReflectionUtils {
 	/**
 	 * 对给定类及其超类（或给定接口及其父接口）的所有匹配方法执行给定的回调操作。
 	 * <p>出现在子类和超类上的同名方法将出现两次，除非被指定的 {@link MethodFilter} 排除。
-	 * @param clazz the class to introspect
-	 * @param mc the callback to invoke for each method
-	 * @param mf the filter that determines the methods to apply the callback to
-	 * @throws IllegalStateException if introspection fails
+	 * @param clazz 要内省的类
+	 * @param mc 为每个方法调用的回调
+	 * @param mf 确定要对哪些方法应用回调的过滤器
+	 * @throws IllegalStateException 如果内省失败
 	 */
 	public static void doWithMethods(Class<?> clazz, MethodCallback mc, @Nullable MethodFilter mf) {
 		if (mf == USER_DECLARED_METHODS && clazz == Object.class) {
@@ -362,8 +362,8 @@ public abstract class ReflectionUtils {
 
 	/**
 	 * 获取叶子类及所有超类上声明的全部方法。叶子类的方法优先包含。
-	 * @param leafClass the class to introspect
-	 * @throws IllegalStateException if introspection fails
+	 * @param leafClass 要内省的类
+	 * @throws IllegalStateException 如果内省失败
 	 */
 	public static Method[] getAllDeclaredMethods(Class<?> leafClass) {
 		final List<Method> methods = new ArrayList<>(20);
@@ -374,8 +374,8 @@ public abstract class ReflectionUtils {
 	/**
 	 * 获取叶子类及所有超类上声明的唯一方法集合。叶子类的方法优先包含，并且在遍历超类层次结构时，任何签
 	 * 名与已包含方法匹配的方法都会被过滤掉。
-	 * @param leafClass the class to introspect
-	 * @throws IllegalStateException if introspection fails
+	 * @param leafClass 要内省的类
+	 * @throws IllegalStateException 如果内省失败
 	 */
 	public static Method[] getUniqueDeclaredMethods(Class<?> leafClass) {
 		return getUniqueDeclaredMethods(leafClass, null);
@@ -384,9 +384,9 @@ public abstract class ReflectionUtils {
 	/**
 	 * 获取叶子类及所有超类上声明的唯一方法集合。叶子类的方法优先包含，并且在遍历超类层次结构时，任何签
 	 * 名与已包含方法匹配的方法都会被过滤掉。
-	 * @param leafClass the class to introspect
-	 * @param mf the filter that determines the methods to take into account
-	 * @throws IllegalStateException if introspection fails
+	 * @param leafClass 要内省的类
+	 * @param mf 确定要考虑哪些方法的过滤器
+	 * @throws IllegalStateException 如果内省失败
 	 * @since 5.2
 	 */
 	public static Method[] getUniqueDeclaredMethods(Class<?> leafClass, @Nullable MethodFilter mf) {
@@ -423,9 +423,9 @@ public abstract class ReflectionUtils {
 	 * {@link Class#getDeclaredMethods()} 的变体，使用本地缓存以避免 JVM 的 SecurityManager 检查和创建
 	 * 新的 Method 实例。此外，它还包括本地实现的接口中的 Java 8 默认方法，因为这些方法实际上应被视为已
 	 * 声明的方法。
-	 * @param clazz the class to introspect
-	 * @return the cached array of methods
-	 * @throws IllegalStateException if introspection fails
+	 * @param clazz 要内省的类
+	 * @return 缓存的方法数组
+	 * @throws IllegalStateException 如果内省失败
 	 * @since 5.2
 	 * @see Class#getDeclaredMethods()
 	 */
@@ -521,7 +521,7 @@ public abstract class ReflectionUtils {
 
 	/**
 	 * 判断给定方法是否为 CGLIB 的“重命名”方法，遵循 "CGLIB$methodName$0" 模式。
-	 * @param renamedMethod the method to check
+	 * @param renamedMethod 要检查的方法
 	 */
 	public static boolean isCglibRenamedMethod(Method renamedMethod) {
 		String name = renamedMethod.getName();
@@ -538,7 +538,7 @@ public abstract class ReflectionUtils {
 	/**
 	 * 使给定的方法可访问，必要时显式将其设置为可访问。仅在确实需要时才调用 {@code setAccessible(true)}
 	 * 方法，以避免与 JVM SecurityManager（若启用）产生不必要的冲突。
-	 * @param method the method to make accessible
+	 * @param method 要使其可访问的方法
 	 * @see java.lang.reflect.Method#setAccessible
 	 */
 	@SuppressWarnings("deprecation")  // on JDK 9
@@ -555,9 +555,9 @@ public abstract class ReflectionUtils {
 	/**
 	 * 尝试在所提供的 {@link Class} 上查找具有所提供 {@code name} 的 {@link Field field}。会搜索直至
 	 * {@link Object} 的所有超类。
-	 * @param clazz the class to introspect
-	 * @param name the name of the field
-	 * @return the corresponding Field object, or {@code null} if not found
+	 * @param clazz 要内省的类
+	 * @param name 字段的名称
+	 * @return 对应的 Field 对象，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public static Field findField(Class<?> clazz, String name) {
@@ -567,10 +567,10 @@ public abstract class ReflectionUtils {
 	/**
 	 * 尝试在所提供的 {@link Class} 上查找具有所提供 {@code name} 和/或 {@link Class type} 的
 	 * {@link Field field}。会搜索直至 {@link Object} 的所有超类。
-	 * @param clazz the class to introspect
-	 * @param name the name of the field (may be {@code null} if type is specified)
-	 * @param type the type of the field (may be {@code null} if name is specified)
-	 * @return the corresponding Field object, or {@code null} if not found
+	 * @param clazz 要内省的类
+	 * @param name 字段的名称（如果指定了类型，则可为 {@code null}）
+	 * @param type 字段的类型（如果指定了名称，则可为 {@code null}）
+	 * @return 对应的 Field 对象，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public static Field findField(Class<?> clazz, @Nullable String name, @Nullable Class<?> type) {
@@ -596,10 +596,10 @@ public abstract class ReflectionUtils {
 	 * <p>按照 {@link Field#set(Object, Object)} 语义，如果底层字段为基本类型，新值会自动拆箱。
 	 * <p>此方法不支持设置 {@code static final} 字段。
 	 * <p>抛出的异常通过调用 {@link #handleReflectionException(Exception)} 进行处理。
-	 * @param field the field to set
-	 * @param target the target object on which to set the field
-	 * (or {@code null} for a static field)
-	 * @param value the value to set (may be {@code null})
+	 * @param field 要设置的字段
+	 * @param target 要在其上设置字段的目标对象
+	 * （对于静态字段为 {@code null}）
+	 * @param value 要设置的值（可为 {@code null}）
 	 */
 	public static void setField(Field field, @Nullable Object target, @Nullable Object value) {
 		try {
@@ -614,10 +614,10 @@ public abstract class ReflectionUtils {
 	 * 获取所提供 {@link Field field object} 在指定 {@link Object target object} 上表示的字段。按照
 	 * {@link Field#get(Object)} 语义，如果底层字段为基本类型，返回的值会自动装箱。
 	 * <p>抛出的异常通过调用 {@link #handleReflectionException(Exception)} 进行处理。
-	 * @param field the field to get
-	 * @param target the target object from which to get the field
-	 * (or {@code null} for a static field)
-	 * @return the field's current value
+	 * @param field 要获取的字段
+	 * @param target 要从中获取字段的目标对象
+	 * （对于静态字段为 {@code null}）
+	 * @return 字段的当前值
 	 */
 	@Nullable
 	public static Object getField(Field field, @Nullable Object target) {
@@ -632,9 +632,9 @@ public abstract class ReflectionUtils {
 
 	/**
 	 * 对给定类中所有本地声明的字段调用给定的回调。
-	 * @param clazz the target class to analyze
-	 * @param fc the callback to invoke for each field
-	 * @throws IllegalStateException if introspection fails
+	 * @param clazz 要分析的目标类
+	 * @param fc 为每个字段调用的回调
+	 * @throws IllegalStateException 如果内省失败
 	 * @since 4.2
 	 * @see #doWithFields
 	 */
@@ -651,9 +651,9 @@ public abstract class ReflectionUtils {
 
 	/**
 	 * 对目标类中的所有字段调用给定的回调，沿类层次结构向上获取所有声明的字段。
-	 * @param clazz the target class to analyze
-	 * @param fc the callback to invoke for each field
-	 * @throws IllegalStateException if introspection fails
+	 * @param clazz 要分析的目标类
+	 * @param fc 为每个字段调用的回调
+	 * @throws IllegalStateException 如果内省失败
 	 */
 	public static void doWithFields(Class<?> clazz, FieldCallback fc) {
 		doWithFields(clazz, fc, null);
@@ -661,10 +661,10 @@ public abstract class ReflectionUtils {
 
 	/**
 	 * 对目标类中的所有字段调用给定的回调，沿类层次结构向上获取所有声明的字段。
-	 * @param clazz the target class to analyze
-	 * @param fc the callback to invoke for each field
-	 * @param ff the filter that determines the fields to apply the callback to
-	 * @throws IllegalStateException if introspection fails
+	 * @param clazz 要分析的目标类
+	 * @param fc 为每个字段调用的回调
+	 * @param ff 确定要对哪些字段应用回调的过滤器
+	 * @throws IllegalStateException 如果内省失败
 	 */
 	public static void doWithFields(Class<?> clazz, FieldCallback fc, @Nullable FieldFilter ff) {
 		// Keep backing up the inheritance hierarchy.
@@ -690,9 +690,9 @@ public abstract class ReflectionUtils {
 	/**
 	 * 此变体从本地缓存中获取 {@link Class#getDeclaredFields()}，以避免 JVM 的 SecurityManager 检查和防
 	 * 御性数组复制。
-	 * @param clazz the class to introspect
-	 * @return the cached array of fields
-	 * @throws IllegalStateException if introspection fails
+	 * @param clazz 要内省的类
+	 * @return 缓存的字段数组
+	 * @throws IllegalStateException 如果内省失败
 	 * @see Class#getDeclaredFields()
 	 */
 	private static Field[] getDeclaredFields(Class<?> clazz) {
@@ -714,7 +714,7 @@ public abstract class ReflectionUtils {
 	/**
 	 * 给定源对象和目标对象（二者必须为同一个类或目标为源类的子类），复制所有字段，包括继承的字段。设计
 	 * 用于具有 public 无参构造函数的对象。
-	 * @throws IllegalStateException if introspection fails
+	 * @throws IllegalStateException 如果内省失败
 	 */
 	public static void shallowCopyFieldState(final Object src, final Object dest) {
 		Assert.notNull(src, "Source for field copy cannot be null");
@@ -732,7 +732,7 @@ public abstract class ReflectionUtils {
 
 	/**
 	 * 判断给定字段是否为 "public static final" 常量。
-	 * @param field the field to check
+	 * @param field 要检查的字段
 	 */
 	public static boolean isPublicStaticFinal(Field field) {
 		int modifiers = field.getModifiers();
@@ -742,7 +742,7 @@ public abstract class ReflectionUtils {
 	/**
 	 * 使给定的字段可访问，必要时显式将其设置为可访问。仅在确实需要时才调用 {@code setAccessible(true)}
 	 * 方法，以避免与 JVM SecurityManager（若启用）产生不必要的冲突。
-	 * @param field the field to make accessible
+	 * @param field 要使其可访问的字段
 	 * @see java.lang.reflect.Field#setAccessible
 	 */
 	@SuppressWarnings("deprecation")  // on JDK 9
@@ -775,7 +775,7 @@ public abstract class ReflectionUtils {
 
 		/**
 		 * 使用给定方法执行一个操作。
-		 * @param method the method to operate on
+		 * @param method 要操作的方法
 		 */
 		void doWith(Method method) throws IllegalArgumentException, IllegalAccessException;
 	}
@@ -789,16 +789,16 @@ public abstract class ReflectionUtils {
 
 		/**
 		 * 判断给定方法是否匹配。
-		 * @param method the method to check
+		 * @param method 要检查的方法
 		 */
 		boolean matches(Method method);
 
 		/**
 		 * 基于此过滤器 <em>和</em> 所提供的过滤器创建一个组合过滤器。
 		 * <p>如果此过滤器不匹配，则不会应用下一个过滤器。
-		 * @param next the next {@code MethodFilter}
-		 * @return a composite {@code MethodFilter}
-		 * @throws IllegalArgumentException if the MethodFilter argument is {@code null}
+		 * @param next 下一个 {@code MethodFilter}
+		 * @return 一个组合的 {@code MethodFilter}
+		 * @throws IllegalArgumentException 如果 MethodFilter 参数为 {@code null}
 		 * @since 5.3.2
 		 */
 		default MethodFilter and(MethodFilter next) {
@@ -816,7 +816,7 @@ public abstract class ReflectionUtils {
 
 		/**
 		 * 使用给定字段执行一个操作。
-		 * @param field the field to operate on
+		 * @param field 要操作的字段
 		 */
 		void doWith(Field field) throws IllegalArgumentException, IllegalAccessException;
 	}
@@ -830,16 +830,16 @@ public abstract class ReflectionUtils {
 
 		/**
 		 * 判断给定字段是否匹配。
-		 * @param field the field to check
+		 * @param field 要检查的字段
 		 */
 		boolean matches(Field field);
 
 		/**
 		 * 基于此过滤器 <em>和</em> 所提供的过滤器创建一个组合过滤器。
 		 * <p>如果此过滤器不匹配，则不会应用下一个过滤器。
-		 * @param next the next {@code FieldFilter}
-		 * @return a composite {@code FieldFilter}
-		 * @throws IllegalArgumentException if the FieldFilter argument is {@code null}
+		 * @param next 下一个 {@code FieldFilter}
+		 * @return 一个组合的 {@code FieldFilter}
+		 * @throws IllegalArgumentException 如果 FieldFilter 参数为 {@code null}
 		 * @since 5.3.2
 		 */
 		default FieldFilter and(FieldFilter next) {

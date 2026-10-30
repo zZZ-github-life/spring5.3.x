@@ -57,8 +57,7 @@ class SortedProperties extends Properties {
 
 	/**
 	 * 构造一个新的 {@code SortedProperties} 实例，遵循所提供的 {@code omitComments} 标志。
-	 * @param omitComments {@code true} if comments should be omitted when
-	 * storing properties in a file
+	 * @param omitComments 将属性存储到文件时是否应省略注释，省略则为 {@code true}
 	 */
 	SortedProperties(boolean omitComments) {
 		this.omitComments = omitComments;
@@ -67,10 +66,8 @@ class SortedProperties extends Properties {
 	/**
 	 * 构造一个新的 {@code SortedProperties} 实例，其属性填充自所提供的 {@link Properties} 对象，并遵循
 	 * 所提供的 {@code omitComments} 标志。<p>所提供的 {@code Properties} 对象中的默认属性不会被复制。
-	 * @param properties the {@code Properties} object from which to copy the
-	 * initial properties
-	 * @param omitComments {@code true} if comments should be omitted when
-	 * storing properties in a file
+	 * @param properties 从中复制初始属性的 {@code Properties} 对象
+	 * @param omitComments 将属性存储到文件时是否应省略注释，省略则为 {@code true}
 	 */
 	SortedProperties(Properties properties, boolean omitComments) {
 		this(omitComments);

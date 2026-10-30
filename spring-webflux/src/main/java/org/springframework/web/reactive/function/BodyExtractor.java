@@ -28,8 +28,8 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
  * 可从 {@link ReactiveHttpInputMessage} 正文中提取数据的函数。
  * @author Arjen Poutsma
  * @since 5.0
- * @param <T> the type of data to extract
- * @param <M> the type of {@link ReactiveHttpInputMessage} this extractor can be applied to
+ * @param <T> 要提取的数据的类型
+ * @param <M> 此提取器可应用于的 {@link ReactiveHttpInputMessage} 类型
  * @see BodyExtractors
  */
 @FunctionalInterface
@@ -37,9 +37,9 @@ public interface BodyExtractor<T, M extends ReactiveHttpInputMessage> {
 
 	/**
 	 * 从给定的输入消息中提取。
-	 * @param inputMessage the request to extract from
-	 * @param context the configuration to use
-	 * @return the extracted data
+	 * @param inputMessage 要从中提取的请求
+	 * @param context 要使用的配置
+	 * @return 提取的数据
 	 */
 	T extract(M inputMessage, Context context);
 
@@ -51,7 +51,7 @@ public interface BodyExtractor<T, M extends ReactiveHttpInputMessage> {
 
 		/**
 		 * 返回用于正文提取的 {@link HttpMessageReader HttpMessageReaders}。
-		 * @return the stream of message readers
+		 * @return 消息读取器流
 		 */
 		List<HttpMessageReader<?>> messageReaders();
 

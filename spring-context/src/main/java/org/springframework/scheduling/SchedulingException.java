@@ -29,7 +29,7 @@ public class SchedulingException extends NestedRuntimeException {
 
 	/**
 	 * SchedulingException 的构造方法。
-	 * @param msg the detail message
+	 * @param msg 详细信息
 	 */
 	public SchedulingException(String msg) {
 		super(msg);
@@ -37,9 +37,8 @@ public class SchedulingException extends NestedRuntimeException {
 
 	/**
 	 * SchedulingException 的构造方法。
-	 * @param msg the detail message
-	 * @param cause the root cause (usually from using an underlying
-	 * scheduling API such as Quartz)
+	 * @param msg 详细信息
+	 * @param cause 根本原因（通常来自使用 Quartz 等底层调度 API）
 	 */
 	public SchedulingException(String msg, Throwable cause) {
 		super(msg, cause);

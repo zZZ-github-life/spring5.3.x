@@ -34,14 +34,14 @@ import org.springframework.util.ObjectUtils;
  * @author Chris Beams
  * @author Juergen Hoeller
  * @since 3.1
- * @param <T> the source type
+ * @param <T> 源类型
  */
 public abstract class EnumerablePropertySource<T> extends PropertySource<T> {
 
 	/**
 	 * 使用给定的名称和源对象创建一个新的 {@code EnumerablePropertySource}。
-	 * @param name the associated name
-	 * @param source the source object
+	 * @param name 关联的名称
+	 * @param source 源对象
 	 */
 	public EnumerablePropertySource(String name, T source) {
 		super(name, source);
@@ -50,7 +50,7 @@ public abstract class EnumerablePropertySource<T> extends PropertySource<T> {
 	/**
 	 * 使用给定的名称并以一个新的 {@code Object} 实例作为底层源，
 	 * 创建一个新的 {@code EnumerablePropertySource}。
-	 * @param name the associated name
+	 * @param name 关联的名称
 	 */
 	protected EnumerablePropertySource(String name) {
 		super(name);
@@ -60,7 +60,7 @@ public abstract class EnumerablePropertySource<T> extends PropertySource<T> {
 	/**
 	 * 返回此 {@code PropertySource} 是否包含具有给定名称的属性。
 	 * <p>此实现检查 {@link #getPropertyNames()} 数组中是否存在给定的名称。
-	 * @param name the name of the property to find
+	 * @param name 要查找的属性的名称
 	 */
 	@Override
 	public boolean containsProperty(String name) {

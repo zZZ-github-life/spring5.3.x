@@ -71,7 +71,7 @@ public class UndertowWebSocketClient implements WebSocketClient {
 	 * 使用要传递给
 	 * {@link io.undertow.websockets.client.WebSocketClient#connectionBuilder} 的
 	 * {@link XnioWorker} 构造。
-	 * @param worker the Xnio worker
+	 * @param worker 该 Xnio worker
 	 */
 	public UndertowWebSocketClient(XnioWorker worker) {
 		this(worker, builder -> {
@@ -81,8 +81,8 @@ public class UndertowWebSocketClient implements WebSocketClient {
 	/**
 	 * 备用构造函数，可对每个 WebSocket 连接的 {@link ConnectionBuilder}
 	 * 提供额外控制。
-	 * @param worker the Xnio worker to use to create {@code ConnectionBuilder}'s
-	 * @param builderConsumer a consumer to configure {@code ConnectionBuilder}'s
+	 * @param worker 用于创建 {@code ConnectionBuilder} 的 Xnio worker
+	 * @param builderConsumer 用于配置 {@code ConnectionBuilder} 的消费者
 	 */
 	public UndertowWebSocketClient(XnioWorker worker, Consumer<ConnectionBuilder> builderConsumer) {
 		this(worker, new DefaultByteBufferPool(false, DEFAULT_POOL_BUFFER_SIZE), builderConsumer);
@@ -91,9 +91,9 @@ public class UndertowWebSocketClient implements WebSocketClient {
 	/**
 	 * 备用构造函数，可对每个 WebSocket 连接的 {@link ConnectionBuilder}
 	 * 提供额外控制。
-	 * @param worker the Xnio worker to use to create {@code ConnectionBuilder}'s
-	 * @param byteBufferPool the ByteBufferPool to use to create {@code ConnectionBuilder}'s
-	 * @param builderConsumer a consumer to configure {@code ConnectionBuilder}'s
+	 * @param worker 用于创建 {@code ConnectionBuilder} 的 Xnio worker
+	 * @param byteBufferPool 用于创建 {@code ConnectionBuilder} 的 ByteBufferPool
+	 * @param builderConsumer 用于配置 {@code ConnectionBuilder} 的消费者
 	 * @since 5.0.8
 	 */
 	public UndertowWebSocketClient(XnioWorker worker, ByteBufferPool byteBufferPool,
@@ -131,7 +131,7 @@ public class UndertowWebSocketClient implements WebSocketClient {
 	/**
 	 * 返回此客户端当前用于新创建的 WebSocket 会话的
 	 * {@link io.undertow.connector.ByteBufferPool}。
-	 * @return the byte buffer pool
+	 * @return 字节缓冲池
 	 * @since 5.0.8
 	 */
 	public ByteBufferPool getByteBufferPool() {

@@ -29,17 +29,19 @@ import org.springframework.util.Assert;
  * @author Keith Donald
  * @author Josh Cummings
  * @since 3.0
- * @param <S> the source type
- * @param <T> the target type
+ * @param <S> 源类型
+ * @param <T> 目标类型
  */
 @FunctionalInterface
 public interface Converter<S, T> {
 
 	/**
 	 * 将类型为 {@code S} 的源对象转换为目标类型 {@code T}。
-	 * @param source the source object to convert, which must be an instance of {@code S} (never {@code null})
-	 * @return the converted object, which must be an instance of {@code T} (potentially {@code null})
-	 * @throws IllegalArgumentException if the source cannot be converted to the desired target type
+	 * @param source 要转换的源对象，必须是 {@code S} 的实例
+	 * （永不为 {@code null}）
+	 * @return 转换后的对象，必须是 {@code T} 的实例
+	 * （可能为 {@code null}）
+	 * @throws IllegalArgumentException 如果源无法转换为所需的目标类型
 	 */
 	@Nullable
 	T convert(S source);
@@ -47,12 +49,11 @@ public interface Converter<S, T> {
 	/**
 	 * 构造一个组合 {@link Converter}，它先对输入应用此 {@link Converter}，然后对结果应用 {@code after}
 	 * {@link Converter}。
-	 * @param after the {@link Converter} to apply after this {@link Converter}
-	 * is applied
-	 * @param <U> the type of output of both the {@code after} {@link Converter}
-	 * and the composed {@link Converter}
-	 * @return a composed {@link Converter} that first applies this {@link Converter}
-	 * and then applies the {@code after} {@link Converter}
+	 * @param after 在此 {@link Converter} 应用之后应用的 {@link Converter}
+	 * @param <U> 同时作为 {@code after} {@link Converter} 和
+	 * 组合 {@link Converter} 的输出类型
+	 * @return 一个组合的 {@link Converter}，先应用此 {@link Converter}，
+	 * 然后应用 {@code after} {@link Converter}
 	 * @since 5.3
 	 */
 	default <U> Converter<S, U> andThen(Converter<? super T, ? extends U> after) {

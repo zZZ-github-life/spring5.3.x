@@ -609,9 +609,8 @@ public class DefaultMessageListenerContainer extends AbstractPollingMessageListe
 	 * 将覆盖指定的回调。只有最新指定的回调会被调用。
 	 * <p>如果后续的 {@link #start()} 调用在监听器容器完全停止之前将其重启，
 	 * 则该回调根本不会被调用。
-	 * @param callback the callback to invoke once listener processing
-	 * has fully stopped
-	 * @throws JmsException if stopping failed
+	 * @param callback 监听器处理完全停止后要调用的回调
+	 * @throws JmsException 停止失败时
 	 * @see #stop()
 	 */
 	@Override
@@ -761,8 +760,7 @@ public class DefaultMessageListenerContainer extends AbstractPollingMessageListe
 
 	/**
 	 * 判断当前调用者是否应重新调度，考虑到它可能已有一段时间没有收到消息。
-	 * @param idleTaskExecutionCount the number of idle executions
-	 * that this invoker task has already accumulated (in a row)
+	 * @param idleTaskExecutionCount 该调用器任务已经（连续）累积的空闲执行次数
 	 */
 	private boolean shouldRescheduleInvoker(int idleTaskExecutionCount) {
 		boolean superfluous =
@@ -837,11 +835,9 @@ public class DefaultMessageListenerContainer extends AbstractPollingMessageListe
 	 * 在每个并发监听器中，每个此类异常都会调用此方法。
 	 * <p>默认实现会在尚未恢复时以 warn 级别记录该异常，如果已经恢复则以 debug 级别记录。
 	 * 可以在子类中重写。
-	 * @param ex the exception to handle
-	 * @param alreadyRecovered whether a previously executing listener
-	 * already recovered from the present listener setup failure
-	 * (this usually indicates a follow-up failure than can be ignored
-	 * other than for debug log purposes)
+	 * @param ex 要处理的异常
+	 * @param alreadyRecovered 此前正在执行的监听器是否已从当前的监听器设置失败中恢复
+	 * （这通常表示可忽略的后续失败，仅用于调试日志目的）
 	 * @see #recoverAfterListenerSetupFailure()
 	 */
 	protected void handleListenerSetupFailure(Throwable ex, boolean alreadyRecovered) {

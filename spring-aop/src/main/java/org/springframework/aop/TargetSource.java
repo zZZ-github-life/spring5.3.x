@@ -35,7 +35,7 @@ public interface TargetSource extends TargetClassAware {
 	/**
 	 * 返回此 {@link TargetSource} 所返回目标的类型。<p>可以返回 {@code null}，不过
 	 * {@code TargetSource} 的某些用法可能只需使用预先确定的目标类即可。
-	 * @return the type of targets returned by this {@link TargetSource}
+	 * @return 该 {@link TargetSource} 返回的目标的类型
 	 */
 	@Override
 	@Nullable
@@ -44,24 +44,24 @@ public interface TargetSource extends TargetClassAware {
 	/**
 	 * 对 {@link #getTarget()} 的所有调用都会返回同一个对象吗？<p>在这种情况下，无需调用
 	 * {@link #releaseTarget(Object)}，并且 AOP 框架可以缓存 {@link #getTarget()} 的返回值。
-	 * @return {@code true} if the target is immutable
+	 * @return 如果目标是不可变的，则返回 {@code true}
 	 * @see #getTarget
 	 */
 	boolean isStatic();
 
 	/**
 	 * 返回一个目标实例。在 AOP 框架调用 AOP 方法调用的“目标”之前立即调用。
-	 * @return the target object which contains the joinpoint,
-	 * or {@code null} if there is no actual target instance
-	 * @throws Exception if the target object can't be resolved
+	 * @return 包含连接点的目标对象，如果没有实际的目标实例
+	 * 则为 {@code null}
+	 * @throws Exception 如果无法解析目标对象
 	 */
 	@Nullable
 	Object getTarget() throws Exception;
 
 	/**
 	 * 释放从 {@link #getTarget()} 方法获得的给定目标对象（如果有）。
-	 * @param target object obtained from a call to {@link #getTarget()}
-	 * @throws Exception if the object can't be released
+	 * @param target 通过调用 {@link #getTarget()} 获得的对象
+	 * @throws Exception 如果无法释放该对象
 	 */
 	void releaseTarget(Object target) throws Exception;
 

@@ -35,7 +35,7 @@ public class WebHandlerDecorator implements WebHandler {
 
 	/**
 	 * 为给定委托创建一个 {@code WebHandlerDecorator}。
-	 * @param delegate the WebHandler delegate
+	 * @param delegate WebHandler 委托对象
 	 */
 	public WebHandlerDecorator(WebHandler delegate) {
 		Assert.notNull(delegate, "'delegate' must not be null");

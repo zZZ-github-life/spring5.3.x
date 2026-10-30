@@ -55,7 +55,7 @@ public class CommAreaRecord implements Record, Streamable {
 
 	/**
 	 * 创建新的 CommAreaRecord。
-	 * @param bytes the bytes to fill the record with
+	 * @param bytes 用于填充记录的字节
 	 */
 	public CommAreaRecord(byte[] bytes) {
 		this.bytes = bytes;

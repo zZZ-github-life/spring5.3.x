@@ -239,7 +239,7 @@ public class Enhancer extends AbstractClassGenerator {
 	 * 设置生成的类将要扩展的类。为方便起见，如果传入的父类实际上是一个接口，
 	 * 则会改为以相应的参数调用 <code>setInterfaces</code>。非接口参数不能声明为 final，
 	 * 并且必须具有可访问的构造器。
-	 * @param superclass class to extend or interface to implement
+	 * @param superclass 要扩展的类或要实现的接口
 	 * @see #setInterfaces(Class[])
 	 */
 	public void setSuperclass(Class superclass) {
@@ -263,7 +263,7 @@ public class Enhancer extends AbstractClassGenerator {
 
 	/**
 	 * 设置要实现的接口。无论此处指定什么，<code>Factory</code> 接口都始终会被实现。
-	 * @param interfaces array of interfaces to implement, or null
+	 * @param interfaces 要实现接口的数组，或 null
 	 * @see Factory
 	 */
 	public void setInterfaces(Class[] interfaces) {
@@ -273,7 +273,7 @@ public class Enhancer extends AbstractClassGenerator {
 	/**
 	 * 设置用于将生成类的方法映射到特定回调索引的 {@link CallbackFilter}。
 	 * 新的对象实例始终使用相同的映射，但可以使用不同的实际回调对象。
-	 * @param filter the callback filter to use when generating a new class
+	 * @param filter 生成新类时使用的回调过滤器
 	 * @see #setCallbacks
 	 */
 	public void setCallbackFilter(CallbackFilter filter) {
@@ -283,7 +283,7 @@ public class Enhancer extends AbstractClassGenerator {
 
 	/**
 	 * 设置要使用的单个 {@link Callback}。如果使用 {@link #createClass}，则忽略此项。
-	 * @param callback the callback to use for all methods
+	 * @param callback 用于所有方法的回调
 	 * @see #setCallbacks
 	 */
 	public void setCallback(final Callback callback) {
@@ -293,7 +293,7 @@ public class Enhancer extends AbstractClassGenerator {
 	/**
 	 * 设置要使用的回调数组。如果使用 {@link #createClass}，则忽略此项。
 	 * 必须使用 {@link CallbackFilter} 为被代理类中的每个方法指定在该数组中的索引。
-	 * @param callbacks the callback array
+	 * @param callbacks 回调数组
 	 * @see #setCallbackFilter
 	 * @see #setCallback
 	 */
@@ -308,7 +308,7 @@ public class Enhancer extends AbstractClassGenerator {
 	 * 设置增强对象实例是否应实现 {@link Factory} 接口。
 	 * 这一选项是为那些需要让代理与其目标更难区分的工具而添加的。此外，在某些情况下，
 	 * 可能需要禁用 <code>Factory</code> 接口，以防止代码更改底层的回调。
-	 * @param useFactory whether to implement <code>Factory</code>; default is <code>true</code>
+	 * @param useFactory 是否实现 <code>Factory</code>；默认为 <code>true</code>
 	 */
 	public void setUseFactory(boolean useFactory) {
 		this.useFactory = useFactory;
@@ -317,7 +317,7 @@ public class Enhancer extends AbstractClassGenerator {
 	/**
 	 * 设置是否拦截在代理构造器中调用的方法。默认值为 true。
 	 * 未被拦截的方法将调用代理基类的对应方法（如果存在）。
-	 * @param interceptDuringConstruction whether to intercept methods called from the constructor
+	 * @param interceptDuringConstruction 是否拦截从构造方法中调用的方法
 	 */
 	public void setInterceptDuringConstruction(boolean interceptDuringConstruction) {
 		this.interceptDuringConstruction = interceptDuringConstruction;
@@ -326,7 +326,7 @@ public class Enhancer extends AbstractClassGenerator {
 	/**
 	 * 设置要使用的单个 {@link Callback} 类型。在调用 {@link #createClass} 时，
 	 * 可以用它代替 {@link #setCallback}，因为可能无法获得实际回调实例的数组。
-	 * @param callbackType the type of callback to use for all methods
+	 * @param callbackType 用于所有方法的回调类型
 	 * @see #setCallbackTypes
 	 */
 	public void setCallbackType(Class callbackType) {
@@ -337,7 +337,7 @@ public class Enhancer extends AbstractClassGenerator {
 	 * 设置要使用的回调类型数组。在调用 {@link #createClass} 时，
 	 * 可以用它代替 {@link #setCallbacks}，因为可能无法获得实际回调实例的数组。
 	 * 必须使用 {@link CallbackFilter} 为被代理类中的每个方法指定在该数组中的索引。
-	 * @param callbackTypes the array of callback types
+	 * @param callbackTypes 回调类型数组
 	 */
 	public void setCallbackTypes(Class[] callbackTypes) {
 		if (callbackTypes != null && callbackTypes.length == 0) {
@@ -348,7 +348,7 @@ public class Enhancer extends AbstractClassGenerator {
 
 	/**
 	 * 如有必要则生成新类，并使用指定的回调（如果有）创建新的对象实例。使用父类的无参构造器。
-	 * @return a new instance
+	 * @return 新实例
 	 */
 	public Object create() {
 		classOnly = false;
@@ -359,9 +359,9 @@ public class Enhancer extends AbstractClassGenerator {
 	/**
 	 * 如有必要则生成新类，并使用指定的回调（如果有）创建新的对象实例。
 	 * 使用父类中与 <code>argumentTypes</code> 参数匹配的构造器，并传入给定的参数。
-	 * @param argumentTypes constructor signature
-	 * @param arguments compatible wrapped arguments to pass to constructor
-	 * @return a new instance
+	 * @param argumentTypes 构造方法签名
+	 * @param arguments 传递给构造方法的兼容包装参数
+	 * @return 新实例
 	 */
 	public Object create(Class[] argumentTypes, Object[] arguments) {
 		classOnly = false;
@@ -386,7 +386,7 @@ public class Enhancer extends AbstractClassGenerator {
 
 	/**
 	 * 在生成的类中插入一个静态 serialVersionUID 字段。
-	 * @param sUID the field value, or null to avoid generating field.
+	 * @param sUID 字段值，为 null 则不生成该字段。
 	 */
 	public void setSerialVersionUID(Long sUID) {
 		serialVersionUID = sUID;
@@ -484,10 +484,10 @@ public class Enhancer extends AbstractClassGenerator {
 		 * 否则就需要花费时间进行构造器查找。从技术上说，
 		 * 它是对 {@link Enhancer#createUsingReflection(Class)} 的重新实现，
 		 * 带有“缓存 {@link #setThreadCallbacks} 和 {@link #primaryConstructor}”的机制。
-		 * @param argumentTypes constructor argument types
-		 * @param arguments constructor arguments
-		 * @param callbacks callbacks to set for the new instance
-		 * @return newly created proxy
+		 * @param argumentTypes 构造方法参数类型
+		 * @param arguments 构造方法参数
+		 * @param callbacks 为新实例设置的回调
+		 * @return 新建的代理
 		 * @see #createUsingReflection(Class)
 		 */
 		public Object newInstance(Class[] argumentTypes, Object[] arguments, Callback[] callbacks) {
@@ -583,9 +583,9 @@ public class Enhancer extends AbstractClassGenerator {
 	 * 这在构建 Callback 对象列表时很有用。这些方法会被添加到给定列表的末尾。
 	 * 由于 Enhancer 生成的类具有子类化特性，这些方法保证是非 static、
 	 * 非 final 且非 private 的。每个方法签名只会出现一次，即使它出现在多个类中也是如此。
-	 * @param superclass the class that will be extended, or null
-	 * @param interfaces the list of interfaces that will be implemented, or null
-	 * @param methods the list into which to copy the applicable methods
+	 * @param superclass 将被扩展的类，或 null
+	 * @param interfaces 将被实现的接口列表，或 null
+	 * @param methods 用于复制适用方法的列表
 	 */
 	public static void getMethods(Class superclass, Class[] interfaces, List methods) {
 		getMethods(superclass, interfaces, methods, null, null);
@@ -710,9 +710,9 @@ public class Enhancer extends AbstractClassGenerator {
 	/**
 	 * 过滤来自父类的构造器列表。保留下来的构造器将被包含在生成的类中。
 	 * 默认实现会过滤掉所有 private 构造器，但子类可以扩展 Enhancer 来覆盖此行为。
-	 * @param sc the superclass
-	 * @param constructors the list of all declared constructors from the superclass
-	 * @throws IllegalArgumentException if there are no non-private constructors
+	 * @param sc 超类
+	 * @param constructors 来自超类的所有已声明构造方法的列表
+	 * @throws IllegalArgumentException 如果不存在非私有构造方法
 	 */
 	protected void filterConstructors(Class sc, List constructors) {
 		CollectionUtils.filter(constructors, new VisibilityPredicate(sc, true));
@@ -725,9 +725,9 @@ public class Enhancer extends AbstractClassGenerator {
 	 * {@link #wrapCachedClass(Class)} 使用 {@link Enhancer.EnhancerFactoryData} 作为缓存值，
 	 * 后者比普通的反射查找和调用能更快地实例化。此方法出于向后兼容的原因而保留原样：
 	 * 以防它曾被使用过。
-	 * @param type class to instantiate
-	 * @return newly created proxy instance
-	 * @throws Exception if something goes wrong
+	 * @param type 要实例化的类
+	 * @return 新建的代理实例
+	 * @throws Exception 如果出现问题
 	 */
 	protected Object firstInstance(Class type) throws Exception {
 		if (classOnly) {
@@ -800,9 +800,8 @@ public class Enhancer extends AbstractClassGenerator {
 	 * <code>newInstance</code> 方法时，
 	 * 已注册的回调会被覆盖并随后清除。否则它们<i>不会</i>被清除；如果担心内存泄漏，
 	 * 在通过反射创建新实例后应小心地将它们重新设置为 <code>null</code>。
-	 * @param generatedClass a class previously created by {@link Enhancer}
-	 * @param callbacks the array of callbacks to use when instances of the generated
-	 * class are created
+	 * @param generatedClass 先前由 {@link Enhancer} 创建的类
+	 * @param callbacks 创建生成类的实例时使用的回调数组
 	 * @see #setUseFactory
 	 */
 	public static void registerCallbacks(Class generatedClass, Callback[] callbacks) {
@@ -812,9 +811,8 @@ public class Enhancer extends AbstractClassGenerator {
 	/**
 	 * 与 {@link #registerCallbacks} 类似，但适用于多个线程将创建生成类实例的场景。
 	 * 线程级回调始终会覆盖静态回调。静态回调永远不会被清除。
-	 * @param generatedClass a class previously created by {@link Enhancer}
-	 * @param callbacks the array of callbacks to use when instances of the generated
-	 * class are created
+	 * @param generatedClass 先前由 {@link Enhancer} 创建的类
+	 * @param callbacks 创建生成类的实例时使用的回调数组
 	 */
 	public static void registerStaticCallbacks(Class generatedClass, Callback[] callbacks) {
 		setCallbacksHelper(generatedClass, callbacks, SET_STATIC_CALLBACKS_NAME);
@@ -822,8 +820,8 @@ public class Enhancer extends AbstractClassGenerator {
 
 	/**
 	 * 判断某个类是否使用 <code>Enhancer</code> 生成。
-	 * @param type any class
-	 * @return whether the class was generated  using <code>Enhancer</code>
+	 * @param type 任意类
+	 * @return 该类是否由 <code>Enhancer</code> 生成
 	 */
 	public static boolean isEnhanced(Class type) {
 		try {
@@ -864,8 +862,8 @@ public class Enhancer extends AbstractClassGenerator {
 	 * 实例化代理实例并分配回调值。实现细节：java.lang.reflect 实例不会被缓存，
 	 * 因此此方法不应在热路径上使用。
 	 * 当 {@link #setUseCache(boolean)} 设置为 {@code false} 时会使用此方法。
-	 * @param type class to instantiate
-	 * @return newly created instance
+	 * @param type 要实例化的类
+	 * @return 新建的实例
 	 */
 	private Object createUsingReflection(Class type) {
 		setThreadCallbacks(type, callbacks);
@@ -891,8 +889,8 @@ public class Enhancer extends AbstractClassGenerator {
 	/**
 	 * 用于创建被拦截对象的辅助方法。若要对生成的实例进行更精细的控制，
 	 * 请使用 <code>Enhancer</code> 的新实例，而不是此静态方法。
-	 * @param type class to extend or interface to implement
-	 * @param callback the callback to use for all methods
+	 * @param type 要扩展的类或要实现的接口
+	 * @param callback 用于所有方法的回调
 	 */
 	public static Object create(Class type, Callback callback) {
 		Enhancer e = new Enhancer();
@@ -904,9 +902,9 @@ public class Enhancer extends AbstractClassGenerator {
 	/**
 	 * 用于创建被拦截对象的辅助方法。若要对生成的实例进行更精细的控制，
 	 * 请使用 <code>Enhancer</code> 的新实例，而不是此静态方法。
-	 * @param superclass class to extend or interface to implement
-	 * @param interfaces array of interfaces to implement, or null
-	 * @param callback the callback to use for all methods
+	 * @param superclass 要扩展的类或要实现的接口
+	 * @param interfaces 要实现接口的数组，或 null
+	 * @param callback 用于所有方法的回调
 	 */
 	public static Object create(Class superclass, Class interfaces[], Callback callback) {
 		Enhancer e = new Enhancer();
@@ -919,10 +917,10 @@ public class Enhancer extends AbstractClassGenerator {
 	/**
 	 * 用于创建被拦截对象的辅助方法。若要对生成的实例进行更精细的控制，
 	 * 请使用 <code>Enhancer</code> 的新实例，而不是此静态方法。
-	 * @param superclass class to extend or interface to implement
-	 * @param interfaces array of interfaces to implement, or null
-	 * @param filter the callback filter to use when generating a new class
-	 * @param callbacks callback implementations to use for the enhanced object
+	 * @param superclass 要扩展的类或要实现的接口
+	 * @param interfaces 要实现接口的数组，或 null
+	 * @param filter 生成新类时使用的回调过滤器
+	 * @param callbacks 用于增强对象的回调实现
 	 */
 	public static Object create(Class superclass, Class[] interfaces, CallbackFilter filter, Callback[] callbacks) {
 		Enhancer e = new Enhancer();

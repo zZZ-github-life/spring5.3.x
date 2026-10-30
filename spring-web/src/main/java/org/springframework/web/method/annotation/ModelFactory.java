@@ -73,9 +73,9 @@ public final class ModelFactory {
 
 	/**
 	 * 使用给定的 {@code @ModelAttribute} 方法创建一个新实例。
-	 * @param handlerMethods the {@code @ModelAttribute} methods to invoke
-	 * @param binderFactory for preparation of {@link BindingResult} attributes
-	 * @param attributeHandler for access to session attributes
+	 * @param handlerMethods 要调用的 {@code @ModelAttribute} 方法
+	 * @param binderFactory 用于准备 {@link BindingResult} 属性
+	 * @param attributeHandler 用于访问会话属性
 	 */
 	public ModelFactory(@Nullable List<InvocableHandlerMethod> handlerMethods,
 			WebDataBinderFactory binderFactory, SessionAttributesHandler attributeHandler) {
@@ -98,10 +98,10 @@ public final class ModelFactory {
 	 * <li>查找同时以 {@code @SessionAttributes} 列出的 {@code @ModelAttribute}
 	 * 方法参数，确保它们存在于模型中，必要时抛出异常。
 	 * </ol>
-	 * @param request the current request
-	 * @param container a container with the model to be initialized
-	 * @param handlerMethod the method for which the model is initialized
-	 * @throws Exception may arise from {@code @ModelAttribute} methods
+	 * @param request 当前请求
+	 * @param container 包含待初始化模型的容器
+	 * @param handlerMethod 要为其初始化模型的方法
+	 * @throws Exception 可能由 {@code @ModelAttribute} 方法引发
 	 */
 	public void initModel(NativeWebRequest request, ModelAndViewContainer container, HandlerMethod handlerMethod)
 			throws Exception {
@@ -192,9 +192,9 @@ public final class ModelFactory {
 	/**
 	 * 将以 {@code @SessionAttributes} 列出的模型属性提升到会话中。
 	 * 必要时添加 {@link BindingResult} 属性。
-	 * @param request the current request
-	 * @param container contains the model to update
-	 * @throws Exception if creating BindingResult attributes fails
+	 * @param request 当前请求
+	 * @param container 包含要更新的模型
+	 * @throws Exception 如果创建 BindingResult 属性失败
 	 */
 	public void updateModel(NativeWebRequest request, ModelAndViewContainer container) throws Exception {
 		ModelMap defaultModel = container.getDefaultModel();
@@ -246,8 +246,8 @@ public final class ModelFactory {
 	/**
 	 * 基于 {@code @ModelAttribute} 参数注解（如果存在）派生给定方法参数的
 	 * 模型属性名称，否则回退到基于参数类型的约定。
-	 * @param parameter a descriptor for the method parameter
-	 * @return the derived name
+	 * @param parameter 方法参数的描述符
+	 * @return 推导出的名称
 	 * @see Conventions#getVariableNameForParameter(MethodParameter)
 	 */
 	public static String getNameForParameter(MethodParameter parameter) {
@@ -263,9 +263,9 @@ public final class ModelFactory {
 	 * <li>声明的返回类型（如果比 {@code Object} 更具体）
 	 * <li>实际的返回值类型
 	 * </ol>
-	 * @param returnValue the value returned from a method invocation
-	 * @param returnType a descriptor for the return type of the method
-	 * @return the derived name (never {@code null} or empty String)
+	 * @param returnValue 方法调用返回的值
+	 * @param returnType 该方法返回类型的描述符
+	 * @return 推导出的名称（永不为 {@code null} 或空字符串）
 	 */
 	public static String getNameForReturnValue(@Nullable Object returnValue, MethodParameter returnType) {
 		ModelAttribute ann = returnType.getMethodAnnotation(ModelAttribute.class);

@@ -34,9 +34,9 @@ public interface ServerHttpResponse extends ReactiveHttpOutputMessage {
 
 	/**
 	 * 设置响应的 HTTP 状态码。
-	 * @param status the HTTP status as an {@link HttpStatus} enum value
-	 * @return {@code false} if the status code change wasn't processed because
-	 * the HTTP response is committed, {@code true} if successfully set.
+	 * @param status 作为 {@link HttpStatus} 枚举值的 HTTP 状态
+	 * @return 如果因 HTTP 响应已提交而未处理状态码更改则返回 {@code false}，
+	 * 如果成功设置则返回 {@code true}。
 	 */
 	boolean setStatusCode(@Nullable HttpStatus status);
 
@@ -51,9 +51,9 @@ public interface ServerHttpResponse extends ReactiveHttpOutputMessage {
 	/**
 	 * 将 HTTP 状态码设置为给定的整数值（可能为非标准值，
 	 * 无法通过 {@link HttpStatus} 枚举解析）。
-	 * @param value the status code value
-	 * @return {@code false} if the status code change wasn't processed because
-	 * the HTTP response is committed, {@code true} if successfully set.
+	 * @param value 状态码值
+	 * @return 如果因 HTTP 响应已提交而未处理状态码更改则返回 {@code false}，
+	 * 如果成功设置则返回 {@code true}。
 	 * @since 5.2.4
 	 */
 	default boolean setRawStatusCode(@Nullable Integer value) {
@@ -88,8 +88,8 @@ public interface ServerHttpResponse extends ReactiveHttpOutputMessage {
 
 	/**
 	 * 添加给定的 {@code ResponseCookie}。
-	 * @param cookie the cookie to add
-	 * @throws IllegalStateException if the response has already been committed
+	 * @param cookie 要添加的 Cookie
+	 * @throws IllegalStateException 如果响应已被提交则抛出
 	 */
 	void addCookie(ResponseCookie cookie);
 

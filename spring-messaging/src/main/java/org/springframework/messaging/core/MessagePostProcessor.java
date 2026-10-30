@@ -33,9 +33,8 @@ public interface MessagePostProcessor {
 
 	/**
 	 * 处理给定消息。
-	 * @param message the message to process
-	 * @return a post-processed variant of the message, or simply the incoming
-	 * message; never {@code null}
+	 * @param message 要处理的消息
+	 * @return 消息经过后处理的变体，或就是传入的消息；永远不会为 {@code null}
 	 */
 	Message<?> postProcessMessage(Message<?> message);
 

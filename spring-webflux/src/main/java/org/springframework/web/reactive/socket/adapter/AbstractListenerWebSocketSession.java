@@ -51,7 +51,7 @@ import org.springframework.web.reactive.socket.WebSocketSession;
  * @author Violeta Georgieva
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <T> the native delegate type
+ * @param <T> 原生委托类型
  */
 public abstract class AbstractListenerWebSocketSession<T> extends AbstractWebSocketSession<T>
 		implements Subscriber<Void> {
@@ -81,10 +81,10 @@ public abstract class AbstractListenerWebSocketSession<T> extends AbstractWebSoc
 
 	/**
 	 * 基本构造函数。
-	 * @param delegate the native WebSocket session, channel, or connection
-	 * @param id the session id
-	 * @param info the handshake info
-	 * @param bufferFactory the DataBuffer factor for the current connection
+	 * @param delegate 原生 WebSocket 会话、通道或连接
+	 * @param id 会话 ID
+	 * @param info 握手信息
+	 * @param bufferFactory 当前连接的 DataBuffer 工厂
 	 */
 	public AbstractListenerWebSocketSession(
 			T delegate, String id, HandshakeInfo info, DataBufferFactory bufferFactory) {

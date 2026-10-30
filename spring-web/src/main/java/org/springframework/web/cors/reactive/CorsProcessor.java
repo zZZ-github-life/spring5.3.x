@@ -34,10 +34,10 @@ public interface CorsProcessor {
 
 	/**
 	 * 使用给定的 {@code CorsConfiguration} 处理请求。
-	 * @param configuration the CORS configuration to use; possibly {@code null}
-	 * in which case pre-flight requests are rejected, but all others allowed.
-	 * @param exchange the current exchange
-	 * @return {@code false} if the request was rejected, {@code true} otherwise
+	 * @param configuration 要使用的 CORS 配置；可能为 {@code null}，
+	 * 此时预检请求会被拒绝，但其他所有请求都被允许。
+	 * @param exchange 当前交换
+	 * @return 如果请求被拒绝则返回 {@code false}，否则返回 {@code true}
 	 */
 	boolean process(@Nullable CorsConfiguration configuration, ServerWebExchange exchange);
 

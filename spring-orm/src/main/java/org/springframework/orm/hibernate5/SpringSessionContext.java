@@ -58,7 +58,7 @@ public class SpringSessionContext implements CurrentSessionContext {
 
 	/**
 	 * 为给定的 Hibernate SessionFactory 创建一个新的 SpringSessionContext。
-	 * @param sessionFactory the SessionFactory to provide current Sessions for
+	 * @param sessionFactory 要为其提供当前 Session 的 SessionFactory
 	 */
 	public SpringSessionContext(SessionFactoryImplementor sessionFactory) {
 		this.sessionFactory = sessionFactory;

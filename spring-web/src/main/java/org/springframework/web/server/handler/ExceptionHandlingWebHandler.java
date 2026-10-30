@@ -43,8 +43,8 @@ public class ExceptionHandlingWebHandler extends WebHandlerDecorator {
 
 	/**
 	 * 为给定委托创建一个 {@code ExceptionHandlingWebHandler}。
-	 * @param delegate the WebHandler delegate
-	 * @param handlers the WebExceptionHandlers to apply
+	 * @param delegate WebHandler 委托对象
+	 * @param handlers 要应用的 WebExceptionHandler
 	 */
 	public ExceptionHandlingWebHandler(WebHandler delegate, List<WebExceptionHandler> handlers) {
 		super(delegate);

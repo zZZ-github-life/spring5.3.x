@@ -44,7 +44,7 @@ public interface JmsListenerConfigurer {
 	 * {@link JmsListenerEndpointRegistrar}。默认的
 	 * {@link org.springframework.jms.config.JmsListenerContainerFactory JmsListenerContainerFactory}
 	 * 也可以在此自定义。
-	 * @param registrar the registrar to be configured
+	 * @param registrar 要配置的注册器
 	 */
 	void configureJmsListeners(JmsListenerEndpointRegistrar registrar);
 

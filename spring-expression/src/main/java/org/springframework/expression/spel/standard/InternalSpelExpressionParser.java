@@ -123,7 +123,7 @@ class InternalSpelExpressionParser extends TemplateAwareExpressionParser {
 
 	/**
 	 * 创建一个具有某些已配置行为的解析器。
-	 * @param configuration custom configuration options
+	 * @param configuration 自定义配置选项
 	 */
 	public InternalSpelExpressionParser(SpelParserConfiguration configuration) {
 		this.configuration = configuration;

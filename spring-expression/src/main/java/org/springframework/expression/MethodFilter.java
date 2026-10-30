@@ -33,8 +33,8 @@ public interface MethodFilter {
 	/**
 	 * 由方法解析器调用，以便 SpEL 用户整理可能被调用的候选方法列表。该过滤器可以移除不应被视为候选的方
 	 * 法，并可以对结果排序。随后，解析器在寻找合适的候选方法时会按照过滤器返回的方法顺序进行搜索。
-	 * @param methods the full list of methods the resolver was going to choose from
-	 * @return a possible subset of input methods that may be sorted by order of relevance
+	 * @param methods 解析器原本要从中选择的完整方法列表
+	 * @return 输入方法可能的一个子集，可按相关度排序
 	 */
 	List<Method> filter(List<Method> methods);
 

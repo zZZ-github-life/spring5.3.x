@@ -39,8 +39,8 @@ public class PrototypeAspectInstanceFactory extends BeanFactoryAspectInstanceFac
 	/**
 	 * 创建一个 PrototypeAspectInstanceFactory。将调用 AspectJ 进行内省，使用 BeanFactory 中给定 Bean
 	 * 名称所返回的类型创建 AJType 元数据。
-	 * @param beanFactory the BeanFactory to obtain instance(s) from
-	 * @param name the name of the bean
+	 * @param beanFactory 用于获取实例的 BeanFactory
+	 * @param name Bean 的名称
 	 */
 	public PrototypeAspectInstanceFactory(BeanFactory beanFactory, String name) {
 		super(beanFactory, name);

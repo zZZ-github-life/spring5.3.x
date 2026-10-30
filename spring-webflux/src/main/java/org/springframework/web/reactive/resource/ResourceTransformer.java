@@ -31,10 +31,10 @@ public interface ResourceTransformer {
 
 	/**
 	 * 转换给定资源。
-	 * @param exchange the current exchange
-	 * @param resource the resource to transform
-	 * @param transformerChain the chain of remaining transformers to delegate to
-	 * @return the transformed resource (never empty)
+	 * @param exchange 当前交换
+	 * @param resource 要转换的资源
+	 * @param transformerChain 要委托给的其余转换器链
+	 * @return 转换后的资源（永不为空）
 	 */
 	Mono<Resource> transform(ServerWebExchange exchange, Resource resource,
 			ResourceTransformerChain transformerChain);

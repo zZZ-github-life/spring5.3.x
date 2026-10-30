@@ -150,7 +150,7 @@ class DefaultDatabaseClient implements DatabaseClient {
 
 	/**
 	 * 获取一个 {@link Connection}。
-	 * @return a {@link Mono} able to emit a {@link Connection}
+	 * @return 能够发出 {@link Connection} 的 {@link Mono}
 	 */
 	private Mono<Connection> getConnection() {
 		return ConnectionFactoryUtils.getConnection(obtainConnectionFactory());
@@ -158,8 +158,9 @@ class DefaultDatabaseClient implements DatabaseClient {
 
 	/**
 	 * 释放 {@link Connection}。
-	 * @param connection to close.
-	 * @return a {@link Publisher} that completes successfully when the connection is closed
+	 * @param connection 要关闭的连接。
+	 * @return 在连接关闭时成功完成的
+	 * {@link Publisher}
 	 */
 	private Publisher<Void> closeConnection(Connection connection) {
 		return ConnectionFactoryUtils.currentConnectionFactory(
@@ -169,7 +170,7 @@ class DefaultDatabaseClient implements DatabaseClient {
 
 	/**
 	 * 获取实际使用的 {@link ConnectionFactory}。
-	 * @return the ConnectionFactory (never {@code null})
+	 * @return ConnectionFactory（永不为 {@code null}）
 	 */
 	private ConnectionFactory obtainConnectionFactory() {
 		return this.connectionFactory;
@@ -178,8 +179,8 @@ class DefaultDatabaseClient implements DatabaseClient {
 	/**
 	 * 为给定的 R2DBC Connection 创建一个抑制关闭操作的代理。
 	 * 由 {@code execute} 方法调用。
-	 * @param con the R2DBC Connection to create a proxy for
-	 * @return the Connection proxy
+	 * @param con 要为其创建代理的 R2DBC Connection
+	 * @return Connection 代理
 	 */
 	private static Connection createConnectionProxy(Connection con) {
 		return (Connection) Proxy.newProxyInstance(DatabaseClient.class.getClassLoader(),
@@ -195,8 +196,8 @@ class DefaultDatabaseClient implements DatabaseClient {
 
 	/**
 	 * 从可能提供 SQL 的对象中获取 SQL。
-	 * @param object an object that is potentially an SqlProvider
-	 * @return the SQL string, or {@code null}
+	 * @param object 可能为 SqlProvider 的对象
+	 * @return SQL 字符串，或 {@code null}
 	 * @see SqlProvider
 	 */
 	@Nullable

@@ -23,7 +23,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Sebastien Deleuze
  * @since 4.1
- * @param <T> the result type
+ * @param <T> 结果类型
  */
 @FunctionalInterface
 public interface SuccessCallback<T> {
@@ -31,7 +31,7 @@ public interface SuccessCallback<T> {
 	/**
 	 * 当 {@link ListenableFuture} 成功完成时调用。
 	 * <p>注意，此方法抛出的 Exception 会被忽略。
-	 * @param result the result
+	 * @param result 结果
 	 */
 	void onSuccess(@Nullable T result);
 

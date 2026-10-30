@@ -57,8 +57,8 @@ public abstract class AbstractRequestAttributes implements RequestAttributes {
 
 	/**
 	 * 注册给定的回调，使其在请求完成后执行。
-	 * @param name the name of the attribute to register the callback for
-	 * @param callback the callback to be executed for destruction
+	 * @param name 为其注册回调的属性的名称
+	 * @param callback 销毁时要执行的回调
 	 */
 	protected final void registerRequestDestructionCallback(String name, Runnable callback) {
 		Assert.notNull(name, "Name must not be null");
@@ -70,7 +70,7 @@ public abstract class AbstractRequestAttributes implements RequestAttributes {
 
 	/**
 	 * 移除指定属性的请求销毁回调（如果存在）。
-	 * @param name the name of the attribute to remove the callback for
+	 * @param name 要移除其回调的属性的名称
 	 */
 	protected final void removeRequestDestructionCallback(String name) {
 		Assert.notNull(name, "Name must not be null");

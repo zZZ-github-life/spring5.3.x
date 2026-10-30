@@ -38,8 +38,8 @@ public class InvalidResultSetAccessException extends InvalidDataAccessResourceUs
 
 	/**
 	 * InvalidResultSetAccessException 的构造器。
-	 * @param msg message
-	 * @param ex the root cause
+	 * @param msg 消息
+	 * @param ex 根本原因
 	 */
 	public InvalidResultSetAccessException(String msg, SQLException ex) {
 		super(ex.getMessage(), ex);

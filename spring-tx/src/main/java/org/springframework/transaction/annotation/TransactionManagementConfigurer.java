@@ -67,8 +67,8 @@ public interface TransactionManagementConfigurer {
 	 * <p>在场景#1或#2中, 重要的是{@code PlatformTransactionManager}实例作为Spring bean
 	 * 在容器中进行管理, 因为大多数{@code PlatformTransactionManager}实现利用了Spring的生命周期回调,
 	 * 如{@code InitializingBean}和{@code BeanFactoryAware}。请注意, 同样的准则也适用于{@code ReactiveTransactionManager} bean。
-	 * @return a {@link org.springframework.transaction.PlatformTransactionManager} or
-	 * {@link org.springframework.transaction.ReactiveTransactionManager} implementation
+	 * @return {@link org.springframework.transaction.PlatformTransactionManager} 或
+	 * {@link org.springframework.transaction.ReactiveTransactionManager} 实现
 	 */
 	TransactionManager annotationDrivenTransactionManager();
 

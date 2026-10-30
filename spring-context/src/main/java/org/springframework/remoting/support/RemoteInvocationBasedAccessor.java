@@ -58,8 +58,8 @@ public abstract class RemoteInvocationBasedAccessor extends UrlBasedRemoteAccess
 	 * <p>默认实现委托给已配置的 {@link #setRemoteInvocationFactory RemoteInvocationFactory}。可以在子
 	 * 类中覆盖此方法，以提供包含额外调用参数（例如用户凭据）的自定义 RemoteInvocation 子类。
 	 * <p>请注意，最好构建一个可复用的自定义 RemoteInvocationFactory 策略，而不是覆盖此方法。
-	 * @param methodInvocation the current AOP method invocation
-	 * @return the RemoteInvocation object
+	 * @param methodInvocation 当前 AOP 方法调用
+	 * @return RemoteInvocation 对象
 	 * @see RemoteInvocationFactory#createRemoteInvocation
 	 */
 	protected RemoteInvocation createRemoteInvocation(MethodInvocation methodInvocation) {
@@ -70,9 +70,9 @@ public abstract class RemoteInvocationBasedAccessor extends UrlBasedRemoteAccess
 	 * 重建给定 RemoteInvocationResult 对象中包含的调用结果。
 	 * <p>默认实现调用默认的 {@code recreate()} 方法。可以在子类中覆盖此方法以提供自定义重建逻辑，可能
 	 * 还会处理返回的结果对象。
-	 * @param result the RemoteInvocationResult to recreate
-	 * @return a return value if the invocation result is a successful return
-	 * @throws Throwable if the invocation result is an exception
+	 * @param result 要重新创建的 RemoteInvocationResult
+	 * @return 如果调用结果是成功的返回值，则返回该返回值
+	 * @throws Throwable 如果调用结果是异常
 	 * @see RemoteInvocationResult#recreate()
 	 */
 	@Nullable

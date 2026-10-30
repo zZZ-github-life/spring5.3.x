@@ -79,8 +79,8 @@ public class MockPageContext extends PageContext {
 	/**
 	 * 使用默认的 {@link MockHttpServletRequest}、
 	 * {@link MockHttpServletResponse} 和 {@link MockServletConfig} 创建新的 MockPageContext。
-	 * @param servletContext the ServletContext that the JSP page runs in
-	 * (only necessary when actually accessing the ServletContext)
+	 * @param servletContext JSP 页面运行所在的 ServletContext
+	 * （仅在真正访问 ServletContext 时才需要）
 	 */
 	public MockPageContext(@Nullable ServletContext servletContext) {
 		this(servletContext, null, null, null);
@@ -89,9 +89,9 @@ public class MockPageContext extends PageContext {
 	/**
 	 * 使用 MockHttpServletResponse 和
 	 * MockServletConfig 创建新的 MockPageContext。
-	 * @param servletContext the ServletContext that the JSP page runs in
-	 * @param request the current HttpServletRequest
-	 * (only necessary when actually accessing the request)
+	 * @param servletContext JSP 页面运行所在的 ServletContext
+	 * @param request 当前 HttpServletRequest
+	 * （仅在真正访问请求时才需要）
 	 */
 	public MockPageContext(@Nullable ServletContext servletContext, @Nullable HttpServletRequest request) {
 		this(servletContext, request, null, null);
@@ -99,10 +99,10 @@ public class MockPageContext extends PageContext {
 
 	/**
 	 * 使用 MockServletConfig 创建新的 MockPageContext。
-	 * @param servletContext the ServletContext that the JSP page runs in
-	 * @param request the current HttpServletRequest
-	 * @param response the current HttpServletResponse
-	 * (only necessary when actually writing to the response)
+	 * @param servletContext JSP 页面运行所在的 ServletContext
+	 * @param request 当前 HttpServletRequest
+	 * @param response 当前 HttpServletResponse
+	 * （仅在真正写入响应时才需要）
 	 */
 	public MockPageContext(@Nullable ServletContext servletContext, @Nullable HttpServletRequest request,
 			@Nullable HttpServletResponse response) {
@@ -112,10 +112,10 @@ public class MockPageContext extends PageContext {
 
 	/**
 	 * 创建新的 MockServletConfig。
-	 * @param servletContext the ServletContext that the JSP page runs in
-	 * @param request the current HttpServletRequest
-	 * @param response the current HttpServletResponse
-	 * @param servletConfig the ServletConfig (hardly ever accessed from within a tag)
+	 * @param servletContext JSP 页面运行所在的 ServletContext
+	 * @param request 当前 HttpServletRequest
+	 * @param response 当前 HttpServletResponse
+	 * @param servletConfig ServletConfig（几乎不会在标签内访问）
 	 */
 	public MockPageContext(@Nullable ServletContext servletContext, @Nullable HttpServletRequest request,
 			@Nullable HttpServletResponse response, @Nullable ServletConfig servletConfig) {

@@ -190,10 +190,10 @@ public abstract class AbstractResource implements Resource {
 	/**
 	 * 确定用于时间戳检查的 File。
 	 * <p>默认实现委托给 {@link #getFile()}。
-	 * @return the File to use for timestamp checking (never {@code null})
-	 * @throws FileNotFoundException if the resource cannot be resolved as
-	 * an absolute file path, i.e. is not available in a file system
-	 * @throws IOException in case of general resolution/reading failures
+	 * @return 用于时间戳检查的 File（永不为 {@code null}）
+	 * @throws FileNotFoundException 如果资源无法解析为绝对文件路径，
+	 * 即该资源在文件系统中不可用
+	 * @throws IOException 在一般性的解析/读取失败时
 	 */
 	protected File getFileForLastModifiedCheck() throws IOException {
 		return getFile();

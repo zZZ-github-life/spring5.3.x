@@ -61,15 +61,15 @@ public interface ServerResponse {
 
 	/**
 	 * 返回此响应的状态码。
-	 * @return the status as an HttpStatus enum value
-	 * @throws IllegalArgumentException in case of an unknown HTTP status code
+	 * @return 状态，以 HttpStatus 枚举值表示
+	 * @throws IllegalArgumentException 在 HTTP 状态码未知的情况下
 	 * @see HttpStatus#valueOf(int)
 	 */
 	HttpStatus statusCode();
 
 	/**
 	 * 返回此响应的（可能是非标准的）状态码。
-	 * @return the status as an integer
+	 * @return 以整数表示的状态
 	 * @see #statusCode()
 	 * @see HttpStatus#valueOf(int)
 	 */
@@ -87,10 +87,10 @@ public interface ServerResponse {
 
 	/**
 	 * 将此响应写入给定的 Servlet 响应。
-	 * @param request the current request
-	 * @param response the response to write to
-	 * @param context the context to use when writing
-	 * @return a {@code ModelAndView} to render, or {@code null} if handled directly
+	 * @param request 当前请求
+	 * @param response 要写入的响应
+	 * @param context 写入时使用的上下文
+	 * @return 要渲染的 {@code ModelAndView}；如果已直接处理，则为 {@code null}
 	 */
 	@Nullable
 	ModelAndView writeTo(HttpServletRequest request, HttpServletResponse response, Context context)
@@ -101,8 +101,8 @@ public interface ServerResponse {
 
 	/**
 	 * 创建带有给定响应的状态码和响应头的构建器。
-	 * @param other the response to copy the status and headers from
-	 * @return the created builder
+	 * @param other 要从中复制状态和头的响应
+	 * @return 所创建的构建器
 	 */
 	static BodyBuilder from(ServerResponse other) {
 		return new DefaultServerResponseBuilder(other);
@@ -110,8 +110,8 @@ public interface ServerResponse {
 
 	/**
 	 * 创建带有给定 HTTP 状态的构建器。
-	 * @param status the response status
-	 * @return the created builder
+	 * @param status 响应状态
+	 * @return 所创建的构建器
 	 */
 	static BodyBuilder status(HttpStatus status) {
 		return new DefaultServerResponseBuilder(status);
@@ -119,8 +119,8 @@ public interface ServerResponse {
 
 	/**
 	 * 创建带有给定 HTTP 状态的构建器。
-	 * @param status the response status
-	 * @return the created builder
+	 * @param status 响应状态
+	 * @return 所创建的构建器
 	 */
 	static BodyBuilder status(int status) {
 		return new DefaultServerResponseBuilder(status);
@@ -128,7 +128,7 @@ public interface ServerResponse {
 
 	/**
 	 * 创建状态设置为 {@linkplain HttpStatus#OK 200 OK} 的构建器。
-	 * @return the created builder
+	 * @return 所创建的构建器
 	 */
 	static BodyBuilder ok() {
 		return status(HttpStatus.OK);
@@ -137,8 +137,8 @@ public interface ServerResponse {
 	/**
 	 * 创建状态为 {@linkplain HttpStatus#CREATED 201 Created}、
 	 * 且 location 请求头设置为给定 URI 的构建器。
-	 * @param location the location URI
-	 * @return the created builder
+	 * @param location 位置 URI
+	 * @return 所创建的构建器
 	 */
 	static BodyBuilder created(URI location) {
 		BodyBuilder builder = status(HttpStatus.CREATED);
@@ -147,7 +147,7 @@ public interface ServerResponse {
 
 	/**
 	 * 创建状态为 {@linkplain HttpStatus#ACCEPTED 202 Accepted} 的构建器。
-	 * @return the created builder
+	 * @return 所创建的构建器
 	 */
 	static BodyBuilder accepted() {
 		return status(HttpStatus.ACCEPTED);
@@ -155,7 +155,7 @@ public interface ServerResponse {
 
 	/**
 	 * 创建状态为 {@linkplain HttpStatus#NO_CONTENT 204 No Content} 的构建器。
-	 * @return the created builder
+	 * @return 所创建的构建器
 	 */
 	static HeadersBuilder<?> noContent() {
 		return status(HttpStatus.NO_CONTENT);
@@ -164,8 +164,8 @@ public interface ServerResponse {
 	/**
 	 * 创建状态为 {@linkplain HttpStatus#SEE_OTHER 303 See Other}、
 	 * 且 location 请求头设置为给定 URI 的构建器。
-	 * @param location the location URI
-	 * @return the created builder
+	 * @param location 位置 URI
+	 * @return 所创建的构建器
 	 */
 	static BodyBuilder seeOther(URI location) {
 		BodyBuilder builder = status(HttpStatus.SEE_OTHER);
@@ -175,8 +175,8 @@ public interface ServerResponse {
 	/**
 	 * 创建状态为 {@linkplain HttpStatus#TEMPORARY_REDIRECT 307 Temporary Redirect}、
 	 * 且 location 请求头设置为给定 URI 的构建器。
-	 * @param location the location URI
-	 * @return the created builder
+	 * @param location 位置 URI
+	 * @return 所创建的构建器
 	 */
 	static BodyBuilder temporaryRedirect(URI location) {
 		BodyBuilder builder = status(HttpStatus.TEMPORARY_REDIRECT);
@@ -186,8 +186,8 @@ public interface ServerResponse {
 	/**
 	 * 创建状态为 {@linkplain HttpStatus#PERMANENT_REDIRECT 308 Permanent Redirect}、
 	 * 且 location 请求头设置为给定 URI 的构建器。
-	 * @param location the location URI
-	 * @return the created builder
+	 * @param location 位置 URI
+	 * @return 所创建的构建器
 	 */
 	static BodyBuilder permanentRedirect(URI location) {
 		BodyBuilder builder = status(HttpStatus.PERMANENT_REDIRECT);
@@ -196,7 +196,7 @@ public interface ServerResponse {
 
 	/**
 	 * 创建状态为 {@linkplain HttpStatus#BAD_REQUEST 400 Bad Request} 的构建器。
-	 * @return the created builder
+	 * @return 所创建的构建器
 	 */
 	static BodyBuilder badRequest() {
 		return status(HttpStatus.BAD_REQUEST);
@@ -204,7 +204,7 @@ public interface ServerResponse {
 
 	/**
 	 * 创建状态为 {@linkplain HttpStatus#NOT_FOUND 404 Not Found} 的构建器。
-	 * @return the created builder
+	 * @return 所创建的构建器
 	 */
 	static HeadersBuilder<?> notFound() {
 		return status(HttpStatus.NOT_FOUND);
@@ -213,7 +213,7 @@ public interface ServerResponse {
 	/**
 	 * 创建状态为
 	 * {@linkplain HttpStatus#UNPROCESSABLE_ENTITY 422 Unprocessable Entity} 的构建器。
-	 * @return the created builder
+	 * @return 所创建的构建器
 	 */
 	static BodyBuilder unprocessableEntity() {
 		return status(HttpStatus.UNPROCESSABLE_ENTITY);
@@ -230,9 +230,9 @@ public interface ServerResponse {
 	 * <p>此方法可用于基于异步结果设置响应状态码、响应头和
 	 * 响应体。如果只有响应体是异步的，则
 	 * 可以改用 {@link BodyBuilder#body(Object)}。
-	 * @param asyncResponse a {@code CompletableFuture<ServerResponse>} or
+	 * @param asyncResponse {@code CompletableFuture<ServerResponse>} 或
 	 * {@code Publisher<ServerResponse>}
-	 * @return the asynchronous response
+	 * @return 异步响应
 	 * @since 5.3
 	 */
 	static ServerResponse async(Object asyncResponse) {
@@ -250,10 +250,10 @@ public interface ServerResponse {
 	 * <p>此方法可用于基于异步结果设置响应状态码、响应头和
 	 * 响应体。如果只有响应体是异步的，则
 	 * 可以改用 {@link BodyBuilder#body(Object)}。
-	 * @param asyncResponse a {@code CompletableFuture<ServerResponse>} or
+	 * @param asyncResponse {@code CompletableFuture<ServerResponse>} 或
 	 * {@code Publisher<ServerResponse>}
-	 * @param timeout maximum time period to wait for before timing out
-	 * @return the asynchronous response
+	 * @param timeout 超时前等待的最长时间
+	 * @return 异步响应
 	 * @since 5.3.2
 	 */
 	static ServerResponse async(Object asyncResponse, Duration timeout) {
@@ -280,8 +280,8 @@ public interface ServerResponse {
 	 *         .send("Hello World!"));
 	 * }
 	 * </pre>
-	 * @param consumer consumer that will be provided with an event builder
-	 * @return the server-side event response
+	 * @param consumer 将被提供事件构建器的消费者
+	 * @return 服务器端事件响应
 	 * @since 5.3.2
 	 * @see <a href="https://www.w3.org/TR/eventsource/">Server-Sent Events</a>
 	 */
@@ -309,9 +309,9 @@ public interface ServerResponse {
 	 *         .send("Hello World!"));
 	 * }
 	 * </pre>
-	 * @param consumer consumer that will be provided with an event builder
-	 * @param timeout  maximum time period to wait before timing out
-	 * @return the server-side event response
+	 * @param consumer 将被提供事件构建器的消费者
+	 * @param timeout 超时前等待的最长时间
+	 * @return 服务器端事件响应
 	 * @since 5.3.2
 	 * @see <a href="https://www.w3.org/TR/eventsource/">Server-Sent Events</a>
 	 */
@@ -322,15 +322,15 @@ public interface ServerResponse {
 
 	/**
 	 * 定义向响应添加请求头的构建器。
-	 * @param <B> the builder subclass
+	 * @param <B> 构建器子类
 	 */
 	interface HeadersBuilder<B extends HeadersBuilder<B>> {
 
 		/**
 		 * 在给定名称下添加给定的请求头值。
-		 * @param headerName   the header name
-		 * @param headerValues the header value(s)
-		 * @return this builder
+		 * @param headerName 头名称
+		 * @param headerValues 头值
+		 * @return 此构建器
 		 * @see HttpHeaders#add(String, String)
 		 */
 		B header(String headerName, String... headerValues);
@@ -341,15 +341,15 @@ public interface ServerResponse {
 		 * {@linkplain HttpHeaders#set(String, String) 覆盖}现有请求头值、
 		 * {@linkplain HttpHeaders#remove(Object) 移除}值，或使用任何其他
 		 * {@link HttpHeaders} 方法。
-		 * @param headersConsumer a function that consumes the {@code HttpHeaders}
-		 * @return this builder
+		 * @param headersConsumer 消费 {@code HttpHeaders} 的函数
+		 * @return 此构建器
 		 */
 		B headers(Consumer<HttpHeaders> headersConsumer);
 
 		/**
 		 * 将给定 Cookie 添加到响应。
-		 * @param cookie the cookie to add
-		 * @return this builder
+		 * @param cookie 要添加的 Cookie
+		 * @return 此构建器
 		 */
 		B cookie(Cookie cookie);
 
@@ -359,16 +359,16 @@ public interface ServerResponse {
 		 * {@linkplain MultiValueMap#set(Object, Object) 覆盖}现有 Cookie、
 		 * {@linkplain MultiValueMap#remove(Object) 移除} Cookie，或使用任何其他
 		 * {@link MultiValueMap} 方法。
-		 * @param cookiesConsumer a function that consumes the cookies
-		 * @return this builder
+		 * @param cookiesConsumer 消费 Cookie 的函数
+		 * @return 此构建器
 		 */
 		B cookies(Consumer<MultiValueMap<String, Cookie>> cookiesConsumer);
 
 		/**
 		 * 设置允许的 {@link HttpMethod HTTP 方法}集合，由
 		 * {@code Allow} 请求头指定。
-		 * @param allowedMethods the allowed methods
-		 * @return this builder
+		 * @param allowedMethods 允许的方法
+		 * @return 此构建器
 		 * @see HttpHeaders#setAllow(Set)
 		 */
 		B allow(HttpMethod... allowedMethods);
@@ -376,16 +376,16 @@ public interface ServerResponse {
 		/**
 		 * 设置允许的 {@link HttpMethod HTTP 方法}集合，由
 		 * {@code Allow} 请求头指定。
-		 * @param allowedMethods the allowed methods
-		 * @return this builder
+		 * @param allowedMethods 允许的方法
+		 * @return 此构建器
 		 * @see HttpHeaders#setAllow(Set)
 		 */
 		B allow(Set<HttpMethod> allowedMethods);
 
 		/**
 		 * 设置响应体的实体标签，由 {@code ETag} 请求头指定。
-		 * @param eTag the new entity tag
-		 * @return this builder
+		 * @param eTag 新的实体标签
+		 * @return 此构建器
 		 * @see HttpHeaders#setETag(String)
 		 */
 		B eTag(String eTag);
@@ -393,8 +393,8 @@ public interface ServerResponse {
 		/**
 		 * 设置资源最后更改的时间，由
 		 * {@code Last-Modified} 请求头指定。
-		 * @param lastModified the last modified date
-		 * @return this builder
+		 * @param lastModified 最后修改日期
+		 * @return 此构建器
 		 * @see HttpHeaders#setLastModified(long)
 		 */
 		B lastModified(ZonedDateTime lastModified);
@@ -402,15 +402,15 @@ public interface ServerResponse {
 		/**
 		 * 设置资源最后更改的时间，由
 		 * {@code Last-Modified} 请求头指定。
-		 * @param lastModified the last modified date
-		 * @return this builder
+		 * @param lastModified 最后修改日期
+		 * @return 此构建器
 		 * @see HttpHeaders#setLastModified(long)
 		 */
 		B lastModified(Instant lastModified);
 		/**
 		 * 设置资源的位置，由 {@code Location} 请求头指定。
-		 * @param location the location
-		 * @return this builder
+		 * @param location 位置
+		 * @return 此构建器
 		 * @see HttpHeaders#setLocation(URI)
 		 */
 		B location(URI location);
@@ -420,8 +420,8 @@ public interface ServerResponse {
 		 * {@code Cache-Control} 请求头指定。
 		 * <p>{@code CacheControl} 实例可以像
 		 * {@code CacheControl.maxAge(3600).cachePublic().noTransform()} 这样构建。
-		 * @param cacheControl a builder for cache-related HTTP response headers
-		 * @return this builder
+		 * @param cacheControl 用于缓存相关 HTTP 响应头的构建器
+		 * @return 此构建器
 		 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2">RFC-7234 Section 5.2</a>
 		 */
 		B cacheControl(CacheControl cacheControl);
@@ -431,8 +431,8 @@ public interface ServerResponse {
 		 * 添加到 "Vary" 响应头，以告知客户端响应会进行内容协商，并
 		 * 根据给定请求头的值发生变化。仅当响应 "Vary" 请求头中
 		 * 尚不存在时，才会添加所配置的请求头名称。
-		 * @param requestHeaders request header names
-		 * @return this builder
+		 * @param requestHeaders 请求头名称
+		 * @return 此构建器
 		 */
 		B varyBy(String... requestHeaders);
 
@@ -443,7 +443,7 @@ public interface ServerResponse {
 
 		/**
 		 * 使用自定义写入函数构建响应实体。
-		 * @param writeFunction the function used to write to the {@link HttpServletResponse}
+		 * @param writeFunction 用于写入 {@link HttpServletResponse} 的函数
 		 */
 		ServerResponse build(BiFunction<HttpServletRequest, HttpServletResponse,
 				ModelAndView> writeFunction);
@@ -459,8 +459,8 @@ public interface ServerResponse {
 		/**
 		 * 设置响应体的长度（以字节为单位），由
 		 * {@code Content-Length} 请求头指定。
-		 * @param contentLength the content length
-		 * @return this builder
+		 * @param contentLength 内容长度
+		 * @return 此构建器
 		 * @see HttpHeaders#setContentLength(long)
 		 */
 		BodyBuilder contentLength(long contentLength);
@@ -468,8 +468,8 @@ public interface ServerResponse {
 		/**
 		 * 设置响应体的 {@linkplain MediaType 媒体类型}，由
 		 * {@code Content-Type} 请求头指定。
-		 * @param contentType the content type
-		 * @return this builder
+		 * @param contentType 内容类型
+		 * @return 此构建器
 		 * @see HttpHeaders#setContentType(MediaType)
 		 */
 		BodyBuilder contentType(MediaType contentType);
@@ -481,17 +481,17 @@ public interface ServerResponse {
 		 * <p>通过将 {@link CompletionStage} 或 {@link Publisher} 作为
 		 * 响应体（或任何可通过 {@link ReactiveAdapterRegistry} 适配的单实体
 		 * 异步生产者），支持异步响应体。
-		 * @param body the body of the response
-		 * @return the built response
+		 * @param body 响应的消息体
+		 * @return 所构建的响应
 		 */
 		ServerResponse body(Object body);
 
 		/**
 		 * 将响应体设置为给定 {@code Object} 并返回该响应。参数
 		 * {@code bodyType} 用于捕获泛型类型。
-		 * @param body the body of the response
-		 * @param bodyType the type of the body, used to capture the generic type
-		 * @return the built response
+		 * @param body 响应的消息体
+		 * @param bodyType 消息体的类型，用于捕获泛型类型
+		 * @return 所构建的响应
 		 */
 		<T> ServerResponse body(T body, ParameterizedTypeReference<T> bodyType);
 
@@ -502,17 +502,17 @@ public interface ServerResponse {
 		 * <p><em>注意：使用此方法时，空的 {@link Collection Collections}
 		 * 不会添加到模型中，因为我们无法正确确定
 		 * 真实的约定名称。</em>
-		 * @param name the name of the template to be rendered
-		 * @param modelAttributes the modelAttributes used to render the template
-		 * @return the built response
+		 * @param name 要渲染的模板名称
+		 * @param modelAttributes 用于渲染模板的 modelAttributes
+		 * @return 所构建的响应
 		 */
 		ServerResponse render(String name, Object... modelAttributes);
 
 		/**
 		 * 使用给定的 {@code model} 渲染名为给定 {@code name} 的模板。
-		 * @param name the name of the template to be rendered
-		 * @param model the model used to render the template
-		 * @return the built response
+		 * @param name 要渲染的模板名称
+		 * @param model 用于渲染模板的模型
+		 * @return 所构建的响应
 		 */
 		ServerResponse render(String name, Map<String, ?> model);
 	}
@@ -532,36 +532,36 @@ public interface ServerResponse {
 		 *
 		 * <p>此便捷方法与
 		 * {@link #data(Object)} 的效果相同。
-		 * @param object the object to send
-		 * @throws IOException in case of I/O errors
+		 * @param object 要发送的对象
+		 * @throws IOException 在出现 I/O 错误的情况下
 		 */
 		void send(Object object) throws IOException;
 
 		/**
 		 * 添加一行 SSE "id"。
-		 * @param id the event identifier
-		 * @return this builder
+		 * @param id 事件标识符
+		 * @return 此构建器
 		 */
 		SseBuilder id(String id);
 
 		/**
 		 * 添加一行 SSE "event"。
-		 * @param eventName the event name
-		 * @return this builder
+		 * @param eventName 事件名称
+		 * @return 此构建器
 		 */
 		SseBuilder event(String eventName);
 
 		/**
 		 * 添加一行 SSE "retry"。
-		 * @param duration the duration to convert into millis
-		 * @return this builder
+		 * @param duration 要转换为毫秒的时长
+		 * @return 此构建器
 		 */
 		SseBuilder retry(Duration duration);
 
 		/**
 		 * 添加一条 SSE 注释。
-		 * @param comment the comment
-		 * @return this builder
+		 * @param comment 注释
+		 * @return 此构建器
 		 */
 		SseBuilder comment(String comment);
 
@@ -570,8 +570,8 @@ public interface ServerResponse {
 		 * 服务器发送事件发送到客户端。
 		 * 字符串将作为 UTF-8 编码字节发送，其他对象将
 		 * 使用{@linkplain HttpMessageConverter 消息转换器}转换为 JSON。
-		 * @param object the object to send as data
-		 * @throws IOException in case of I/O errors
+		 * @param object 要作为数据发送的对象
+		 * @throws IOException 在出现 I/O 错误的情况下
 		 */
 		void data(Object object) throws IOException;
 
@@ -581,7 +581,7 @@ public interface ServerResponse {
 		 * <p>该 throwable 会被分派回 Spring MVC，并传递给
 		 * 其异常处理机制。由于此时响应
 		 * 已提交，因此响应状态无法更改。
- 		 * @param t the throwable to dispatch
+		 * @param t 要分派的 throwable
 		 */
 		void error(Throwable t);
 
@@ -592,22 +592,22 @@ public interface ServerResponse {
 
 		/**
 		 * 注册一个回调，在 SSE 请求超时时调用。
-		 * @param onTimeout the callback to invoke on timeout
-		 * @return this builder
+		 * @param onTimeout 超时时调用的回调
+		 * @return 此构建器
 		 */
 		SseBuilder onTimeout(Runnable onTimeout);
 
 		/**
 		 * 注册一个回调，在 SSE 处理期间发生错误时调用。
-		 * @param onError  the callback to invoke on error
-		 * @return this builder
+		 * @param onError 出错时调用的回调
+		 * @return 此构建器
 		 */
 		SseBuilder onError(Consumer<Throwable> onError);
 
 		/**
 		 * 注册一个回调，在 SSE 请求完成时调用。
-		 * @param onCompletion the callback to invoked on completion
-		 * @return this builder
+		 * @param onCompletion 完成时调用的回调
+		 * @return 此构建器
 		 */
 		SseBuilder onComplete(Runnable onCompletion);
 	}
@@ -620,7 +620,7 @@ public interface ServerResponse {
 
 		/**
 		 * 返回用于响应体转换的 {@link HttpMessageConverter HttpMessageConverters}。
-		 * @return the list of message writers
+		 * @return 消息写入器列表
 		 */
 		List<HttpMessageConverter<?>> messageConverters();
 

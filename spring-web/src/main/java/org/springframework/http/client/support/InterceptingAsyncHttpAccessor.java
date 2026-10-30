@@ -39,7 +39,7 @@ public abstract class InterceptingAsyncHttpAccessor extends AsyncHttpAccessor {
 
 	/**
 	 * 设置此访问器应使用的请求拦截器。
-	 * @param interceptors the list of interceptors
+	 * @param interceptors 拦截器列表
 	 */
 	public void setInterceptors(List<org.springframework.http.client.AsyncClientHttpRequestInterceptor> interceptors) {
 		this.interceptors = interceptors;

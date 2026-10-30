@@ -35,7 +35,7 @@ public class DelegatingWork implements Work {
 
 	/**
 	 * 创建新的 DelegatingWork。
-	 * @param delegate the Runnable implementation to delegate to
+	 * @param delegate 要委托给的 Runnable 实现
 	 */
 	public DelegatingWork(Runnable delegate) {
 		Assert.notNull(delegate, "Delegate must not be null");

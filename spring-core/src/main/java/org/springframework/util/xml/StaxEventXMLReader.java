@@ -75,8 +75,8 @@ class StaxEventXMLReader extends AbstractStaxXMLReader {
 	 * 构造一个从给定 {@code XMLEventReader} 读取的 {@code StaxEventXmlReader} 新实例。
 	 * 提供的事件读取器必须处于 {@code XMLStreamConstants.START_DOCUMENT} 或
 	 * {@code XMLStreamConstants.START_ELEMENT} 状态。
-	 * @param reader the {@code XMLEventReader} to read from
-	 * @throws IllegalStateException if the reader is not at the start of a document or element
+	 * @param reader 要从中读取的 {@code XMLEventReader}
+	 * @throws IllegalStateException 如果读取器不在文档或元素的起始处
 	 */
 	StaxEventXMLReader(XMLEventReader reader) {
 		try {

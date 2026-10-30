@@ -65,7 +65,7 @@ public class PersistenceExceptionTranslationInterceptor
 	/**
 	 * 为给定的 PersistenceExceptionTranslator
 	 * 创建新的 PersistenceExceptionTranslationInterceptor。
-	 * @param pet the PersistenceExceptionTranslator to use
+	 * @param pet 要使用的 PersistenceExceptionTranslator
 	 */
 	public PersistenceExceptionTranslationInterceptor(PersistenceExceptionTranslator pet) {
 		Assert.notNull(pet, "PersistenceExceptionTranslator must not be null");
@@ -75,8 +75,7 @@ public class PersistenceExceptionTranslationInterceptor
 	/**
 	 * 创建新的 PersistenceExceptionTranslationInterceptor，
 	 * 自动检测给定 BeanFactory 中的 PersistenceExceptionTranslator。
-	 * @param beanFactory the ListableBeanFactory to obtaining all
-	 * PersistenceExceptionTranslators from
+	 * @param beanFactory 用于从中获取所有 PersistenceExceptionTranslator 的 ListableBeanFactory
 	 */
 	public PersistenceExceptionTranslationInterceptor(ListableBeanFactory beanFactory) {
 		Assert.notNull(beanFactory, "ListableBeanFactory must not be null");
@@ -154,9 +153,9 @@ public class PersistenceExceptionTranslationInterceptor
 
 	/**
 	 * 检测给定 BeanFactory 中所有的 PersistenceExceptionTranslator。
-	 * @param bf the ListableBeanFactory to obtain PersistenceExceptionTranslators from
-	 * @return a chained PersistenceExceptionTranslator, combining all
-	 * PersistenceExceptionTranslators found in the given bean factory
+	 * @param bf 用于从中获取 PersistenceExceptionTranslator 的 ListableBeanFactory
+	 * @return 一个链式的 PersistenceExceptionTranslator，
+	 * 组合在给定 Bean 工厂中找到的所有 PersistenceExceptionTranslator
 	 * @see ChainedPersistenceExceptionTranslator
 	 */
 	protected PersistenceExceptionTranslator detectPersistenceExceptionTranslators(ListableBeanFactory bf) {

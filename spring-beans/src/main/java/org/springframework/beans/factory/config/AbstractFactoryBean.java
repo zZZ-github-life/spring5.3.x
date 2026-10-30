@@ -51,7 +51,7 @@ import org.springframework.util.ReflectionUtils;
  * @author Juergen Hoeller
  * @author Keith Donald
  * @since 1.0.2
- * @param <T> the bean type
+ * @param <T> 该 Bean 的类型
  * @see #setSingleton
  * @see #createInstance()
  */
@@ -172,8 +172,8 @@ public abstract class AbstractFactoryBean<T>
 
 	/**
 	 * 暴露单例实例（以便通过 'early singleton' 代理访问）。
-	 * @return the singleton instance that this FactoryBean holds
-	 * @throws IllegalStateException if the singleton instance is not initialized
+	 * @return 此 FactoryBean 持有的单例实例
+	 * @throws IllegalStateException 如果单例实例尚未初始化则抛出
 	 */
 	@Nullable
 	private T getSingletonInstance() throws IllegalStateException {
@@ -204,8 +204,8 @@ public abstract class AbstractFactoryBean<T>
 	/**
 	 * 子类必须重写的模板方法，用于构造此工厂返回的对象。<p>在单例的情况下，在此 FactoryBean 初始化时调
 	 * 用；否则在每次 {@link #getObject()} 调用时调用。
-	 * @return the object returned by this factory
-	 * @throws Exception if an exception occurred during object creation
+	 * @return 此工厂返回的对象
+	 * @throws Exception 如果在对象创建期间发生异常则抛出
 	 * @see #getObject()
 	 */
 	protected abstract T createInstance() throws Exception;
@@ -214,8 +214,8 @@ public abstract class AbstractFactoryBean<T>
 	 * 返回此 FactoryBean 所暴露的单例对象应实现的接口数组，用于在出现循环引用时暴露的 'early singleton
 	 * 代理'。<p>默认实现返回此 FactoryBean 的对象类型（前提是它是一个接口），否则返回 {@code null}。后
 	 * 者表示此 FactoryBean 不支持早期单例访问。这将导致抛出 FactoryBeanNotInitializedException。
-	 * @return the interfaces to use for 'early singletons',
-	 * or {@code null} to indicate a FactoryBeanNotInitializedException
+	 * @return 用于 'early singletons' 的接口，
+	 * 或 {@code null} 表示 FactoryBeanNotInitializedException
 	 * @see org.springframework.beans.factory.FactoryBeanNotInitializedException
 	 */
 	@Nullable
@@ -226,9 +226,8 @@ public abstract class AbstractFactoryBean<T>
 
 	/**
 	 * 用于销毁单例实例的回调。子类可以重写此方法以销毁先前创建的实例。<p>默认实现为空。
-	 * @param instance the singleton instance, as returned by
-	 * {@link #createInstance()}
-	 * @throws Exception in case of shutdown errors
+	 * @param instance 单例实例，由 {@link #createInstance()} 返回
+	 * @throws Exception 在关闭出错时抛出
 	 * @see #createInstance()
 	 */
 	protected void destroyInstance(@Nullable T instance) throws Exception {

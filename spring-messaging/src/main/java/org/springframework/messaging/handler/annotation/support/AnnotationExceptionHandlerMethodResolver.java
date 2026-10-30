@@ -41,7 +41,7 @@ public class AnnotationExceptionHandlerMethodResolver extends AbstractExceptionH
 
 	/**
 	 * 在给定类型中查找 {@link MessageExceptionHandler} 方法的构造函数。
-	 * @param handlerType the type to introspect
+	 * @param handlerType 要内省的类型
 	 */
 	public AnnotationExceptionHandlerMethodResolver(Class<?> handlerType) {
 		super(initExceptionMappings(handlerType));

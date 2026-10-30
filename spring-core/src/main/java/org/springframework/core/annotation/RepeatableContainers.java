@@ -51,9 +51,9 @@ public abstract class RepeatableContainers {
 
 	/**
 	 * 在被包含注解与可重复注解之间添加一个额外的显式关系。
-	 * @param container the container type
-	 * @param repeatable the contained repeatable type
-	 * @return a new {@link RepeatableContainers} instance
+	 * @param container 容器类型
+	 * @param repeatable 所含的可重复类型
+	 * @return 一个新的 {@link RepeatableContainers} 实例
 	 */
 	public RepeatableContainers and(Class<? extends Annotation> container,
 			Class<? extends Annotation> repeatable) {
@@ -90,7 +90,7 @@ public abstract class RepeatableContainers {
 	/**
 	 * 创建一个使用 Java 的 {@link Repeatable @Repeatable} 注解进行搜索的 {@link RepeatableContainers}
 	 * 实例。
-	 * @return a {@link RepeatableContainers} instance
+	 * @return 一个 {@link RepeatableContainers} 实例
 	 */
 	public static RepeatableContainers standardRepeatables() {
 		return StandardRepeatableContainers.INSTANCE;
@@ -98,17 +98,14 @@ public abstract class RepeatableContainers {
 
 	/**
 	 * 创建一个使用预定义的可重复类型和容器类型的 {@link RepeatableContainers} 实例。
-	 * @param repeatable the contained repeatable annotation type
-	 * @param container the container annotation type or {@code null}. If specified,
-	 * this annotation must declare a {@code value} attribute returning an array
-	 * of repeatable annotations. If not specified, the container will be
-	 * deduced by inspecting the {@code @Repeatable} annotation on
-	 * {@code repeatable}.
-	 * @return a {@link RepeatableContainers} instance
-	 * @throws IllegalArgumentException if the supplied container type is
-	 * {@code null} and the annotation type is not a repeatable annotation
-	 * @throws AnnotationConfigurationException if the supplied container type
-	 * is not a properly configured container for a repeatable annotation
+	 * @param repeatable 所含的可重复注解类型
+	 * @param container 容器注解类型或 {@code null}。如果指定，
+	 * 该注解必须声明一个返回可重复注解数组的 {@code value} 属性。
+	 * 如果未指定，则将通过检查 {@code repeatable} 上的
+	 * {@code @Repeatable} 注解来推断容器。
+	 * @return 一个 {@link RepeatableContainers} 实例
+	 * @throws IllegalArgumentException 如果提供的容器类型为 {@code null} 且注解类型不是可重复注解
+	 * @throws AnnotationConfigurationException 如果提供的容器类型不是正确配置的可重复注解容器
 	 */
 	public static RepeatableContainers of(
 			Class<? extends Annotation> repeatable, @Nullable Class<? extends Annotation> container) {
@@ -118,7 +115,7 @@ public abstract class RepeatableContainers {
 
 	/**
 	 * 创建一个不展开任何可重复注解的 {@link RepeatableContainers} 实例。
-	 * @return a {@link RepeatableContainers} instance
+	 * @return 一个 {@link RepeatableContainers} 实例
 	 */
 	public static RepeatableContainers none() {
 		return NoRepeatableContainers.INSTANCE;

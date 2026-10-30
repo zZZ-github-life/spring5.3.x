@@ -177,7 +177,7 @@ public class MimeMessageHelper {
 	 * 即无替代文本、无内联元素或附件）。
 	 * <p>消息的字符编码将从传入的 MimeMessage 对象中获取（如果有的话）。
 	 * 否则将使用 JavaMail 的默认编码。
-	 * @param mimeMessage the mime message to work on
+	 * @param mimeMessage 要处理的 MIME 消息
 	 * @see #MimeMessageHelper(javax.mail.internet.MimeMessage, boolean)
 	 * @see #getDefaultEncoding(javax.mail.internet.MimeMessage)
 	 * @see JavaMailSenderImpl#setDefaultEncoding
@@ -190,8 +190,8 @@ public class MimeMessageHelper {
 	 * 为给定的 MimeMessage 创建新的 MimeMessageHelper，
 	 * 假设为简单文本消息（无多部分内容，
 	 * 即无替代文本、无内联元素或附件）。
-	 * @param mimeMessage the mime message to work on
-	 * @param encoding the character encoding to use for the message
+	 * @param mimeMessage 要处理的 MIME 消息
+	 * @param encoding 用于消息的字符编码
 	 * @see #MimeMessageHelper(javax.mail.internet.MimeMessage, boolean)
 	 */
 	public MimeMessageHelper(MimeMessage mimeMessage, @Nullable String encoding) {
@@ -207,11 +207,10 @@ public class MimeMessageHelper {
 	 * 来选择 MULTIPART_MODE_MIXED_RELATED 之外的特定多部分模式。
 	 * <p>消息的字符编码将从传入的 MimeMessage 对象中获取（如果有的话）。
 	 * 否则将使用 JavaMail 的默认编码。
-	 * @param mimeMessage the mime message to work on
-	 * @param multipart whether to create a multipart message that
-	 * supports alternative texts, inline elements and attachments
-	 * (corresponds to MULTIPART_MODE_MIXED_RELATED)
-	 * @throws MessagingException if multipart creation failed
+	 * @param mimeMessage 要处理的 MIME 消息
+	 * @param multipart 是否创建支持替代文本、内联元素和附件的 multipart 消息
+	 * （对应 MULTIPART_MODE_MIXED_RELATED）
+	 * @throws MessagingException multipart 创建失败时
 	 * @see #MimeMessageHelper(javax.mail.internet.MimeMessage, int)
 	 * @see #getDefaultEncoding(javax.mail.internet.MimeMessage)
 	 * @see JavaMailSenderImpl#setDefaultEncoding
@@ -225,12 +224,11 @@ public class MimeMessageHelper {
 	 * 如果请求则以多部分模式（支持替代文本、内联元素和附件）。
 	 * <p>考虑使用接受 multipartMode 参数的 MimeMessageHelper 构造方法
 	 * 来选择 MULTIPART_MODE_MIXED_RELATED 之外的特定多部分模式。
-	 * @param mimeMessage the mime message to work on
-	 * @param multipart whether to create a multipart message that
-	 * supports alternative texts, inline elements and attachments
-	 * (corresponds to MULTIPART_MODE_MIXED_RELATED)
-	 * @param encoding the character encoding to use for the message
-	 * @throws MessagingException if multipart creation failed
+	 * @param mimeMessage 要处理的 MIME 消息
+	 * @param multipart 是否创建支持替代文本、内联元素和附件的 multipart 消息
+	 * （对应 MULTIPART_MODE_MIXED_RELATED）
+	 * @param encoding 用于消息的字符编码
+	 * @throws MessagingException multipart 创建失败时
 	 * @see #MimeMessageHelper(javax.mail.internet.MimeMessage, int, String)
 	 */
 	public MimeMessageHelper(MimeMessage mimeMessage, boolean multipart, @Nullable String encoding)
@@ -244,10 +242,9 @@ public class MimeMessageHelper {
 	 * 如果请求则以多部分模式（支持替代文本、内联元素和附件）。
 	 * <p>消息的字符编码将从传入的 MimeMessage 对象中获取（如果有的话）。
 	 * 否则将使用 JavaMail 的默认编码。
-	 * @param mimeMessage the mime message to work on
-	 * @param multipartMode which kind of multipart message to create
-	 * (MIXED, RELATED, MIXED_RELATED, or NO)
-	 * @throws MessagingException if multipart creation failed
+	 * @param mimeMessage 要处理的 MIME 消息
+	 * @param multipartMode 要创建的 multipart 消息类型（MIXED、RELATED、MIXED_RELATED 或 NO）
+	 * @throws MessagingException multipart 创建失败时
 	 * @see #MULTIPART_MODE_NO
 	 * @see #MULTIPART_MODE_MIXED
 	 * @see #MULTIPART_MODE_RELATED
@@ -262,11 +259,10 @@ public class MimeMessageHelper {
 	/**
 	 * 为给定的 MimeMessage 创建新的 MimeMessageHelper，
 	 * 如果请求则以多部分模式（支持替代文本、内联元素和附件）。
-	 * @param mimeMessage the mime message to work on
-	 * @param multipartMode which kind of multipart message to create
-	 * (MIXED, RELATED, MIXED_RELATED, or NO)
-	 * @param encoding the character encoding to use for the message
-	 * @throws MessagingException if multipart creation failed
+	 * @param mimeMessage 要处理的 MIME 消息
+	 * @param multipartMode 要创建的 multipart 消息类型（MIXED、RELATED、MIXED_RELATED 或 NO）
+	 * @param encoding 用于消息的字符编码
+	 * @throws MessagingException multipart 创建失败时
 	 * @see #MULTIPART_MODE_NO
 	 * @see #MULTIPART_MODE_MIXED
 	 * @see #MULTIPART_MODE_RELATED
@@ -302,11 +298,9 @@ public class MimeMessageHelper {
 	 * 主要的多部分元素将作为 "related" 类型的嵌套元素添加
 	 *（MULTIPART_MODE_MIXED_RELATED），或者与根元素本身相同
 	 *（MULTIPART_MODE_MIXED、MULTIPART_MODE_RELATED）。
-	 * @param mimeMessage the MimeMessage object to add the root MimeMultipart
-	 * object to
-	 * @param multipartMode the multipart mode, as passed into the constructor
-	 * (MIXED, RELATED, MIXED_RELATED, or NO)
-	 * @throws MessagingException if multipart creation failed
+	 * @param mimeMessage 要向其添加根 MimeMultipart 对象的 MimeMessage 对象
+	 * @param multipartMode multipart 模式，如传入构造函数的那样（MIXED、RELATED、MIXED_RELATED 或 NO）
+	 * @throws MessagingException multipart 创建失败时
 	 * @see #setMimeMultiparts
 	 * @see #MULTIPART_MODE_NO
 	 * @see #MULTIPART_MODE_MIXED
@@ -344,11 +338,10 @@ public class MimeMessageHelper {
 
 	/**
 	 * 设置供此 MimeMessageHelper 使用的给定 MimeMultipart 对象。
-	 * @param root the root MimeMultipart object, which attachments will be added to;
-	 * or {@code null} to indicate no multipart at all
-	 * @param main the main MimeMultipart object, which text(s) and inline elements
-	 * will be added to (can be the same as the root multipart object, or an element
-	 * nested underneath the root multipart element)
+	 * @param root 根 MimeMultipart 对象，附件将添加到其中；
+	 * 如果为 {@code null}，则表示根本没有 multipart
+	 * @param main 主 MimeMultipart 对象，文本和内联元素将添加到其中
+	 * （可以与根 multipart 对象相同，也可以是嵌套在根 multipart 元素下的元素）
 	 */
 	protected final void setMimeMultiparts(@Nullable MimeMultipart root, @Nullable MimeMultipart main) {
 		this.rootMimeMultipart = root;
@@ -368,7 +361,7 @@ public class MimeMessageHelper {
 	 * 返回根 MIME "multipart/mixed" 对象（如果有）。
 	 * 可用于手动添加附件。
 	 * <p>在多部分邮件的情况下，这将是 MimeMessage 的直接内容。
-	 * @throws IllegalStateException if this helper is not in multipart mode
+	 * @throws IllegalStateException 如果此辅助类不处于 multipart 模式
 	 * @see #isMultipart
 	 * @see #getMimeMessage
 	 * @see javax.mail.internet.MimeMultipart#addBodyPart
@@ -386,7 +379,7 @@ public class MimeMessageHelper {
 	 * 返回底层的 MIME "multipart/related" 对象（如果有）。
 	 * 可用于手动添加正文部分、内联元素等。
 	 * <p>在多部分邮件的情况下，这将嵌套在根 MimeMultipart 中。
-	 * @throws IllegalStateException if this helper is not in multipart mode
+	 * @throws IllegalStateException 如果此辅助类不处于 multipart 模式
 	 * @see #isMultipart
 	 * @see #getRootMimeMultipart
 	 * @see javax.mail.internet.MimeMultipart#addBodyPart
@@ -403,9 +396,8 @@ public class MimeMessageHelper {
 
 	/**
 	 * 确定给定 MimeMessage 的默认编码。
-	 * @param mimeMessage the passed-in MimeMessage
-	 * @return the default encoding associated with the MimeMessage,
-	 * or {@code null} if none found
+	 * @param mimeMessage 传入的 MimeMessage
+	 * @return 与 MimeMessage 关联的默认编码；如果未找到，则为 {@code null}
 	 */
 	@Nullable
 	protected String getDefaultEncoding(MimeMessage mimeMessage) {
@@ -425,9 +417,9 @@ public class MimeMessageHelper {
 
 	/**
 	 * 确定给定 MimeMessage 的默认 Java Activation FileTypeMap。
-	 * @param mimeMessage the passed-in MimeMessage
-	 * @return the default FileTypeMap associated with the MimeMessage,
-	 * or a default ConfigurableMimeFileTypeMap if none found for the message
+	 * @param mimeMessage 传入的 MimeMessage
+	 * @return 与 MimeMessage 关联的默认 FileTypeMap，
+	 * 如果未为该消息找到，则为默认的 ConfigurableMimeFileTypeMap
 	 * @see ConfigurableMimeFileTypeMap
 	 */
 	protected FileTypeMap getDefaultFileTypeMap(MimeMessage mimeMessage) {
@@ -513,8 +505,8 @@ public class MimeMessageHelper {
 	 * 由 MimeMessageHelper 的所有地址设置方法和添加方法调用。
 	 * <p>默认实现在地址验证已为此帮助类实例激活的情况下，
 	 * 调用 {@link InternetAddress#validate()}。
-	 * @param address the address to validate
-	 * @throws AddressException if validation failed
+	 * @param address 要校验的地址
+	 * @throws AddressException 校验失败时
 	 * @see #isValidateAddresses()
 	 * @see javax.mail.internet.InternetAddress#validate()
 	 */
@@ -527,8 +519,8 @@ public class MimeMessageHelper {
 	/**
 	 * 验证所有给定的邮件地址。
 	 * <p>默认实现简单地委托给 {@link #validateAddress} 处理每个地址。
-	 * @param addresses the addresses to validate
-	 * @throws AddressException if validation failed
+	 * @param addresses 要校验的地址
+	 * @throws AddressException 校验失败时
 	 * @see #validateAddress(InternetAddress)
 	 */
 	protected void validateAddresses(InternetAddress[] addresses) throws AddressException {
@@ -726,9 +718,8 @@ public class MimeMessageHelper {
 
 	/**
 	 * 设置消息的优先级（"X-Priority" 头）。
-	 * @param priority the priority value;
-	 * typically between 1 (highest) and 5 (lowest)
-	 * @throws MessagingException in case of errors
+	 * @param priority 优先级值；通常介于 1（最高）和 5（最低）之间
+	 * @throws MessagingException 出错时
 	 */
 	public void setPriority(int priority) throws MessagingException {
 		this.mimeMessage.setHeader(HEADER_PRIORITY, Integer.toString(priority));
@@ -736,8 +727,8 @@ public class MimeMessageHelper {
 
 	/**
 	 * 设置消息的发送日期。
-	 * @param sentDate the date to set (never {@code null})
-	 * @throws MessagingException in case of errors
+	 * @param sentDate 要设置的日期（永不为 {@code null}）
+	 * @throws MessagingException 出错时
 	 */
 	public void setSentDate(Date sentDate) throws MessagingException {
 		Assert.notNull(sentDate, "Sent date must not be null");
@@ -746,8 +737,8 @@ public class MimeMessageHelper {
 
 	/**
 	 * 使用正确的编码设置消息的主题。
-	 * @param subject the subject text
-	 * @throws MessagingException in case of errors
+	 * @param subject 主题文本
+	 * @throws MessagingException 出错时
 	 */
 	public void setSubject(String subject) throws MessagingException {
 		Assert.notNull(subject, "Subject must not be null");
@@ -766,8 +757,8 @@ public class MimeMessageHelper {
 	 * 始终应用默认的内容类型 "text/plain"。
 	 * <p><b>注意：</b>请在 {@code setText} <i>之后</i>调用 {@link #addInline}；
 	 * 否则邮件阅读器可能无法正确解析内联引用。
-	 * @param text the text for the message
-	 * @throws MessagingException in case of errors
+	 * @param text 消息的文本
+	 * @throws MessagingException 出错时
 	 */
 	public void setText(String text) throws MessagingException {
 		setText(text, false);
@@ -779,10 +770,10 @@ public class MimeMessageHelper {
 	 * "html" 标志决定要应用的内容类型。
 	 * <p><b>注意：</b>请在 {@code setText} <i>之后</i>调用 {@link #addInline}；
 	 * 否则邮件阅读器可能无法正确解析内联引用。
-	 * @param text the text for the message
-	 * @param html whether to apply content type "text/html" for an
-	 * HTML mail, using default content type ("text/plain") else
-	 * @throws MessagingException in case of errors
+	 * @param text 消息的文本
+	 * @param html 是否对 HTML 邮件应用内容类型 "text/html"，
+	 * 否则使用默认内容类型（"text/plain"）
+	 * @throws MessagingException 出错时
 	 */
 	public void setText(String text, boolean html) throws MessagingException {
 		Assert.notNull(text, "Text must not be null");
@@ -806,9 +797,9 @@ public class MimeMessageHelper {
 	 * 向邮件客户端提供两种选项。需要多部分模式。
 	 * <p><b>注意：</b>请在 {@code setText} <i>之后</i>调用 {@link #addInline}；
 	 * 否则邮件阅读器可能无法正确解析内联引用。
-	 * @param plainText the plain text for the message
-	 * @param htmlText the HTML text for the message
-	 * @throws MessagingException in case of errors
+	 * @param plainText 消息的纯文本
+	 * @param htmlText 消息的 HTML 文本
+	 * @throws MessagingException 出错时
 	 */
 	public void setText(String plainText, String htmlText) throws MessagingException {
 		Assert.notNull(plainText, "Plain text must not be null");
@@ -872,12 +863,12 @@ public class MimeMessageHelper {
 	 * {@code getInputStream()}。
 	 * <p><b>注意：</b>请在 {@link #setText} <i>之后</i>调用 {@code addInline}；
 	 * 否则邮件阅读器可能无法正确解析内联引用。
-	 * @param contentId the content ID to use. Will end up as "Content-ID" header
-	 * in the body part, surrounded by angle brackets: e.g. "myId" &rarr; "&lt;myId&gt;".
-	 * Can be referenced in HTML source via src="cid:myId" expressions.
-	 * @param dataSource the {@code javax.activation.DataSource} to take
-	 * the content from, determining the InputStream and the content type
-	 * @throws MessagingException in case of errors
+	 * @param contentId 要使用的内容 ID。最终会成为正文部分中的 "Content-ID" 头，
+	 * 用尖括号括起：例如 "myId" &rarr; "&lt;myId&gt;"。
+	 * 可在 HTML 源中通过 src="cid:myId" 表达式引用。
+	 * @param dataSource 用于获取内容的 {@code javax.activation.DataSource}，
+	 * 它确定 InputStream 和内容类型
+	 * @throws MessagingException 出错时
 	 * @see #addInline(String, java.io.File)
 	 * @see #addInline(String, org.springframework.core.io.Resource)
 	 */
@@ -897,11 +888,11 @@ public class MimeMessageHelper {
 	 * 不要将此用于具有任意文件名的临时文件（可能以 ".tmp" 结尾等）！
 	 * <p><b>注意：</b>请在 {@link #setText} <i>之后</i>调用 {@code addInline}；
 	 * 否则邮件阅读器可能无法正确解析内联引用。
-	 * @param contentId the content ID to use. Will end up as "Content-ID" header
-	 * in the body part, surrounded by angle brackets: e.g. "myId" &rarr; "&lt;myId&gt;".
-	 * Can be referenced in HTML source via src="cid:myId" expressions.
-	 * @param file the File resource to take the content from
-	 * @throws MessagingException in case of errors
+	 * @param contentId 要使用的内容 ID。最终会成为正文部分中的 "Content-ID" 头，
+	 * 用尖括号括起：例如 "myId" &rarr; "&lt;myId&gt;"。
+	 * 可在 HTML 源中通过 src="cid:myId" 表达式引用。
+	 * @param file 用于获取内容的 File 资源
+	 * @throws MessagingException 出错时
 	 * @see #setText
 	 * @see #addInline(String, org.springframework.core.io.Resource)
 	 * @see #addInline(String, javax.activation.DataSource)
@@ -923,11 +914,11 @@ public class MimeMessageHelper {
 	 * {@code getInputStream()}。
 	 * <p><b>注意：</b>请在 {@link #setText} <i>之后</i>调用 {@code addInline}；
 	 * 否则邮件阅读器可能无法正确解析内联引用。
-	 * @param contentId the content ID to use. Will end up as "Content-ID" header
-	 * in the body part, surrounded by angle brackets: e.g. "myId" &rarr; "&lt;myId&gt;".
-	 * Can be referenced in HTML source via src="cid:myId" expressions.
-	 * @param resource the resource to take the content from
-	 * @throws MessagingException in case of errors
+	 * @param contentId 要使用的内容 ID。最终会成为正文部分中的 "Content-ID" 头，
+	 * 用尖括号括起：例如 "myId" &rarr; "&lt;myId&gt;"。
+	 * 可在 HTML 源中通过 src="cid:myId" 表达式引用。
+	 * @param resource 用于获取内容的资源
+	 * @throws MessagingException 出错时
 	 * @see #setText
 	 * @see #addInline(String, java.io.File)
 	 * @see #addInline(String, javax.activation.DataSource)
@@ -949,12 +940,12 @@ public class MimeMessageHelper {
 	 * {@code getInputStream()}。
 	 * <p><b>注意：</b>请在 {@code setText} <i>之后</i>调用 {@code addInline}；
 	 * 否则邮件阅读器可能无法正确解析内联引用。
-	 * @param contentId the content ID to use. Will end up as "Content-ID" header
-	 * in the body part, surrounded by angle brackets: e.g. "myId" &rarr; "&lt;myId&gt;".
-	 * Can be referenced in HTML source via src="cid:myId" expressions.
-	 * @param inputStreamSource the resource to take the content from
-	 * @param contentType the content type to use for the element
-	 * @throws MessagingException in case of errors
+	 * @param contentId 要使用的内容 ID。最终会成为正文部分中的 "Content-ID" 头，
+	 * 用尖括号括起：例如 "myId" &rarr; "&lt;myId&gt;"。
+	 * 可在 HTML 源中通过 src="cid:myId" 表达式引用。
+	 * @param inputStreamSource 用于获取内容的资源
+	 * @param contentType 用于该元素的内容类型
+	 * @throws MessagingException 出错时
 	 * @see #setText
 	 * @see #getFileTypeMap
 	 * @see #addInline(String, org.springframework.core.io.Resource)
@@ -979,11 +970,10 @@ public class MimeMessageHelper {
 	 * <p>请注意，DataSource 实现返回的 InputStream
 	 * 需要是<i>每次调用时的新流</i>，因为 JavaMail 会多次调用
 	 * {@code getInputStream()}。
-	 * @param attachmentFilename the name of the attachment as it will
-	 * appear in the mail (the content type will be determined by this)
-	 * @param dataSource the {@code javax.activation.DataSource} to take
-	 * the content from, determining the InputStream and the content type
-	 * @throws MessagingException in case of errors
+	 * @param attachmentFilename 附件名称，它将出现在邮件中（内容类型将由此确定）
+	 * @param dataSource 用于获取内容的 {@code javax.activation.DataSource}，
+	 * 它确定 InputStream 和内容类型
+	 * @throws MessagingException 出错时
 	 * @see #addAttachment(String, org.springframework.core.io.InputStreamSource)
 	 * @see #addAttachment(String, java.io.File)
 	 */
@@ -1007,10 +997,9 @@ public class MimeMessageHelper {
 	 * 向 MimeMessage 添加附件，内容取自 {@code java.io.File}。
 	 * <p>内容类型将根据给定内容文件的名称确定。
 	 * 不要将此用于具有任意文件名的临时文件（可能以 ".tmp" 结尾等）！
-	 * @param attachmentFilename the name of the attachment as it will
-	 * appear in the mail
-	 * @param file the File resource to take the content from
-	 * @throws MessagingException in case of errors
+	 * @param attachmentFilename 附件名称，它将出现在邮件中
+	 * @param file 用于获取内容的 File 资源
+	 * @throws MessagingException 出错时
 	 * @see #addAttachment(String, org.springframework.core.io.InputStreamSource)
 	 * @see #addAttachment(String, javax.activation.DataSource)
 	 */
@@ -1029,11 +1018,9 @@ public class MimeMessageHelper {
 	 * <p>请注意，InputStreamSource 实现返回的 InputStream
 	 * 需要是<i>每次调用时的新流</i>，因为 JavaMail 会多次调用
 	 * {@code getInputStream()}。
-	 * @param attachmentFilename the name of the attachment as it will
-	 * appear in the mail
-	 * @param inputStreamSource the resource to take the content from
-	 * (all of Spring's Resource implementations can be passed in here)
-	 * @throws MessagingException in case of errors
+	 * @param attachmentFilename 附件名称，它将出现在邮件中
+	 * @param inputStreamSource 用于获取内容的资源（此处可以传入 Spring 的所有 Resource 实现）
+	 * @throws MessagingException 出错时
 	 * @see #addAttachment(String, java.io.File)
 	 * @see #addAttachment(String, javax.activation.DataSource)
 	 * @see org.springframework.core.io.Resource
@@ -1051,12 +1038,10 @@ public class MimeMessageHelper {
 	 * <p>请注意，InputStreamSource 实现返回的 InputStream
 	 * 需要是<i>每次调用时的新流</i>，因为 JavaMail 会多次调用
 	 * {@code getInputStream()}。
-	 * @param attachmentFilename the name of the attachment as it will
-	 * appear in the mail
-	 * @param inputStreamSource the resource to take the content from
-	 * (all of Spring's Resource implementations can be passed in here)
-	 * @param contentType the content type to use for the element
-	 * @throws MessagingException in case of errors
+	 * @param attachmentFilename 附件名称，它将出现在邮件中
+	 * @param inputStreamSource 用于获取内容的资源（此处可以传入 Spring 的所有 Resource 实现）
+	 * @param contentType 用于该元素的内容类型
+	 * @throws MessagingException 出错时
 	 * @see #addAttachment(String, java.io.File)
 	 * @see #addAttachment(String, javax.activation.DataSource)
 	 * @see org.springframework.core.io.Resource
@@ -1077,10 +1062,10 @@ public class MimeMessageHelper {
 
 	/**
 	 * 为给定的 InputStreamSource 创建 Activation Framework DataSource。
-	 * @param inputStreamSource the InputStreamSource (typically a Spring Resource)
-	 * @param contentType the content type
-	 * @param name the name of the DataSource
-	 * @return the Activation Framework DataSource
+	 * @param inputStreamSource InputStreamSource（通常是 Spring Resource）
+	 * @param contentType 内容类型
+	 * @param name DataSource 的名称
+	 * @return Activation Framework 的 DataSource
 	 */
 	protected DataSource createDataSource(
 		final InputStreamSource inputStreamSource, final String contentType, final String name) {

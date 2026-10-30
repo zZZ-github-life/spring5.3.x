@@ -56,10 +56,10 @@ public abstract class MetaAnnotationUtils {
 	 * <li>递归搜索给定类的父类层次结构。
 	 * </ol>
 	 * <p>在此上下文中，<em>递归</em>一词意味着搜索过程会继续返回到步骤 #1，并将当前注解、接口或父类作为要查找注解的类。
-	 * @param clazz the class to look for annotations on
-	 * @param annotationType the type of annotation to look for
-	 * @return the corresponding annotation descriptor if the annotation was found;
-	 * otherwise {@code null}
+	 * @param clazz 要查找注解的类
+	 * @param annotationType 要查找的注解类型
+	 * @return 如果找到该注解，则为对应的注解描述符；
+	 * 否则为 {@code null}
 	 * @see #findAnnotationDescriptorForTypes(Class, Class...)
 	 */
 	@Nullable
@@ -71,11 +71,11 @@ public abstract class MetaAnnotationUtils {
 
 	/**
 	 * 执行 {@link #findAnnotationDescriptor(Class, Class)} 的搜索算法，通过跟踪已<em>访问</em>的注解来避免无限递归。
-	 * @param clazz the class to look for annotations on
-	 * @param visited the set of annotations that have already been visited
-	 * @param annotationType the type of annotation to look for
-	 * @return the corresponding annotation descriptor if the annotation was found;
-	 * otherwise {@code null}
+	 * @param clazz 要查找注解的类
+	 * @param visited 已访问过的注解集合
+	 * @param annotationType 要查找的注解类型
+	 * @return 如果找到该注解，则为对应的注解描述符；
+	 * 否则为 {@code null}
 	 */
 	@Nullable
 	private static <T extends Annotation> AnnotationDescriptor<T> findAnnotationDescriptor(
@@ -128,10 +128,10 @@ public abstract class MetaAnnotationUtils {
 	 * <li>递归搜索给定类的父类层次结构。
 	 * </ol>
 	 * <p>在此上下文中，<em>递归</em>一词意味着搜索过程会继续返回到步骤 #1，并将当前注解、接口或父类作为要查找注解的类。
-	 * @param clazz the class to look for annotations on
-	 * @param annotationTypes the types of annotations to look for
-	 * @return the corresponding annotation descriptor if one of the annotations
-	 * was found; otherwise {@code null}
+	 * @param clazz 要查找注解的类
+	 * @param annotationTypes 要查找的注解类型
+	 * @return 如果找到其中一个注解，则为对应的注解描述符；
+	 * 否则为 {@code null}
 	 * @see #findAnnotationDescriptor(Class, Class)
 	 */
 	@SuppressWarnings("unchecked")
@@ -144,11 +144,11 @@ public abstract class MetaAnnotationUtils {
 
 	/**
 	 * 执行 {@link #findAnnotationDescriptorForTypes(Class, Class...)} 的搜索算法，通过跟踪已<em>访问</em>的注解来避免无限递归。
-	 * @param clazz the class to look for annotations on
-	 * @param visited the set of annotations that have already been visited
-	 * @param annotationTypes the types of annotations to look for
-	 * @return the corresponding annotation descriptor if one of the annotations
-	 * was found; otherwise {@code null}
+	 * @param clazz 要查找注解的类
+	 * @param visited 已访问过的注解集合
+	 * @param annotationTypes 要查找的注解类型
+	 * @return 如果找到其中一个注解，则为对应的注解描述符；
+	 * 否则为 {@code null}
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable
@@ -236,7 +236,7 @@ public abstract class MetaAnnotationUtils {
 	 * public class UserRepositoryTests { }
 	 * </pre>
 	 *
-	 * @param <T> the annotation type
+	 * @param <T> 注解类型
 	 */
 	public static class AnnotationDescriptor<T extends Annotation> {
 

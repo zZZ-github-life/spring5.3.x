@@ -33,9 +33,9 @@ public interface CacheErrorHandler {
 	/**
 	 * 处理缓存提供者在检索具有指定 {@code key} 的项时抛出的给定运行时异常，可能会将其作为致命异常重新
 	 * 抛出。
-	 * @param exception the exception thrown by the cache provider
-	 * @param cache the cache
-	 * @param key the key used to get the item
+	 * @param exception 缓存提供者抛出的异常
+	 * @param cache 缓存
+	 * @param key 用于获取该项的键
 	 * @see Cache#get(Object)
 	 */
 	void handleCacheGetError(RuntimeException exception, Cache cache, Object key);
@@ -43,10 +43,10 @@ public interface CacheErrorHandler {
 	/**
 	 * 处理缓存提供者在更新具有指定 {@code key} 和 {@code value} 的项时抛出的给定运行时异常，可能会将其
 	 * 作为致命异常重新抛出。
-	 * @param exception the exception thrown by the cache provider
-	 * @param cache the cache
-	 * @param key the key used to update the item
-	 * @param value the value to associate with the key
+	 * @param exception 缓存提供者抛出的异常
+	 * @param cache 缓存
+	 * @param key 用于更新该项的键
+	 * @param value 要与该键关联的值
 	 * @see Cache#put(Object, Object)
 	 */
 	void handleCachePutError(RuntimeException exception, Cache cache, Object key, @Nullable Object value);
@@ -54,17 +54,17 @@ public interface CacheErrorHandler {
 	/**
 	 * 处理缓存提供者在清除具有指定 {@code key} 的项时抛出的给定运行时异常，可能会将其作为致命异常重新
 	 * 抛出。
-	 * @param exception the exception thrown by the cache provider
-	 * @param cache the cache
-	 * @param key the key used to clear the item
+	 * @param exception 缓存提供者抛出的异常
+	 * @param cache 缓存
+	 * @param key 用于清除该项的键
 	 */
 	void handleCacheEvictError(RuntimeException exception, Cache cache, Object key);
 
 	/**
 	 * 处理缓存提供者在清除指定的 {@link Cache} 时抛出的给定运行时异常，可能会将其作为致命异常重新抛出。
 	 *
-	 * @param exception the exception thrown by the cache provider
-	 * @param cache the cache to clear
+	 * @param exception 缓存提供者抛出的异常
+	 * @param cache 要清除的缓存
 	 */
 	void handleCacheClearError(RuntimeException exception, Cache cache);
 

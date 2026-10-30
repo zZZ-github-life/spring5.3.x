@@ -225,8 +225,8 @@ final class QuartzCronField extends CronField {
 
 	/**
 	 * 返回一个时间调整器，用于查找该月的倒数第 n 天。
-	 * @param offset the negative offset, i.e. -3 means third-to-last
-	 * @return a nth-to-last day-of-month adjuster
+	 * @param offset 负偏移量，例如 -3 表示倒数第三个
+	 * @return 倒数第 n 个月中日的调整器
 	 */
 	private static TemporalAdjuster lastDayWithOffset(int offset) {
 		Assert.isTrue(offset < 0, "Offset should be < 0");
@@ -241,8 +241,8 @@ final class QuartzCronField extends CronField {
 	 * 返回一个时间调整器，用于查找与给定月中的日最接近的工作日。如果 {@code dayOfMonth} 落在星期六，则
 	 * 日期回退到星期五；如果它落在星期日（或者 {@code dayOfMonth} 为 1 且落在星期六），则日期前移到星
 	 * 期一。
-	 * @param dayOfMonth the goal day-of-month
-	 * @return the weekday-nearest-to adjuster
+	 * @param dayOfMonth 目标月中日
+	 * @return 最接近指定月中日的星期调整器
 	 */
 	private static TemporalAdjuster weekdayNearestTo(int dayOfMonth) {
 		return temporal -> {

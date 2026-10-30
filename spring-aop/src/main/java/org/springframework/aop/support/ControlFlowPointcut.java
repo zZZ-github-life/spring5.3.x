@@ -49,7 +49,7 @@ public class ControlFlowPointcut implements Pointcut, ClassFilter, MethodMatcher
 
 	/**
 	 * 构造一个新的切点，匹配该类之下的所有控制流。
-	 * @param clazz the clazz
+	 * @param clazz 该类
 	 */
 	public ControlFlowPointcut(Class<?> clazz) {
 		this(clazz, null);
@@ -58,8 +58,8 @@ public class ControlFlowPointcut implements Pointcut, ClassFilter, MethodMatcher
 	/**
 	 * 构造一个新的切点，匹配给定类中给定方法之下的所有调用。如果未指定方法名，则匹配给定类之下的所有控
 	 * 制流。
-	 * @param clazz the clazz
-	 * @param methodName the name of the method (may be {@code null})
+	 * @param clazz 该类
+	 * @param methodName 方法名称（可能为 {@code null}）
 	 */
 	public ControlFlowPointcut(Class<?> clazz, @Nullable String methodName) {
 		Assert.notNull(clazz, "Class must not be null");

@@ -109,7 +109,7 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 	 * 创建一个新的 {@code ReflectiveAspectJAdvisorFactory}，将给定的 {@link BeanFactory} 传播到所创建
 	 * 的 {@link AspectJExpressionPointcut} 实例，用于处理 Bean 切点以及进行一致的 {@link ClassLoader}
 	 * 解析。
-	 * @param beanFactory the BeanFactory to propagate (may be {@code null}}
+	 * @param beanFactory 要传播的 BeanFactory（可能为 {@code null}}）
 	 * @since 4.3.6
 	 * @see AspectJExpressionPointcut#setBeanFactory
 	 * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#getBeanClassLoader()
@@ -175,8 +175,8 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 	/**
 	 * 为给定的引介字段构建一个 {@link org.springframework.aop.aspectj.DeclareParentsAdvisor}。<p>生成
 	 * 的 Advisor 需要针对目标进行评估。
-	 * @param introductionField the field to introspect
-	 * @return the Advisor instance, or {@code null} if not an Advisor
+	 * @param introductionField 要内省的字段
+	 * @return Advisor 实例，如果不是 Advisor 则为 {@code null}
 	 */
 	@Nullable
 	private Advisor getDeclareParentsAdvisor(Field introductionField) {

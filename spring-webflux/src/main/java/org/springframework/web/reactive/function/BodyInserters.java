@@ -68,7 +68,7 @@ public abstract class BodyInserters {
 
 	/**
 	 * 不写入任何内容的插入器。
-	 * @return the inserter
+	 * @return 插入器
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> BodyInserter<T, ReactiveHttpOutputMessage> empty() {
@@ -78,13 +78,13 @@ public abstract class BodyInserters {
 	/**
 	 * 用于写入给定值的插入器。
 	 * <p>或者，可考虑使用 {@link org.springframework.web.reactive.function.client.WebClient WebClient} 和 {@link org.springframework.web.reactive.function.server.ServerResponse ServerResponse} 上的 {@code bodyValue(Object)} 快捷方法。
-	 * @param body the value to write
-	 * @param <T> the type of the body
-	 * @return the inserter to write a single value
-	 * @throws IllegalArgumentException if {@code body} is a {@link Publisher} or an
-	 * instance of a type supported by {@link ReactiveAdapterRegistry#getSharedInstance()},
-	 * for which {@link #fromPublisher(Publisher, Class)} or
-	 * {@link #fromProducer(Object, Class)} should be used.
+	 * @param body 要写入的值
+	 * @param <T> 主体的类型
+	 * @return 用于写入单个值的插入器
+	 * @throws IllegalArgumentException 如果 {@code body} 是 {@link Publisher}，或者是受
+	 * {@link ReactiveAdapterRegistry#getSharedInstance()} 支持的类型的实例，
+	 * 此时应使用 {@link #fromPublisher(Publisher, Class)} 或
+	 * {@link #fromProducer(Object, Class)}。
 	 * @see #fromPublisher(Publisher, Class)
 	 * @see #fromProducer(Object, Class)
 	 */
@@ -98,13 +98,13 @@ public abstract class BodyInserters {
 	/**
 	 * 用于写入给定对象的插入器。
 	 * <p>或者，可考虑使用 {@link org.springframework.web.reactive.function.client.WebClient WebClient} 和 {@link org.springframework.web.reactive.function.server.ServerResponse ServerResponse} 上的 {@code bodyValue(Object)} 快捷方法。
-	 * @param body the body to write to the response
-	 * @param <T> the type of the body
-	 * @return the inserter to write a single object
-	 * @throws IllegalArgumentException if {@code body} is a {@link Publisher} or an
-	 * instance of a type supported by {@link ReactiveAdapterRegistry#getSharedInstance()},
-	 * for which {@link #fromPublisher(Publisher, Class)} or
-	 * {@link #fromProducer(Object, Class)} should be used.
+	 * @param body 要写入响应的主体
+	 * @param <T> 主体的类型
+	 * @return 用于写入单个对象的插入器
+	 * @throws IllegalArgumentException 如果 {@code body} 是 {@link Publisher}，或者是受
+	 * {@link ReactiveAdapterRegistry#getSharedInstance()} 支持的类型的实例，
+	 * 此时应使用 {@link #fromPublisher(Publisher, Class)} 或
+	 * {@link #fromProducer(Object, Class)}。
 	 * @see #fromPublisher(Publisher, Class)
 	 * @see #fromProducer(Object, Class)
 	 * @deprecated As of Spring Framework 5.2, in favor of {@link #fromValue(Object)}
@@ -117,10 +117,10 @@ public abstract class BodyInserters {
 	/**
 	 * 用于写入给定值生产者的插入器，该生产者必须是 {@link Publisher} 或可通过 {@link ReactiveAdapterRegistry} 适配为 {@code Publisher} 的其他生产者。
 	 * <p>或者，可考虑使用 {@link org.springframework.web.reactive.function.client.WebClient WebClient} 和 {@link org.springframework.web.reactive.function.server.ServerResponse ServerResponse} 上的 {@code body} 快捷方法。
-	 * @param <T> the type of the body
-	 * @param producer the source of body value(s).
-	 * @param elementClass the class of values to be produced
-	 * @return the inserter to write a producer
+	 * @param <T> 主体的类型
+	 * @param producer 主体值的来源。
+	 * @param elementClass 要生成的值的类
+	 * @return 用于写入 producer 的插入器
 	 * @since 5.2
 	 */
 	public static <T> BodyInserter<T, ReactiveHttpOutputMessage> fromProducer(T producer, Class<?> elementClass) {
@@ -135,10 +135,10 @@ public abstract class BodyInserters {
 	/**
 	 * 用于写入给定值生产者的插入器，该生产者必须是 {@link Publisher} 或可通过 {@link ReactiveAdapterRegistry} 适配为 {@code Publisher} 的其他生产者。
 	 * <p>或者，可考虑使用 {@link org.springframework.web.reactive.function.client.WebClient WebClient} 和 {@link org.springframework.web.reactive.function.server.ServerResponse ServerResponse} 上的 {@code body} 快捷方法。
-	 * @param <T> the type of the body
-	 * @param producer the source of body value(s).
-	 * @param elementTypeRef the type of values to be produced
-	 * @return the inserter to write a producer
+	 * @param <T> 主体的类型
+	 * @param producer 主体值的来源。
+	 * @param elementTypeRef 要生成的值的类型
+	 * @return 用于写入 producer 的插入器
 	 * @since 5.2
 	 */
 	public static <T> BodyInserter<T, ReactiveHttpOutputMessage> fromProducer(
@@ -155,11 +155,11 @@ public abstract class BodyInserters {
 	/**
 	 * 用于写入给定 {@link Publisher} 的插入器。
 	 * <p>或者，可考虑使用 {@link org.springframework.web.reactive.function.client.WebClient WebClient} 和 {@link org.springframework.web.reactive.function.server.ServerResponse ServerResponse} 上的 {@code body} 快捷方法。
-	 * @param publisher the publisher to write with
-	 * @param elementClass the class of elements in the publisher
-	 * @param <T> the type of the elements contained in the publisher
-	 * @param <P> the {@code Publisher} type
-	 * @return the inserter to write a {@code Publisher}
+	 * @param publisher 用于写入的 publisher
+	 * @param elementClass publisher 中元素的类
+	 * @param <T> publisher 中包含的元素的类型
+	 * @param <P> {@code Publisher} 类型
+	 * @return 用于写入 {@code Publisher} 的插入器
 	 */
 	public static <T, P extends Publisher<T>> BodyInserter<P, ReactiveHttpOutputMessage> fromPublisher(
 			P publisher, Class<T> elementClass) {
@@ -173,11 +173,11 @@ public abstract class BodyInserters {
 	/**
 	 * 用于写入给定 {@link Publisher} 的插入器。
 	 * <p>或者，可考虑使用 {@link org.springframework.web.reactive.function.client.WebClient WebClient} 和 {@link org.springframework.web.reactive.function.server.ServerResponse ServerResponse} 上的 {@code body} 快捷方法。
-	 * @param publisher the publisher to write with
-	 * @param elementTypeRef the type of elements contained in the publisher
-	 * @param <T> the type of the elements contained in the publisher
-	 * @param <P> the {@code Publisher} type
-	 * @return the inserter to write a {@code Publisher}
+	 * @param publisher 用于写入的 publisher
+	 * @param elementTypeRef publisher 中包含的元素的类型
+	 * @param <T> publisher 中包含的元素的类型
+	 * @param <P> {@code Publisher} 类型
+	 * @return 用于写入 {@code Publisher} 的插入器
 	 */
 	public static <T, P extends Publisher<T>> BodyInserter<P, ReactiveHttpOutputMessage> fromPublisher(
 			P publisher, ParameterizedTypeReference<T> elementTypeRef) {
@@ -191,9 +191,9 @@ public abstract class BodyInserters {
 	/**
 	 * 用于写入给定 {@code Resource} 的插入器。
 	 * <p>如果资源可以解析为{@linkplain Resource#getFile() 文件}，则将使用<a href="https://en.wikipedia.org/wiki/Zero-copy">零拷贝</a>方式进行复制。
-	 * @param resource the resource to write to the output message
-	 * @param <T> the type of the {@code Resource}
-	 * @return the inserter to write a {@code Publisher}
+	 * @param resource 要写入输出消息的资源
+	 * @param <T> {@code Resource} 的类型
+	 * @return 用于写入 {@code Publisher} 的插入器
 	 */
 	public static <T extends Resource> BodyInserter<T, ReactiveHttpOutputMessage> fromResource(T resource) {
 		Assert.notNull(resource, "'resource' must not be null");
@@ -208,9 +208,9 @@ public abstract class BodyInserters {
 	/**
 	 * 用于写入给定 {@code ServerSentEvent} 发布者的插入器。
 	 * <p>或者，可以通过 {@link #fromPublisher(Publisher, Class)} 或 {@link #fromProducer(Object, Class)} 提供事件数据对象，并将 "Content-Type" 设置为 {@link MediaType#TEXT_EVENT_STREAM text/event-stream}。
-	 * @param eventsPublisher the {@code ServerSentEvent} publisher to write to the response body
-	 * @param <T> the type of the data elements in the {@link ServerSentEvent}
-	 * @return the inserter to write a {@code ServerSentEvent} publisher
+	 * @param eventsPublisher 要写入响应体的 {@code ServerSentEvent} publisher
+	 * @param <T> {@link ServerSentEvent} 中数据元素的类型
+	 * @return 用于写入 {@code ServerSentEvent} publisher 的插入器
 	 * @see <a href="https://www.w3.org/TR/eventsource/">Server-Sent Events W3C recommendation</a>
 	 */
 	// Parameterized for server-side use
@@ -229,8 +229,8 @@ public abstract class BodyInserters {
 	/**
 	 * 返回用于将给定 {@code MultiValueMap} 写入为 URL 编码表单数据的 {@link FormInserter}。返回的插入器允许通过 {@link FormInserter#with(String, Object)} 添加更多条目。
 	 * <p>请注意，也可以使用 {@code WebClient} 和 {@code WebTestClient} 请求构建器中的 {@code bodyValue(Object)} 方法。在这种情况下也无需设置请求内容类型，只需确保映射中仅包含 String 值，否则它将被解释为 multipart 请求。
-	 * @param formData the form data to write to the output message
-	 * @return the inserter that allows adding more form data
+	 * @param formData 要写入输出消息的表单数据
+	 * @return 允许添加更多表单数据的插入器
 	 */
 	public static FormInserter<String> fromFormData(MultiValueMap<String, String> formData) {
 		return new DefaultFormInserter().with(formData);
@@ -238,9 +238,9 @@ public abstract class BodyInserters {
 
 	/**
 	 * 返回用于将给定键值对写入为 URL 编码表单数据的 {@link FormInserter}。返回的插入器允许通过 {@link FormInserter#with(String, Object)} 添加更多条目。
-	 * @param name the key to add to the form
-	 * @param value the value to add to the form
-	 * @return the inserter that allows adding more form data
+	 * @param name 要添加到表单的键
+	 * @param value 要添加到表单的值
+	 * @return 允许添加更多表单数据的插入器
 	 */
 	public static FormInserter<String> fromFormData(String name, String value) {
 		Assert.notNull(name, "'name' must not be null");
@@ -251,8 +251,8 @@ public abstract class BodyInserters {
 	/**
 	 * 返回用于将给定 {@code MultiValueMap} 写入为 multipart 数据的 {@link MultipartInserter}。映射中的值可以是 Object 或 {@link HttpEntity}。
 	 * <p>请注意，也可以使用 {@link MultipartBodyBuilder} 在外部构建 multipart 数据，并将生成的映射直接传给 {@code WebClient} 中的 {@code bodyValue(Object)} 快捷方法。
-	 * @param multipartData the form data to write to the output message
-	 * @return the inserter that allows adding more parts
+	 * @param multipartData 要写入输出消息的表单数据
+	 * @return 允许添加更多部分的插入器
 	 * @see MultipartBodyBuilder
 	 */
 	public static MultipartInserter fromMultipartData(MultiValueMap<String, ?> multipartData) {
@@ -263,9 +263,9 @@ public abstract class BodyInserters {
 	/**
 	 * 返回用于将给定分片写入为 multipart 数据的 {@link MultipartInserter}。映射中的值可以是 Object 或 {@link HttpEntity}。
 	 * <p>请注意，也可以使用 {@link MultipartBodyBuilder} 在外部构建 multipart 数据，并将生成的映射直接传给 {@code WebClient} 中的 {@code bodyValue(Object)} 快捷方法。
-	 * @param name the part name
-	 * @param value the part value, an Object or {@code HttpEntity}
-	 * @return the inserter that allows adding more parts
+	 * @param name 部分名称
+	 * @param value 部分值，为 Object 或 {@code HttpEntity}
+	 * @return 允许添加更多部分的插入器
 	 */
 	public static MultipartInserter fromMultipartData(String name, Object value) {
 		Assert.notNull(name, "'name' must not be null");
@@ -276,10 +276,10 @@ public abstract class BodyInserters {
 	/**
 	 * 返回用于将给定异步分片写入为 multipart 数据的 {@link MultipartInserter}。
 	 * <p>请注意，也可以使用 {@link MultipartBodyBuilder} 在外部构建 multipart 数据，并将生成的映射直接传给 {@code WebClient} 中的 {@code bodyValue(Object)} 快捷方法。
-	 * @param name the part name
-	 * @param publisher the publisher that forms the part value
-	 * @param elementClass the class contained in the {@code publisher}
-	 * @return the inserter that allows adding more parts
+	 * @param name 部分名称
+	 * @param publisher 构成部分值的 publisher
+	 * @param elementClass {@code publisher} 中包含的类
+	 * @return 允许添加更多部分的插入器
 	 */
 	public static <T, P extends Publisher<T>> MultipartInserter fromMultipartAsyncData(
 			String name, P publisher, Class<T> elementClass) {
@@ -290,10 +290,10 @@ public abstract class BodyInserters {
 	/**
 	 * {@link #fromMultipartAsyncData(String, Publisher, Class)} 的变体，接受元素类型的 {@link ParameterizedTypeReference}，从而可以指定泛型类型信息。
 	 * <p>请注意，也可以使用 {@link MultipartBodyBuilder} 在外部构建 multipart 数据，并将生成的映射直接传给 {@code WebClient} 中的 {@code bodyValue(Object)} 快捷方法。
-	 * @param name the part name
-	 * @param publisher the publisher that forms the part value
-	 * @param typeReference the type contained in the {@code publisher}
-	 * @return the inserter that allows adding more parts
+	 * @param name 部分名称
+	 * @param publisher 构成部分值的 publisher
+	 * @param typeReference {@code publisher} 中包含的类型
+	 * @return 允许添加更多部分的插入器
 	 */
 	public static <T, P extends Publisher<T>> MultipartInserter fromMultipartAsyncData(
 			String name, P publisher, ParameterizedTypeReference<T> typeReference) {
@@ -303,9 +303,9 @@ public abstract class BodyInserters {
 
 	/**
 	 * 用于将给定 {@code Publisher<DataBuffer>} 写入正文的插入器。
-	 * @param publisher the data buffer publisher to write
-	 * @param <T> the type of the publisher
-	 * @return the inserter to write directly to the body
+	 * @param publisher 要写入的数据缓冲区 publisher
+	 * @param <T> publisher 的类型
+	 * @return 直接写入主体的插入器
 	 * @see ReactiveHttpOutputMessage#writeWith(Publisher)
 	 */
 	public static <T extends Publisher<DataBuffer>> BodyInserter<T, ReactiveHttpOutputMessage> fromDataBuffers(
@@ -379,7 +379,7 @@ public abstract class BodyInserters {
 
 	/**
 	 * 允许添加表单数据或 multipart 表单数据的 {@link BodyInserter} 扩展。
-	 * @param <T> the value type
+	 * @param <T> 值类型
 	 */
 	public interface FormInserter<T> extends BodyInserter<MultiValueMap<String, T>, ClientHttpRequest> {
 
@@ -387,16 +387,16 @@ public abstract class BodyInserters {
 
 		/**
 		 * 将指定的键值对添加到表单中。
-		 * @param key the key to be added
-		 * @param value the value to be added
-		 * @return this inserter for adding more parts
+		 * @param key 要添加的键
+		 * @param value 要添加的值
+		 * @return 此插入器，用于添加更多部分
 		 */
 		FormInserter<T> with(String key, T value);
 
 		/**
 		 * 将指定的值添加到表单中。
-		 * @param values the values to be added
-		 * @return this inserter for adding more parts
+		 * @param values 要添加的值
+		 * @return 此插入器，用于添加更多部分
 		 */
 		FormInserter<T> with(MultiValueMap<String, T> values);
 
@@ -410,20 +410,20 @@ public abstract class BodyInserters {
 
 		/**
 		 * 添加基于 {@link Publisher} 内容的异步分片。
-		 * @param name the name of the part to add
-		 * @param publisher the part contents
-		 * @param elementClass the type of elements contained in the publisher
-		 * @return this inserter for adding more parts
+		 * @param name 要添加的部分的名称
+		 * @param publisher 部分内容
+		 * @param elementClass publisher 中包含的元素的类型
+		 * @return 此插入器，用于添加更多部分
 		 */
 		<T, P extends Publisher<T>> MultipartInserter withPublisher(String name, P publisher,
 				Class<T> elementClass);
 
 		/**
 		 * {@link #withPublisher(String, Publisher, Class)} 的变体，接受元素类型的 {@link ParameterizedTypeReference}，从而可以指定泛型类型信息。
-		 * @param name the key to be added
-		 * @param publisher the publisher to be added as value
-		 * @param typeReference the type of elements contained in {@code publisher}
-		 * @return this inserter for adding more parts
+		 * @param name 要添加的键
+		 * @param publisher 要作为值添加的 publisher
+		 * @param typeReference {@code publisher} 中包含的元素的类型
+		 * @return 此插入器，用于添加更多部分
 		 */
 		<T, P extends Publisher<T>> MultipartInserter withPublisher(String name, P publisher,
 				ParameterizedTypeReference<T> typeReference);

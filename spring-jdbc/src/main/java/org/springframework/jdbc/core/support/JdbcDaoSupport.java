@@ -65,8 +65,8 @@ public abstract class JdbcDaoSupport extends DaoSupport {
 	 * 仅在为 DAO 填充 DataSource 引用时调用！
 	 * <p>可以在子类中覆盖，以提供具有不同配置的 JdbcTemplate 实例，
 	 * 或提供自定义的 JdbcTemplate 子类。
-	 * @param dataSource the JDBC DataSource to create a JdbcTemplate for
-	 * @return the new JdbcTemplate instance
+	 * @param dataSource 要为其创建 JdbcTemplate 的 JDBC DataSource
+	 * @return 新的 JdbcTemplate 实例
 	 * @see #setDataSource
 	 */
 	protected JdbcTemplate createJdbcTemplate(DataSource dataSource) {
@@ -130,8 +130,8 @@ public abstract class JdbcDaoSupport extends DaoSupport {
 
 	/**
 	 * 获取一个 JDBC Connection，可以来自当前事务，也可以是新建的。
-	 * @return the JDBC Connection
-	 * @throws CannotGetJdbcConnectionException if the attempt to get a Connection failed
+	 * @return 该 JDBC Connection
+	 * @throws CannotGetJdbcConnectionException 如果尝试获取 Connection 失败
 	 * @see org.springframework.jdbc.datasource.DataSourceUtils#getConnection(javax.sql.DataSource)
 	 */
 	protected final Connection getConnection() throws CannotGetJdbcConnectionException {
@@ -143,7 +143,7 @@ public abstract class JdbcDaoSupport extends DaoSupport {
 	/**
 	 * 关闭通过此 DAO 的 DataSource 创建的给定 JDBC Connection，
 	 * 前提是它未绑定到线程。
-	 * @param con the Connection to close
+	 * @param con 要关闭的 Connection
 	 * @see org.springframework.jdbc.datasource.DataSourceUtils#releaseConnection
 	 */
 	protected final void releaseConnection(Connection con) {

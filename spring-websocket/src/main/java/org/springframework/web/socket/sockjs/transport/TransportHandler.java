@@ -33,8 +33,8 @@ public interface TransportHandler {
 
 	/**
 	 * 使用给定配置初始化此处理器。
-	 * @param serviceConfig the configuration as defined by the containing
-	 * {@link org.springframework.web.socket.sockjs.SockJsService}
+	 * @param serviceConfig 由所属的
+	 * {@link org.springframework.web.socket.sockjs.SockJsService} 定义的配置
 	 */
 	void initialize(SockJsServiceConfig serviceConfig);
 
@@ -46,8 +46,8 @@ public interface TransportHandler {
 	/**
 	 * 检查给定会话的类型是否与此 {@code TransportHandler} 的传输类型匹配，
 	 * 其中会话 ID 和传输类型是从 SockJS URL 中提取的。
-	 * @return {@code true} if the session matches (and would therefore get
-	 * accepted by {@link #handleRequest}), or {@code false} otherwise
+	 * @return 如果会话匹配（因而会被 {@link #handleRequest} 接受），
+	 * 则返回 {@code true}，否则返回 {@code false}
 	 * @since 4.3.4
 	 */
 	boolean checkSessionType(SockJsSession session);
@@ -55,12 +55,12 @@ public interface TransportHandler {
 	/**
 	 * 处理给定请求并将消息委托给提供的
 	 * {@link WebSocketHandler}。
-	 * @param request the current request
-	 * @param response the current response
-	 * @param handler the target WebSocketHandler (never {@code null})
-	 * @param session the SockJS session (never {@code null})
-	 * @throws SockJsException raised when request processing fails as
-	 * explained in {@link SockJsService}
+	 * @param request 当前请求
+	 * @param response 当前响应
+	 * @param handler 目标 WebSocketHandler（永不为 {@code null}）
+	 * @param session SockJS 会话（永不为 {@code null}）
+	 * @throws SockJsException 当请求处理失败时抛出，
+	 * 详情见 {@link SockJsService}
 	 */
 	void handleRequest(ServerHttpRequest request, ServerHttpResponse response,
 			WebSocketHandler handler, SockJsSession session) throws SockJsException;

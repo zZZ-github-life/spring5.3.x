@@ -44,7 +44,7 @@ public class SimpleRecordOperation extends EisOperation {
 	/**
 	 * 便捷的构造器，接受 ConnectionFactory 和各规范
 	 * （连接规范和交互规范）。
-	 * @param connectionFactory the ConnectionFactory to use to obtain connections
+	 * @param connectionFactory 用于获取连接的 ConnectionFactory
 	 */
 	public SimpleRecordOperation(ConnectionFactory connectionFactory, InteractionSpec interactionSpec) {
 		getCciTemplate().setConnectionFactory(connectionFactory);
@@ -55,9 +55,9 @@ public class SimpleRecordOperation extends EisOperation {
 	/**
 	 * 执行此操作对象封装的 CCI 交互。
 	 * <p>此方法将调用 CCI 的 {@code Interaction.execute} 返回输出 Record 的变体。
-	 * @param inputRecord the input record
-	 * @return the output record
-	 * @throws DataAccessException if there is any problem
+	 * @param inputRecord 输入记录
+	 * @return 输出记录
+	 * @throws DataAccessException 如果出现任何问题
 	 * @see javax.resource.cci.Interaction#execute(javax.resource.cci.InteractionSpec, Record)
 	 */
 	@Nullable
@@ -70,9 +70,9 @@ public class SimpleRecordOperation extends EisOperation {
 	/**
 	 * 执行此操作对象封装的 CCI 交互。
 	 * <p>此方法将调用 CCI 的 {@code Interaction.execute} 并传入输出 Record 的变体。
-	 * @param inputRecord the input record
-	 * @param outputRecord the output record
-	 * @throws DataAccessException if there is any problem
+	 * @param inputRecord 输入记录
+	 * @param outputRecord 输出记录
+	 * @throws DataAccessException 如果出现任何问题
 	 * @see javax.resource.cci.Interaction#execute(javax.resource.cci.InteractionSpec, Record, Record)
 	 */
 	public void execute(Record inputRecord, Record outputRecord) throws DataAccessException {

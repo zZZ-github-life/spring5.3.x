@@ -64,7 +64,7 @@ public abstract class AbstractServiceLoaderBasedFactoryBean extends AbstractFact
 
 	/**
 	 * 委托给 {@link #getObjectToExpose(java.util.ServiceLoader)}。
-	 * @return the object to expose
+	 * @return 要暴露的对象
 	 */
 	@Override
 	protected Object createInstance() {
@@ -75,8 +75,8 @@ public abstract class AbstractServiceLoaderBasedFactoryBean extends AbstractFact
 	/**
 	 * 确定要为给定 ServiceLoader 暴露的实际对象。
 	 * <p>由具体的子类实现。
-	 * @param serviceLoader the ServiceLoader for the configured service class
-	 * @return the object to expose
+	 * @param serviceLoader 用于已配置服务类的 ServiceLoader
+	 * @return 要暴露的对象
 	 */
 	protected abstract Object getObjectToExpose(ServiceLoader<?> serviceLoader);
 

@@ -43,7 +43,7 @@ public class HeaderWebSessionIdResolver implements WebSessionIdResolver {
 	 * 设置用于保存会话 ID 的会话头名称。
 	 * <p>该名称既用于从请求头中提取会话 ID，也用于在响应头中设置会话 ID。
 	 * <p>默认设置为 {@code DEFAULT_HEADER_NAME}
-	 * @param headerName the header name
+	 * @param headerName 头名称
 	 */
 	public void setHeaderName(String headerName) {
 		Assert.hasText(headerName, "'headerName' must not be empty");
@@ -52,7 +52,7 @@ public class HeaderWebSessionIdResolver implements WebSessionIdResolver {
 
 	/**
 	 * 获取已配置的头名称。
-	 * @return the configured header name
+	 * @return 已配置的头名称
 	 */
 	public String getHeaderName() {
 		return this.headerName;

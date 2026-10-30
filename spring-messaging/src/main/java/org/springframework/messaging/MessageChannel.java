@@ -37,8 +37,8 @@ public interface MessageChannel {
 	 * 对于不可恢复的错误，该方法还可能抛出 RuntimeException。
 	 * <p>取决于具体实现，此方法可能无限期阻塞。
 	 * 要提供最大等待时间，请使用 {@link #send(Message, long)}。
-	 * @param message the message to send
-	 * @return whether the message was sent
+	 * @param message 要发送的消息
+	 * @return 消息是否已发送
 	 */
 	default boolean send(Message<?> message) {
 		return send(message, INDEFINITE_TIMEOUT);
@@ -46,10 +46,10 @@ public interface MessageChannel {
 
 	/**
 	 * 发送消息，阻塞直到消息被接受或指定的超时时间过去。
-	 * @param message the message to send
-	 * @param timeout the timeout in milliseconds or {@link #INDEFINITE_TIMEOUT}
-	 * @return {@code true} if the message is sent, {@code false} if not
-	 * including a timeout of an interrupt of the send
+	 * @param message 要发送的消息
+	 * @param timeout 以毫秒为单位的超时时间，或 {@link #INDEFINITE_TIMEOUT}
+	 * @return 如果消息已发送则返回 {@code true}，否则返回 {@code false}，
+	 * 包括发送超时或被中断的情况
 	 */
 	boolean send(Message<?> message, long timeout);
 

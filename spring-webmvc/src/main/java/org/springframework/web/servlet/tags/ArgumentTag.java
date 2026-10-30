@@ -64,7 +64,7 @@ public class ArgumentTag extends BodyTagSupport {
 	/**
 	 * 设置参数的值（可选）。
 	 * 如果未设置，则会对标签的正文内容求值。
-	 * @param value the parameter value
+	 * @param value 参数值
 	 */
 	public void setValue(Object value) {
 		this.value = value;

@@ -219,7 +219,7 @@ public class Jackson2ObjectMapperBuilder {
 	/**
 	 * 覆盖用于格式化的默认 {@link Locale}。
 	 * 默认使用 {@link Locale#getDefault()}。
-	 * @param localeString the locale ID as a String representation
+	 * @param localeString 以 String 表示的 Locale ID
 	 * @since 4.1.5
 	 */
 	public Jackson2ObjectMapperBuilder locale(String localeString) {
@@ -240,7 +240,7 @@ public class Jackson2ObjectMapperBuilder {
 	/**
 	 * 覆盖用于格式化的默认 {@link TimeZone}。
 	 * 默认使用 UTC（而非本地时区）。
-	 * @param timeZoneString the zone ID as a String representation
+	 * @param timeZoneString 以 String 表示的时区 ID
 	 * @since 4.1.5
 	 */
 	public Jackson2ObjectMapperBuilder timeZone(String timeZoneString) {
@@ -260,9 +260,8 @@ public class Jackson2ObjectMapperBuilder {
 	 * {@link #annotationIntrospector(AnnotationIntrospector)} 的替代方法，
 	 * 允许与当前设置的注解内省器合并而非替换，例如通过
 	 * {@link AnnotationIntrospectorPair#pair(AnnotationIntrospector, AnnotationIntrospector)}。
-	 * @param pairingFunction a function to apply to the currently set
-	 * introspector (possibly {@code null}); the result of the function becomes
-	 * the new introspector.
+	 * @param pairingFunction 要应用于当前所设置的内省器的函数（可能为 {@code null}）；
+	 * 该函数的结果将成为新的内省器。
 	 * @since 5.2.4
 	 */
 	public Jackson2ObjectMapperBuilder annotationIntrospector(
@@ -320,9 +319,8 @@ public class Jackson2ObjectMapperBuilder {
 
 	/**
 	 * 添加用于增强指定类或接口的混入注解。
-	 * @param target class (or interface) whose annotations to effectively override
-	 * @param mixinSource class (or interface) whose annotations are to be "added"
-	 * to target's annotations as value
+	 * @param target 其注解将被有效覆盖的类（或接口）
+	 * @param mixinSource 其注解将作为值“添加”到目标类注解上的类（或接口）
 	 * @since 4.1.2
 	 * @see com.fasterxml.jackson.databind.ObjectMapper#addMixIn(Class, Class)
 	 */
@@ -333,9 +331,8 @@ public class Jackson2ObjectMapperBuilder {
 
 	/**
 	 * 添加用于增强指定类或接口的混入注解。
-	 * @param mixIns a Map of entries with target classes (or interface) whose annotations
-	 * to effectively override as key and mix-in classes (or interface) whose
-	 * annotations are to be "added" to target's annotations as value.
+	 * @param mixIns 一个 Map，键为其注解将被有效覆盖的目标类（或接口），
+	 * 值为其注解将被“添加”到目标类注解上的混入类（或接口）。
 	 * @since 4.1.2
 	 * @see com.fasterxml.jackson.databind.ObjectMapper#addMixIn(Class, Class)
 	 */
@@ -659,8 +656,8 @@ public class Jackson2ObjectMapperBuilder {
 	/**
 	 * 一个选项，用于在应用构建器的所有其他配置属性之后，
 	 * 直接对 {@code ObjectMapper} 实例应用额外的定制。
-	 * @param configurer a configurer to apply. If several configurers are
-	 * registered, they will get applied in their registration order.
+	 * @param configurer 要应用的配置器。如果注册了多个配置器，
+	 * 它们将按注册顺序依次应用。
 	 * @since 5.3
 	 */
 	public Jackson2ObjectMapperBuilder postConfigurer(Consumer<ObjectMapper> configurer) {
@@ -674,7 +671,7 @@ public class Jackson2ObjectMapperBuilder {
 	 * <p>每次构建操作都会生成一个独立的 {@link ObjectMapper} 实例。
 	 * 构建器的设置可能会被修改，随后的构建操作将基于最新的设置
 	 * 生成新的 {@link ObjectMapper}。
-	 * @return the newly built ObjectMapper
+	 * @return 新构建的 ObjectMapper
 	 */
 	@SuppressWarnings("unchecked")
 	public <T extends ObjectMapper> T build() {
@@ -694,7 +691,7 @@ public class Jackson2ObjectMapperBuilder {
 	/**
 	 * 使用此构建器的设置配置现有的 {@link ObjectMapper} 实例。
 	 * 这可以应用于任意数量的 {@code ObjectMappers}。
-	 * @param objectMapper the ObjectMapper to configure
+	 * @param objectMapper 要配置的 ObjectMapper
 	 */
 	public void configure(ObjectMapper objectMapper) {
 		Assert.notNull(objectMapper, "ObjectMapper must not be null");

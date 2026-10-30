@@ -119,9 +119,9 @@ public class KotlinSerializationJsonEncoder extends AbstractEncoder<Object> {
 	 * 反编组的序列化器。如果找不到序列化器，则抛出异常。
 	 * <p>已解析的序列化器会被缓存，后续调用会返回缓存的结果。
 	 * TODO 在 https://github.com/Kotlin/kotlinx.serialization/pull/1164 修复后，避免依赖抛出异常
-	 * @param type the type to find a serializer for
-	 * @return a resolved serializer for the given type
-	 * @throws RuntimeException if no serializer supporting the given type can be found
+	 * @param type 要为其查找序列化器的类型
+	 * @return 针对给定类型解析得到的序列化器
+	 * @throws RuntimeException 如果找不到支持给定类型的序列化器
 	 */
 	private KSerializer<Object> serializer(Type type) {
 		KSerializer<Object> serializer = serializerCache.get(type);

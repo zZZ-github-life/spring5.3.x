@@ -28,7 +28,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Arjen Poutsma
  * @since 4.0
- * @param <T> the result type returned by this Future's {@code get} method
+ * @param <T> 该 Future 的 {@code get} 方法返回的结果类型
  */
 public class ListenableFutureTask<T> extends FutureTask<T> implements ListenableFuture<T> {
 
@@ -37,7 +37,7 @@ public class ListenableFutureTask<T> extends FutureTask<T> implements Listenable
 
 	/**
 	 * 创建一个新的 {@code ListenableFutureTask}，它在运行时会执行给定的 {@link Callable}。
-	 * @param callable the callable task
+	 * @param callable 可调用的任务
 	 */
 	public ListenableFutureTask(Callable<T> callable) {
 		super(callable);
@@ -46,8 +46,8 @@ public class ListenableFutureTask<T> extends FutureTask<T> implements Listenable
 	/**
 	 * 创建一个 {@code ListenableFutureTask}，它在运行时会执行给定的 {@link Runnable}，并安排在成功完成
 	 * 时由 {@link #get()} 返回给定的结果。
-	 * @param runnable the runnable task
-	 * @param result the result to return on successful completion
+	 * @param runnable 可运行的任务
+	 * @param result 成功完成时返回的结果
 	 */
 	public ListenableFutureTask(Runnable runnable, @Nullable T result) {
 		super(runnable, result);

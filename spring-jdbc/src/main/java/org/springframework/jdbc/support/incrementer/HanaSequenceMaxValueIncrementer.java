@@ -37,8 +37,8 @@ public class HanaSequenceMaxValueIncrementer extends AbstractSequenceMaxValueInc
 
 	/**
 	 * 便捷构造函数。
-	 * @param dataSource the DataSource to use
-	 * @param incrementerName the name of the sequence/table to use
+	 * @param dataSource 要使用的 DataSource
+	 * @param incrementerName 要使用的序列/表的名称
 	 */
 	public HanaSequenceMaxValueIncrementer(DataSource dataSource, String incrementerName) {
 		super(dataSource, incrementerName);

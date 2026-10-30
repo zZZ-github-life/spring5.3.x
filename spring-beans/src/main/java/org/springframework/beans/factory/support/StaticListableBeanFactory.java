@@ -78,8 +78,7 @@ public class StaticListableBeanFactory implements ListableBeanFactory {
 	 * 创建一个包装给定 {@code Map} 的 {@code StaticListableBeanFactory}。<p>请注意，给定的 {@code Map}
 	 * 可以是预先填充了 Bean 的，也可以是新建的（仍允许通过 {@link #addBean} 注册 Bean）；或者使用
 	 * {@link java.util.Collections#emptyMap()} 创建一个操作空 Bean 集合的虚拟工厂。
-	 * @param beans a {@code Map} for holding this factory's beans, with the
-	 * bean name as key and the corresponding singleton object as value
+	 * @param beans 用于存放该工厂的 Bean 的 {@code Map}，以 Bean 名称为键、对应的单例对象为值
 	 * @since 4.3
 	 */
 	public StaticListableBeanFactory(Map<String, Object> beans) {
@@ -90,8 +89,8 @@ public class StaticListableBeanFactory implements ListableBeanFactory {
 
 	/**
 	 * 添加一个新的单例 Bean。<p>将覆盖给定名称的任何现有实例。
-	 * @param name the name of the bean
-	 * @param bean the bean instance
+	 * @param name Bean 的名称
+	 * @param bean Bean 实例
 	 */
 	public void addBean(String name, Object bean) {
 		this.beans.put(name, bean);

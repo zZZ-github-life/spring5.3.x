@@ -152,8 +152,8 @@ public class ResourceBundleThemeSource implements HierarchicalThemeSource, BeanC
 	 * 为给定基名创建 MessageSource，用作相应主题的 MessageSource。<p>默认实现为给定基名创建
 	 * ResourceBundleMessageSource。子类例如可以创建经过专门配置的
 	 * ReloadableResourceBundleMessageSource。
-	 * @param basename the basename to create a MessageSource for
-	 * @return the MessageSource
+	 * @param basename 要为其创建 MessageSource 的基名
+	 * @return 该 MessageSource
 	 * @see org.springframework.context.support.ResourceBundleMessageSource
 	 * @see org.springframework.context.support.ReloadableResourceBundleMessageSource
 	 */
@@ -174,7 +174,7 @@ public class ResourceBundleThemeSource implements HierarchicalThemeSource, BeanC
 
 	/**
 	 * 使用此 ThemeSource 相应父级的 MessageSource 初始化给定主题的 MessageSource。
-	 * @param theme the Theme to (re-)initialize
+	 * @param theme 要（重新）初始化的 Theme
 	 */
 	protected void initParent(Theme theme) {
 		if (theme.getMessageSource() instanceof HierarchicalMessageSource) {

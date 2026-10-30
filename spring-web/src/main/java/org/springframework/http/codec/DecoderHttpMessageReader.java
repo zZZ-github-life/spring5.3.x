@@ -46,7 +46,7 @@ import org.springframework.util.Assert;
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <T> the type of objects in the decoded output stream
+ * @param <T> 解码输出流中的对象类型
  */
 public class DecoderHttpMessageReader<T> implements HttpMessageReader<T> {
 
@@ -113,8 +113,8 @@ public class DecoderHttpMessageReader<T> implements HttpMessageReader<T> {
 	/**
 	 * 根据 "Content-Type" 头确定 HTTP 消息的 Content-Type，
 	 * 否则默认为 {@link MediaType#APPLICATION_OCTET_STREAM}。
-	 * @param inputMessage the HTTP message
-	 * @return the MediaType, possibly {@code null}.
+	 * @param inputMessage HTTP 消息
+	 * @return MediaType，可能为 {@code null}。
 	 */
 	@Nullable
 	protected MediaType getContentType(HttpMessage inputMessage) {

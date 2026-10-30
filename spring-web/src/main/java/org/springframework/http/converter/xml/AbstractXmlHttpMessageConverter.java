@@ -48,7 +48,7 @@ import org.springframework.util.StreamUtils;
  * @author Arjen Poutsma
  * @author Juergen Hoeller
  * @since 3.0
- * @param <T> the converted object type
+ * @param <T> 转换后的对象类型
  */
 public abstract class AbstractXmlHttpMessageConverter<T> extends AbstractHttpMessageConverter<T> {
 
@@ -98,9 +98,9 @@ public abstract class AbstractXmlHttpMessageConverter<T> extends AbstractHttpMes
 
 	/**
 	 * 将给定的 {@code Source} 转换为 {@code Result}。
-	 * @param source the source to transform from
-	 * @param result the result to transform to
-	 * @throws TransformerException in case of transformation errors
+	 * @param source 要从中进行转换的源
+	 * @param result 要转换到的结果
+	 * @throws TransformerException 发生转换错误时抛出
 	 */
 	protected void transform(Source source, Result result) throws TransformerException {
 		this.transformerFactory.newTransformer().transform(source, result);
@@ -109,20 +109,20 @@ public abstract class AbstractXmlHttpMessageConverter<T> extends AbstractHttpMes
 
 	/**
 	 * 从 {@link #read(Class, HttpInputMessage)} 调用的抽象模板方法。
-	 * @param clazz the type of object to return
-	 * @param headers the HTTP input headers
-	 * @param source the HTTP input body
-	 * @return the converted object
-	 * @throws Exception in case of I/O or conversion errors
+	 * @param clazz 要返回的对象类型
+	 * @param headers HTTP 输入头
+	 * @param source HTTP 输入主体
+	 * @return 转换后的对象
+	 * @throws Exception 发生 I/O 或转换错误时抛出
 	 */
 	protected abstract T readFromSource(Class<? extends T> clazz, HttpHeaders headers, Source source) throws Exception;
 
 	/**
 	 * 从 {@link #writeInternal(Object, HttpOutputMessage)} 调用的抽象模板方法。
-	 * @param t the object to write to the output message
-	 * @param headers the HTTP output headers
-	 * @param result the HTTP output body
-	 * @throws Exception in case of I/O or conversion errors
+	 * @param t 要写入输出消息的对象
+	 * @param headers HTTP 输出头
+	 * @param result HTTP 输出主体
+	 * @throws Exception 发生 I/O 或转换错误时抛出
 	 */
 	protected abstract void writeToResult(T t, HttpHeaders headers, Result result) throws Exception;
 

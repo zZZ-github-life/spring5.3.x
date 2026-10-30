@@ -206,9 +206,9 @@ abstract class AbstractStaxHandler implements ContentHandler, LexicalHandler {
 	/**
 	 * 将命名空间 URI 以及 DOM 或 SAX 限定名转换为 {@code QName}。限定名的形式可以是
 	 * {@code prefix:localname} 或 {@code localName}。
-	 * @param namespaceUri the namespace URI
-	 * @param qualifiedName the qualified name
-	 * @return a QName
+	 * @param namespaceUri 命名空间 URI
+	 * @param qualifiedName 限定名
+	 * @return 一个 QName
 	 */
 	protected QName toQName(String namespaceUri, String qualifiedName) {
 		int idx = qualifiedName.indexOf(':');

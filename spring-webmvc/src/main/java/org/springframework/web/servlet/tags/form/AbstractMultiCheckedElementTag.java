@@ -83,7 +83,7 @@ public abstract class AbstractMultiCheckedElementTag extends AbstractCheckedElem
 	 * 设置用于生成 '{@code input type="checkbox/radio"}' 标签的
 	 * {@link java.util.Collection}、{@link java.util.Map} 或对象数组。
 	 * <p>通常是运行时表达式。
-	 * @param items said items
+	 * @param items 上述项
 	 */
 	public void setItems(Object items) {
 		Assert.notNull(items, "'items' must not be null");

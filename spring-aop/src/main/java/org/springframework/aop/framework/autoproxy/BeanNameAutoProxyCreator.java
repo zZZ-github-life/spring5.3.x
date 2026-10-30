@@ -95,9 +95,9 @@ public class BeanNameAutoProxyCreator extends AbstractAutoProxyCreator {
 
 	/**
 	 * 判断给定 Bean 类的 Bean 名称是否与配置的受支持名称列表中的某一项匹配。
-	 * @param beanClass the class of the bean to advise
-	 * @param beanName the name of the bean
-	 * @return {@code true} if the given bean name is supported
+	 * @param beanClass 要增强的 Bean 的类
+	 * @param beanName 该 Bean 的名称
+	 * @return 如果给定的 Bean 名称受支持则返回 {@code true}
 	 * @see #setBeanNames(String...)
 	 */
 	private boolean isSupportedBeanName(Class<?> beanClass, String beanName) {
@@ -131,9 +131,9 @@ public class BeanNameAutoProxyCreator extends AbstractAutoProxyCreator {
 	/**
 	 * 判断给定 Bean 名称是否与映射名称匹配。
 	 * <p>默认实现会检查 "xxx*"、"*xxx" 和 "*xxx*" 匹配以及直接相等。可在子类中覆盖。
-	 * @param beanName the bean name to check
-	 * @param mappedName the name in the configured list of names
-	 * @return if the names match
+	 * @param beanName 要检查的 Bean 名称
+	 * @param mappedName 已配置名称列表中的名称
+	 * @return 名称是否匹配
 	 * @see org.springframework.util.PatternMatchUtils#simpleMatch(String, String)
 	 */
 	protected boolean isMatch(String beanName, String mappedName) {

@@ -115,9 +115,9 @@ public class ConstructorReference extends SpelNodeImpl {
 
 	/**
 	 * 创建一个新的普通对象并返回它。
-	 * @param state the expression state within which this expression is being evaluated
-	 * @return the new object
-	 * @throws EvaluationException if there is a problem creating the object
+	 * @param state 对此表达式进行求值所在的表达式状态
+	 * @return 新对象
+	 * @throws EvaluationException 如果创建对象时出现问题
 	 */
 	private TypedValue createNewInstance(ExpressionState state) throws EvaluationException {
 		Object[] arguments = new Object[getChildCount() - 1];
@@ -186,11 +186,12 @@ public class ConstructorReference extends SpelNodeImpl {
 
 	/**
 	 * 遍历已注册的构造函数解析器列表，检查是否有解析器能找到接受指定参数集的构造函数。
-	 * @param typeName the type trying to be constructed
-	 * @param argumentTypes the types of the arguments supplied that the constructor must take
-	 * @param state the current state of the expression
-	 * @return a reusable ConstructorExecutor that can be invoked to run the constructor or null
-	 * @throws SpelEvaluationException if there is a problem locating the constructor
+	 * @param typeName 尝试构造的类型
+	 * @param argumentTypes 所提供参数的类型，构造器必须接受这些类型
+	 * @param state 表达式的当前状态
+	 * @return 可调用以运行该构造器的可复用 ConstructorExecutor，
+	 * 没有则为 null
+	 * @throws SpelEvaluationException 如果定位构造器时出现问题
 	 */
 	private ConstructorExecutor findExecutorForConstructor(String typeName,
 			List<TypeDescriptor> argumentTypes, ExpressionState state) throws SpelEvaluationException {
@@ -249,9 +250,9 @@ public class ConstructorReference extends SpelNodeImpl {
 
 	/**
 	 * 创建一个数组并返回它。
-	 * @param state the expression state within which this expression is being evaluated
-	 * @return the new array
-	 * @throws EvaluationException if there is a problem creating the array
+	 * @param state 对此表达式进行求值所在的表达式状态
+	 * @return 新数组
+	 * @throws EvaluationException 如果创建数组时出现问题
 	 */
 	private TypedValue createArray(ExpressionState state) throws EvaluationException {
 		// First child gives us the array type which will either be a primitive or reference type

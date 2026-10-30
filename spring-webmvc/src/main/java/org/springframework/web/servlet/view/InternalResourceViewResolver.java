@@ -71,8 +71,8 @@ public class InternalResourceViewResolver extends UrlBasedViewResolver {
 	/**
 	 * 便捷构造函数，允许通过构造参数指定 {@link #setPrefix prefix}
 	 * 和 {@link #setSuffix suffix}。
-	 * @param prefix the prefix that gets prepended to view names when building a URL
-	 * @param suffix the suffix that gets appended to view names when building a URL
+	 * @param prefix 构建 URL 时添加到视图名称前面的前缀
+	 * @param suffix 构建 URL 时追加到视图名称后面的后缀
 	 * @since 4.3
 	 */
 	public InternalResourceViewResolver(String prefix, String suffix) {

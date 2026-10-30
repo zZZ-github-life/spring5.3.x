@@ -72,8 +72,8 @@ public class AspectJAfterReturningAdvice extends AbstractAspectJAdvice
 	 * 遵循 AspectJ 语义，如果指定了 returning 子句，那么仅当返回值是给定返回类型（以及泛型类型参数，如
 	 * 果有的话）的实例，并且符合赋值规则时，才会调用该通知。如果返回类型是 Object，则通知*始终*会被调
 	 * 用。
-	 * @param returnValue the return value of the target method
-	 * @return whether to invoke the advice method for the given return value
+	 * @param returnValue 目标方法的返回值
+	 * @return 是否针对给定的返回值调用通知方法
 	 */
 	private boolean shouldInvokeOnReturnValueOf(Method method, @Nullable Object returnValue) {
 		Class<?> type = getDiscoveredReturningType();
@@ -88,10 +88,10 @@ public class AspectJAfterReturningAdvice extends AbstractAspectJAdvice
 	 * 遵循 AspectJ 语义，如果返回值为 null（或返回类型为 void），则应使用目标方法的返回类型来确定是否
 	 * 调用通知。此外，即使返回类型为 void，如果通知方法中声明的参数类型为 Object，那么通知仍然必须被调
 	 * 用。
-	 * @param type the type of argument declared in advice method
-	 * @param method the advice method
-	 * @param returnValue the return value of the target method
-	 * @return whether to invoke the advice method for the given return value and type
+	 * @param type 通知方法中声明的参数类型
+	 * @param method 通知方法
+	 * @param returnValue 目标方法的返回值
+	 * @return 是否针对给定的返回值和类型调用通知方法
 	 */
 	private boolean matchesReturnValue(Class<?> type, Method method, @Nullable Object returnValue) {
 		if (returnValue != null) {

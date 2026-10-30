@@ -67,9 +67,8 @@ public class BeanWiringInfo {
 
 	/**
 	 * 创建一个指向给定 Bean 名称的新 BeanWiringInfo。
-	 * @param beanName the name of the bean definition to take the property values from
-	 * @throws IllegalArgumentException if the supplied beanName is {@code null},
-	 * is empty, or consists wholly of whitespace
+	 * @param beanName 要从中获取属性值的 Bean 定义的名称
+	 * @throws IllegalArgumentException 如果提供的 beanName 为 {@code null}、为空或完全由空白组成
 	 */
 	public BeanWiringInfo(String beanName) {
 		this(beanName, false);
@@ -77,11 +76,10 @@ public class BeanWiringInfo {
 
 	/**
 	 * 创建一个指向给定 Bean 名称的新 BeanWiringInfo。
-	 * @param beanName the name of the bean definition to take the property values from
-	 * @param isDefaultBeanName whether the given bean name is a suggested
-	 * default bean name, not necessarily matching an actual bean definition
-	 * @throws IllegalArgumentException if the supplied beanName is {@code null},
-	 * is empty, or consists wholly of whitespace
+	 * @param beanName 要从中获取属性值的 Bean 定义的名称
+	 * @param isDefaultBeanName 给定的 Bean 名称是否为建议的默认 Bean 名称
+	 * 它不一定匹配实际的 Bean 定义
+	 * @throws IllegalArgumentException 如果提供的 beanName 为 {@code null}、为空或完全由空白组成
 	 */
 	public BeanWiringInfo(String beanName, boolean isDefaultBeanName) {
 		Assert.hasText(beanName, "'beanName' must not be empty");
@@ -91,12 +89,9 @@ public class BeanWiringInfo {
 
 	/**
 	 * 创建一个表示自动装配的新 BeanWiringInfo。
-	 * @param autowireMode one of the constants {@link #AUTOWIRE_BY_NAME} /
-	 * {@link #AUTOWIRE_BY_TYPE}
-	 * @param dependencyCheck whether to perform a dependency check for object
-	 * references in the bean instance (after autowiring)
-	 * @throws IllegalArgumentException if the supplied {@code autowireMode}
-	 * is not one of the allowed values
+	 * @param autowireMode 常量 {@link #AUTOWIRE_BY_NAME} / {@link #AUTOWIRE_BY_TYPE} 之一
+	 * @param dependencyCheck 是否对 Bean 实例中的对象引用执行依赖检查（在自动装配之后）
+	 * @throws IllegalArgumentException 如果提供的 {@code autowireMode} 不是允许的值之一
 	 * @see #AUTOWIRE_BY_NAME
 	 * @see #AUTOWIRE_BY_TYPE
 	 */

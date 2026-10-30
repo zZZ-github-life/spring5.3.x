@@ -39,66 +39,66 @@ public interface PropertiesPersister {
 
 	/**
 	 * 从给定的 InputStream 将属性加载到给定的 Properties 对象中。
-	 * @param props the Properties object to load into
-	 * @param is the InputStream to load from
-	 * @throws IOException in case of I/O errors
+	 * @param props 要加载到的 Properties 对象
+	 * @param is 要从中加载的 InputStream
+	 * @throws IOException 在发生 I/O 错误时
 	 * @see java.util.Properties#load
 	 */
 	void load(Properties props, InputStream is) throws IOException;
 
 	/**
 	 * 从给定的 Reader 将属性加载到给定的 Properties 对象中。
-	 * @param props the Properties object to load into
-	 * @param reader the Reader to load from
-	 * @throws IOException in case of I/O errors
+	 * @param props 要加载到的 Properties 对象
+	 * @param reader 要从中加载的 Reader
+	 * @throws IOException 在发生 I/O 错误时
 	 */
 	void load(Properties props, Reader reader) throws IOException;
 
 	/**
 	 * 将给定 Properties 对象的内容写入给定的 OutputStream。
-	 * @param props the Properties object to store
-	 * @param os the OutputStream to write to
-	 * @param header the description of the property list
-	 * @throws IOException in case of I/O errors
+	 * @param props 要存储的 Properties 对象
+	 * @param os 要写入的 OutputStream
+	 * @param header 属性列表的描述
+	 * @throws IOException 在发生 I/O 错误时
 	 * @see java.util.Properties#store
 	 */
 	void store(Properties props, OutputStream os, String header) throws IOException;
 
 	/**
 	 * 将给定 Properties 对象的内容写入给定的 Writer。
-	 * @param props the Properties object to store
-	 * @param writer the Writer to write to
-	 * @param header the description of the property list
-	 * @throws IOException in case of I/O errors
+	 * @param props 要存储的 Properties 对象
+	 * @param writer 要写入的 Writer
+	 * @param header 属性列表的描述
+	 * @throws IOException 在发生 I/O 错误时
 	 */
 	void store(Properties props, Writer writer, String header) throws IOException;
 
 	/**
 	 * 从给定的 XML InputStream 将属性加载到给定的 Properties 对象中。
-	 * @param props the Properties object to load into
-	 * @param is the InputStream to load from
-	 * @throws IOException in case of I/O errors
+	 * @param props 要加载到的 Properties 对象
+	 * @param is 要从中加载的 InputStream
+	 * @throws IOException 在发生 I/O 错误时
 	 * @see java.util.Properties#loadFromXML(java.io.InputStream)
 	 */
 	void loadFromXml(Properties props, InputStream is) throws IOException;
 
 	/**
 	 * 将给定 Properties 对象的内容写入给定的 XML OutputStream。
-	 * @param props the Properties object to store
-	 * @param os the OutputStream to write to
-	 * @param header the description of the property list
-	 * @throws IOException in case of I/O errors
+	 * @param props 要存储的 Properties 对象
+	 * @param os 要写入的 OutputStream
+	 * @param header 属性列表的描述
+	 * @throws IOException 在发生 I/O 错误时
 	 * @see java.util.Properties#storeToXML(java.io.OutputStream, String)
 	 */
 	void storeToXml(Properties props, OutputStream os, String header) throws IOException;
 
 	/**
 	 * 将给定 Properties 对象的内容写入给定的 XML OutputStream。
-	 * @param props the Properties object to store
-	 * @param os the OutputStream to write to
-	 * @param encoding the encoding to use
-	 * @param header the description of the property list
-	 * @throws IOException in case of I/O errors
+	 * @param props 要存储的 Properties 对象
+	 * @param os 要写入的 OutputStream
+	 * @param encoding 要使用的编码
+	 * @param header 属性列表的描述
+	 * @throws IOException 在发生 I/O 错误时
 	 * @see java.util.Properties#storeToXML(java.io.OutputStream, String, String)
 	 */
 	void storeToXml(Properties props, OutputStream os, String header, String encoding) throws IOException;

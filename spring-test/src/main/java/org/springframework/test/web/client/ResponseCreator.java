@@ -34,7 +34,7 @@ public interface ResponseCreator {
 
 	/**
 	 * 为给定请求创建响应。
-	 * @param request the request
+	 * @param request 请求
 	 */
 	ClientHttpResponse createResponse(@Nullable ClientHttpRequest request) throws IOException;
 

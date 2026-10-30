@@ -79,7 +79,7 @@ public class DefaultPartHttpMessageReader extends LoggingCodecSupport implements
 
 	/**
 	 * 配置每个部件的头部分允许使用的最大内存量。当达到该限制时
-	 * @param byteCount the maximum amount of memory for headers
+	 * @param byteCount 用于头的最大内存量
 	 */
 	public void setMaxHeadersSize(int byteCount) {
 		this.maxHeadersSize = byteCount;
@@ -102,8 +102,8 @@ public class DefaultPartHttpMessageReader extends LoggingCodecSupport implements
 	 * <p>默认设置为 256K。
 	 * <p>请注意，启用{@linkplain #setStreaming(boolean) 流式}模式时，
 	 * 此属性将被忽略。
-	 * @param maxInMemorySize the in-memory limit in bytes; if set to -1 the entire
-	 * contents will be stored in memory
+	 * @param maxInMemorySize 以字节为单位的内存限制；如果设置为 -1，
+	 * 则整个内容都将存储在内存中
 	 */
 	public void setMaxInMemorySize(int maxInMemorySize) {
 		this.maxInMemorySize = maxInMemorySize;
@@ -136,8 +136,7 @@ public class DefaultPartHttpMessageReader extends LoggingCodecSupport implements
 	 * <p>请注意，启用{@linkplain #setStreaming(boolean) 流式}模式时，
 	 * 或将 {@link #setMaxInMemorySize(int) maxInMemorySize} 设置为 -1 时，
 	 * 此属性将被忽略。
-	 * @throws IOException if an I/O error occurs, or the parent directory
-	 * does not exist
+	 * @throws IOException 如果发生 I/O 错误，或父目录不存在
 	 */
 	public void setFileStorageDirectory(Path fileStorageDirectory) throws IOException {
 		Assert.notNull(fileStorageDirectory, "FileStorageDirectory must not be null");
@@ -184,7 +183,7 @@ public class DefaultPartHttpMessageReader extends LoggingCodecSupport implements
 	/**
 	 * 设置用于解码头的字符集。
 	 * 按照 RFC 7578 默认为 UTF-8。
-	 * @param headersCharset the charset to use for decoding headers
+	 * @param headersCharset 用于解码头的字符集
 	 * @since 5.3.6
 	 * @see <a href="https://tools.ietf.org/html/rfc7578#section-5.1">RFC-7578 Section 5.1</a>
 	 */

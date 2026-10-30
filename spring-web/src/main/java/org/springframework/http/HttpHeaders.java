@@ -430,7 +430,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * 构造一个由现有映射支持的新的 {@code HttpHeaders} 实例。
 	 * <p>此构造函数作为优化提供，用于适配现有的头映射结构，主要供框架内部使用。
-	 * @param headers the headers map (expected to operate with case-insensitive keys)
+	 * @param headers 标头映射（应使用不区分大小写的键）
 	 * @since 5.1
 	 */
 	public HttpHeaders(MultiValueMap<String, String> headers) {
@@ -441,8 +441,8 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 获取给定头名称的头值列表（如果有）。
-	 * @param headerName the header name
-	 * @return the list of header values, or an empty list
+	 * @param headerName 标头名称
+	 * @return 标头值列表，或空列表
 	 * @since 5.2
 	 */
 	public List<String> getOrEmpty(Object headerName) {
@@ -484,7 +484,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * 从 {@literal "Accept-Language"} 头返回语言范围。
 	 * <p>如果你只需要排序后的首选区域设置，请使用 {@link #getAcceptLanguageAsLocales()}；如果需要根据受支持的区域设置列表进行过滤，可以将返回的列表传递给 {@link Locale#filter(List, Collection)}。
-	 * @throws IllegalArgumentException if the value cannot be converted to a language range
+	 * @throws IllegalArgumentException 如果该值无法转换为语言范围
 	 * @since 5.0
 	 */
 	public List<Locale.LanguageRange> getAcceptLanguage() {
@@ -504,8 +504,8 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * {@link #getAcceptLanguage()} 的变体，将每个 {@link java.util.Locale.LanguageRange} 转换为 {@link Locale}。
-	 * @return the locales or an empty list
-	 * @throws IllegalArgumentException if the value cannot be converted to a locale
+	 * @return 区域设置列表，或空列表
+	 * @throws IllegalArgumentException 如果该值无法转换为区域设置
 	 * @since 5.0
 	 */
 	public List<Locale> getAcceptLanguageAsLocales() {
@@ -742,10 +742,9 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * 根据给定的用户名和密码，将 {@linkplain #AUTHORIZATION Authorization} 头的值设置为基本认证。
 	 * <p>请注意，此方法仅支持 {@link StandardCharsets#ISO_8859_1 ISO-8859-1} 字符集中的字符。
-	 * @param username the username
-	 * @param password the password
-	 * @throws IllegalArgumentException if either {@code user} or
-	 * {@code password} contain characters that cannot be encoded to ISO-8859-1
+	 * @param username 用户名
+	 * @param password 密码
+	 * @throws IllegalArgumentException 如果 {@code user} 或 {@code password} 包含无法编码为 ISO-8859-1 的字符
 	 * @since 5.1
 	 * @see #setBasicAuth(String)
 	 * @see #setBasicAuth(String, String, Charset)
@@ -758,12 +757,11 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 根据给定的用户名和密码，将 {@linkplain #AUTHORIZATION Authorization} 头的值设置为基本认证。
-	 * @param username the username
-	 * @param password the password
-	 * @param charset the charset to use to convert the credentials into an octet
-	 * sequence. Defaults to {@linkplain StandardCharsets#ISO_8859_1 ISO-8859-1}.
-	 * @throws IllegalArgumentException if {@code username} or {@code password}
-	 * contains characters that cannot be encoded to the given charset
+	 * @param username 用户名
+	 * @param password 密码
+	 * @param charset 用于将凭证转换为八位字节序列的字符集。
+	 * 默认为 {@linkplain StandardCharsets#ISO_8859_1 ISO-8859-1}。
+	 * @throws IllegalArgumentException 如果 {@code username} 或 {@code password} 包含无法编码为给定字符集的字符
 	 * @since 5.1
 	 * @see #setBasicAuth(String)
 	 * @see #setBasicAuth(String, String)
@@ -777,9 +775,8 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * 根据给定的 {@linkplain #encodeBasicAuth 编码凭据}，将 {@linkplain #AUTHORIZATION Authorization} 头的值设置为基本认证。
 	 * <p>如果希望缓存编码后的凭据，请优先使用此方法而不是 {@link #setBasicAuth(String, String)} 和 {@link #setBasicAuth(String, String, Charset)}。
-	 * @param encodedCredentials the encoded credentials
-	 * @throws IllegalArgumentException if supplied credentials string is
-	 * {@code null} or blank
+	 * @param encodedCredentials 编码后的凭证
+	 * @throws IllegalArgumentException 如果提供的凭证字符串为 {@code null} 或空白
 	 * @since 5.2
 	 * @see #setBasicAuth(String, String)
 	 * @see #setBasicAuth(String, String, Charset)
@@ -793,7 +790,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 将 {@linkplain #AUTHORIZATION Authorization} 头的值设置为给定的 Bearer 令牌。
-	 * @param token the Base64 encoded token
+	 * @param token Base64 编码的令牌
 	 * @since 5.1
 	 * @see <a href="https://tools.ietf.org/html/rfc6750">RFC 6750</a>
 	 */
@@ -848,8 +845,8 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * 在创建 {@code "multipart/form-data"} 请求时设置 {@code Content-Disposition} 头。
 	 * <p>应用程序通常不会直接设置此头，而是准备一个 {@code MultiValueMap<String, Object>}，为每个部分包含一个 Object 或 {@link org.springframework.core.io.Resource}，然后将其传递给 {@code RestTemplate} 或 {@code WebClient}。
-	 * @param name the control name
-	 * @param filename the filename (may be {@code null})
+	 * @param name 控件名称
+	 * @param filename 文件名（可能为 {@code null}）
 	 * @see #getContentDisposition()
 	 */
 	public void setContentDispositionFormData(String name, @Nullable String filename) {
@@ -897,8 +894,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * 获取内容语言的第一个 {@link Locale}，由 {@code Content-Language} 头指定。
 	 * <p>如果需要获取多个内容语言，请使用 {@link #getValuesAsList(String)}。
-	 * @return the first {@code Locale} of the content languages, or {@code null}
-	 * if unknown
+	 * @return 内容语言的第一个 {@code Locale}，如果未知则为 {@code null}
 	 * @since 5.0
 	 */
 	@Nullable
@@ -943,7 +939,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * 返回正文的 {@linkplain MediaType media type}，由 {@code Content-Type} 头指定。
 	 * <p>当未设置 {@code Content-Type} 头时返回 {@code null}。
-	 * @throws InvalidMediaTypeException if the media type value cannot be parsed
+	 * @throws InvalidMediaTypeException 如果媒体类型值无法解析
 	 */
 	@Nullable
 	public MediaType getContentType() {
@@ -978,7 +974,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * 返回消息创建时的日期和时间，由 {@code Date} 头指定。
 	 * <p>日期以自格林尼治标准时间 1970 年 1 月 1 日以来的毫秒数返回。当日期未知时返回 -1。
-	 * @throws IllegalArgumentException if the value cannot be converted to a date
+	 * @throws IllegalArgumentException 如果该值无法转换为日期
 	 */
 	public long getDate() {
 		return getFirstDate(DATE);
@@ -1109,7 +1105,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 返回 {@code If-Match} 头的值。
-	 * @throws IllegalArgumentException if parsing fails
+	 * @throws IllegalArgumentException 如果解析失败
 	 * @since 4.3
 	 */
 	public List<String> getIfMatch() {
@@ -1165,7 +1161,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 返回 {@code If-None-Match} 头的值。
-	 * @throws IllegalArgumentException if parsing fails
+	 * @throws IllegalArgumentException 如果解析失败
 	 */
 	public List<String> getIfNoneMatch() {
 		return getETagValuesAsList(IF_NONE_MATCH);
@@ -1320,7 +1316,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 设置请求头名称（例如 "Accept-Language"），响应将根据这些请求头的值进行内容协商并产生差异。
-	 * @param requestHeaders the request header names
+	 * @param requestHeaders 请求标头名称
 	 * @since 4.3
 	 */
 	public void setVary(List<String> requestHeaders) {
@@ -1362,8 +1358,8 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 将给定头名称的第一个头值解析为日期；如果没有值，则返回 -1；如果该值无法解析为日期，则抛出 {@link IllegalArgumentException}。
-	 * @param headerName the header name
-	 * @return the parsed date header, or -1 if none
+	 * @param headerName 标头名称
+	 * @return 解析后的日期标头，若不存在则为 -1
 	 * @since 3.2.4
 	 * @see #getFirstZonedDateTime(String)
 	 */
@@ -1373,11 +1369,10 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 将给定头名称的第一个头值解析为日期；如果没有值，或在值无效时（如果 {@code rejectInvalid=false}），返回 -1；如果该值无法解析为日期，则抛出 {@link IllegalArgumentException}。
-	 * @param headerName the header name
-	 * @param rejectInvalid whether to reject invalid values with an
-	 * {@link IllegalArgumentException} ({@code true}) or rather return -1
-	 * in that case ({@code false})
-	 * @return the parsed date header, or -1 if none (or invalid)
+	 * @param headerName 标头名称
+	 * @param rejectInvalid 是否对无效值抛出 {@link IllegalArgumentException}（{@code true}），
+	 * 还是在这种情况下返回 -1（{@code false}）
+	 * @return 解析后的日期标头，若不存在（或无效）则为 -1
 	 * @see #getFirstZonedDateTime(String, boolean)
 	 */
 	private long getFirstDate(String headerName, boolean rejectInvalid) {
@@ -1387,8 +1382,8 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 将给定头名称的第一个头值解析为日期；如果没有值，则返回 {@code null}；如果该值无法解析为日期，则抛出 {@link IllegalArgumentException}。
-	 * @param headerName the header name
-	 * @return the parsed date header, or {@code null} if none
+	 * @param headerName 标头名称
+	 * @return 解析后的日期标头，若不存在则为 {@code null}
 	 * @since 5.0
 	 */
 	@Nullable
@@ -1398,11 +1393,10 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 将给定头名称的第一个头值解析为日期；如果没有值，或在值无效时（如果 {@code rejectInvalid=false}），返回 {@code null}；如果该值无法解析为日期，则抛出 {@link IllegalArgumentException}。
-	 * @param headerName the header name
-	 * @param rejectInvalid whether to reject invalid values with an
-	 * {@link IllegalArgumentException} ({@code true}) or rather return {@code null}
-	 * in that case ({@code false})
-	 * @return the parsed date header, or {@code null} if none (or invalid)
+	 * @param headerName 标头名称
+	 * @param rejectInvalid 是否对无效值抛出 {@link IllegalArgumentException}（{@code true}），
+	 * 还是在这种情况下返回 {@code null}（{@code false}）
+	 * @return 解析后的日期标头，若不存在（或无效）则为 {@code null}
 	 */
 	@Nullable
 	private ZonedDateTime getFirstZonedDateTime(String headerName, boolean rejectInvalid) {
@@ -1440,8 +1434,8 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 返回给定头名称的所有值，即使该头被多次设置。
-	 * @param headerName the header name
-	 * @return all associated values
+	 * @param headerName 标头名称
+	 * @return 所有关联的值
 	 * @since 4.3
 	 */
 	public List<String> getValuesAsList(String headerName) {
@@ -1475,9 +1469,9 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 从 ETag 头的字段值中检索合并后的结果。
-	 * @param headerName the header name
-	 * @return the combined result
-	 * @throws IllegalArgumentException if parsing fails
+	 * @param headerName 标头名称
+	 * @return 合并后的结果
+	 * @throws IllegalArgumentException 如果解析失败
 	 * @since 4.3
 	 */
 	protected List<String> getETagValuesAsList(String headerName) {
@@ -1508,8 +1502,8 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 从多值头的字段值中检索合并后的结果。
-	 * @param headerName the header name
-	 * @return the combined result
+	 * @param headerName 标头名称
+	 * @return 合并后的结果
 	 * @since 4.3
 	 */
 	@Nullable
@@ -1520,8 +1514,8 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 将给定的头值列表转换为逗号分隔的结果。
-	 * @param headerValues the list of header values
-	 * @return a combined result with comma delimitation
+	 * @param headerValues 标头值列表
+	 * @return 以逗号分隔的合并结果
 	 */
 	protected String toCommaDelimitedString(List<String> headerValues) {
 		StringJoiner joiner = new StringJoiner(", ");
@@ -1535,8 +1529,8 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 设置给定的头值；如果为 {@code null}，则移除该头。
-	 * @param headerName the header name
-	 * @param headerValue the header value, or {@code null} for none
+	 * @param headerName 标头名称
+	 * @param headerValue 标头值，若无则为 {@code null}
 	 */
 	private void setOrRemove(String headerName, @Nullable String headerValue) {
 		if (headerValue != null) {
@@ -1552,8 +1546,8 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 返回给定头名称的第一个头值（如果有）。
-	 * @param headerName the header name
-	 * @return the first header value, or {@code null} if none
+	 * @param headerName 标头名称
+	 * @return 第一个标头值，若无则为 {@code null}
 	 */
 	@Override
 	@Nullable
@@ -1563,9 +1557,9 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 在给定名称下添加给定的单个头值。
-	 * @param headerName the header name
-	 * @param headerValue the header value
-	 * @throws UnsupportedOperationException if adding headers is not supported
+	 * @param headerName 标头名称
+	 * @param headerValue 标头值
+	 * @throws UnsupportedOperationException 如果不支持添加标头
 	 * @see #put(String, List)
 	 * @see #set(String, String)
 	 */
@@ -1586,9 +1580,9 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 在给定名称下设置给定的单个头值。
-	 * @param headerName the header name
-	 * @param headerValue the header value
-	 * @throws UnsupportedOperationException if adding headers is not supported
+	 * @param headerName 标头名称
+	 * @param headerValue 标头值
+	 * @throws UnsupportedOperationException 如果不支持添加标头
 	 * @see #put(String, List)
 	 * @see #add(String, String)
 	 */
@@ -1704,9 +1698,9 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * 如有必要，对给定的头应用只读 {@code HttpHeaders} 包装器。
 	 * <p>还会缓存 "Accept" 和 "Content-Type" 头的解析表示形式。
-	 * @param headers the headers to expose
-	 * @return a read-only variant of the headers, or the original headers as-is
-	 * (in case it happens to be a read-only {@code HttpHeaders} instance already)
+	 * @param headers 要暴露的标头
+	 * @return 标头的只读变体，或原样返回原始标头
+	 * （如果它已经是只读的 {@code HttpHeaders} 实例）
 	 * @since 5.3
 	 */
 	public static HttpHeaders readOnlyHttpHeaders(MultiValueMap<String, String> headers) {
@@ -1717,8 +1711,8 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * 如有必要，对给定的头应用只读 {@code HttpHeaders} 包装器。
 	 * <p>还会缓存 "Accept" 和 "Content-Type" 头的解析表示形式。
-	 * @param headers the headers to expose
-	 * @return a read-only variant of the headers, or the original headers as-is
+	 * @param headers 要暴露的标头
+	 * @return 标头的只读变体，或原样返回原始标头
 	 */
 	public static HttpHeaders readOnlyHttpHeaders(HttpHeaders headers) {
 		Assert.notNull(headers, "HttpHeaders must not be null");
@@ -1727,8 +1721,8 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 移除之前可能通过 {@link #readOnlyHttpHeaders(HttpHeaders)} 应用于给定头的任何只读包装器。
-	 * @param headers the headers to expose
-	 * @return a writable variant of the headers, or the original headers as-is
+	 * @param headers 要暴露的标头
+	 * @return 标头的可写变体，或原样返回原始标头
 	 * @since 5.1.1
 	 */
 	public static HttpHeaders writableHttpHeaders(HttpHeaders headers) {
@@ -1741,8 +1735,8 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * 帮助格式化 HTTP 头值，因为 HTTP 头值本身可以包含逗号分隔的值，使用同样在条目之间使用逗号的常规 {@link Map} 格式化方式可能会造成混淆。
-	 * @param headers the headers to format
-	 * @return the headers to a String
+	 * @param headers 要格式化的标头
+	 * @return 标头的 String 表示
 	 * @since 5.1.4
 	 */
 	public static String formatHeaders(MultiValueMap<String, String> headers) {
@@ -1759,12 +1753,11 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * 将给定的用户名和密码编码为基本认证凭据。
 	 * <p>此方法返回的编码凭据可以提供给 {@link #setBasicAuth(String)} 以设置基本认证头。
-	 * @param username the username
-	 * @param password the password
-	 * @param charset the charset to use to convert the credentials into an octet
-	 * sequence. Defaults to {@linkplain StandardCharsets#ISO_8859_1 ISO-8859-1}.
-	 * @throws IllegalArgumentException if {@code username} or {@code password}
-	 * contains characters that cannot be encoded to the given charset
+	 * @param username 用户名
+	 * @param password 密码
+	 * @param charset 用于将凭证转换为八位字节序列的字符集。
+	 * 默认为 {@linkplain StandardCharsets#ISO_8859_1 ISO-8859-1}。
+	 * @throws IllegalArgumentException 如果 {@code username} 或 {@code password} 包含无法编码为给定字符集的字符
 	 * @since 5.2
 	 * @see #setBasicAuth(String)
 	 * @see #setBasicAuth(String, String)

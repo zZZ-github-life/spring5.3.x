@@ -90,7 +90,7 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 
 	/**
 	 * 创建一个新的 {@code R2dbcTransactionManager} 实例。
-	 * @param connectionFactory the R2DBC ConnectionFactory to manage transactions for
+	 * @param connectionFactory 要为其管理事务的 R2DBC ConnectionFactory
 	 */
 	public R2dbcTransactionManager(ConnectionFactory connectionFactory) {
 		this();
@@ -121,8 +121,8 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 
 	/**
 	 * 获取实际使用的 {@link ConnectionFactory}。
-	 * @return the {@code ConnectionFactory} (never {@code null})
-	 * @throws IllegalStateException in case of no ConnectionFactory set
+	 * @return {@code ConnectionFactory}（永不为 {@code null}）
+	 * @throws IllegalStateException 在未设置 ConnectionFactory 的情况下
 	 */
 	protected ConnectionFactory obtainConnectionFactory() {
 		ConnectionFactory connectionFactory = getConnectionFactory();
@@ -226,8 +226,8 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 	/**
 	 * 确定为给定定义实际使用的超时时间。
 	 * 如果事务定义未指定非默认值，则回退到本管理器的默认超时时间。
-	 * @param definition the transaction definition
-	 * @return the actual timeout to use
+	 * @param definition 事务定义
+	 * @return 实际要使用的超时时间
 	 * @see org.springframework.transaction.TransactionDefinition#getTimeout()
 	 */
 	protected Duration determineTimeout(TransactionDefinition definition) {
@@ -405,8 +405,8 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 	 * 且事务定义指示为只读事务，默认实现会执行 "SET TRANSACTION READ ONLY" 语句。
 	 * <p>"SET TRANSACTION READ ONLY" 为 Oracle、MySQL 和 Postgres 所理解，
 	 * 也可能适用于其他数据库。如果你希望调整这一处理方式，请相应地覆盖此方法。
-	 * @param con the transactional R2DBC Connection
-	 * @param definition the current transaction definition
+	 * @param con 事务性 R2DBC Connection
+	 * @param definition 当前事务定义
 	 * @since 5.3.22
 	 * @see #setEnforceReadOnly
 	 */
@@ -424,9 +424,9 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 	 * 将 {@linkplain TransactionDefinition#getIsolationLevel() 隔离级别常量}
 	 * 解析为 R2DBC 的 {@link IsolationLevel}。如果你希望为特定厂商的
 	 * {@code IsolationLevel} 扩展隔离级别转换，请相应地覆盖此方法。
-	 * @param isolationLevel the isolation level to translate.
-	 * @return the resolved isolation level. Can be {@code null} if not resolvable or the isolation level
-	 * should remain {@link TransactionDefinition#ISOLATION_DEFAULT default}.
+	 * @param isolationLevel 要转换的隔离级别。
+	 * @return 解析后的隔离级别。如果无法解析，或隔离级别应保持
+	 * {@link TransactionDefinition#ISOLATION_DEFAULT default}，则可为 {@code null}。
 	 * @see TransactionDefinition#getIsolationLevel()
 	 */
 	@Nullable
@@ -447,9 +447,9 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 	/**
 	 * 将给定的 R2DBC 提交/回滚异常转换为通用的 Spring 异常，
 	 * 以便从 {@link #commit}/{@link #rollback} 调用中传播出去。
-	 * @param task the task description (commit or rollback).
-	 * @param ex the SQLException thrown from commit/rollback.
-	 * @return the translated exception to emit
+	 * @param task 任务描述（提交或回滚）。
+	 * @param ex 由 commit/rollback 抛出的 SQLException。
+	 * @return 要发出的转换后异常
 	 */
 	protected RuntimeException translateException(String task, R2dbcException ex) {
 		return ConnectionFactoryUtils.convertR2dbcException(task, null, ex);

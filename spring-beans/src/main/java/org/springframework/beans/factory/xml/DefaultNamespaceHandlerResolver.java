@@ -79,8 +79,8 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 
 	/**
 	 * 使用默认映射文件位置创建一个新的 {@code DefaultNamespaceHandlerResolver}。
-	 * @param classLoader the {@link ClassLoader} instance used to load mapping resources
-	 * (may be {@code null}, in which case the thread context ClassLoader will be used)
+	 * @param classLoader 用于加载映射资源的 {@link ClassLoader} 实例
+	 * （可以为 {@code null}，此时将使用线程上下文 ClassLoader）
 	 * @see #DEFAULT_HANDLER_MAPPINGS_LOCATION
 	 */
 	public DefaultNamespaceHandlerResolver(@Nullable ClassLoader classLoader) {
@@ -89,9 +89,9 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 
 	/**
 	 * 使用所提供的映射文件位置创建一个新的 {@code DefaultNamespaceHandlerResolver}。
-	 * @param classLoader the {@link ClassLoader} instance used to load mapping resources
-	 * may be {@code null}, in which case the thread context ClassLoader will be used
-	 * @param handlerMappingsLocation the mapping file location
+	 * @param classLoader 用于加载映射资源的 {@link ClassLoader} 实例，
+	 * 可以为 {@code null}，此时将使用线程上下文 ClassLoader
+	 * @param handlerMappingsLocation 映射文件的位置
 	 */
 	public DefaultNamespaceHandlerResolver(@Nullable ClassLoader classLoader, String handlerMappingsLocation) {
 		Assert.notNull(handlerMappingsLocation, "Handler mappings location must not be null");
@@ -102,8 +102,8 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 
 	/**
 	 * 根据配置的映射关系，为所提供的命名空间 URI 定位 {@link NamespaceHandler}。
-	 * @param namespaceUri the relevant namespace URI
-	 * @return the located {@link NamespaceHandler}, or {@code null} if none found
+	 * @param namespaceUri 相关的命名空间 URI
+	 * @return 定位到的 {@link NamespaceHandler}；如果未找到则为 {@code null}
 	 */
 	@Override
 	@Nullable

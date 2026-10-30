@@ -42,9 +42,9 @@ public abstract class MergedAnnotationPredicates {
 	/**
 	 * 创建新的 {@link Predicate}，如果 {@linkplain MergedAnnotation#getType() 合并注解类型}的名称包含
 	 * 在指定数组中，则其结果为 {@code true}。
-	 * @param <A> the annotation type
-	 * @param typeNames the names that should be matched
-	 * @return a {@link Predicate} to test the annotation type
+	 * @param <A> 注解类型
+	 * @param typeNames 应匹配的名称
+	 * @return 用于测试注解类型的 {@link Predicate}
 	 */
 	public static <A extends Annotation> Predicate<MergedAnnotation<? extends A>> typeIn(String... typeNames) {
 		return annotation -> ObjectUtils.containsElement(typeNames, annotation.getType().getName());
@@ -53,9 +53,9 @@ public abstract class MergedAnnotationPredicates {
 	/**
 	 * 创建新的 {@link Predicate}，如果 {@linkplain MergedAnnotation#getType() 合并注解类型}包含在指定
 	 * 数组中，则其结果为 {@code true}。
-	 * @param <A> the annotation type
-	 * @param types the types that should be matched
-	 * @return a {@link Predicate} to test the annotation type
+	 * @param <A> 注解类型
+	 * @param types 应匹配的类型
+	 * @return 用于测试注解类型的 {@link Predicate}
 	 */
 	public static <A extends Annotation> Predicate<MergedAnnotation<? extends A>> typeIn(Class<?>... types) {
 		return annotation -> ObjectUtils.containsElement(types, annotation.getType());
@@ -64,9 +64,9 @@ public abstract class MergedAnnotationPredicates {
 	/**
 	 * 创建新的 {@link Predicate}，如果 {@linkplain MergedAnnotation#getType() 合并注解类型}包含在指定
 	 * 集合中，则其结果为 {@code true}。
-	 * @param <A> the annotation type
-	 * @param types the type names or classes that should be matched
-	 * @return a {@link Predicate} to test the annotation type
+	 * @param <A> 注解类型
+	 * @param types 应匹配的类型名称或类
+	 * @return 用于测试注解类型的 {@link Predicate}
 	 */
 	public static <A extends Annotation> Predicate<MergedAnnotation<? extends A>> typeIn(Collection<?> types) {
 		return annotation -> types.stream()
@@ -80,9 +80,8 @@ public abstract class MergedAnnotationPredicates {
 	 * 具有相同距离的任何后续连续段。<p>注意：此谓词仅匹配第一个连续段。一旦提取的值发生变化，该谓词将
 	 * 始终返回 {@code false}。例如，如果您有一组距离为 {@code [1, 1, 2, 1]} 的注解，则只有前两个会匹配。
 	 *
-	 * @param valueExtractor function used to extract the value to check
-	 * @return a {@link Predicate} that matches the first run of the extracted
-	 * values
+	 * @param valueExtractor 用于提取待检查值的函数
+	 * @return 匹配提取值首个连续序列的 {@link Predicate}
 	 */
 	public static <A extends Annotation> Predicate<MergedAnnotation<A>> firstRunOf(
 			Function<? super MergedAnnotation<A>, ?> valueExtractor) {
@@ -94,10 +93,8 @@ public abstract class MergedAnnotationPredicates {
 	 * 创建新的有状态、一次性使用的 {@link Predicate}，它匹配基于提取键唯一的注解。例如，
 	 * {@code MergedAnnotationPredicates.unique(MergedAnnotation::getType)} 将在首次遇到唯一类型时匹配。
 	 *
-	 * @param keyExtractor function used to extract the key used to test for
-	 * uniqueness
-	 * @return a {@link Predicate} that matches a unique annotation based on the
-	 * extracted key
+	 * @param keyExtractor 用于提取唯一性校验键的函数
+	 * @return 基于提取的键匹配唯一注解的 {@link Predicate}
 	 */
 	public static <A extends Annotation, K> Predicate<MergedAnnotation<A>> unique(
 			Function<? super MergedAnnotation<A>, K> keyExtractor) {

@@ -52,7 +52,7 @@ import org.springframework.util.StringUtils;
  * @author Brian Clozel
  * @author Sam Brannen
  * @since 5.0
- * @param <T> the type of objects in the input stream
+ * @param <T> 输入流中的对象类型
  */
 public class EncoderHttpMessageWriter<T> implements HttpMessageWriter<T> {
 

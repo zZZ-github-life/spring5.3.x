@@ -44,8 +44,8 @@ public abstract class SimpLogging {
 	/**
 	 * 为给定类创建主日志记录器，并用组合日志记录器包装它，该组合日志记录器会委托给主日志记录器，
 	 * 如果主日志记录器未启用，则委托给名为 "org.springframework.web.SimpLogging" 的回退日志记录器。
-	 * @param primaryLoggerClass the class for the name of the primary logger
-	 * @return the resulting composite logger
+	 * @param primaryLoggerClass 用作主日志记录器名称的类
+	 * @return 生成的复合日志记录器
 	 */
 	public static Log forLogName(Class<?> primaryLoggerClass) {
 		Log primaryLogger = LogFactory.getLog(primaryLoggerClass);
@@ -56,8 +56,8 @@ public abstract class SimpLogging {
 	 * 用组合日志记录器包装给定主日志记录器，该组合日志记录器会委托给主日志记录器，
 	 * 如果主日志记录器未启用，则委托给共享回退日志记录器
 	 * "org.springframework.web.HttpLogging"。
-	 * @param primaryLogger the primary logger to use
-	 * @return the resulting composite logger
+	 * @param primaryLogger 要使用的主日志记录器
+	 * @return 生成的复合日志记录器
 	 */
 	public static Log forLog(Log primaryLogger) {
 		return LogDelegateFactory.getCompositeLog(primaryLogger, fallbackLogger);

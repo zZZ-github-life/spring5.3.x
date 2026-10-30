@@ -25,7 +25,7 @@ import java.sql.SQLException;
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see JdbcUtils#extractDatabaseMetaData(javax.sql.DataSource, DatabaseMetaDataCallback)
  */
 @FunctionalInterface
@@ -34,13 +34,12 @@ public interface DatabaseMetaDataCallback<T> {
 	/**
 	 * 实现类必须实现此方法以处理传入的元数据。
 	 * 具体选择做什么由实现类自行决定。
-	 * @param dbmd the DatabaseMetaData to process
-	 * @return a result object extracted from the meta-data
-	 * (can be an arbitrary object, as needed by the implementation)
-	 * @throws SQLException if an SQLException is encountered getting
-	 * column values (that is, there's no need to catch SQLException)
-	 * @throws MetaDataAccessException in case of other failures while
-	 * extracting meta-data (for example, reflection failure)
+	 * @param dbmd 要处理的 DatabaseMetaData
+	 * @return 从元数据中提取的结果对象
+	 * （可以是任意对象，取决于实现的需要）
+	 * @throws SQLException 如果在获取列值时遇到 SQLException
+	 * （也就是说，无需捕获 SQLException）
+	 * @throws MetaDataAccessException 在提取元数据时发生其他失败（例如反射失败）
 	 */
 	T processMetaData(DatabaseMetaData dbmd) throws SQLException, MetaDataAccessException;
 

@@ -36,8 +36,8 @@ import org.springframework.util.CollectionUtils;
  *
  * @author Stephane Nicoll
  * @since 4.1
- * @param <O> the operation type
- * @param <A> the annotation type
+ * @param <O> 操作类型
+ * @param <A> 注解类型
  */
 @SuppressWarnings("serial")
 abstract class AbstractCacheInterceptor<O extends AbstractJCacheOperation<A>, A extends Annotation>
@@ -58,8 +58,8 @@ abstract class AbstractCacheInterceptor<O extends AbstractJCacheOperation<A>, A 
 
 	/**
 	 * 解析要使用的缓存。
-	 * @param context the invocation context
-	 * @return the cache to use (never {@code null})
+	 * @param context 调用上下文
+	 * @return 要使用的缓存（永不为 {@code null}）
 	 */
 	protected Cache resolveCache(CacheOperationInvocationContext<O> context) {
 		Collection<? extends Cache> caches = context.getOperation().getCacheResolver().resolveCaches(context);
@@ -73,7 +73,7 @@ abstract class AbstractCacheInterceptor<O extends AbstractJCacheOperation<A>, A 
 	/**
 	 * 将缓存集合转换为单个预期元素。
 	 * <p>如果集合包含多个元素，抛出 {@link IllegalStateException}
-	 * @return the single element, or {@code null} if the collection is empty
+	 * @return 单个元素；如果集合为空，则为 {@code null}
 	 */
 	@Nullable
 	static Cache extractFrom(Collection<? extends Cache> caches) {

@@ -63,10 +63,9 @@ public abstract class ConnectionFactoryUtils {
 	 * <p>能感知绑定到当前线程的相应 Connection，例如在使用
 	 * {@link CciLocalTransactionManager} 时。如果事务同步处于活动状态
 	 * （例如在 JTA 事务中），会将 Connection 绑定到线程。
-	 * @param cf the ConnectionFactory to obtain Connection from
-	 * @return a CCI Connection from the given ConnectionFactory
-	 * @throws org.springframework.jca.cci.CannotGetCciConnectionException
-	 * if the attempt to get a Connection failed
+	 * @param cf 要从中获取 Connection 的 ConnectionFactory
+	 * @return 来自给定 ConnectionFactory 的 CCI Connection
+	 * @throws org.springframework.jca.cci.CannotGetCciConnectionException 如果获取 Connection 的尝试失败
 	 * @see #releaseConnection
 	 */
 	public static Connection getConnection(ConnectionFactory cf)
@@ -82,13 +81,12 @@ public abstract class ConnectionFactoryUtils {
 	 * <p>能感知绑定到当前线程的相应 Connection，例如在使用
 	 * {@link CciLocalTransactionManager} 时。如果事务同步处于活动状态
 	 * （例如在 JTA 事务中），会将 Connection 绑定到线程。
-	 * @param cf the ConnectionFactory to obtain Connection from
-	 * @param spec the ConnectionSpec for the desired Connection (may be {@code null}).
-	 * Note: If this is specified, a new Connection will be obtained for every call,
-	 * without participating in a shared transactional Connection.
-	 * @return a CCI Connection from the given ConnectionFactory
-	 * @throws org.springframework.jca.cci.CannotGetCciConnectionException
-	 * if the attempt to get a Connection failed
+	 * @param cf 要从中获取 Connection 的 ConnectionFactory
+	 * @param spec 所需 Connection 的 ConnectionSpec（可以为 {@code null}）。
+	 * 注意：如果指定了此项，每次调用都会获取新的 Connection，
+	 * 而不参与共享的事务性 Connection。
+	 * @return 来自给定 ConnectionFactory 的 CCI Connection
+	 * @throws org.springframework.jca.cci.CannotGetCciConnectionException 如果获取 Connection 的尝试失败
 	 * @see #releaseConnection
 	 */
 	public static Connection getConnection(ConnectionFactory cf, @Nullable ConnectionSpec spec)
@@ -114,9 +112,9 @@ public abstract class ConnectionFactoryUtils {
 	 * {@link CciLocalTransactionManager} 时。如果事务同步处于活动状态
 	 * （例如在 JTA 事务中），会将 Connection 绑定到线程。
 	 * <p>由 {@link TransactionAwareConnectionFactoryProxy} 直接访问。
-	 * @param cf the ConnectionFactory to obtain Connection from
-	 * @return a CCI Connection from the given ConnectionFactory
-	 * @throws ResourceException if thrown by CCI API methods
+	 * @param cf 要从中获取 Connection 的 ConnectionFactory
+	 * @return 来自给定 ConnectionFactory 的 CCI Connection
+	 * @throws ResourceException 如果由 CCI API 方法抛出
 	 * @see #doReleaseConnection
 	 */
 	public static Connection doGetConnection(ConnectionFactory cf) throws ResourceException {
@@ -142,10 +140,10 @@ public abstract class ConnectionFactoryUtils {
 
 	/**
 	 * 确定给定的 JCA CCI Connection 是否为事务性的，即由 Spring 的事务设施绑定到当前线程。
-	 * @param con the Connection to check
-	 * @param cf the ConnectionFactory that the Connection was obtained from
-	 * (may be {@code null})
-	 * @return whether the Connection is transactional
+	 * @param con 要检查的 Connection
+	 * @param cf 获取该 Connection 时所用的 ConnectionFactory
+	 * （可以为 {@code null}）
+	 * @return 该 Connection 是否为事务性的
 	 */
 	public static boolean isConnectionTransactional(Connection con, @Nullable ConnectionFactory cf) {
 		if (cf == null) {
@@ -158,10 +156,10 @@ public abstract class ConnectionFactoryUtils {
 	/**
 	 * 关闭从给定的 ConnectionFactory 获取的给定 Connection，
 	 * 如果它不是外部管理的（即未绑定到线程）。
-	 * @param con the Connection to close if necessary
-	 * (if this is {@code null}, the call will be ignored)
-	 * @param cf the ConnectionFactory that the Connection was obtained from
-	 * (can be {@code null})
+	 * @param con 如需要则要关闭的 Connection
+	 * （如果为 {@code null}，则忽略该调用）
+	 * @param cf 获取该 Connection 时所用的 ConnectionFactory
+	 * （可以为 {@code null}）
 	 * @see #getConnection
 	 */
 	public static void releaseConnection(@Nullable Connection con, @Nullable ConnectionFactory cf) {
@@ -181,11 +179,11 @@ public abstract class ConnectionFactoryUtils {
 	 * 实际关闭从给定的 ConnectionFactory 获取的给定 Connection。
 	 * 与 {@link #releaseConnection} 相同，但抛出原始的 ResourceException。
 	 * <p>由 {@link TransactionAwareConnectionFactoryProxy} 直接访问。
-	 * @param con the Connection to close if necessary
-	 * (if this is {@code null}, the call will be ignored)
-	 * @param cf the ConnectionFactory that the Connection was obtained from
-	 * (can be {@code null})
-	 * @throws ResourceException if thrown by JCA CCI methods
+	 * @param con 如需要则要关闭的 Connection
+	 * （如果为 {@code null}，则忽略该调用）
+	 * @param cf 获取该 Connection 时所用的 ConnectionFactory
+	 * （可以为 {@code null}）
+	 * @throws ResourceException 如果由 JCA CCI 方法抛出
 	 * @see #doGetConnection
 	 */
 	public static void doReleaseConnection(@Nullable Connection con, @Nullable ConnectionFactory cf)

@@ -328,9 +328,9 @@ public class MBeanClientInterceptor
 
 	/**
 	 * 将调用路由到所配置的受管资源。
-	 * @param invocation the {@code MethodInvocation} to re-route
-	 * @return the value returned as a result of the re-routed invocation
-	 * @throws Throwable an invocation error propagated to the user
+	 * @param invocation 要重新路由的 {@code MethodInvocation}
+	 * @return 重新路由的调用所返回的值
+	 * @throws Throwable 传播给用户的调用错误
 	 * @see #doInvoke
 	 * @see #handleConnectFailure
 	 */
@@ -354,11 +354,10 @@ public class MBeanClientInterceptor
 	/**
 	 * 刷新连接，并在可能的情况下重试 MBean 调用。<p>如果未配置为在连接失败时刷新，则此方法仅重新抛出原
 	 * 始异常。
-	 * @param invocation the invocation that failed
-	 * @param ex the exception raised on remote invocation
-	 * @return the result value of the new invocation, if succeeded
-	 * @throws Throwable an exception raised by the new invocation,
-	 * if it failed as well
+	 * @param invocation 失败的调用
+	 * @param ex 远程调用时引发的异常
+	 * @return 新调用的结果值（如果成功）
+	 * @throws Throwable 新调用引发的异常（如果它同样失败）
 	 * @see #setRefreshOnConnectFailure
 	 * @see #doInvoke
 	 */
@@ -384,9 +383,9 @@ public class MBeanClientInterceptor
 	 * 将调用路由到所配置的受管资源。正确地将 JavaBean 属性访问路由到
 	 * {@code MBeanServerConnection.get/setAttribute}，将方法调用路由到
 	 * {@code MBeanServerConnection.invoke}。
-	 * @param invocation the {@code MethodInvocation} to re-route
-	 * @return the value returned as a result of the re-routed invocation
-	 * @throws Throwable an invocation error propagated to the user
+	 * @param invocation 要重新路由的 {@code MethodInvocation}
+	 * @return 重新路由的调用所返回的值
+	 * @throws Throwable 传播给用户的调用错误
 	 */
 	@Nullable
 	protected Object doInvoke(MethodInvocation invocation) throws Throwable {
@@ -495,9 +494,9 @@ public class MBeanClientInterceptor
 
 	/**
 	 * 将方法调用（而非属性 get/set）路由到受管资源上对应的操作。
-	 * @param method the method corresponding to operation on the managed resource.
-	 * @param args the invocation arguments
-	 * @return the value returned by the method invocation.
+	 * @param method 与管理资源上的操作相对应的方法。
+	 * @param args 调用参数
+	 * @return 方法调用返回的值。
 	 */
 	private Object invokeOperation(Method method, Object[] args) throws JMException, IOException {
 		Assert.state(this.serverToUse != null, "No MBeanServerConnection available");
@@ -523,10 +522,9 @@ public class MBeanClientInterceptor
 
 	/**
 	 * 将给定结果对象（来自属性访问或操作调用）转换为指定的目标类，以便从代理方法返回。
-	 * @param result the result object as returned by the {@code MBeanServer}
-	 * @param parameter the method parameter of the proxy method that's been invoked
-	 * @return the converted result object, or the passed-in object if no conversion
-	 * is necessary
+	 * @param result {@code MBeanServer} 返回的结果对象
+	 * @param parameter 已调用的代理方法的方法参数
+	 * @return 转换后的结果对象；如果无需转换，则为传入的对象
 	 */
 	@Nullable
 	protected Object convertResultValueIfNecessary(@Nullable Object result, MethodParameter parameter) {
@@ -621,8 +619,8 @@ public class MBeanClientInterceptor
 
 		/**
 		 * 使用提供的方法名和参数列表创建 {@code MethodCacheKey} 的新实例。
-		 * @param name the name of the method
-		 * @param parameterTypes the arguments in the method signature
+		 * @param name 方法的名称
+		 * @param parameterTypes 方法签名中的参数
 		 */
 		public MethodCacheKey(String name, @Nullable Class<?>[] parameterTypes) {
 			this.name = name;

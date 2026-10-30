@@ -44,8 +44,8 @@ public abstract class MockRestResponseCreators {
 
 	/**
 	 * 用于带 String 正文的 200 响应（OK）的 {@code ResponseCreator}。
-	 * @param body the response body, a "UTF-8" string
-	 * @param contentType the type of the content (may be {@code null})
+	 * @param body 响应体，一个 “UTF-8” 字符串
+	 * @param contentType 内容的类型（可以为 {@code null}）
 	 */
 	public static DefaultResponseCreator withSuccess(String body, @Nullable MediaType contentType) {
 		DefaultResponseCreator creator = new DefaultResponseCreator(HttpStatus.OK).body(body);
@@ -54,8 +54,8 @@ public abstract class MockRestResponseCreators {
 
 	/**
 	 * 用于带 byte[] 正文的 200 响应（OK）的 {@code ResponseCreator}。
-	 * @param body the response body
-	 * @param contentType the type of the content (may be {@code null})
+	 * @param body 响应体
+	 * @param contentType 内容的类型（可以为 {@code null}）
 	 */
 	public static DefaultResponseCreator withSuccess(byte[] body, @Nullable MediaType contentType) {
 		DefaultResponseCreator creator = new DefaultResponseCreator(HttpStatus.OK).body(body);
@@ -64,8 +64,8 @@ public abstract class MockRestResponseCreators {
 
 	/**
 	 * 用于带基于 {@link Resource} 正文的 200 响应（OK）内容的 {@code ResponseCreator}。
-	 * @param body the response body
-	 * @param contentType the type of the content (may be {@code null})
+	 * @param body 响应体
+	 * @param contentType 内容的类型（可以为 {@code null}）
 	 */
 	public static DefaultResponseCreator withSuccess(Resource body, @Nullable MediaType contentType) {
 		DefaultResponseCreator creator = new DefaultResponseCreator(HttpStatus.OK).body(body);
@@ -74,7 +74,7 @@ public abstract class MockRestResponseCreators {
 
 	/**
 	 * 用于带 'Location' 头的 201 响应（CREATED）的 {@code ResponseCreator}。
-	 * @param location the value for the {@code Location} header
+	 * @param location {@code Location} 头的值
 	 */
 	public static DefaultResponseCreator withCreatedEntity(URI location) {
 		return new DefaultResponseCreator(HttpStatus.CREATED).location(location);
@@ -110,7 +110,7 @@ public abstract class MockRestResponseCreators {
 
 	/**
 	 * 用于特定 HTTP 状态的 {@code ResponseCreator}。
-	 * @param status the response status
+	 * @param status 响应状态
 	 */
 	public static DefaultResponseCreator withStatus(HttpStatus status) {
 		return new DefaultResponseCreator(status);
@@ -118,7 +118,7 @@ public abstract class MockRestResponseCreators {
 
 	/**
 	 * 用于自定义 HTTP 状态码的 {@link #withStatus(HttpStatus)} 变体。
-	 * @param status the response status
+	 * @param status 响应状态
 	 * @since 5.3.17
 	 */
 	public static DefaultResponseCreator withRawStatus(int status) {
@@ -128,7 +128,7 @@ public abstract class MockRestResponseCreators {
 	/**
 	 * 带有内部应用程序 {@code IOException} 的 {@code ResponseCreator}。
 	 * <p>例如，可以使用它来模拟 {@code SocketTimeoutException}。
-	 * @param ex the {@code Exception} to be thrown at HTTP call time
+	 * @param ex 在 HTTP 调用时抛出的 {@code Exception}
 	 * @since 5.2.2
 	 */
 	public static ResponseCreator withException(IOException ex) {

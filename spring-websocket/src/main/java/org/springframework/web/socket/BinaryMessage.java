@@ -28,7 +28,7 @@ public final class BinaryMessage extends AbstractWebSocketMessage<ByteBuffer> {
 
 	/**
 	 * 使用给定的 ByteBuffer 负载创建一个新的二进制 WebSocket 消息。
-	 * @param payload the non-null payload
+	 * @param payload 非 null 的负载
 	 */
 	public BinaryMessage(ByteBuffer payload) {
 		super(payload, true);
@@ -39,8 +39,8 @@ public final class BinaryMessage extends AbstractWebSocketMessage<ByteBuffer> {
 	 * 当 {@code isLast} 布尔标志设置为 {@code false} 时，
 	 * 该消息将作为部分内容发送，并且会预期收到更多部分消息，
 	 * 直到该布尔标志设置为 {@code true} 为止。
-	 * @param payload the non-null payload
-	 * @param isLast if the message is the last of a series of partial messages
+	 * @param payload 非 null 的负载
+	 * @param isLast 消息是否为一系列部分消息中的最后一条
 	 */
 	public BinaryMessage(ByteBuffer payload, boolean isLast) {
 		super(payload, isLast);
@@ -48,8 +48,8 @@ public final class BinaryMessage extends AbstractWebSocketMessage<ByteBuffer> {
 
 	/**
 	 * 使用给定的 byte[] 负载创建一个新的二进制 WebSocket 消息。
-	 * @param payload a non-null payload; note that this value is not copied so care
-	 * must be taken not to modify the array.
+	 * @param payload 非 null 的负载；注意此值不会被复制，
+	 * 因此必须小心不要修改该数组。
 	 */
 	public BinaryMessage(byte[] payload) {
 		this(payload, true);
@@ -60,9 +60,9 @@ public final class BinaryMessage extends AbstractWebSocketMessage<ByteBuffer> {
 	 * 当 {@code isLast} 布尔标志设置为 {@code false} 时，
 	 * 该消息将作为部分内容发送，并且会预期收到更多部分消息，
 	 * 直到该布尔标志设置为 {@code true} 为止。
-	 * @param payload a non-null payload; note that this value is not copied so care
-	 * must be taken not to modify the array.
-	 * @param isLast if the message is the last of a series of partial messages
+	 * @param payload 非 null 的负载；注意此值不会被复制，
+	 * 因此必须小心不要修改该数组。
+	 * @param isLast 消息是否为一系列部分消息中的最后一条
 	 */
 	public BinaryMessage(byte[] payload, boolean isLast) {
 		this(payload, 0, payload.length, isLast);
@@ -70,11 +70,11 @@ public final class BinaryMessage extends AbstractWebSocketMessage<ByteBuffer> {
 
 	/**
 	 * 通过包装现有字节数组创建一个新的二进制 WebSocket 消息。
-	 * @param payload a non-null payload; note that this value is not copied so care
-	 * must be taken not to modify the array.
-	 * @param offset the offset into the array where the payload starts
-	 * @param length the length of the array considered for the payload
-	 * @param isLast if the message is the last of a series of partial messages
+	 * @param payload 非 null 的负载；注意此值不会被复制，
+	 * 因此必须小心不要修改该数组。
+	 * @param offset 负载在数组中起始处的偏移量
+	 * @param length 参与构成负载的数组长度
+	 * @param isLast 消息是否为一系列部分消息中的最后一条
 	 */
 	public BinaryMessage(byte[] payload, int offset, int length, boolean isLast) {
 		super(ByteBuffer.wrap(payload, offset, length), isLast);

@@ -169,7 +169,7 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 
 	/**
 	 * 如有必要，在启动时获取 RMI stub。
-	 * @throws RemoteLookupFailureException if RMI stub creation failed
+	 * @throws RemoteLookupFailureException 如果 RMI 桩创建失败
 	 * @see #setLookupStubOnStartup
 	 * @see #lookupStub
 	 */
@@ -199,8 +199,8 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	 * <p>如果 "cacheStub" 为 "true"，则在拦截器初始化时调用；否则由 {@link #getStub()} 在每次调用时调
 	 * 用。
 	 * <p>默认实现从 JNDI 环境中获取服务。子类可以覆盖此方法。
-	 * @return the RMI stub to store in this interceptor
-	 * @throws RemoteLookupFailureException if RMI stub creation failed
+	 * @return 要存储在此拦截器中的 RMI 桩
+	 * @throws RemoteLookupFailureException 如果 RMI 桩创建失败
 	 * @see #setCacheStub
 	 * @see #lookup
 	 */
@@ -218,9 +218,9 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	 * <p>默认实现返回初始化时创建的 stub（如果有）。否则，它会调用 {@link #lookupStub} 为每次调用获取
 	 * 新的 stub。子类可以覆盖此方法，例如为了在重新创建之前将 stub 缓存一段时间，或测试 stub 是否仍然
 	 * 存活。
-	 * @return the RMI stub to use for an invocation
-	 * @throws NamingException if stub creation failed
-	 * @throws RemoteLookupFailureException if RMI stub creation failed
+	 * @return 要用于调用的 RMI 桩
+	 * @throws NamingException 如果桩创建失败
+	 * @throws RemoteLookupFailureException 如果 RMI 桩创建失败
 	 */
 	protected Object getStub() throws NamingException, RemoteLookupFailureException {
 		if (!this.cacheStub || (this.lookupStubOnStartup && !this.refreshStubOnConnectFailure)) {
@@ -281,8 +281,8 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	/**
 	 * 判断给定的 RMI 异常是否表示连接失败。
 	 * <p>默认实现委托给 {@link RmiClientInterceptorUtils#isConnectFailure}。
-	 * @param ex the RMI exception to check
-	 * @return whether the exception should be treated as connect failure
+	 * @param ex 要检查的 RMI 异常
+	 * @return 该异常是否应被视为连接失败
 	 */
 	protected boolean isConnectFailure(RemoteException ex) {
 		return RmiClientInterceptorUtils.isConnectFailure(ex);
@@ -291,10 +291,10 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	/**
 	 * 如有必要，刷新 stub 并重试远程调用。
 	 * <p>如果未配置为在连接失败时刷新，此方法只会重新抛出原始异常。
-	 * @param invocation the invocation that failed
-	 * @param ex the exception raised on remote invocation
-	 * @return the result value of the new invocation, if succeeded
-	 * @throws Throwable an exception raised by the new invocation, if failed too.
+	 * @param invocation 失败的调用
+	 * @param ex 远程调用时引发的异常
+	 * @return 新调用的结果值（如果成功）
+	 * @throws Throwable 新调用同样失败时引发的异常。
 	 */
 	private Object handleRemoteConnectFailure(MethodInvocation invocation, Exception ex) throws Throwable {
 		if (this.refreshStubOnConnectFailure) {
@@ -313,9 +313,9 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 
 	/**
 	 * 刷新 RMI stub 并重试给定的调用。由 invoke 在连接失败时调用。
-	 * @param invocation the AOP method invocation
-	 * @return the invocation result, if any
-	 * @throws Throwable in case of invocation failure
+	 * @param invocation AOP 方法调用
+	 * @return 调用结果（如果有）
+	 * @throws Throwable 在调用失败时
 	 * @see #invoke
 	 */
 	@Nullable
@@ -334,10 +334,10 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 
 	/**
 	 * 在给定的 RMI stub 上执行给定的调用。
-	 * @param invocation the AOP method invocation
-	 * @param stub the RMI stub to invoke
-	 * @return the invocation result, if any
-	 * @throws Throwable in case of invocation failure
+	 * @param invocation AOP 方法调用
+	 * @param stub 要调用的 RMI 桩
+	 * @return 调用结果（如果有）
+	 * @throws Throwable 在调用失败时
 	 */
 	@Nullable
 	protected Object doInvoke(MethodInvocation invocation, Object stub) throws Throwable {
@@ -377,13 +377,13 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	/**
 	 * 将给定的 AOP 方法调用应用到给定的 {@link RmiInvocationHandler}。
 	 * <p>默认实现委托给 {@link #createRemoteInvocation}。
-	 * @param methodInvocation the current AOP method invocation
-	 * @param invocationHandler the RmiInvocationHandler to apply the invocation to
-	 * @return the invocation result
-	 * @throws RemoteException in case of communication errors
-	 * @throws NoSuchMethodException if the method name could not be resolved
-	 * @throws IllegalAccessException if the method could not be accessed
-	 * @throws InvocationTargetException if the method invocation resulted in an exception
+	 * @param methodInvocation 当前 AOP 方法调用
+	 * @param invocationHandler 要应用该调用的 RmiInvocationHandler
+	 * @return 调用结果
+	 * @throws RemoteException 在通信出错时
+	 * @throws NoSuchMethodException 如果无法解析方法名
+	 * @throws IllegalAccessException 如果无法访问该方法
+	 * @throws InvocationTargetException 如果方法调用导致异常
 	 * @see org.springframework.remoting.support.RemoteInvocation
 	 */
 	protected Object doInvoke(MethodInvocation methodInvocation, RmiInvocationHandler invocationHandler)
@@ -401,8 +401,8 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	 * <p>默认实现委托给已配置的 {@link #setRemoteInvocationFactory RemoteInvocationFactory}。子类可以
 	 * 覆盖此方法，以提供包含附加调用参数（例如用户凭证）的自定义 RemoteInvocation 子类。
 	 * <p>注意，最好将自定义 RemoteInvocationFactory 构建为可复用的策略，而不是覆盖此方法。
-	 * @param methodInvocation the current AOP method invocation
-	 * @return the RemoteInvocation object
+	 * @param methodInvocation 当前 AOP 方法调用
+	 * @return RemoteInvocation 对象
 	 * @see RemoteInvocationFactory#createRemoteInvocation
 	 */
 	protected RemoteInvocation createRemoteInvocation(MethodInvocation methodInvocation) {
@@ -412,9 +412,9 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	/**
 	 * 将远程访问期间发生的给定 RMI RemoteException 转换为 Spring 的 RemoteAccessException（如果方法签
 	 * 名未声明 RemoteException）。否则，返回原始的 RemoteException。
-	 * @param method the invoked method
-	 * @param ex the RemoteException that happened
-	 * @return the exception to be thrown to the caller
+	 * @param method 被调用的方法
+	 * @param ex 发生的 RemoteException
+	 * @return 要抛出给调用方的异常
 	 */
 	private Exception convertRmiAccessException(RemoteException ex, Method method) {
 		return RmiClientInterceptorUtils.convertRmiAccessException(method, ex, isConnectFailure(ex), getJndiName());

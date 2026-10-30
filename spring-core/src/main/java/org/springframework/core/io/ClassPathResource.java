@@ -55,7 +55,7 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 	 * 为 {@code ClassLoader} 用法创建一个新的 {@code ClassPathResource}。开头的斜杠将被移除，因为
 	 * ClassLoader 的资源访问方法不接受它。
 	 * <p>将使用线程上下文类加载器来加载资源。
-	 * @param path the absolute path within the class path
+	 * @param path 类路径内的绝对路径
 	 * @see java.lang.ClassLoader#getResourceAsStream(String)
 	 * @see org.springframework.util.ClassUtils#getDefaultClassLoader()
 	 */
@@ -66,9 +66,9 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 	/**
 	 * 为 {@code ClassLoader} 用法创建一个新的 {@code ClassPathResource}。开头的斜杠将被移除，因为
 	 * ClassLoader 的资源访问方法不接受它。
-	 * @param path the absolute path within the classpath
-	 * @param classLoader the class loader to load the resource with,
-	 * or {@code null} for the thread context class loader
+	 * @param path 类路径内的绝对路径
+	 * @param classLoader 用于加载资源的类加载器；
+	 * 若为 {@code null} 则使用线程上下文类加载器
 	 * @see ClassLoader#getResourceAsStream(String)
 	 */
 	public ClassPathResource(String path, @Nullable ClassLoader classLoader) {
@@ -84,8 +84,8 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 	/**
 	 * 为 {@code Class} 用法创建一个新的 {@code ClassPathResource}。路径可以相对于给定的类，也可以通过
 	 * 前导斜杠表示类路径内的绝对路径。
-	 * @param path relative or absolute path within the class path
-	 * @param clazz the class to load resources with
+	 * @param path 类路径内的相对或绝对路径
+	 * @param clazz 用于加载资源的类
 	 * @see java.lang.Class#getResourceAsStream
 	 */
 	public ClassPathResource(String path, @Nullable Class<?> clazz) {
@@ -97,9 +97,9 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 	/**
 	 * 创建一个带有可选 {@code ClassLoader} 和 {@code Class} 的新 {@code ClassPathResource}。仅供内部使
 	 * 用。
-	 * @param path relative or absolute path within the classpath
-	 * @param classLoader the class loader to load the resource with, if any
-	 * @param clazz the class to load resources with, if any
+	 * @param path 类路径内的相对或绝对路径
+	 * @param classLoader 用于加载资源的类加载器（如果有）
+	 * @param clazz 用于加载资源的类（如果有）
 	 * @deprecated as of 4.3.13, in favor of selective use of
 	 * {@link #ClassPathResource(String, ClassLoader)} vs {@link #ClassPathResource(String, Class)}
 	 */
@@ -151,7 +151,7 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 
 	/**
 	 * 为底层类路径资源解析 URL。
-	 * @return the resolved URL, or {@code null} if not resolvable
+	 * @return 解析后的 URL；如果无法解析则为 {@code null}
 	 */
 	@Nullable
 	protected URL resolveURL() {

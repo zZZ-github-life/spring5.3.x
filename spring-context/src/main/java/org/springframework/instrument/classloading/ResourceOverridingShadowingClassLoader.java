@@ -55,7 +55,7 @@ public class ResourceOverridingShadowingClassLoader extends ShadowingClassLoader
 
 	/**
 	 * 创建一个新的 ResourceOverridingShadowingClassLoader，装饰给定的 ClassLoader。
-	 * @param enclosingClassLoader the ClassLoader to decorate
+	 * @param enclosingClassLoader 要装饰的 ClassLoader
 	 */
 	public ResourceOverridingShadowingClassLoader(ClassLoader enclosingClassLoader) {
 		super(enclosingClassLoader);
@@ -64,8 +64,8 @@ public class ResourceOverridingShadowingClassLoader extends ShadowingClassLoader
 
 	/**
 	 * 在尝试定位旧路径上的资源时，返回新路径上的资源（如果有）。
-	 * @param oldPath the path requested
-	 * @param newPath the actual path to be looked up
+	 * @param oldPath 所请求的路径
+	 * @param newPath 要查找的实际路径
 	 */
 	public void override(String oldPath, String newPath) {
 		this.overrides.put(oldPath, newPath);
@@ -73,8 +73,8 @@ public class ResourceOverridingShadowingClassLoader extends ShadowingClassLoader
 
 	/**
 	 * 确保找不到具有给定路径的资源。
-	 * @param oldPath the path of the resource to hide even if
-	 * it exists in the parent ClassLoader
+	 * @param oldPath 要隐藏的资源的路径，
+	 * 即使它存在于父 ClassLoader 中
 	 */
 	public void suppress(String oldPath) {
 		this.overrides.put(oldPath, null);
@@ -82,7 +82,7 @@ public class ResourceOverridingShadowingClassLoader extends ShadowingClassLoader
 
 	/**
 	 * 从给定的 ClassLoader 复制所有覆盖项。
-	 * @param other the other ClassLoader to copy from
+	 * @param other 要从中复制的另一个 ClassLoader
 	 */
 	public void copyOverrides(ResourceOverridingShadowingClassLoader other) {
 		Assert.notNull(other, "Other ClassLoader must not be null");

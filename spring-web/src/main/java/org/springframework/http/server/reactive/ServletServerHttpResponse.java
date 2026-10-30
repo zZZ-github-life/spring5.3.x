@@ -188,7 +188,7 @@ class ServletServerHttpResponse extends AbstractListenerServerHttpResponse {
 	 * 将 DataBuffer 写入响应体 OutputStream。
 	 * 仅在 {@link ServletOutputStream#isReady()} 返回 "true"
 	 * 且 DataBuffer 中的可读字节数大于 0 时调用。
-	 * @return the number of bytes written
+	 * @return 写入的字节数
 	 */
 	protected int writeToOutputStream(DataBuffer dataBuffer) throws IOException {
 		ServletOutputStream outputStream = this.outputStream;

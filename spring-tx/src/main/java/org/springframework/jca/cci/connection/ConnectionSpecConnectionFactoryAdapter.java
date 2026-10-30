@@ -87,7 +87,7 @@ public class ConnectionSpecConnectionFactoryAdapter extends DelegatingConnection
 	 * 给定的 ConnectionSpec 将应用于此 ConnectionFactory 代理后续的
 	 * 所有 {@code getConnection()} 调用。
 	 * <p>这将覆盖任何静态指定的 "connectionSpec" 属性。
-	 * @param spec the ConnectionSpec to apply
+	 * @param spec 要应用的 ConnectionSpec
 	 * @see #removeConnectionSpecFromCurrentThread
 	 */
 	public void setConnectionSpecForCurrentThread(ConnectionSpec spec) {
@@ -125,8 +125,8 @@ public class ConnectionSpecConnectionFactoryAdapter extends DelegatingConnection
 	 * {@code getConnection(ConnectionSpec)} 方法，传入指定的用户凭据。
 	 * 如果指定的 ConnectionSpec 为空，将简单地委托给目标 ConnectionFactory 的
 	 * 标准 {@code getConnection()} 方法。
-	 * @param spec the ConnectionSpec to apply
-	 * @return the Connection
+	 * @param spec 要应用的 ConnectionSpec
+	 * @return 该 Connection
 	 * @see javax.resource.cci.ConnectionFactory#getConnection(javax.resource.cci.ConnectionSpec)
 	 * @see javax.resource.cci.ConnectionFactory#getConnection()
 	 */

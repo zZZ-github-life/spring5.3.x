@@ -42,8 +42,8 @@ public class ArgumentTypePreparedStatementSetter implements PreparedStatementSet
 
 	/**
 	 * 为给定参数创建新的ArgTypePreparedStatementSetter。
-	 * @param args the arguments to set
-	 * @param argTypes the corresponding SQL types of the arguments
+	 * @param args 要设置的参数
+	 * @param argTypes 参数对应的 SQL 类型
 	 */
 	public ArgumentTypePreparedStatementSetter(@Nullable Object[] args, @Nullable int[] argTypes) {
 		if ((args != null && argTypes == null) || (args == null && argTypes != null) ||
@@ -88,11 +88,11 @@ public class ArgumentTypePreparedStatementSetter implements PreparedStatementSet
 	/**
 	 * 使用传入的值和类型为PreparedStatement的指定参数位置设置值。
 	 * 子类可以根据需要重写此方法。
-	 * @param ps the PreparedStatement
-	 * @param parameterPosition index of the parameter position
-	 * @param argType the argument type
-	 * @param argValue the argument value
-	 * @throws SQLException if thrown by PreparedStatement methods
+	 * @param ps 该 PreparedStatement
+	 * @param parameterPosition 参数位置的索引
+	 * @param argType 参数类型
+	 * @param argValue 参数值
+	 * @throws SQLException 如果由 PreparedStatement 方法抛出
 	 */
 	protected void doSetValue(PreparedStatement ps, int parameterPosition, int argType, Object argValue)
 			throws SQLException {

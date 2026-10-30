@@ -30,8 +30,7 @@ public class ContextClosedEvent extends ApplicationContextEvent {
 
 	/**
 	 * 创建一个新的 ContextClosedEvent。
-	 * @param source the {@code ApplicationContext} that has been closed
-	 * (must not be {@code null})
+	 * @param source 已关闭的 {@code ApplicationContext}（不能为 {@code null}）
 	 */
 	public ContextClosedEvent(ApplicationContext source) {
 		super(source);

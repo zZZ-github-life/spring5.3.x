@@ -47,8 +47,8 @@ public interface ResultHandler {
 
 	/**
 	 * 对给定结果执行操作。
-	 * @param result the result of the executed request
-	 * @throws Exception if a failure occurs
+	 * @param result 已执行请求的结果
+	 * @throws Exception 如果发生失败
 	 */
 	void handle(MvcResult result) throws Exception;
 

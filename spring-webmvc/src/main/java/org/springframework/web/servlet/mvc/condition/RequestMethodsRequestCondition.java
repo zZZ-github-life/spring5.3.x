@@ -59,8 +59,7 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 
 	/**
 	 * 使用给定的请求方法创建一个新实例。
-	 * @param requestMethods 0 or more HTTP request methods;
-	 * if, 0 the condition will match to every request
+	 * @param requestMethods 0 个或多个 HTTP 请求方法；如果为 0，则该条件将匹配每个请求
 	 */
 	public RequestMethodsRequestCondition(RequestMethod... requestMethods) {
 		this.methods = (ObjectUtils.isEmpty(requestMethods) ?
@@ -115,11 +114,10 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 	/**
 	 * 检查是否有任何 HTTP 请求方法匹配给定请求，
 	 * 并返回一个仅包含匹配的 HTTP 请求方法的实例。
-	 * @param request the current request
-	 * @return the same instance if the condition is empty (unless the request
-	 * method is HTTP OPTIONS), a new condition with the matched request method,
-	 * or {@code null} if there is no match or the condition is empty and the
-	 * request method is OPTIONS.
+	 * @param request 当前请求
+	 * @return 如果条件为空（除非请求方法为 HTTP OPTIONS），则为同一实例；
+	 * 或包含匹配请求方法的新条件；
+	 * 如果无匹配，或条件为空且请求方法为 OPTIONS，则为 {@code null}。
 	 */
 	@Override
 	@Nullable

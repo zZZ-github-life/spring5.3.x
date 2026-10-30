@@ -33,10 +33,10 @@ public interface TargetSourceCreator {
 
 	/**
 	 * 为给定 Bean 创建特殊的目标源（如果有）。
-	 * @param beanClass the class of the bean to create a TargetSource for
-	 * @param beanName the name of the bean
-	 * @return a special TargetSource or {@code null} if this TargetSourceCreator isn't
-	 * interested in the particular bean
+	 * @param beanClass 要为其创建 TargetSource 的 Bean 的类
+	 * @param beanName 该 Bean 的名称
+	 * @return 特殊的 TargetSource；如果此 TargetSourceCreator 对该特定 Bean
+	 * 不感兴趣，则返回 {@code null}
 	 */
 	@Nullable
 	TargetSource getTargetSource(Class<?> beanClass, String beanName);

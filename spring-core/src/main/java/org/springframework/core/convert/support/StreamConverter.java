@@ -67,8 +67,8 @@ class StreamConverter implements ConditionalGenericConverter {
 
 	/**
 	 * 验证流中持有的元素的 {@link Collection} 是否可以转换为指定的 {@code targetType}。
-	 * @param elementType the type of the stream elements
-	 * @param targetType the type to convert to
+	 * @param elementType 流元素的类型
+	 * @param targetType 要转换到的类型
 	 */
 	public boolean matchesFromStream(@Nullable TypeDescriptor elementType, TypeDescriptor targetType) {
 		TypeDescriptor collectionOfElement = TypeDescriptor.collection(Collection.class, elementType);
@@ -77,8 +77,8 @@ class StreamConverter implements ConditionalGenericConverter {
 
 	/**
 	 * 验证指定的 {@code sourceType} 是否可以转换为流元素类型的 {@link Collection}。
-	 * @param elementType the type of the stream elements
-	 * @param sourceType the type to convert from
+	 * @param elementType 流元素的类型
+	 * @param sourceType 要从中转换的类型
 	 */
 	public boolean matchesToStream(@Nullable TypeDescriptor elementType, TypeDescriptor sourceType) {
 		TypeDescriptor collectionOfElement = TypeDescriptor.collection(Collection.class, elementType);

@@ -48,8 +48,8 @@ public class SimpleLoadTimeWeaver implements LoadTimeWeaver {
 
 	/**
 	 * 为给定的 {@code ClassLoader} 创建一个新的 {@code SimpleLoadTimeWeaver}。
-	 * @param classLoader the {@code ClassLoader} to build a simple
-	 * instrumentable {@code ClassLoader} on top of
+	 * @param classLoader 要在其之上构建简单的可插桩
+	 * {@code ClassLoader} 的 {@code ClassLoader}
 	 */
 	public SimpleLoadTimeWeaver(SimpleInstrumentableClassLoader classLoader) {
 		Assert.notNull(classLoader, "ClassLoader must not be null");

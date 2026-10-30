@@ -60,8 +60,8 @@ public abstract class AbstractHandlerMethodAdapter extends WebContentGenerator i
 
 	/**
 	 * 此实现要求处理器为 {@link HandlerMethod}。
-	 * @param handler the handler instance to check
-	 * @return whether this adapter can adapt the given handler
+	 * @param handler 要检查的处理器实例
+	 * @return 该适配器能否适配给定的处理器
 	 */
 	@Override
 	public final boolean supports(Object handler) {
@@ -70,8 +70,8 @@ public abstract class AbstractHandlerMethodAdapter extends WebContentGenerator i
 
 	/**
 	 * 给定处理器方法，返回此适配器是否支持它。
-	 * @param handlerMethod the handler method to check
-	 * @return whether this adapter can adapt the given method
+	 * @param handlerMethod 要检查的处理器方法
+	 * @return 该适配器能否适配给定的方法
 	 */
 	protected abstract boolean supportsInternal(HandlerMethod handlerMethod);
 
@@ -88,13 +88,13 @@ public abstract class AbstractHandlerMethodAdapter extends WebContentGenerator i
 
 	/**
 	 * 使用给定的处理器方法来处理请求。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handlerMethod handler method to use. This object must have previously been passed to the
-	 * {@link #supportsInternal(HandlerMethod)} this interface, which must have returned {@code true}.
-	 * @return a ModelAndView object with the name of the view and the required model data,
-	 * or {@code null} if the request has been handled directly
-	 * @throws Exception in case of errors
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handlerMethod 要使用的处理器方法。该对象此前必须已传给此接口的
+	 * {@link #supportsInternal(HandlerMethod)}，且该方法必须已返回 {@code true}。
+	 * @return 包含视图名称和所需模型数据的 ModelAndView 对象，
+	 * 若请求已直接处理则为 {@code null}
+	 * @throws Exception 发生错误时
 	 */
 	@Nullable
 	protected abstract ModelAndView handleInternal(HttpServletRequest request,
@@ -111,9 +111,9 @@ public abstract class AbstractHandlerMethodAdapter extends WebContentGenerator i
 
 	/**
 	 * 约定与 {@link javax.servlet.http.HttpServlet#getLastModified(HttpServletRequest)} 相同。
-	 * @param request current HTTP request
-	 * @param handlerMethod handler method to use
-	 * @return the lastModified value for the given handler
+	 * @param request 当前 HTTP 请求
+	 * @param handlerMethod 要使用的处理器方法
+	 * @return 给定处理器的 lastModified 值
 	 * @deprecated as of 5.3.9 along with
 	 * {@link org.springframework.web.servlet.mvc.LastModified}.
 	 */

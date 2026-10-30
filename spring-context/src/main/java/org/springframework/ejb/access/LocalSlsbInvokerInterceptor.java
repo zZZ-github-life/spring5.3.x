@@ -116,8 +116,8 @@ public class LocalSlsbInvokerInterceptor extends AbstractSlsbInvokerInterceptor 
 
 	/**
 	 * 返回用于委托调用的 EJB 实例。默认实现委托给 newSessionBeanInstance。
-	 * @throws NamingException if thrown by JNDI
-	 * @throws InvocationTargetException if thrown by the create method
+	 * @throws NamingException 如果由 JNDI 抛出
+	 * @throws InvocationTargetException 如果由 create 方法抛出
 	 * @see #newSessionBeanInstance
 	 */
 	protected Object getSessionBeanInstance() throws NamingException, InvocationTargetException {
@@ -126,7 +126,7 @@ public class LocalSlsbInvokerInterceptor extends AbstractSlsbInvokerInterceptor 
 
 	/**
 	 * 释放给定的 EJB 实例。默认实现委托给 removeSessionBeanInstance。
-	 * @param ejb the EJB instance to release
+	 * @param ejb 要释放的 EJB 实例
 	 * @see #removeSessionBeanInstance
 	 */
 	protected void releaseSessionBeanInstance(EJBLocalObject ejb) {
@@ -135,8 +135,8 @@ public class LocalSlsbInvokerInterceptor extends AbstractSlsbInvokerInterceptor 
 
 	/**
 	 * 返回无状态会话 Bean 的新实例。可以覆盖以改变算法。
-	 * @throws NamingException if thrown by JNDI
-	 * @throws InvocationTargetException if thrown by the create method
+	 * @throws NamingException 如果由 JNDI 抛出
+	 * @throws InvocationTargetException 如果由 create 方法抛出
 	 * @see #create
 	 */
 	protected Object newSessionBeanInstance() throws NamingException, InvocationTargetException {
@@ -152,7 +152,7 @@ public class LocalSlsbInvokerInterceptor extends AbstractSlsbInvokerInterceptor 
 
 	/**
 	 * 移除给定的 EJB 实例。
-	 * @param ejb the EJB instance to remove
+	 * @param ejb 要移除的 EJB 实例
 	 * @see javax.ejb.EJBLocalObject#remove()
 	 */
 	protected void removeSessionBeanInstance(@Nullable EJBLocalObject ejb) {

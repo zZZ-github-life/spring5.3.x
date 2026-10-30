@@ -43,8 +43,8 @@ public class SimpleTimeZoneAwareLocaleContext extends SimpleLocaleContext implem
 	 * 创建一个新的 SimpleTimeZoneAwareLocaleContext，暴露指定的 Locale 和 TimeZone。每次调用
 	 * {@link #getLocale()} 都会返回给定的 Locale，每次调用 {@link #getTimeZone()} 都会返回给定的
 	 * TimeZone。
-	 * @param locale the Locale to expose
-	 * @param timeZone the TimeZone to expose
+	 * @param locale 要暴露的 Locale
+	 * @param timeZone 要暴露的 TimeZone
 	 */
 	public SimpleTimeZoneAwareLocaleContext(@Nullable Locale locale, @Nullable TimeZone timeZone) {
 		super(locale);

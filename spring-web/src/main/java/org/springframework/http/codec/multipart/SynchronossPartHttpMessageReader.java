@@ -103,9 +103,9 @@ public class SynchronossPartHttpMessageReader extends LoggingCodecSupport implem
 	 * <li>非文件部件将被拒绝，并抛出 {@link DataBufferLimitException}。
 	 * </ul>
 	 * <p>默认设置为 256K。
-	 * @param byteCount the in-memory limit in bytes; if set to -1 this limit is
-	 * not enforced, and all parts may be written to disk and are limited only
-	 * by the {@link #setMaxDiskUsagePerPart(long) maxDiskUsagePerPart} property.
+	 * @param byteCount 以字节为单位的内存限制；如果设置为 -1，则不强制此限制，
+	 * 所有部分都可能写入磁盘，并且仅受
+	 * {@link #setMaxDiskUsagePerPart(long) maxDiskUsagePerPart} 属性限制。
 	 * @since 5.1.11
 	 */
 	public void setMaxInMemorySize(int byteCount) {
@@ -123,7 +123,7 @@ public class SynchronossPartHttpMessageReader extends LoggingCodecSupport implem
 	/**
 	 * 配置文件部件允许使用的最大磁盘空间量。
 	 * <p>默认为 -1。
-	 * @param maxDiskUsagePerPart the disk limit in bytes, or -1 for unlimited
+	 * @param maxDiskUsagePerPart 以字节为单位的磁盘限制，-1 表示不限
 	 * @since 5.1.11
 	 */
 	public void setMaxDiskUsagePerPart(long maxDiskUsagePerPart) {
@@ -158,8 +158,7 @@ public class SynchronossPartHttpMessageReader extends LoggingCodecSupport implem
 	 * 设置用于存储大于
 	 * {@link #setMaxInMemorySize(int) maxInMemorySize} 的部件的目录。
 	 * 默认情况下会创建一个新的临时目录。
-	 * @throws IOException if an I/O error occurs, or the parent directory
-	 * does not exist
+	 * @throws IOException 如果发生 I/O 错误，或父目录不存在
 	 * @since 5.3.7
 	 */
 	public void setFileStorageDirectory(Path fileStorageDirectory) throws IOException {

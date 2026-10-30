@@ -38,7 +38,7 @@ import org.springframework.util.concurrent.SuccessCallback;
  * @author Juergen Hoeller
  * @author Rossen Stoyanchev
  * @since 3.0
- * @param <V> the value type
+ * @param <V> 值类型
  * @see Async
  * @see #forValue(Object)
  * @see #forExecutionException(Throwable)
@@ -54,7 +54,7 @@ public class AsyncResult<V> implements ListenableFuture<V> {
 
 	/**
 	 * 创建一个新的 AsyncResult 持有者。
-	 * @param value the value to pass through
+	 * @param value 要透传的值
 	 */
 	public AsyncResult(@Nullable V value) {
 		this(value, null);
@@ -62,7 +62,7 @@ public class AsyncResult<V> implements ListenableFuture<V> {
 
 	/**
 	 * 创建一个新的 AsyncResult 持有者。
-	 * @param value the value to pass through
+	 * @param value 要透传的值
 	 */
 	private AsyncResult(@Nullable V value, @Nullable Throwable ex) {
 		this.value = value;
@@ -137,7 +137,7 @@ public class AsyncResult<V> implements ListenableFuture<V> {
 
 	/**
 	 * 创建一个新的异步结果，从 {@link Future#get()} 暴露给定值。
-	 * @param value the value to expose
+	 * @param value 要暴露的值
 	 * @since 4.2
 	 * @see Future#get()
 	 */
@@ -147,8 +147,8 @@ public class AsyncResult<V> implements ListenableFuture<V> {
 
 	/**
 	 * 创建一个新的异步结果，将给定异常作为 {@link ExecutionException} 从 {@link Future#get()} 暴露。
-	 * @param ex the exception to expose (either an pre-built {@link ExecutionException}
-	 * or a cause to be wrapped in an {@link ExecutionException})
+	 * @param ex 要暴露的异常（可以是预先构建的 {@link ExecutionException}，
+	 * 或者是将被包装到 {@link ExecutionException} 中的原因）
 	 * @since 4.2
 	 * @see ExecutionException
 	 */
@@ -158,8 +158,8 @@ public class AsyncResult<V> implements ListenableFuture<V> {
 
 	/**
 	 * 确定要暴露的异常：给定 {@link ExecutionException} 的原因，或原样返回原始异常。
-	 * @param original the original as given to {@link #forExecutionException}
-	 * @return the exposed exception
+	 * @param original 传入 {@link #forExecutionException} 的原始值
+	 * @return 所暴露的异常
 	 */
 	private static Throwable exposedException(Throwable original) {
 		if (original instanceof ExecutionException) {

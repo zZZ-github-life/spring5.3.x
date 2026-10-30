@@ -98,8 +98,8 @@ public abstract class ResponseEntityExceptionHandler {
 
 	/**
 	 * 提供对标准 Spring MVC 异常的处理。
-	 * @param ex the target exception
-	 * @param request the current request
+	 * @param ex 目标异常
+	 * @param request 当前请求
 	 */
 	@ExceptionHandler({
 			HttpRequestMethodNotSupportedException.class,
@@ -195,11 +195,11 @@ public abstract class ResponseEntityExceptionHandler {
 	 * 自定义 HttpRequestMethodNotSupportedException 的响应。
 	 * <p>此方法会记录一条警告、设置 "Allow" 头，并委托给
 	 * {@link #handleExceptionInternal}。
-	 * @param ex the exception
-	 * @param headers the headers to be written to the response
-	 * @param status the selected response status
-	 * @param request the current request
-	 * @return a {@code ResponseEntity} instance
+	 * @param ex 异常
+	 * @param headers 要写入响应的响应头
+	 * @param status 选定的响应状态
+	 * @param request 当前请求
+	 * @return {@code ResponseEntity} 实例
 	 */
 	protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(
 			HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -217,11 +217,11 @@ public abstract class ResponseEntityExceptionHandler {
 	 * 自定义 HttpMediaTypeNotSupportedException 的响应。
 	 * <p>此方法设置 "Accept" 头，并委托给
 	 * {@link #handleExceptionInternal}。
-	 * @param ex the exception
-	 * @param headers the headers to be written to the response
-	 * @param status the selected response status
-	 * @param request the current request
-	 * @return a {@code ResponseEntity} instance
+	 * @param ex 该异常
+	 * @param headers 要写入响应的头信息
+	 * @param status 选定的响应状态
+	 * @param request 当前请求
+	 * @return 一个 {@code ResponseEntity} 实例
 	 */
 	protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(
 			HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -243,11 +243,11 @@ public abstract class ResponseEntityExceptionHandler {
 	/**
 	 * 自定义 HttpMediaTypeNotAcceptableException 的响应。
 	 * <p>此方法委托给 {@link #handleExceptionInternal}。
-	 * @param ex the exception
-	 * @param headers the headers to be written to the response
-	 * @param status the selected response status
-	 * @param request the current request
-	 * @return a {@code ResponseEntity} instance
+	 * @param ex 该异常
+	 * @param headers 要写入响应的头信息
+	 * @param status 选定的响应状态
+	 * @param request 当前请求
+	 * @return 一个 {@code ResponseEntity} 实例
 	 */
 	protected ResponseEntity<Object> handleHttpMediaTypeNotAcceptable(
 			HttpMediaTypeNotAcceptableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -258,11 +258,11 @@ public abstract class ResponseEntityExceptionHandler {
 	/**
 	 * 自定义 MissingPathVariableException 的响应。
 	 * <p>此方法委托给 {@link #handleExceptionInternal}。
-	 * @param ex the exception
-	 * @param headers the headers to be written to the response
-	 * @param status the selected response status
-	 * @param request the current request
-	 * @return a {@code ResponseEntity} instance
+	 * @param ex 该异常
+	 * @param headers 要写入响应的头信息
+	 * @param status 选定的响应状态
+	 * @param request 当前请求
+	 * @return 一个 {@code ResponseEntity} 实例
 	 * @since 4.2
 	 */
 	protected ResponseEntity<Object> handleMissingPathVariable(
@@ -274,11 +274,11 @@ public abstract class ResponseEntityExceptionHandler {
 	/**
 	 * 自定义 MissingServletRequestParameterException 的响应。
 	 * <p>此方法委托给 {@link #handleExceptionInternal}。
-	 * @param ex the exception
-	 * @param headers the headers to be written to the response
-	 * @param status the selected response status
-	 * @param request the current request
-	 * @return a {@code ResponseEntity} instance
+	 * @param ex 该异常
+	 * @param headers 要写入响应的头信息
+	 * @param status 选定的响应状态
+	 * @param request 当前请求
+	 * @return 一个 {@code ResponseEntity} 实例
 	 */
 	protected ResponseEntity<Object> handleMissingServletRequestParameter(
 			MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -289,11 +289,11 @@ public abstract class ResponseEntityExceptionHandler {
 	/**
 	 * 自定义 ServletRequestBindingException 的响应。
 	 * <p>此方法委托给 {@link #handleExceptionInternal}。
-	 * @param ex the exception
-	 * @param headers the headers to be written to the response
-	 * @param status the selected response status
-	 * @param request the current request
-	 * @return a {@code ResponseEntity} instance
+	 * @param ex 该异常
+	 * @param headers 要写入响应的头信息
+	 * @param status 选定的响应状态
+	 * @param request 当前请求
+	 * @return 一个 {@code ResponseEntity} 实例
 	 */
 	protected ResponseEntity<Object> handleServletRequestBindingException(
 			ServletRequestBindingException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -304,11 +304,11 @@ public abstract class ResponseEntityExceptionHandler {
 	/**
 	 * 自定义 ConversionNotSupportedException 的响应。
 	 * <p>此方法委托给 {@link #handleExceptionInternal}。
-	 * @param ex the exception
-	 * @param headers the headers to be written to the response
-	 * @param status the selected response status
-	 * @param request the current request
-	 * @return a {@code ResponseEntity} instance
+	 * @param ex 该异常
+	 * @param headers 要写入响应的头信息
+	 * @param status 选定的响应状态
+	 * @param request 当前请求
+	 * @return 一个 {@code ResponseEntity} 实例
 	 */
 	protected ResponseEntity<Object> handleConversionNotSupported(
 			ConversionNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -319,11 +319,11 @@ public abstract class ResponseEntityExceptionHandler {
 	/**
 	 * 自定义 TypeMismatchException 的响应。
 	 * <p>此方法委托给 {@link #handleExceptionInternal}。
-	 * @param ex the exception
-	 * @param headers the headers to be written to the response
-	 * @param status the selected response status
-	 * @param request the current request
-	 * @return a {@code ResponseEntity} instance
+	 * @param ex 该异常
+	 * @param headers 要写入响应的头信息
+	 * @param status 选定的响应状态
+	 * @param request 当前请求
+	 * @return 一个 {@code ResponseEntity} 实例
 	 */
 	protected ResponseEntity<Object> handleTypeMismatch(
 			TypeMismatchException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -334,11 +334,11 @@ public abstract class ResponseEntityExceptionHandler {
 	/**
 	 * 自定义 HttpMessageNotReadableException 的响应。
 	 * <p>此方法委托给 {@link #handleExceptionInternal}。
-	 * @param ex the exception
-	 * @param headers the headers to be written to the response
-	 * @param status the selected response status
-	 * @param request the current request
-	 * @return a {@code ResponseEntity} instance
+	 * @param ex 该异常
+	 * @param headers 要写入响应的头信息
+	 * @param status 选定的响应状态
+	 * @param request 当前请求
+	 * @return 一个 {@code ResponseEntity} 实例
 	 */
 	protected ResponseEntity<Object> handleHttpMessageNotReadable(
 			HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -349,11 +349,11 @@ public abstract class ResponseEntityExceptionHandler {
 	/**
 	 * 自定义 HttpMessageNotWritableException 的响应。
 	 * <p>此方法委托给 {@link #handleExceptionInternal}。
-	 * @param ex the exception
-	 * @param headers the headers to be written to the response
-	 * @param status the selected response status
-	 * @param request the current request
-	 * @return a {@code ResponseEntity} instance
+	 * @param ex 该异常
+	 * @param headers 要写入响应的头信息
+	 * @param status 选定的响应状态
+	 * @param request 当前请求
+	 * @return 一个 {@code ResponseEntity} 实例
 	 */
 	protected ResponseEntity<Object> handleHttpMessageNotWritable(
 			HttpMessageNotWritableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -364,11 +364,11 @@ public abstract class ResponseEntityExceptionHandler {
 	/**
 	 * 自定义 MethodArgumentNotValidException 的响应。
 	 * <p>此方法委托给 {@link #handleExceptionInternal}。
-	 * @param ex the exception
-	 * @param headers the headers to be written to the response
-	 * @param status the selected response status
-	 * @param request the current request
-	 * @return a {@code ResponseEntity} instance
+	 * @param ex 该异常
+	 * @param headers 要写入响应的头信息
+	 * @param status 选定的响应状态
+	 * @param request 当前请求
+	 * @return 一个 {@code ResponseEntity} 实例
 	 */
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(
 			MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -379,11 +379,11 @@ public abstract class ResponseEntityExceptionHandler {
 	/**
 	 * 自定义 MissingServletRequestPartException 的响应。
 	 * <p>此方法委托给 {@link #handleExceptionInternal}。
-	 * @param ex the exception
-	 * @param headers the headers to be written to the response
-	 * @param status the selected response status
-	 * @param request the current request
-	 * @return a {@code ResponseEntity} instance
+	 * @param ex 该异常
+	 * @param headers 要写入响应的头信息
+	 * @param status 选定的响应状态
+	 * @param request 当前请求
+	 * @return 一个 {@code ResponseEntity} 实例
 	 */
 	protected ResponseEntity<Object> handleMissingServletRequestPart(
 			MissingServletRequestPartException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -394,11 +394,11 @@ public abstract class ResponseEntityExceptionHandler {
 	/**
 	 * 自定义 BindException 的响应。
 	 * <p>此方法委托给 {@link #handleExceptionInternal}。
-	 * @param ex the exception
-	 * @param headers the headers to be written to the response
-	 * @param status the selected response status
-	 * @param request the current request
-	 * @return a {@code ResponseEntity} instance
+	 * @param ex 该异常
+	 * @param headers 要写入响应的头信息
+	 * @param status 选定的响应状态
+	 * @param request 当前请求
+	 * @return 一个 {@code ResponseEntity} 实例
 	 */
 	protected ResponseEntity<Object> handleBindException(
 			BindException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -409,11 +409,11 @@ public abstract class ResponseEntityExceptionHandler {
 	/**
 	 * 自定义 NoHandlerFoundException 的响应。
 	 * <p>此方法委托给 {@link #handleExceptionInternal}。
-	 * @param ex the exception
-	 * @param headers the headers to be written to the response
-	 * @param status the selected response status
-	 * @param request the current request
-	 * @return a {@code ResponseEntity} instance
+	 * @param ex 该异常
+	 * @param headers 要写入响应的头信息
+	 * @param status 选定的响应状态
+	 * @param request 当前请求
+	 * @return 一个 {@code ResponseEntity} 实例
 	 * @since 4.0
 	 */
 	protected ResponseEntity<Object> handleNoHandlerFoundException(
@@ -425,11 +425,11 @@ public abstract class ResponseEntityExceptionHandler {
 	/**
 	 * 自定义 AsyncRequestTimeoutException 的响应。
 	 * <p>此方法委托给 {@link #handleExceptionInternal}。
-	 * @param ex the exception
-	 * @param headers the headers to be written to the response
-	 * @param status the selected response status
-	 * @param webRequest the current request
-	 * @return a {@code ResponseEntity} instance
+	 * @param ex 该异常
+	 * @param headers 要写入响应的头信息
+	 * @param status 选定的响应状态
+	 * @param webRequest 当前请求
+	 * @return 一个 {@code ResponseEntity} 实例
 	 * @since 4.2.8
 	 */
 	@Nullable
@@ -455,11 +455,11 @@ public abstract class ResponseEntityExceptionHandler {
 	 * <p>默认实现会设置 {@link WebUtils#ERROR_EXCEPTION_ATTRIBUTE}
 	 * 请求属性，并根据给定的响应体、头和状态创建
 	 * {@link ResponseEntity}。
-	 * @param ex the exception
-	 * @param body the body for the response
-	 * @param headers the headers for the response
-	 * @param status the response status
-	 * @param request the current request
+	 * @param ex 该异常
+	 * @param body 响应体
+	 * @param headers 响应的头信息
+	 * @param status 响应状态
+	 * @param request 当前请求
 	 */
 	protected ResponseEntity<Object> handleExceptionInternal(
 			Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {

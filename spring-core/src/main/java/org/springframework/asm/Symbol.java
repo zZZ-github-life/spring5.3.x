@@ -181,14 +181,13 @@ abstract class Symbol {
    * 构造一个新的 Symbol。由于 Symbol 类是抽象类，不能直接使用此构造方法。请改用 {@link SymbolTable}
    * 类的工厂方法。
    *
-   * @param index the symbol index in the constant pool, in the BootstrapMethods attribute, or in
-   *     the (ASM specific) type table of a class (depending on 'tag').
-   * @param tag the symbol type. Must be one of the static tag values defined in this class.
-   * @param owner The internal name of the symbol's owner class. Maybe {@literal null}.
-   * @param name The name of the symbol's corresponding class field or method. Maybe {@literal
-   *     null}.
-   * @param value The string value of this symbol. Maybe {@literal null}.
-   * @param data The numeric value of this symbol.
+   * @param index 符号在常量池、BootstrapMethods 属性或类的（ASM 专用）类型表中的索引
+   * （取决于 'tag'）。
+   * @param tag 符号类型。必须是此类中定义的某个静态 tag 值。
+   * @param owner 符号所有者类的内部名称。可以为 {@literal null}。
+   * @param name 符号所对应类字段或方法的名称。可以为 {@literal null}。
+   * @param value 此符号的字符串值。可以为 {@literal null}。
+   * @param data 此符号的数值。
    */
   Symbol(
       final int index,
@@ -208,10 +207,10 @@ abstract class Symbol {
   /**
    * 返回对 {@link #value} 调用 {@link Type#getArgumentsAndReturnSizes} 的结果。
    *
-   * @return the result {@link Type#getArgumentsAndReturnSizes} on {@link #value} (memoized in
-   *     {@link #info} for efficiency). This should only be used for {@link
-   *     #CONSTANT_METHODREF_TAG}, {@link #CONSTANT_INTERFACE_METHODREF_TAG} and {@link
-   *     #CONSTANT_INVOKE_DYNAMIC_TAG} symbols.
+   * @return 对 {@link #value} 调用 {@link Type#getArgumentsAndReturnSizes} 的结果
+   * （为提高效率而缓存在 {@link #info} 中）。
+   * 这仅应用于 {@link #CONSTANT_METHODREF_TAG}、{@link #CONSTANT_INTERFACE_METHODREF_TAG}
+   * 和 {@link #CONSTANT_INVOKE_DYNAMIC_TAG} 符号。
    */
   int getArgumentsAndReturnSizes() {
     if (info == 0) {

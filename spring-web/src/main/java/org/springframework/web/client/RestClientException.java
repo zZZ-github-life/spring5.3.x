@@ -34,7 +34,7 @@ public class RestClientException extends NestedRuntimeException {
 
 	/**
 	 * 使用给定消息构造一个 {@code RestClientException} 新实例。
-	 * @param msg the message
+	 * @param msg 消息
 	 */
 	public RestClientException(String msg) {
 		super(msg);
@@ -42,8 +42,8 @@ public class RestClientException extends NestedRuntimeException {
 
 	/**
 	 * 使用给定消息和异常构造一个 {@code RestClientException} 新实例。
-	 * @param msg the message
-	 * @param ex the exception
+	 * @param msg 消息
+	 * @param ex 异常
 	 */
 	public RestClientException(String msg, Throwable ex) {
 		super(msg, ex);

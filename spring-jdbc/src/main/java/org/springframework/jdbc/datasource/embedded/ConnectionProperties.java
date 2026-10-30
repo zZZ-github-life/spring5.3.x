@@ -32,25 +32,25 @@ public interface ConnectionProperties {
 
 	/**
 	 * 设置用于连接数据库的 JDBC 驱动程序类。
-	 * @param driverClass the jdbc driver class
+	 * @param driverClass jdbc 驱动类
 	 */
 	void setDriverClass(Class<? extends Driver> driverClass);
 
 	/**
 	 * 设置数据库的 JDBC 连接 URL。
-	 * @param url the connection url
+	 * @param url 连接 url
 	 */
 	void setUrl(String url);
 
 	/**
 	 * 设置用于连接数据库的用户名。
-	 * @param username the username
+	 * @param username 用户名
 	 */
 	void setUsername(String username);
 
 	/**
 	 * 设置用于连接数据库的密码。
-	 * @param password the password
+	 * @param password 密码
 	 */
 	void setPassword(String password);
 

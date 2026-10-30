@@ -60,8 +60,8 @@ public class WebConnectionHtmlUnitDriver extends HtmlUnitDriver {
 	 * {@link WebConnection} 可以在以后通过 {@linkplain #getWebConnection 访问}。
 	 * <p>默认行为委托给 {@link HtmlUnitDriver#modifyWebClient}，
 	 * 进一步的自定义则委托给 {@link #modifyWebClientInternal}。
-	 * @param webClient the client to modify
-	 * @return the modified client
+	 * @param webClient 要修改的客户端
+	 * @return 修改后的客户端
 	 * @see HtmlUnitDriver#modifyWebClient(WebClient)
 	 * @see #modifyWebClientInternal(WebClient)
 	 */
@@ -75,8 +75,8 @@ public class WebConnectionHtmlUnitDriver extends HtmlUnitDriver {
 	 * <p>默认实现仅原样返回提供的客户端。
 	 * <p>子类可以覆盖此方法以自定义 {@link HtmlUnitDriver}
 	 * 使用的 {@code WebClient}。
-	 * @param webClient the client to modify
-	 * @return the modified client
+	 * @param webClient 要修改的客户端
+	 * @return 修改后的客户端
 	 */
 	protected WebClient modifyWebClientInternal(WebClient webClient) {
 		return webClient;
@@ -93,7 +93,7 @@ public class WebConnectionHtmlUnitDriver extends HtmlUnitDriver {
 
 	/**
 	 * 设置要与 {@link WebClient} 一起使用的 {@link WebConnection}。
-	 * @param webConnection the {@code WebConnection} to use
+	 * @param webConnection 要使用的 {@code WebConnection}
 	 */
 	public void setWebConnection(WebConnection webConnection) {
 		Assert.notNull(webConnection, "WebConnection must not be null");
@@ -102,7 +102,7 @@ public class WebConnectionHtmlUnitDriver extends HtmlUnitDriver {
 
 	/**
 	 * 访问 {@link WebClient} 当前的 {@link WebConnection}。
-	 * @return the current {@code WebConnection}
+	 * @return 当前的 {@code WebConnection}
 	 */
 	public WebConnection getWebConnection() {
 		return getWebClient().getWebConnection();

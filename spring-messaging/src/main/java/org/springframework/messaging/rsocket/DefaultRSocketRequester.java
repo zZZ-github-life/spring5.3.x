@@ -248,7 +248,7 @@ final class DefaultRSocketRequester implements RSocketRequester {
 
 		/**
 		 * 使用编码后的数据和元数据创建第一个请求负载。
-		 * @param encodedData the encoded payload data; expected to not be empty!
+		 * @param encodedData 编码后的载荷数据；预期不为空！
 		 */
 		private Mono<Payload> firstPayload(Mono<DataBuffer> encodedData) {
 			return Mono.zip(encodedData, this.metadataEncoder.encode())

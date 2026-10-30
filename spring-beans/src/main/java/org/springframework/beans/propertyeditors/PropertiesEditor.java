@@ -41,7 +41,7 @@ public class PropertiesEditor extends PropertyEditorSupport {
 
 	/**
 	 * 将 {@link String} 转换为 {@link Properties}，将其视为属性内容。
-	 * @param text the text to be so converted
+	 * @param text 要以此方式转换的文本
 	 */
 	@Override
 	public void setAsText(@Nullable String text) throws IllegalArgumentException {

@@ -49,8 +49,8 @@ public interface SimpUser {
 
 	/**
 	 * 查找给定 ID 的会话。
-	 * @param sessionId the session id
-	 * @return the matching session, or {@code null} if none found
+	 * @param sessionId 会话 id
+	 * @return 匹配的会话，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	SimpSession getSession(String sessionId);
@@ -58,7 +58,7 @@ public interface SimpUser {
 	/**
 	 * 返回用户的会话。
 	 * 返回的集合是副本，永远不会被修改。
-	 * @return a set of session ids, or an empty set if none
+	 * @return 会话 id 的集合，如果没有则为空集合
 	 */
 	Set<SimpSession> getSessions();
 

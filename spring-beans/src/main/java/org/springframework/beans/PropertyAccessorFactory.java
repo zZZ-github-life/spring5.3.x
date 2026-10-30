@@ -31,8 +31,8 @@ public final class PropertyAccessorFactory {
 
 	/**
 	 * 为给定的目标对象获取一个 BeanWrapper，以 JavaBeans 风格访问属性。
-	 * @param target the target object to wrap
-	 * @return the property accessor
+	 * @param target 要包装的目标对象
+	 * @return 属性访问器
 	 * @see BeanWrapperImpl
 	 */
 	public static BeanWrapper forBeanPropertyAccess(Object target) {
@@ -41,8 +41,8 @@ public final class PropertyAccessorFactory {
 
 	/**
 	 * 为给定的目标对象获取一个 PropertyAccessor，以直接字段风格访问属性。
-	 * @param target the target object to wrap
-	 * @return the property accessor
+	 * @param target 要包装的目标对象
+	 * @return 属性访问器
 	 * @see DirectFieldAccessor
 	 */
 	public static ConfigurablePropertyAccessor forDirectFieldAccess(Object target) {

@@ -52,7 +52,7 @@ public class StandardTypeLocator implements TypeLocator {
 
 	/**
 	 * 为给定的 ClassLoader 创建一个 StandardTypeLocator。
-	 * @param classLoader the ClassLoader to delegate to
+	 * @param classLoader 要委托的 ClassLoader
 	 */
 	public StandardTypeLocator(@Nullable ClassLoader classLoader) {
 		this.classLoader = classLoader;
@@ -63,7 +63,7 @@ public class StandardTypeLocator implements TypeLocator {
 
 	/**
 	 * 注册一个新的导入前缀，用于搜索未限定类型。预期格式类似于“java.lang”。
-	 * @param prefix the prefix to register
+	 * @param prefix 要注册的前缀
 	 */
 	public void registerImport(String prefix) {
 		this.knownPackagePrefixes.add(prefix);
@@ -71,7 +71,7 @@ public class StandardTypeLocator implements TypeLocator {
 
 	/**
 	 * 从该定位器的导入列表中移除指定的前缀。
-	 * @param prefix the prefix to remove
+	 * @param prefix 要移除的前缀
 	 */
 	public void removeImport(String prefix) {
 		this.knownPackagePrefixes.remove(prefix);
@@ -79,7 +79,7 @@ public class StandardTypeLocator implements TypeLocator {
 
 	/**
 	 * 返回在此 StandardTypeLocator 中注册的所有导入前缀的列表。
-	 * @return a list of registered import prefixes
+	 * @return 已注册的导入前缀列表
 	 */
 	public List<String> getImportPrefixes() {
 		return Collections.unmodifiableList(this.knownPackagePrefixes);
@@ -88,9 +88,9 @@ public class StandardTypeLocator implements TypeLocator {
 
 	/**
 	 * 查找（可能未限定的）类型引用——先按原样使用类型名，如果找不到该类型名，再尝试任何已注册的前缀。
-	 * @param typeName the type to locate
-	 * @return the class object for the type
-	 * @throws EvaluationException if the type cannot be found
+	 * @param typeName 要定位的类型
+	 * @return 该类型的 Class 对象
+	 * @throws EvaluationException 如果找不到该类型
 	 */
 	@Override
 	public Class<?> findType(String typeName) throws EvaluationException {

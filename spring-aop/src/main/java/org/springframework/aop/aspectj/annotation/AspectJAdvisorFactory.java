@@ -42,38 +42,34 @@ public interface AspectJAdvisorFactory {
 	 * <p>如果假定的切面无效（例如具体切面类的扩展），将直接返回 {@code false}。对于 Spring AOP 无法处
 	 * 理的某些切面（例如使用不受支持的实例化模型的切面），将返回 true。如有必要，可使用
 	 * {@link #validate} 方法来处理这些情况。
-	 * @param clazz the supposed annotation-style AspectJ class
-	 * @return whether this class is recognized by AspectJ as an aspect class
+	 * @param clazz 假定的注解风格 AspectJ 类
+	 * @return 该类是否被 AspectJ 识别为切面类
 	 */
 	boolean isAspect(Class<?> clazz);
 
 	/**
 	 * 给定的类是否为有效的 AspectJ 切面类？
-	 * @param aspectClass the supposed AspectJ annotation-style class to validate
-	 * @throws AopConfigException if the class is an invalid aspect
-	 * (which can never be legal)
-	 * @throws NotAnAtAspectException if the class is not an aspect at all
-	 * (which may or may not be legal, depending on the context)
+	 * @param aspectClass 要校验的假定 AspectJ 注解风格类
+	 * @throws AopConfigException 如果该类是无效的切面（这永远不合法）
+	 * @throws NotAnAtAspectException 如果该类根本不是一个切面（是否合法取决于上下文）
 	 */
 	void validate(Class<?> aspectClass) throws AopConfigException;
 
 	/**
 	 * 为指定的切面实例上所有带注解的 At-AspectJ 方法构建 Spring AOP Advisor。
-	 * @param aspectInstanceFactory the aspect instance factory
-	 * (not the aspect instance itself in order to avoid eager instantiation)
-	 * @return a list of advisors for this class
+	 * @param aspectInstanceFactory 切面实例工厂（不是切面实例本身，以避免急切实例化）
+	 * @return 该类的通知器列表
 	 */
 	List<Advisor> getAdvisors(MetadataAwareAspectInstanceFactory aspectInstanceFactory);
 
 	/**
 	 * 为给定的 AspectJ 通知方法构建 Spring AOP Advisor。
-	 * @param candidateAdviceMethod the candidate advice method
-	 * @param aspectInstanceFactory the aspect instance factory
-	 * @param declarationOrder the declaration order within the aspect
-	 * @param aspectName the name of the aspect
-	 * @return {@code null} if the method is not an AspectJ advice method
-	 * or if it is a pointcut that will be used by other advice but will not
-	 * create a Spring advice in its own right
+	 * @param candidateAdviceMethod 候选通知方法
+	 * @param aspectInstanceFactory 切面实例工厂
+	 * @param declarationOrder 在切面内的声明顺序
+	 * @param aspectName 切面的名称
+	 * @return 如果该方法不是 AspectJ 通知方法，或者它是一个将被其他通知使用
+	 * 但本身不会创建 Spring 通知的切点，则返回 {@code null}
 	 */
 	@Nullable
 	Advisor getAdvisor(Method candidateAdviceMethod, MetadataAwareAspectInstanceFactory aspectInstanceFactory,
@@ -81,14 +77,13 @@ public interface AspectJAdvisorFactory {
 
 	/**
 	 * 为给定的 AspectJ 通知方法构建 Spring AOP Advice。
-	 * @param candidateAdviceMethod the candidate advice method
-	 * @param expressionPointcut the AspectJ expression pointcut
-	 * @param aspectInstanceFactory the aspect instance factory
-	 * @param declarationOrder the declaration order within the aspect
-	 * @param aspectName the name of the aspect
-	 * @return {@code null} if the method is not an AspectJ advice method
-	 * or if it is a pointcut that will be used by other advice but will not
-	 * create a Spring advice in its own right
+	 * @param candidateAdviceMethod 候选通知方法
+	 * @param expressionPointcut AspectJ 表达式切点
+	 * @param aspectInstanceFactory 切面实例工厂
+	 * @param declarationOrder 在切面内的声明顺序
+	 * @param aspectName 切面的名称
+	 * @return 如果该方法不是 AspectJ 通知方法，或者它是一个将被其他通知使用
+	 * 但本身不会创建 Spring 通知的切点，则返回 {@code null}
 	 * @see org.springframework.aop.aspectj.AspectJAroundAdvice
 	 * @see org.springframework.aop.aspectj.AspectJMethodBeforeAdvice
 	 * @see org.springframework.aop.aspectj.AspectJAfterAdvice

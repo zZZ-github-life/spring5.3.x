@@ -96,11 +96,11 @@ final class HtmlUnitRequestBuilder implements RequestBuilder, Mergeable {
 
 	/**
 	 * 构造一个新的 {@code HtmlUnitRequestBuilder}。
-	 * @param sessions a {@link Map} from session {@linkplain HttpSession#getId() IDs}
-	 * to currently managed {@link HttpSession} objects; never {@code null}
-	 * @param webClient the WebClient for retrieving cookies
-	 * @param webRequest the {@link WebRequest} to transform into a
-	 * {@link MockHttpServletRequest}; never {@code null}
+	 * @param sessions 从会话 {@linkplain HttpSession#getId() ID} 到当前受管 {@link HttpSession}
+	 * 对象的 {@link Map}；永不为 {@code null}
+	 * @param webClient 用于获取 Cookie 的 WebClient
+	 * @param webRequest 要转换为 {@link MockHttpServletRequest} 的 {@link WebRequest}；
+	 * 永不为 {@code null}
 	 */
 	public HtmlUnitRequestBuilder(Map<String, MockHttpSession> sessions, WebClient webClient, WebRequest webRequest) {
 		Assert.notNull(sessions, "Sessions Map must not be null");
@@ -215,9 +215,8 @@ final class HtmlUnitRequestBuilder implements RequestBuilder, Mergeable {
 	 * 会转换为 contextPath。否则它必须符合
 	 * {@link HttpServletRequest#getContextPath()} 的要求，即可以是
 	 * 空字符串，或者必须以“/”开头且不以“/”结尾。
-	 * @param contextPath a valid contextPath
-	 * @throws IllegalArgumentException if the contextPath is not a valid
-	 * {@link HttpServletRequest#getContextPath()}
+	 * @param contextPath 有效的 contextPath
+	 * @throws IllegalArgumentException 如果 contextPath 不是有效的 {@link HttpServletRequest#getContextPath()}
 	 */
 	public void setContextPath(@Nullable String contextPath) {
 		MockMvcWebConnection.validateContextPath(contextPath);

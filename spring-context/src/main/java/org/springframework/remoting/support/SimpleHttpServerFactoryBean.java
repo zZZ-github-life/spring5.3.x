@@ -113,8 +113,7 @@ public class SimpleHttpServerFactoryBean implements FactoryBean<HttpServer>, Ini
 
 	/**
 	 * 为特定上下文路径注册 {@link com.sun.net.httpserver.HttpHandler HttpHandlers}。
-	 * @param contexts a Map with context paths as keys and HttpHandler
-	 * objects as values
+	 * @param contexts 以上下文路径为键、HttpHandler 对象为值的 Map
 	 * @see org.springframework.remoting.httpinvoker.SimpleHttpInvokerServiceExporter
 	 * @see org.springframework.remoting.caucho.SimpleHessianServiceExporter
 	 */

@@ -78,7 +78,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 
 	/**
 	 * 创建新的 SingleConnectionFactory，始终返回给定的 Connection。
-	 * @param target the single Connection
+	 * @param target 单个 Connection
 	 */
 	public SingleConnectionFactory(Connection target) {
 		Assert.notNull(target, "Target Connection must not be null");
@@ -89,7 +89,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 	/**
 	 * 创建新的 SingleConnectionFactory，始终返回通过给定的目标 ConnectionFactory
 	 * 延迟创建的单个 Connection。
-	 * @param targetConnectionFactory the target ConnectionFactory
+	 * @param targetConnectionFactory 目标 ConnectionFactory
 	 */
 	public SingleConnectionFactory(ConnectionFactory targetConnectionFactory) {
 		Assert.notNull(targetConnectionFactory, "Target ConnectionFactory must not be null");
@@ -138,7 +138,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 	/**
 	 * 初始化底层的单个 Connection。
 	 * <p>如果已经存在底层 Connection，则关闭并重新初始化。
-	 * @throws javax.resource.ResourceException if thrown by CCI API methods
+	 * @throws javax.resource.ResourceException 如果由 CCI API 方法抛出
 	 */
 	public void initConnection() throws ResourceException {
 		if (getTargetConnectionFactory() == null) {
@@ -173,8 +173,8 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 
 	/**
 	 * 通过此模板的 ConnectionFactory 创建 CCI Connection。
-	 * @return the new CCI Connection
-	 * @throws javax.resource.ResourceException if thrown by CCI API methods
+	 * @return 新的 CCI Connection
+	 * @throws javax.resource.ResourceException 如果由 CCI API 方法抛出
 	 */
 	protected Connection doCreateConnection() throws ResourceException {
 		ConnectionFactory connectionFactory = getTargetConnectionFactory();
@@ -185,14 +185,14 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 	/**
 	 * 在给定的 Connection 暴露之前进行准备。
 	 * <p>默认实现为空。可以在子类中重写。
-	 * @param con the Connection to prepare
+	 * @param con 要准备的 Connection
 	 */
 	protected void prepareConnection(Connection con) throws ResourceException {
 	}
 
 	/**
 	 * 关闭给定的 Connection。
-	 * @param con the Connection to close
+	 * @param con 要关闭的 Connection
 	 */
 	protected void closeConnection(Connection con) {
 		try {
@@ -207,8 +207,8 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 	 * 使用抑制 close 调用的代理包装给定的 Connection。
 	 * 这允许应用程序代码像处理来自 CCI ConnectionFactory 的普通 Connection 一样
 	 * 处理特殊的框架 Connection。
-	 * @param target the original Connection to wrap
-	 * @return the wrapped Connection
+	 * @param target 要包装的原始 Connection
+	 * @return 被包装的 Connection
 	 */
 	protected Connection getCloseSuppressingConnectionProxy(Connection target) {
 		return (Connection) Proxy.newProxyInstance(

@@ -66,7 +66,7 @@ public interface SockJsServiceConfig {
 
 	/**
 	 * 用于编码和解码 SockJS 消息的编解码器。
-	 * @throws IllegalStateException if no {@link SockJsMessageCodec} is available
+	 * @throws IllegalStateException 如果没有任何 {@link SockJsMessageCodec} 可用
 	 */
 	SockJsMessageCodec getMessageCodec();
 

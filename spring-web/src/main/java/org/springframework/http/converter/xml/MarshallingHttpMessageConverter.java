@@ -66,7 +66,7 @@ public class MarshallingHttpMessageConverter extends AbstractXmlHttpMessageConve
 	 * 则它将同时用于编组和反编组。否则将抛出异常。
 	 * <p>请注意，Spring 中所有 {@code Marshaller} 实现也都实现了
 	 * {@code Unmarshaller} 接口，因此可以安全地使用此构造函数。
-	 * @param marshaller object used as marshaller and unmarshaller
+	 * @param marshaller 用作编组器和解组器的对象
 	 */
 	public MarshallingHttpMessageConverter(Marshaller marshaller) {
 		Assert.notNull(marshaller, "Marshaller must not be null");
@@ -79,8 +79,8 @@ public class MarshallingHttpMessageConverter extends AbstractXmlHttpMessageConve
 	/**
 	 * 使用给定的 {@code Marshaller} 和 {@code Unmarshaller}
 	 * 构造一个新的 {@code MarshallingMessageConverter}。
-	 * @param marshaller the Marshaller to use
-	 * @param unmarshaller the Unmarshaller to use
+	 * @param marshaller 要使用的 Marshaller
+	 * @param unmarshaller 要使用的 Unmarshaller
 	 */
 	public MarshallingHttpMessageConverter(Marshaller marshaller, Unmarshaller unmarshaller) {
 		Assert.notNull(marshaller, "Marshaller must not be null");

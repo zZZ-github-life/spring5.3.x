@@ -25,23 +25,23 @@ import org.springframework.web.server.ServerWebExchange;
  * <p>请求条件可以通过 {@link #combine(Object)} 组合，通过 {@link #getMatchingCondition(ServerWebExchange)} 与请求匹配，并通过 {@link #compareTo(Object, ServerWebExchange)} 相互比较，以确定哪个条件对给定请求更接近匹配。
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <T> the type of objects that this RequestCondition can be combined
- * with and compared to
+ * @param <T> 此 RequestCondition 可以与之组合
+ * 并比较的对象类型
  */
 public interface RequestCondition<T> {
 
 	/**
 	 * 将此条件与另一个条件组合，例如来自类型级和方法级 {@code @RequestMapping} 注解的条件。
-	 * @param other the condition to combine with.
-	 * @return a request condition instance that is the result of combining
-	 * the two condition instances.
+	 * @param other 要与之组合的条件。
+	 * @return 组合两个条件实例后
+	 * 得到的请求条件实例。
 	 */
 	T combine(T other);
 
 	/**
 	 * 检查条件是否匹配请求，并返回为当前请求创建的潜在新实例。例如，包含多个 URL 模式的条件可能仅返回与请求匹配的那些模式的新实例。
 	 * <p>对于 CORS 预检请求，条件应匹配将要执行的实际请求（例如 URL 模式、查询参数以及来自 "Access-Control-Request-Method" 头的 HTTP 方法）。如果条件无法匹配预检请求，则应返回内容为空的实例，从而不会导致匹配失败。
-	 * @return a condition instance in case of a match or {@code null} otherwise.
+	 * @return 匹配时的条件实例，否则为 {@code null}。
 	 */
 	@Nullable
 	T getMatchingCondition(ServerWebExchange exchange);

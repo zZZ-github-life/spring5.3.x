@@ -116,8 +116,7 @@ class ReactiveTypeHandler {
 	/**
 	 * 处理给定的响应式返回值，并决定将其适配为
 	 * {@link ResponseBodyEmitter} 还是 {@link DeferredResult}。
-	 * @return an emitter for streaming, or {@code null} if handled internally
-	 * with a {@link DeferredResult}
+	 * @return 用于流式传输的 emitter，若由 {@link DeferredResult} 在内部处理则为 {@code null}
 	 */
 	@Nullable
 	public ResponseBodyEmitter handleValue(Object returnValue, MethodParameter returnType,

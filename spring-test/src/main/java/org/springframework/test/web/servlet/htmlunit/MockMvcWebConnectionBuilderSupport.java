@@ -39,7 +39,7 @@ import org.springframework.web.context.WebApplicationContext;
  * @author Rob Winch
  * @author Sam Brannen
  * @since 4.2
- * @param <T> a self reference to the builder type
+ * @param <T> 构建器类型的自引用
  */
 public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebConnectionBuilderSupport<T>> {
 
@@ -54,7 +54,7 @@ public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebCon
 
 	/**
 	 * 使用提供的 {@link MockMvc} 实例创建新实例。
-	 * @param mockMvc the {@code MockMvc} instance to use; never {@code null}
+	 * @param mockMvc 要使用的 {@code MockMvc} 实例；永不为 {@code null}
 	 */
 	protected MockMvcWebConnectionBuilderSupport(MockMvc mockMvc) {
 		Assert.notNull(mockMvc, "MockMvc must not be null");
@@ -64,8 +64,8 @@ public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebCon
 
 	/**
 	 * 使用提供的 {@link WebApplicationContext} 创建新实例。
-	 * @param context the {@code WebApplicationContext} to create a {@code MockMvc}
-	 * instance from; never {@code null}
+	 * @param context 用于从中创建 {@code MockMvc} 实例的 {@code WebApplicationContext}；
+	 * 永不为 {@code null}
 	 */
 	protected MockMvcWebConnectionBuilderSupport(WebApplicationContext context) {
 		this(MockMvcBuilders.webAppContextSetup(context).build());
@@ -74,9 +74,9 @@ public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebCon
 	/**
 	 * 使用提供的 {@link WebApplicationContext}
 	 * 和 {@link MockMvcConfigurer} 创建新实例。
-	 * @param context the {@code WebApplicationContext} to create a {@code MockMvc}
-	 * instance from; never {@code null}
-	 * @param configurer the MockMvcConfigurer to apply; never {@code null}
+	 * @param context 用于从中创建 {@code MockMvc} 实例的 {@code WebApplicationContext}；
+	 * 永不为 {@code null}
+	 * @param configurer 要应用的 MockMvcConfigurer；永不为 {@code null}
 	 */
 	protected MockMvcWebConnectionBuilderSupport(WebApplicationContext context, MockMvcConfigurer configurer) {
 		this(MockMvcBuilders.webAppContextSetup(context).apply(configurer).build());
@@ -88,8 +88,8 @@ public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebCon
 	 * <p>如果提供的值为 {@code null} 或空，则假定请求 URL 的第一个路径
 	 * 段为上下文路径。
 	 * <p>默认为 {@code ""}。
-	 * @param contextPath the context path to use
-	 * @return this builder for further customization
+	 * @param contextPath 要使用的上下文路径
+	 * @return 该构建器，用于进一步定制
 	 */
 	@SuppressWarnings("unchecked")
 	public T contextPath(String contextPath) {
@@ -99,7 +99,7 @@ public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebCon
 
 	/**
 	 * 指定无论请求看起来如何，都应始终使用 {@link MockMvc}。
-	 * @return this builder for further customization
+	 * @return 该构建器，用于进一步定制
 	 */
 	@SuppressWarnings("unchecked")
 	public T alwaysUseMockMvc() {
@@ -110,8 +110,8 @@ public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebCon
 	/**
 	 * 添加额外的 {@link WebRequestMatcher} 实例，以确保在
 	 * 此类匹配器与 Web 请求匹配时使用 {@link MockMvc} 处理该请求。
-	 * @param matchers additional {@code WebRequestMatcher} instances
-	 * @return this builder for further customization
+	 * @param matchers 额外的 {@code WebRequestMatcher} 实例
+	 * @return 该构建器，用于进一步定制
 	 */
 	@SuppressWarnings("unchecked")
 	public T useMockMvc(WebRequestMatcher... matchers) {
@@ -123,8 +123,8 @@ public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebCon
 	 * 添加额外的 {@link WebRequestMatcher} 实例，当提供的主机匹配时
 	 * 返回 {@code true} &mdash; 例如 {@code "example.com"} 或
 	 * {@code "example.com:8080"}。
-	 * @param hosts additional hosts that ensure {@code MockMvc} gets invoked
-	 * @return this builder for further customization
+	 * @param hosts 额外的、确保调用 {@code MockMvc} 的主机
+	 * @return 该构建器，用于进一步定制
 	 */
 	@SuppressWarnings("unchecked")
 	public T useMockMvcForHosts(String... hosts) {
@@ -135,10 +135,10 @@ public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebCon
 	/**
 	 * 创建一个新的 {@link WebConnection}，当指定的某个 {@link WebRequestMatcher} 实例
 	 * 匹配时，它将使用 {@link MockMvc} 实例。
-	 * @param webClient the WebClient to use if none of the specified
-	 * {@code WebRequestMatcher} instances matches (never {@code null})
-	 * @return a new {@code WebConnection} that will use a {@code MockMvc}
-	 * instance if one of the specified {@code WebRequestMatcher} matches
+	 * @param webClient 当指定的任何 {@code WebRequestMatcher} 都不匹配时
+	 * 要使用的 WebClient（永不为 {@code null}）
+	 * @return 一个新的 {@code WebConnection}，当指定的
+	 * {@code WebRequestMatcher} 之一匹配时将使用 {@code MockMvc} 实例
 	 * @since 4.3
 	 * @see #alwaysUseMockMvc()
 	 * @see #useMockMvc(WebRequestMatcher...)

@@ -30,8 +30,8 @@ public class ScriptParseException extends ScriptException {
 
 	/**
 	 * 创建一个新的 {@code ScriptParseException}。
-	 * @param message detailed message
-	 * @param resource the resource from which the SQL script was read
+	 * @param message 详细消息
+	 * @param resource 读取 SQL 脚本所用的资源
 	 */
 	public ScriptParseException(String message, @Nullable EncodedResource resource) {
 		super(buildMessage(message, resource));
@@ -39,9 +39,9 @@ public class ScriptParseException extends ScriptException {
 
 	/**
 	 * 创建一个新的 {@code ScriptParseException}。
-	 * @param message detailed message
-	 * @param resource the resource from which the SQL script was read
-	 * @param cause the underlying cause of the failure
+	 * @param message 详细消息
+	 * @param resource 读取 SQL 脚本所用的资源
+	 * @param cause 失败的底层原因
 	 */
 	public ScriptParseException(String message, @Nullable EncodedResource resource, @Nullable Throwable cause) {
 		super(buildMessage(message, resource), cause);

@@ -30,8 +30,7 @@ public class ContextRefreshedEvent extends ApplicationContextEvent {
 
 	/**
 	 * 创建一个新的 ContextRefreshedEvent。
-	 * @param source the {@code ApplicationContext} that has been initialized
-	 * or refreshed (must not be {@code null})
+	 * @param source 已初始化或刷新的 {@code ApplicationContext}（不能为 {@code null}）
 	 */
 	public ContextRefreshedEvent(ApplicationContext source) {
 		super(source);

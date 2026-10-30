@@ -52,8 +52,8 @@ public class BeanFactoryAspectInstanceFactory implements MetadataAwareAspectInst
 	/**
 	 * 创建一个 BeanFactoryAspectInstanceFactory。将调用 AspectJ 进行内省，使用 BeanFactory 中给定 Bean
 	 * 名称所返回的类型创建 AJType 元数据。
-	 * @param beanFactory the BeanFactory to obtain instance(s) from
-	 * @param name the name of the bean
+	 * @param beanFactory 用于获取实例的 BeanFactory
+	 * @param name Bean 的名称
 	 */
 	public BeanFactoryAspectInstanceFactory(BeanFactory beanFactory, String name) {
 		this(beanFactory, name, null);
@@ -62,10 +62,10 @@ public class BeanFactoryAspectInstanceFactory implements MetadataAwareAspectInst
 	/**
 	 * 创建一个 BeanFactoryAspectInstanceFactory，并提供 AspectJ 应用于内省以创建 AJType 元数据的类型。
 	 * 当 BeanFactory 可能将该类型视为子类（例如使用 CGLIB 时），而相关信息应关联到超类时使用。
-	 * @param beanFactory the BeanFactory to obtain instance(s) from
-	 * @param name the name of the bean
-	 * @param type the type that should be introspected by AspectJ
-	 * ({@code null} indicates resolution through {@link BeanFactory#getType} via the bean name)
+	 * @param beanFactory 用于获取实例的 BeanFactory
+	 * @param name Bean 的名称
+	 * @param type 应由 AspectJ 内省的类型（{@code null} 表示通过 Bean 名称
+	 * 经 {@link BeanFactory#getType} 解析）
 	 */
 	public BeanFactoryAspectInstanceFactory(BeanFactory beanFactory, String name, @Nullable Class<?> type) {
 		Assert.notNull(beanFactory, "BeanFactory must not be null");

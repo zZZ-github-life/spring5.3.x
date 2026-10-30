@@ -125,7 +125,7 @@ public class UnsupportedMediaTypeStatusException extends ResponseStatusException
 	 * 返回生成此异常时所处上下文中的主体类型。
 	 * <p>当异常是由于尝试从特定 Java 类型编码或解码到特定 Java 类型而引发时，
 	 * 该信息适用。
-	 * @return the body type, or {@code null} if not available
+	 * @return 正文类型；如果不可用则返回 {@code null}
 	 * @since 5.1
 	 */
 	@Nullable

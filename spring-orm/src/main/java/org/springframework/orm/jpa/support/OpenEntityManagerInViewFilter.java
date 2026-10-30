@@ -199,7 +199,7 @@ public class OpenEntityManagerInViewFilter extends OncePerRequestFilter {
 	 * 并以当前 HTTP 请求作为参数。
 	 * <p>默认实现委托给无参的 {@code lookupEntityManagerFactory}，
 	 * 并在获取 EntityManagerFactory 引用后对其进行缓存。
-	 * @return the EntityManagerFactory to use
+	 * @return 要使用的 EntityManagerFactory
 	 * @see #lookupEntityManagerFactory()
 	 */
 	protected EntityManagerFactory lookupEntityManagerFactory(HttpServletRequest request) {
@@ -214,7 +214,7 @@ public class OpenEntityManagerInViewFilter extends OncePerRequestFilter {
 	/**
 	 * 查找此过滤器应使用的 EntityManagerFactory。
 	 * <p>默认实现在 Spring 的根应用上下文中查找具有指定名称的 bean。
-	 * @return the EntityManagerFactory to use
+	 * @return 要使用的 EntityManagerFactory
 	 * @see #getEntityManagerFactoryBeanName
 	 */
 	protected EntityManagerFactory lookupEntityManagerFactory() {
@@ -236,7 +236,7 @@ public class OpenEntityManagerInViewFilter extends OncePerRequestFilter {
 	/**
 	 * 创建一个要绑定到请求的 JPA EntityManager。
 	 * <p>可在子类中重写。
-	 * @param emf the EntityManagerFactory to use
+	 * @param emf 要使用的 EntityManagerFactory
 	 * @see javax.persistence.EntityManagerFactory#createEntityManager()
 	 */
 	protected EntityManager createEntityManager(EntityManagerFactory emf) {

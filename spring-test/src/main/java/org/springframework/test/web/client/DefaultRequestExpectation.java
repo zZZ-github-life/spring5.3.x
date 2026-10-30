@@ -44,7 +44,7 @@ public class DefaultRequestExpectation implements RequestExpectation {
 	/**
 	 * 创建一个新的请求预期，其应被调用一定次数，
 	 * 次数由 {@code RequestCount} 指示。
-	 * @param expectedCount the expected request expectedCount
+	 * @param expectedCount 期望的请求计数
 	 */
 	public DefaultRequestExpectation(ExpectedCount expectedCount, RequestMatcher requestMatcher) {
 		Assert.notNull(expectedCount, "ExpectedCount is required");

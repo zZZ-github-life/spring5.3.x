@@ -33,20 +33,20 @@ public interface WebSocketClient {
 
 	/**
 	 * 向给定 url 执行握手请求，并使用给定处理器处理由此产生的 WebSocket 会话。
-	 * @param url the handshake url
-	 * @param handler the handler of the WebSocket session
-	 * @return completion {@code Mono<Void>} to indicate the outcome of the
-	 * WebSocket session handling.
+	 * @param url 握手 URL
+	 * @param handler WebSocket 会话的处理器
+	 * @return 用于指示 WebSocket 会话处理结果的
+	 * 完成信号 {@code Mono<Void>}。
 	 */
 	Mono<Void> execute(URI url, WebSocketHandler handler);
 
 	/**
 	 * {@link #execute(URI, WebSocketHandler)} 的一个变体，支持自定义头。
-	 * @param url the handshake url
-	 * @param headers custom headers for the handshake request
-	 * @param handler the handler of the WebSocket session
-	 * @return completion {@code Mono<Void>} to indicate the outcome of the
-	 * WebSocket session handling.
+	 * @param url 握手 URL
+	 * @param headers 握手请求的自定义头
+	 * @param handler WebSocket 会话的处理器
+	 * @return 用于指示 WebSocket 会话处理结果的
+	 * 完成信号 {@code Mono<Void>}。
 	 */
 	Mono<Void> execute(URI url, HttpHeaders headers, WebSocketHandler handler);
 

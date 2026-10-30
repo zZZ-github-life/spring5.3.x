@@ -78,7 +78,7 @@ public class JdbcTransactionManager extends DataSourceTransactionManager {
 
 	/**
 	 * 创建新的 JdbcTransactionManager 实例。
-	 * @param dataSource the JDBC DataSource to manage transactions for
+	 * @param dataSource 要为其管理事务的 JDBC DataSource
 	 */
 	public JdbcTransactionManager(DataSource dataSource) {
 		this();
@@ -91,7 +91,7 @@ public class JdbcTransactionManager extends DataSourceTransactionManager {
 	 * 为此事务管理器所使用的 DataSource 指定数据库产品名称。
 	 * 这样可以在不从 DataSource 获取 Connection 以读取元数据的情况下
 	 * 初始化 SQLErrorCodeSQLExceptionTranslator。
-	 * @param dbName the database product name that identifies the error codes entry
+	 * @param dbName 标识错误码条目的数据库产品名称
 	 * @see JdbcAccessor#setDatabaseProductName
 	 * @see SQLErrorCodeSQLExceptionTranslator#setDatabaseProductName
 	 * @see java.sql.DatabaseMetaData#getDatabaseProductName()

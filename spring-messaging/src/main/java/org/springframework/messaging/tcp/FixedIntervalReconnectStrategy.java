@@ -29,7 +29,7 @@ public class FixedIntervalReconnectStrategy implements ReconnectStrategy {
 
 	/**
 	 * 创建一个新的 {@link FixedIntervalReconnectStrategy} 实例。
-	 * @param interval the frequency, in millisecond, at which to try to reconnect
+	 * @param interval 尝试重新连接的频率，单位为毫秒
 	 */
 	public FixedIntervalReconnectStrategy(long interval) {
 		this.interval = interval;

@@ -88,10 +88,10 @@ public class TransportHandlingSockJsService extends AbstractSockJsService implem
 
 	/**
 	 * 使用给定 {@link TransportHandler handler} 类型创建 TransportHandlingSockJsService。
-	 * @param scheduler a task scheduler for heart-beat messages and removing timed-out sessions;
-	 * the provided TaskScheduler should be declared as a Spring bean to ensure it gets
-	 * initialized at start-up and shuts down when the application stops
-	 * @param handlers one or more {@link TransportHandler} implementations to use
+	 * @param scheduler 用于心跳消息和移除超时会话的任务调度器；
+	 * 提供的 TaskScheduler 应声明为 Spring Bean，
+	 * 以确保它在启动时初始化并在应用停止时关闭
+	 * @param handlers 要使用的一个或多个 {@link TransportHandler} 实现
 	 */
 	public TransportHandlingSockJsService(TaskScheduler scheduler, TransportHandler... handlers) {
 		this(scheduler, Arrays.asList(handlers));
@@ -99,10 +99,10 @@ public class TransportHandlingSockJsService extends AbstractSockJsService implem
 
 	/**
 	 * 使用给定 {@link TransportHandler handler} 类型创建 TransportHandlingSockJsService。
-	 * @param scheduler a task scheduler for heart-beat messages and removing timed-out sessions;
-	 * the provided TaskScheduler should be declared as a Spring bean to ensure it gets
-	 * initialized at start-up and shuts down when the application stops
-	 * @param handlers one or more {@link TransportHandler} implementations to use
+	 * @param scheduler 用于心跳消息和移除超时会话的任务调度器；
+	 * 提供的 TaskScheduler 应声明为 Spring Bean，
+	 * 以确保它在启动时初始化并在应用停止时关闭
+	 * @param handlers 要使用的一个或多个 {@link TransportHandler} 实现
 	 */
 	public TransportHandlingSockJsService(TaskScheduler scheduler, Collection<TransportHandler> handlers) {
 		super(scheduler);

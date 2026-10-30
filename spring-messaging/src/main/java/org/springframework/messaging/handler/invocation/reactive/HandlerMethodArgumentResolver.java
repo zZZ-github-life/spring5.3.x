@@ -31,20 +31,19 @@ public interface HandlerMethodArgumentResolver {
 
 	/**
 	 * 给定{@linkplain MethodParameter 方法参数}是否受此解析器支持。
-	 * @param parameter the method parameter to check
-	 * @return {@code true} if this resolver supports the supplied parameter;
-	 * {@code false} otherwise
+	 * @param parameter 要检查的方法参数
+	 * @return 如果该解析器支持所提供的参数则返回 {@code true}；
+	 * 否则返回 {@code false}
 	 */
 	boolean supportsParameter(MethodParameter parameter);
 
 	/**
 	 * 从给定消息中将方法参数解析为参数值。
-	 * @param parameter the method parameter to resolve.
-	 * This parameter must have previously been passed to
-	 * {@link #supportsParameter(org.springframework.core.MethodParameter)}
-	 * which must have returned {@code true}.
-	 * @param message the currently processed message
-	 * @return {@code Mono} for the argument value, possibly empty
+	 * @param parameter 要解析的方法参数。
+	 * 该参数必须事先传递给 {@link #supportsParameter(org.springframework.core.MethodParameter)}
+	 * 且该方法必须返回 {@code true}。
+	 * @param message 当前正在处理的消息
+	 * @return 表示参数值的 {@code Mono}，可能为空
 	 */
 	Mono<Object> resolveArgument(MethodParameter parameter, Message<?> message);
 

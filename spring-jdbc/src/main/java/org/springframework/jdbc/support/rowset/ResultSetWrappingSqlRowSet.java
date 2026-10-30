@@ -76,10 +76,8 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 
 	/**
 	 * 为给定 ResultSet 创建一个新的 ResultSetWrappingSqlRowSet。
-	 * @param resultSet a disconnected ResultSet to wrap
-	 * (usually a {@code javax.sql.rowset.CachedRowSet})
-	 * @throws InvalidResultSetAccessException if extracting
-	 * the ResultSetMetaData failed
+	 * @param resultSet 要包装的已断开连接的 ResultSet（通常是 {@code javax.sql.rowset.CachedRowSet}）
+	 * @throws InvalidResultSetAccessException 如果提取 ResultSetMetaData 失败
 	 * @see javax.sql.rowset.CachedRowSet
 	 * @see java.sql.ResultSet#getMetaData
 	 * @see ResultSetWrappingSqlRowSetMetaData

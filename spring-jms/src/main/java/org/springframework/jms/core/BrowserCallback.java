@@ -30,7 +30,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Juergen Hoeller
  * @since 2.5.1
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see JmsTemplate#browse(BrowserCallback)
  * @see JmsTemplate#browseSelected(String, BrowserCallback)
  */
@@ -39,11 +39,11 @@ public interface BrowserCallback<T> {
 
 	/**
 	 * 对给定的 {@link javax.jms.Session} 和 {@link javax.jms.QueueBrowser} 执行操作。
-	 * @param session the JMS {@code Session} object to use
-	 * @param browser the JMS {@code QueueBrowser} object to use
-	 * @return a result object from working with the {@code Session}, if any
-	 * (or {@code null} if none)
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
+	 * @param session 要使用的 JMS {@code Session} 对象
+	 * @param browser 要使用的 JMS {@code QueueBrowser} 对象
+	 * @return 使用 {@code Session} 得到的结果对象（如果存在），
+	 * 否则为 {@code null}
+	 * @throws javax.jms.JMSException 如果由 JMS API 方法抛出
 	 */
 	@Nullable
 	T doInJms(Session session, QueueBrowser browser) throws JMSException;

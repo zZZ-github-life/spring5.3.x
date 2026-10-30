@@ -35,10 +35,10 @@ public interface WebSocketService {
 
 	/**
 	 * 使用给定的 {@link WebSocketHandler} 处理请求。
-	 * @param exchange the current exchange
-	 * @param webSocketHandler handler for WebSocket session
-	 * @return a {@code Mono<Void>} that completes when application handling of
-	 * the WebSocket session completes.
+	 * @param exchange 当前交换
+	 * @param webSocketHandler WebSocket 会话的处理器
+	 * @return 在应用对 WebSocket 会话的处理完成时
+	 * 完成的 {@code Mono<Void>}。
 	 */
 	Mono<Void> handleRequest(ServerWebExchange exchange, WebSocketHandler webSocketHandler);
 

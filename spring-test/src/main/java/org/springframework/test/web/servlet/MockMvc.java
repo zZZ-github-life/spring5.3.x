@@ -154,10 +154,9 @@ public final class MockMvc {
 	/**
 	 * 执行请求并返回一个类型，以便在结果上链接进一步操作，
 	 * 例如断言预期。
-	 * @param requestBuilder used to prepare the request to execute;
-	 * see static factory methods in
-	 * {@link org.springframework.test.web.servlet.request.MockMvcRequestBuilders}
-	 * @return an instance of {@link ResultActions} (never {@code null})
+	 * @param requestBuilder 用于准备要执行的请求；
+	 * 参见 {@link org.springframework.test.web.servlet.request.MockMvcRequestBuilders} 中的静态工厂方法
+	 * @return {@link ResultActions} 实例（永不为 {@code null}）
 	 * @see org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 	 * @see org.springframework.test.web.servlet.result.MockMvcResultMatchers
 	 */

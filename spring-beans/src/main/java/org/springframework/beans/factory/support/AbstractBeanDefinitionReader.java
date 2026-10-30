@@ -71,8 +71,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	 * Bean 工厂还实现了 {@link EnvironmentCapable}，此读取器将使用其环境。否则，读取器将初始化并使用
 	 * {@link StandardEnvironment}。所有 ApplicationContext 实现都是 EnvironmentCapable，而普通的
 	 * BeanFactory 实现则不是。
-	 * @param registry the BeanFactory to load bean definitions into,
-	 * in the form of a BeanDefinitionRegistry
+	 * @param registry 以 BeanDefinitionRegistry 形式加载 Bean 定义的 BeanFactory
 	 * @see #setResourceLoader
 	 * @see #setEnvironment
 	 */
@@ -193,13 +192,12 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	/**
 	 * 从指定的资源位置加载 Bean 定义。<p>该位置也可以是位置模式，前提是此 Bean 定义读取器的
 	 * ResourceLoader 是一个 ResourcePatternResolver。
-	 * @param location the resource location, to be loaded with the ResourceLoader
-	 * (or ResourcePatternResolver) of this bean definition reader
-	 * @param actualResources a Set to be filled with the actual Resource objects
-	 * that have been resolved during the loading process. May be {@code null}
-	 * to indicate that the caller is not interested in those Resource objects.
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * @param location 资源位置，将使用该 Bean 定义读取器的 ResourceLoader
+	 * （或 ResourcePatternResolver）加载
+	 * @param actualResources 用于填充加载过程中解析出的实际 Resource 对象的 Set。
+	 * 可以为 {@code null}，表示调用方对这些 Resource 对象不感兴趣。
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeanDefinitionStoreException 在加载或解析出错时
 	 * @see #getResourceLoader()
 	 * @see #loadBeanDefinitions(org.springframework.core.io.Resource)
 	 * @see #loadBeanDefinitions(org.springframework.core.io.Resource[])

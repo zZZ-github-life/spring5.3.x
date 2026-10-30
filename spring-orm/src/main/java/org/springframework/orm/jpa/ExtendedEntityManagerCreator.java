@@ -80,11 +80,9 @@ public abstract class ExtendedEntityManagerCreator {
 
 	/**
 	 * 创建一个应用程序管理的扩展 EntityManager 代理。
-	 * @param rawEntityManager the raw EntityManager to decorate
-	 * @param emfInfo the EntityManagerFactoryInfo to obtain the JpaDialect
-	 * and PersistenceUnitInfo from
-	 * @return an application-managed EntityManager that can join transactions
-	 * but does not participate in them automatically
+	 * @param rawEntityManager 要装饰的原始 EntityManager
+	 * @param emfInfo 用于获取 JpaDialect 和 PersistenceUnitInfo 的 EntityManagerFactoryInfo
+	 * @return 可加入事务但不会自动参与事务的应用管理型 EntityManager
 	 */
 	public static EntityManager createApplicationManagedEntityManager(
 			EntityManager rawEntityManager, EntityManagerFactoryInfo emfInfo) {
@@ -94,13 +92,10 @@ public abstract class ExtendedEntityManagerCreator {
 
 	/**
 	 * 创建一个应用程序管理的扩展 EntityManager 代理。
-	 * @param rawEntityManager the raw EntityManager to decorate
-	 * @param emfInfo the EntityManagerFactoryInfo to obtain the JpaDialect
-	 * and PersistenceUnitInfo from
-	 * @param synchronizedWithTransaction whether to automatically join ongoing
-	 * transactions (according to the JPA 2.1 SynchronizationType rules)
-	 * @return an application-managed EntityManager that can join transactions
-	 * but does not participate in them automatically
+	 * @param rawEntityManager 要装饰的原始 EntityManager
+	 * @param emfInfo 用于获取 JpaDialect 和 PersistenceUnitInfo 的 EntityManagerFactoryInfo
+	 * @param synchronizedWithTransaction 是否自动加入正在进行的事务（遵循 JPA 2.1 SynchronizationType 规则）
+	 * @return 可加入事务但不会自动参与事务的应用管理型 EntityManager
 	 * @since 4.0
 	 */
 	public static EntityManager createApplicationManagedEntityManager(
@@ -111,11 +106,9 @@ public abstract class ExtendedEntityManagerCreator {
 
 	/**
 	 * 创建一个容器管理的扩展 EntityManager 代理。
-	 * @param rawEntityManager the raw EntityManager to decorate
-	 * @param emfInfo the EntityManagerFactoryInfo to obtain the JpaDialect
-	 * and PersistenceUnitInfo from
-	 * @return a container-managed EntityManager that will automatically participate
-	 * in any managed transaction
+	 * @param rawEntityManager 要装饰的原始 EntityManager
+	 * @param emfInfo 用于获取 JpaDialect 和 PersistenceUnitInfo 的 EntityManagerFactoryInfo
+	 * @return 会自动参与任何受管事务的容器管理型 EntityManager
 	 */
 	public static EntityManager createContainerManagedEntityManager(
 			EntityManager rawEntityManager, EntityManagerFactoryInfo emfInfo) {
@@ -125,11 +118,10 @@ public abstract class ExtendedEntityManagerCreator {
 
 	/**
 	 * 创建一个容器管理的扩展 EntityManager 代理。
-	 * @param emf the EntityManagerFactory to create the EntityManager with.
-	 * If this implements the EntityManagerFactoryInfo interface, the corresponding
-	 * JpaDialect and PersistenceUnitInfo will be detected accordingly.
-	 * @return a container-managed EntityManager that will automatically participate
-	 * in any managed transaction
+	 * @param emf 用于创建 EntityManager 的 EntityManagerFactory。
+	 * 如果它实现了 EntityManagerFactoryInfo 接口，将相应地检测到
+	 * 对应的 JpaDialect 和 PersistenceUnitInfo。
+	 * @return 会自动参与任何受管事务的容器管理型 EntityManager
 	 * @see javax.persistence.EntityManagerFactory#createEntityManager()
 	 */
 	public static EntityManager createContainerManagedEntityManager(EntityManagerFactory emf) {
@@ -138,13 +130,11 @@ public abstract class ExtendedEntityManagerCreator {
 
 	/**
 	 * 创建一个容器管理的扩展 EntityManager 代理。
-	 * @param emf the EntityManagerFactory to create the EntityManager with.
-	 * If this implements the EntityManagerFactoryInfo interface, the corresponding
-	 * JpaDialect and PersistenceUnitInfo will be detected accordingly.
-	 * @param properties the properties to be passed into the {@code createEntityManager}
-	 * call (may be {@code null})
-	 * @return a container-managed EntityManager that will automatically participate
-	 * in any managed transaction
+	 * @param emf 用于创建 EntityManager 的 EntityManagerFactory。
+	 * 如果它实现了 EntityManagerFactoryInfo 接口，将相应地检测到
+	 * 对应的 JpaDialect 和 PersistenceUnitInfo。
+	 * @param properties 要传入 {@code createEntityManager} 调用的属性（可以为 {@code null}）
+	 * @return 会自动参与任何受管事务的容器管理型 EntityManager
 	 * @see javax.persistence.EntityManagerFactory#createEntityManager(java.util.Map)
 	 */
 	public static EntityManager createContainerManagedEntityManager(EntityManagerFactory emf, @Nullable Map<?, ?> properties) {
@@ -153,15 +143,12 @@ public abstract class ExtendedEntityManagerCreator {
 
 	/**
 	 * 创建一个容器管理的扩展 EntityManager 代理。
-	 * @param emf the EntityManagerFactory to create the EntityManager with.
-	 * If this implements the EntityManagerFactoryInfo interface, the corresponding
-	 * JpaDialect and PersistenceUnitInfo will be detected accordingly.
-	 * @param properties the properties to be passed into the {@code createEntityManager}
-	 * call (may be {@code null})
-	 * @param synchronizedWithTransaction whether to automatically join ongoing
-	 * transactions (according to the JPA 2.1 SynchronizationType rules)
-	 * @return a container-managed EntityManager that expects container-driven lifecycle
-	 * management but may opt out of automatic transaction synchronization
+	 * @param emf 用于创建 EntityManager 的 EntityManagerFactory。
+	 * 如果它实现了 EntityManagerFactoryInfo 接口，将相应地检测到
+	 * 对应的 JpaDialect 和 PersistenceUnitInfo。
+	 * @param properties 要传入 {@code createEntityManager} 调用的属性（可以为 {@code null}）
+	 * @param synchronizedWithTransaction 是否自动加入正在进行的事务（遵循 JPA 2.1 SynchronizationType 规则）
+	 * @return 期望由容器驱动生命周期管理、但可选择退出自动事务同步的容器管理型 EntityManager
 	 * @since 4.0
 	 * @see javax.persistence.EntityManagerFactory#createEntityManager(java.util.Map)
 	 */
@@ -184,14 +171,11 @@ public abstract class ExtendedEntityManagerCreator {
 
 	/**
 	 * 实际创建 EntityManager 代理。
-	 * @param rawEntityManager raw EntityManager
-	 * @param emfInfo the EntityManagerFactoryInfo to obtain the JpaDialect
-	 * and PersistenceUnitInfo from
-	 * @param containerManaged whether to follow container-managed EntityManager
-	 * or application-managed EntityManager semantics
-	 * @param synchronizedWithTransaction whether to automatically join ongoing
-	 * transactions (according to the JPA 2.1 SynchronizationType rules)
-	 * @return the EntityManager proxy
+	 * @param rawEntityManager 原始的 EntityManager
+	 * @param emfInfo 用于获取 JpaDialect 和 PersistenceUnitInfo 的 EntityManagerFactoryInfo
+	 * @param containerManaged 是遵循容器管理型还是应用管理型 EntityManager 的语义
+	 * @param synchronizedWithTransaction 是否自动加入正在进行的事务（遵循 JPA 2.1 SynchronizationType 规则）
+	 * @return EntityManager 代理
 	 */
 	private static EntityManager createProxy(EntityManager rawEntityManager,
 			EntityManagerFactoryInfo emfInfo, boolean containerManaged, boolean synchronizedWithTransaction) {
@@ -206,18 +190,16 @@ public abstract class ExtendedEntityManagerCreator {
 
 	/**
 	 * 实际创建 EntityManager 代理。
-	 * @param rawEm raw EntityManager
-	 * @param emIfc the (potentially vendor-specific) EntityManager
-	 * interface to proxy, or {@code null} for default detection of all interfaces
-	 * @param cl the ClassLoader to use for proxy creation (maybe {@code null})
-	 * @param exceptionTranslator the PersistenceException translator to use
-	 * @param jta whether to create a JTA-aware EntityManager
-	 * (or {@code null} if not known in advance)
-	 * @param containerManaged whether to follow container-managed EntityManager
-	 * or application-managed EntityManager semantics
-	 * @param synchronizedWithTransaction whether to automatically join ongoing
-	 * transactions (according to the JPA 2.1 SynchronizationType rules)
-	 * @return the EntityManager proxy
+	 * @param rawEm 原始的 EntityManager
+	 * @param emIfc 要代理的（可能为供应商特定的）EntityManager 接口；
+	 * {@code null} 表示默认检测所有接口
+	 * @param cl 用于创建代理的 ClassLoader（可能为 {@code null}）
+	 * @param exceptionTranslator 要使用的 PersistenceException 转换器
+	 * @param jta 是否创建支持 JTA 的 EntityManager（如果事先未知则为 {@code null}）
+	 * @param containerManaged 是否遵循容器管理型还是应用管理型 EntityManager 的语义
+	 * @param synchronizedWithTransaction 是否自动加入正在进行的事务
+	 * （依据 JPA 2.1 SynchronizationType 规则）
+	 * @return EntityManager 代理
 	 */
 	private static EntityManager createProxy(
 			EntityManager rawEm, @Nullable Class<? extends EntityManager> emIfc, @Nullable ClassLoader cl,
@@ -367,8 +349,7 @@ public abstract class ExtendedEntityManagerCreator {
 
 		/**
 		 * 加入现有事务（如果尚未加入）。
-		 * @param enforce whether to enforce the transaction
-		 * (i.e. whether failure to join is considered fatal)
+		 * @param enforce 是否强制要求事务（即加入失败是否视为致命错误）
 		 */
 		private void doJoinTransaction(boolean enforce) {
 			if (this.jta) {

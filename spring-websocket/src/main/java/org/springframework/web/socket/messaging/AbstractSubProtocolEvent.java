@@ -41,8 +41,8 @@ public abstract class AbstractSubProtocolEvent extends ApplicationEvent {
 
 	/**
 	 * 创建一个新的 AbstractSubProtocolEvent。
-	 * @param source the component that published the event (never {@code null})
-	 * @param message the incoming message (never {@code null})
+	 * @param source 发布该事件的组件（永不为 {@code null}）
+	 * @param message 传入的消息（永不为 {@code null}）
 	 */
 	protected AbstractSubProtocolEvent(Object source, Message<byte[]> message) {
 		this(source, message, null);
@@ -50,8 +50,8 @@ public abstract class AbstractSubProtocolEvent extends ApplicationEvent {
 
 	/**
 	 * 创建一个新的 AbstractSubProtocolEvent。
-	 * @param source the component that published the event (never {@code null})
-	 * @param message the incoming message (never {@code null})
+	 * @param source 发布该事件的组件（永不为 {@code null}）
+	 * @param message 传入的消息（永不为 {@code null}）
 	 */
 	protected AbstractSubProtocolEvent(Object source, Message<byte[]> message, @Nullable Principal user) {
 		super(source);

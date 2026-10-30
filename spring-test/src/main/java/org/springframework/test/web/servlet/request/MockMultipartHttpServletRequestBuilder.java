@@ -57,8 +57,8 @@ public class MockMultipartHttpServletRequestBuilder extends MockHttpServletReque
 	 * 包级私有构造函数。请使用 {@link MockMvcRequestBuilders} 中的静态工厂方法。
 	 * <p>有关初始化 {@code MockMultipartHttpServletRequest} 的其他方式，
 	 * 请参见 {@link #with(RequestPostProcessor)} 和 {@link RequestPostProcessor} 扩展点。
-	 * @param urlTemplate a URL template; the resulting URL will be encoded
-	 * @param uriVariables zero or more URI variables
+	 * @param urlTemplate URL 模板；生成的 URL 将被编码
+	 * @param uriVariables 零个或多个 URI 变量
 	 */
 	MockMultipartHttpServletRequestBuilder(String urlTemplate, Object... uriVariables) {
 		this(HttpMethod.POST, urlTemplate, uriVariables);
@@ -96,8 +96,8 @@ public class MockMultipartHttpServletRequestBuilder extends MockHttpServletReque
 
 	/**
 	 * 使用给定内容创建新的 MockMultipartFile。
-	 * @param name the name of the file
-	 * @param content the content of the file
+	 * @param name 文件名
+	 * @param content 文件内容
 	 */
 	public MockMultipartHttpServletRequestBuilder file(String name, byte[] content) {
 		this.files.add(new MockMultipartFile(name, content));
@@ -106,7 +106,7 @@ public class MockMultipartHttpServletRequestBuilder extends MockHttpServletReque
 
 	/**
 	 * 添加给定的 MockMultipartFile。
-	 * @param file the multipart file
+	 * @param file 多部分文件
 	 */
 	public MockMultipartHttpServletRequestBuilder file(MockMultipartFile file) {
 		this.files.add(file);
@@ -115,7 +115,7 @@ public class MockMultipartHttpServletRequestBuilder extends MockHttpServletReque
 
 	/**
 	 * 向请求中添加 {@link Part} 组件。
-	 * @param parts one or more parts to add
+	 * @param parts 一个或多个要添加的部分
 	 * @since 5.0
 	 */
 	public MockMultipartHttpServletRequestBuilder part(Part... parts) {

@@ -32,8 +32,8 @@ public interface HandlerAdapter {
 
 	/**
 	 * 此 {@code HandlerAdapter} 是否支持给定的 {@code handler}。
-	 * @param handler the handler object to check
-	 * @return whether the handler is supported
+	 * @param handler 要检查的处理器对象
+	 * @return 该处理器是否受支持
 	 */
 	boolean supports(Object handler);
 
@@ -41,11 +41,10 @@ public interface HandlerAdapter {
 	 * 使用给定的处理器处理请求。
 	 * <p>鼓励实现类按顺序处理调用处理器时产生的异常，并在必要时返回表示错误响应的替代结果。
 	 * <p>此外，由于异步的 {@code HandlerResult} 可能在后续结果处理过程中产生错误，因此也鼓励实现类在 {@code HandlerResult} 上{@link HandlerResult#setExceptionHandler(Function) 设置异常处理器}，以便在结果处理之后也能应用该处理器。
-	 * @param exchange current server exchange
-	 * @param handler the selected handler which must have been previously
-	 * checked via {@link #supports(Object)}
-	 * @return {@link Mono} that emits a single {@code HandlerResult} or none if
-	 * the request has been fully handled and doesn't require further handling.
+	 * @param exchange 当前的服务器交换
+	 * @param handler 选定的处理器，必须事先通过 {@link #supports(Object)} 进行检查
+	 * @return {@link Mono}，发出单个 {@code HandlerResult}；如果请求
+	 * 已被完全处理且无需进一步处理，则不发出任何值
 	 */
 	Mono<HandlerResult> handle(ServerWebExchange exchange, Object handler);
 

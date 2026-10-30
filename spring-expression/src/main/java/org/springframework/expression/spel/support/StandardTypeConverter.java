@@ -51,7 +51,7 @@ public class StandardTypeConverter implements TypeConverter {
 
 	/**
 	 * 为给定的 ConversionService 创建一个 StandardTypeConverter。
-	 * @param conversionService the ConversionService to delegate to
+	 * @param conversionService 要委托的 ConversionService
 	 */
 	public StandardTypeConverter(ConversionService conversionService) {
 		Assert.notNull(conversionService, "ConversionService must not be null");
@@ -60,7 +60,7 @@ public class StandardTypeConverter implements TypeConverter {
 
 	/**
 	 * 为给定的 ConversionService 创建一个 StandardTypeConverter。
-	 * @param conversionService a Supplier for the ConversionService to delegate to
+	 * @param conversionService 用于提供要委托的 ConversionService 的 Supplier
 	 * @since 5.3.11
 	 */
 	public StandardTypeConverter(Supplier<ConversionService> conversionService) {

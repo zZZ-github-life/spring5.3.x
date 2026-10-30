@@ -44,7 +44,7 @@ public interface MultipartFile extends InputStreamSource {
 
 	/**
 	 * 返回 multipart 表单中该参数的名称。
-	 * @return the name of the parameter (never {@code null} or empty)
+	 * @return 参数名称（永不为 {@code null} 或空）
 	 */
 	String getName();
 
@@ -56,8 +56,8 @@ public interface MultipartFile extends InputStreamSource {
 	 * 除了不应使用其中的目录部分之外，文件名还可能包含 ".." 等
 	 * 可被恶意利用的字符。建议不要直接使用此文件名。
 	 * 最好生成一个唯一的名称，并在必要时将此名称保存到某处以供参考。
-	 * @return the original filename, or the empty String if no file has been chosen
-	 * in the multipart form, or {@code null} if not defined or not available
+	 * @return 原始文件名；如果在 multipart 表单中未选择文件则为空字符串；
+	 * 如果未定义或不可用则为 {@code null}
 	 * @see org.apache.commons.fileupload.FileItem#getName()
 	 * @see org.springframework.web.multipart.commons.CommonsMultipartFile#setPreserveFilename
 	 * @see <a href="https://tools.ietf.org/html/rfc7578#section-4.2">RFC 7578, Section 4.2</a>
@@ -68,8 +68,8 @@ public interface MultipartFile extends InputStreamSource {
 
 	/**
 	 * 返回文件的内容类型。
-	 * @return the content type, or {@code null} if not defined
-	 * (or no file has been chosen in the multipart form)
+	 * @return 内容类型；如果未定义（或在 multipart 表单中未选择文件）
+	 * 则返回 {@code null}
 	 */
 	@Nullable
 	String getContentType();
@@ -82,22 +82,22 @@ public interface MultipartFile extends InputStreamSource {
 
 	/**
 	 * 返回文件大小（以字节为单位）。
-	 * @return the size of the file, or 0 if empty
+	 * @return 文件大小；如果为空则为 0
 	 */
 	long getSize();
 
 	/**
 	 * 以字节数组形式返回文件内容。
-	 * @return the contents of the file as bytes, or an empty byte array if empty
-	 * @throws IOException in case of access errors (if the temporary store fails)
+	 * @return 以字节数组表示的文件内容；如果为空则为空字节数组
+	 * @throws IOException 访问出错时抛出（如果临时存储失败）
 	 */
 	byte[] getBytes() throws IOException;
 
 	/**
 	 * 返回用于读取文件内容的 InputStream。
 	 * <p>用户负责关闭返回的流。
-	 * @return the contents of the file as stream, or an empty stream if empty
-	 * @throws IOException in case of access errors (if the temporary store fails)
+	 * @return 以流形式表示的文件内容；如果为空则为空流
+	 * @throws IOException 访问出错时抛出（如果临时存储失败）
 	 */
 	@Override
 	InputStream getInputStream() throws IOException;
@@ -106,7 +106,7 @@ public interface MultipartFile extends InputStreamSource {
 	 * 返回此 MultipartFile 的 Resource 表示形式。可将其用作
 	 * {@code RestTemplate} 或 {@code WebClient} 的输入，
 	 * 以便连同 InputStream 一起暴露内容长度和文件名。
-	 * @return this MultipartFile adapted to the Resource contract
+	 * @return 适配到 Resource 契约的当前 MultipartFile
 	 * @since 5.1
 	 */
 	default Resource getResource() {
@@ -124,10 +124,10 @@ public interface MultipartFile extends InputStreamSource {
 	 * 包括此处指定的相对目标路径的基础目录（例如在 Servlet 3.0 multipart 处理中）。
 	 * 对于绝对路径目标，目标文件可能会从临时位置重命名/移动，
 	 * 或者即使临时副本已存在也会重新复制。
-	 * @param dest the destination file (typically absolute)
-	 * @throws IOException in case of reading or writing errors
-	 * @throws IllegalStateException if the file has already been moved
-	 * in the filesystem and is not available anymore for another transfer
+	 * @param dest 目标文件（通常为绝对路径）
+	 * @throws IOException 读取或写入出错时抛出
+	 * @throws IllegalStateException 如果文件已在文件系统中被移动，
+	 * 且不再可用于再次传输
 	 * @see org.apache.commons.fileupload.FileItem#write(File)
 	 * @see javax.servlet.http.Part#write(String)
 	 */

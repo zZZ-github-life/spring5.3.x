@@ -91,7 +91,7 @@ public class NotificationListenerHolder {
 	/**
 	 * 设置一个（任意）对象，{@link javax.management.NotificationBroadcaster} 在通知任何
 	 * {@link javax.management.NotificationListener} 时会将该对象原样“回传”。
-	 * @param handback the handback object (can be {@code null})
+	 * @param handback 回传对象（可以为 {@code null}）
 	 * @see javax.management.NotificationListener#handleNotification(javax.management.Notification, Object)
 	 */
 	public void setHandback(@Nullable Object handback) {
@@ -101,7 +101,7 @@ public class NotificationListenerHolder {
 	/**
 	 * 返回一个（任意）对象，{@link javax.management.NotificationBroadcaster} 在通知任何
 	 * {@link javax.management.NotificationListener} 时会将该对象原样“回传”。
-	 * @return the handback object (may be {@code null})
+	 * @return 回传对象（可能为 {@code null}）
 	 * @see javax.management.NotificationListener#handleNotification(javax.management.Notification, Object)
 	 */
 	@Nullable
@@ -136,7 +136,7 @@ public class NotificationListenerHolder {
 	 * 返回 {@link javax.management.ObjectName} 字符串表示形式的列表，所封装的
 	 * {@link #getNotificationFilter() NotificationFilter} 将作为监听器注册到这些对象以接收
 	 * {@link javax.management.Notification Notifications}。
-	 * @throws MalformedObjectNameException if an {@code ObjectName} is malformed
+	 * @throws MalformedObjectNameException 如果某个 {@code ObjectName} 格式错误
 	 */
 	@Nullable
 	public ObjectName[] getResolvedObjectNames() throws MalformedObjectNameException {

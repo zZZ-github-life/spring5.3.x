@@ -75,7 +75,7 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 
 	/**
 	 * 创建新的 TransactionAwareConnectionFactoryProxy。
-	 * @param targetConnectionFactory the target ConnectionFactory
+	 * @param targetConnectionFactory 目标 ConnectionFactory
 	 */
 	public TransactionAwareConnectionFactoryProxy(ConnectionFactory targetConnectionFactory) {
 		setTargetConnectionFactory(targetConnectionFactory);
@@ -86,7 +86,7 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 	/**
 	 * 委托 ConnectionFactoryUtils 自动参与 Spring 管理的事务。
 	 * 如有原始 ResourceException 则抛出。
-	 * @return a transactional Connection if any, a new one else
+	 * @return 如果存在事务性 Connection 则返回它，否则返回新的 Connection
 	 * @see org.springframework.jca.cci.connection.ConnectionFactoryUtils#doGetConnection
 	 */
 	@Override
@@ -99,9 +99,9 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 	/**
 	 * 使用代理包装给定的 Connection，该代理将每个方法调用委托给它，
 	 * 但将 {@code close} 调用委托给 ConnectionFactoryUtils。
-	 * @param target the original Connection to wrap
-	 * @param cf the ConnectionFactory that the Connection came from
-	 * @return the wrapped Connection
+	 * @param target 要包装的原始 Connection
+	 * @param cf 该 Connection 所来自的 ConnectionFactory
+	 * @return 被包装的 Connection
 	 * @see javax.resource.cci.Connection#close()
 	 * @see ConnectionFactoryUtils#doReleaseConnection
 	 */

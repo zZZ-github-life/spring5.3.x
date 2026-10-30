@@ -61,8 +61,8 @@ public class NameMatchMethodPointcut extends StaticMethodMatcherPointcut impleme
 	/**
 	 * 在已指定的方法名之外，再添加一个符合条件的方法名。与 set 方法一样，此方法用于配置代理时、在代理
 	 * 使用之前。<p><b>注意：</b>代理投入使用后此方法不再起作用，因为通知链会被缓存。
-	 * @param name the name of the additional method that will match
-	 * @return this pointcut to allow for multiple additions in one line
+	 * @param name 将匹配的附加方法名称
+	 * @return 此切点，以便在一行中多次添加
 	 */
 	public NameMatchMethodPointcut addMethodName(String name) {
 		this.mappedNames.add(name);
@@ -83,9 +83,9 @@ public class NameMatchMethodPointcut extends StaticMethodMatcherPointcut impleme
 	/**
 	 * 返回给定的方法名是否与映射的名称匹配。<p>默认实现会检查 "xxx*"、"*xxx" 和 "*xxx*" 形式的匹配，以
 	 * 及直接相等的情况。可以在子类中覆盖。
-	 * @param methodName the method name of the class
-	 * @param mappedName the name in the descriptor
-	 * @return if the names match
+	 * @param methodName 类中的方法名称
+	 * @param mappedName 描述符中的名称
+	 * @return 名称是否匹配
 	 * @see org.springframework.util.PatternMatchUtils#simpleMatch(String, String)
 	 */
 	protected boolean isMatch(String methodName, String mappedName) {

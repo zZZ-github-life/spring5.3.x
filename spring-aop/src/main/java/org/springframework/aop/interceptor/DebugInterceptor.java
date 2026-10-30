@@ -45,7 +45,7 @@ public class DebugInterceptor extends SimpleTraceInterceptor {
 
 	/**
 	 * 根据给定标志，使用动态或静态日志记录器创建一个新的 DebugInterceptor。
-	 * @param useDynamicLogger whether to use a dynamic logger or a static logger
+	 * @param useDynamicLogger 使用动态 logger 还是静态 logger
 	 * @see #setUseDynamicLogger
 	 */
 	public DebugInterceptor(boolean useDynamicLogger) {

@@ -55,7 +55,7 @@ public class MessageMethodArgumentResolver implements HandlerMethodArgumentResol
 
 	/**
 	 * 使用给定 {@link MessageConverter} 创建解析器实例。
-	 * @param converter the MessageConverter to use (may be {@code null})
+	 * @param converter 要使用的 MessageConverter（可以为 {@code null}）
 	 * @since 4.3
 	 */
 	public MessageMethodArgumentResolver(@Nullable MessageConverter converter) {
@@ -99,9 +99,9 @@ public class MessageMethodArgumentResolver implements HandlerMethodArgumentResol
 	 * <p>默认情况下，这是 {@code Message} 方法参数中声明的泛型类型，
 	 * 但可以重写此方法，以便在同时考虑 "Content-Type" 后选择更具体的目标类型，
 	 * 例如当目标类型为 {@code Object} 且 {@code "Content-Type:text/**"} 时返回 {@code String}。
-	 * @param parameter the target method parameter
-	 * @param message the message being processed
-	 * @return the target type to use
+	 * @param parameter 目标方法参数
+	 * @param message 正在处理的消息
+	 * @return 要使用的目标类型
 	 * @since 5.2
 	 */
 	protected Class<?> getPayloadType(MethodParameter parameter, Message<?> message) {
@@ -112,7 +112,7 @@ public class MessageMethodArgumentResolver implements HandlerMethodArgumentResol
 
 	/**
 	 * 检查给定 {@code payload} 是否为空。
-	 * @param payload the payload to check (can be {@code null})
+	 * @param payload 要检查的载荷（可以为 {@code null}）
 	 */
 	protected boolean isEmptyPayload(@Nullable Object payload) {
 		if (payload == null) {

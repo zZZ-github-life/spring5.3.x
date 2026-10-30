@@ -73,7 +73,7 @@ public class MockHttpOutputMessage implements HttpOutputMessage {
 
 	/**
 	 * 以字符串形式返回正文内容。
-	 * @param charset the charset to use to turn the body content to a String
+	 * @param charset 用于将正文内容转换为 String 的字符集
 	 */
 	public String getBodyAsString(Charset charset) {
 		return StreamUtils.copyToString(this.body, charset);

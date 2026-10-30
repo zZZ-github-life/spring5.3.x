@@ -35,11 +35,10 @@ public abstract class FreeMarkerTemplateUtils {
 	 * 使用给定的模型处理指定的 FreeMarker 模板，并将结果写入给定的 Writer。
 	 * <p>当使用此方法准备要通过 Spring 邮件支持发送的邮件文本时，
 	 * 请考虑将 IO/TemplateException 包装为 MailPreparationException。
-	 * @param model the model object, typically a Map that contains model names
-	 * as keys and model objects as values
-	 * @return the result as String
-	 * @throws IOException if the template wasn't found or couldn't be read
-	 * @throws freemarker.template.TemplateException if rendering failed
+	 * @param model 模型对象，通常是一个以模型名称为键、以模型对象为值的 Map
+	 * @return 结果字符串
+	 * @throws IOException 如果未找到模板或无法读取
+	 * @throws freemarker.template.TemplateException 渲染失败时
 	 * @see org.springframework.mail.MailPreparationException
 	 */
 	public static String processTemplateIntoString(Template template, Object model)

@@ -57,18 +57,18 @@ public interface RequestAttributes {
 
 	/**
 	 * 返回给定名称的作用域属性的值（如果有）。
-	 * @param name the name of the attribute
-	 * @param scope the scope identifier
-	 * @return the current attribute value, or {@code null} if not found
+	 * @param name 属性的名称
+	 * @param scope 作用域标识符
+	 * @return 当前属性值；如果未找到则为 {@code null}
 	 */
 	@Nullable
 	Object getAttribute(String name, int scope);
 
 	/**
 	 * 设置给定名称的作用域属性的值，替换现有值（如果有）。
-	 * @param name the name of the attribute
-	 * @param scope the scope identifier
-	 * @param value the value for the attribute
+	 * @param name 属性的名称
+	 * @param scope 作用域标识符
+	 * @param value 属性的值
 	 */
 	void setAttribute(String name, Object value, int scope);
 
@@ -76,15 +76,15 @@ public interface RequestAttributes {
 	 * 移除给定名称的作用域属性（如果存在）。
 	 * <p>注意，实现还应移除为指定属性注册的销毁回调（如果有）。不过在这种情况下<i>无需</i><i>执行
 	 * </i>已注册的销毁回调，因为对象将由调用方销毁（如果合适）。
-	 * @param name the name of the attribute
-	 * @param scope the scope identifier
+	 * @param name 属性的名称
+	 * @param scope 作用域标识符
 	 */
 	void removeAttribute(String name, int scope);
 
 	/**
 	 * 获取作用域中所有属性的名称。
-	 * @param scope the scope identifier
-	 * @return the attribute names as String array
+	 * @param scope 作用域标识符
+	 * @return 以 String 数组表示的属性名称
 	 */
 	String[] getAttributeNames(int scope);
 
@@ -97,9 +97,9 @@ public interface RequestAttributes {
 	 * 定被移除的对象会被重用或手动销毁。
 	 * <p><b>注意：</b>如果要为会话作用域注册回调对象，这些对象通常应可序列化。否则回调（甚至整个会话
 	 * ）可能无法在 Web 应用重启后存活。
-	 * @param name the name of the attribute to register the callback for
-	 * @param callback the destruction callback to be executed
-	 * @param scope the scope identifier
+	 * @param name 为其注册回调的属性的名称
+	 * @param callback 要执行的销毁回调
+	 * @param scope 作用域标识符
 	 */
 	void registerDestructionCallback(String name, Runnable callback, int scope);
 
@@ -107,21 +107,21 @@ public interface RequestAttributes {
 	 * 解析给定键的上下文引用（如果有）。
 	 * <p>至少应支持：键“request”对应的 HttpServletRequest 引用，以及键“session”对应的 HttpSession 引
 	 * 用。
-	 * @param key the contextual key
-	 * @return the corresponding object, or {@code null} if none found
+	 * @param key 上下文键
+	 * @return 相应的对象；如果未找到则为 {@code null}
 	 */
 	@Nullable
 	Object resolveReference(String key);
 
 	/**
 	 * 返回当前底层会话的 id。
-	 * @return the session id as String (never {@code null})
+	 * @return 以 String 表示的会话 ID（永不为 {@code null}）
 	 */
 	String getSessionId();
 
 	/**
 	 * 暴露底层会话可用的最佳互斥体：即用于对底层会话进行同步的对象。
-	 * @return the session mutex to use (never {@code null})
+	 * @return 要使用的会话互斥量（永不为 {@code null}）
 	 */
 	Object getSessionMutex();
 

@@ -33,7 +33,7 @@ import org.springframework.dao.IncorrectResultSizeDataAccessException;
  * @author Mark Paluch
  * @author Simon Baslé
  * @since 5.3
- * @param <T> the row result type
+ * @param <T> 行结果类型
  */
 class DefaultFetchSpec<T> implements FetchSpec<T> {
 

@@ -61,7 +61,7 @@ public class StandardScriptEvaluator implements ScriptEvaluator, BeanClassLoader
 
 	/**
 	 * 为给定的类加载器构造一个新的 {@code StandardScriptEvaluator}。
-	 * @param classLoader the class loader to use for script engine detection
+	 * @param classLoader 用于脚本引擎检测的类加载器
 	 */
 	public StandardScriptEvaluator(ClassLoader classLoader) {
 		this.scriptEngineManager = new ScriptEngineManager(classLoader);
@@ -70,7 +70,7 @@ public class StandardScriptEvaluator implements ScriptEvaluator, BeanClassLoader
 	/**
 	 * 为给定的 JSR-223 {@link ScriptEngineManager} 构造一个新的 {@code StandardScriptEvaluator}，以从
 	 * 中获取脚本引擎。
-	 * @param scriptEngineManager the ScriptEngineManager (or subclass thereof) to use
+	 * @param scriptEngineManager 要使用的 ScriptEngineManager（或其子类）
 	 * @since 4.2.2
 	 */
 	public StandardScriptEvaluator(ScriptEngineManager scriptEngineManager) {
@@ -157,8 +157,8 @@ public class StandardScriptEvaluator implements ScriptEvaluator, BeanClassLoader
 
 	/**
 	 * 获取用于给定脚本的 JSR-223 ScriptEngine。
-	 * @param script the script to evaluate
-	 * @return the ScriptEngine (never {@code null})
+	 * @param script 要评估的脚本
+	 * @return ScriptEngine（永不为 {@code null}）
 	 */
 	protected ScriptEngine getScriptEngine(ScriptSource script) {
 		ScriptEngineManager scriptEngineManager = this.scriptEngineManager;

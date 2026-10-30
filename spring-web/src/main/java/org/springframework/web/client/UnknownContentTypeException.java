@@ -51,12 +51,12 @@ public class UnknownContentTypeException extends RestClientException {
 
 	/**
 	 * 使用给定响应数据构造新实例。
-	 * @param targetType the expected target type
-	 * @param contentType the content type of the response
-	 * @param statusCode the raw status code value
-	 * @param statusText the status text
-	 * @param responseHeaders the response headers (may be {@code null})
-	 * @param responseBody the response body content (may be {@code null})
+	 * @param targetType 期望的目标类型
+	 * @param contentType 响应的内容类型
+	 * @param statusCode 原始状态码值
+	 * @param statusText 状态文本
+	 * @param responseHeaders 响应头（可能为 {@code null}）
+	 * @param responseBody 响应体内容（可能为 {@code null}）
 	 */
 	public UnknownContentTypeException(Type targetType, MediaType contentType,
 			int statusCode, String statusText, HttpHeaders responseHeaders, byte[] responseBody) {

@@ -53,8 +53,8 @@ public class RequestMatchResult {
 
 	/**
 	 * 使用匹配的 {@code PathPattern} 创建实例。
-	 * @param pathPattern the pattern that was matched
-	 * @param lookupPath the mapping path
+	 * @param pathPattern 被匹配的模式
+	 * @param lookupPath 映射路径
 	 * @since 5.3
 	 */
 	public RequestMatchResult(PathPattern pathPattern, PathContainer lookupPath) {
@@ -72,9 +72,9 @@ public class RequestMatchResult {
 
 	/**
 	 * 使用匹配的字符串模式创建实例。
-	 * @param pattern the pattern that was matched, possibly with a '/' appended
-	 * @param lookupPath the mapping path
-	 * @param pathMatcher the PathMatcher instance used for the match
+	 * @param pattern 被匹配的模式，可能附加了 '/'
+	 * @param lookupPath 映射路径
+	 * @param pathMatcher 用于匹配的 PathMatcher 实例
 	 */
 	public RequestMatchResult(String pattern, String lookupPath, PathMatcher pathMatcher) {
 		Assert.hasText(pattern, "'matchingPattern' is required");
@@ -92,7 +92,7 @@ public class RequestMatchResult {
 	/**
 	 * 从匹配的模式中提取 URI 模板变量，其定义方式如
 	 * {@link PathMatcher#extractUriTemplateVariables} 所述。
-	 * @return a map with URI template variables
+	 * @return 包含 URI 模板变量的 Map
 	 */
 	@SuppressWarnings("ConstantConditions")
 	public Map<String, String> extractUriTemplateVariables() {

@@ -68,8 +68,8 @@ public class ThrowsAdviceInterceptor implements MethodInterceptor, AfterAdvice {
 
 	/**
 	 * 为给定 ThrowsAdvice 创建一个新的 ThrowsAdviceInterceptor。
-	 * @param throwsAdvice the advice object that defines the exception handler methods
-	 * (usually a {@link org.springframework.aop.ThrowsAdvice} implementation)
+	 * @param throwsAdvice 定义异常处理方法的通知对象（通常是
+	 * {@link org.springframework.aop.ThrowsAdvice} 的实现）
 	 */
 	public ThrowsAdviceInterceptor(Object throwsAdvice) {
 		Assert.notNull(throwsAdvice, "Advice must not be null");
@@ -122,8 +122,8 @@ public class ThrowsAdviceInterceptor implements MethodInterceptor, AfterAdvice {
 
 	/**
 	 * 为给定异常确定异常处理方法。
-	 * @param exception the exception thrown
-	 * @return a handler for the given exception type, or {@code null} if none found
+	 * @param exception 抛出的异常
+	 * @return 给定异常类型的处理器，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	private Method getExceptionHandler(Throwable exception) {

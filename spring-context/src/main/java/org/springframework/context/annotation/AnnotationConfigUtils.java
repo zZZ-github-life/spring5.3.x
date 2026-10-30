@@ -128,7 +128,7 @@ public abstract class AnnotationConfigUtils {
 
 	/**
 	 * 在给定注册表中注册所有相关的注解后处理器。
-	 * @param registry the registry to operate on
+	 * @param registry 要操作的注册表
 	 */
 	public static void registerAnnotationConfigProcessors(BeanDefinitionRegistry registry) {
 		registerAnnotationConfigProcessors(registry, null);
@@ -136,11 +136,10 @@ public abstract class AnnotationConfigUtils {
 
 	/**
 	 * 在给定注册表中注册所有相关的注解后处理器。
-	 * @param registry the registry to operate on
-	 * @param source the configuration source element (already extracted)
-	 * that this registration was triggered from. May be {@code null}.
-	 * @return a Set of BeanDefinitionHolders, containing all bean definitions
-	 * that have actually been registered by this call
+	 * @param registry 要操作的注册表
+	 * @param source 触发此次注册的配置源元素（已提取）。可以为 {@code null}。
+	 * @return 包含此次调用实际注册的所有 Bean 定义的
+	 * BeanDefinitionHolder 集合
 	 * 这个方法主要是根据当前的bean工厂做一些设置：
 	 * 1.添加一个默认的比较器
 	 * 2.设置一个上下文的筛选器（蛀牙对ban的查找进行筛选的类）

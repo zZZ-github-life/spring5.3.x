@@ -38,7 +38,7 @@ import org.springframework.util.Assert;
  * @author Rossen Stoyanchev
  * @author Stephane Nicoll
  * @since 4.0
- * @param <D> the destination type
+ * @param <D> 目标类型
  */
 public abstract class AbstractMessageSendingTemplate<D> implements MessageSendingOperations<D> {
 
@@ -77,7 +77,7 @@ public abstract class AbstractMessageSendingTemplate<D> implements MessageSendin
 	/**
 	 * 设置 {@code convertAndSend} 方法中使用的 {@link MessageConverter}。
 	 * <p>默认使用 {@link SimpleMessageConverter}。
-	 * @param messageConverter the message converter to use
+	 * @param messageConverter 要使用的消息转换器
 	 */
 	public void setMessageConverter(MessageConverter messageConverter) {
 		Assert.notNull(messageConverter, "MessageConverter must not be null");
@@ -152,10 +152,10 @@ public abstract class AbstractMessageSendingTemplate<D> implements MessageSendin
 	/**
 	 * 将给定 Object 转换为序列化形式（可能使用 {@link MessageConverter}），
 	 * 将其包装为带有给定头的消息，并应用给定的后处理器。
-	 * @param payload the Object to use as payload
-	 * @param headers the headers for the message to send
-	 * @param postProcessor the post processor to apply to the message
-	 * @return the converted message
+	 * @param payload 用作载荷的对象
+	 * @param headers 要发送的消息的消息头
+	 * @param postProcessor 要应用到消息的后处理器
+	 * @return 转换后的消息
 	 */
 	protected Message<?> doConvert(Object payload, @Nullable Map<String, Object> headers,
 			@Nullable MessagePostProcessor postProcessor) {
@@ -193,8 +193,8 @@ public abstract class AbstractMessageSendingTemplate<D> implements MessageSendin
 	 * 在发送操作之前提供对输入头映射的访问。
 	 * 子类可以修改头，然后返回相同或不同的映射。
 	 * <p>此类中的默认实现返回输入映射。
-	 * @param headers the headers to send (or {@code null} if none)
-	 * @return the actual headers to send (or {@code null} if none)
+	 * @param headers 要发送的消息头（如果没有则为 {@code null}）
+	 * @return 实际要发送的消息头（如果没有则为 {@code null}）
 	 */
 	@Nullable
 	protected Map<String, Object> processHeadersToSend(@Nullable Map<String, Object> headers) {

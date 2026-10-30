@@ -31,7 +31,7 @@ import org.springframework.util.Assert;
  * @author Agim Emruli
  * @author Juergen Hoeller
  * @since 4.1
- * @param <D> the destination type
+ * @param <D> 目标类型
  * @see DestinationResolver#resolveDestination
  */
 public class CachingDestinationResolverProxy<D> implements DestinationResolver<D>, InitializingBean {
@@ -52,7 +52,7 @@ public class CachingDestinationResolverProxy<D> implements DestinationResolver<D
 	/**
 	 * 使用给定的目标 DestinationResolver 创建新的 CachingDestinationResolverProxy，
 	 * 以实际解析目标。
-	 * @param targetDestinationResolver the target DestinationResolver to delegate to
+	 * @param targetDestinationResolver 要委托的目标 DestinationResolver
 	 */
 	public CachingDestinationResolverProxy(DestinationResolver<D> targetDestinationResolver) {
 		Assert.notNull(targetDestinationResolver, "Target DestinationResolver must not be null");
@@ -77,10 +77,9 @@ public class CachingDestinationResolverProxy<D> implements DestinationResolver<D
 
 	/**
 	 * 如果目标 DestinationResolver 实现成功解析目标，则解析并缓存目标。
-	 * @param name the destination name to be resolved
-	 * @return the currently resolved destination or an already cached destination
-	 * @throws DestinationResolutionException if the target DestinationResolver
-	 * reports an error during destination resolution
+	 * @param name 要解析的目的地名
+	 * @return 当前解析得到的目的地或已缓存的目的地
+	 * @throws DestinationResolutionException 如果目标 DestinationResolver 在目的地解析期间报告错误
 	 */
 	@Override
 	public D resolveDestination(String name) throws DestinationResolutionException {

@@ -93,7 +93,7 @@ public class TransactionAwareConnectionFactoryProxy
 
 	/**
 	 * 创建一个新的 TransactionAwareConnectionFactoryProxy。
-	 * @param targetConnectionFactory the target ConnectionFactory
+	 * @param targetConnectionFactory 目标 ConnectionFactory
 	 */
 	public TransactionAwareConnectionFactoryProxy(ConnectionFactory targetConnectionFactory) {
 		setTargetConnectionFactory(targetConnectionFactory);
@@ -214,8 +214,8 @@ public class TransactionAwareConnectionFactoryProxy
 	/**
 	 * 用代理包装给定的 Connection，该代理将每个方法调用都委托给它，
 	 * 但以事务感知的方式处理 Session 查找。
-	 * @param target the original Connection to wrap
-	 * @return the wrapped Connection
+	 * @param target 要包装的原始 Connection
+	 * @return 包装后的 Connection
 	 */
 	protected Connection getTransactionAwareConnectionProxy(Connection target) {
 		List<Class<?>> classes = new ArrayList<>(3);

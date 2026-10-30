@@ -54,10 +54,10 @@ public class RequestPartServletServerHttpRequest extends ServletServerHttpReques
 
 	/**
 	 * 创建一个新的 {@code RequestPartServletServerHttpRequest} 实例。
-	 * @param request the current servlet request
-	 * @param requestPartName the name of the part to adapt to the {@link ServerHttpRequest} contract
-	 * @throws MissingServletRequestPartException if the request part cannot be found
-	 * @throws MultipartException if MultipartHttpServletRequest cannot be initialized
+	 * @param request 当前 Servlet 请求
+	 * @param requestPartName 要适配为 {@link ServerHttpRequest} 契约的 part 名称
+	 * @throws MissingServletRequestPartException 如果找不到请求 part
+	 * @throws MultipartException 如果 MultipartHttpServletRequest 无法初始化
 	 */
 	public RequestPartServletServerHttpRequest(HttpServletRequest request, String requestPartName)
 			throws MissingServletRequestPartException {

@@ -51,15 +51,15 @@ public interface ResultMatcher {
 
 	/**
 	 * 断言已执行请求的结果。
-	 * @param result the result of the executed request
-	 * @throws Exception if a failure occurs
+	 * @param result 已执行请求的结果
+	 * @throws Exception 如果发生失败
 	 */
 	void match(MvcResult result) throws Exception;
 
 
 	/**
 	 * 用于与结果匹配器数组进行匹配的静态方法。
-	 * @param matchers the matchers
+	 * @param matchers 匹配器
 	 * @since 5.1
 	 * @deprecated as of Spring Framework 5.3.10, in favor of
 	 * {@link ResultActions#andExpectAll(ResultMatcher...)}

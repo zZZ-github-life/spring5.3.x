@@ -41,19 +41,19 @@ public interface SockJsService {
 	 * <p>有关所需 URL 类型的详细信息，请参阅 <a
 	 * href="https://sockjs.github.io/sockjs-protocol/sockjs-protocol-0.3.3.html">SockJS
 	 * 协议</a>中的 "Base URL"、"Static URLs" 和 "Session URLs" 部分。
-	 * @param request the current request
-	 * @param response the current response
-	 * @param sockJsPath the remainder of the path within the SockJS service prefix
-	 * @param handler the handler that will exchange messages with the SockJS client
-	 * @throws SockJsException raised when request processing fails; generally, failed
-	 * attempts to send messages to clients automatically close the SockJS session
-	 * and raise {@link SockJsTransportFailureException}; failed attempts to read
-	 * messages from clients do not automatically close the session and may result
-	 * in {@link SockJsMessageDeliveryException} or {@link SockJsException};
-	 * exceptions from the WebSocketHandler can be handled internally or through
-	 * {@link ExceptionWebSocketHandlerDecorator} or some alternative decorator.
-	 * The former is automatically added when using
-	 * {@link org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler}.
+	 * @param request 当前请求
+	 * @param response 当前响应
+	 * @param sockJsPath SockJS 服务前缀内路径的剩余部分
+	 * @param handler 将与 SockJS 客户端交换消息的处理器
+	 * @throws SockJsException 当请求处理失败时抛出；通常，
+	 * 向客户端发送消息的尝试失败会自动关闭 SockJS 会话，
+	 * 并抛出 {@link SockJsTransportFailureException}；
+	 * 从客户端读取消息的尝试失败不会自动关闭会话，
+	 * 可能导致 {@link SockJsMessageDeliveryException} 或 {@link SockJsException}；
+	 * 来自 WebSocketHandler 的异常可以在内部处理，
+	 * 或通过 {@link ExceptionWebSocketHandlerDecorator} 或其他装饰器处理。
+	 * 使用 {@link org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler} 时，
+	 * 会自动添加前者。
 	 */
 	void handleRequest(ServerHttpRequest request, ServerHttpResponse response,
 			@Nullable String sockJsPath, WebSocketHandler handler) throws SockJsException;

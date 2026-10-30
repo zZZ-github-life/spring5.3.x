@@ -31,11 +31,11 @@ public interface WebTestClientConfigurer {
 
 	/**
 	 * 仅调用一次，且立即调用（即在此方法返回之前）。
-	 * @param builder the WebTestClient builder to make changes to
-	 * @param httpHandlerBuilder the builder for the "mock server" HttpHandler
-	 * this client was configured for "mock server" testing
-	 * @param connector the connector for "live" integration tests if this
-	 * server was configured for live integration testing
+	 * @param builder 要对其进行更改的 WebTestClient 构建器
+	 * @param httpHandlerBuilder 用于“mock server” HttpHandler 的构建器，
+	 * 前提是该客户端配置用于“mock server”测试
+	 * @param connector 用于“live”集成测试的连接器，前提是该服务器
+	 * 配置为 live 集成测试
 	 */
 	void afterConfigurerAdded(WebTestClient.Builder builder,
 			@Nullable WebHttpHandlerBuilder httpHandlerBuilder,

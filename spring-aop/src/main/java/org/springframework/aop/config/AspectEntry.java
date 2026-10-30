@@ -35,8 +35,8 @@ public class AspectEntry implements ParseState.Entry {
 
 	/**
 	 * 创建一个新的 {@code AspectEntry} 实例。
-	 * @param id the id of the aspect element
-	 * @param ref the bean name referenced by this aspect element
+	 * @param id 切面元素的 id
+	 * @param ref 此切面元素引用的 Bean 名称
 	 */
 	public AspectEntry(String id, String ref) {
 		this.id = id;

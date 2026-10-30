@@ -61,7 +61,7 @@ public final class ProducesRequestCondition extends AbstractRequestCondition<Pro
 
 	/**
 	 * 根据 "produces" 表达式创建新实例。如果总共提供 0 个表达式，则该条件将匹配任何请求。
-	 * @param produces expressions with syntax defined by {@link RequestMapping#produces()}
+	 * @param produces 表达式，语法由 {@link RequestMapping#produces()} 定义
 	 */
 	public ProducesRequestCondition(String... produces) {
 		this(produces, null);
@@ -69,8 +69,8 @@ public final class ProducesRequestCondition extends AbstractRequestCondition<Pro
 
 	/**
 	 * 使用 "produces" 和 "header" 表达式创建新实例。头名称不是 'Accept' 或未定义头值的 "header" 表达式将被忽略。如果总共提供 0 个表达式，则该条件将匹配任何请求。
-	 * @param produces expressions with syntax defined by {@link RequestMapping#produces()}
-	 * @param headers expressions with syntax defined by {@link RequestMapping#headers()}
+	 * @param produces 表达式，语法由 {@link RequestMapping#produces()} 定义
+	 * @param headers 表达式，语法由 {@link RequestMapping#headers()} 定义
 	 */
 	public ProducesRequestCondition(String[] produces, String[] headers) {
 		this(produces, headers, null);
@@ -78,9 +78,9 @@ public final class ProducesRequestCondition extends AbstractRequestCondition<Pro
 
 	/**
 	 * 与 {@link #ProducesRequestCondition(String[], String[])} 相同，但还接受 {@link ContentNegotiationManager}。
-	 * @param produces expressions with syntax defined by {@link RequestMapping#produces()}
-	 * @param headers expressions with syntax defined by {@link RequestMapping#headers()}
-	 * @param resolver used to determine requested content type
+	 * @param produces 表达式，语法由 {@link RequestMapping#produces()} 定义
+	 * @param headers 表达式，语法由 {@link RequestMapping#headers()} 定义
+	 * @param resolver 用于确定请求的内容类型
 	 */
 	public ProducesRequestCondition(String[] produces, String[] headers, RequestedContentTypeResolver resolver) {
 		this.expressions = parseExpressions(produces, headers);
@@ -169,10 +169,10 @@ public final class ProducesRequestCondition extends AbstractRequestCondition<Pro
 
 	/**
 	 * 检查所包含的任何媒体类型表达式是否匹配给定请求的 'Content-Type' 头，并返回一个保证仅包含匹配表达式的实例。匹配通过 {@link MediaType#isCompatibleWith(MediaType)} 执行。
-	 * @param exchange the current exchange
-	 * @return the same instance if there are no expressions;
-	 * or a new condition with matching expressions;
-	 * or {@code null} if no expressions match.
+	 * @param exchange 当前交换
+	 * @return 如果没有表达式，则返回同一实例；
+	 * 否则返回包含匹配表达式的新条件；
+	 * 如果没有表达式匹配，则返回 {@code null}。
 	 */
 	@Override
 	@Nullable
@@ -306,7 +306,7 @@ public final class ProducesRequestCondition extends AbstractRequestCondition<Pro
 
 	/**
 	 * 用于清除包含已解析的请求媒体类型的 {@link #MEDIA_TYPES_ATTRIBUTE}。
-	 * @param exchange the current exchange
+	 * @param exchange 当前交换
 	 * @since 5.2
 	 */
 	public static void clearMediaTypesAttribute(ServerWebExchange exchange) {

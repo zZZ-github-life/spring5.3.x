@@ -38,7 +38,7 @@ public interface ApplicationStartup {
 	 * <p>步骤名称描述当前的操作或阶段。这个技术
 	 * 名称应以 "." 划分命名空间，并且可以复用来描述应用程序启动期间
 	 * 同一步骤的其他实例。
-	 * @param name the step name
+	 * @param name 步骤名称
 	 */
 	StartupStep start(String name);
 

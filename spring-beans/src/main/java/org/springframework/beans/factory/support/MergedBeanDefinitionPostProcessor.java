@@ -36,9 +36,9 @@ public interface MergedBeanDefinitionPostProcessor extends BeanPostProcessor {
 
 	/**
 	 * 对指定 Bean 的给定合并 Bean 定义进行后处理。
-	 * @param beanDefinition the merged bean definition for the bean
-	 * @param beanType the actual type of the managed bean instance
-	 * @param beanName the name of the bean
+	 * @param beanDefinition 该 Bean 的合并后的 Bean 定义
+	 * @param beanType 被管理 Bean 实例的实际类型
+	 * @param beanName Bean 的名称
 	 * @see AbstractAutowireCapableBeanFactory#applyMergedBeanDefinitionPostProcessors
 	 */
 	void postProcessMergedBeanDefinition(RootBeanDefinition beanDefinition, Class<?> beanType, String beanName);
@@ -46,7 +46,7 @@ public interface MergedBeanDefinitionPostProcessor extends BeanPostProcessor {
 	/**
 	 * 通知：指定名称的 Bean 定义已被重置，此处理器应清除受影响 Bean 的任何元数据。
 	 * <p>默认实现为空。
-	 * @param beanName the name of the bean
+	 * @param beanName Bean 的名称
 	 * @since 5.1
 	 * @see DefaultListableBeanFactory#resetBeanDefinition
 	 */

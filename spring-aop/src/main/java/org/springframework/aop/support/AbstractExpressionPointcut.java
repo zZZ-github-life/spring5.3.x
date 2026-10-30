@@ -48,8 +48,7 @@ public abstract class AbstractExpressionPointcut implements ExpressionPointcut, 
 
 	/**
 	 * 返回有关切点表达式的可用位置信息。这在调试时很有用。
-	 * @return location information as a human-readable String,
-	 * or {@code null} if none is available
+	 * @return 便于阅读的位置信息字符串；如果没有则返回 {@code null}
 	 */
 	@Nullable
 	public String getLocation() {
@@ -75,8 +74,8 @@ public abstract class AbstractExpressionPointcut implements ExpressionPointcut, 
 	/**
 	 * 设置新的切点表达式时调用。此时应尽可能解析该表达式。
 	 * <p>此实现为空。
-	 * @param expression the expression to set
-	 * @throws IllegalArgumentException if the expression is invalid
+	 * @param expression 要设置的表达式
+	 * @throws IllegalArgumentException 如果表达式无效
 	 * @see #setExpression
 	 */
 	protected void onSetExpression(@Nullable String expression) throws IllegalArgumentException {

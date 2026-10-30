@@ -34,13 +34,13 @@ public interface AnnotatedBeanDefinition extends BeanDefinition {
 
 	/**
 	 * 获取此 Bean 定义的 Bean 类的注解元数据（以及基本类元数据）。
-	 * @return the annotation metadata object (never {@code null})
+	 * @return 注解元数据对象（从不为 {@code null}）
 	 */
 	AnnotationMetadata getMetadata();
 
 	/**
 	 * 获取此 Bean 定义的工厂方法的元数据（如果有）。
-	 * @return the factory method metadata, or {@code null} if none
+	 * @return 工厂方法元数据；若没有则为 {@code null}
 	 * @since 4.1.1
 	 */
 	@Nullable

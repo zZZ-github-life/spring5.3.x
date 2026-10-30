@@ -98,7 +98,7 @@ public class EmbeddedDatabaseFactory {
 	 * 设置数据库的名称。
 	 * <p>默认为 {@value #DEFAULT_DATABASE_NAME}。
 	 * <p>如果 {@code generateUniqueDatabaseName} 标志已设置为 {@code true}，则会被覆盖。
-	 * @param databaseName name of the embedded database
+	 * @param databaseName 内嵌数据库的名称
 	 * @see #setGenerateUniqueDatabaseName
 	 */
 	public void setDatabaseName(String databaseName) {
@@ -119,7 +119,7 @@ public class EmbeddedDatabaseFactory {
 	 * 设置要使用的嵌入式数据库类型。
 	 * <p>当你希望配置某个预支持的类型时调用此方法。
 	 * <p>默认为 HSQL。
-	 * @param type the database type
+	 * @param type 数据库类型
 	 */
 	public void setDatabaseType(EmbeddedDatabaseType type) {
 		this.databaseConfigurer = EmbeddedDatabaseConfigurerFactory.getConfigurer(type);

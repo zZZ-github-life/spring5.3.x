@@ -39,7 +39,7 @@ public class AnnotationClassFilter implements ClassFilter {
 
 	/**
 	 * 为给定的注解类型创建一个新的 AnnotationClassFilter。
-	 * @param annotationType the annotation type to look for
+	 * @param annotationType 要查找的注解类型
 	 */
 	public AnnotationClassFilter(Class<? extends Annotation> annotationType) {
 		this(annotationType, false);
@@ -47,11 +47,10 @@ public class AnnotationClassFilter implements ClassFilter {
 
 	/**
 	 * 为给定的注解类型创建一个新的 AnnotationClassFilter。
-	 * @param annotationType the annotation type to look for
-	 * @param checkInherited whether to also check the superclasses and
-	 * interfaces as well as meta-annotations for the annotation type
-	 * (i.e. whether to use {@link AnnotatedElementUtils#hasAnnotation}
-	 * semantics instead of standard Java {@link Class#isAnnotationPresent})
+	 * @param annotationType 要查找的注解类型
+	 * @param checkInherited 是否还检查父类、接口以及元注解中的该注解类型
+	 * （即是否使用 {@link AnnotatedElementUtils#hasAnnotation} 语义
+	 * 而非标准 Java 的 {@link Class#isAnnotationPresent}）
 	 */
 	public AnnotationClassFilter(Class<? extends Annotation> annotationType, boolean checkInherited) {
 		Assert.notNull(annotationType, "Annotation type must not be null");

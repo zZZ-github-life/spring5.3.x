@@ -130,7 +130,7 @@ public class ContentNegotiationManagerFactoryBean
 	 * 设置要使用的确切策略列表。
 	 * <p><strong>注意：</strong>使用此方法与本类中所有其他用于定制默认固定策略集的
 	 * setter 方法互斥。详见类级别文档。
-	 * @param strategies the strategies to use
+	 * @param strategies 要使用的策略
 	 * @since 5.0
 	 */
 	public void setStrategies(@Nullable List<ContentNegotiationStrategy> strategies) {
@@ -186,7 +186,7 @@ public class ContentNegotiationManagerFactoryBean
 	 * <li>确定通过 {@code ContentNegotiatingViewResolver} 渲染的视图的媒体类型。
 	 * <li>列出用于 RFD 攻击检测的安全扩展名（详情请参阅 Spring Framework 参考文档）。
 	 * </ul>
-	 * @param mediaTypes media type mappings
+	 * @param mediaTypes 媒体类型映射
 	 * @see #addMediaType(String, MediaType)
 	 * @see #addMediaTypes(Map)
 	 */

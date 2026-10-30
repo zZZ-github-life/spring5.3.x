@@ -117,7 +117,7 @@ public class LogAccessor {
 
 	/**
 	 * 以 fatal 日志级别记录一条消息。
-	 * @param message the message to log
+	 * @param message 要记录的消息
 	 */
 	public void fatal(CharSequence message) {
 		this.log.fatal(message);
@@ -125,8 +125,8 @@ public class LogAccessor {
 
 	/**
 	 * 以 fatal 日志级别记录一个错误。
-	 * @param cause the exception to log
-	 * @param message the message to log
+	 * @param cause 要记录的异常
+	 * @param message 要记录的消息
 	 */
 	public void fatal(Throwable cause, CharSequence message) {
 		this.log.fatal(message, cause);
@@ -134,7 +134,7 @@ public class LogAccessor {
 
 	/**
 	 * 以 error 日志级别记录一条消息。
-	 * @param message the message to log
+	 * @param message 要记录的消息
 	 */
 	public void error(CharSequence message) {
 		this.log.error(message);
@@ -142,8 +142,8 @@ public class LogAccessor {
 
 	/**
 	 * 以 error 日志级别记录一个错误。
-	 * @param cause the exception to log
-	 * @param message the message to log
+	 * @param cause 要记录的异常
+	 * @param message 要记录的消息
 	 */
 	public void error(Throwable cause, CharSequence message) {
 		this.log.error(message, cause);
@@ -151,7 +151,7 @@ public class LogAccessor {
 
 	/**
 	 * 以 warn 日志级别记录一条消息。
-	 * @param message the message to log
+	 * @param message 要记录的消息
 	 */
 	public void warn(CharSequence message) {
 		this.log.warn(message);
@@ -159,8 +159,8 @@ public class LogAccessor {
 
 	/**
 	 * 以 warn 日志级别记录一个错误。
-	 * @param cause the exception to log
-	 * @param message the message to log
+	 * @param cause 要记录的异常
+	 * @param message 要记录的消息
 	 */
 	public void warn(Throwable cause, CharSequence message) {
 		this.log.warn(message, cause);
@@ -168,7 +168,7 @@ public class LogAccessor {
 
 	/**
 	 * 以 info 日志级别记录一条消息。
-	 * @param message the message to log
+	 * @param message 要记录的消息
 	 */
 	public void info(CharSequence message) {
 		this.log.info(message);
@@ -176,8 +176,8 @@ public class LogAccessor {
 
 	/**
 	 * 以 info 日志级别记录一个错误。
-	 * @param cause the exception to log
-	 * @param message the message to log
+	 * @param cause 要记录的异常
+	 * @param message 要记录的消息
 	 */
 	public void info(Throwable cause, CharSequence message) {
 		this.log.info(message, cause);
@@ -185,7 +185,7 @@ public class LogAccessor {
 
 	/**
 	 * 以 debug 日志级别记录一条消息。
-	 * @param message the message to log
+	 * @param message 要记录的消息
 	 */
 	public void debug(CharSequence message) {
 		this.log.debug(message);
@@ -193,8 +193,8 @@ public class LogAccessor {
 
 	/**
 	 * 以 debug 日志级别记录一个错误。
-	 * @param cause the exception to log
-	 * @param message the message to log
+	 * @param cause 要记录的异常
+	 * @param message 要记录的消息
 	 */
 	public void debug(Throwable cause, CharSequence message) {
 		this.log.debug(message, cause);
@@ -202,7 +202,7 @@ public class LogAccessor {
 
 	/**
 	 * 以 trace 日志级别记录一条消息。
-	 * @param message the message to log
+	 * @param message 要记录的消息
 	 */
 	public void trace(CharSequence message) {
 		this.log.trace(message);
@@ -210,8 +210,8 @@ public class LogAccessor {
 
 	/**
 	 * 以 trace 日志级别记录一个错误。
-	 * @param cause the exception to log
-	 * @param message the message to log
+	 * @param cause 要记录的异常
+	 * @param message 要记录的消息
 	 */
 	public void trace(Throwable cause, CharSequence message) {
 		this.log.trace(message, cause);
@@ -222,7 +222,7 @@ public class LogAccessor {
 
 	/**
 	 * 以 fatal 日志级别记录一条消息。
-	 * @param messageSupplier a lazy supplier for the message to log
+	 * @param messageSupplier 用于延迟提供要记录消息的 Supplier
 	 */
 	public void fatal(Supplier<? extends CharSequence> messageSupplier) {
 		if (this.log.isFatalEnabled()) {
@@ -232,8 +232,8 @@ public class LogAccessor {
 
 	/**
 	 * 以 fatal 日志级别记录一个错误。
-	 * @param cause the exception to log
-	 * @param messageSupplier a lazy supplier for the message to log
+	 * @param cause 要记录的异常
+	 * @param messageSupplier 用于延迟提供要记录消息的 Supplier
 	 */
 	public void fatal(Throwable cause, Supplier<? extends CharSequence> messageSupplier) {
 		if (this.log.isFatalEnabled()) {
@@ -243,7 +243,7 @@ public class LogAccessor {
 
 	/**
 	 * 以 error 日志级别记录一条消息。
-	 * @param messageSupplier a lazy supplier for the message to log
+	 * @param messageSupplier 用于延迟提供要记录消息的 Supplier
 	 */
 	public void error(Supplier<? extends CharSequence> messageSupplier) {
 		if (this.log.isErrorEnabled()) {
@@ -253,8 +253,8 @@ public class LogAccessor {
 
 	/**
 	 * 以 error 日志级别记录一个错误。
-	 * @param cause the exception to log
-	 * @param messageSupplier a lazy supplier for the message to log
+	 * @param cause 要记录的异常
+	 * @param messageSupplier 用于延迟提供要记录消息的 Supplier
 	 */
 	public void error(Throwable cause, Supplier<? extends CharSequence> messageSupplier) {
 		if (this.log.isErrorEnabled()) {
@@ -264,7 +264,7 @@ public class LogAccessor {
 
 	/**
 	 * 以 warn 日志级别记录一条消息。
-	 * @param messageSupplier a lazy supplier for the message to log
+	 * @param messageSupplier 用于延迟提供要记录消息的 Supplier
 	 */
 	public void warn(Supplier<? extends CharSequence> messageSupplier) {
 		if (this.log.isWarnEnabled()) {
@@ -274,8 +274,8 @@ public class LogAccessor {
 
 	/**
 	 * 以 warn 日志级别记录一个错误。
-	 * @param cause the exception to log
-	 * @param messageSupplier a lazy supplier for the message to log
+	 * @param cause 要记录的异常
+	 * @param messageSupplier 用于延迟提供要记录消息的 Supplier
 	 */
 	public void warn(Throwable cause, Supplier<? extends CharSequence> messageSupplier) {
 		if (this.log.isWarnEnabled()) {
@@ -285,7 +285,7 @@ public class LogAccessor {
 
 	/**
 	 * 以 info 日志级别记录一条消息。
-	 * @param messageSupplier a lazy supplier for the message to log
+	 * @param messageSupplier 用于延迟提供要记录消息的 Supplier
 	 */
 	public void info(Supplier<? extends CharSequence> messageSupplier) {
 		if (this.log.isInfoEnabled()) {
@@ -295,8 +295,8 @@ public class LogAccessor {
 
 	/**
 	 * 以 info 日志级别记录一个错误。
-	 * @param cause the exception to log
-	 * @param messageSupplier a lazy supplier for the message to log
+	 * @param cause 要记录的异常
+	 * @param messageSupplier 用于延迟提供要记录消息的 Supplier
 	 */
 	public void info(Throwable cause, Supplier<? extends CharSequence> messageSupplier) {
 		if (this.log.isInfoEnabled()) {
@@ -306,7 +306,7 @@ public class LogAccessor {
 
 	/**
 	 * 以 debug 日志级别记录一条消息。
-	 * @param messageSupplier a lazy supplier for the message to log
+	 * @param messageSupplier 用于延迟提供要记录消息的 Supplier
 	 */
 	public void debug(Supplier<? extends CharSequence> messageSupplier) {
 		if (this.log.isDebugEnabled()) {
@@ -316,8 +316,8 @@ public class LogAccessor {
 
 	/**
 	 * 以 debug 日志级别记录一个错误。
-	 * @param cause the exception to log
-	 * @param messageSupplier a lazy supplier for the message to log
+	 * @param cause 要记录的异常
+	 * @param messageSupplier 用于延迟提供要记录消息的 Supplier
 	 */
 	public void debug(Throwable cause, Supplier<? extends CharSequence> messageSupplier) {
 		if (this.log.isDebugEnabled()) {
@@ -327,7 +327,7 @@ public class LogAccessor {
 
 	/**
 	 * 以 trace 日志级别记录一条消息。
-	 * @param messageSupplier a lazy supplier for the message to log
+	 * @param messageSupplier 用于延迟提供要记录消息的 Supplier
 	 */
 	public void trace(Supplier<? extends CharSequence> messageSupplier) {
 		if (this.log.isTraceEnabled()) {
@@ -337,8 +337,8 @@ public class LogAccessor {
 
 	/**
 	 * 以 trace 日志级别记录一个错误。
-	 * @param cause the exception to log
-	 * @param messageSupplier a lazy supplier for the message to log
+	 * @param cause 要记录的异常
+	 * @param messageSupplier 用于延迟提供要记录消息的 Supplier
 	 */
 	public void trace(Throwable cause, Supplier<? extends CharSequence> messageSupplier) {
 		if (this.log.isTraceEnabled()) {

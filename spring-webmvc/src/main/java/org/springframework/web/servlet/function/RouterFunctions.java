@@ -70,7 +70,7 @@ public abstract class RouterFunctions {
 
 	/**
 	 * 提供一种可发现的方式，通过构建器风格接口创建路由函数。
-	 * @return a router function builder
+	 * @return 路由函数构建器
 	 */
 	public static Builder route() {
 		return new RouterFunctionBuilder();
@@ -84,11 +84,11 @@ public abstract class RouterFunctions {
 	 * RouterFunction&lt;ServerResponse&gt; route =
 	 *     RouterFunctions.route(RequestPredicates.GET("/user"), userController::listUsers);
 	 * </pre>
-	 * @param predicate the predicate to test
-	 * @param handlerFunction the handler function to route to if the predicate applies
-	 * @param <T> the type of response returned by the handler function
-	 * @return a router function that routes to {@code handlerFunction} if
-	 * {@code predicate} evaluates to {@code true}
+	 * @param predicate 要测试的谓词
+	 * @param handlerFunction 如果谓词成立，则路由到的处理器函数
+	 * @param <T> 处理器函数返回的响应类型
+	 * @return 如果 {@code predicate} 求值为 {@code true}，
+	 * 则路由到 {@code handlerFunction} 的路由函数
 	 * @see RequestPredicates
 	 */
 	public static <T extends ServerResponse> RouterFunction<T> route(
@@ -112,11 +112,11 @@ public abstract class RouterFunctions {
 	 * RouterFunction&lt;ServerResponse&gt; nestedRoute =
 	 *   RouterFunctions.nest(RequestPredicates.path("/user"), userRoutes);
 	 * </pre>
-	 * @param predicate the predicate to test
-	 * @param routerFunction the nested router function to delegate to if the predicate applies
-	 * @param <T> the type of response returned by the handler function
-	 * @return a router function that routes to {@code routerFunction} if
-	 * {@code predicate} evaluates to {@code true}
+	 * @param predicate 要测试的谓词
+	 * @param routerFunction 如果谓词成立，则委派到的嵌套路由函数
+	 * @param <T> 处理器函数返回的响应类型
+	 * @return 如果 {@code predicate} 求值为 {@code true}，
+	 * 则路由到 {@code routerFunction} 的路由函数
 	 * @see RequestPredicates
 	 */
 	public static <T extends ServerResponse> RouterFunction<T> nest(
@@ -132,9 +132,9 @@ public abstract class RouterFunctions {
 	 * Resource location = new FileSystemResource("public-resources/");
 	 * RouterFunction&lt;ServerResponse&gt; resources = RouterFunctions.resources("/resources/**", location);
      * </pre>
-	 * @param pattern the pattern to match
-	 * @param location the location directory relative to which resources should be resolved
-	 * @return a router function that routes to resources
+	 * @param pattern 要匹配的模式
+	 * @param location 解析资源时所相对的位置目录
+	 * @return 路由到资源的路由函数
 	 * @see #resourceLookupFunction(String, Resource)
 	 */
 	public static RouterFunction<ServerResponse> resources(String pattern, Resource location) {
@@ -152,9 +152,9 @@ public abstract class RouterFunctions {
 	 *     .andThen(resource -&gt; resource.or(() -&gt; defaultResource));
 	 * RouterFunction&lt;ServerResponse&gt; resources = RouterFunctions.resources(lookupFunction);
      * </pre>
-	 * @param pattern the pattern to match
-	 * @param location the location directory relative to which resources should be resolved
-	 * @return the default resource lookup function for the given parameters.
+	 * @param pattern 要匹配的模式
+	 * @param location 解析资源时所相对的位置目录
+	 * @return 给定参数下默认的资源查找函数。
 	 */
 	public static Function<ServerRequest, Optional<Resource>> resourceLookupFunction(String pattern, Resource location) {
 		return new PathResourceLookupFunction(pattern, location);
@@ -164,8 +164,8 @@ public abstract class RouterFunctions {
 	 * 使用提供的查找函数路由到资源。如果查找函数为给定请求提供了
 	 * {@link Resource}，则会使用一个处理 GET、HEAD 和 OPTIONS 请求的
 	 * {@link HandlerFunction} 将其暴露。
-	 * @param lookupFunction the function to provide a {@link Resource} given the {@link ServerRequest}
-	 * @return a router function that routes to resources
+	 * @param lookupFunction 根据 {@link ServerRequest} 提供 {@link Resource} 的函数
+	 * @return 路由到资源的路由函数
 	 */
 	public static RouterFunction<ServerResponse> resources(Function<ServerRequest, Optional<Resource>> lookupFunction) {
 		return new ResourcesRouterFunction(lookupFunction);
@@ -175,10 +175,10 @@ public abstract class RouterFunctions {
 	 * 更改给定 {@linkplain RouterFunction 路由函数}上的 {@link PathPatternParser}。此方法
 	 * 可用于将 {@code PathPatternParser} 属性从默认值更改为其他值，例如更改
 	 * {@linkplain PathPatternParser#setCaseSensitive(boolean) 大小写敏感性}。
-	 * @param routerFunction the router function to change the parser in
-	 * @param parser the parser to change to.
-	 * @param <T> the type of response returned by the handler function
-	 * @return the change router function
+	 * @param routerFunction 要更改其中解析器的路由函数
+	 * @param parser 要更改成的解析器。
+	 * @param <T> 处理器函数返回的响应类型
+	 * @return 更改后的路由函数
 	 */
 	public static <T extends ServerResponse> RouterFunction<T> changeParser(RouterFunction<T> routerFunction,
 			PathPatternParser parser) {
@@ -200,8 +200,8 @@ public abstract class RouterFunctions {
 
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理 HTTP {@code GET} 请求。
-		 * @param handlerFunction the handler function to handle all {@code GET} requests
-		 * @return this builder
+		 * @param handlerFunction 用于处理所有 {@code GET} 请求的处理器函数
+		 * @return 此构建器
 		 * @since 5.3
 		 */
 		Builder GET(HandlerFunction<ServerResponse> handlerFunction);
@@ -209,20 +209,20 @@ public abstract class RouterFunctions {
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有匹配给定模式的
 		 * HTTP {@code GET} 请求。
-		 * @param pattern the pattern to match to
-		 * @param handlerFunction the handler function to handle all {@code GET} requests that
-		 * match {@code pattern}
-		 * @return this builder
+		 * @param pattern 要匹配的模式
+		 * @param handlerFunction 用于处理所有匹配 {@code pattern} 的 {@code GET} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 */
 		Builder GET(String pattern, HandlerFunction<ServerResponse> handlerFunction);
 
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有匹配给定谓词的
 		 * HTTP {@code GET} 请求。
-		 * @param predicate predicate to match
-		 * @param handlerFunction the handler function to handle all {@code GET} requests that
-		 * match {@code predicate}
-		 * @return this builder
+		 * @param predicate 要匹配的谓词
+		 * @param handlerFunction 用于处理所有匹配 {@code predicate} 的 {@code GET} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 * @since 5.3
 		 * @see RequestPredicates
 		 */
@@ -239,19 +239,19 @@ public abstract class RouterFunctions {
 		 *     .GET("/user", RequestPredicates.accept(MediaType.APPLICATION_JSON), userController::listUsers)
 		 *     .build();
 		 * </pre>
-		 * @param pattern the pattern to match to
-		 * @param predicate additional predicate to match
-		 * @param handlerFunction the handler function to handle all {@code GET} requests that
-		 * match {@code pattern} and the predicate
-		 * @return this builder
+		 * @param pattern 要匹配的模式
+		 * @param predicate 要匹配的附加谓词
+		 * @param handlerFunction 用于处理所有匹配 {@code pattern} 和该谓词的
+		 * {@code GET} 请求的处理器函数
+		 * @return 此构建器
 		 * @see RequestPredicates
 		 */
 		Builder GET(String pattern, RequestPredicate predicate, HandlerFunction<ServerResponse> handlerFunction);
 
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理 HTTP {@code HEAD} 请求。
-		 * @param handlerFunction the handler function to handle all {@code HEAD} requests
-		 * @return this builder
+		 * @param handlerFunction 用于处理所有 {@code HEAD} 请求的处理器函数
+		 * @return 此构建器
 		 * @since 5.3
 		 */
 		Builder HEAD(HandlerFunction<ServerResponse> handlerFunction);
@@ -259,20 +259,20 @@ public abstract class RouterFunctions {
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有匹配给定模式的
 		 * HTTP {@code HEAD} 请求。
-		 * @param pattern the pattern to match to
-		 * @param handlerFunction the handler function to handle all {@code HEAD} requests that
-		 * match {@code pattern}
-		 * @return this builder
+		 * @param pattern 要匹配的模式
+		 * @param handlerFunction 用于处理所有匹配 {@code pattern} 的 {@code HEAD} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 */
 		Builder HEAD(String pattern, HandlerFunction<ServerResponse> handlerFunction);
 
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有匹配给定谓词的
 		 * HTTP {@code HEAD} 请求。
-		 * @param predicate predicate to match
-		 * @param handlerFunction the handler function to handle all {@code HEAD} requests that
-		 * match {@code predicate}
-		 * @return this builder
+		 * @param predicate 要匹配的谓词
+		 * @param handlerFunction 用于处理所有匹配 {@code predicate} 的 {@code HEAD} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 * @since 5.3
 		 * @see RequestPredicates
 		 */
@@ -281,18 +281,18 @@ public abstract class RouterFunctions {
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有同时匹配给定模式和
 		 * 谓词的 HTTP {@code HEAD} 请求。
-		 * @param pattern the pattern to match to
-		 * @param predicate additional predicate to match
-		 * @param handlerFunction the handler function to handle all {@code HEAD} requests that
-		 * match {@code pattern}
-		 * @return this builder
+		 * @param pattern 要匹配的模式
+		 * @param predicate 要匹配的附加谓词
+		 * @param handlerFunction 用于处理所有匹配 {@code pattern} 的 {@code HEAD} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 */
 		Builder HEAD(String pattern, RequestPredicate predicate, HandlerFunction<ServerResponse> handlerFunction);
 
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理 HTTP {@code POST} 请求。
-		 * @param handlerFunction the handler function to handle all {@code POST} requests
-		 * @return this builder
+		 * @param handlerFunction 用于处理所有 {@code POST} 请求的处理器函数
+		 * @return 此构建器
 		 * @since 5.3
 		 */
 		Builder POST(HandlerFunction<ServerResponse> handlerFunction);
@@ -300,20 +300,20 @@ public abstract class RouterFunctions {
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有匹配给定模式的
 		 * HTTP {@code POST} 请求。
-		 * @param pattern the pattern to match to
-		 * @param handlerFunction the handler function to handle all {@code POST} requests that
-		 * match {@code pattern}
-		 * @return this builder
+		 * @param pattern 要匹配的模式
+		 * @param handlerFunction 用于处理所有匹配 {@code pattern} 的 {@code POST} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 */
 		Builder POST(String pattern, HandlerFunction<ServerResponse> handlerFunction);
 
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有匹配给定谓词的
 		 * HTTP {@code POST} 请求。
-		 * @param predicate predicate to match
-		 * @param handlerFunction the handler function to handle all {@code POST} requests that
-		 * match {@code predicate}
-		 * @return this builder
+		 * @param predicate 要匹配的谓词
+		 * @param handlerFunction 用于处理所有匹配 {@code predicate} 的 {@code POST} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 * @since 5.3
 		 * @see RequestPredicates
 		 */
@@ -330,18 +330,18 @@ public abstract class RouterFunctions {
 		 *     .POST("/user", RequestPredicates.contentType(MediaType.APPLICATION_JSON), userController::addUser)
 		 *     .build();
 		 * </pre>
-		 * @param pattern the pattern to match to
-		 * @param predicate additional predicate to match
-		 * @param handlerFunction the handler function to handle all {@code POST} requests that
-		 * match {@code pattern}
-		 * @return this builder
+		 * @param pattern 要匹配的模式
+		 * @param predicate 要匹配的附加谓词
+		 * @param handlerFunction 用于处理所有匹配 {@code pattern} 的 {@code POST} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 */
 		Builder POST(String pattern, RequestPredicate predicate, HandlerFunction<ServerResponse> handlerFunction);
 
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理 HTTP {@code PUT} 请求。
-		 * @param handlerFunction the handler function to handle all {@code PUT} requests
-		 * @return this builder
+		 * @param handlerFunction 用于处理所有 {@code PUT} 请求的处理器函数
+		 * @return 此构建器
 		 * @since 5.3
 		 */
 		Builder PUT(HandlerFunction<ServerResponse> handlerFunction);
@@ -349,20 +349,20 @@ public abstract class RouterFunctions {
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有匹配给定模式的
 		 * HTTP {@code PUT} 请求。
-		 * @param pattern the pattern to match to
-		 * @param handlerFunction the handler function to handle all {@code PUT} requests that
-		 * match {@code pattern}
-		 * @return this builder
+		 * @param pattern 要匹配的模式
+		 * @param handlerFunction 用于处理所有匹配 {@code pattern} 的 {@code PUT} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 */
 		Builder PUT(String pattern, HandlerFunction<ServerResponse> handlerFunction);
 
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有匹配给定谓词的
 		 * HTTP {@code PUT} 请求。
-		 * @param predicate predicate to match
-		 * @param handlerFunction the handler function to handle all {@code PUT} requests that
-		 * match {@code predicate}
-		 * @return this builder
+		 * @param predicate 要匹配的谓词
+		 * @param handlerFunction 用于处理所有匹配 {@code predicate} 的 {@code PUT} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 * @since 5.3
 		 * @see RequestPredicates
 		 */
@@ -379,18 +379,18 @@ public abstract class RouterFunctions {
 		 *     .PUT("/user", RequestPredicates.contentType(MediaType.APPLICATION_JSON), userController::editUser)
 		 *     .build();
 		 * </pre>
-		 * @param pattern the pattern to match to
-		 * @param predicate additional predicate to match
-		 * @param handlerFunction the handler function to handle all {@code PUT} requests that
-		 * match {@code pattern}
-		 * @return this builder
+		 * @param pattern 要匹配的模式
+		 * @param predicate 要匹配的附加谓词
+		 * @param handlerFunction 用于处理所有匹配 {@code pattern} 的 {@code PUT} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 */
 		Builder PUT(String pattern, RequestPredicate predicate, HandlerFunction<ServerResponse> handlerFunction);
 
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理 HTTP {@code PATCH} 请求。
-		 * @param handlerFunction the handler function to handle all {@code PATCH} requests
-		 * @return this builder
+		 * @param handlerFunction 用于处理所有 {@code PATCH} 请求的处理器函数
+		 * @return 此构建器
 		 * @since 5.3
 		 */
 		Builder PATCH(HandlerFunction<ServerResponse> handlerFunction);
@@ -398,20 +398,20 @@ public abstract class RouterFunctions {
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有匹配给定模式的
 		 * HTTP {@code PATCH} 请求。
-		 * @param pattern the pattern to match to
-		 * @param handlerFunction the handler function to handle all {@code PATCH} requests that
-		 * match {@code pattern}
-		 * @return this builder
+		 * @param pattern 要匹配的模式
+		 * @param handlerFunction 用于处理所有匹配 {@code pattern} 的 {@code PATCH} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 */
 		Builder PATCH(String pattern, HandlerFunction<ServerResponse> handlerFunction);
 
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有匹配给定谓词的
 		 * HTTP {@code PATCH} 请求。
-		 * @param predicate predicate to match
-		 * @param handlerFunction the handler function to handle all {@code PATCH} requests that
-		 * match {@code predicate}
-		 * @return this builder
+		 * @param predicate 要匹配的谓词
+		 * @param handlerFunction 用于处理所有匹配 {@code predicate} 的 {@code PATCH} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 * @since 5.3
 		 * @see RequestPredicates
 		 */
@@ -428,18 +428,18 @@ public abstract class RouterFunctions {
 		 *     .PATCH("/user", RequestPredicates.contentType(MediaType.APPLICATION_JSON), userController::editUser)
 		 *     .build();
 		 * </pre>
-		 * @param pattern the pattern to match to
-		 * @param predicate additional predicate to match
-		 * @param handlerFunction the handler function to handle all {@code PATCH} requests that
-		 * match {@code pattern}
-		 * @return this builder
+		 * @param pattern 要匹配的模式
+		 * @param predicate 要匹配的附加谓词
+		 * @param handlerFunction 用于处理所有匹配 {@code pattern} 的 {@code PATCH} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 */
 		Builder PATCH(String pattern, RequestPredicate predicate, HandlerFunction<ServerResponse> handlerFunction);
 
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理 HTTP {@code DELETE} 请求。
-		 * @param handlerFunction the handler function to handle all {@code DELETE} requests
-		 * @return this builder
+		 * @param handlerFunction 用于处理所有 {@code DELETE} 请求的处理器函数
+		 * @return 此构建器
 		 * @since 5.3
 		 */
 		Builder DELETE(HandlerFunction<ServerResponse> handlerFunction);
@@ -447,20 +447,20 @@ public abstract class RouterFunctions {
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有匹配给定模式的
 		 * HTTP {@code DELETE} 请求。
-		 * @param pattern the pattern to match to
-		 * @param handlerFunction the handler function to handle all {@code DELETE} requests that
-		 * match {@code pattern}
-		 * @return this builder
+		 * @param pattern 要匹配的模式
+		 * @param handlerFunction 用于处理所有匹配 {@code pattern} 的 {@code DELETE} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 */
 		Builder DELETE(String pattern, HandlerFunction<ServerResponse> handlerFunction);
 
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有匹配给定谓词的
 		 * HTTP {@code DELETE} 请求。
-		 * @param predicate predicate to match
-		 * @param handlerFunction the handler function to handle all {@code DELETE} requests that
-		 * match {@code predicate}
-		 * @return this builder
+		 * @param predicate 要匹配的谓词
+		 * @param handlerFunction 用于处理所有匹配 {@code predicate} 的 {@code DELETE} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 * @since 5.3
 		 * @see RequestPredicates
 		 */
@@ -469,18 +469,18 @@ public abstract class RouterFunctions {
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有同时匹配给定模式和
 		 * 谓词的 HTTP {@code DELETE} 请求。
-		 * @param pattern the pattern to match to
-		 * @param predicate additional predicate to match
-		 * @param handlerFunction the handler function to handle all {@code DELETE} requests that
-		 * match {@code pattern}
-		 * @return this builder
+		 * @param pattern 要匹配的模式
+		 * @param predicate 要匹配的附加谓词
+		 * @param handlerFunction 用于处理所有匹配 {@code pattern} 的 {@code DELETE} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 */
 		Builder DELETE(String pattern, RequestPredicate predicate, HandlerFunction<ServerResponse> handlerFunction);
 
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理 HTTP {@code OPTIONS} 请求。
-		 * @param handlerFunction the handler function to handle all {@code OPTIONS} requests
-		 * @return this builder
+		 * @param handlerFunction 用于处理所有 {@code OPTIONS} 请求的处理器函数
+		 * @return 此构建器
 		 * @since 5.3
 		 */
 		Builder OPTIONS(HandlerFunction<ServerResponse> handlerFunction);
@@ -488,20 +488,20 @@ public abstract class RouterFunctions {
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有匹配给定模式的
 		 * HTTP {@code OPTIONS} 请求。
-		 * @param pattern the pattern to match to
-		 * @param handlerFunction the handler function to handle all {@code OPTIONS} requests that
-		 * match {@code pattern}
-		 * @return this builder
+		 * @param pattern 要匹配的模式
+		 * @param handlerFunction 用于处理所有匹配 {@code pattern} 的 {@code OPTIONS} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 */
 		Builder OPTIONS(String pattern, HandlerFunction<ServerResponse> handlerFunction);
 
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有匹配给定谓词的
 		 * HTTP {@code OPTIONS} 请求。
-		 * @param predicate predicate to match
-		 * @param handlerFunction the handler function to handle all {@code OPTIONS} requests that
-		 * match {@code predicate}
-		 * @return this builder
+		 * @param predicate 要匹配的谓词
+		 * @param handlerFunction 用于处理所有匹配 {@code predicate} 的 {@code OPTIONS} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 * @since 5.3
 		 * @see RequestPredicates
 		 */
@@ -510,20 +510,20 @@ public abstract class RouterFunctions {
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有同时匹配给定模式和
 		 * 谓词的 HTTP {@code OPTIONS} 请求。
-		 * @param pattern the pattern to match to
-		 * @param predicate additional predicate to match
-		 * @param handlerFunction the handler function to handle all {@code OPTIONS} requests that
-		 * match {@code pattern}
-		 * @return this builder
+		 * @param pattern 要匹配的模式
+		 * @param predicate 要匹配的附加谓词
+		 * @param handlerFunction 用于处理所有匹配 {@code pattern} 的 {@code OPTIONS} 请求的
+		 * 处理器函数
+		 * @return 此构建器
 		 */
 		Builder OPTIONS(String pattern, RequestPredicate predicate, HandlerFunction<ServerResponse> handlerFunction);
 
 		/**
 		 * 添加一条到给定处理函数的路由，该处理函数处理所有匹配给定
 		 * 谓词的请求。
-		 * @param predicate the request predicate to match
-		 * @param handlerFunction the handler function to handle all requests that match the predicate
-		 * @return this builder
+		 * @param predicate 要匹配的请求谓词
+		 * @param handlerFunction 用于处理所有匹配该谓词的请求的处理器函数
+		 * @return 此构建器
 		 * @see RequestPredicates
 		 */
 		Builder route(RequestPredicate predicate, HandlerFunction<ServerResponse> handlerFunction);
@@ -542,8 +542,8 @@ public abstract class RouterFunctions {
 		 *     .add(orderController.routerFunction());
 		 *     .build();
 		 * </pre>
-		 * @param routerFunction the router function to be added
-		 * @return this builder
+		 * @param routerFunction 要添加的路由函数
+		 * @return 此构建器
 		 * @see RequestPredicates
 		 */
 		Builder add(RouterFunction<ServerResponse> routerFunction);
@@ -555,9 +555,9 @@ public abstract class RouterFunctions {
 		 * Resource location = new FileSystemResource("public-resources/");
 		 * RouterFunction&lt;ServerResponse&gt; resources = RouterFunctions.resources("/resources/**", location);
 	     * </pre>
-		 * @param pattern the pattern to match
-		 * @param location the location directory relative to which resources should be resolved
-		 * @return this builder
+		 * @param pattern 要匹配的模式
+		 * @param location 解析资源时所相对的位置目录
+		 * @return 此构建器
 		 */
 		Builder resources(String pattern, Resource location);
 
@@ -565,8 +565,8 @@ public abstract class RouterFunctions {
 		 * 使用提供的查找函数路由到资源。如果查找函数为给定请求提供了
 		 * {@link Resource}，则会使用一个处理 GET、HEAD 和 OPTIONS 请求的
 		 * {@link HandlerFunction} 将其暴露。
-		 * @param lookupFunction the function to provide a {@link Resource} given the {@link ServerRequest}
-		 * @return this builder
+		 * @param lookupFunction 根据 {@link ServerRequest} 提供 {@link Resource} 的函数
+		 * @return 此构建器
 		 */
 		Builder resources(Function<ServerRequest, Optional<Resource>> lookupFunction);
 
@@ -587,10 +587,9 @@ public abstract class RouterFunctions {
 		 *         .build())
 		 *     .build();
 		 * </pre>
-		 * @param predicate the predicate to test
-		 * @param routerFunctionSupplier supplier for the nested router function to delegate to if
-		 * the predicate applies
-		 * @return this builder
+		 * @param predicate 要测试的谓词
+		 * @param routerFunctionSupplier 如果谓词成立，则委派到的嵌套路由函数的提供者
+		 * @return 此构建器
 		 * @see RequestPredicates
 		 */
 		Builder nest(RequestPredicate predicate, Supplier<RouterFunction<ServerResponse>> routerFunctionSupplier);
@@ -610,10 +609,9 @@ public abstract class RouterFunctions {
 		 *              .POST(this::createUser))
 		 *     .build();
 		 * </pre>
-		 * @param predicate the predicate to test
-		 * @param builderConsumer consumer for a {@code Builder} that provides the nested router
-		 * function
-		 * @return this builder
+		 * @param predicate 要测试的谓词
+		 * @param builderConsumer 用于 {@code Builder} 的消费者，提供嵌套的路由函数
+		 * @return 此构建器
 		 * @see RequestPredicates
 		 */
 		Builder nest(RequestPredicate predicate, Consumer<Builder> builderConsumer);
@@ -633,10 +631,9 @@ public abstract class RouterFunctions {
 		 *     .path("/order", orderController::routerFunction)
 		 *     .build();
 		 * </pre>
-		 * @param pattern the pattern to match to
-		 * @param routerFunctionSupplier supplier for the nested router function to delegate to if
-		 * the pattern matches
-		 * @return this builder
+		 * @param pattern 要匹配的模式
+		 * @param routerFunctionSupplier 如果模式匹配，则委派到的嵌套路由函数的提供者
+		 * @return 此构建器
 		 */
 		Builder path(String pattern, Supplier<RouterFunction<ServerResponse>> routerFunctionSupplier);
 
@@ -655,10 +652,9 @@ public abstract class RouterFunctions {
 		 *              .POST(this::createUser))
 		 *     .build();
 		 * </pre>
-		 * @param pattern the pattern to match to
-		 * @param builderConsumer consumer for a {@code Builder} that provides the nested router
-		 * function
-		 * @return this builder
+		 * @param pattern 要匹配的模式
+		 * @param builderConsumer 用于 {@code Builder} 的消费者，提供嵌套的路由函数
+		 * @return 此构建器
 		 */
 		Builder path(String pattern, Consumer<Builder> builderConsumer);
 
@@ -683,8 +679,8 @@ public abstract class RouterFunctions {
 		 *     })
 		 *     .build();
 		 * </pre>
-		 * @param filterFunction the function to filter all routes built by this builder
-		 * @return this builder
+		 * @param filterFunction 用于过滤此构建器构建的所有路由的函数
+		 * @return 此构建器
 		 */
 		Builder filter(HandlerFilterFunction<ServerResponse, ServerResponse> filterFunction);
 
@@ -704,8 +700,8 @@ public abstract class RouterFunctions {
 		 *     })
 		 *     .build();
 		 * </pre>
-		 * @param requestProcessor a function that transforms the request
-		 * @return this builder
+		 * @param requestProcessor 转换请求的函数
+		 * @return 此构建器
 		 */
 		Builder before(Function<ServerRequest, ServerRequest> requestProcessor);
 
@@ -725,8 +721,8 @@ public abstract class RouterFunctions {
 		 *     })
 		 *     .build();
 		 * </pre>
-		 * @param responseProcessor a function that transforms the response
-		 * @return this builder
+		 * @param responseProcessor 转换响应的函数
+		 * @return 此构建器
 		 */
 		Builder after(BiFunction<ServerRequest, ServerResponse, ServerResponse> responseProcessor);
 
@@ -742,9 +738,9 @@ public abstract class RouterFunctions {
 		 *       (e, request) -&gt; ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR).build())
 		 *     .build();
 		 * </pre>
-		 * @param predicate the type of exception to filter
-		 * @param responseProvider a function that creates a response
-		 * @return this builder
+		 * @param predicate 要过滤的异常类型
+		 * @param responseProvider 创建响应的函数
+		 * @return 此构建器
 		 */
 		Builder onError(Predicate<Throwable> predicate,
 				BiFunction<Throwable, ServerRequest, ServerResponse> responseProvider);
@@ -761,18 +757,18 @@ public abstract class RouterFunctions {
 		 *       (e, request) -&gt; ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR).build())
 		 *     .build();
 		 * </pre>
-		 * @param exceptionType the type of exception to filter
-		 * @param responseProvider a function that creates a response
-		 * @return this builder
+		 * @param exceptionType 要过滤的异常类型
+		 * @param responseProvider 创建响应的函数
+		 * @return 此构建器
 		 */
 		Builder onError(Class<? extends Throwable> exceptionType,
 				BiFunction<Throwable, ServerRequest, ServerResponse> responseProvider);
 
 		/**
 		 * 向此构建器构建的最后一条路由添加具有给定名称和值的属性。
-		 * @param name the attribute name
-		 * @param value the attribute value
-		 * @return this builder
+		 * @param name 属性名称
+		 * @param value 属性值
+		 * @return 此构建器
 		 * @since 5.3
 		 */
 		Builder withAttribute(String name, Object value);
@@ -783,8 +779,8 @@ public abstract class RouterFunctions {
 		 * {@linkplain Map#put(Object, Object) 覆盖}现有属性、
 		 * {@linkplain Map#remove(Object) 移除}属性，或使用任何其他
 		 * {@link Map} 方法。
-		 * @param attributesConsumer a function that consumes the attributes map
-		 * @return this builder
+		 * @param attributesConsumer 消费属性映射的函数
+		 * @return 此构建器
 		 * @since 5.3
 		 */
 		Builder withAttributes(Consumer<Map<String, Object>> attributesConsumer);
@@ -793,7 +789,7 @@ public abstract class RouterFunctions {
 		 * 构建 {@code RouterFunction}。所有创建的路由会通过
 		 * {@linkplain RouterFunction#and(RouterFunction) 组合}相互连接，并且
 		 * 过滤器（如果有）会应用于结果。
-		 * @return the built router function
+		 * @return 所构建的路由函数
 		 */
 		RouterFunction<ServerResponse> build();
 	}
@@ -806,29 +802,29 @@ public abstract class RouterFunctions {
 
 		/**
 		 * 接收嵌套路由函数开始的通知。
-		 * @param predicate the predicate that applies to the nested router functions
+		 * @param predicate 应用于嵌套路由函数的谓词
 		 * @see RouterFunctions#nest(RequestPredicate, RouterFunction)
 		 */
 		void startNested(RequestPredicate predicate);
 
 		/**
 		 * 接收嵌套路由函数结束的通知。
-		 * @param predicate the predicate that applies to the nested router functions
+		 * @param predicate 应用于嵌套路由函数的谓词
 		 * @see RouterFunctions#nest(RequestPredicate, RouterFunction)
 		 */
 		void endNested(RequestPredicate predicate);
 
 		/**
 		 * 接收带谓词的标准路由到处理器函数的通知。
-		 * @param predicate the predicate that applies to the handler function
-		 * @param handlerFunction the handler function.
+		 * @param predicate 应用于处理器函数的谓词
+		 * @param handlerFunction 处理器函数。
 		 * @see RouterFunctions#route(RequestPredicate, HandlerFunction)
 		 */
 		void route(RequestPredicate predicate, HandlerFunction<?> handlerFunction);
 
 		/**
 		 * 接收资源路由函数的通知。
-		 * @param lookupFunction the lookup function for the resources
+		 * @param lookupFunction 资源的查找函数
 		 * @see RouterFunctions#resources(Function)
 		 */
 		void resources(Function<ServerRequest, Optional<Resource>> lookupFunction);
@@ -836,7 +832,7 @@ public abstract class RouterFunctions {
 		/**
 		 * 接收带属性的路由函数的通知。给定属性应用于
 		 * 紧随此通知之后的路由通知。
-		 * @param attributes the attributes that apply to the following router
+		 * @param attributes 应用于后续路由器的属性
 		 * @since 5.3
 		 */
 		void attributes(Map<String, Object> attributes);
@@ -844,7 +840,7 @@ public abstract class RouterFunctions {
 		/**
 		 * 接收未知路由函数的通知。对于不是通过各种 {@link RouterFunctions} 方法
 		 * 创建的路由函数，会调用此方法。
-		 * @param routerFunction the router function
+		 * @param routerFunction 路由函数
 		 */
 		void unknown(RouterFunction<?> routerFunction);
 	}
@@ -865,7 +861,7 @@ public abstract class RouterFunctions {
 	 * 一种组合路由函数：它首先调用一个函数，如果该路由
 	 * {@linkplain Optional#empty() 没有结果}，则调用另一个函数
 	 * （响应类型同为 {@code T}）。
-	 * @param <T> the server response type
+	 * @param <T> 服务器响应类型
 	 */
 	static final class SameComposedRouterFunction<T extends ServerResponse> extends AbstractRouterFunction<T> {
 
@@ -937,8 +933,8 @@ public abstract class RouterFunctions {
 	/**
 	 * 使用给定的{@linkplain HandlerFilterFunction 过滤函数}过滤指定的
 	 * {@linkplain HandlerFunction 处理器函数}。
-	 * @param <T> the type of the {@linkplain HandlerFunction handler function} to filter
-	 * @param <S> the type of the response of the function
+	 * @param <T> 要过滤的 {@linkplain HandlerFunction handler function} 类型
+	 * @param <S> 该函数的响应类型
 	 */
 	static final class FilteredRouterFunction<T extends ServerResponse, S extends ServerResponse>
 			implements RouterFunction<S> {

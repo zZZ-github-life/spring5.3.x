@@ -64,7 +64,7 @@ public class LocalStatelessSessionProxyFactoryBean extends LocalSlsbInvokerInter
 	/**
 	 * 设置我们所代理的 EJB 的业务接口。这通常是 EJB 本地组件接口的父接口。在实现 EJB 时，使用业务方法
 	 * 接口是一种最佳实践。
-	 * @param businessInterface set the business interface of the EJB
+	 * @param businessInterface 设置该 EJB 的业务接口
 	 */
 	public void setBusinessInterface(@Nullable Class<?> businessInterface) {
 		this.businessInterface = businessInterface;

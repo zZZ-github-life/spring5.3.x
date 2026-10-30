@@ -75,7 +75,7 @@ class ClassPathJaxb2TypeScanner {
 
 	/**
 	 * 扫描各包中标记了 JAXB2 注解的类。
-	 * @throws UncategorizedMappingException in case of errors
+	 * @throws UncategorizedMappingException 如果发生错误
 	 */
 	public Class<?>[] scanPackages() throws UncategorizedMappingException {
 		try {

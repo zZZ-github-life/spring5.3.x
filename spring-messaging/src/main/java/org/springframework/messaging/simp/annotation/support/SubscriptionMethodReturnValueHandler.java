@@ -64,8 +64,8 @@ public class SubscriptionMethodReturnValueHandler implements HandlerMethodReturn
 
 	/**
 	 * 构造新的 SubscriptionMethodReturnValueHandler。
-	 * @param template a messaging template to send messages to,
-	 * most likely the "clientOutboundChannel" (must not be {@code null})
+	 * @param template 用于发送消息的消息模板，
+	 * 通常是 "clientOutboundChannel"（不能为 {@code null}）
 	 */
 	public SubscriptionMethodReturnValueHandler(MessageSendingOperations<String> template) {
 		Assert.notNull(template, "messagingTemplate must not be null");

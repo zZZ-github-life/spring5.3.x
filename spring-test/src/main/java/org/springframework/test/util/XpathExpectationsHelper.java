@@ -58,11 +58,11 @@ public class XpathExpectationsHelper {
 
 	/**
 	 * XpathExpectationsHelper 构造函数。
-	 * @param expression the XPath expression
-	 * @param namespaces the XML namespaces referenced in the XPath expression, or {@code null}
-	 * @param args arguments to parameterize the XPath expression with using the
-	 * formatting specifiers defined in {@link String#format(String, Object...)}
-	 * @throws XPathExpressionException if expression compilation failed
+	 * @param expression XPath 表达式
+	 * @param namespaces XPath 表达式中引用的 XML 命名空间，或 {@code null}
+	 * @param args 用于为 XPath 表达式提供参数的参数，使用
+	 * {@link String#format(String, Object...)} 中定义的格式说明符
+	 * @throws XPathExpressionException 如果表达式编译失败。
 	 */
 	public XpathExpectationsHelper(String expression, @Nullable Map<String, String> namespaces, Object... args)
 			throws XPathExpressionException {
@@ -115,7 +115,7 @@ public class XpathExpectationsHelper {
 
 	/**
 	 * 应用 XPath 表达式并断言结果内容存在。
-	 * @throws Exception if content parsing or expression evaluation fails
+	 * @throws Exception 如果内容解析或表达式求值失败。
 	 */
 	public void exists(byte[] content, @Nullable String encoding) throws Exception {
 		Node node = evaluateXpath(content, encoding, Node.class);
@@ -124,7 +124,7 @@ public class XpathExpectationsHelper {
 
 	/**
 	 * 应用 XPath 表达式并断言结果内容不存在。
-	 * @throws Exception if content parsing or expression evaluation fails
+	 * @throws Exception 如果内容解析或表达式求值失败。
 	 */
 	public void doesNotExist(byte[] content, @Nullable String encoding) throws Exception {
 		Node node = evaluateXpath(content, encoding, Node.class);
@@ -133,7 +133,7 @@ public class XpathExpectationsHelper {
 
 	/**
 	 * 应用 XPath 表达式，并使用给定的 Hamcrest 匹配器断言结果内容。
-	 * @throws Exception if content parsing or expression evaluation fails
+	 * @throws Exception 如果内容解析或表达式求值失败。
 	 */
 	public void assertNodeCount(byte[] content, @Nullable String encoding, Matcher<? super Integer> matcher)
 			throws Exception {
@@ -145,7 +145,7 @@ public class XpathExpectationsHelper {
 
 	/**
 	 * 应用 XPath 表达式，并将结果内容作为整数进行断言。
-	 * @throws Exception if content parsing or expression evaluation fails
+	 * @throws Exception 如果内容解析或表达式求值失败。
 	 */
 	public void assertNodeCount(byte[] content, @Nullable String encoding, int expectedCount) throws Exception {
 		NodeList nodeList = evaluateXpath(content, encoding, NodeList.class);
@@ -155,7 +155,7 @@ public class XpathExpectationsHelper {
 
 	/**
 	 * 应用 XPath 表达式，并使用给定的 Hamcrest 匹配器断言结果内容。
-	 * @throws Exception if content parsing or expression evaluation fails
+	 * @throws Exception 如果内容解析或表达式求值失败。
 	 */
 	public void assertString(byte[] content, @Nullable String encoding, Matcher<? super String> matcher)
 			throws Exception {
@@ -166,7 +166,7 @@ public class XpathExpectationsHelper {
 
 	/**
 	 * 应用 XPath 表达式，并将结果内容作为 String 进行断言。
-	 * @throws Exception if content parsing or expression evaluation fails
+	 * @throws Exception 如果内容解析或表达式求值失败。
 	 */
 	public void assertString(byte[] content, @Nullable String encoding, String expectedValue) throws Exception {
 		String actual = evaluateXpath(content, encoding, String.class);
@@ -175,7 +175,7 @@ public class XpathExpectationsHelper {
 
 	/**
 	 * 应用 XPath 表达式，并使用给定的 Hamcrest 匹配器断言结果内容。
-	 * @throws Exception if content parsing or expression evaluation fails
+	 * @throws Exception 如果内容解析或表达式求值失败。
 	 */
 	public void assertNumber(byte[] content, @Nullable String encoding, Matcher<? super Double> matcher) throws Exception {
 		Double actual = evaluateXpath(content, encoding, Double.class);
@@ -184,7 +184,7 @@ public class XpathExpectationsHelper {
 
 	/**
 	 * 应用 XPath 表达式，并将结果内容作为 Double 进行断言。
-	 * @throws Exception if content parsing or expression evaluation fails
+	 * @throws Exception 如果内容解析或表达式求值失败。
 	 */
 	public void assertNumber(byte[] content, @Nullable String encoding, Double expectedValue) throws Exception {
 		Double actual = evaluateXpath(content, encoding, Double.class);
@@ -193,7 +193,7 @@ public class XpathExpectationsHelper {
 
 	/**
 	 * 应用 XPath 表达式，并将结果内容作为 Boolean 进行断言。
-	 * @throws Exception if content parsing or expression evaluation fails
+	 * @throws Exception 如果内容解析或表达式求值失败。
 	 */
 	public void assertBoolean(byte[] content, @Nullable String encoding, boolean expectedValue) throws Exception {
 		String actual = evaluateXpath(content, encoding, String.class);
@@ -202,11 +202,11 @@ public class XpathExpectationsHelper {
 
 	/**
 	 * 求值 XPath 并返回结果值。
-	 * @param content the content to evaluate against
-	 * @param encoding the encoding to use (optionally)
-	 * @param targetClass the target class, one of Number, String, Boolean,
-	 * org.w3c.Node, or NodeList
-	 * @throws Exception if content parsing or expression evaluation fails
+	 * @param content 要据此求值的内容
+	 * @param encoding 要使用的编码（可选）
+	 * @param targetClass 目标类，为 Number、String、Boolean、
+	 * org.w3c.Node 或 NodeList 之一
+	 * @throws Exception 如果内容解析或表达式求值失败。
 	 * @since 5.1
 	 */
 	@Nullable
@@ -217,9 +217,10 @@ public class XpathExpectationsHelper {
 
 	/**
 	 * 将给定的 XML 内容解析为 {@link Document}。
-	 * @param xml the content to parse
-	 * @param encoding optional content encoding, if provided as metadata (e.g. in HTTP headers)
-	 * @return the parsed document
+	 * @param xml 要解析的内容
+	 * @param encoding 可选的内容编码（如果作为元数据提供，
+	 * 例如在 HTTP 头中）
+	 * @return 解析后的文档
 	 */
 	protected Document parseXmlByteArray(byte[] xml, @Nullable String encoding) throws Exception {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -234,7 +235,7 @@ public class XpathExpectationsHelper {
 
 	/**
 	 * 将 XPath 表达式应用于给定文档。
-	 * @throws XPathExpressionException if expression evaluation failed
+	 * @throws XPathExpressionException 如果表达式求值失败。
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable

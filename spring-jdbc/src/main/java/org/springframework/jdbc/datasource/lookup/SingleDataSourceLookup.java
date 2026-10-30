@@ -34,7 +34,7 @@ public class SingleDataSourceLookup implements DataSourceLookup {
 
 	/**
 	 * 创建 {@link SingleDataSourceLookup} 类的新实例。
-	 * @param dataSource the single {@link DataSource} to wrap
+	 * @param dataSource 要包装的单个 {@link DataSource}
 	 */
 	public SingleDataSourceLookup(DataSource dataSource) {
 		Assert.notNull(dataSource, "DataSource must not be null");

@@ -109,7 +109,7 @@ public class RequestContext {
 
 	/**
 	 * 返回此 RequestContext 封装的模型 Map（如果有）。
-	 * @return the populated model Map, or {@code null} if none available
+	 * @return 已填充的模型 Map；如果不可用则为 {@code null}
 	 */
 	@Nullable
 	public Map<String, Object> getModel() {
@@ -162,7 +162,7 @@ public class RequestContext {
 
 	/**
 	 * 返回默认 HTML 转义设置，区分未指定默认值和显式值。
-	 * @return whether default HTML escaping is enabled (null = no explicit default)
+	 * @return 是否启用了默认 HTML 转义（null 表示没有显式默认值）
 	 */
 	@Nullable
 	public Boolean getDefaultHtmlEscape() {
@@ -187,9 +187,9 @@ public class RequestContext {
 
 	/**
 	 * 为给定相对 URL 返回上下文感知的 URL。
-	 * @param relativeUrl the relative URL part
-	 * @return a URL that points back to the current web application with an
-	 * absolute path also URL-encoded accordingly
+	 * @param relativeUrl 相对 URL 部分
+	 * @return 指回当前 Web 应用的 URL，
+	 * 其绝对路径也相应地进行了 URL 编码
 	 */
 	public String getContextUrl(String relativeUrl) {
 		String url = StringUtils.applyRelativePath(getContextPath() + "/", relativeUrl);
@@ -198,10 +198,10 @@ public class RequestContext {
 
 	/**
 	 * 为带占位符（使用花括号 {@code {}} 命名的键）的给定相对 URL 返回上下文感知的 URL。例如，传入相对 URL {@code foo/{bar}?spam={spam}} 和参数映射 {@code {bar=baz,spam=nuts}}，结果将是 {@code [contextpath]/foo/baz?spam=nuts}。
-	 * @param relativeUrl the relative URL part
-	 * @param params a map of parameters to insert as placeholders in the url
-	 * @return a URL that points back to the current web application with an
-	 * absolute path also URL-encoded accordingly
+	 * @param relativeUrl 相对 URL 部分
+	 * @param params 要作为占位符插入 URL 的参数映射
+	 * @return 指回当前 Web 应用的 URL，
+	 * 其绝对路径也相应地进行了 URL 编码
 	 */
 	public String getContextUrl(String relativeUrl, Map<String, ?> params) {
 		String url = StringUtils.applyRelativePath(getContextPath() + "/", relativeUrl);
@@ -225,9 +225,9 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置检索给定代码的消息。
-	 * @param code the code of the message
-	 * @param defaultMessage the String to return if the lookup fails
-	 * @return the message
+	 * @param code 消息的代码
+	 * @param defaultMessage 查找失败时要返回的 String
+	 * @return 消息
 	 */
 	public String getMessage(String code, String defaultMessage) {
 		return getMessage(code, null, defaultMessage, isDefaultHtmlEscape());
@@ -235,10 +235,10 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置检索给定代码的消息。
-	 * @param code the code of the message
-	 * @param args arguments for the message, or {@code null} if none
-	 * @param defaultMessage the String to return if the lookup fails
-	 * @return the message
+	 * @param code 消息的代码
+	 * @param args 消息的参数；如果没有则为 {@code null}
+	 * @param defaultMessage 查找失败时要返回的 String
+	 * @return 消息
 	 */
 	public String getMessage(String code, @Nullable Object[] args, String defaultMessage) {
 		return getMessage(code, args, defaultMessage, isDefaultHtmlEscape());
@@ -246,10 +246,10 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置检索给定代码的消息。
-	 * @param code the code of the message
-	 * @param args arguments for the message as a List, or {@code null} if none
-	 * @param defaultMessage the String to return if the lookup fails
-	 * @return the message
+	 * @param code 消息的代码
+	 * @param args 作为 List 的消息参数；如果没有则为 {@code null}
+	 * @param defaultMessage 查找失败时要返回的 String
+	 * @return 消息
 	 */
 	public String getMessage(String code, @Nullable List<?> args, String defaultMessage) {
 		return getMessage(code, (args != null ? args.toArray() : null), defaultMessage, isDefaultHtmlEscape());
@@ -257,11 +257,11 @@ public class RequestContext {
 
 	/**
 	 * 检索给定代码的消息。
-	 * @param code the code of the message
-	 * @param args arguments for the message, or {@code null} if none
-	 * @param defaultMessage the String to return if the lookup fails
-	 * @param htmlEscape if the message should be HTML-escaped
-	 * @return the message
+	 * @param code 消息的代码
+	 * @param args 消息的参数；如果没有则为 {@code null}
+	 * @param defaultMessage 查找失败时要返回的 String
+	 * @param htmlEscape 消息是否应进行 HTML 转义
+	 * @return 消息
 	 */
 	public String getMessage(String code, @Nullable Object[] args, String defaultMessage, boolean htmlEscape) {
 		String msg = this.messageSource.getMessage(code, args, defaultMessage, this.locale);
@@ -273,9 +273,9 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置检索给定代码的消息。
-	 * @param code the code of the message
-	 * @return the message
-	 * @throws org.springframework.context.NoSuchMessageException if not found
+	 * @param code 消息的代码
+	 * @return 消息
+	 * @throws org.springframework.context.NoSuchMessageException 如果未找到
 	 */
 	public String getMessage(String code) throws NoSuchMessageException {
 		return getMessage(code, null, isDefaultHtmlEscape());
@@ -283,10 +283,10 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置检索给定代码的消息。
-	 * @param code the code of the message
-	 * @param args arguments for the message, or {@code null} if none
-	 * @return the message
-	 * @throws org.springframework.context.NoSuchMessageException if not found
+	 * @param code 消息的代码
+	 * @param args 消息的参数；如果没有则为 {@code null}
+	 * @return 消息
+	 * @throws org.springframework.context.NoSuchMessageException 如果未找到
 	 */
 	public String getMessage(String code, @Nullable Object[] args) throws NoSuchMessageException {
 		return getMessage(code, args, isDefaultHtmlEscape());
@@ -294,10 +294,10 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置检索给定代码的消息。
-	 * @param code the code of the message
-	 * @param args arguments for the message as a List, or {@code null} if none
-	 * @return the message
-	 * @throws org.springframework.context.NoSuchMessageException if not found
+	 * @param code 消息的代码
+	 * @param args 作为 List 的消息参数；如果没有则为 {@code null}
+	 * @return 消息
+	 * @throws org.springframework.context.NoSuchMessageException 如果未找到
 	 */
 	public String getMessage(String code, @Nullable List<?> args) throws NoSuchMessageException {
 		return getMessage(code, (args != null ? args.toArray() : null), isDefaultHtmlEscape());
@@ -305,11 +305,11 @@ public class RequestContext {
 
 	/**
 	 * 检索给定代码的消息。
-	 * @param code the code of the message
-	 * @param args arguments for the message, or {@code null} if none
-	 * @param htmlEscape if the message should be HTML-escaped
-	 * @return the message
-	 * @throws org.springframework.context.NoSuchMessageException if not found
+	 * @param code 消息的代码
+	 * @param args 消息的参数；如果没有则为 {@code null}
+	 * @param htmlEscape 消息是否应进行 HTML 转义
+	 * @return 消息
+	 * @throws org.springframework.context.NoSuchMessageException 如果未找到
 	 */
 	public String getMessage(String code, @Nullable Object[] args, boolean htmlEscape) throws NoSuchMessageException {
 		String msg = this.messageSource.getMessage(code, args, this.locale);
@@ -318,9 +318,9 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置检索给定的 MessageSourceResolvable（例如 ObjectError 实例）。
-	 * @param resolvable the MessageSourceResolvable
-	 * @return the message
-	 * @throws org.springframework.context.NoSuchMessageException if not found
+	 * @param resolvable 该 MessageSourceResolvable
+	 * @return 消息
+	 * @throws org.springframework.context.NoSuchMessageException 如果未找到
 	 */
 	public String getMessage(MessageSourceResolvable resolvable) throws NoSuchMessageException {
 		return getMessage(resolvable, isDefaultHtmlEscape());
@@ -328,10 +328,10 @@ public class RequestContext {
 
 	/**
 	 * 检索给定的 MessageSourceResolvable（例如 ObjectError 实例）。
-	 * @param resolvable the MessageSourceResolvable
-	 * @param htmlEscape if the message should be HTML-escaped
-	 * @return the message
-	 * @throws org.springframework.context.NoSuchMessageException if not found
+	 * @param resolvable 该 MessageSourceResolvable
+	 * @param htmlEscape 消息是否应进行 HTML 转义
+	 * @return 消息
+	 * @throws org.springframework.context.NoSuchMessageException 如果未找到
 	 */
 	public String getMessage(MessageSourceResolvable resolvable, boolean htmlEscape) throws NoSuchMessageException {
 		String msg = this.messageSource.getMessage(resolvable, this.locale);
@@ -340,8 +340,8 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置检索给定绑定对象的 Errors 实例。
-	 * @param name the name of the bind object
-	 * @return the Errors instance, or {@code null} if not found
+	 * @param name 绑定对象的名称
+	 * @return Errors 实例；如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public Errors getErrors(String name) {
@@ -350,9 +350,9 @@ public class RequestContext {
 
 	/**
 	 * 检索给定绑定对象的 Errors 实例。
-	 * @param name the name of the bind object
-	 * @param htmlEscape create an Errors instance with automatic HTML escaping?
-	 * @return the Errors instance, or {@code null} if not found
+	 * @param name 绑定对象的名称
+	 * @param htmlEscape 是否创建具有自动 HTML 转义的 Errors 实例？
+	 * @return Errors 实例；如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public Errors getErrors(String name, boolean htmlEscape) {
@@ -385,8 +385,8 @@ public class RequestContext {
 
 	/**
 	 * 从模型或请求属性中检索给定模型名称的模型对象。
-	 * @param modelName the name of the model object
-	 * @return the model object
+	 * @param modelName 模型对象的名称
+	 * @return 模型对象
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable
@@ -400,10 +400,10 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置为给定绑定对象创建 BindStatus。
-	 * @param path the bean and property path for which values and errors will
-	 * be resolved (e.g. "person.age")
-	 * @return the new BindStatus instance
-	 * @throws IllegalStateException if no corresponding Errors object found
+	 * @param path 要为其解析值和错误的 Bean 与属性路径
+	 * （例如 "person.age"）
+	 * @return 新的 BindStatus 实例
+	 * @throws IllegalStateException 如果找不到对应的 Errors 对象
 	 */
 	public BindStatus getBindStatus(String path) throws IllegalStateException {
 		return new BindStatus(this, path, isDefaultHtmlEscape());
@@ -411,11 +411,11 @@ public class RequestContext {
 
 	/**
 	 * 为给定绑定对象创建 BindStatus，使用 "defaultHtmlEscape" 设置。
-	 * @param path the bean and property path for which values and errors will
-	 * be resolved (e.g. "person.age")
-	 * @param htmlEscape create a BindStatus with automatic HTML escaping?
-	 * @return the new BindStatus instance
-	 * @throws IllegalStateException if no corresponding Errors object found
+	 * @param path 要为其解析值和错误的 Bean 与属性路径
+	 * （例如 "person.age"）
+	 * @param htmlEscape 是否创建具有自动 HTML 转义的 BindStatus？
+	 * @return 新的 BindStatus 实例
+	 * @throws IllegalStateException 如果找不到对应的 Errors 对象
 	 */
 	public BindStatus getBindStatus(String path, boolean htmlEscape) throws IllegalStateException {
 		return new BindStatus(this, path, htmlEscape);

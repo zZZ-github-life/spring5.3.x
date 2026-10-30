@@ -52,7 +52,7 @@ public class TransactionAwareCacheManagerProxy implements CacheManager, Initiali
 
 	/**
 	 * 为给定的目标 CacheManager 创建一个新的 TransactionAwareCacheManagerProxy。
-	 * @param targetCacheManager the target CacheManager to proxy
+	 * @param targetCacheManager 要代理的目标 CacheManager
 	 */
 	public TransactionAwareCacheManagerProxy(CacheManager targetCacheManager) {
 		Assert.notNull(targetCacheManager, "Target CacheManager must not be null");

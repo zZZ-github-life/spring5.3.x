@@ -29,7 +29,7 @@ public class BeanEntry implements ParseState.Entry {
 
 	/**
 	 * 创建一个新的 {@code BeanEntry} 实例。
-	 * @param beanDefinitionName the name of the associated bean definition
+	 * @param beanDefinitionName 关联的 Bean 定义的名称
 	 */
 	public BeanEntry(String beanDefinitionName) {
 		this.beanDefinitionName = beanDefinitionName;

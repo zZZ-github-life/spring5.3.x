@@ -34,7 +34,7 @@ public class DecodingException extends CodecException {
 
 	/**
 	 * 创建一个新的 DecodingException。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public DecodingException(String msg) {
 		super(msg);
@@ -42,8 +42,8 @@ public class DecodingException extends CodecException {
 
 	/**
 	 * 创建一个新的 DecodingException。
-	 * @param msg the detail message
-	 * @param cause root cause for the exception, if any
+	 * @param msg 详细消息
+	 * @param cause 异常的根本原因（如果有）
 	 */
 	public DecodingException(String msg, @Nullable Throwable cause) {
 		super(msg, cause);

@@ -106,7 +106,7 @@ public class ResponseBodyEmitter {
 	 * <p>默认不设置，此时将使用 MVC Java 配置或 MVC 命名空间
 	 * 中配置的默认值；如果也未设置，则超时取决于
 	 * 底层服务器的默认值。
-	 * @param timeout the timeout value in milliseconds
+	 * @param timeout 超时值，单位为毫秒
 	 */
 	public ResponseBodyEmitter(Long timeout) {
 		this.timeout = timeout;
@@ -173,9 +173,9 @@ public class ResponseBodyEmitter {
 	 * 你无需调用 {@link #completeWithError(Throwable)} 进行清理。
 	 * 相反，Servlet 容器会创建一个通知，触发一次分派，
 	 * Spring MVC 会在其中调用异常解析器并完成处理。
-	 * @param object the object to write
-	 * @throws IOException raised when an I/O error occurs
-	 * @throws java.lang.IllegalStateException wraps any other errors
+	 * @param object 要写入的对象
+	 * @throws IOException 发生 I/O 错误时抛出
+	 * @throws java.lang.IllegalStateException 包装任何其他错误
 	 */
 	public void send(Object object) throws IOException {
 		send(object, null);
@@ -184,10 +184,10 @@ public class ResponseBodyEmitter {
 	/**
 	 * {@link #send(Object)} 的重载变体，还接受一个 MediaType
 	 * 提示，用于说明如何序列化给定对象。
-	 * @param object the object to write
-	 * @param mediaType a MediaType hint for selecting an HttpMessageConverter
-	 * @throws IOException raised when an I/O error occurs
-	 * @throws java.lang.IllegalStateException wraps any other errors
+	 * @param object 要写入的对象
+	 * @param mediaType 用于选择 HttpMessageConverter 的 MediaType 提示
+	 * @throws IOException 发生 I/O 错误时抛出
+	 * @throws java.lang.IllegalStateException 包装任何其他错误
 	 */
 	public synchronized void send(Object object, @Nullable MediaType mediaType) throws IOException {
 		Assert.state(!this.complete, () -> "ResponseBodyEmitter has already completed" +

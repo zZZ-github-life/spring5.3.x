@@ -48,9 +48,8 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 
 	/**
 	 * 确定给定 FactoryBean 的类型。
-	 * @param factoryBean the FactoryBean instance to check
-	 * @return the FactoryBean's object type,
-	 * or {@code null} if the type cannot be determined yet
+	 * @param factoryBean 要检查的 FactoryBean 实例
+	 * @return FactoryBean 的对象类型，如果目前尚无法确定类型则为 {@code null}
 	 */
 	@Nullable
 	protected Class<?> getTypeForFactoryBean(FactoryBean<?> factoryBean) {
@@ -74,9 +73,8 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 	/**
 	 * 如果给定 FactoryBean 的对象以缓存形式存在，则获取要暴露的对象。这是一次快速检查，以尽量减少同步。
 	 *
-	 * @param beanName the name of the bean
-	 * @return the object obtained from the FactoryBean,
-	 * or {@code null} if not available
+	 * @param beanName Bean 的名称
+	 * @return 从 FactoryBean 获取的对象，如果不可用则为 {@code null}
 	 */
 	@Nullable
 	protected Object getCachedObjectForFactoryBean(String beanName) {
@@ -85,11 +83,11 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 
 	/**
 	 * 获取要从给定 FactoryBean 暴露的对象。
-	 * @param factory the FactoryBean instance
-	 * @param beanName the name of the bean
-	 * @param shouldPostProcess whether the bean is subject to post-processing
-	 * @return the object obtained from the FactoryBean
-	 * @throws BeanCreationException if FactoryBean object creation failed
+	 * @param factory FactoryBean 实例
+	 * @param beanName Bean 的名称
+	 * @param shouldPostProcess 该 Bean 是否需要进行后处理
+	 * @return 从 FactoryBean 获取的对象
+	 * @throws BeanCreationException 如果 FactoryBean 对象创建失败
 	 * @see org.springframework.beans.factory.FactoryBean#getObject()
 	 */
 	protected Object getObjectFromFactoryBean(FactoryBean<?> factory, String beanName, boolean shouldPostProcess) {
@@ -146,10 +144,10 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 
 	/**
 	 * 获取要从给定 FactoryBean 暴露的对象。
-	 * @param factory the FactoryBean instance
-	 * @param beanName the name of the bean
-	 * @return the object obtained from the FactoryBean
-	 * @throws BeanCreationException if FactoryBean object creation failed
+	 * @param factory FactoryBean 实例
+	 * @param beanName Bean 的名称
+	 * @return 从 FactoryBean 获取的对象
+	 * @throws BeanCreationException 如果 FactoryBean 对象创建失败
 	 * @see org.springframework.beans.factory.FactoryBean#getObject()
 	 */
 	private Object doGetObjectFromFactoryBean(FactoryBean<?> factory, String beanName) throws BeanCreationException {
@@ -190,10 +188,10 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 	/**
 	 * 对从 FactoryBean 获取的给定对象进行后处理。结果对象将被暴露以供 Bean 引用使用。
 	 * <p>默认实现只是原样返回给定对象。子类可以重写此方法，例如用于应用后处理器。
-	 * @param object the object obtained from the FactoryBean.
-	 * @param beanName the name of the bean
-	 * @return the object to expose
-	 * @throws org.springframework.beans.BeansException if any post-processing failed
+	 * @param object 从 FactoryBean 获取的对象。
+	 * @param beanName Bean 的名称
+	 * @return 要暴露的对象
+	 * @throws org.springframework.beans.BeansException 如果任何后处理失败
 	 */
 	protected Object postProcessObjectFromFactoryBean(Object object, String beanName) throws BeansException {
 		return object;
@@ -201,10 +199,10 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 
 	/**
 	 * 如果可能，获取给定 Bean 对应的 FactoryBean。
-	 * @param beanName the name of the bean
-	 * @param beanInstance the corresponding bean instance
-	 * @return the bean instance as FactoryBean
-	 * @throws BeansException if the given bean cannot be exposed as a FactoryBean
+	 * @param beanName Bean 的名称
+	 * @param beanInstance 对应的 Bean 实例
+	 * @return 作为 FactoryBean 的 Bean 实例
+	 * @throws BeansException 如果给定的 Bean 无法作为 FactoryBean 暴露
 	 */
 	protected FactoryBean<?> getFactoryBean(String beanName, Object beanInstance) throws BeansException {
 		if (!(beanInstance instanceof FactoryBean)) {

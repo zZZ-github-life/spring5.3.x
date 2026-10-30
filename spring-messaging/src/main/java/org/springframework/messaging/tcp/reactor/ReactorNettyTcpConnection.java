@@ -32,7 +32,7 @@ import org.springframework.util.concurrent.MonoToListenableFutureAdapter;
  *
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <P> the type of payload for outbound messages
+ * @param <P> 出站消息的载荷类型
  */
 public class ReactorNettyTcpConnection<P> implements TcpConnection<P> {
 

@@ -452,8 +452,8 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 	/**
 	 * 用于对任意目标实例进行直接调用的“原生”处理方法，解析其所有使用某个已配置的 'autowired' 注解类型
 	 * 标注的字段和方法。
-	 * @param bean the target instance to process
-	 * @throws BeanCreationException if autowiring failed
+	 * @param bean 要处理的目标实例
+	 * @throws BeanCreationException 如果自动装配失败
 	 * @see #setAutowiredAnnotationTypes(Set)
 	 */
 	public void processInjection(Object bean) throws BeanCreationException {
@@ -565,8 +565,8 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 	 * 确定带注解的字段或方法是否必需其依赖。
 	 * <p>“必需”依赖意味着在未找到 Bean 时自动装配应当失败。否则，在未找到 Bean 时，自动装配过程将直接
 	 * 跳过该字段或方法。
-	 * @param ann the Autowired annotation
-	 * @return whether the annotation indicates that a dependency is required
+	 * @param ann Autowired 注解
+	 * @return 该注解是否表示依赖是必需的
 	 */
 	@SuppressWarnings("deprecation")
 	protected boolean determineRequiredStatus(MergedAnnotation<?> ann) {
@@ -583,8 +583,8 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 	 * 确定带注解的字段或方法是否必需其依赖。
 	 * <p>“必需”依赖意味着在未找到 Bean 时自动装配应当失败。否则，在未找到 Bean 时，自动装配过程将直接
 	 * 跳过该字段或方法。
-	 * @param ann the Autowired annotation
-	 * @return whether the annotation indicates that a dependency is required
+	 * @param ann Autowired 注解
+	 * @return 该注解是否表示依赖是必需的
 	 * @deprecated since 5.2, in favor of {@link #determineRequiredStatus(MergedAnnotation)}
 	 */
 	@Deprecated
@@ -595,9 +595,9 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 
 	/**
 	 * 获取给定类型的所有 Bean 作为自动装配候选。
-	 * @param type the type of the bean
-	 * @return the target beans, or an empty Collection if no bean of this type is found
-	 * @throws BeansException if bean retrieval failed
+	 * @param type Bean 的类型
+	 * @return 目标 Bean；若未找到此类型的 Bean 则为空 Collection
+	 * @throws BeansException 如果 Bean 获取失败
 	 * @deprecated since 5.3.24 since it is unused in the meantime
 	 */
 	@Deprecated

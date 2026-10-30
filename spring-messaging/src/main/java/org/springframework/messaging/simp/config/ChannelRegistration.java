@@ -47,7 +47,7 @@ public class ChannelRegistration {
 
 	/**
 	 * 使用自定义的 ThreadPoolTaskExecutor 配置支持此消息通道的线程池。
-	 * @param taskExecutor the executor to use (or {@code null} for a default executor)
+	 * @param taskExecutor 要使用的执行器（或 {@code null} 表示使用默认执行器）
 	 */
 	public TaskExecutorRegistration taskExecutor(@Nullable ThreadPoolTaskExecutor taskExecutor) {
 		if (this.registration == null) {

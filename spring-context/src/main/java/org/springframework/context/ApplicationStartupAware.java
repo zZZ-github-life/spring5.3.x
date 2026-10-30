@@ -33,7 +33,7 @@ public interface ApplicationStartupAware extends Aware {
 	 *
 	 * <p>在填充常规 Bean 属性之后、但在诸如 InitializingBean 的 afterPropertiesSet 之类的初始化回调或
 	 * 自定义 init-method 之前调用。在 ApplicationContextAware 的 setApplicationContext 之前调用。
-	 * @param applicationStartup application startup to be used by this object
+	 * @param applicationStartup 此对象要使用的应用程序启动信息
 	 */
 	void setApplicationStartup(ApplicationStartup applicationStartup);
 

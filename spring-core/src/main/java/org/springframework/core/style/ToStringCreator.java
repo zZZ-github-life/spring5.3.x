@@ -47,7 +47,7 @@ public class ToStringCreator {
 
 	/**
 	 * 为给定的对象创建一个 ToStringCreator。
-	 * @param obj the object to be stringified
+	 * @param obj 要转换为字符串的对象
 	 */
 	public ToStringCreator(Object obj) {
 		this(obj, (ToStringStyler) null);
@@ -55,8 +55,8 @@ public class ToStringCreator {
 
 	/**
 	 * 为给定的对象创建一个 ToStringCreator，并使用所提供的样式。
-	 * @param obj the object to be stringified
-	 * @param styler the ValueStyler encapsulating pretty-print instructions
+	 * @param obj 要转换为字符串的对象
+	 * @param styler 封装了美化打印指令的 ValueStyler
 	 */
 	public ToStringCreator(Object obj, @Nullable ValueStyler styler) {
 		this(obj, new DefaultToStringStyler(styler != null ? styler : StylerUtils.DEFAULT_VALUE_STYLER));
@@ -64,8 +64,8 @@ public class ToStringCreator {
 
 	/**
 	 * 为给定的对象创建一个 ToStringCreator，并使用所提供的样式。
-	 * @param obj the object to be stringified
-	 * @param styler the ToStringStyler encapsulating pretty-print instructions
+	 * @param obj 要转换为字符串的对象
+	 * @param styler 封装了美化打印指令的 ToStringStyler
 	 */
 	public ToStringCreator(Object obj, @Nullable ToStringStyler styler) {
 		Assert.notNull(obj, "The object to be styled must not be null");
@@ -77,9 +77,9 @@ public class ToStringCreator {
 
 	/**
 	 * 追加一个 byte 字段值。
-	 * @param fieldName the name of the field, usually the member variable name
-	 * @param value the field value
-	 * @return this, to support call-chaining
+	 * @param fieldName 字段名称，通常是成员变量名
+	 * @param value 字段值
+	 * @return 返回 this，以支持链式调用
 	 */
 	public ToStringCreator append(String fieldName, byte value) {
 		return append(fieldName, Byte.valueOf(value));
@@ -87,9 +87,9 @@ public class ToStringCreator {
 
 	/**
 	 * 追加一个 short 字段值。
-	 * @param fieldName the name of the field, usually the member variable name
-	 * @param value the field value
-	 * @return this, to support call-chaining
+	 * @param fieldName 字段名称，通常是成员变量名
+	 * @param value 字段值
+	 * @return 返回 this，以支持链式调用
 	 */
 	public ToStringCreator append(String fieldName, short value) {
 		return append(fieldName, Short.valueOf(value));
@@ -97,9 +97,9 @@ public class ToStringCreator {
 
 	/**
 	 * 追加一个 int 字段值。
-	 * @param fieldName the name of the field, usually the member variable name
-	 * @param value the field value
-	 * @return this, to support call-chaining
+	 * @param fieldName 字段名称，通常是成员变量名
+	 * @param value 字段值
+	 * @return 返回 this，以支持链式调用
 	 */
 	public ToStringCreator append(String fieldName, int value) {
 		return append(fieldName, Integer.valueOf(value));
@@ -107,9 +107,9 @@ public class ToStringCreator {
 
 	/**
 	 * 追加一个 long 字段值。
-	 * @param fieldName the name of the field, usually the member variable name
-	 * @param value the field value
-	 * @return this, to support call-chaining
+	 * @param fieldName 字段名称，通常是成员变量名
+	 * @param value 字段值
+	 * @return 返回 this，以支持链式调用
 	 */
 	public ToStringCreator append(String fieldName, long value) {
 		return append(fieldName, Long.valueOf(value));
@@ -117,9 +117,9 @@ public class ToStringCreator {
 
 	/**
 	 * 追加一个 float 字段值。
-	 * @param fieldName the name of the field, usually the member variable name
-	 * @param value the field value
-	 * @return this, to support call-chaining
+	 * @param fieldName 字段名称，通常是成员变量名
+	 * @param value 字段值
+	 * @return 返回 this，以支持链式调用
 	 */
 	public ToStringCreator append(String fieldName, float value) {
 		return append(fieldName, Float.valueOf(value));
@@ -127,9 +127,9 @@ public class ToStringCreator {
 
 	/**
 	 * 追加一个 double 字段值。
-	 * @param fieldName the name of the field, usually the member variable name
-	 * @param value the field value
-	 * @return this, to support call-chaining
+	 * @param fieldName 字段名称，通常是成员变量名
+	 * @param value 字段值
+	 * @return 返回 this，以支持链式调用
 	 */
 	public ToStringCreator append(String fieldName, double value) {
 		return append(fieldName, Double.valueOf(value));
@@ -137,9 +137,9 @@ public class ToStringCreator {
 
 	/**
 	 * 追加一个 boolean 字段值。
-	 * @param fieldName the name of the field, usually the member variable name
-	 * @param value the field value
-	 * @return this, to support call-chaining
+	 * @param fieldName 字段名称，通常是成员变量名
+	 * @param value 字段值
+	 * @return 返回 this，以支持链式调用
 	 */
 	public ToStringCreator append(String fieldName, boolean value) {
 		return append(fieldName, Boolean.valueOf(value));
@@ -147,9 +147,9 @@ public class ToStringCreator {
 
 	/**
 	 * 追加一个字段值。
-	 * @param fieldName the name of the field, usually the member variable name
-	 * @param value the field value
-	 * @return this, to support call-chaining
+	 * @param fieldName 字段名称，通常是成员变量名
+	 * @param value 字段值
+	 * @return 返回 this，以支持链式调用
 	 */
 	public ToStringCreator append(String fieldName, @Nullable Object value) {
 		printFieldSeparatorIfNecessary();
@@ -168,8 +168,8 @@ public class ToStringCreator {
 
 	/**
 	 * 追加所提供的值。
-	 * @param value the value to append
-	 * @return this, to support call-chaining.
+	 * @param value 要追加的值
+	 * @return 返回 this，以支持链式调用。
 	 */
 	public ToStringCreator append(Object value) {
 		this.styler.styleValue(this.buffer, value);

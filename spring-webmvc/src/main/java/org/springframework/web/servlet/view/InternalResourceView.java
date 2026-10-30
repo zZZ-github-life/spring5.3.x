@@ -79,7 +79,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 
 	/**
 	 * 使用给定 URL 创建一个新的 InternalResourceView。
-	 * @param url the URL to forward to
+	 * @param url 要转发到的 URL
 	 * @see #setAlwaysInclude
 	 */
 	public InternalResourceView(String url) {
@@ -88,8 +88,8 @@ public class InternalResourceView extends AbstractUrlBasedView {
 
 	/**
 	 * 使用给定 URL 创建一个新的 InternalResourceView。
-	 * @param url the URL to forward to
-	 * @param alwaysInclude whether to always include the view rather than forward to it
+	 * @param url 要转发到的 URL
+	 * @param alwaysInclude 是否始终包含该视图而不是转发到该视图
 	 */
 	public InternalResourceView(String url, boolean alwaysInclude) {
 		super(url);
@@ -177,8 +177,8 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	 * <p>由 {@link #renderMergedOutputModel(Map, HttpServletRequest, HttpServletResponse)} 调用。
 	 * 默认实现为空。可以重写此方法以将
 	 * 自定义辅助对象添加为请求属性。
-	 * @param request current HTTP request
-	 * @throws Exception if there's a fatal error while we're adding attributes
+	 * @param request 当前 HTTP 请求
+	 * @throws Exception 如果在添加属性时发生致命错误
 	 * @see #renderMergedOutputModel
 	 * @see JstlView#exposeHelpers
 	 */
@@ -191,10 +191,10 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	 * <p>此实现仅返回所配置的 URL。
 	 * 子类可以重写此方法以确定要渲染的资源，
 	 * 通常以不同方式解释该 URL。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @return the request dispatcher path to use
-	 * @throws Exception if preparations failed
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @return 要使用的请求分派器路径
+	 * @throws Exception 如果准备失败
 	 * @see #getUrl()
 	 */
 	protected String prepareForRendering(HttpServletRequest request, HttpServletResponse response)
@@ -219,9 +219,9 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	 * <p>默认实现只是调用
 	 * {@link HttpServletRequest#getRequestDispatcher(String)}。
 	 * 可在子类中重写。
-	 * @param request current HTTP request
-	 * @param path the target URL (as returned from {@link #prepareForRendering})
-	 * @return a corresponding RequestDispatcher
+	 * @param request 当前 HTTP 请求
+	 * @param path 目标 URL（由 {@link #prepareForRendering} 返回）
+	 * @return 相应的 RequestDispatcher
 	 */
 	@Nullable
 	protected RequestDispatcher getRequestDispatcher(HttpServletRequest request, String path) {
@@ -234,9 +234,9 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	 * <p>会检查请求中是否找到 include URI 属性（
 	 * 表示这是一个 include 请求），以及响应是否已提交。
 	 * 在这两种情况下，都将执行 include，因为已无法再执行 forward。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @return {@code true} for include, {@code false} for forward
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @return include 时为 {@code true}，forward 时为 {@code false}
 	 * @see javax.servlet.RequestDispatcher#forward
 	 * @see javax.servlet.RequestDispatcher#include
 	 * @see javax.servlet.ServletResponse#isCommitted

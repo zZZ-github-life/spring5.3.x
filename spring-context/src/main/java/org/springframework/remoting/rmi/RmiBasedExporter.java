@@ -41,7 +41,7 @@ public abstract class RmiBasedExporter extends RemoteInvocationBasedExporter {
 
 	/**
 	 * 确定要导出的对象：服务对象本身，或者在非 RMI 服务对象的情况下为其提供一个 RmiInvocationWrapper。
-	 * @return the RMI object to export
+	 * @return 要导出的 RMI 对象
 	 * @see #setService
 	 * @see #setServiceInterface
 	 */

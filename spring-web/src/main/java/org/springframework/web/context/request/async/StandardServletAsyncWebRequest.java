@@ -58,8 +58,8 @@ public class StandardServletAsyncWebRequest extends ServletWebRequest implements
 
 	/**
 	 * 为给定的请求/响应对创建一个新实例。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
 	 */
 	public StandardServletAsyncWebRequest(HttpServletRequest request, HttpServletResponse response) {
 		super(request, response);

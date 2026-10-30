@@ -31,7 +31,7 @@ public interface SqlProvider {
 
 	/**
 	 * 返回此对象的 SQL 字符串，即通常用于创建语句的 SQL。
-	 * @return the SQL string, or {@code null} if not available
+	 * @return SQL 字符串，如果不可用则为 {@code null}
 	 */
 	@Nullable
 	String getSql();

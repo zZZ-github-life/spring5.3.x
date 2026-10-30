@@ -45,7 +45,7 @@ public abstract class MethodOverride implements BeanMetadataElement {
 
 	/**
 	 * 为给定方法构造一个新的覆盖。
-	 * @param methodName the name of the method to override
+	 * @param methodName 要覆盖的方法的名称
 	 */
 	protected MethodOverride(String methodName) {
 		Assert.notNull(methodName, "Method name must not be null");
@@ -91,8 +91,8 @@ public abstract class MethodOverride implements BeanMetadataElement {
 
 	/**
 	 * 子类必须重写此方法，以指示它们是否<em>匹配</em>给定方法。这允许检查参数列表以及方法名。
-	 * @param method the method to check
-	 * @return whether this override matches the given method
+	 * @param method 要检查的方法
+	 * @return 此覆盖是否匹配给定的方法
 	 */
 	public abstract boolean matches(Method method);
 

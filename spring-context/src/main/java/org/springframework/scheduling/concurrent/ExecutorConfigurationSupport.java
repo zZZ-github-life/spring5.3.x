@@ -170,9 +170,9 @@ public abstract class ExecutorConfigurationSupport extends CustomizableThreadFac
 
 	/**
 	 * 创建目标 {@link java.util.concurrent.ExecutorService} 实例。由 {@code afterPropertiesSet} 调用。
-	 * @param threadFactory the ThreadFactory to use
-	 * @param rejectedExecutionHandler the RejectedExecutionHandler to use
-	 * @return a new ExecutorService instance
+	 * @param threadFactory 要使用的 ThreadFactory
+	 * @param rejectedExecutionHandler 要使用的 RejectedExecutionHandler
+	 * @return 新的 ExecutorService 实例
 	 * @see #afterPropertiesSet()
 	 */
 	protected abstract ExecutorService initializeExecutor(
@@ -212,7 +212,7 @@ public abstract class ExecutorConfigurationSupport extends CustomizableThreadFac
 
 	/**
 	 * 取消给定的、从未开始执行的剩余任务，该任务由 {@link ExecutorService#shutdownNow()} 返回。
-	 * @param task the task to cancel (typically a {@link RunnableFuture})
+	 * @param task 要取消的任务（通常是 {@link RunnableFuture}）
 	 * @since 5.0.5
 	 * @see #shutdown()
 	 * @see RunnableFuture#cancel(boolean)

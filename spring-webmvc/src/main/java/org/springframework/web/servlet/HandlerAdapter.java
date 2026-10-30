@@ -54,22 +54,21 @@ public interface HandlerAdapter {
 	 * <p>{@code
 	 * return (handler instanceof MyHandler);
 	 * }
-	 * @param handler the handler object to check
-	 * @return whether this object can use the given handler
+	 * @param handler 要检查的处理器对象
+	 * @return 此对象能否使用给定的处理器
 	 */
 	boolean supports(Object handler);
 
 	/**
 	 * 使用给定的处理器处理此请求。
 	 * 所需的工作流可能千差万别。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the handler to use. This object must have previously been passed
-	 * to the {@code supports} method of this interface, which must have
-	 * returned {@code true}.
-	 * @return a ModelAndView object with the name of the view and the required
-	 * model data, or {@code null} if the request has been handled directly
-	 * @throws Exception in case of errors
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 要使用的处理器。此对象此前必须已传递给此接口的
+	 * {@code supports} 方法，且该方法必须返回过 {@code true}。
+	 * @return 包含视图名称和所需模型数据的 ModelAndView 对象；
+	 * 如果请求已被直接处理，则为 {@code null}
+	 * @throws Exception 如果发生错误
 	 */
 	@Nullable
 	ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception;
@@ -77,9 +76,9 @@ public interface HandlerAdapter {
 	/**
 	 * 与 HttpServlet 的 {@code getLastModified} 方法具有相同的约定。
 	 * 如果处理器类不支持该功能，可以直接返回 -1。
-	 * @param request current HTTP request
-	 * @param handler the handler to use
-	 * @return the lastModified value for the given handler
+	 * @param request 当前 HTTP 请求
+	 * @param handler 要使用的处理器
+	 * @return 给定处理器的 lastModified 值
 	 * @deprecated as of 5.3.9 along with
 	 * {@link org.springframework.web.servlet.mvc.LastModified}.
 	 */

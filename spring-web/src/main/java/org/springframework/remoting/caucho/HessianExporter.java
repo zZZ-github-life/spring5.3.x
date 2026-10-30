@@ -132,9 +132,9 @@ public class HessianExporter extends RemoteExporter implements InitializingBean 
 
 	/**
 	 * 对导出的对象执行调用。
-	 * @param inputStream the request stream
-	 * @param outputStream the response stream
-	 * @throws Throwable if invocation failed
+	 * @param inputStream 请求流
+	 * @param outputStream 响应流
+	 * @throws Throwable 如果调用失败则抛出
 	 */
 	public void invoke(InputStream inputStream, OutputStream outputStream) throws Throwable {
 		Assert.notNull(this.skeleton, "Hessian exporter has not been initialized");
@@ -143,10 +143,10 @@ public class HessianExporter extends RemoteExporter implements InitializingBean 
 
 	/**
 	 * 使用给定的流实际调用骨架（skeleton）。
-	 * @param skeleton the skeleton to invoke
-	 * @param inputStream the request stream
-	 * @param outputStream the response stream
-	 * @throws Throwable if invocation failed
+	 * @param skeleton 要调用的 skeleton
+	 * @param inputStream 请求流
+	 * @param outputStream 响应流
+	 * @throws Throwable 如果调用失败则抛出
 	 */
 	protected void doInvoke(HessianSkeleton skeleton, InputStream inputStream, OutputStream outputStream)
 			throws Throwable {

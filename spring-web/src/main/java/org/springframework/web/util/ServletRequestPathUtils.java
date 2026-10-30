@@ -68,7 +68,7 @@ public abstract class ServletRequestPathUtils {
 
 	/**
 	 * 返回{@link #parseAndCache 先前}解析并缓存的 {@code RequestPath}。
-	 * @throws IllegalArgumentException if not found
+	 * @throws IllegalArgumentException 如果未找到
 	 */
 	public static RequestPath getParsedRequestPath(ServletRequest request) {
 		RequestPath path = (RequestPath) request.getAttribute(PATH_ATTRIBUTE);
@@ -78,9 +78,8 @@ public abstract class ServletRequestPathUtils {
 
 	/**
 	 * 将缓存、已解析的 {@code RequestPath} 设置为给定值。
-	 * @param requestPath the value to set to, or if {@code null} the cache
-	 * value is cleared.
-	 * @param request the current request
+	 * @param requestPath 要设置的值；如果为 {@code null}，则清除缓存值。
+	 * @param request 当前请求
 	 * @since 5.3.3
 	 */
 	public static void setParsedRequestPath(@Nullable RequestPath requestPath, ServletRequest request) {
@@ -121,9 +120,9 @@ public abstract class ServletRequestPathUtils {
 	 * ServletRequestPathFilter} 完成同样的操作。在其他 {@code HandlerMapping}
 	 * 使用 {@code PathMatcher} 进行 String 模式匹配的情况下，String
 	 * lookupPath 由每个 {@code HandlerMapping} 分别解析。
-	 * @param request the current request
-	 * @return a String lookupPath or a {@code RequestPath}
-	 * @throws IllegalArgumentException if neither is available
+	 * @param request 当前请求
+	 * @return String 类型的 lookupPath 或 {@code RequestPath}
+	 * @throws IllegalArgumentException 如果两者都不可用
 	 */
 	public static Object getCachedPath(ServletRequest request) {
 
@@ -152,8 +151,8 @@ public abstract class ServletRequestPathUtils {
 	 * <p>如果缓存的路径是 {@link UrlPathHelper#resolveAndCacheLookupPath
 	 * 预先解析}的 String lookupPath，则返回的 String 路径值取决于
 	 * 解析它的 {@link UrlPathHelper} 的配置。
-	 * @param request the current request
-	 * @return the full request mapping path as a String
+	 * @param request 当前请求
+	 * @return 以 String 表示的完整请求映射路径
 	 */
 	public static String getCachedPathValue(ServletRequest request) {
 		Object path = getCachedPath(request);
@@ -167,8 +166,8 @@ public abstract class ServletRequestPathUtils {
 	/**
 	 * 检查是否存在先前 {@link UrlPathHelper#resolveAndCacheLookupPath 解析}的
 	 * String lookupPath 或先前 {@link #parseAndCache 解析}的 {@code RequestPath}。
-	 * @param request the current request
-	 * @return whether a pre-resolved or pre-parsed path is available
+	 * @param request 当前请求
+	 * @return 是否有预解析或预先解析好的路径可用
 	 */
 	public static boolean hasCachedPath(ServletRequest request) {
 		return (request.getAttribute(PATH_ATTRIBUTE) != null ||

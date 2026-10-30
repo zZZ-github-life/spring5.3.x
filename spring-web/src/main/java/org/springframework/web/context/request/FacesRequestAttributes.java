@@ -59,7 +59,7 @@ public class FacesRequestAttributes implements RequestAttributes {
 
 	/**
 	 * 为给定的 FacesContext 创建一个新的 FacesRequestAttributes 适配器。
-	 * @param facesContext the current FacesContext
+	 * @param facesContext 当前的 FacesContext
 	 * @see javax.faces.context.FacesContext#getCurrentInstance()
 	 */
 	public FacesRequestAttributes(FacesContext facesContext) {
@@ -85,8 +85,8 @@ public class FacesRequestAttributes implements RequestAttributes {
 
 	/**
 	 * 返回指定作用域的 JSF 属性 Map。
-	 * @param scope constant indicating request or session scope
-	 * @return the Map representation of the attributes in the specified scope
+	 * @param scope 指示请求或会话作用域的常量
+	 * @return 指定作用域中属性的 Map 表示
 	 * @see #SCOPE_REQUEST
 	 * @see #SCOPE_SESSION
 	 */

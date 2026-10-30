@@ -92,7 +92,7 @@ public abstract class AbstractPdfView extends AbstractView {
 	 * 创建一个新文档以承载 PDF 内容。
 	 * <p>默认返回 A4 文档，但子类可以指定任意 Document，
 	 * 并可通过在 View 上定义的 bean 属性进行参数化。
-	 * @return the newly created iText Document instance
+	 * @return 新创建的 iText Document 实例
 	 * @see com.lowagie.text.Document#Document(com.lowagie.text.Rectangle)
 	 */
 	protected Document newDocument() {
@@ -101,10 +101,10 @@ public abstract class AbstractPdfView extends AbstractView {
 
 	/**
 	 * 为给定的 iText Document 创建一个新的 PdfWriter。
-	 * @param document the iText Document to create a writer for
-	 * @param os the OutputStream to write to
-	 * @return the PdfWriter instance to use
-	 * @throws DocumentException if thrown during writer creation
+	 * @param document 要为其创建写入器的 iText Document
+	 * @param os 要写入的 OutputStream
+	 * @return 要使用的 PdfWriter 实例
+	 * @throws DocumentException 如果在创建写入器期间抛出
 	 */
 	protected PdfWriter newWriter(Document document, OutputStream os) throws DocumentException {
 		return PdfWriter.getInstance(document, os);
@@ -116,10 +116,10 @@ public abstract class AbstractPdfView extends AbstractView {
 	 * <p>例如，这适合用于注册页面事件监听器。
 	 * 默认实现会设置此类 {@code getViewerPreferences()} 方法返回的
 	 * 阅读器偏好设置。
-	 * @param model the model, in case meta information must be populated from it
-	 * @param writer the PdfWriter to prepare
-	 * @param request in case we need locale etc. Shouldn't look at attributes.
-	 * @throws DocumentException if thrown during writer preparation
+	 * @param model 模型，在需要从中填充元信息时使用
+	 * @param writer 要准备的 PdfWriter
+	 * @param request 在需要 Locale 等情况下使用。不应查看属性。
+	 * @throws DocumentException 如果在准备写入器期间抛出
 	 * @see com.lowagie.text.Document#open()
 	 * @see com.lowagie.text.pdf.PdfWriter#setPageEvent
 	 * @see com.lowagie.text.pdf.PdfWriter#setViewerPreferences
@@ -137,7 +137,7 @@ public abstract class AbstractPdfView extends AbstractView {
 	 * {@code PageLayoutSinglePage}，但子类可以覆盖。
 	 * 子类既可以使用固定的偏好设置，
 	 * 也可以从 View 上定义的 bean 属性中获取。
-	 * @return an int containing the bits information against PdfWriter definitions
+	 * @return 一个包含与 PdfWriter 定义对应的位标志信息的 int
 	 * @see com.lowagie.text.pdf.PdfWriter#AllowPrinting
 	 * @see com.lowagie.text.pdf.PdfWriter#PageLayoutSinglePage
 	 */
@@ -151,9 +151,9 @@ public abstract class AbstractPdfView extends AbstractView {
 	 * 添加标题、主题、作者、创建者、关键字等元数据字段。
 	 * 此方法在将 PdfWriter 关联到 Document 之后、
 	 * 调用 {@code document.open()} 之前调用。
-	 * @param model the model, in case meta information must be populated from it
-	 * @param document the iText document being populated
-	 * @param request in case we need locale etc. Shouldn't look at attributes.
+	 * @param model 模型，在需要从中填充元信息时使用
+	 * @param document 正在填充的 iText 文档
+	 * @param request 在需要 Locale 等情况下使用。不应查看属性。
 	 * @see com.lowagie.text.Document#addTitle
 	 * @see com.lowagie.text.Document#addSubject
 	 * @see com.lowagie.text.Document#addKeywords
@@ -172,12 +172,12 @@ public abstract class AbstractPdfView extends AbstractView {
 	 * {@code Document.close()} 调用之间被调用。
 	 * <p>注意，传入的 HTTP response 仅应用于设置 cookie 或其他 HTTP 头。
 	 * 构建好的 PDF 文档本身将在该方法返回后自动写入 response。
-	 * @param model the model Map
-	 * @param document the iText Document to add elements to
-	 * @param writer the PdfWriter to use
-	 * @param request in case we need locale etc. Shouldn't look at attributes.
-	 * @param response in case we need to set cookies. Shouldn't write to it.
-	 * @throws Exception any exception that occurred during document building
+	 * @param model 模型 Map
+	 * @param document 要向其添加元素的 iText Document
+	 * @param writer 要使用的 PdfWriter
+	 * @param request 在需要 Locale 等情况下使用。不应查看属性。
+	 * @param response 在需要设置 Cookie 的情况下使用。不应向其写入。
+	 * @throws Exception 文档构建期间发生的任何异常
 	 * @see com.lowagie.text.Document#open()
 	 * @see com.lowagie.text.Document#close()
 	 */

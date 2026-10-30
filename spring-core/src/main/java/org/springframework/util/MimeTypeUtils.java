@@ -194,9 +194,9 @@ public abstract class MimeTypeUtils {
 	/**
 	 * 将给定的 String 解析为单个 {@code MimeType}。
 	 * 最近解析过的 {@code MimeType} 会被缓存以便后续获取。
-	 * @param mimeType the string to parse
-	 * @return the mime type
-	 * @throws InvalidMimeTypeException if the string cannot be parsed
+	 * @param mimeType 要解析的字符串
+	 * @return MIME 类型
+	 * @throws InvalidMimeTypeException 如果字符串无法解析
 	 */
 	public static MimeType parseMimeType(String mimeType) {
 		if (!StringUtils.hasLength(mimeType)) {
@@ -278,9 +278,9 @@ public abstract class MimeTypeUtils {
 
 	/**
 	 * 将以逗号分隔的字符串解析为 {@code MimeType} 对象的列表。
-	 * @param mimeTypes the string to parse
-	 * @return the list of mime types
-	 * @throws InvalidMimeTypeException if the string cannot be parsed
+	 * @param mimeTypes 要解析的字符串
+	 * @return MIME 类型列表
+	 * @throws InvalidMimeTypeException 如果字符串无法解析
 	 */
 	public static List<MimeType> parseMimeTypes(String mimeTypes) {
 		if (!StringUtils.hasLength(mimeTypes)) {
@@ -295,8 +295,8 @@ public abstract class MimeTypeUtils {
 	/**
 	 * 将给定的逗号分隔的 {@code MimeType} 对象字符串切分为 {@code List<String>}。与按 "," 进行简单切分
 	 * 不同，此方法会考虑带引号的参数。
-	 * @param mimeTypes the string to tokenize
-	 * @return the list of tokens
+	 * @param mimeTypes 要标记化的字符串
+	 * @return 标记列表
 	 * @since 5.1.3
 	 */
 	public static List<String> tokenize(String mimeTypes) {
@@ -330,9 +330,9 @@ public abstract class MimeTypeUtils {
 
 	/**
 	 * 返回给定 {@code MimeType} 对象列表的字符串表示形式。
-	 * @param mimeTypes the string to parse
-	 * @return the list of mime types
-	 * @throws IllegalArgumentException if the String cannot be parsed
+	 * @param mimeTypes 要解析的字符串
+	 * @return MIME 类型列表
+	 * @throws IllegalArgumentException 如果该 String 无法解析
 	 */
 	public static String toString(Collection<? extends MimeType> mimeTypes) {
 		StringBuilder builder = new StringBuilder();
@@ -361,7 +361,7 @@ public abstract class MimeTypeUtils {
 	 * <blockquote>audio/basic;level=1 &lt; audio/basic</blockquote>
 	 * <blockquote>audio/basic == text/html</blockquote>
 	 * <blockquote>audio/basic == audio/wave</blockquote>
-	 * @param mimeTypes the list of mime types to be sorted
+	 * @param mimeTypes 要排序的 MIME 类型列表
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-5.3.2">HTTP 1.1: Semantics
 	 * and Content, section 5.3.2</a>
 	 */

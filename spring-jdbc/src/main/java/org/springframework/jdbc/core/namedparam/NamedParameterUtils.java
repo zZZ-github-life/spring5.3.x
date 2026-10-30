@@ -77,8 +77,8 @@ public abstract class NamedParameterUtils {
 	/**
 	 * 解析 SQL 语句并定位所有占位符或命名参数。
 	 * 命名参数会被替换为 JDBC 占位符。
-	 * @param sql the SQL statement
-	 * @return the parsed statement, represented as {@link ParsedSql} instance
+	 * @param sql SQL 语句
+	 * @return 解析后的语句，表示为 {@link ParsedSql} 实例
 	 */
 	public static ParsedSql parseSqlStatement(String sql) {
 		Assert.notNull(sql, "SQL must not be null");
@@ -207,9 +207,9 @@ public abstract class NamedParameterUtils {
 
 	/**
 	 * 跳过 SQL 语句中的注释和带引号的名称。
-	 * @param statement character array containing SQL statement
-	 * @param position current position of statement
-	 * @return next position to process after any comments or quotes are skipped
+	 * @param statement 包含 SQL 语句的字符数组
+	 * @param position statement 的当前位置
+	 * @return 跳过所有注释或引号后要处理的下一个位置
 	 */
 	private static int skipCommentsAndQuotes(char[] statement, int position) {
 		for (int i = 0; i < START_SKIP.length; i++) {
@@ -261,9 +261,9 @@ public abstract class NamedParameterUtils {
 	 * <p>传入的参数值用于确定选择列表要使用的占位符数量。
 	 * 选择列表应限制在 100 个或更少的元素。数量更多时不能保证
 	 * 数据库支持，并且完全取决于具体厂商。
-	 * @param parsedSql the parsed representation of the SQL statement
-	 * @param paramSource the source for named parameters
-	 * @return the SQL statement with substituted parameters
+	 * @param parsedSql SQL 语句的解析表示
+	 * @param paramSource 命名参数的来源
+	 * @return 替换参数后的 SQL 语句
 	 * @see #parseSqlStatement
 	 */
 	public static String substituteNamedParameters(ParsedSql parsedSql, @Nullable SqlParameterSource paramSource) {
@@ -326,12 +326,11 @@ public abstract class NamedParameterUtils {
 
 	/**
 	 * 将命名参数值的 Map 转换为相应的数组。
-	 * @param parsedSql the parsed SQL statement
-	 * @param paramSource the source for named parameters
-	 * @param declaredParams the List of declared SqlParameter objects
-	 * (may be {@code null}). If specified, the parameter metadata will
-	 * be built into the value array in the form of SqlParameterValue objects.
-	 * @return the array of values
+	 * @param parsedSql 解析后的 SQL 语句
+	 * @param paramSource 命名参数的来源
+	 * @param declaredParams 已声明的 SqlParameter 对象 List（可能为 {@code null}）。
+	 * 如果指定，参数元数据将以 SqlParameterValue 对象的形式构建到值数组中。
+	 * @return 值数组
 	 */
 	public static Object[] buildValueArray(
 			ParsedSql parsedSql, SqlParameterSource paramSource, @Nullable List<SqlParameter> declaredParams) {
@@ -368,10 +367,10 @@ public abstract class NamedParameterUtils {
 
 	/**
 	 * 在给定的已声明参数列表中查找匹配的参数。
-	 * @param declaredParams the declared SqlParameter objects
-	 * @param paramName the name of the desired parameter
-	 * @param paramIndex the index of the desired parameter
-	 * @return the declared SqlParameter, or {@code null} if none found
+	 * @param declaredParams 已声明的 SqlParameter 对象
+	 * @param paramName 所需参数的名称
+	 * @param paramIndex 所需参数的索引
+	 * @return 已声明的 SqlParameter；如果未找到，则为 {@code null}
 	 */
 	@Nullable
 	private static SqlParameter findParameter(
@@ -409,8 +408,8 @@ public abstract class NamedParameterUtils {
 	 * 这是为了复用 JdbcTemplate 上已有的方法所必需的。
 	 * 所有命名参数类型都会根据解析后的 SQL 语句信息
 	 * 放入 Object 数组中的正确位置。
-	 * @param parsedSql the parsed SQL statement
-	 * @param paramSource the source for named parameters
+	 * @param parsedSql 解析后的 SQL 语句
+	 * @param paramSource 命名参数的来源
 	 */
 	public static int[] buildSqlTypeArray(ParsedSql parsedSql, SqlParameterSource paramSource) {
 		int[] sqlTypes = new int[parsedSql.getTotalParameterCount()];
@@ -427,8 +426,8 @@ public abstract class NamedParameterUtils {
 	 * 这是为了复用 JdbcTemplate 上已有的方法所必需的。
 	 * 命名参数的 SqlParameter 会根据解析后的 SQL 语句信息
 	 * 放入结果列表中的正确位置。
-	 * @param parsedSql the parsed SQL statement
-	 * @param paramSource the source for named parameters
+	 * @param parsedSql 解析后的 SQL 语句
+	 * @param paramSource 命名参数的来源
 	 */
 	public static List<SqlParameter> buildSqlParameterList(ParsedSql parsedSql, SqlParameterSource paramSource) {
 		List<String> paramNames = parsedSql.getParameterNames();
@@ -451,8 +450,8 @@ public abstract class NamedParameterUtils {
 	 * <p>这是
 	 * {@link #parseSqlStatement(String)} 与
 	 * {@link #substituteNamedParameters(ParsedSql, SqlParameterSource)} 组合的快捷版本。
-	 * @param sql the SQL statement
-	 * @return the actual (parsed) SQL statement
+	 * @param sql SQL 语句
+	 * @return 实际（已解析）的 SQL 语句
 	 */
 	public static String parseSqlStatementIntoString(String sql) {
 		ParsedSql parsedSql = parseSqlStatement(sql);
@@ -465,9 +464,9 @@ public abstract class NamedParameterUtils {
 	 * 都会被扩展为所需数量的占位符。
 	 * <p>这是
 	 * {@link #substituteNamedParameters(ParsedSql, SqlParameterSource)} 的快捷版本。
-	 * @param sql the SQL statement
-	 * @param paramSource the source for named parameters
-	 * @return the SQL statement with substituted parameters
+	 * @param sql SQL 语句
+	 * @param paramSource 命名参数的来源
+	 * @return 替换参数后的 SQL 语句
 	 */
 	public static String substituteNamedParameters(String sql, SqlParameterSource paramSource) {
 		ParsedSql parsedSql = parseSqlStatement(sql);
@@ -478,9 +477,9 @@ public abstract class NamedParameterUtils {
 	 * 将命名参数值的 Map 转换为相应的数组。
 	 * <p>这是
 	 * {@link #buildValueArray(ParsedSql, SqlParameterSource, java.util.List)} 的快捷版本。
-	 * @param sql the SQL statement
-	 * @param paramMap the Map of parameters
-	 * @return the array of values
+	 * @param sql SQL 语句
+	 * @param paramMap 参数的 Map
+	 * @return 值数组
 	 */
 	public static Object[] buildValueArray(String sql, Map<String, ?> paramMap) {
 		ParsedSql parsedSql = parseSqlStatement(sql);

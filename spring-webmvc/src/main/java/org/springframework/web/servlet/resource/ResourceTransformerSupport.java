@@ -61,11 +61,11 @@ public abstract class ResourceTransformerSupport implements ResourceTransformer 
 	 * 当被转换的资源包含指向其他资源的链接时，转换器可以使用此方法。
 	 * 此类链接需要替换为由资源解析器链确定的
 	 * 面向公众的链接（例如公共 URL 中可能插入了版本）。
-	 * @param resourcePath the path to a resource that needs to be re-written
-	 * @param request the current request
-	 * @param resource the resource being transformed
-	 * @param transformerChain the transformer chain
-	 * @return the resolved URL, or {@code} if not resolvable
+	 * @param resourcePath 需要重写的资源路径
+	 * @param request 当前请求
+	 * @param resource 正在转换的资源
+	 * @param transformerChain 转换器链
+	 * @return 解析出的 URL；如果无法解析，则为 {@code}
 	 */
 	@Nullable
 	protected String resolveUrlPath(String resourcePath, HttpServletRequest request,
@@ -87,9 +87,9 @@ public abstract class ResourceTransformerSupport implements ResourceTransformer 
 	 * 将给定相对请求路径转换为绝对路径，
 	 * 并以给定请求的路径作为参考点。
 	 * 结果路径还会清除 "path/.." 之类的序列。
-	 * @param path the relative path to transform
-	 * @param request the referer request
-	 * @return the absolute request path for the given resource path
+	 * @param path 要转换的相对路径
+	 * @param request referer 请求
+	 * @return 给定资源路径对应的绝对请求路径
 	 */
 	protected String toAbsolutePath(String path, HttpServletRequest request) {
 		String absolutePath = path;

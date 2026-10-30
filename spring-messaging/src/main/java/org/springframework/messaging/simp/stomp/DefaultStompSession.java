@@ -117,8 +117,8 @@ public class DefaultStompSession implements ConnectionHandlingStompSession {
 
 	/**
 	 * 创建新会话。
-	 * @param sessionHandler the application handler for the session
-	 * @param connectHeaders headers for the STOMP CONNECT frame
+	 * @param sessionHandler 会话的应用处理器
+	 * @param connectHeaders STOMP CONNECT 帧的消息头
 	 */
 	public DefaultStompSession(StompSessionHandler sessionHandler, StompHeaders connectHeaders) {
 		Assert.notNull(sessionHandler, "StompSessionHandler must not be null");
@@ -158,7 +158,7 @@ public class DefaultStompSession implements ConnectionHandlingStompSession {
 	 * 在传入和传出消息的载荷与 {@code byte[]} 之间进行转换的
 	 * {@link MessageConverter}。
 	 * <p>默认配置 {@link SimpleMessageConverter}。
-	 * @param messageConverter the message converter to use
+	 * @param messageConverter 要使用的消息转换器
 	 */
 	public void setMessageConverter(MessageConverter messageConverter) {
 		Assert.notNull(messageConverter, "MessageConverter must not be null");

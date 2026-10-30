@@ -35,22 +35,22 @@ public interface WebSocketHandler {
 
 	/**
 	 * 在 WebSocket 协商成功、WebSocket 连接已打开并可以使用之后调用。
-	 * @throws Exception this method can handle or propagate exceptions; see class-level
-	 * Javadoc for details.
+	 * @throws Exception 此方法可以处理或传播异常；
+	 * 详情见类级 Javadoc。
 	 */
 	void afterConnectionEstablished(WebSocketSession session) throws Exception;
 
 	/**
 	 * 当新的 WebSocket 消息到达时调用。
-	 * @throws Exception this method can handle or propagate exceptions; see class-level
-	 * Javadoc for details.
+	 * @throws Exception 此方法可以处理或传播异常；
+	 * 详情见类级 Javadoc。
 	 */
 	void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception;
 
 	/**
 	 * 处理来自底层 WebSocket 消息传输的错误。
-	 * @throws Exception this method can handle or propagate exceptions; see class-level
-	 * Javadoc for details.
+	 * @throws Exception 此方法可以处理或传播异常；
+	 * 详情见类级 Javadoc。
 	 */
 	void handleTransportError(WebSocketSession session, Throwable exception) throws Exception;
 
@@ -58,8 +58,8 @@ public interface WebSocketHandler {
 	 * 在 WebSocket 连接被任一方关闭之后，或者发生传输错误之后调用。
 	 * 尽管根据底层实现的不同，会话在技术上可能仍处于打开状态，
 	 * 但此时不鼓励发送消息，且很可能不会成功。
-	 * @throws Exception this method can handle or propagate exceptions; see class-level
-	 * Javadoc for details.
+	 * @throws Exception 此方法可以处理或传播异常；
+	 * 详情见类级 Javadoc。
 	 */
 	void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception;
 

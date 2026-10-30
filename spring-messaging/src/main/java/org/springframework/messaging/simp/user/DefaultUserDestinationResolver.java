@@ -64,7 +64,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 
 	/**
 	 * 创建将通过提供的注册表访问用户会话 ID 信息的实例。
-	 * @param userRegistry the registry, never {@code null}
+	 * @param userRegistry 注册表，永不为 {@code null}
 	 */
 	public DefaultUserDestinationResolver(SimpUserRegistry userRegistry) {
 		Assert.notNull(userRegistry, "SimpUserRegistry must not be null");
@@ -82,7 +82,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 	/**
 	 * 用于识别用户目标的前缀。不以该前缀开头的目标不会被解析。
 	 * <p>默认前缀为 "/user/"。
-	 * @param prefix the prefix to use
+	 * @param prefix 要使用的前缀
 	 */
 	public void setUserDestinationPrefix(String prefix) {
 		Assert.hasText(prefix, "Prefix must not be empty");
@@ -103,7 +103,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 	 * 不过如果配置的目标没有前导斜杠，
 	 * {@link org.springframework.messaging.simp.config.AbstractMessageBrokerConfiguration
 	 * AbstractMessageBrokerConfiguration} 可能会将其改为 {@code true}。
-	 * @param remove whether to remove the leading slash
+	 * @param remove 是否移除前导斜杠
 	 * @since 4.3.14
 	 */
 	public void setRemoveLeadingSlash(boolean remove) {
@@ -126,7 +126,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 	 * 这适用于支持以斜杠作为分隔符的目标的代理。如果提供的 {@code PathMatcher}
 	 * 支持其他分隔符，则生成的目标将没有前导斜杠，例如
 	 * {@code jms.queue.position-updates}。
-	 * @param pathMatcher the PathMatcher used to work with destinations
+	 * @param pathMatcher 用于处理目标地址的 PathMatcher
 	 * @since 4.3
 	 * @deprecated as of 4.3.14 this property is no longer used and is replaced
 	 * by {@link #setRemoveLeadingSlash(boolean)} that indicates more explicitly
@@ -253,11 +253,11 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 
 	/**
 	 * 此方法决定如何将源“用户”目标转换为给定活跃用户会话的实际目标目标。
-	 * @param sourceDestination the source destination from the input message.
-	 * @param actualDestination a subset of the destination without any user prefix.
-	 * @param sessionId the id of an active user session, never {@code null}.
-	 * @param user the target user, possibly {@code null}, e.g if not authenticated.
-	 * @return a target destination, or {@code null} if none
+	 * @param sourceDestination 输入消息中的源目标地址。
+	 * @param actualDestination 不包含任何用户前缀的目标地址子集。
+	 * @param sessionId 活动用户会话的 id，永不为 {@code null}。
+	 * @param user 目标用户，可能为 {@code null}，例如未认证时。
+	 * @return 目标地址，如果没有则为 {@code null}
 	 */
 	@SuppressWarnings("unused")
 	@Nullable

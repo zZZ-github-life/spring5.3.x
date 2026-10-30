@@ -34,7 +34,7 @@ public final class TextMessage extends AbstractWebSocketMessage<String> {
 
 	/**
 	 * 使用给定的 CharSequence 负载创建一个新的文本 WebSocket 消息。
-	 * @param payload the non-null payload
+	 * @param payload 非 null 的负载
 	 */
 	public TextMessage(CharSequence payload) {
 		super(payload.toString(), true);
@@ -44,7 +44,7 @@ public final class TextMessage extends AbstractWebSocketMessage<String> {
 	/**
 	 * 使用给定的 byte[] 创建一个新的文本 WebSocket 消息。假定
 	 * 该字节数组可以编码为 UTF-8 字符串。
-	 * @param payload the non-null payload
+	 * @param payload 非 null 的负载
 	 */
 	public TextMessage(byte[] payload) {
 		super(new String(payload, StandardCharsets.UTF_8));
@@ -56,8 +56,8 @@ public final class TextMessage extends AbstractWebSocketMessage<String> {
 	 * 当 {@code isLast} 布尔标志设置为 {@code false} 时，
 	 * 该消息将作为部分内容发送，并且会预期收到更多部分消息，
 	 * 直到该布尔标志设置为 {@code true} 为止。
-	 * @param payload the non-null payload
-	 * @param isLast whether this the last part of a series of partial messages
+	 * @param payload 非 null 的负载
+	 * @param isLast 这是否为一系列部分消息中的最后一部分
 	 */
 	public TextMessage(CharSequence payload, boolean isLast) {
 		super(payload.toString(), isLast);

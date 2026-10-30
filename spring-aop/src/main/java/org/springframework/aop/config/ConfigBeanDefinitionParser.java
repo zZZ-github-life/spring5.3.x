@@ -305,7 +305,7 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 	/**
 	 * 解析 '{@code before}'、'{@code after}'、'{@code after-returning}'、'{@code after-throwing}' 或 '
 	 * {@code around}' 之一，并将得到的 BeanDefinition 注册到所提供的 BeanDefinitionRegistry。
-	 * @return the generated advice RootBeanDefinition
+	 * @return 生成的通知 RootBeanDefinition
 	 */
 	private AbstractBeanDefinition parseAdvice(
 			String aspectName, int order, Element aspectElement, Element adviceElement, ParserContext parserContext,

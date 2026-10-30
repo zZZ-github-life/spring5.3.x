@@ -89,7 +89,7 @@ public class WebSocketStompClient extends StompClientSupport implements SmartLif
 	 * 类构造函数。将 {@link #setDefaultHeartbeat} 设置为 "0,0"，
 	 * 但当配置了 {@link #setTaskScheduler} 时，
 	 * 会将其重置回首选的 "10000,10000"。
-	 * @param webSocketClient the WebSocket client to connect with
+	 * @param webSocketClient 用于连接的 WebSocket 客户端
 	 */
 	public WebSocketStompClient(WebSocketClient webSocketClient) {
 		Assert.notNull(webSocketClient, "WebSocketClient is required");
@@ -202,10 +202,10 @@ public class WebSocketStompClient extends StompClientSupport implements SmartLif
 	 * 连接到给定的 WebSocket URL，并在收到 CONNECTED 帧后于 STOMP 层面连接成功时
 	 * 通知给定的
 	 * {@link org.springframework.messaging.simp.stomp.StompSessionHandler}。
-	 * @param url the url to connect to
-	 * @param handler the session handler
-	 * @param uriVars the URI variables to expand into the URL
-	 * @return a ListenableFuture for access to the session when ready for use
+	 * @param url 要连接的 URL
+	 * @param handler 会话处理器
+	 * @param uriVars 要展开到 URL 中的 URI 变量
+	 * @return 用于在会话可用时访问该会话的 ListenableFuture
 	 */
 	public ListenableFuture<StompSession> connect(String url, StompSessionHandler handler, Object... uriVars) {
 		return connect(url, null, handler, uriVars);
@@ -214,11 +214,11 @@ public class WebSocketStompClient extends StompClientSupport implements SmartLif
 	/**
 	 * {@link #connect(String, StompSessionHandler, Object...)} 的重载版本，
 	 * 还接受用于 WebSocket 握手的 {@link WebSocketHttpHeaders}。
-	 * @param url the url to connect to
-	 * @param handshakeHeaders the headers for the WebSocket handshake
-	 * @param handler the session handler
-	 * @param uriVariables the URI variables to expand into the URL
-	 * @return a ListenableFuture for access to the session when ready for use
+	 * @param url 要连接的 URL
+	 * @param handshakeHeaders WebSocket 握手的头
+	 * @param handler 会话处理器
+	 * @param uriVariables 要展开到 URL 中的 URI 变量
+	 * @return 用于在会话可用时访问该会话的 ListenableFuture
 	 */
 	public ListenableFuture<StompSession> connect(String url, @Nullable WebSocketHttpHeaders handshakeHeaders,
 			StompSessionHandler handler, Object... uriVariables) {
@@ -230,12 +230,12 @@ public class WebSocketStompClient extends StompClientSupport implements SmartLif
 	 * {@link #connect(String, StompSessionHandler, Object...)} 的重载版本，
 	 * 还接受用于 WebSocket 握手的 {@link WebSocketHttpHeaders}
 	 * 以及用于 STOMP CONNECT 帧的 {@link StompHeaders}。
-	 * @param url the url to connect to
-	 * @param handshakeHeaders headers for the WebSocket handshake
-	 * @param connectHeaders headers for the STOMP CONNECT frame
-	 * @param handler the session handler
-	 * @param uriVariables the URI variables to expand into the URL
-	 * @return a ListenableFuture for access to the session when ready for use
+	 * @param url 要连接的 URL
+	 * @param handshakeHeaders WebSocket 握手的头
+	 * @param connectHeaders STOMP CONNECT 帧的头
+	 * @param handler 会话处理器
+	 * @param uriVariables 要展开到 URL 中的 URI 变量
+	 * @return 用于在会话可用时访问该会话的 ListenableFuture
 	 */
 	public ListenableFuture<StompSession> connect(String url, @Nullable WebSocketHttpHeaders handshakeHeaders,
 			@Nullable StompHeaders connectHeaders, StompSessionHandler handler, Object... uriVariables) {
@@ -248,11 +248,11 @@ public class WebSocketStompClient extends StompClientSupport implements SmartLif
 	/**
 	 * {@link #connect(String, WebSocketHttpHeaders, StompSessionHandler, Object...)}
 	 * 的重载版本，接受一个完全准备好的 {@link java.net.URI}。
-	 * @param url the url to connect to
-	 * @param handshakeHeaders the headers for the WebSocket handshake
-	 * @param connectHeaders headers for the STOMP CONNECT frame
-	 * @param sessionHandler the STOMP session handler
-	 * @return a ListenableFuture for access to the session when ready for use
+	 * @param url 要连接的 URL
+	 * @param handshakeHeaders WebSocket 握手的头
+	 * @param connectHeaders STOMP CONNECT 帧的头
+	 * @param sessionHandler STOMP 会话处理器
+	 * @return 用于在会话可用时访问该会话的 ListenableFuture
 	 */
 	public ListenableFuture<StompSession> connect(URI url, @Nullable WebSocketHttpHeaders handshakeHeaders,
 			@Nullable StompHeaders connectHeaders, StompSessionHandler sessionHandler) {

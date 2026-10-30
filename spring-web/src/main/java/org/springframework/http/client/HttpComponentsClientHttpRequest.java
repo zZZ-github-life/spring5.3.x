@@ -91,8 +91,8 @@ final class HttpComponentsClientHttpRequest extends AbstractBufferingClientHttpR
 
 	/**
 	 * 将给定头部添加到给定的 HTTP 请求。
-	 * @param httpRequest the request to add the headers to
-	 * @param headers the headers to add
+	 * @param httpRequest 要添加头信息的请求
+	 * @param headers 要添加的头信息
 	 */
 	static void addHeaders(HttpUriRequest httpRequest, HttpHeaders headers) {
 		headers.forEach((headerName, headerValues) -> {

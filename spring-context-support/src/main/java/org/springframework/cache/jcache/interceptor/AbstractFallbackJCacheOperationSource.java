@@ -104,10 +104,9 @@ public abstract class AbstractFallbackJCacheOperationSource implements JCacheOpe
 
 	/**
 	 * 子类需要实现此方法，返回给定方法的缓存操作（如果有）。
-	 * @param method the method to retrieve the operation for
-	 * @param targetType the target class
-	 * @return the cache operation associated with this method
-	 * (or {@code null} if none)
+	 * @param method 要获取其操作的方法
+	 * @param targetType 目标类
+	 * @return 与此方法关联的缓存操作（如果没有，则为 {@code null}）
 	 */
 	@Nullable
 	protected abstract JCacheOperation<?> findCacheOperation(Method method, @Nullable Class<?> targetType);

@@ -76,7 +76,7 @@ public class SpringValidatorAdapter implements SmartValidator, javax.validation.
 
 	/**
 	 * 使用给定的 JSR-303 Validator 创建一个新的 SpringValidatorAdapter。
-	 * @param targetValidator the JSR-303 Validator to wrap
+	 * @param targetValidator 要包装的 JSR-303 Validator。
 	 */
 	public SpringValidatorAdapter(javax.validation.Validator targetValidator) {
 		Assert.notNull(targetValidator, "Target Validator must not be null");
@@ -142,8 +142,8 @@ public class SpringValidatorAdapter implements SmartValidator, javax.validation.
 
 	/**
 	 * 处理给定的 JSR-303 ConstraintViolations，并将相应的错误添加到提供的 Spring {@link Errors} 对象中。
-	 * @param violations the JSR-303 ConstraintViolation results
-	 * @param errors the Spring errors object to register to
+	 * @param violations JSR-303 ConstraintViolation 结果。
+	 * @param errors 要注册到的 Spring 错误对象。
 	 */
 	@SuppressWarnings("serial")
 	protected void processConstraintViolations(Set<ConstraintViolation<Object>> violations, Errors errors) {
@@ -192,8 +192,8 @@ public class SpringValidatorAdapter implements SmartValidator, javax.validation.
 	/**
 	 * 确定给定约束违反对应的字段。
 	 * <p>默认实现返回字符串形式的属性路径。
-	 * @param violation the current JSR-303 ConstraintViolation
-	 * @return the Spring-reported field (for use with {@link Errors})
+	 * @param violation 当前的 JSR-303 ConstraintViolation。
+	 * @return Spring 报告的字段（用于 {@link Errors}）。
 	 * @since 4.2
 	 * @see javax.validation.ConstraintViolation#getPropertyPath()
 	 * @see org.springframework.validation.FieldError#getField()
@@ -231,8 +231,8 @@ public class SpringValidatorAdapter implements SmartValidator, javax.validation.
 	 * <p>默认实现返回该描述符注解类型的简单类名。请注意，配置的
 	 * {@link org.springframework.validation.MessageCodesResolver} 会自动生成包含对象名和字段名的错误码
 	 * 变体。
-	 * @param descriptor the JSR-303 ConstraintDescriptor for the current violation
-	 * @return a corresponding error code (for use with {@link Errors})
+	 * @param descriptor 当前违反约束的 JSR-303 ConstraintDescriptor。
+	 * @return 相应的错误代码（用于 {@link Errors}）。
 	 * @since 4.2
 	 * @see javax.validation.metadata.ConstraintDescriptor#getAnnotation()
 	 * @see org.springframework.validation.MessageCodesResolver
@@ -246,10 +246,10 @@ public class SpringValidatorAdapter implements SmartValidator, javax.validation.
 	 * <p>默认实现返回一个指示字段名的第一个参数（参见 {@link #getResolvableField}）。随后，它按属性名
 	 * 的字母顺序添加所有实际的约束注解属性（即排除 "message"、"groups" 和 "payload"）。
 	 * <p>可以重写此方法，例如从约束描述符中添加更多属性。
-	 * @param objectName the name of the target object
-	 * @param field the field that caused the binding error
-	 * @param descriptor the JSR-303 constraint descriptor
-	 * @return the Object array that represents the FieldError arguments
+	 * @param objectName 目标对象的名称。
+	 * @param field 导致绑定错误的字段。
+	 * @param descriptor JSR-303 约束描述符。
+	 * @return 表示 FieldError 参数的 Object 数组。
 	 * @see org.springframework.validation.FieldError#getArguments
 	 * @see org.springframework.context.support.DefaultMessageSourceResolvable
 	 * @see org.springframework.validation.DefaultBindingErrorProcessor#getArgumentsForBindError
@@ -275,9 +275,9 @@ public class SpringValidatorAdapter implements SmartValidator, javax.validation.
 	 * 为指定字段构建可解析的包装器，以便在 {@code MessageSource} 中解析该字段的名称。
 	 * <p>默认实现返回一个指示字段的第一个参数：类型为 {@code DefaultMessageSourceResolvable}，以
 	 * "objectName.field" 和 "field" 作为代码，并以普通字段名作为默认消息。
-	 * @param objectName the name of the target object
-	 * @param field the field that caused the binding error
-	 * @return a corresponding {@code MessageSourceResolvable} for the specified field
+	 * @param objectName 目标对象的名称。
+	 * @param field 导致绑定错误的字段。
+	 * @return 指定字段对应的 {@code MessageSourceResolvable}。
 	 * @since 4.3
 	 * @see #getArgumentsForConstraint
 	 */
@@ -288,11 +288,11 @@ public class SpringValidatorAdapter implements SmartValidator, javax.validation.
 
 	/**
 	 * 提取给定约束违反背后的被拒绝值，以便通过 Spring 错误表示形式暴露出来。
-	 * @param field the field that caused the binding error
-	 * @param violation the corresponding JSR-303 ConstraintViolation
-	 * @param bindingResult a Spring BindingResult for the backing object
-	 * which contains the current field's value
-	 * @return the invalid value to expose as part of the field error
+	 * @param field 导致绑定错误的字段。
+	 * @param violation 相应的 JSR-303 ConstraintViolation。
+	 * @param bindingResult 底层对象的 Spring BindingResult，
+	 * 其中包含当前字段的值。
+	 * @return 要作为字段错误一部分暴露的无效值。
 	 * @since 4.2
 	 * @see javax.validation.ConstraintViolation#getInvalidValue()
 	 * @see org.springframework.validation.FieldError#getRejectedValue()
@@ -316,10 +316,10 @@ public class SpringValidatorAdapter implements SmartValidator, javax.validation.
 	 * <p>默认实现将字段名的 Spring 风格 "{0}" 占位符视为需要使用 {@link java.text.MessageFormat} 的标
 	 * 志。任何其他占位符或转义语法的出现通常都是不匹配的，来自正则模式值之类。请注意，标准 Bean
 	 * Validation 完全不支持 "{0}" 风格的占位符；这是通常用于 Spring MessageSource 资源包的特性。
-	 * @param violation the Bean Validation constraint violation, including
-	 * BV-defined interpolation of named attribute references in its message
-	 * @return {@code true} if {@code java.text.MessageFormat} is to be applied,
-	 * or {@code false} if the violation's message should be used as-is
+	 * @param violation Bean Validation 约束违规，包括其消息中
+	 * 由 BV 定义的命名属性引用插值。
+	 * @return 如果要应用 {@code java.text.MessageFormat}，则为 {@code true}；
+	 * 如果违规消息应按原样使用，则为 {@code false}。
 	 * @since 5.1.8
 	 * @see #getArgumentsForConstraint
 	 */

@@ -39,8 +39,8 @@ class WebSphereClassPreDefinePlugin implements InvocationHandler {
 
 	/**
 	 * 创建一个新的 {@link WebSphereClassPreDefinePlugin}。
-	 * @param transformer the {@link ClassFileTransformer} to be adapted
-	 * (must not be {@code null})
+	 * @param transformer 要适配的 {@link ClassFileTransformer}
+	 * （不能为 {@code null}）
 	 */
 	public WebSphereClassPreDefinePlugin(ClassFileTransformer transformer) {
 		this.transformer = transformer;

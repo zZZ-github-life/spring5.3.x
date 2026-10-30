@@ -31,7 +31,7 @@ public abstract class AssertionErrors {
 
 	/**
 	 * 使用给定消息使测试失败。
-	 * @param message a message that describes the reason for the failure
+	 * @param message 描述失败原因的消息
 	 */
 	public static void fail(String message) {
 		throw new AssertionError(message);
@@ -50,9 +50,9 @@ public abstract class AssertionErrors {
 	 * <pre class="code">
 	 * Response header [Accept] expected:&lt;application/json&gt; but was:&lt;text/plain&gt;
 	 * </pre>
-	 * @param message a message that describes the use case that failed
-	 * @param expected the expected value
-	 * @param actual the actual value
+	 * @param message 描述失败的用例的消息
+	 * @param expected 期望值
+	 * @param actual 实际值
 	 */
 	public static void fail(String message, @Nullable Object expected, @Nullable Object actual) {
 		throw new AssertionError(message + " expected:<" + expected + "> but was:<" + actual + ">");
@@ -60,8 +60,8 @@ public abstract class AssertionErrors {
 
 	/**
 	 * 断言给定条件为 {@code true}，否则抛出 {@link AssertionError}。
-	 * @param message a message that describes the reason for the failure
-	 * @param condition the condition to test for
+	 * @param message 描述失败原因的消息
+	 * @param condition 要测试的条件
 	 */
 	public static void assertTrue(String message, boolean condition) {
 		if (!condition) {
@@ -71,8 +71,8 @@ public abstract class AssertionErrors {
 
 	/**
 	 * 断言给定条件为 {@code false}，否则抛出 {@link AssertionError}。
-	 * @param message a message that describes the reason for the failure
-	 * @param condition the condition to test for
+	 * @param message 描述失败原因的消息
+	 * @param condition 要测试的条件
 	 * @since 5.2.1
 	 */
 	public static void assertFalse(String message, boolean condition) {
@@ -83,8 +83,8 @@ public abstract class AssertionErrors {
 
 	/**
 	 * 断言给定对象为 {@code null}，否则抛出 {@link AssertionError}。
-	 * @param message a message that describes the reason for the failure
-	 * @param object the object to check
+	 * @param message 描述失败原因的消息
+	 * @param object 要检查的对象
 	 * @since 5.2.1
 	 */
 	public static void assertNull(String message, @Nullable Object object) {
@@ -93,8 +93,8 @@ public abstract class AssertionErrors {
 
 	/**
 	 * 断言给定对象不为 {@code null}，否则抛出 {@link AssertionError}。
-	 * @param message a message that describes the reason for the failure
-	 * @param object the object to check
+	 * @param message 描述失败原因的消息
+	 * @param object 要检查的对象
 	 * @since 5.1.8
 	 */
 	public static void assertNotNull(String message, @Nullable Object object) {
@@ -107,9 +107,9 @@ public abstract class AssertionErrors {
 	 * <pre class="code">
 	 * assertEquals("Response header [" + name + "]", expected, actual);
 	 * </pre>
-	 * @param message a message that describes the value being checked
-	 * @param expected the expected value
-	 * @param actual the actual value
+	 * @param message 描述被检查的值的消息
+	 * @param expected 期望值
+	 * @param actual 实际值
 	 * @see #fail(String, Object, Object)
 	 */
 	public static void assertEquals(String message, @Nullable Object expected, @Nullable Object actual) {
@@ -124,9 +124,9 @@ public abstract class AssertionErrors {
 	 * <pre class="code">
 	 * assertNotEquals("Response header [" + name + "]", expected, actual);
 	 * </pre>
-	 * @param message a message that describes the value being checked
-	 * @param expected the expected value
-	 * @param actual the actual value
+	 * @param message 描述被检查的值的消息
+	 * @param expected 期望值
+	 * @param actual 实际值
 	 */
 	public static void assertNotEquals(String message, @Nullable Object expected, @Nullable Object actual) {
 		if (ObjectUtils.nullSafeEquals(expected, actual)) {

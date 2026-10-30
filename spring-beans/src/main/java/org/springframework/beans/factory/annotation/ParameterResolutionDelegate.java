@@ -70,10 +70,9 @@ public final class ParameterResolutionDelegate {
 	 * {@link Value @Value} 注解或元注解标注，则返回 {@code true}。
 	 * <p>请注意，即使此方法返回 {@code false}，{@link #resolveDependency} 仍可能解析所提供的参数的依赖。
 	 *
-	 * @param parameter the parameter whose dependency should be autowired
-	 * (must not be {@code null})
-	 * @param parameterIndex the index of the parameter in the constructor or method
-	 * that declares the parameter
+	 * @param parameter 应自动装配其依赖的参数
+	 * （不得为 {@code null}）
+	 * @param parameterIndex 该参数在声明它的构造方法或方法中的索引
 	 * @see #resolveDependency
 	 */
 	public static boolean isAutowirable(Parameter parameter, int parameterIndex) {
@@ -92,17 +91,16 @@ public final class ParameterResolutionDelegate {
 	 * <p>除非该参数被 {@link Autowired @Autowired} 注解或元注解标注且
 	 * {@link Autowired#required required} 标志设为 {@code false}，否则该依赖是必需的。
 	 * <p>如果未声明显式的<em>限定符</em>，则将使用参数名称作为限定符来消除歧义。
-	 * @param parameter the parameter whose dependency should be resolved (must not be
-	 * {@code null})
-	 * @param parameterIndex the index of the parameter in the constructor or method
-	 * that declares the parameter
-	 * @param containingClass the concrete class that contains the parameter; this may
-	 * differ from the class that declares the parameter in that it may be a subclass
-	 * thereof, potentially substituting type variables (must not be {@code null})
-	 * @param beanFactory the {@code AutowireCapableBeanFactory} from which to resolve
-	 * the dependency (must not be {@code null})
-	 * @return the resolved object, or {@code null} if none found
-	 * @throws BeansException if dependency resolution failed
+	 * @param parameter 应解析其依赖的参数
+	 * （不得为 {@code null}）
+	 * @param parameterIndex 该参数在声明它的构造方法或方法中的索引
+	 * @param containingClass 包含该参数的具体类；它可能与声明该参数的类不同，
+	 * 因为后者可能是其子类，并可能替换类型变量
+	 * （不得为 {@code null}）
+	 * @param beanFactory 用于解析该依赖的 {@code AutowireCapableBeanFactory}
+	 * （不得为 {@code null}）
+	 * @return 解析得到的对象；如果未找到则为 {@code null}
+	 * @throws BeansException 如果依赖解析失败则抛出
 	 * @see #isAutowirable
 	 * @see Autowired#required
 	 * @see SynthesizingMethodParameter#forExecutable(Executable, int)
@@ -141,8 +139,8 @@ public final class ParameterResolutionDelegate {
 	 * <p>此方法返回的 {@code AnnotatedElement} 绝不应被强制转换并当作 {@code Parameter} 处理，因为其元
 	 * 数据（例如 {@link Parameter#getName()}、{@link Parameter#getType()} 等）将与内部类构造器中给定索
 	 * 引处所声明参数的不匹配。
-	 * @return the supplied {@code parameter} or the <em>effective</em> {@code Parameter}
-	 * if the aforementioned bug is in effect
+	 * @return 提供的 {@code parameter}，或如果上述 bug 生效
+	 * 则返回<em>有效的</em> {@code Parameter}
 	 */
 	private static AnnotatedElement getEffectiveAnnotatedParameter(Parameter parameter, int index) {
 		Executable executable = parameter.getDeclaringExecutable();

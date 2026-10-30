@@ -250,8 +250,8 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 
 	/**
 	 * 确定给定 {@link HttpServletRequest} 的 {@link MediaType} 列表。
-	 * @param request the current servlet request
-	 * @return the list of media types requested, if any
+	 * @param request 当前的 Servlet 请求
+	 * @return 请求的媒体类型列表（如果有）
 	 */
 	@Nullable
 	protected List<MediaType> getMediaTypes(HttpServletRequest request) {

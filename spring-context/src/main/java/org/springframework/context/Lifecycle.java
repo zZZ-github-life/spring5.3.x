@@ -72,7 +72,7 @@ public interface Lifecycle {
 	 * 检查此组件当前是否正在运行。
 	 *
 	 * <p>对于容器而言，仅当<i>所有</i>适用的组件当前都在运行时，才会返回 {@code true}。
-	 * @return whether the component is currently running
+	 * @return 组件当前是否正在运行
 	 */
 	boolean isRunning();
 

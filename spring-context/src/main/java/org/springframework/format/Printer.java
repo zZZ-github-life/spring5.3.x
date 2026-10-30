@@ -23,16 +23,16 @@ import java.util.Locale;
  *
  * @author Keith Donald
  * @since 3.0
- * @param <T> the type of object this Printer prints
+ * @param <T> 此 Printer 打印的对象类型
  */
 @FunctionalInterface
 public interface Printer<T> {
 
 	/**
 	 * 打印类型 T 的对象以供显示。
-	 * @param object the instance to print
-	 * @param locale the current user locale
-	 * @return the printed text string
+	 * @param object 要打印的实例
+	 * @param locale 当前用户区域设置
+	 * @return 打印出的文本字符串
 	 */
 	String print(T object, Locale locale);
 

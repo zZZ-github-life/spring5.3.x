@@ -43,7 +43,7 @@ public class MimeMailMessage implements MailMessage {
 
 	/**
 	 * 基于给定的 MimeMessageHelper 创建新的 MimeMailMessage。
-	 * @param mimeMessageHelper the MimeMessageHelper
+	 * @param mimeMessageHelper MimeMessageHelper 对象
 	 */
 	public MimeMailMessage(MimeMessageHelper mimeMessageHelper) {
 		this.helper = mimeMessageHelper;
@@ -51,7 +51,7 @@ public class MimeMailMessage implements MailMessage {
 
 	/**
 	 * 基于给定的 JavaMail MimeMessage 创建新的 MimeMailMessage。
-	 * @param mimeMessage the JavaMail MimeMessage
+	 * @param mimeMessage JavaMail 的 MimeMessage 对象
 	 */
 	public MimeMailMessage(MimeMessage mimeMessage) {
 		this.helper = new MimeMessageHelper(mimeMessage);

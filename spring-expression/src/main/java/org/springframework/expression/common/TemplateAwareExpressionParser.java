@@ -75,9 +75,9 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 	 * 着将 ${..} 作为其功能一部分的表达式语言也能毫无问题地得到支持。解析过程会考虑内嵌表达式的结构。
 	 * 它假定表达式中的圆括号 '('、方括号 '[' 和花括号 '}' 必须成对出现，除非它们位于字符串字面量中，而
 	 * 字符串字面量以单引号 ' 开始和结束。
-	 * @param expressionString the expression string
-	 * @return the parsed expressions
-	 * @throws ParseException when the expressions cannot be parsed
+	 * @param expressionString 表达式字符串
+	 * @return 解析得到的表达式
+	 * @throws ParseException 当表达式无法解析时
 	 */
 	private Expression[] parseExpressions(String expressionString, ParserContext context) throws ParseException {
 		List<Expression> expressions = new ArrayList<>();
@@ -126,9 +126,9 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 
 	/**
 	 * 如果能在提供的表达式字符串中的指定位置找到指定后缀，则返回 true。
-	 * @param expressionString the expression string which may contain the suffix
-	 * @param pos the start position at which to check for the suffix
-	 * @param suffix the suffix string
+	 * @param expressionString 可能包含该后缀的表达式字符串
+	 * @param pos 检查该后缀的起始位置
+	 * @param suffix 后缀字符串
 	 */
 	private boolean isSuffixHere(String expressionString, int pos, String suffix) {
 		int suffixPosition = 0;
@@ -146,11 +146,12 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 
 	/**
 	 * 处理嵌套，例如 '${...${...}}'，其中第一个 ${ 的正确结束位置是最后的 }。
-	 * @param suffix the suffix
-	 * @param expressionString the expression string
-	 * @param afterPrefixIndex the most recently found prefix location for which the
-	 * matching end suffix is being sought
-	 * @return the position of the correct matching nextSuffix or -1 if none can be found
+	 * @param suffix 后缀
+	 * @param expressionString 表达式字符串
+	 * @param afterPrefixIndex 最近找到的前缀位置，
+	 * 正在为其寻找匹配的结束后缀
+	 * @return 正确匹配的 nextSuffix 的位置，
+	 * 如果找不到则为 -1
 	 */
 	private int skipToCorrectEndSuffix(String suffix, String expressionString, int afterPrefixIndex)
 			throws ParseException {
@@ -218,10 +219,10 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 
 	/**
 	 * 实际解析表达式字符串并返回 Expression 对象。
-	 * @param expressionString the raw expression string to parse
-	 * @param context a context for influencing this expression parsing routine (optional)
-	 * @return an evaluator for the parsed expression
-	 * @throws ParseException an exception occurred during parsing
+	 * @param expressionString 要解析的原始表达式字符串
+	 * @param context 用于影响此表达式解析过程的上下文（可选）
+	 * @return 用于已解析表达式的求值器
+	 * @throws ParseException 解析过程中发生异常
 	 */
 	protected abstract Expression doParseExpression(String expressionString, @Nullable ParserContext context)
 			throws ParseException;

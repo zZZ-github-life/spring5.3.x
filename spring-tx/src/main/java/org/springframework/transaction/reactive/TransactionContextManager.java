@@ -45,9 +45,9 @@ public abstract class TransactionContextManager {
 	 * 从订阅者上下文或事务上下文持有者中获取当前的
 	 * {@link TransactionContext}。如果没有注册上下文或上下文持有者，
 	 * 上下文获取将因NoTransactionException而失败。
-	 * @return the current {@link TransactionContext}
-	 * @throws NoTransactionException if no TransactionContext was found in the subscriber context
-	 * or no context found in a holder
+	 * @return 当前的 {@link TransactionContext}
+	 * @throws NoTransactionException 如果在订阅者上下文中找不到 TransactionContext，
+	 * 或在持有者中找不到上下文
 	 */
 	public static Mono<TransactionContext> currentContext() throws NoTransactionException {
 		return Mono.deferContextual(ctx -> {
@@ -66,8 +66,8 @@ public abstract class TransactionContextManager {
 
 	/**
 	 * 创建一个{@link TransactionContext}并将其注册到订阅者{@link Context}中。
-	 * @return functional context registration.
-	 * @throws IllegalStateException if a transaction context is already associated.
+	 * @return 函数式的上下文注册。
+	 * @throws IllegalStateException 如果已经关联了事务上下文。
 	 * @see Mono#contextWrite(Function)
 	 * @see Flux#contextWrite(Function)
 	 */
@@ -79,7 +79,7 @@ public abstract class TransactionContextManager {
 	 * 返回一个{@link Function}，用于创建或关联一个新的{@link TransactionContext}。
 	 * 通过{@link TransactionSynchronizationManager}与事务资源交互
 	 * 需要在订阅者上下文中注册一个TransactionContext。
-	 * @return functional context registration.
+	 * @return 函数式的上下文注册。
 	 */
 	public static Function<Context, Context> getOrCreateContext() {
 		return context -> {
@@ -96,7 +96,7 @@ public abstract class TransactionContextManager {
 	 * {@link TransactionContextHolder}。在响应式流中创建和释放事务
 	 * 需要一个遵循自上而下执行方案的可变持有者。
 	 * Reactor的订阅者上下文在变更可见性方面遵循自下而上的方式。
-	 * @return functional context registration.
+	 * @return 函数式的上下文注册。
 	 */
 	public static Function<Context, Context> getOrCreateContextHolder() {
 		return context -> {

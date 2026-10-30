@@ -63,7 +63,7 @@ import org.springframework.util.concurrent.SettableListenableFuture;
  * @author Rossen Stoyanchev
  * @author Stephane Maldini
  * @since 5.0
- * @param <P> the type of payload for in and outbound messages
+ * @param <P> 入站和出站消息的载荷类型
  */
 public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 
@@ -97,9 +97,9 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 	 * 的生命周期。
 	 * <p>如需完全控制 TcpClient 的初始化和生命周期，请使用
 	 * {@link #ReactorNettyTcpClient(TcpClient, ReactorNettyCodec)}。
-	 * @param host the host to connect to
-	 * @param port the port to connect to
-	 * @param codec for encoding and decoding the input/output byte streams
+	 * @param host 要连接的主机
+	 * @param port 要连接的端口
+	 * @param codec 用于编码和解码输入/输出字节流
 	 * @see org.springframework.messaging.simp.stomp.StompReactorNettyCodec
 	 */
 	public ReactorNettyTcpClient(String host, int port, ReactorNettyCodec<P> codec) {
@@ -121,8 +121,8 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 	 * {@link #ReactorNettyTcpClient(String, int, ReactorNettyCodec)} 的变体，
 	 * 仍然管理 {@link TcpClient} 及底层资源的生命周期，但允许通过
 	 * {@code Function<TcpClient, TcpClient>} 直接配置客户端的其他属性。
-	 * @param clientConfigurer the configurer function
-	 * @param codec for encoding and decoding the input/output byte streams
+	 * @param clientConfigurer 配置器函数
+	 * @param codec 用于编码和解码输入/输出字节流
 	 * @since 5.1.3
 	 * @see org.springframework.messaging.simp.stomp.StompReactorNettyCodec
 	 */
@@ -142,8 +142,8 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 
 	/**
 	 * 使用外部创建的 {@link TcpClient} 实例的构造函数，其生命周期应由外部管理。
-	 * @param tcpClient the TcpClient instance to use
-	 * @param codec for encoding and decoding the input/output byte streams
+	 * @param tcpClient 要使用的 TcpClient 实例
+	 * @param codec 用于编码和解码输入/输出字节流
 	 * @see org.springframework.messaging.simp.stomp.StompReactorNettyCodec
 	 */
 	public ReactorNettyTcpClient(TcpClient tcpClient, ReactorNettyCodec<P> codec) {
@@ -160,7 +160,7 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 
 	/**
 	 * 设置一个替代日志记录器，而不是基于类名的日志记录器。
-	 * @param logger the logger to use
+	 * @param logger 要使用的日志记录器
 	 * @since 5.1
 	 */
 	public void setLogger(Log logger) {
@@ -198,9 +198,9 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 	 * 该处理器可能实现
 	 * {@link org.springframework.messaging.simp.stomp.StompTcpConnectionHandler}
 	 * 等暴露更多信息的子接口。
-	 * @param tcpClient the candidate TcpClient
-	 * @param handler the handler for the TCP connection
-	 * @return the same handler or an updated instance
+	 * @param tcpClient 候选的 TcpClient
+	 * @param handler TCP 连接的处理器
+	 * @return 同一个处理器或更新后的实例
 	 */
 	protected TcpClient extendTcpClient(TcpClient tcpClient, TcpConnectionHandler<P> handler) {
 		return tcpClient;

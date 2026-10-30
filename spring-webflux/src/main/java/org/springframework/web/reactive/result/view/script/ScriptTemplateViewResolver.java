@@ -46,8 +46,8 @@ public class ScriptTemplateViewResolver extends UrlBasedViewResolver {
 	/**
 	 * 一个便捷构造函数，允许将 {@link #setPrefix prefix} 和
 	 * {@link #setSuffix suffix} 指定为构造函数参数。
-	 * @param prefix the prefix that gets prepended to view names when building a URL
-	 * @param suffix the suffix that gets appended to view names when building a URL
+	 * @param prefix 构建 URL 时前置到视图名称的前缀
+	 * @param suffix 构建 URL 时附加到视图名称的后缀
 	 */
 	public ScriptTemplateViewResolver(String prefix, String suffix) {
 		this();

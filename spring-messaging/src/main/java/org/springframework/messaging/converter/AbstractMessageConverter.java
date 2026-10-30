@@ -61,7 +61,7 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 
 	/**
 	 * 使用单个 MIME 类型的构造函数。
-	 * @param supportedMimeType the supported MIME type
+	 * @param supportedMimeType 支持的 MIME 类型
 	 */
 	protected AbstractMessageConverter(MimeType supportedMimeType) {
 		this(Collections.singletonList(supportedMimeType));
@@ -69,7 +69,7 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 
 	/**
 	 * 通过可变参数传入一个或多个 MIME 类型的构造函数。
-	 * @param supportedMimeTypes the supported MIME types
+	 * @param supportedMimeTypes 支持的 MIME 类型
 	 * @since 5.2.2
 	 */
 	protected AbstractMessageConverter(MimeType... supportedMimeTypes) {
@@ -78,7 +78,7 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 
 	/**
 	 * 使用 MIME 类型集合的构造函数。
-	 * @param supportedMimeTypes the supported MIME types
+	 * @param supportedMimeTypes 支持的 MIME 类型
 	 */
 	protected AbstractMessageConverter(Collection<MimeType> supportedMimeTypes) {
 		this.supportedMimeTypes.addAll(supportedMimeTypes);
@@ -147,7 +147,7 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 	/**
 	 * 配置将 Object 载荷转换为 {@link Message} 时使用的首选序列化类（byte[] 或 String）。
 	 * <p>默认值为 byte[]。
-	 * @param payloadClass either byte[] or String
+	 * @param payloadClass 可以是 byte[] 或 String
 	 */
 	public void setSerializedPayloadClass(Class<?> payloadClass) {
 		Assert.isTrue(byte[].class == payloadClass || String.class == payloadClass,
@@ -252,8 +252,8 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 	 * 调用 {@link #toMessage(Object, MessageHeaders)} 时会调用此方法。
 	 * <p>默认情况下，如果存在，则返回 {@link #getSupportedMimeTypes() supportedMimeTypes}
 	 * 的第一个元素。可在子类中重写。
-	 * @param payload the payload being converted to a message
-	 * @return the content type, or {@code null} if not known
+	 * @param payload 要转换为消息的载荷
+	 * @return 内容类型；如果未知则返回 {@code null}
 	 */
 	@Nullable
 	protected MimeType getDefaultContentType(Object payload) {
@@ -264,19 +264,18 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 
 	/**
 	 * 给定类是否受此转换器支持。
-	 * @param clazz the class to test for support
-	 * @return {@code true} if supported; {@code false} otherwise
+	 * @param clazz 要检查是否受支持的类
+	 * @return 如果受支持则返回 {@code true}；否则返回 {@code false}
 	 */
 	protected abstract boolean supports(Class<?> clazz);
 
 	/**
 	 * 将消息载荷从序列化形式转换为 Object。
-	 * @param message the input message
-	 * @param targetClass the target class for the conversion
-	 * @param conversionHint an extra object passed to the {@link MessageConverter},
-	 * e.g. the associated {@code MethodParameter} (may be {@code null}}
-	 * @return the result of the conversion, or {@code null} if the converter cannot
-	 * perform the conversion
+	 * @param message 输入消息
+	 * @param targetClass 转换的目标类
+	 * @param conversionHint 传递给 {@link MessageConverter} 的额外对象，
+	 * 例如关联的 {@code MethodParameter}（可以为 {@code null}）
+	 * @return 转换结果；如果转换器无法执行转换则返回 {@code null}
 	 * @since 4.2
 	 */
 	@Nullable
@@ -288,12 +287,11 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 
 	/**
 	 * 将载荷对象转换为序列化形式。
-	 * @param payload the Object to convert
-	 * @param headers optional headers for the message (may be {@code null})
-	 * @param conversionHint an extra object passed to the {@link MessageConverter},
-	 * e.g. the associated {@code MethodParameter} (may be {@code null}}
-	 * @return the resulting payload for the message, or {@code null} if the converter
-	 * cannot perform the conversion
+	 * @param payload 要转换的对象
+	 * @param headers 消息的可选消息头（可以为 {@code null}）
+	 * @param conversionHint 传递给 {@link MessageConverter} 的额外对象，
+	 * 例如关联的 {@code MethodParameter}（可以为 {@code null}）
+	 * @return 生成的消息载荷；如果转换器无法执行转换则返回 {@code null}
 	 * @since 4.2
 	 */
 	@Nullable

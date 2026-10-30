@@ -42,8 +42,8 @@ public interface TransactionCallback<T> {
 	 * 在事务上下文中由{@link TransactionalOperator}调用。
 	 * 不需要关心事务本身，尽管它可以通过给定的状态对象
 	 * 检索和影响当前事务的状态，例如设置rollback-only。
-	 * @param status associated transaction status
-	 * @return a result publisher
+	 * @param status 关联的事务状态
+	 * @return 结果发布者
 	 * @see TransactionalOperator#transactional
 	 */
 	Publisher<T> doInTransaction(ReactiveTransaction status);

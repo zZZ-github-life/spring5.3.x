@@ -53,7 +53,8 @@ public abstract class RemotingSupport implements BeanClassLoaderAware {
 	/**
 	 * 如有必要，即当 Bean ClassLoader 与线程上下文 ClassLoader 尚不一致时，用环境中的 Bean ClassLoader
 	 * 覆盖线程上下文 ClassLoader。
-	 * @return the original thread context ClassLoader, or {@code null} if not overridden
+	 * @return 原始的线程上下文 ClassLoader；
+	 * 如果未被覆盖则为 {@code null}
 	 */
 	@Nullable
 	protected ClassLoader overrideThreadContextClassLoader() {
@@ -62,8 +63,8 @@ public abstract class RemotingSupport implements BeanClassLoaderAware {
 
 	/**
 	 * 如有必要，重置原始的线程上下文 ClassLoader。
-	 * @param original the original thread context ClassLoader,
-	 * or {@code null} if not overridden (and hence nothing to reset)
+	 * @param original 原始线程上下文 ClassLoader；
+	 * 如果未被覆盖则为 {@code null}（此时无需重置）
 	 */
 	protected void resetThreadContextClassLoader(@Nullable ClassLoader original) {
 		if (original != null) {

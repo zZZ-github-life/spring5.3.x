@@ -36,7 +36,7 @@ public class CompositeTransactionAttributeSource implements TransactionAttribute
 
 	/**
 	 * 为给定的源创建一个新的CompositeTransactionAttributeSource。
-	 * @param transactionAttributeSources the TransactionAttributeSource instances to combine
+	 * @param transactionAttributeSources 要组合的 TransactionAttributeSource 实例
 	 */
 	public CompositeTransactionAttributeSource(TransactionAttributeSource... transactionAttributeSources) {
 		Assert.notNull(transactionAttributeSources, "TransactionAttributeSource array must not be null");

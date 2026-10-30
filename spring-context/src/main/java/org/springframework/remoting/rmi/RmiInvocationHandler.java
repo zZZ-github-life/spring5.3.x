@@ -38,8 +38,8 @@ public interface RmiInvocationHandler extends Remote {
 
 	/**
 	 * 返回此调用器所操作的目标接口的名称。
-	 * @return the name of the target interface, or {@code null} if none
-	 * @throws RemoteException in case of communication errors
+	 * @return 目标接口的名称，如果没有则为 {@code null}
+	 * @throws RemoteException 在通信出错时
 	 * @see RmiServiceExporter#getServiceInterface()
 	 */
 	@Nullable
@@ -50,12 +50,12 @@ public interface RmiInvocationHandler extends Remote {
 	 * <p>由
 	 * {@link RmiClientInterceptor#doInvoke(org.aopalliance.intercept.MethodInvocation, RmiInvocationHandler)}
 	 * 调用。
-	 * @param invocation object that encapsulates invocation parameters
-	 * @return the object returned from the invoked method, if any
-	 * @throws RemoteException in case of communication errors
-	 * @throws NoSuchMethodException if the method name could not be resolved
-	 * @throws IllegalAccessException if the method could not be accessed
-	 * @throws InvocationTargetException if the method invocation resulted in an exception
+	 * @param invocation 封装调用参数的对象
+	 * @return 被调用方法返回的对象（如果有）
+	 * @throws RemoteException 在通信出错时
+	 * @throws NoSuchMethodException 如果无法解析方法名
+	 * @throws IllegalAccessException 如果无法访问该方法
+	 * @throws InvocationTargetException 如果方法调用导致异常
 	 */
 	@Nullable
 	public Object invoke(RemoteInvocation invocation)

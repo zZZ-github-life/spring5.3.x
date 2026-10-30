@@ -90,7 +90,7 @@ public interface ComponentDefinition extends BeanMetadataElement {
 	 * {@link BeanDefinition BeanDefinitions} 相关联，但这些引用<strong>不会</strong>包含在内，因为它们
 	 * 可能无法立即获得。重要的 {@link BeanReference BeanReferences} 可从 {@link #getBeanReferences()}
 	 * 获取。
-	 * @return the array of BeanDefinitions, or an empty array if none
+	 * @return BeanDefinition 数组；若没有则为空数组
 	 */
 	BeanDefinition[] getBeanDefinitions();
 
@@ -99,7 +99,7 @@ public interface ComponentDefinition extends BeanMetadataElement {
 	 *
 	 * <p>关联的 {@link BeanDefinition BeanDefinitions} 中可能存在其他内部 Bean，但这些内部 Bean 不被视
 	 * 为校验或用户可视化所需。
-	 * @return the array of BeanDefinitions, or an empty array if none
+	 * @return BeanDefinition 数组；若没有则为空数组
 	 */
 	BeanDefinition[] getInnerBeanDefinitions();
 
@@ -108,7 +108,7 @@ public interface ComponentDefinition extends BeanMetadataElement {
 	 *
 	 * <p>关联的 {@link BeanDefinition BeanDefinitions} 中可能存在其他
 	 * {@link BeanReference BeanReferences}，但这些引用不被视为校验或用户可视化所需。
-	 * @return the array of BeanReferences, or an empty array if none
+	 * @return BeanReference 数组；若没有则为空数组
 	 */
 	BeanReference[] getBeanReferences();
 

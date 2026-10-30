@@ -53,11 +53,11 @@ public interface ContextLoader {
 	 * 处理指定类的应用程序上下文资源位置。
 	 * <p>具体实现可以选择修改提供的位置、
 	 * 生成新位置，或仅原样返回提供的位置。
-	 * @param clazz the class with which the locations are associated: used to
-	 * determine how to process the supplied locations
-	 * @param locations the unmodified locations to use for loading the
-	 * application context (can be {@code null} or empty)
-	 * @return an array of application context resource locations
+	 * @param clazz 与位置关联的类：用于确定
+	 * 如何处理所提供的位置
+	 * @param locations 用于加载应用上下文的未修改位置
+	 * （可为 {@code null} 或空）
+	 * @return 应用上下文资源位置的数组
 	 */
 	String[] processLocations(Class<?> clazz, String... locations);
 
@@ -79,9 +79,9 @@ public interface ContextLoader {
 	 * 否则所有上下文实例将在 JVM 关闭时
 	 * 自动关闭。这样可以释放上下文中 Bean 持有的外部资源，
 	 * 例如临时文件。
-	 * @param locations the resource locations to use to load the application context
-	 * @return a new application context
-	 * @throws Exception if context loading failed
+	 * @param locations 用于加载应用上下文的资源位置
+	 * @return 新的应用上下文
+	 * @throws Exception 如果上下文加载失败
 	 */
 	ApplicationContext loadContext(String... locations) throws Exception;
 

@@ -32,10 +32,10 @@ public abstract class BindingResultUtils {
 
 	/**
 	 * 在给定模型中查找给定名称的 BindingResult。
-	 * @param model the model to search
-	 * @param name the name of the target object to find a BindingResult for
-	 * @return the BindingResult, or {@code null} if none found
-	 * @throws IllegalStateException if the attribute found is not of type BindingResult
+	 * @param model 要搜索的模型
+	 * @param name 要为其查找 BindingResult 的目标对象名称
+	 * @return BindingResult，如果未找到则为 {@code null}
+	 * @throws IllegalStateException 如果找到的属性不是 BindingResult 类型
 	 */
 	@Nullable
 	public static BindingResult getBindingResult(Map<?, ?> model, String name) {
@@ -50,10 +50,10 @@ public abstract class BindingResultUtils {
 
 	/**
 	 * 在给定模型中查找给定名称所需的 BindingResult。
-	 * @param model the model to search
-	 * @param name the name of the target object to find a BindingResult for
-	 * @return the BindingResult (never {@code null})
-	 * @throws IllegalStateException if no BindingResult found
+	 * @param model 要搜索的模型
+	 * @param name 要为其查找 BindingResult 的目标对象名称
+	 * @return BindingResult（永不为 {@code null}）
+	 * @throws IllegalStateException 如果未找到 BindingResult
 	 */
 	public static BindingResult getRequiredBindingResult(Map<?, ?> model, String name) {
 		BindingResult bindingResult = getBindingResult(model, name);

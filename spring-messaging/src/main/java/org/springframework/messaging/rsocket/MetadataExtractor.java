@@ -44,11 +44,11 @@ public interface MetadataExtractor {
 	/**
 	 * 从给定的 {@link Payload} 元数据中提取值映射。
 	 * 如果存在负载 "route"，应将其保存在 {@link #ROUTE_KEY} 下。
-	 * @param payload the payload whose metadata should be read
-	 * @param metadataMimeType the metadata MimeType for the connection.
-	 * @return name values pairs extracted from the metadata
-	 * @throws DecodingException if the metadata cannot be decoded
-	 * @throws IllegalArgumentException if routing metadata cannot be decoded
+	 * @param payload 应读取其元数据的载荷
+	 * @param metadataMimeType 该连接的元数据 MimeType。
+	 * @return 从元数据中提取的名称-值对
+	 * @throws DecodingException 如果元数据无法解码
+	 * @throws IllegalArgumentException 如果路由元数据无法解码
 	 */
 	Map<String, Object> extract(Payload payload, MimeType metadataMimeType);
 

@@ -49,10 +49,10 @@ public abstract class ServletContextPropertyUtils {
 	/**
 	 * 解析给定文本中的 ${...} 占位符，将其替换为对应的
 	 * Servlet 上下文初始化参数或系统属性值。
-	 * @param text the String to resolve
-	 * @param servletContext the servletContext to use for lookups.
-	 * @return the resolved String
-	 * @throws IllegalArgumentException if there is an unresolvable placeholder
+	 * @param text 要解析的 String
+	 * @param servletContext 用于查找的 servletContext。
+	 * @return 解析后的 String
+	 * @throws IllegalArgumentException 如果存在无法解析的占位符
 	 * @see SystemPropertyUtils#PLACEHOLDER_PREFIX
 	 * @see SystemPropertyUtils#PLACEHOLDER_SUFFIX
 	 * @see SystemPropertyUtils#resolvePlaceholders(String, boolean)
@@ -65,11 +65,11 @@ public abstract class ServletContextPropertyUtils {
 	 * 解析给定文本中的 ${...} 占位符，将其替换为对应的
 	 * Servlet 上下文初始化参数或系统属性值。如果标志设置为 true，
 	 * 则没有默认值的无法解析占位符会被忽略并原样保留。
-	 * @param text the String to resolve
-	 * @param servletContext the servletContext to use for lookups.
-	 * @param ignoreUnresolvablePlaceholders flag to determine is unresolved placeholders are ignored
-	 * @return the resolved String
-	 * @throws IllegalArgumentException if there is an unresolvable placeholder and the flag is {@code false}
+	 * @param text 要解析的 String
+	 * @param servletContext 用于查找的 servletContext。
+	 * @param ignoreUnresolvablePlaceholders 用于确定是否忽略无法解析的占位符的标志
+	 * @return 解析后的 String
+	 * @throws IllegalArgumentException 如果存在无法解析的占位符且标志为 {@code false}
 	 * @see SystemPropertyUtils#PLACEHOLDER_PREFIX
 	 * @see SystemPropertyUtils#PLACEHOLDER_SUFFIX
 	 * @see SystemPropertyUtils#resolvePlaceholders(String, boolean)

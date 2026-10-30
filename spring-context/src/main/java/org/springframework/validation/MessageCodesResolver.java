@@ -35,19 +35,19 @@ public interface MessageCodesResolver {
 
 	/**
 	 * 为给定错误代码和对象名构建消息代码。用于为 ObjectError 构建代码列表。
-	 * @param errorCode the error code used for rejecting the object
-	 * @param objectName the name of the object
-	 * @return the message codes to use
+	 * @param errorCode 用于拒绝该对象的错误代码。
+	 * @param objectName 对象的名称。
+	 * @return 要使用的消息代码。
 	 */
 	String[] resolveMessageCodes(String errorCode, String objectName);
 
 	/**
 	 * 为给定错误代码和字段规格构建消息代码。用于为 FieldError 构建代码列表。
-	 * @param errorCode the error code used for rejecting the value
-	 * @param objectName the name of the object
-	 * @param field the field name
-	 * @param fieldType the field type (may be {@code null} if not determinable)
-	 * @return the message codes to use
+	 * @param errorCode 用于拒绝该值的错误代码。
+	 * @param objectName 对象的名称。
+	 * @param field 字段名。
+	 * @param fieldType 字段类型（如果无法确定，可以为 {@code null}）。
+	 * @return 要使用的消息代码。
 	 */
 	String[] resolveMessageCodes(String errorCode, String objectName, String field, @Nullable Class<?> fieldType);
 

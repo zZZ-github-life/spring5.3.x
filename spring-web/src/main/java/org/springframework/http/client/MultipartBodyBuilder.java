@@ -107,9 +107,9 @@ public final class MultipartBodyBuilder {
 	 * 通过返回的构建器添加头部更容易
 	 * <li>{@link Part} -- 服务器请求中的部件
 	 * </ul>
-	 * @param name the name of the part to add
-	 * @param part the part data
-	 * @return builder that allows for further customization of part headers
+	 * @param name 要添加的部分的名称
+	 * @param part 部分数据
+	 * @return 允许进一步自定义部分头的构建器
 	 */
 	public PartBuilder part(String name, Object part) {
 		return part(name, part, null);
@@ -117,10 +117,10 @@ public final class MultipartBodyBuilder {
 
 	/**
 	 * 也接受 MediaType 的 {@link #part(String, Object)} 变体。
-	 * @param name the name of the part to add
-	 * @param part the part data
-	 * @param contentType the media type to help with encoding the part
-	 * @return builder that allows for further customization of part headers
+	 * @param name 要添加的部分的名称
+	 * @param part 部分数据
+	 * @param contentType 用于辅助编码该部分的媒体类型
+	 * @return 允许进一步自定义部分头的构建器
 	 */
 	public PartBuilder part(String name, Object part, @Nullable MediaType contentType) {
 		Assert.hasLength(name, "'name' must not be empty");
@@ -180,10 +180,10 @@ public final class MultipartBodyBuilder {
 
 	/**
 	 * 从 {@link Publisher} 内容添加部件。
-	 * @param name the name of the part to add
-	 * @param publisher a Publisher of content for the part
-	 * @param elementClass the type of elements contained in the publisher
-	 * @return builder that allows for further customization of part headers
+	 * @param name 要添加的部分的名称
+	 * @param publisher 该部分内容的 Publisher
+	 * @param elementClass Publisher 中包含的元素类型
+	 * @return 允许进一步自定义部分头的构建器
 	 */
 	public <T, P extends Publisher<T>> PartBuilder asyncPart(String name, P publisher, Class<T> elementClass) {
 		Assert.hasLength(name, "'name' must not be empty");
@@ -198,10 +198,10 @@ public final class MultipartBodyBuilder {
 	/**
 	 * 使用 {@link ParameterizedTypeReference} 提供元素类型信息的
 	 * {@link #asyncPart(String, Publisher, Class)} 变体。
-	 * @param name the name of the part to add
-	 * @param publisher the part contents
-	 * @param typeReference the type of elements contained in the publisher
-	 * @return builder that allows for further customization of part headers
+	 * @param name 要添加的部分的名称
+	 * @param publisher 部分内容
+	 * @param typeReference Publisher 中包含的元素类型
+	 * @return 允许进一步自定义部分头的构建器
 	 */
 	public <T, P extends Publisher<T>> PartBuilder asyncPart(
 			String name, P publisher, ParameterizedTypeReference<T> typeReference) {
@@ -237,7 +237,7 @@ public final class MultipartBodyBuilder {
 
 		/**
 		 * 设置部件的 {@linkplain MediaType 媒体类型}。
-		 * @param contentType the content type
+		 * @param contentType 内容类型
 		 * @since 5.2
 		 * @see HttpHeaders#setContentType(MediaType)
 		 */
@@ -247,24 +247,24 @@ public final class MultipartBodyBuilder {
 		 * 设置文件部件的 filename 参数。对于公开文件名的
 		 * 基于 {@link org.springframework.core.io.Resource Resource} 的部件，这应该不是必需的，
 		 * 但对于 {@link Publisher} 部件可能有用。
-		 * @param filename the filename to set on the Content-Disposition
+		 * @param filename 要在 Content-Disposition 上设置的文件名
 		 * @since 5.2
 		 */
 		PartBuilder filename(String filename);
 
 		/**
 		 * 添加部件头部值。
-		 * @param headerName the part header name
-		 * @param headerValues the part header value(s)
-		 * @return this builder
+		 * @param headerName 部分头名称
+		 * @param headerValues 部分头的值
+		 * @return 此构建器
 		 * @see HttpHeaders#addAll(String, List)
 		 */
 		PartBuilder header(String headerName, String... headerValues);
 
 		/**
 		 * 通过给定的 consumer 操作部件头部。
-		 * @param headersConsumer consumer to manipulate the part headers with
-		 * @return this builder
+		 * @param headersConsumer 用于操作部分头的 consumer
+		 * @return 此构建器
 		 */
 		PartBuilder headers(Consumer<HttpHeaders> headersConsumer);
 	}
@@ -357,8 +357,8 @@ public final class MultipartBodyBuilder {
 	/**
 	 * 用于基于 {@link Publisher} 的正文的 {@link HttpEntity} 特化，
 	 * 对此我们还需要跟踪元素类型。
-	 * @param <T> the type contained in the publisher
-	 * @param <P> the publisher
+	 * @param <T> Publisher 中包含的类型
+	 * @param <P> 该 Publisher
 	 */
 	static final class PublisherEntity<T, P extends Publisher<T>> extends HttpEntity<P>
 			implements ResolvableTypeProvider  {

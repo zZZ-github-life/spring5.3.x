@@ -35,7 +35,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Juergen Hoeller
  * @since 16.03.2004
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see JdbcTemplate#execute(String, PreparedStatementCallback)
  * @see JdbcTemplate#execute(PreparedStatementCreator, PreparedStatementCallback)
  */
@@ -56,11 +56,11 @@ public interface PreparedStatementCallback<T> {
 	 * <p>允许返回在回调内创建的结果对象，即领域对象或领域对象集合。
 	 * 请注意，对单步操作有特殊支持：请参见JdbcTemplate.queryForObject等。
 	 * 抛出的RuntimeException被视为应用程序异常，它会传播到模板的调用者。
-	 * @param ps active JDBC PreparedStatement
-	 * @return a result object, or {@code null} if none
-	 * @throws SQLException if thrown by a JDBC method, to be auto-converted
-	 * to a DataAccessException by an SQLExceptionTranslator
-	 * @throws DataAccessException in case of custom exceptions
+	 * @param ps 活动的 JDBC PreparedStatement
+	 * @return 结果对象，如果没有则为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出，将由 SQLExceptionTranslator
+	 * 自动转换为 DataAccessException
+	 * @throws DataAccessException 在出现自定义异常的情况下
 	 * @see JdbcTemplate#queryForObject(String, Object[], Class)
 	 * @see JdbcTemplate#queryForList(String, Object[])
 	 */

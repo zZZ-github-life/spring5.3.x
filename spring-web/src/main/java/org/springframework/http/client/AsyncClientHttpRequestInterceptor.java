@@ -60,11 +60,11 @@ public interface AsyncClientHttpRequestInterceptor {
 	 * <li>可选地借助 {@link org.springframework.util.concurrent.ListenableFutureAdapter ListenableFutureAdapter}
 	 * 调整响应以过滤 HTTP 属性。</li>
 	 * </ol>
-	 * @param request the request, containing method, URI, and headers
-	 * @param body the body of the request
-	 * @param execution the request execution
-	 * @return the response future
-	 * @throws IOException in case of I/O errors
+	 * @param request 请求，包含方法、URI 和头信息
+	 * @param body 请求体
+	 * @param execution 请求执行对象
+	 * @return 响应 Future
+	 * @throws IOException 如果发生 I/O 错误
 	 */
 	ListenableFuture<ClientHttpResponse> intercept(HttpRequest request, byte[] body,
 			AsyncClientHttpRequestExecution execution) throws IOException;

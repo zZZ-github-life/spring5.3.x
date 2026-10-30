@@ -40,7 +40,7 @@ import org.springframework.lang.Nullable;
  * @author Juergen Hoeller
  * @author Oliver Drotbohm
  * @since 5.3
- * @param <E> the specific {@code ApplicationEvent} subclass to listen to
+ * @param <E> 要监听的具体 {@code ApplicationEvent} 子类
  * @see TransactionalEventListener
  * @see TransactionalApplicationListenerAdapter
  * @see #forPayload
@@ -80,14 +80,14 @@ public interface TransactionalApplicationListener<E extends ApplicationEvent>
 
 	/**
 	 * 添加一个在事务同步处理中调用的回调, 即在实际事务中触发{@link #processEvent}时。
-	 * @param callback the synchronization callback to apply
+	 * @param callback 要应用的事务同步回调
 	 */
 	void addCallback(SynchronizationCallback callback);
 
 	/**
 	 * 立即处理给定的{@link ApplicationEvent}。与{@link #onApplicationEvent(ApplicationEvent)}不同,
 	 * 调用此方法将直接处理给定事件, 而不会将其延迟到关联的{@link #getTransactionPhase() 事务阶段}。
-	 * @param event the event to process through the target listener implementation
+	 * @param event 要通过目标监听器实现处理的事件
 	 */
 	void processEvent(E event);
 
@@ -95,9 +95,9 @@ public interface TransactionalApplicationListener<E extends ApplicationEvent>
 	/**
 	 * 为给定的负载消费者创建一个新的{@code TransactionalApplicationListener},
 	 * 在默认阶段{@link TransactionPhase#AFTER_COMMIT}中应用。
-	 * @param consumer the event payload consumer
-	 * @param <T> the type of the event payload
-	 * @return a corresponding {@code TransactionalApplicationListener} instance
+	 * @param consumer 事件负载消费者
+	 * @param <T> 事件负载的类型
+	 * @return 对应的 {@code TransactionalApplicationListener} 实例
 	 * @see PayloadApplicationEvent#getPayload()
 	 * @see TransactionalApplicationListenerAdapter
 	 */
@@ -107,10 +107,10 @@ public interface TransactionalApplicationListener<E extends ApplicationEvent>
 
 	/**
 	 * 为给定的负载消费者创建一个新的{@code TransactionalApplicationListener}。
-	 * @param phase the transaction phase in which to invoke the listener
-	 * @param consumer the event payload consumer
-	 * @param <T> the type of the event payload
-	 * @return a corresponding {@code TransactionalApplicationListener} instance
+	 * @param phase 调用监听器所处的事务阶段
+	 * @param consumer 事件负载消费者
+	 * @param <T> 事件负载的类型
+	 * @return 对应的 {@code TransactionalApplicationListener} 实例
 	 * @see PayloadApplicationEvent#getPayload()
 	 * @see TransactionalApplicationListenerAdapter
 	 */
@@ -134,15 +134,15 @@ public interface TransactionalApplicationListener<E extends ApplicationEvent>
 
 		/**
 		 * 在事务性事件监听器调用之前调用。
-		 * @param event the event that transaction synchronization is about to process
+		 * @param event 事务同步即将处理的事件
 		 */
 		default void preProcessEvent(ApplicationEvent event) {
 		}
 
 		/**
 		 * 在事务性事件监听器调用之后调用。
-		 * @param event the event that transaction synchronization finished processing
-		 * @param ex an exception that occurred during listener invocation, if any
+		 * @param event 事务同步已完成处理的事件
+		 * @param ex 监听器调用期间发生的异常（如果有）
 		 */
 		default void postProcessEvent(ApplicationEvent event, @Nullable Throwable ex) {
 		}

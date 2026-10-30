@@ -158,7 +158,7 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	 * 这样可以在类型 ID 消息属性中使用合成的 ID，
 	 * 而不必传输 Java 类名。
 	 * <p>默认没有自定义映射，即传输原始 Java 类名。
-	 * @param typeIdMappings a Map with type id values as keys and Java classes as values
+	 * @param typeIdMappings 以类型 id 值为键、以 Java 类为值的 Map
 	 */
 	public void setTypeIdMappings(Map<String, Class<?>> typeIdMappings) {
 		this.idClassMappings = new HashMap<>();
@@ -206,12 +206,12 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	/**
 	 * 使用指定的 JSON 视图和给定的会话将 Java 对象转换为 JMS Message，
 	 * 由该会话创建消息对象。
-	 * @param object the object to convert
-	 * @param session the Session to use for creating a JMS Message
-	 * @param jsonView the view to use to filter the content
-	 * @return the JMS Message
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
-	 * @throws MessageConversionException in case of conversion failure
+	 * @param object 要转换的对象
+	 * @param session 用于创建 JMS Message 的 Session
+	 * @param jsonView 用于过滤内容的视图
+	 * @return 该 JMS Message
+	 * @throws javax.jms.JMSException 如果由 JMS API 方法抛出
+	 * @throws MessageConversionException 转换失败时
 	 * @since 4.3
 	 */
 	public Message toMessage(Object object, Session session, @Nullable Class<?> jsonView)
@@ -262,12 +262,12 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 
 	/**
 	 * 将给定对象映射为 {@link TextMessage}。
-	 * @param object the object to be mapped
-	 * @param session current JMS session
-	 * @param objectWriter the writer to use
-	 * @return the resulting message
-	 * @throws JMSException if thrown by JMS methods
-	 * @throws IOException in case of I/O errors
+	 * @param object 要映射的对象
+	 * @param session 当前的 JMS Session
+	 * @param objectWriter 要使用的写入器
+	 * @return 生成的消息
+	 * @throws JMSException 如果由 JMS 方法抛出
+	 * @throws IOException 发生 I/O 错误时
 	 * @since 4.3
 	 * @see Session#createBytesMessage
 	 */
@@ -281,12 +281,12 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 
 	/**
 	 * 将给定对象映射为 {@link BytesMessage}。
-	 * @param object the object to be mapped
-	 * @param session current JMS session
-	 * @param objectWriter the writer to use
-	 * @return the resulting message
-	 * @throws JMSException if thrown by JMS methods
-	 * @throws IOException in case of I/O errors
+	 * @param object 要映射的对象
+	 * @param session 当前的 JMS Session
+	 * @param objectWriter 要使用的写入器
+	 * @return 生成的消息
+	 * @throws JMSException 如果由 JMS 方法抛出
+	 * @throws IOException 发生 I/O 错误时
 	 * @since 4.3
 	 * @see Session#createBytesMessage
 	 */
@@ -318,13 +318,13 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	 * 当 {@link #setTargetType} 不是 {@link MessageType#TEXT} 或
 	 * {@link MessageType#BYTES} 时调用。
 	 * <p>默认实现抛出 {@link IllegalArgumentException}。
-	 * @param object the object to marshal
-	 * @param session the JMS Session
-	 * @param objectWriter the writer to use
-	 * @param targetType the target message type (other than TEXT or BYTES)
-	 * @return the resulting message
-	 * @throws JMSException if thrown by JMS methods
-	 * @throws IOException in case of I/O errors
+	 * @param object 要编组的对象
+	 * @param session 该 JMS Session
+	 * @param objectWriter 要使用的写入器
+	 * @param targetType 目标消息类型（TEXT 或 BYTES 之外）
+	 * @return 生成的消息
+	 * @throws JMSException 如果由 JMS 方法抛出
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	protected Message mapToMessage(Object object, Session session, ObjectWriter objectWriter, MessageType targetType)
 			throws JMSException, IOException {
@@ -337,9 +337,9 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	 * 在给定的 JMS Message 上为给定负载对象设置类型 ID。
 	 * <p>默认实现会查询已配置的类型 ID 映射，并将结果值
 	 * （映射后的 ID 或原始 Java 类名）设置到已配置的类型 ID 消息属性中。
-	 * @param object the payload object to set a type id for
-	 * @param message the JMS Message on which to set the type id property
-	 * @throws JMSException if thrown by JMS methods
+	 * @param object 要为其设置类型 id 的有效负载对象
+	 * @param message 要在其上设置 type id 属性的 JMS Message
+	 * @throws JMSException 如果由 JMS 方法抛出
 	 * @see #getJavaTypeForMessage(javax.jms.Message)
 	 * @see #setTypeIdPropertyName(String)
 	 * @see #setTypeIdMappings(java.util.Map)
@@ -371,11 +371,11 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 
 	/**
 	 * 将 TextMessage 转换为指定类型的 Java 对象。
-	 * @param message the input message
-	 * @param targetJavaType the target type
-	 * @return the message converted to an object
-	 * @throws JMSException if thrown by JMS
-	 * @throws IOException in case of I/O errors
+	 * @param message 输入消息
+	 * @param targetJavaType 目标类型
+	 * @return 转换为对象后的消息
+	 * @throws JMSException 如果由 JMS 抛出
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	protected Object convertFromTextMessage(TextMessage message, JavaType targetJavaType)
 			throws JMSException, IOException {
@@ -386,11 +386,11 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 
 	/**
 	 * 将 BytesMessage 转换为指定类型的 Java 对象。
-	 * @param message the input message
-	 * @param targetJavaType the target type
-	 * @return the message converted to an object
-	 * @throws JMSException if thrown by JMS
-	 * @throws IOException in case of I/O errors
+	 * @param message 输入消息
+	 * @param targetJavaType 目标类型
+	 * @return 转换为对象后的消息
+	 * @throws JMSException 如果由 JMS 抛出
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	protected Object convertFromBytesMessage(BytesMessage message, JavaType targetJavaType)
 			throws JMSException, IOException {
@@ -421,11 +421,11 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	 * 当 {@link #setTargetType} 不是 {@link MessageType#TEXT} 或
 	 * {@link MessageType#BYTES} 时调用。
 	 * <p>默认实现抛出 {@link IllegalArgumentException}。
-	 * @param message the input message
-	 * @param targetJavaType the target type
-	 * @return the message converted to an object
-	 * @throws JMSException if thrown by JMS
-	 * @throws IOException in case of I/O errors
+	 * @param message 输入消息
+	 * @param targetJavaType 目标类型
+	 * @return 转换为对象后的消息
+	 * @throws JMSException 如果由 JMS 抛出
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	protected Object convertFromMessage(Message message, JavaType targetJavaType)
 			throws JMSException, IOException {
@@ -439,8 +439,8 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	 * 通常通过解析类型 ID 消息属性实现。
 	 * <p>默认实现解析已配置的类型 ID 属性名称并查询已配置的类型 ID 映射。
 	 * 可以用不同的策略覆盖此方法，例如根据消息来源做一些启发式判断。
-	 * @param message the JMS Message from which to get the type id property
-	 * @throws JMSException if thrown by JMS methods
+	 * @param message 要从中获取 type id 属性的 JMS Message
+	 * @throws JMSException 如果由 JMS 方法抛出
 	 * @see #setTypeIdOnMessage(Object, javax.jms.Message)
 	 * @see #setTypeIdPropertyName(String)
 	 * @see #setTypeIdMappings(java.util.Map)
@@ -467,9 +467,8 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 
 	/**
 	 * 根据给定的转换提示确定 Jackson 序列化视图。
-	 * @param conversionHint the conversion hint Object as passed into the
-	 * converter for the current conversion attempt
-	 * @return the serialization view class, or {@code null} if none
+	 * @param conversionHint 为当前转换尝试传入转换器的转换提示对象
+	 * @return 序列化视图类；如果没有，则为 {@code null}
 	 */
 	@Nullable
 	protected Class<?> getSerializationView(@Nullable Object conversionHint) {

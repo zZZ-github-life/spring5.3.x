@@ -39,7 +39,7 @@ public interface DeferredImportSelector extends ImportSelector {
 	/**
 	 * 返回特定的导入组。
 	 * <p>默认实现返回 {@code null}，表示不需要分组。
-	 * @return the import group class, or {@code null} if none
+	 * @return import 分组类；如果没有，则为 {@code null}
 	 * @since 5.0
 	 */
 	@Nullable

@@ -49,7 +49,7 @@ public class InjectionPoint {
 
 	/**
 	 * 为方法或构造器参数创建注入点描述符。
-	 * @param methodParameter the MethodParameter to wrap
+	 * @param methodParameter 要包装的 MethodParameter
 	 */
 	public InjectionPoint(MethodParameter methodParameter) {
 		Assert.notNull(methodParameter, "MethodParameter must not be null");
@@ -58,7 +58,7 @@ public class InjectionPoint {
 
 	/**
 	 * 为字段创建注入点描述符。
-	 * @param field the field to wrap
+	 * @param field 要包装的字段
 	 */
 	public InjectionPoint(Field field) {
 		Assert.notNull(field, "Field must not be null");
@@ -67,7 +67,7 @@ public class InjectionPoint {
 
 	/**
 	 * 复制构造器。
-	 * @param original the original descriptor to create a copy from
+	 * @param original 要从中创建副本的原始描述符
 	 */
 	protected InjectionPoint(InjectionPoint original) {
 		this.methodParameter = (original.methodParameter != null ?
@@ -85,7 +85,7 @@ public class InjectionPoint {
 
 	/**
 	 * 返回所包装的 MethodParameter（如果有）。<p>注意：MethodParameter 或 Field 中只有一个是可用的。
-	 * @return the MethodParameter, or {@code null} if none
+	 * @return MethodParameter；若没有则为 {@code null}
 	 */
 	@Nullable
 	public MethodParameter getMethodParameter() {
@@ -94,7 +94,7 @@ public class InjectionPoint {
 
 	/**
 	 * 返回所包装的 Field（如果有）。<p>注意：MethodParameter 或 Field 中只有一个是可用的。
-	 * @return the Field, or {@code null} if none
+	 * @return Field；若没有则为 {@code null}
 	 */
 	@Nullable
 	public Field getField() {
@@ -103,8 +103,8 @@ public class InjectionPoint {
 
 	/**
 	 * 返回所包装的 MethodParameter，假定其存在。
-	 * @return the MethodParameter (never {@code null})
-	 * @throws IllegalStateException if no MethodParameter is available
+	 * @return MethodParameter（从不为 {@code null}）
+	 * @throws IllegalStateException 如果没有可用的 MethodParameter
 	 * @since 5.0
 	 */
 	protected final MethodParameter obtainMethodParameter() {
@@ -131,8 +131,8 @@ public class InjectionPoint {
 
 	/**
 	 * 检索给定类型的字段/参数注解（如果有）。
-	 * @param annotationType the annotation type to retrieve
-	 * @return the annotation instance, or {@code null} if none found
+	 * @param annotationType 要获取的注解类型
+	 * @return 注解实例；若未找到则为 {@code null}
 	 * @since 4.3.9
 	 */
 	@Nullable
@@ -150,7 +150,7 @@ public class InjectionPoint {
 
 	/**
 	 * 返回所包装的成员，其中包含注入点。
-	 * @return the Field / Method / Constructor as Member
+	 * @return 作为 Member 的 Field / Method / Constructor
 	 */
 	public Member getMember() {
 		return (this.field != null ? this.field : obtainMethodParameter().getMember());
@@ -160,7 +160,7 @@ public class InjectionPoint {
 	 * 返回所包装的注解元素。<p>注意：对于方法/构造器参数，这会公开声明在方法或构造器本身上的注解（即在
 	 * 方法/构造器级别，而非参数级别）。在这种情况下，请使用 {@link #getAnnotations()} 获取参数级别的注
 	 * 解，其与相应的字段注解一样是透明的。
-	 * @return the Field / Method / Constructor as AnnotatedElement
+	 * @return 作为 AnnotatedElement 的 Field / Method / Constructor
 	 */
 	public AnnotatedElement getAnnotatedElement() {
 		return (this.field != null ? this.field : obtainMethodParameter().getAnnotatedElement());

@@ -116,7 +116,7 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 	/**
 	 * 默认构造函数，自动检测并实例化适合当前运行时容器的
 	 * {@link RequestUpgradeStrategy}。
-	 * @throws IllegalStateException if no {@link RequestUpgradeStrategy} can be found.
+	 * @throws IllegalStateException 如果找不到任何 {@link RequestUpgradeStrategy}。
 	 */
 	protected AbstractHandshakeHandler() {
 		this(initRequestUpgradeStrategy());
@@ -124,7 +124,7 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 
 	/**
 	 * 接受运行时特定 {@link RequestUpgradeStrategy} 的构造函数。
-	 * @param requestUpgradeStrategy the upgrade strategy to use
+	 * @param requestUpgradeStrategy 要使用的升级策略
 	 */
 	protected AbstractHandshakeHandler(RequestUpgradeStrategy requestUpgradeStrategy) {
 		Assert.notNull(requestUpgradeStrategy, "RequestUpgradeStrategy must not be null");
@@ -356,9 +356,9 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 	 * 对于受支持的子协议列表，此方法首先检查目标
 	 * WebSocketHandler 是否为 {@link SubProtocolCapable}，然后检查是否已通过
 	 * {@link #setSupportedProtocols(String...)} 显式配置了任何子协议。
-	 * @param requestedProtocols the requested sub-protocols
-	 * @param webSocketHandler the WebSocketHandler that will be used
-	 * @return the selected protocols or {@code null}
+	 * @param requestedProtocols 请求的子协议
+	 * @param webSocketHandler 将要使用的 WebSocketHandler
+	 * @return 选定的协议，或 {@code null}
 	 * @see #determineHandlerSupportedProtocols(WebSocketHandler)
 	 */
 	@Nullable
@@ -378,8 +378,8 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 	/**
 	 * 通过检查给定 WebSocketHandler 是否为 {@link SubProtocolCapable} 的实例，
 	 * 确定其支持的子协议。
-	 * @param handler the handler to check
-	 * @return a list of supported protocols, or an empty list if none available
+	 * @param handler 要检查的处理器
+	 * @return 受支持协议的列表；如果没有任何可用的则为空列表
 	 */
 	protected final List<String> determineHandlerSupportedProtocols(WebSocketHandler handler) {
 		WebSocketHandler handlerToCheck = WebSocketHandlerDecorator.unwrap(handler);
@@ -394,10 +394,10 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 	 * 过滤请求的 WebSocket 扩展列表。
 	 * <p>自 4.1 起，此方法的默认实现会过滤列表，
 	 * 仅保留既被请求又受支持的扩展。
-	 * @param request the current request
-	 * @param requestedExtensions the list of extensions requested by the client
-	 * @param supportedExtensions the list of extensions supported by the server
-	 * @return the selected extensions or an empty list
+	 * @param request 当前请求
+	 * @param requestedExtensions 客户端请求的扩展列表
+	 * @param supportedExtensions 服务器支持的扩展列表
+	 * @return 选定的扩展，或空列表
 	 */
 	protected List<WebSocketExtension> filterRequestedExtensions(ServerHttpRequest request,
 			List<WebSocketExtension> requestedExtensions, List<WebSocketExtension> supportedExtensions) {
@@ -416,10 +416,10 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 	 * 默认实现调用 {@link ServerHttpRequest#getPrincipal()}。
 	 * <p>子类可以提供自定义逻辑来将用户与会话关联，
 	 * 例如为匿名用户（即未完全通过身份验证的用户）分配名称。
-	 * @param request the handshake request
-	 * @param wsHandler the WebSocket handler that will handle messages
-	 * @param attributes handshake attributes to pass to the WebSocket session
-	 * @return the user for the WebSocket session, or {@code null} if not available
+	 * @param request 握手请求
+	 * @param wsHandler 将处理消息的 WebSocket 处理器
+	 * @param attributes 要传递给 WebSocket 会话的握手属性
+	 * @return WebSocket 会话的用户；如果不可用则为 {@code null}
 	 */
 	@Nullable
 	protected Principal determineUser(

@@ -32,10 +32,10 @@ public interface RequestToViewNameTranslator {
 
 	/**
 	 * 将给定的 {@link HttpServletRequest} 转换为视图名称。
-	 * @param request the incoming {@link HttpServletRequest} providing
-	 * the context from which a view name is to be resolved
-	 * @return the view name, or {@code null} if no default found
-	 * @throws Exception if view name translation fails
+	 * @param request 传入的 {@link HttpServletRequest}，
+	 * 提供用于解析视图名称的上下文
+	 * @return 视图名称；如果未找到默认值则为 {@code null}
+	 * @throws Exception 如果视图名称转换失败
 	 */
 	@Nullable
 	String getViewName(HttpServletRequest request) throws Exception;

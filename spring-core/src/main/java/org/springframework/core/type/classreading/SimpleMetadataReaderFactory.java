@@ -46,8 +46,8 @@ public class SimpleMetadataReaderFactory implements MetadataReaderFactory {
 
 	/**
 	 * 为给定的资源加载器创建一个新的 SimpleMetadataReaderFactory。
-	 * @param resourceLoader the Spring ResourceLoader to use
-	 * (also determines the ClassLoader to use)
+	 * @param resourceLoader 要使用的 Spring ResourceLoader
+	 * （同时也决定要使用的 ClassLoader）
 	 */
 	public SimpleMetadataReaderFactory(@Nullable ResourceLoader resourceLoader) {
 		this.resourceLoader = (resourceLoader != null ? resourceLoader : new DefaultResourceLoader());
@@ -55,7 +55,7 @@ public class SimpleMetadataReaderFactory implements MetadataReaderFactory {
 
 	/**
 	 * 为给定的类加载器创建一个新的 SimpleMetadataReaderFactory。
-	 * @param classLoader the ClassLoader to use
+	 * @param classLoader 要使用的 ClassLoader
 	 */
 	public SimpleMetadataReaderFactory(@Nullable ClassLoader classLoader) {
 		this.resourceLoader =

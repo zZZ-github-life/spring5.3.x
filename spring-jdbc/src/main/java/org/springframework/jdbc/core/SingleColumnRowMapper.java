@@ -39,7 +39,7 @@ import org.springframework.util.NumberUtils;
  * @author Juergen Hoeller
  * @author Kazuki Shimizu
  * @since 1.2
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see JdbcTemplate#queryForList(String, Class)
  * @see JdbcTemplate#queryForObject(String, Class)
  */
@@ -60,7 +60,7 @@ public class SingleColumnRowMapper<T> implements RowMapper<T> {
 
 	/**
 	 * 创建新的{@code SingleColumnRowMapper}。
-	 * @param requiredType the type that each result object is expected to match
+	 * @param requiredType 每个结果对象应匹配的类型
 	 */
 	public SingleColumnRowMapper(Class<T> requiredType) {
 		setRequiredType(requiredType);
@@ -125,12 +125,12 @@ public class SingleColumnRowMapper<T> implements RowMapper<T> {
 	 * <p>默认实现调用{@link JdbcUtils#getResultSetValue(java.sql.ResultSet, int, Class)}。
 	 * 如果未指定必需类型，此方法委托给{@code getColumnValue(rs, index)}，
 	 * 它基本上调用{@code ResultSet.getObject(index)}，但会对适当的值类型应用一些额外的默认转换。
-	 * @param rs is the ResultSet holding the data
-	 * @param index is the column index
-	 * @param requiredType the type that each result object is expected to match
-	 * (or {@code null} if none specified)
-	 * @return the Object value
-	 * @throws SQLException in case of extraction failure
+	 * @param rs 是持有数据的 ResultSet
+	 * @param index 是列索引
+	 * @param requiredType 每个结果对象应匹配的类型
+	 * （如果未指定则为 {@code null}）
+	 * @return Object 值
+	 * @throws SQLException 在提取失败的情况下
 	 * @see org.springframework.jdbc.support.JdbcUtils#getResultSetValue(java.sql.ResultSet, int, Class)
 	 * @see #getColumnValue(java.sql.ResultSet, int)
 	 */
@@ -152,10 +152,10 @@ public class SingleColumnRowMapper<T> implements RowMapper<T> {
 	 * 它使用{@code ResultSet.getObject(index)}方法。此外，
 	 * 它包含一个"技巧"来绕过Oracle为其TIMESTAMP数据类型返回非标准对象的问题。
 	 * 详情请参见{@code JdbcUtils#getResultSetValue()}的javadoc。
-	 * @param rs is the ResultSet holding the data
-	 * @param index is the column index
-	 * @return the Object value
-	 * @throws SQLException in case of extraction failure
+	 * @param rs 是持有数据的 ResultSet
+	 * @param index 是列索引
+	 * @return Object 值
+	 * @throws SQLException 在提取失败的情况下
 	 * @see org.springframework.jdbc.support.JdbcUtils#getResultSetValue(java.sql.ResultSet, int)
 	 */
 	@Nullable
@@ -169,11 +169,10 @@ public class SingleColumnRowMapper<T> implements RowMapper<T> {
 	 * <p>如果必需类型是String，值将通过{@code toString()}简单地转换为字符串。
 	 * 如果是Number类型，值将通过数字转换或字符串解析（取决于值类型）转换为Number。
 	 * 否则，值将使用{@link ConversionService}转换为必需类型。
-	 * @param value the column value as extracted from {@code getColumnValue()}
-	 * (never {@code null})
-	 * @param requiredType the type that each result object is expected to match
-	 * (never {@code null})
-	 * @return the converted value
+	 * @param value 从 {@code getColumnValue()} 提取的列值
+	 * （永不为 {@code null}）
+	 * @param requiredType 每个结果对象应匹配的类型（永不为 {@code null}）
+	 * @return 转换后的值
 	 * @see #getColumnValue(java.sql.ResultSet, int, Class)
 	 */
 	@SuppressWarnings("unchecked")
@@ -205,7 +204,7 @@ public class SingleColumnRowMapper<T> implements RowMapper<T> {
 
 	/**
 	 * 静态工厂方法，创建一个新的{@code SingleColumnRowMapper}。
-	 * @param requiredType the type that each result object is expected to match
+	 * @param requiredType 每个结果对象应匹配的类型
 	 * @since 4.1
 	 * @see #newInstance(Class, ConversionService)
 	 */
@@ -215,9 +214,9 @@ public class SingleColumnRowMapper<T> implements RowMapper<T> {
 
 	/**
 	 * 静态工厂方法，创建一个新的{@code SingleColumnRowMapper}。
-	 * @param requiredType the type that each result object is expected to match
-	 * @param conversionService the {@link ConversionService} for converting a
-	 * fetched value, or {@code null} for none
+	 * @param requiredType 每个结果对象应匹配的类型
+	 * @param conversionService 用于转换所获取值的 {@link ConversionService}，
+	 * 如果没有则为 {@code null}
 	 * @since 5.0.4
 	 * @see #newInstance(Class)
 	 * @see #setConversionService

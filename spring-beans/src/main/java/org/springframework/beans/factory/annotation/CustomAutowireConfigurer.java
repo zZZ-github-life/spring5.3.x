@@ -76,7 +76,7 @@ public class CustomAutowireConfigurer implements BeanFactoryPostProcessor, BeanC
 	 * 可以是自定义注解全限定类名的 String 表示。
 	 * <p>请注意，任何自身被 Spring 的 {@link org.springframework.beans.factory.annotation.Qualifier}
 	 * 标注的注解都不需要显式注册。
-	 * @param customQualifierTypes the custom types to register
+	 * @param customQualifierTypes 要注册的自定义类型
 	 */
 	public void setCustomQualifierTypes(Set<?> customQualifierTypes) {
 		this.customQualifierTypes = customQualifierTypes;

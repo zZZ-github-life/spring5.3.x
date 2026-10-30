@@ -117,9 +117,9 @@ public class InvocableHandlerMethod extends HandlerMethod {
 
 	/**
 	 * 为给定交换调用该方法。
-	 * @param message the current message
-	 * @param providedArgs optional list of argument values to match by type
-	 * @return a Mono with the result from the invocation
+	 * @param message 当前消息
+	 * @param providedArgs 要按类型匹配的参数值的可选列表
+	 * @return 包含调用结果的 Mono
 	 */
 	@SuppressWarnings("KotlinInternalInJava")
 	public Mono<Object> invoke(Message<?> message, Object... providedArgs) {

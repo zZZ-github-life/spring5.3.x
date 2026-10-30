@@ -41,7 +41,7 @@ public interface ConfigurableListableBeanFactory
 
 	/**
 	 * 忽略给定的依赖类型以进行自动装配：例如 String。默认不忽略任何类型。
-	 * @param type the dependency type to ignore
+	 * @param type 要忽略的依赖类型
 	 */
 	void ignoreDependencyType(Class<?> type);
 
@@ -50,7 +50,7 @@ public interface ConfigurableListableBeanFactory
 	 * <p>应用上下文通常用其注册以其他方式解析的依赖，例如通过 BeanFactoryAware 解析 BeanFactory，或通
 	 * 过 ApplicationContextAware 解析 ApplicationContext。
 	 * <p>默认情况下，只忽略 BeanFactoryAware 接口。要忽略更多类型，请为每种类型调用此方法。
-	 * @param ifc the dependency interface to ignore
+	 * @param ifc 要忽略的依赖接口
 	 * @see org.springframework.beans.factory.BeanFactoryAware
 	 * @see org.springframework.context.ApplicationContextAware
 	 */
@@ -61,23 +61,22 @@ public interface ConfigurableListableBeanFactory
 	 * <p>这适用于那些应可被自动装配但未在工厂中定义为 Bean 的工厂/上下文引用：例如，将
 	 * ApplicationContext 类型的依赖解析为 Bean 所在的那个 ApplicationContext 实例。
 	 * <p>注意：在普通的 BeanFactory 中没有注册任何此类默认类型，甚至对 BeanFactory 接口本身也没有。
-	 * @param dependencyType the dependency type to register. This will typically
-	 * be a base interface such as BeanFactory, with extensions of it resolved
-	 * as well if declared as an autowiring dependency (e.g. ListableBeanFactory),
-	 * as long as the given value actually implements the extended interface.
-	 * @param autowiredValue the corresponding autowired value. This may also be an
-	 * implementation of the {@link org.springframework.beans.factory.ObjectFactory}
-	 * interface, which allows for lazy resolution of the actual target value.
+	 * @param dependencyType 要注册的依赖类型。通常是一个基础接口，例如 BeanFactory，
+	 * 其扩展接口如果在自动装配依赖中声明（例如 ListableBeanFactory），
+	 * 只要给定的值实际实现了该扩展接口，也会被解析。
+	 * @param autowiredValue 对应的自动装配值。这也可以是
+	 * {@link org.springframework.beans.factory.ObjectFactory} 接口的实现，
+	 * 从而允许延迟解析实际的目标值。
 	 */
 	void registerResolvableDependency(Class<?> dependencyType, @Nullable Object autowiredValue);
 
 	/**
 	 * 确定指定 Bean 是否有资格作为自动装配候选，以便注入到声明了匹配类型依赖的其他 Bean 中。
 	 * <p>此方法也会检查祖先工厂。
-	 * @param beanName the name of the bean to check
-	 * @param descriptor the descriptor of the dependency to resolve
-	 * @return whether the bean should be considered as autowire candidate
-	 * @throws NoSuchBeanDefinitionException if there is no bean with the given name
+	 * @param beanName 要检查的 Bean 的名称
+	 * @param descriptor 要解析的依赖的描述符
+	 * @return 该 Bean 是否应被视为自动装配候选
+	 * @throws NoSuchBeanDefinitionException 如果没有给定名称的 Bean 则抛出
 	 */
 	boolean isAutowireCandidate(String beanName, DependencyDescriptor descriptor)
 			throws NoSuchBeanDefinitionException;
@@ -88,10 +87,9 @@ public interface ConfigurableListableBeanFactory
 	 * <p>返回的 BeanDefinition 对象不应是副本，而应是工厂中注册的原始定义对象。这意味着如有必要，它应
 	 * 可强制转换为更具体的实现类型。
 	 * <p><b>注意：</b>此方法<i>不</i>考虑祖先工厂。它仅用于访问此工厂的本地 Bean 定义。
-	 * @param beanName the name of the bean
-	 * @return the registered BeanDefinition
-	 * @throws NoSuchBeanDefinitionException if there is no bean with the given name
-	 * defined in this factory
+	 * @param beanName 该 Bean 的名称
+	 * @return 已注册的 BeanDefinition
+	 * @throws NoSuchBeanDefinitionException 如果此工厂中没有定义给定名称的 Bean 则抛出
 	 */
 	BeanDefinition getBeanDefinition(String beanName) throws NoSuchBeanDefinitionException;
 
@@ -99,7 +97,7 @@ public interface ConfigurableListableBeanFactory
 	 * 返回此工厂管理的所有 Bean 名称的统一视图。
 	 * <p>包括 Bean 定义名称以及手动注册的 singleton 实例的名称，Bean 定义名称始终排在前面，类似于按类
 	 * 型/注解检索 Bean 名称的工作方式。
-	 * @return the composite iterator for the bean names view
+	 * @return Bean 名称视图的组合迭代器
 	 * @since 4.1.2
 	 * @see #containsBeanDefinition
 	 * @see #registerSingleton
@@ -126,7 +124,7 @@ public interface ConfigurableListableBeanFactory
 
 	/**
 	 * 返回此工厂的 Bean 定义是否已冻结，即是否不应再被修改或后处理。
-	 * @return {@code true} if the factory's configuration is considered frozen
+	 * @return 如果工厂的配置被视为已冻结则返回 {@code true}
 	 */
 	boolean isConfigurationFrozen();
 
@@ -134,9 +132,9 @@ public interface ConfigurableListableBeanFactory
 	 * 确保所有非延迟初始化的 singleton 都被实例化，同时也会考虑
 	 * {@link org.springframework.beans.factory.FactoryBean FactoryBeans}。如果需要，通常在工厂设置结束
 	 * 时调用。
-	 * @throws BeansException if one of the singleton beans could not be created.
-	 * Note: This may have left the factory with some beans already initialized!
-	 * Call {@link #destroySingletons()} for full cleanup in this case.
+	 * @throws BeansException 如果某个单例 Bean 无法创建则抛出。
+	 * 注意：这可能导致工厂中已有部分 Bean 被初始化！
+	 * 在此情况下调用 {@link #destroySingletons()} 进行完全清理。
 	 * @see #destroySingletons()
 	 */
 	void preInstantiateSingletons() throws BeansException;

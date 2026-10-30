@@ -51,7 +51,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Juergen Hoeller
  * @since 1.0.2
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see org.springframework.jdbc.support.lob.LobHandler
  * @see org.springframework.jdbc.LobRetrievalFailureException
  */
@@ -88,8 +88,7 @@ public abstract class AbstractLobStreamingResultSetExtractor<T> implements Resul
 
 	/**
 	 * 处理 ResultSet 不包含任何行的情况。
-	 * @throws DataAccessException a corresponding exception,
-	 * by default an EmptyResultDataAccessException
+	 * @throws DataAccessException 对应的异常，默认为 EmptyResultDataAccessException
 	 * @see org.springframework.dao.EmptyResultDataAccessException
 	 */
 	protected void handleNoRowFound() throws DataAccessException {
@@ -99,8 +98,7 @@ public abstract class AbstractLobStreamingResultSetExtractor<T> implements Resul
 
 	/**
 	 * 处理 ResultSet 包含多行的情况。
-	 * @throws DataAccessException a corresponding exception,
-	 * by default an IncorrectResultSizeDataAccessException
+	 * @throws DataAccessException 对应的异常，默认为 IncorrectResultSizeDataAccessException
 	 * @see org.springframework.dao.IncorrectResultSizeDataAccessException
 	 */
 	protected void handleMultipleRowsFound() throws DataAccessException {
@@ -112,10 +110,10 @@ public abstract class AbstractLobStreamingResultSetExtractor<T> implements Resul
 	 * 将给定 ResultSet 中的 LOB 内容流式传输到某个 OutputStream。
 	 * <p>通常用作内部类，以便访问外围方法的参数
 	 * 以及外围类的 LobHandler 实例变量。
-	 * @param rs the ResultSet to take the LOB content from
-	 * @throws SQLException if thrown by JDBC methods
-	 * @throws IOException if thrown by stream access methods
-	 * @throws DataAccessException in case of custom exceptions
+	 * @param rs 要从中获取 LOB 内容的 ResultSet
+	 * @throws SQLException 如果由 JDBC 方法抛出
+	 * @throws IOException 如果由流访问方法抛出
+	 * @throws DataAccessException 如果出现自定义异常
 	 * @see org.springframework.jdbc.support.lob.LobHandler#getBlobAsBinaryStream
 	 * @see org.springframework.util.FileCopyUtils
 	 */

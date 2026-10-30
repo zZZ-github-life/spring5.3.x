@@ -36,12 +36,12 @@ public abstract class ExpressionUtils {
 	/**
 	 * 判断指定上下文中是否存在可用的类型转换器，并尝试用它把提供的值转换为指定类型。如果无法转换，则抛
 	 * 出异常。
-	 * @param context the evaluation context that may define a type converter
-	 * @param typedValue the value to convert and a type descriptor describing it
-	 * @param targetType the type to attempt conversion to
-	 * @return the converted value
-	 * @throws EvaluationException if there is a problem during conversion or conversion
-	 * of the value to the specified type is not supported
+	 * @param context 可能定义了类型转换器的求值上下文
+	 * @param typedValue 要转换的值及描述它的类型描述符
+	 * @param targetType 要尝试转换到的类型
+	 * @return 转换后的值
+	 * @throws EvaluationException 如果转换过程中出现问题，
+	 * 或不支持将该值转换为指定类型
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable

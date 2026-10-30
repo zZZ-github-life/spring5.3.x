@@ -44,8 +44,8 @@ public interface XhrTransport extends Transport, InfoReceiver {
 	/**
 	 * 执行将消息发送到服务器的请求。
 	 * <p>请注意，自 4.2 起，此方法接受 {@code headers} 参数。
-	 * @param transportUrl the URL for sending messages.
-	 * @param message the message to send
+	 * @param transportUrl 用于发送消息的 URL。
+	 * @param message 要发送的消息
 	 */
 	void executeSendRequest(URI transportUrl, HttpHeaders headers, TextMessage message);
 

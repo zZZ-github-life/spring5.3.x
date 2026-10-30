@@ -102,7 +102,7 @@ class ConstructorResolver {
 
 	/**
 	 * 为给定工厂和实例化策略创建一个新的 ConstructorResolver。
-	 * @param beanFactory the BeanFactory to work with
+	 * @param beanFactory 要使用的 BeanFactory
 	 */
 	public ConstructorResolver(AbstractAutowireCapableBeanFactory beanFactory) {
 		this.beanFactory = beanFactory;
@@ -114,12 +114,12 @@ class ConstructorResolver {
 	 * “autowire constructor”（按类型提供构造参数）行为。如果指定了显式构造参数值也适用，此时用 Bean 工
 	 * 厂中的 bean 匹配所有剩余参数。<p>这对应于构造器注入：在此模式下，Spring Bean 工厂能够托管期望基
 	 * 于构造器进行依赖解析的组件。
-	 * @param beanName the name of the bean
-	 * @param mbd the merged bean definition for the bean
-	 * @param chosenCtors chosen candidate constructors (or {@code null} if none)
-	 * @param explicitArgs argument values passed in programmatically via the getBean method,
-	 * or {@code null} if none (-> use constructor argument values from bean definition)
-	 * @return a BeanWrapper for the new instance
+	 * @param beanName Bean 的名称
+	 * @param mbd 该 Bean 的合并后的 Bean 定义
+	 * @param chosenCtors 选定的候选构造器（如果没有则为 {@code null}）
+	 * @param explicitArgs 通过 getBean 方法以编程方式传入的参数值，如果没有则为 {@code null}
+	 * （-> 使用 Bean 定义中的构造器参数值）
+	 * @return 新实例的 BeanWrapper
 	 */
 	public BeanWrapper autowireConstructor(String beanName, RootBeanDefinition mbd,
 			@Nullable Constructor<?>[] chosenCtors, @Nullable Object[] explicitArgs) {
@@ -365,7 +365,7 @@ class ConstructorResolver {
 	/**
 	 * 如果可能，解析指定 Bean 定义中的工厂方法。可检查
 	 * {@link RootBeanDefinition#getResolvedFactoryMethod()} 获取结果。
-	 * @param mbd the bean definition to check
+	 * @param mbd 要检查的 Bean 定义
 	 */
 	public void resolveFactoryMethodIfPossible(RootBeanDefinition mbd) {
 		Class<?> factoryClass;
@@ -426,11 +426,11 @@ class ConstructorResolver {
 	 * 指定名称的静态方法或实例方法（该方法可能被重载），并尝试与参数匹配。我们无法获得附加到构造参数上
 	 * 的类型信息，因此这里只能采用试错方式。explicitArgs 数组可能包含通过相应的 getBean 方法以编程方式
 	 * 传入的参数值。
-	 * @param beanName the name of the bean
-	 * @param mbd the merged bean definition for the bean
-	 * @param explicitArgs argument values passed in programmatically via the getBean
-	 * method, or {@code null} if none (-> use constructor argument values from bean definition)
-	 * @return a BeanWrapper for the new instance
+	 * @param beanName Bean 的名称
+	 * @param mbd 该 Bean 的合并后的 Bean 定义
+	 * @param explicitArgs 通过 getBean 方法以编程方式传入的参数值，如果没有则为 {@code null}
+	 * （-> 使用 Bean 定义中的构造器参数值）
+	 * @return 新实例的 BeanWrapper
 	 */
 	public BeanWrapper instantiateUsingFactoryMethod(
 			String beanName, RootBeanDefinition mbd, @Nullable Object[] explicitArgs) {

@@ -31,11 +31,12 @@ public interface AdvisorChainFactory {
 
 	/**
 	 * 为给定的 advisor 链配置确定一组 {@link org.aopalliance.intercept.MethodInterceptor} 对象。
-	 * @param config the AOP configuration in the form of an Advised object
-	 * @param method the proxied method
-	 * @param targetClass the target class (may be {@code null} to indicate a proxy without
-	 * target object, in which case the method's declaring class is the next best option)
-	 * @return a List of MethodInterceptors (may also include InterceptorAndDynamicMethodMatchers)
+	 * @param config 以 Advised 对象形式表示的 AOP 配置
+	 * @param method 被代理的方法
+	 * @param targetClass 目标类（可能为 {@code null}，表示没有目标对象的代理，
+	 * 此时方法的声明类是最好的替代选择）
+	 * @return MethodInterceptor 列表（也可能包含
+	 * InterceptorAndDynamicMethodMatchers）
 	 */
 	List<Object> getInterceptorsAndDynamicInterceptionAdvice(Advised config, Method method, @Nullable Class<?> targetClass);
 

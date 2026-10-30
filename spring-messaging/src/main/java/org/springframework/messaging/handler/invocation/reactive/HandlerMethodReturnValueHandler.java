@@ -36,19 +36,18 @@ public interface HandlerMethodReturnValueHandler {
 
 	/**
 	 * 给定{@linkplain MethodParameter 方法返回类型}是否受此处理器支持。
-	 * @param returnType the method return type to check
-	 * @return {@code true} if this handler supports the supplied return type;
-	 * {@code false} otherwise
+	 * @param returnType 要检查的方法返回类型
+	 * @return 如果该处理器支持所提供的返回类型则返回 {@code true}；
+	 * 否则返回 {@code false}
 	 */
 	boolean supportsReturnType(MethodParameter returnType);
 
 	/**
 	 * 处理给定返回值。
-	 * @param returnValue the value returned from the handler method
-	 * @param returnType the type of the return value. This type must have previously
-	 * been passed to {@link #supportsReturnType(MethodParameter)}
-	 * and it must have returned {@code true}.
-	 * @return {@code Mono<Void>} to indicate when handling is complete.
+	 * @param returnValue 处理器方法返回的值
+	 * @param returnType 返回值的类型。该类型必须事先传递给 {@link #supportsReturnType(MethodParameter)}
+	 * 且该方法必须返回 {@code true}。
+	 * @return 用于指示处理何时完成的 {@code Mono<Void>}。
 	 */
 	Mono<Void> handleReturnValue(@Nullable Object returnValue, MethodParameter returnType, Message<?> message);
 

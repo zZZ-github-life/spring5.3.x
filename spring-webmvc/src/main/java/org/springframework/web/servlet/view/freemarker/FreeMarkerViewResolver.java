@@ -51,8 +51,8 @@ public class FreeMarkerViewResolver extends AbstractTemplateViewResolver {
 	/**
 	 * 一个便捷构造器，允许将 {@link #setPrefix 前缀} 和 {@link #setSuffix 后缀}
 	 * 作为构造器参数指定。
-	 * @param prefix the prefix that gets prepended to view names when building a URL
-	 * @param suffix the suffix that gets appended to view names when building a URL
+	 * @param prefix 构建 URL 时添加到视图名称前面的前缀
+	 * @param suffix 构建 URL 时追加到视图名称后面的后缀
 	 * @since 4.3
 	 */
 	public FreeMarkerViewResolver(String prefix, String suffix) {

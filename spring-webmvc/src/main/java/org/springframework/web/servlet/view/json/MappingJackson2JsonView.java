@@ -147,8 +147,8 @@ public class MappingJackson2JsonView extends AbstractJackson2View {
 	 * 返回值可以是另一个 {@link Map}，也可以是单个值对象。
 	 * <p>默认实现会移除 {@link BindingResult} 实例
 	 * 以及未包含在 {@link #setModelKeys modelKeys} 属性中的条目。
-	 * @param model the model, as passed on to {@link #renderMergedOutputModel}
-	 * @return the value to be rendered
+	 * @param model 模型，将传递给 {@link #renderMergedOutputModel}
+	 * @return 要渲染的值
 	 */
 	@Override
 	protected Object filterModel(Map<String, Object> model) {

@@ -39,8 +39,8 @@ public class ObjectRetrievalFailureException extends DataRetrievalFailureExcepti
 	/**
 	 * 使用给定消息创建一个通用的 ObjectRetrievalFailureException，
 	 * 不包含任何受影响对象的信息。
-	 * @param msg the detail message
-	 * @param cause the source exception
+	 * @param msg 详细消息
+	 * @param cause 源异常
 	 */
 	public ObjectRetrievalFailureException(String msg, Throwable cause) {
 		super(msg, cause);
@@ -51,8 +51,8 @@ public class ObjectRetrievalFailureException extends DataRetrievalFailureExcepti
 	/**
 	 * 为给定对象创建一个新的 ObjectRetrievalFailureException，
 	 * 使用默认的 "not found" 消息。
-	 * @param persistentClass the persistent class
-	 * @param identifier the ID of the object that should have been retrieved
+	 * @param persistentClass 持久化类
+	 * @param identifier 本应检索到的对象的 ID
 	 */
 	public ObjectRetrievalFailureException(Class<?> persistentClass, Object identifier) {
 		this(persistentClass, identifier,
@@ -63,10 +63,10 @@ public class ObjectRetrievalFailureException extends DataRetrievalFailureExcepti
 	/**
 	 * 为给定对象创建一个新的 ObjectRetrievalFailureException，
 	 * 使用给定的显式消息和异常。
-	 * @param persistentClass the persistent class
-	 * @param identifier the ID of the object that should have been retrieved
-	 * @param msg the detail message
-	 * @param cause the source exception
+	 * @param persistentClass 持久化类
+	 * @param identifier 本应检索到的对象的 ID
+	 * @param msg 详细消息
+	 * @param cause 源异常
 	 */
 	public ObjectRetrievalFailureException(
 			Class<?> persistentClass, Object identifier, String msg, @Nullable Throwable cause) {
@@ -79,8 +79,8 @@ public class ObjectRetrievalFailureException extends DataRetrievalFailureExcepti
 	/**
 	 * 为给定对象创建一个新的 ObjectRetrievalFailureException，
 	 * 使用默认的 "not found" 消息。
-	 * @param persistentClassName the name of the persistent class
-	 * @param identifier the ID of the object that should have been retrieved
+	 * @param persistentClassName 持久化类的名称
+	 * @param identifier 本应检索到的对象的 ID
 	 */
 	public ObjectRetrievalFailureException(String persistentClassName, Object identifier) {
 		this(persistentClassName, identifier,
@@ -91,10 +91,10 @@ public class ObjectRetrievalFailureException extends DataRetrievalFailureExcepti
 	/**
 	 * 为给定对象创建一个新的 ObjectRetrievalFailureException，
 	 * 使用给定的显式消息和异常。
-	 * @param persistentClassName the name of the persistent class
-	 * @param identifier the ID of the object that should have been retrieved
-	 * @param msg the detail message
-	 * @param cause the source exception
+	 * @param persistentClassName 持久化类的名称
+	 * @param identifier 本应检索到的对象的 ID
+	 * @param msg 详细消息
+	 * @param cause 源异常
 	 */
 	public ObjectRetrievalFailureException(
 			String persistentClassName, Object identifier, String msg, @Nullable Throwable cause) {

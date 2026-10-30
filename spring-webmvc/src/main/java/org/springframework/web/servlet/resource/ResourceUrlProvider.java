@@ -158,9 +158,9 @@ public class ResourceUrlProvider implements ApplicationListener<ContextRefreshed
 
 	/**
 	 * {@link #getForLookupPath(String)} 的变体，接受完整的请求 URL 路径（即包含上下文路径和 servlet 路径），并返回要公开暴露以供使用的完整请求 URL 路径。
-	 * @param request the current request
-	 * @param requestUrl the request URL path to resolve
-	 * @return the resolved public URL path, or {@code null} if unresolved
+	 * @param request 当前请求
+	 * @param requestUrl 要解析的请求 URL 路径
+	 * @return 解析出的公共 URL 路径；如果无法解析，则为 {@code null}
 	 */
 	@Nullable
 	public final String getForRequestUrl(HttpServletRequest request, String requestUrl) {
@@ -203,8 +203,8 @@ public class ResourceUrlProvider implements ApplicationListener<ContextRefreshed
 	 * 将给定路径与已配置的资源处理器映射进行比较，如果找到匹配项，则使用匹配的 {@code ResourceHttpRequestHandler} 的 {@code ResourceResolver} 链来解析要公开暴露以供使用的 URL 路径。
 	 * <p>预期给定路径是 Spring MVC 用于请求映射的路径，即不包含上下文路径和 servlet 路径部分。
 	 * <p>如果多个处理器映射匹配，则将使用配置了最具体模式的处理器。
-	 * @param lookupPath the lookup path to check
-	 * @return the resolved public URL path, or {@code null} if unresolved
+	 * @param lookupPath 要检查的查找路径
+	 * @return 解析出的公共 URL 路径；如果无法解析，则为 {@code null}
 	 */
 	@Nullable
 	public final String getForLookupPath(String lookupPath) {

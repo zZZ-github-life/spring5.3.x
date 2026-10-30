@@ -102,7 +102,7 @@ public class MBeanRegistrationSupport {
 
 	/**
 	 * 尝试在已存在的 {@link javax.management.ObjectName} 下注册 MBean 时使用的策略。
-	 * @param registrationPolicy the policy to use
+	 * @param registrationPolicy 要使用的策略
 	 * @since 3.2
 	 */
 	public void setRegistrationPolicy(RegistrationPolicy registrationPolicy) {
@@ -113,9 +113,9 @@ public class MBeanRegistrationSupport {
 
 	/**
 	 * 实际将 MBean 注册到服务器。遇到已有 MBean 时的行为可以通过 {@link #setRegistrationPolicy} 配置。
-	 * @param mbean the MBean instance
-	 * @param objectName the suggested ObjectName for the MBean
-	 * @throws JMException if the registration failed
+	 * @param mbean MBean 实例
+	 * @param objectName 为 MBean 建议的 ObjectName
+	 * @throws JMException 如果注册失败
 	 */
 	protected void doRegister(Object mbean, ObjectName objectName) throws JMException {
 		Assert.state(this.server != null, "No MBeanServer set");
@@ -181,7 +181,7 @@ public class MBeanRegistrationSupport {
 
 	/**
 	 * 实际从服务器注销指定的 MBean。
-	 * @param objectName the suggested ObjectName for the MBean
+	 * @param objectName 为 MBean 建议的 ObjectName
 	 */
 	protected void doUnregister(ObjectName objectName) {
 		Assert.state(this.server != null, "No MBeanServer set");
@@ -228,8 +228,8 @@ public class MBeanRegistrationSupport {
 	/**
 	 * 当 MBean 在给定 {@link ObjectName} 下注册时调用。允许子类在 MBean 注册时执行额外处理。
 	 * <p>默认实现委托给 {@link #onRegister(ObjectName)}。
-	 * @param objectName the actual {@link ObjectName} that the MBean was registered with
-	 * @param mbean the registered MBean instance
+	 * @param objectName MBean 实际注册时使用的 {@link ObjectName}
+	 * @param mbean 已注册的 MBean 实例
 	 */
 	protected void onRegister(ObjectName objectName, Object mbean) {
 		onRegister(objectName);
@@ -238,7 +238,7 @@ public class MBeanRegistrationSupport {
 	/**
 	 * 当 MBean 在给定 {@link ObjectName} 下注册时调用。允许子类在 MBean 注册时执行额外处理。
 	 * <p>默认实现为空。可在子类中重写。
-	 * @param objectName the actual {@link ObjectName} that the MBean was registered with
+	 * @param objectName MBean 实际注册时使用的 {@link ObjectName}
 	 */
 	protected void onRegister(ObjectName objectName) {
 	}
@@ -246,7 +246,7 @@ public class MBeanRegistrationSupport {
 	/**
 	 * 当 MBean 在给定 {@link ObjectName} 下注销时调用。允许子类在 MBean 注销时执行额外处理。
 	 * <p>默认实现为空。可在子类中重写。
-	 * @param objectName the {@link ObjectName} that the MBean was registered with
+	 * @param objectName MBean 注册时使用的 {@link ObjectName}
 	 */
 	protected void onUnregister(ObjectName objectName) {
 	}

@@ -56,7 +56,7 @@ public class CharacterEditor extends PropertyEditorSupport {
 	 * 创建一个新的 CharacterEditor 实例。<p>"allowEmpty" 参数控制解析时是否允许空 String，即在
 	 * {@link #setAsText(String) text is being converted}时是否将其解释为 {@code null} 值。如果为
 	 * {@code false}，此时将抛出 {@link IllegalArgumentException}。
-	 * @param allowEmpty if empty strings are to be allowed
+	 * @param allowEmpty 是否要允许空字符串
 	 */
 	public CharacterEditor(boolean allowEmpty) {
 		this.allowEmpty = allowEmpty;

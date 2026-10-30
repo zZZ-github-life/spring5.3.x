@@ -173,11 +173,10 @@ public class HandlerMappingIntrospector
 	/**
 	 * 查找将处理给定请求的 {@link HandlerMapping}，
 	 * 并返回一个用于路径匹配的 {@link MatchableHandlerMapping}。
-	 * @param request the current request
-	 * @return the resolved {@code MatchableHandlerMapping}, or {@code null}
-	 * @throws IllegalStateException if the matching HandlerMapping is not an
-	 * instance of {@link MatchableHandlerMapping}
-	 * @throws Exception if any of the HandlerMapping's raise an exception
+	 * @param request 当前请求
+	 * @return 解析得到的 {@code MatchableHandlerMapping}，或 {@code null}
+	 * @throws IllegalStateException 如果匹配的 HandlerMapping 不是 {@link MatchableHandlerMapping} 的实例
+	 * @throws Exception 如果任一 HandlerMapping 抛出异常
 	 */
 	@Nullable
 	public MatchableHandlerMapping getMatchableHandlerMapping(HttpServletRequest request) throws Exception {

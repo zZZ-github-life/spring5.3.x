@@ -28,8 +28,8 @@ public interface WebFilterChain {
 
 	/**
 	 * 委托给链中的下一个 {@code WebFilter}。
-	 * @param exchange the current server exchange
-	 * @return {@code Mono<Void>} to indicate when request handling is complete
+	 * @param exchange 当前服务器交换
+	 * @return 用于指示请求处理何时完成的 {@code Mono<Void>}
 	 */
 	Mono<Void> filter(ServerWebExchange exchange);
 

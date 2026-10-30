@@ -30,7 +30,7 @@ public interface StreamingHttpOutputMessage extends HttpOutputMessage {
 
 	/**
 	 * 为此消息设置流式正文回调。
-	 * @param body the streaming body callback
+	 * @param body 流式正文回调
 	 */
 	void setBody(Body body);
 
@@ -43,8 +43,8 @@ public interface StreamingHttpOutputMessage extends HttpOutputMessage {
 
 		/**
 		 * 将此正文写入给定的 {@link OutputStream}。
-		 * @param outputStream the output stream to write to
-		 * @throws IOException in case of I/O errors
+		 * @param outputStream 要写入的输出流
+		 * @throws IOException 如果发生 I/O 错误
 		 */
 		void writeTo(OutputStream outputStream) throws IOException;
 	}

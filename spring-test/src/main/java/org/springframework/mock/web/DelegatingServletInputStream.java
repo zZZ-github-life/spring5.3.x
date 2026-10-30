@@ -43,7 +43,7 @@ public class DelegatingServletInputStream extends ServletInputStream {
 
 	/**
 	 * 为给定的源流创建一个 DelegatingServletInputStream。
-	 * @param sourceStream the source stream (never {@code null})
+	 * @param sourceStream 源流（永不为 {@code null}）
 	 */
 	public DelegatingServletInputStream(InputStream sourceStream) {
 		Assert.notNull(sourceStream, "Source InputStream must not be null");

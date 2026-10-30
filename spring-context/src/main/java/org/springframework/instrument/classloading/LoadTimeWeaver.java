@@ -33,7 +33,7 @@ public interface LoadTimeWeaver {
 
 	/**
 	 * 添加一个由此 {@code LoadTimeWeaver} 应用的 {@code ClassFileTransformer}。
-	 * @param transformer the {@code ClassFileTransformer} to add
+	 * @param transformer 要添加的 {@code ClassFileTransformer}
 	 */
 	void addTransformer(ClassFileTransformer transformer);
 
@@ -42,8 +42,8 @@ public interface LoadTimeWeaver {
 	 * {@link ClassFileTransformer ClassFileTransformers} 通过 AspectJ 风格的加载时织入支持插桩。
 	 * <p>可以是当前 {@code ClassLoader}，也可以是由此 {@link LoadTimeWeaver} 实例创建的
 	 * {@code ClassLoader}。
-	 * @return the {@code ClassLoader} which will expose
-	 * instrumented classes according to the registered transformers
+	 * @return 将根据已注册的转换器公开插桩后类的
+	 * {@code ClassLoader}
 	 */
 	ClassLoader getInstrumentableClassLoader();
 
@@ -51,8 +51,8 @@ public interface LoadTimeWeaver {
 	 * 返回一个一次性 {@code ClassLoader}，使类能够被加载和检查而不影响父 {@code ClassLoader}。
 	 * <p><i>不应</i>返回与调用 {@link #getInstrumentableClassLoader()} 所返回的 {@link ClassLoader} 相
 	 * 同的实例。
-	 * @return a temporary throwaway {@code ClassLoader}; should return
-	 * a new instance for each call, with no existing state
+	 * @return 临时的用完即弃 {@code ClassLoader}；每次调用都应返回
+	 * 不带任何现有状态的新实例
 	 */
 	ClassLoader getThrowawayClassLoader();
 

@@ -68,8 +68,8 @@ public class MockMvcHtmlUnitDriverBuilder extends MockMvcWebConnectionBuilderSup
 
 	/**
 	 * 基于提供的 {@link MockMvc} 实例创建新的 {@code MockMvcHtmlUnitDriverBuilder}。
-	 * @param mockMvc the {@code MockMvc} instance to use (never {@code null})
-	 * @return the MockMvcHtmlUnitDriverBuilder to customize
+	 * @param mockMvc 要使用的 {@code MockMvc} 实例（永不为 {@code null}）
+	 * @return 要定制的 MockMvcHtmlUnitDriverBuilder
 	 */
 	public static MockMvcHtmlUnitDriverBuilder mockMvcSetup(MockMvc mockMvc) {
 		Assert.notNull(mockMvc, "MockMvc must not be null");
@@ -78,9 +78,9 @@ public class MockMvcHtmlUnitDriverBuilder extends MockMvcWebConnectionBuilderSup
 
 	/**
 	 * 基于提供的 {@link WebApplicationContext} 创建新的 {@code MockMvcHtmlUnitDriverBuilder}。
-	 * @param context the {@code WebApplicationContext} to create a {@link MockMvc}
-	 * instance from (never {@code null})
-	 * @return the MockMvcHtmlUnitDriverBuilder to customize
+	 * @param context 用于从中创建 {@link MockMvc} 实例的 {@code WebApplicationContext}
+	 * （永不为 {@code null}）
+	 * @return 要定制的 MockMvcHtmlUnitDriverBuilder
 	 */
 	public static MockMvcHtmlUnitDriverBuilder webAppContextSetup(WebApplicationContext context) {
 		Assert.notNull(context, "WebApplicationContext must not be null");
@@ -90,10 +90,10 @@ public class MockMvcHtmlUnitDriverBuilder extends MockMvcWebConnectionBuilderSup
 	/**
 	 * 基于提供的 {@link WebApplicationContext} 和 {@link MockMvcConfigurer} 创建新的
 	 * {@code MockMvcHtmlUnitDriverBuilder}。
-	 * @param context the {@code WebApplicationContext} to create a {@link MockMvc}
-	 * instance from (never {@code null})
-	 * @param configurer the {@code MockMvcConfigurer} to apply (never {@code null})
-	 * @return the MockMvcHtmlUnitDriverBuilder to customize
+	 * @param context 用于从中创建 {@link MockMvc} 实例的 {@code WebApplicationContext}
+	 * （永不为 {@code null}）
+	 * @param configurer 要应用的 {@code MockMvcConfigurer}（永不为 {@code null}）
+	 * @return 要定制的 MockMvcHtmlUnitDriverBuilder
 	 */
 	public static MockMvcHtmlUnitDriverBuilder webAppContextSetup(WebApplicationContext context,
 			MockMvcConfigurer configurer) {
@@ -106,8 +106,8 @@ public class MockMvcHtmlUnitDriverBuilder extends MockMvcWebConnectionBuilderSup
 	/**
 	 * 指定是否应启用 JavaScript。
 	 * <p>默认为 {@code true}。
-	 * @param javascriptEnabled {@code true} if JavaScript should be enabled
-	 * @return this builder for further customizations
+	 * @param javascriptEnabled 如果应启用 JavaScript，则为 {@code true}
+	 * @return 该构建器，用于进一步定制
 	 * @see #build()
 	 */
 	public MockMvcHtmlUnitDriverBuilder javascriptEnabled(boolean javascriptEnabled) {
@@ -119,9 +119,9 @@ public class MockMvcHtmlUnitDriverBuilder extends MockMvcWebConnectionBuilderSup
 	 * 提供此构建器 {@linkplain #build 构建} 的驱动程序在处理
 	 * 非{@linkplain WebRequestMatcher 匹配}请求时应委托给
 	 * 的 {@code WebConnectionHtmlUnitDriver}。
-	 * @param driver the {@code WebConnectionHtmlUnitDriver} to delegate to
-	 * for requests that do not match (never {@code null})
-	 * @return this builder for further customizations
+	 * @param driver 用于委托处理不匹配请求的 {@code WebConnectionHtmlUnitDriver}
+	 * （永不为 {@code null}）
+	 * @return 该构建器，用于进一步定制
 	 * @see #build()
 	 */
 	public MockMvcHtmlUnitDriverBuilder withDelegate(WebConnectionHtmlUnitDriver driver) {
@@ -141,7 +141,7 @@ public class MockMvcHtmlUnitDriverBuilder extends MockMvcWebConnectionBuilderSup
 	 * 则使用该委托；否则，将配置一个将 {@link BrowserVersion} 设置为
 	 * {@link BrowserVersion#CHROME CHROME} 的默认 {@code WebConnectionHtmlUnitDriver}
 	 * 作为委托。
-	 * @return the {@code HtmlUnitDriver} to use
+	 * @return 要使用的 {@code HtmlUnitDriver}
 	 * @see #withDelegate(WebConnectionHtmlUnitDriver)
 	 */
 	public HtmlUnitDriver build() {

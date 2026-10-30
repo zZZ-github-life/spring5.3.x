@@ -101,8 +101,8 @@ public class HeaderAssertions {
 
 	/**
 	 * 使用正则表达式匹配响应头的第一个值。
-	 * @param name the header name
-	 * @param pattern the regex pattern
+	 * @param name 请求头名称
+	 * @param pattern 正则表达式模式
 	 */
 	public WebTestClient.ResponseSpec valueMatches(String name, String pattern) {
 		String value = getRequiredValue(name);
@@ -115,8 +115,8 @@ public class HeaderAssertions {
 	 * 使用给定的正则表达式模式匹配响应头的所有值，
 	 * 这些模式按相同顺序应用于请求头的各个值。请注意，模式数量必须
 	 * 与实际值数量匹配。
-	 * @param name the header name
-	 * @param patterns one or more regex patterns, one per expected value
+	 * @param name 请求头名称
+	 * @param patterns 一个或多个正则表达式模式，每个对应一个期望值
 	 * @since 5.3
 	 */
 	public WebTestClient.ResponseSpec valuesMatch(String name, String... patterns) {
@@ -139,8 +139,8 @@ public class HeaderAssertions {
 
 	/**
 	 * 使用 Hamcrest {@link Matcher} 断言响应头的第一个值。
-	 * @param name the header name
-	 * @param matcher the matcher to use
+	 * @param name 请求头名称
+	 * @param matcher 要使用的匹配器
 	 * @since 5.1
 	 */
 	public WebTestClient.ResponseSpec value(String name, Matcher<? super String> matcher) {
@@ -154,8 +154,8 @@ public class HeaderAssertions {
 
 	/**
 	 * 使用 Hamcrest {@link Matcher} 断言响应头的所有值。
-	 * @param name the header name
-	 * @param matcher the matcher to use
+	 * @param name 请求头名称
+	 * @param matcher 要使用的匹配器
 	 * @since 5.3
 	 */
 	public WebTestClient.ResponseSpec values(String name, Matcher<? super Iterable<String>> matcher) {
@@ -169,8 +169,8 @@ public class HeaderAssertions {
 
 	/**
 	 * 消费指定响应头的第一个值。
-	 * @param name the header name
-	 * @param consumer the consumer to use
+	 * @param name 请求头名称
+	 * @param consumer 要使用的消费者
 	 * @since 5.1
 	 */
 	public WebTestClient.ResponseSpec value(String name, Consumer<String> consumer) {
@@ -181,8 +181,8 @@ public class HeaderAssertions {
 
 	/**
 	 * 消费指定响应头的所有值。
-	 * @param name the header name
-	 * @param consumer the consumer to use
+	 * @param name 请求头名称
+	 * @param consumer 要使用的消费者
 	 * @since 5.3
 	 */
 	public WebTestClient.ResponseSpec values(String name, Consumer<List<String>> consumer) {

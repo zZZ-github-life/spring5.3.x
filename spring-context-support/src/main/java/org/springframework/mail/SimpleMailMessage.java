@@ -188,7 +188,7 @@ public class SimpleMailMessage implements MailMessage, Serializable {
 
 	/**
 	 * 将此消息的内容复制到给定的目标消息。
-	 * @param target the {@code MailMessage} to copy to
+	 * @param target 要复制到的 {@code MailMessage}
 	 */
 	public void copyTo(MailMessage target) {
 		Assert.notNull(target, "'target' MailMessage must not be null");

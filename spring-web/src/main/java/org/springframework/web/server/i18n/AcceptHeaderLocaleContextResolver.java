@@ -51,7 +51,7 @@ public class AcceptHeaderLocaleContextResolver implements LocaleContextResolver 
 	/**
 	 * 配置受支持的区域设置，用于与通过
 	 * {@link HttpHeaders#getAcceptLanguageAsLocales()} 确定的请求区域设置进行匹配。
-	 * @param locales the supported locales
+	 * @param locales 支持的 Locale
 	 */
 	public void setSupportedLocales(List<Locale> locales) {
 		this.supportedLocales.clear();
@@ -68,7 +68,7 @@ public class AcceptHeaderLocaleContextResolver implements LocaleContextResolver 
 	/**
 	 * 配置一个固定的默认区域设置，当请求没有 "Accept-Language" 头部时作为后备
 	 * （默认不设置）。
-	 * @param defaultLocale the default locale to use
+	 * @param defaultLocale 要使用的默认 Locale
 	 */
 	public void setDefaultLocale(@Nullable Locale defaultLocale) {
 		this.defaultLocale = defaultLocale;

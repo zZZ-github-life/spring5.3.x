@@ -80,8 +80,8 @@ public abstract class SqlCall extends RdbmsOperation {
 	/**
 	 * 使用 SQL 创建新的 SqlCall 对象，但不含参数。
 	 * 必须添加参数，或者接受没有参数的情况。
-	 * @param ds the DataSource to obtain connections from
-	 * @param sql the SQL to execute
+	 * @param ds 从中获取连接的 DataSource
+	 * @param sql 要执行的 SQL
 	 */
 	public SqlCall(DataSource ds, String sql) {
 		setDataSource(ds);
@@ -180,7 +180,7 @@ public abstract class SqlCall extends RdbmsOperation {
 
 	/**
 	 * 返回一个 CallableStatementCreator，用于使用这些参数执行操作。
-	 * @param inParams parameters. May be {@code null}.
+	 * @param inParams 参数。可以为 {@code null}。
 	 */
 	protected CallableStatementCreator newCallableStatementCreator(@Nullable Map<String, ?> inParams) {
 		Assert.state(this.callableStatementFactory != null, "No CallableStatementFactory available");
@@ -190,7 +190,7 @@ public abstract class SqlCall extends RdbmsOperation {
 	/**
 	 * 返回一个 CallableStatementCreator，用于使用此 ParameterMapper
 	 * 返回的参数执行操作。
-	 * @param inParamMapper parametermapper. May not be {@code null}.
+	 * @param inParamMapper 参数映射器。不能为 {@code null}。
 	 */
 	protected CallableStatementCreator newCallableStatementCreator(ParameterMapper inParamMapper) {
 		Assert.state(this.callableStatementFactory != null, "No CallableStatementFactory available");

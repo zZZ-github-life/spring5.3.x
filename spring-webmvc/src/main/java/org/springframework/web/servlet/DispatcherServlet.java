@@ -392,7 +392,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * 如果上下文已被刷新，则上述操作都不会执行，
 	 * 因为假定用户已根据其具体需求完成了（或未完成）这些操作。
 	 * <p>用法示例请参见 {@link org.springframework.web.WebApplicationInitializer}。
-	 * @param webApplicationContext the context to use
+	 * @param webApplicationContext 要使用的上下文
 	 * @see #initWebApplicationContext
 	 * @see #configureAndRefreshWebApplicationContext
 	 * @see org.springframework.web.WebApplicationInitializer
@@ -787,7 +787,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * 返回此 Servlet 的 ThemeSource（如果有）；否则返回 {@code null}。
 	 * <p>默认将 WebApplicationContext 作为 ThemeSource 返回，
 	 * 前提是它实现了 ThemeSource 接口。
-	 * @return the ThemeSource, if any
+	 * @return ThemeSource（如果有）
 	 * @see #getWebApplicationContext()
 	 */
 	@Nullable
@@ -797,8 +797,8 @@ public class DispatcherServlet extends FrameworkServlet {
 
 	/**
 	 * 获取此 Servlet 的 MultipartResolver（如果有）。
-	 * @return the MultipartResolver used by this servlet, or {@code null} if none
-	 * (indicating that no multipart support is available)
+	 * @return 此 Servlet 使用的 MultipartResolver；如果没有则为 {@code null}
+	 * （表示不支持 multipart）
 	 */
 	@Nullable
 	public final MultipartResolver getMultipartResolver() {
@@ -811,8 +811,8 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * 已配置 {@link HandlerMapping} bean。
 	 * <p><strong>注意：</strong>如果在 {@link #onRefresh(ApplicationContext)} 之前调用，
 	 * 此方法可能返回 {@code null}。
-	 * @return an immutable list with the configured mappings, or {@code null}
-	 * if not initialized yet
+	 * @return 包含已配置映射的不可变列表；如果尚未初始化
+	 * 则为 {@code null}
 	 * @since 5.0
 	 */
 	@Nullable
@@ -824,9 +824,9 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * 返回给定策略接口的默认策略对象。
 	 * <p>默认实现委托给 {@link #getDefaultStrategies}，
 	 * 并期望列表中只有一个对象。
-	 * @param context the current WebApplicationContext
-	 * @param strategyInterface the strategy interface
-	 * @return the corresponding strategy object
+	 * @param context 当前的 WebApplicationContext
+	 * @param strategyInterface 策略接口
+	 * @return 对应的策略对象
 	 * @see #getDefaultStrategies
 	 */
 	protected <T> T getDefaultStrategy(ApplicationContext context, Class<T> strategyInterface) {
@@ -842,9 +842,9 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * 为给定策略接口创建一个默认策略对象列表。
 	 * <p>默认实现使用 "DispatcherServlet.properties" 文件（与 DispatcherServlet 类位于同一包中）
 	 * 来确定类名。它通过上下文的 BeanFactory 实例化策略对象。
-	 * @param context the current WebApplicationContext
-	 * @param strategyInterface the strategy interface
-	 * @return the List of corresponding strategy objects
+	 * @param context 当前的 WebApplicationContext
+	 * @param strategyInterface 策略接口
+	 * @return 对应策略对象的 List
 	 */
 	@SuppressWarnings("unchecked")
 	protected <T> List<T> getDefaultStrategies(ApplicationContext context, Class<T> strategyInterface) {
@@ -894,9 +894,9 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * 创建一个默认策略。
 	 * <p>默认实现使用
 	 * {@link org.springframework.beans.factory.config.AutowireCapableBeanFactory#createBean}。
-	 * @param context the current WebApplicationContext
-	 * @param clazz the strategy implementation class to instantiate
-	 * @return the fully configured strategy instance
+	 * @param context 当前的 WebApplicationContext
+	 * @param clazz 要实例化的策略实现类
+	 * @return 完全配置好的策略实例
 	 * @see org.springframework.context.ApplicationContext#getAutowireCapableBeanFactory()
 	 * @see org.springframework.beans.factory.config.AutowireCapableBeanFactory#createBean
 	 */
@@ -1010,9 +1010,9 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * 找出第一个支持该处理器类的适配器来获取。
 	 * <p>所有 HTTP 方法都由该方法处理。具体接受哪些方法，
 	 * 由 HandlerAdapter 或处理器本身决定。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @throws Exception in case of any kind of processing failure
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @throws Exception 如果发生任何类型的处理失败
 	 */
 	@SuppressWarnings("deprecation")
 	protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -1159,8 +1159,8 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * 为给定请求构建一个 LocaleContext，将请求的主区域设置作为当前区域设置暴露。
 	 * <p>默认实现使用调度器的 LocaleResolver 获取当前区域设置，
 	 * 该设置可能在请求过程中发生变化。
-	 * @param request current HTTP request
-	 * @return the corresponding LocaleContext
+	 * @param request 当前 HTTP 请求
+	 * @return 对应的 LocaleContext
 	 */
 	@Override
 	protected LocaleContext buildLocaleContext(final HttpServletRequest request) {
@@ -1176,8 +1176,8 @@ public class DispatcherServlet extends FrameworkServlet {
 	/**
 	 * 将请求转换为 multipart 请求，并使 multipart 解析器可用。
 	 * <p>如果未设置 multipart 解析器，则直接使用现有的请求。
-	 * @param request current HTTP request
-	 * @return the processed request (multipart wrapper if necessary)
+	 * @param request 当前 HTTP 请求
+	 * @return 处理后的请求（必要时为 multipart 包装）
 	 * @see MultipartResolver#resolveMultipart
 	 */
 	protected HttpServletRequest checkMultipart(HttpServletRequest request) throws MultipartException {
@@ -1226,7 +1226,7 @@ public class DispatcherServlet extends FrameworkServlet {
 
 	/**
 	 * 清理给定 multipart 请求所使用的所有资源（如果有）。
-	 * @param request current HTTP request
+	 * @param request 当前 HTTP 请求
 	 * @see MultipartResolver#cleanupMultipart
 	 */
 	protected void cleanupMultipart(HttpServletRequest request) {
@@ -1242,8 +1242,9 @@ public class DispatcherServlet extends FrameworkServlet {
 	/**
 	 * 返回此请求的 HandlerExecutionChain。
 	 * <p>按顺序尝试所有处理器映射。
-	 * @param request current HTTP request
-	 * @return the HandlerExecutionChain, or {@code null} if no handler could be found
+	 * @param request 当前 HTTP 请求
+	 * @return HandlerExecutionChain；如果找不到处理器
+	 * 则为 {@code null}
 	 */
 	@Nullable
 	protected HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception {
@@ -1260,9 +1261,9 @@ public class DispatcherServlet extends FrameworkServlet {
 
 	/**
 	 * 未找到处理器 &rarr; 设置合适的 HTTP 响应状态。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @throws Exception if preparing the response failed
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @throws Exception 如果准备响应失败
 	 */
 	protected void noHandlerFound(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		if (pageNotFoundLogger.isWarnEnabled()) {
@@ -1279,8 +1280,9 @@ public class DispatcherServlet extends FrameworkServlet {
 
 	/**
 	 * 返回此处理器对象对应的 HandlerAdapter。
-	 * @param handler the handler object to find an adapter for
-	 * @throws ServletException if no HandlerAdapter can be found for the handler. This is a fatal error.
+	 * @param handler 要为其查找适配器的处理器对象
+	 * @throws ServletException 如果无法为该处理器找到 HandlerAdapter。
+	 * 这是致命错误。
 	 */
 	protected HandlerAdapter getHandlerAdapter(Object handler) throws ServletException {
 		if (this.handlerAdapters != null) {
@@ -1296,13 +1298,13 @@ public class DispatcherServlet extends FrameworkServlet {
 
 	/**
 	 * 通过已注册的 HandlerExceptionResolver 确定错误 ModelAndView。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler, or {@code null} if none chosen at the time of the exception
-	 * (for example, if multipart resolution failed)
-	 * @param ex the exception that got thrown during handler execution
-	 * @return a corresponding ModelAndView to forward to
-	 * @throws Exception if no error ModelAndView found
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器；如果异常发生时尚未选择处理器，则为 {@code null}
+	 * （例如 multipart 解析失败时）
+	 * @param ex 处理器执行期间抛出的异常
+	 * @return 要转发到的对应 ModelAndView
+	 * @throws Exception 如果找不到错误 ModelAndView
 	 */
 	@Nullable
 	protected ModelAndView processHandlerException(HttpServletRequest request, HttpServletResponse response,
@@ -1349,11 +1351,11 @@ public class DispatcherServlet extends FrameworkServlet {
 	/**
 	 * 渲染给定的 ModelAndView。
 	 * <p>这是处理请求的最后阶段。可能涉及按名称解析视图。
-	 * @param mv the ModelAndView to render
-	 * @param request current HTTP servlet request
-	 * @param response current HTTP servlet response
-	 * @throws ServletException if view is missing or cannot be resolved
-	 * @throws Exception if there's a problem rendering the view
+	 * @param mv 要渲染的 ModelAndView
+	 * @param request 当前 HTTP Servlet 请求
+	 * @param response 当前 HTTP Servlet 响应
+	 * @throws ServletException 如果视图缺失或无法解析
+	 * @throws Exception 如果渲染视图时出现问题
 	 */
 	protected void render(ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// Determine locale for request and apply it to the response.
@@ -1401,9 +1403,9 @@ public class DispatcherServlet extends FrameworkServlet {
 
 	/**
 	 * 将提供的请求转换为默认视图名称。
-	 * @param request current HTTP servlet request
-	 * @return the view name (or {@code null} if no default found)
-	 * @throws Exception if view name translation failed
+	 * @param request 当前 HTTP Servlet 请求
+	 * @return 视图名称（如果未找到默认值则为 {@code null}）
+	 * @throws Exception 如果视图名称转换失败
 	 */
 	@Nullable
 	protected String getDefaultViewName(HttpServletRequest request) throws Exception {
@@ -1414,13 +1416,13 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * 将给定的视图名称解析为 View 对象（用于渲染）。
 	 * <p>默认实现会询问此调度器的所有 ViewResolver。
 	 * 可以重写以实现自定义解析策略，可能基于特定的模型属性或请求参数。
-	 * @param viewName the name of the view to resolve
-	 * @param model the model to be passed to the view
-	 * @param locale the current locale
-	 * @param request current HTTP servlet request
-	 * @return the View object, or {@code null} if none found
-	 * @throws Exception if the view cannot be resolved
-	 * (typically in case of problems creating an actual View object)
+	 * @param viewName 要解析的视图名称
+	 * @param model 要传递给视图的模型
+	 * @param locale 当前的 Locale
+	 * @param request 当前 HTTP Servlet 请求
+	 * @return View 对象；如果未找到则为 {@code null}
+	 * @throws Exception 如果视图无法解析
+	 * （通常是在创建实际 View 对象时出现问题）
 	 * @see ViewResolver#resolveViewName
 	 */
 	@Nullable
@@ -1449,8 +1451,8 @@ public class DispatcherServlet extends FrameworkServlet {
 
 	/**
 	 * 在 include 之后恢复请求属性。
-	 * @param request current HTTP request
-	 * @param attributesSnapshot the snapshot of the request attributes before the include
+	 * @param request 当前 HTTP 请求
+	 * @param attributesSnapshot include 之前的请求属性快照
 	 */
 	@SuppressWarnings("unchecked")
 	private void restoreAttributesAfterInclude(HttpServletRequest request, Map<?, ?> attributesSnapshot) {

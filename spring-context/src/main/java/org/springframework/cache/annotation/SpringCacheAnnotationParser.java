@@ -202,8 +202,8 @@ public class SpringCacheAnnotationParser implements CacheAnnotationParser, Seria
 	 *
 	 * <p>如果操作状态无效，则抛出 {@link IllegalStateException}。由于默认值可能有多个来源，这可确保操
 	 * 作在返回之前处于正确状态。
-	 * @param ae the annotated element of the cache operation
-	 * @param operation the {@link CacheOperation} to validate
+	 * @param ae 缓存操作的带注解元素
+	 * @param operation 要校验的 {@link CacheOperation}
 	 */
 	private void validateCacheOperation(AnnotatedElement ae, CacheOperation operation) {
 		if (StringUtils.hasText(operation.getKey()) && StringUtils.hasText(operation.getKeyGenerator())) {
@@ -259,7 +259,7 @@ public class SpringCacheAnnotationParser implements CacheAnnotationParser, Seria
 
 		/**
 		 * 将默认值应用到指定的 {@link CacheOperation.Builder}。
-		 * @param builder the operation builder to update
+		 * @param builder 要更新的操作构建器
 		 */
 		public void applyDefault(CacheOperation.Builder builder) {
 			if (!this.initialized) {

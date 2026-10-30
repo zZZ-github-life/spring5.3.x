@@ -50,7 +50,7 @@ public class UriTemplate implements Serializable {
 
 	/**
 	 * 使用给定 URI String 构造新的 {@code UriTemplate}。
-	 * @param uriTemplate the URI template string
+	 * @param uriTemplate URI 模板字符串
 	 */
 	public UriTemplate(String uriTemplate) {
 		Assert.hasText(uriTemplate, "'uriTemplate' must not be null");
@@ -65,7 +65,7 @@ public class UriTemplate implements Serializable {
 
 	/**
 	 * 按顺序返回模板中变量的名称。
-	 * @return the template variable names
+	 * @return 模板变量名称
 	 */
 	public List<String> getVariableNames() {
 		return this.variableNames;
@@ -82,10 +82,10 @@ public class UriTemplate implements Serializable {
 	 * System.out.println(template.expand(uriVariables));
 	 * </pre>
 	 * 将打印：<blockquote>{@code https://example.com/hotels/Rest%20%26%20Relax/bookings/42}</blockquote>
-	 * @param uriVariables the map of URI variables
-	 * @return the expanded URI
-	 * @throws IllegalArgumentException if {@code uriVariables} is {@code null};
-	 * or if it does not contain values for all the variable names
+	 * @param uriVariables URI 变量映射
+	 * @return 展开后的 URI
+	 * @throws IllegalArgumentException 如果 {@code uriVariables} 为 {@code null}；
+	 * 或其未包含所有变量名称的值
 	 */
 	public URI expand(Map<String, ?> uriVariables) {
 		UriComponents expandedComponents = this.uriComponents.expand(uriVariables);
@@ -101,10 +101,10 @@ public class UriTemplate implements Serializable {
 	 * System.out.println(template.expand("Rest &amp; Relax", 42));
 	 * </pre>
 	 * 将打印：<blockquote>{@code https://example.com/hotels/Rest%20%26%20Relax/bookings/42}</blockquote>
-	 * @param uriVariableValues the array of URI variables
-	 * @return the expanded URI
-	 * @throws IllegalArgumentException if {@code uriVariables} is {@code null}
-	 * or if it does not contain sufficient variables
+	 * @param uriVariableValues URI 变量数组
+	 * @return 展开后的 URI
+	 * @throws IllegalArgumentException 如果 {@code uriVariables} 为 {@code null}
+	 * 或其未包含足够的变量
 	 */
 	public URI expand(Object... uriVariableValues) {
 		UriComponents expandedComponents = this.uriComponents.expand(uriVariableValues);
@@ -114,8 +114,8 @@ public class UriTemplate implements Serializable {
 
 	/**
 	 * 指示给定 URI 是否匹配此模板。
-	 * @param uri the URI to match to
-	 * @return {@code true} if it matches; {@code false} otherwise
+	 * @param uri 要匹配的 URI
+	 * @return 如果匹配则返回 {@code true}；否则返回 {@code false}
 	 */
 	public boolean matches(@Nullable String uri) {
 		if (uri == null) {
@@ -133,8 +133,8 @@ public class UriTemplate implements Serializable {
 	 * System.out.println(template.match("https://example.com/hotels/1/bookings/42"));
 	 * </pre>
 	 * 将打印：<blockquote>{@code {hotel=1, booking=42}}</blockquote>
-	 * @param uri the URI to match to
-	 * @return a map of variable values
+	 * @param uri 要匹配的 URI
+	 * @return 变量值的映射
 	 */
 	public Map<String, String> match(String uri) {
 		Assert.notNull(uri, "'uri' must not be null");

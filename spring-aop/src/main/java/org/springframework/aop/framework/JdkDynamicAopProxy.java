@@ -94,9 +94,9 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 
 	/**
 	 * 为给定的 AOP 配置构造新的 JdkDynamicAopProxy。
-	 * @param config the AOP configuration as AdvisedSupport object
-	 * @throws AopConfigException if the config is invalid. We try to throw an informative
-	 * exception in this case, rather than let a mysterious failure happen later.
+	 * @param config 以 AdvisedSupport 对象表示的 AOP 配置
+	 * @throws AopConfigException 如果配置无效。在这种情况下我们会尽量抛出信息丰富的异常，
+	 * 而不是让神秘的失败在之后发生。
 	 */
 	public JdkDynamicAopProxy(AdvisedSupport config) throws AopConfigException {
 		Assert.notNull(config, "AdvisedSupport must not be null");
@@ -129,7 +129,7 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 
 	/**
 	 * 查找所提供的接口集合中可能定义的任何 {@link #equals} 或 {@link #hashCode} 方法。
-	 * @param proxiedInterfaces the interfaces to introspect
+	 * @param proxiedInterfaces 要内省的接口
 	 */
 	private void findDefinedEqualsAndHashCodeMethods(Class<?>[] proxiedInterfaces) {
 		for (Class<?> proxiedInterface : proxiedInterfaces) {

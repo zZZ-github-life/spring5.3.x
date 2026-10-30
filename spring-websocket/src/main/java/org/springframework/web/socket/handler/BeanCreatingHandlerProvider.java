@@ -29,7 +29,7 @@ import org.springframework.util.Assert;
  *
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <T> the handler type
+ * @param <T> 处理器类型
  */
 public class BeanCreatingHandlerProvider<T> implements BeanFactoryAware {
 

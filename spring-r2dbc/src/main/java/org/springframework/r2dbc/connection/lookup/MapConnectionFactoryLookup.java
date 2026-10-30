@@ -46,8 +46,8 @@ public class MapConnectionFactoryLookup implements ConnectionFactoryLookup {
 
 	/**
 	 * 创建一个新的 {@link MapConnectionFactoryLookup} 类实例。
-	 * @param connectionFactories the {@link Map} of {@link ConnectionFactory}.
-	 * The keys are {@link String Strings}, the values are actual {@link ConnectionFactory} instances.
+	 * @param connectionFactories {@link ConnectionFactory} 的 {@link Map}。
+	 * 键为 {@link String Strings}，值为实际的 {@link ConnectionFactory} 实例。
 	 */
 	public MapConnectionFactoryLookup(Map<String, ConnectionFactory> connectionFactories) {
 		setConnectionFactories(connectionFactories);
@@ -55,8 +55,8 @@ public class MapConnectionFactoryLookup implements ConnectionFactoryLookup {
 
 	/**
 	 * 创建一个新的 {@link MapConnectionFactoryLookup} 类实例。
-	 * @param connectionFactoryName the name under which the supplied {@link ConnectionFactory} is to be added
-	 * @param connectionFactory the {@link ConnectionFactory} to be added
+	 * @param connectionFactoryName 添加所提供 {@link ConnectionFactory} 时使用的名称
+	 * @param connectionFactory 要添加的 {@link ConnectionFactory}
 	 */
 	public MapConnectionFactoryLookup(String connectionFactoryName, ConnectionFactory connectionFactory) {
 		addConnectionFactory(connectionFactoryName, connectionFactory);
@@ -67,7 +67,7 @@ public class MapConnectionFactoryLookup implements ConnectionFactoryLookup {
 	 * 设置 {@link ConnectionFactory ConnectionFactory} 的 {@link Map}。
 	 * 键为 {@link String 字符串}，值为实际的 {@link ConnectionFactory} 实例。
 	 * <p>如果所提供的 {@link Map} 为 {@code null}，则此方法调用实际上不产生任何效果。
-	 * @param connectionFactories said {@link Map} of {@link ConnectionFactory connectionFactories}
+	 * @param connectionFactories 所述的 {@link ConnectionFactory connectionFactories} {@link Map}
 	 */
 	public void setConnectionFactories(Map<String, ConnectionFactory> connectionFactories) {
 		Assert.notNull(connectionFactories, "ConnectionFactories must not be null");
@@ -77,7 +77,7 @@ public class MapConnectionFactoryLookup implements ConnectionFactoryLookup {
 	/**
 	 * 获取此对象维护的 {@link ConnectionFactory ConnectionFactory} {@link Map}。
 	 * <p>返回的 {@link Map} 是 {@link Collections#unmodifiableMap(Map) 不可修改的}。
-	 * @return {@link Map} of {@link ConnectionFactory connectionFactory} (never {@code null})
+	 * @return {@link ConnectionFactory connectionFactory} 的 {@link Map}（永不为 {@code null}）
 	 */
 	public Map<String, ConnectionFactory> getConnectionFactories() {
 		return Collections.unmodifiableMap(this.connectionFactories);
@@ -86,8 +86,8 @@ public class MapConnectionFactoryLookup implements ConnectionFactoryLookup {
 	/**
 	 * 将所提供的 {@link ConnectionFactory} 添加到此对象维护的
 	 * {@link ConnectionFactory ConnectionFactory} 实例映射中。
-	 * @param connectionFactoryName the name under which the supplied {@link ConnectionFactory} is to be added
-	 * @param connectionFactory the {@link ConnectionFactory} to be so added
+	 * @param connectionFactoryName 添加所提供 {@link ConnectionFactory} 时使用的名称
+	 * @param connectionFactory 要以该方式添加的 {@link ConnectionFactory}
 	 */
 	public void addConnectionFactory(String connectionFactoryName, ConnectionFactory connectionFactory) {
 		Assert.notNull(connectionFactoryName, "ConnectionFactory name must not be null");

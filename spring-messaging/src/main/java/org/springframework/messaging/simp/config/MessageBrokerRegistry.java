@@ -164,7 +164,7 @@ public class MessageBrokerRegistry {
 	/**
 	 * 设置 {@link org.springframework.messaging.simp.user.SimpUserRegistry
 	 * SimpUserRegistry} 作为 {@link SmartApplicationListener} 使用的顺序。
-	 * @param order the order value
+	 * @param order 顺序值
 	 * @since 5.0.8
 	 */
 	public void setUserRegistryOrder(int order) {

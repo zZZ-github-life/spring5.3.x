@@ -22,7 +22,7 @@ import org.springframework.lang.Nullable;
  * {@code "name!=value"} 形式表达式的契约，用于在 {@code @RequestMapping} 中指定请求参数和请求头条件。
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <T> the value type
+ * @param <T> 值类型
  */
 public interface NameValueExpression<T> {
 

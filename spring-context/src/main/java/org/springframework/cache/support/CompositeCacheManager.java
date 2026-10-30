@@ -62,7 +62,7 @@ public class CompositeCacheManager implements CacheManager, InitializingBean {
 
 	/**
 	 * 根据给定的委托 CacheManager 构造一个 CompositeCacheManager。
-	 * @param cacheManagers the CacheManagers to delegate to
+	 * @param cacheManagers 要委托的 CacheManager
 	 */
 	public CompositeCacheManager(CacheManager... cacheManagers) {
 		setCacheManagers(Arrays.asList(cacheManagers));

@@ -84,7 +84,7 @@ public abstract class MockMvcResultMatchers {
 	/**
 	 * 断言请求已转发到给定 URL。
 	 * <p>此方法仅接受精确匹配。
-	 * @param expectedUrl the exact URL expected
+	 * @param expectedUrl 期望的确切 URL
 	 */
 	public static ResultMatcher forwardedUrl(@Nullable String expectedUrl) {
 		return result -> assertEquals("Forwarded URL", expectedUrl, result.getResponse().getForwardedUrl());
@@ -93,8 +93,8 @@ public abstract class MockMvcResultMatchers {
 	/**
 	 * 断言请求已转发到给定 URL 模板。
 	 * <p>此方法接受对展开并编码后的 URL 模板的精确匹配。
-	 * @param urlTemplate a URL template; the expanded URL will be encoded
-	 * @param uriVars zero or more URI variables to populate the template
+	 * @param urlTemplate URL 模板；展开后的 URL 将被编码
+	 * @param uriVars 零个或多个用于填充模板的 URI 变量
 	 * @see UriComponentsBuilder#fromUriString(String)
 	 */
 	public static ResultMatcher forwardedUrlTemplate(String urlTemplate, Object... uriVars) {
@@ -106,7 +106,7 @@ public abstract class MockMvcResultMatchers {
 	 * 断言请求已转发到给定 URL。
 	 * <p>此方法接受 {@link org.springframework.util.AntPathMatcher}
 	 * 模式。
-	 * @param urlPattern an Ant-style path pattern to match against
+	 * @param urlPattern 要匹配的 Ant 风格路径模式
 	 * @since 4.0
 	 * @see org.springframework.util.AntPathMatcher
 	 */
@@ -123,7 +123,7 @@ public abstract class MockMvcResultMatchers {
 	/**
 	 * 断言请求已重定向到给定 URL。
 	 * <p>此方法仅接受精确匹配。
-	 * @param expectedUrl the exact URL expected
+	 * @param expectedUrl 期望的确切 URL
 	 */
 	public static ResultMatcher redirectedUrl(String expectedUrl) {
 		return result -> assertEquals("Redirected URL", expectedUrl, result.getResponse().getRedirectedUrl());
@@ -132,8 +132,8 @@ public abstract class MockMvcResultMatchers {
 	/**
 	 * 断言请求已重定向到给定 URL 模板。
 	 * <p>此方法接受对展开并编码后的 URL 模板的精确匹配。
-	 * @param urlTemplate a URL template; the expanded URL will be encoded
-	 * @param uriVars zero or more URI variables to populate the template
+	 * @param urlTemplate URL 模板；展开后的 URL 将被编码
+	 * @param uriVars 零个或多个用于填充模板的 URI 变量
 	 * @see UriComponentsBuilder#fromUriString(String)
 	 */
 	public static ResultMatcher redirectedUrlTemplate(String urlTemplate, Object... uriVars) {
@@ -145,7 +145,7 @@ public abstract class MockMvcResultMatchers {
 	 * 断言请求已重定向到给定 URL。
 	 * <p>此方法接受 {@link org.springframework.util.AntPathMatcher}
 	 * 模式。
-	 * @param urlPattern an Ant-style path pattern to match against
+	 * @param urlPattern 要匹配的 Ant 风格路径模式
 	 * @since 4.0
 	 * @see org.springframework.util.AntPathMatcher
 	 */
@@ -185,8 +185,8 @@ public abstract class MockMvcResultMatchers {
 	 * 检查响应体特定子集的响应体断言。
 	 * <p>JSON 路径表达式可以是使用
 	 * {@link String#format(String, Object...)} 中定义的格式说明符的参数化字符串。
-	 * @param expression the JSON path expression, optionally parameterized with arguments
-	 * @param args arguments to parameterize the JSON path expression with
+	 * @param expression JSON 路径表达式，可选地用参数进行参数化
+	 * @param args 用于对 JSON 路径表达式进行参数化的参数
 	 * @see #jsonPath(String, Matcher)
 	 * @see #jsonPath(String, Matcher, Class)
 	 */
@@ -197,8 +197,8 @@ public abstract class MockMvcResultMatchers {
 	/**
 	 * 对响应体求值给定的 <a href="https://github.com/jayway/JsonPath">JsonPath</a>
 	 * 表达式，并使用给定的 Hamcrest {@link Matcher} 断言结果值。
-	 * @param expression the JSON path expression
-	 * @param matcher a matcher for the value expected at the JSON path
+	 * @param expression JSON 路径表达式
+	 * @param matcher 用于 JSON 路径处期望值的匹配器
 	 * @see #jsonPath(String, Object...)
 	 * @see #jsonPath(String, Matcher, Class)
 	 */
@@ -212,9 +212,9 @@ public abstract class MockMvcResultMatchers {
 	 * 然后使用给定的 Hamcrest {@link Matcher} 断言结果值。
 	 * <p>这对于可靠地匹配数字很有用 &mdash; 例如，
 	 * 将整数强制转换为 double。
-	 * @param expression the JSON path expression
-	 * @param matcher a matcher for the value expected at the JSON path
-	 * @param targetType the target type to coerce the matching value into
+	 * @param expression JSON 路径表达式
+	 * @param matcher 用于 JSON 路径处期望值的匹配器
+	 * @param targetType 要强制匹配值转换成的目标类型
 	 * @since 5.2
 	 * @see #jsonPath(String, Object...)
 	 * @see #jsonPath(String, Matcher)
@@ -227,8 +227,8 @@ public abstract class MockMvcResultMatchers {
 	 * 访问使用 XPath 表达式检查响应体特定子集的响应体断言。
 	 * <p>XPath 表达式可以是使用格式化说明符的参数化字符串，
 	 * 这些说明符定义于 {@link String#format(String, Object...)}。
-	 * @param expression the XPath expression, optionally parameterized with arguments
-	 * @param args arguments to parameterize the XPath expression with
+	 * @param expression XPath 表达式，可选地用参数进行参数化
+	 * @param args 用于对 XPath 表达式进行参数化的参数
 	 */
 	public static XpathResultMatchers xpath(String expression, Object... args) throws XPathExpressionException {
 		return new XpathResultMatchers(expression, null, args);
@@ -238,9 +238,9 @@ public abstract class MockMvcResultMatchers {
 	 * 访问使用 XPath 表达式检查响应体特定子集的响应体断言。
 	 * <p>XPath 表达式可以是使用格式化说明符的参数化字符串，
 	 * 这些说明符定义于 {@link String#format(String, Object...)}。
-	 * @param expression the XPath expression, optionally parameterized with arguments
-	 * @param namespaces the namespaces referenced in the XPath expression
-	 * @param args arguments to parameterize the XPath expression with
+	 * @param expression XPath 表达式，可选地用参数进行参数化
+	 * @param namespaces XPath 表达式中引用的命名空间
+	 * @param args 用于对 XPath 表达式进行参数化的参数
 	 */
 	public static XpathResultMatchers xpath(String expression, Map<String, String> namespaces, Object... args)
 			throws XPathExpressionException {

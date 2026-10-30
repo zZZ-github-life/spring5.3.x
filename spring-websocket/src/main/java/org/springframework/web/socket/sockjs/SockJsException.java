@@ -34,8 +34,8 @@ public class SockJsException extends NestedRuntimeException {
 
 	/**
 	 * SockJsException 的构造函数。
-	 * @param message the exception message
-	 * @param cause the root cause
+	 * @param message 异常消息
+	 * @param cause 根本原因
 	 */
 	public SockJsException(String message, @Nullable Throwable cause) {
 		this(message, null, cause);
@@ -43,9 +43,9 @@ public class SockJsException extends NestedRuntimeException {
 
 	/**
 	 * SockJsException 的构造函数。
-	 * @param message the exception message
-	 * @param sessionId the SockJS session id
-	 * @param cause the root cause
+	 * @param message 异常消息
+	 * @param sessionId SockJS 会话 ID
+	 * @param cause 根本原因
 	 */
 	public SockJsException(String message, @Nullable String sessionId, @Nullable Throwable cause) {
 		super(message, cause);

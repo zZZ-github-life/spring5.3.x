@@ -107,10 +107,10 @@ public class PreferencesPlaceholderConfigurer extends PropertyPlaceholderConfigu
 
 	/**
 	 * 针对给定的 Preferences 解析给定的路径和键。
-	 * @param path the preferences path (placeholder part before '/')
-	 * @param key the preferences key (placeholder part after '/')
-	 * @param preferences the Preferences to resolve against
-	 * @return the value for the placeholder, or {@code null} if none found
+	 * @param path preferences 路径（'/' 之前的占位符部分）
+	 * @param key preferences 键（'/' 之后的占位符部分）
+	 * @param preferences 用于解析的 Preferences
+	 * @return 占位符的值；如果未找到则为 {@code null}
 	 */
 	@Nullable
 	protected String resolvePlaceholder(@Nullable String path, String key, Preferences preferences) {

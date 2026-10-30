@@ -95,7 +95,7 @@ public class AnnotationAwareOrderComparator extends OrderComparator {
 	/**
 	 * 使用默认的 {@link AnnotationAwareOrderComparator} 对给定列表排序。
 	 * <p>已优化为对大小为 0 或 1 的列表跳过排序，以避免不必要的数组提取。
-	 * @param list the List to sort
+	 * @param list 要排序的 List
 	 * @see java.util.List#sort(java.util.Comparator)
 	 */
 	public static void sort(List<?> list) {
@@ -107,7 +107,7 @@ public class AnnotationAwareOrderComparator extends OrderComparator {
 	/**
 	 * 使用默认的 AnnotationAwareOrderComparator 对给定数组排序。
 	 * <p>已优化为对大小为 0 或 1 的列表跳过排序，以避免不必要的数组提取。
-	 * @param array the array to sort
+	 * @param array 要排序的数组
 	 * @see java.util.Arrays#sort(Object[], java.util.Comparator)
 	 */
 	public static void sort(Object[] array) {
@@ -120,7 +120,7 @@ public class AnnotationAwareOrderComparator extends OrderComparator {
 	 * 如有必要，使用默认的 AnnotationAwareOrderComparator 对给定数组或 List 排序。给定其他任何值时，将
 	 * 直接跳过排序。
 	 * <p>已优化为对大小为 0 或 1 的列表跳过排序，以避免不必要的数组提取。
-	 * @param value the array or List to sort
+	 * @param value 要排序的数组或 List
 	 * @see java.util.Arrays#sort(Object[], java.util.Comparator)
 	 */
 	public static void sortIfNecessary(Object value) {

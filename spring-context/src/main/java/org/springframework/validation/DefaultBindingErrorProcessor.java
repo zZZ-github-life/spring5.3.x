@@ -81,9 +81,9 @@ public class DefaultBindingErrorProcessor implements BindingErrorProcessor {
 	 * 返回给定字段上绑定错误的 FieldError 参数。对每个缺失的必填字段和每个类型不匹配调用。<p>默认实现
 	 * 返回一个表示字段名的参数（类型为 DefaultMessageSourceResolvable，以 "objectName.field" 和
 	 * "field" 作为代码）。
-	 * @param objectName the name of the target object
-	 * @param field the field that caused the binding error
-	 * @return the Object array that represents the FieldError arguments
+	 * @param objectName 目标对象的名称。
+	 * @param field 导致绑定错误的字段。
+	 * @return 表示 FieldError 参数的 Object 数组。
 	 * @see org.springframework.validation.FieldError#getArguments
 	 * @see org.springframework.context.support.DefaultMessageSourceResolvable
 	 */

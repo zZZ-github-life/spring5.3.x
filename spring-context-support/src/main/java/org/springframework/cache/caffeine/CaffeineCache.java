@@ -42,8 +42,8 @@ public class CaffeineCache extends AbstractValueAdaptingCache {
 
 	/**
 	 * 使用指定名称和给定的内部 {@link com.github.benmanes.caffeine.cache.Cache} 创建 {@link CaffeineCache} 实例。
-	 * @param name the name of the cache
-	 * @param cache the backing Caffeine Cache instance
+	 * @param name 缓存的名称
+	 * @param cache 底层 Caffeine Cache 实例
 	 */
 	public CaffeineCache(String name, com.github.benmanes.caffeine.cache.Cache<Object, Object> cache) {
 		this(name, cache, true);
@@ -51,10 +51,9 @@ public class CaffeineCache extends AbstractValueAdaptingCache {
 
 	/**
 	 * 使用指定名称和给定的内部 {@link com.github.benmanes.caffeine.cache.Cache} 创建 {@link CaffeineCache} 实例。
-	 * @param name the name of the cache
-	 * @param cache the backing Caffeine Cache instance
-	 * @param allowNullValues whether to accept and convert {@code null}
-	 * values for this cache
+	 * @param name 缓存的名称
+	 * @param cache 底层 Caffeine Cache 实例
+	 * @param allowNullValues 此缓存是否接受并转换 {@code null} 值
 	 */
 	public CaffeineCache(String name, com.github.benmanes.caffeine.cache.Cache<Object, Object> cache,
 			boolean allowNullValues) {

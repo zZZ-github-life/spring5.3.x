@@ -35,7 +35,7 @@ public class ArgumentPreparedStatementSetter implements PreparedStatementSetter,
 
 	/**
 	 * 为给定参数创建新的ArgPreparedStatementSetter。
-	 * @param args the arguments to set
+	 * @param args 要设置的参数
 	 */
 	public ArgumentPreparedStatementSetter(@Nullable Object[] args) {
 		this.args = args;
@@ -55,10 +55,10 @@ public class ArgumentPreparedStatementSetter implements PreparedStatementSetter,
 	/**
 	 * 使用传入的值为PreparedStatement的指定参数位置设置值。
 	 * 子类可以根据需要重写此方法。
-	 * @param ps the PreparedStatement
-	 * @param parameterPosition index of the parameter position
-	 * @param argValue the value to set
-	 * @throws SQLException if thrown by PreparedStatement methods
+	 * @param ps 该 PreparedStatement
+	 * @param parameterPosition 参数位置的索引
+	 * @param argValue 要设置的值
+	 * @throws SQLException 如果由 PreparedStatement 方法抛出
 	 */
 	protected void doSetValue(PreparedStatement ps, int parameterPosition, Object argValue) throws SQLException {
 		if (argValue instanceof SqlParameterValue) {

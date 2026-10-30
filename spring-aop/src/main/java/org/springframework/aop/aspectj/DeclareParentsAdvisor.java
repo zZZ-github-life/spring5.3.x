@@ -43,9 +43,9 @@ public class DeclareParentsAdvisor implements IntroductionAdvisor {
 
 	/**
 	 * 为这个 DeclareParents 字段创建一个新的 Advisor。
-	 * @param interfaceType static field defining the introduction
-	 * @param typePattern type pattern the introduction is restricted to
-	 * @param defaultImpl the default implementation class
+	 * @param interfaceType 定义该引入的静态字段
+	 * @param typePattern 该引入所限定的类型模式
+	 * @param defaultImpl 默认实现类
 	 */
 	public DeclareParentsAdvisor(Class<?> interfaceType, String typePattern, Class<?> defaultImpl) {
 		this(interfaceType, typePattern,
@@ -54,9 +54,9 @@ public class DeclareParentsAdvisor implements IntroductionAdvisor {
 
 	/**
 	 * 为这个 DeclareParents 字段创建一个新的 Advisor。
-	 * @param interfaceType static field defining the introduction
-	 * @param typePattern type pattern the introduction is restricted to
-	 * @param delegateRef the delegate implementation object
+	 * @param interfaceType 定义该引入的静态字段
+	 * @param typePattern 该引入所限定的类型模式
+	 * @param delegateRef 委托实现对象
 	 */
 	public DeclareParentsAdvisor(Class<?> interfaceType, String typePattern, Object delegateRef) {
 		this(interfaceType, typePattern, new DelegatingIntroductionInterceptor(delegateRef));
@@ -65,9 +65,9 @@ public class DeclareParentsAdvisor implements IntroductionAdvisor {
 	/**
 	 * 私有构造函数，用于在基于 impl 的委托和基于引用的委托之间共享公共代码（由于使用了 final 字段，无
 	 * 法使用 init() 之类的方法来共享公共代码）。
-	 * @param interfaceType static field defining the introduction
-	 * @param typePattern type pattern the introduction is restricted to
-	 * @param interceptor the delegation advice as {@link IntroductionInterceptor}
+	 * @param interfaceType 定义该引入的静态字段
+	 * @param typePattern 该引入所限定的类型模式
+	 * @param interceptor 作为 {@link IntroductionInterceptor} 的委托通知
 	 */
 	private DeclareParentsAdvisor(Class<?> interfaceType, String typePattern, IntroductionInterceptor interceptor) {
 		this.advice = interceptor;

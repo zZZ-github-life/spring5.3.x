@@ -40,7 +40,7 @@ public class ServletContextLiveBeansView extends org.springframework.context.sup
 
 	/**
 	 * 为给定的 ServletContext 创建一个新的 LiveBeansView。
-	 * @param servletContext current ServletContext
+	 * @param servletContext 当前的 ServletContext
 	 */
 	public ServletContextLiveBeansView(ServletContext servletContext) {
 		Assert.notNull(servletContext, "ServletContext must not be null");

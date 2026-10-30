@@ -31,8 +31,8 @@ public interface PropertyProvider {
 
 	/**
 	 * 获取指定名称属性的值。
-	 * @param name the name of the property to retrieve
-	 * @return the value of the property or {@code null} if not found
+	 * @param name 要检索的属性的名称
+	 * @return 属性的值；如果未找到，则为 {@code null}
 	 */
 	@Nullable
 	String get(String name);

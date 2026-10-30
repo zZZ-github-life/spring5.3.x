@@ -73,15 +73,15 @@ public interface RedirectAttributes extends Model {
 
 	/**
 	 * 添加给定的 flash 属性。
-	 * @param attributeName the attribute name; never {@code null}
-	 * @param attributeValue the attribute value; may be {@code null}
+	 * @param attributeName 属性名称；永不为 {@code null}
+	 * @param attributeValue 属性值；可以为 {@code null}
 	 */
 	RedirectAttributes addFlashAttribute(String attributeName, @Nullable Object attributeValue);
 
 	/**
 	 * 使用
 	 * {@link org.springframework.core.Conventions#getVariableName generated name} 添加给定的 flash 存储。
-	 * @param attributeValue the flash attribute value; never {@code null}
+	 * @param attributeValue flash 属性的值；永不为 {@code null}
 	 */
 	RedirectAttributes addFlashAttribute(Object attributeValue);
 

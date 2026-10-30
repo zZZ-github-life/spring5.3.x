@@ -47,7 +47,7 @@ import org.springframework.lang.Nullable;
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @since 08.03.2003
- * @param <T> the bean type
+ * @param <T> Bean 类型
  * @see org.springframework.beans.factory.BeanFactory
  * @see org.springframework.aop.framework.ProxyFactoryBean
  * @see org.springframework.jndi.JndiObjectFactoryBean
@@ -70,8 +70,8 @@ public interface FactoryBean<T> {
 	 * FactoryBean 允许返回 {@code null} 对象。工厂会将其视为要使用的正常值；在这种情况下不再抛出
 	 * FactoryBeanNotInitializedException。现在鼓励 FactoryBean 实现在适当时自行抛出
 	 * FactoryBeanNotInitializedException。
-	 * @return an instance of the bean (can be {@code null})
-	 * @throws Exception in case of creation errors
+	 * @return Bean 的实例（可以为 {@code null}）
+	 * @throws Exception 如果发生创建错误
 	 * @see FactoryBeanNotInitializedException
 	 */
 	@Nullable
@@ -84,8 +84,7 @@ public interface FactoryBean<T> {
 	 * 始化<i>之前</i>被调用。它不得依赖初始化期间创建的状态；当然，如果这些状态可用，它仍然可以使用。
 	 * <p><b>注意：</b>自动装配会直接忽略在此返回 {@code null} 的 FactoryBean。因此，强烈建议使用
 	 * FactoryBean 的当前状态正确实现此方法。
-	 * @return the type of object that this FactoryBean creates,
-	 * or {@code null} if not known at the time of the call
+	 * @return 此 FactoryBean 创建的对象类型；若调用时未知则为 {@code null}
 	 * @see ListableBeanFactory#getBeansOfType
 	 */
 	@Nullable
@@ -101,7 +100,7 @@ public interface FactoryBean<T> {
 	 * 明独立实例。未实现此扩展接口的普通 {@link FactoryBean} 实现，如果 {@code isSingleton()} 实现返回
 	 * {@code false}，则简单地假定其总是返回独立实例。<p>默认实现返回 {@code true}，因为
 	 * {@code FactoryBean} 通常管理一个单例实例。
-	 * @return whether the exposed object is a singleton
+	 * @return 所暴露的对象是否为单例
 	 * @see #getObject()
 	 * @see SmartFactoryBean#isPrototype()
 	 */

@@ -30,15 +30,15 @@ public interface EmbeddedDatabaseConfigurer {
 
 	/**
 	 * 配置创建和连接嵌入式数据库所需的属性。
-	 * @param properties connection properties to configure
-	 * @param databaseName the name of the embedded database
+	 * @param properties 要配置的连接属性
+	 * @param databaseName 内嵌数据库的名称
 	 */
 	void configureConnectionProperties(ConnectionProperties properties, String databaseName);
 
 	/**
 	 * 关闭支持所提供 {@link DataSource} 的嵌入式数据库实例。
-	 * @param dataSource the corresponding {@link DataSource}
-	 * @param databaseName the name of the database being shut down
+	 * @param dataSource 对应的 {@link DataSource}
+	 * @param databaseName 要关闭的数据库的名称
 	 */
 	void shutdown(DataSource dataSource, String databaseName);
 

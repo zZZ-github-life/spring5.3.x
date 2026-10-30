@@ -39,7 +39,7 @@ public interface ServletConfigAware extends Aware {
 	 * <p>在填充普通 bean 属性之后、在诸如 InitializingBean 的
 	 * {@code afterPropertiesSet} 或自定义 init-method 等初始化回调之前调用。
 	 * 在 ApplicationContextAware 的 {@code setApplicationContext} 之后调用。
-	 * @param servletConfig the {@link ServletConfig} to be used by this object
+	 * @param servletConfig 此对象要使用的 {@link ServletConfig}
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
 	 * @see org.springframework.context.ApplicationContextAware#setApplicationContext
 	 */

@@ -61,9 +61,9 @@ public abstract class BodyExtractors {
 
 	/**
 	 * 用于将输入内容解码为 {@code Mono<T>} 的提取器。
-	 * @param elementClass the class of the element type to decode to
-	 * @param <T> the element type to decode to
-	 * @return {@code BodyExtractor} for {@code Mono<T>}
+	 * @param elementClass 要解码为的元素类型的类
+	 * @param <T> 要解码为的元素类型
+	 * @return 用于 {@code Mono<T>} 的 {@code BodyExtractor}
 	 */
 	public static <T> BodyExtractor<Mono<T>, ReactiveHttpInputMessage> toMono(Class<? extends T> elementClass) {
 		return toMono(ResolvableType.forClass(elementClass));
@@ -71,9 +71,9 @@ public abstract class BodyExtractors {
 
 	/**
 	 * 带有泛型类型信息的 {@link #toMono(Class)} 变体。
-	 * @param elementTypeRef the type reference for the type to decode to
-	 * @param <T> the element type to decode to
-	 * @return {@code BodyExtractor} for {@code Mono<T>}
+	 * @param elementTypeRef 要解码为的类型的类型引用
+	 * @param <T> 要解码为的元素类型
+	 * @return 用于 {@code Mono<T>} 的 {@code BodyExtractor}
 	 */
 	public static <T> BodyExtractor<Mono<T>, ReactiveHttpInputMessage> toMono(ParameterizedTypeReference<T> elementTypeRef) {
 		return toMono(ResolvableType.forType(elementTypeRef.getType()));
@@ -89,9 +89,9 @@ public abstract class BodyExtractors {
 
 	/**
 	 * 用于将输入内容解码为 {@code Flux<T>} 的提取器。
-	 * @param elementClass the class of the element type to decode to
-	 * @param <T> the element type to decode to
-	 * @return {@code BodyExtractor} for {@code Flux<T>}
+	 * @param elementClass 要解码为的元素类型的类
+	 * @param <T> 要解码为的元素类型
+	 * @return 用于 {@code Flux<T>} 的 {@code BodyExtractor}
 	 */
 	public static <T> BodyExtractor<Flux<T>, ReactiveHttpInputMessage> toFlux(Class<? extends T> elementClass) {
 		return toFlux(ResolvableType.forClass(elementClass));
@@ -99,9 +99,9 @@ public abstract class BodyExtractors {
 
 	/**
 	 * 带有泛型类型信息的 {@link #toFlux(Class)} 变体。
-	 * @param typeRef the type reference for the type to decode to
-	 * @param <T> the element type to decode to
-	 * @return {@code BodyExtractor} for {@code Flux<T>}
+	 * @param typeRef 要解码为的类型的类型引用
+	 * @param <T> 要解码为的元素类型
+	 * @return 用于 {@code Flux<T>} 的 {@code BodyExtractor}
 	 */
 	public static <T> BodyExtractor<Flux<T>, ReactiveHttpInputMessage> toFlux(ParameterizedTypeReference<T> typeRef) {
 		return toFlux(ResolvableType.forType(typeRef.getType()));
@@ -122,7 +122,7 @@ public abstract class BodyExtractors {
 	/**
 	 * 用于将表单数据读入 {@code MultiValueMap<String, String>} 的提取器。
 	 * <p>从 5.1 开始，此方法也可在客户端用于从服务器响应（例如 OAuth）读取表单数据。
-	 * @return {@code BodyExtractor} for form data
+	 * @return 用于表单数据的 {@code BodyExtractor}
 	 */
 	public static BodyExtractor<Mono<MultiValueMap<String, String>>, ReactiveHttpInputMessage> toFormData() {
 		return (message, context) -> {
@@ -135,7 +135,7 @@ public abstract class BodyExtractors {
 
 	/**
 	 * 用于将 multipart 数据读入 {@code MultiValueMap<String, Part>} 的提取器。
-	 * @return {@code BodyExtractor} for multipart data
+	 * @return 用于 multipart 数据的 {@code BodyExtractor}
 	 */
 	// Parameterized for server-side use
 	public static BodyExtractor<Mono<MultiValueMap<String, Part>>, ServerHttpRequest> toMultipartData() {
@@ -149,7 +149,7 @@ public abstract class BodyExtractors {
 
 	/**
 	 * 用于将 multipart 数据读入 {@code Flux<Part>} 的提取器。
-	 * @return {@code BodyExtractor} for multipart request parts
+	 * @return 用于 multipart 请求部分的 {@code BodyExtractor}
 	 */
 	// Parameterized for server-side use
 	public static BodyExtractor<Flux<Part>, ServerHttpRequest> toParts() {
@@ -164,7 +164,7 @@ public abstract class BodyExtractors {
 	/**
 	 * 返回原始 {@link DataBuffer DataBuffers} 的提取器。
 	 * <p><strong>注意：</strong>使用后应{@link org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer) 释放}数据缓冲区。
-	 * @return {@code BodyExtractor} for data buffers
+	 * @return 用于数据缓冲区的 {@code BodyExtractor}
 	 */
 	public static BodyExtractor<Flux<DataBuffer>, ReactiveHttpInputMessage> toDataBuffers() {
 		return (inputMessage, context) -> inputMessage.getBody();

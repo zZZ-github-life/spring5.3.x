@@ -79,9 +79,8 @@ public class DependencyInjectionTestExecutionListener extends AbstractTestExecut
 	/**
 	 * 如 {@link #prepareTestInstance(TestContext) prepareTestInstance()} 中所述，为所提供的 {@link TestContext} 执行依赖注入和 Bean 初始化。
 	 * <p>随后将从测试上下文中移除 {@link #REINJECT_DEPENDENCIES_ATTRIBUTE}，无论其值如何。
-	 * @param testContext the test context for which dependency injection should
-	 * be performed (never {@code null})
-	 * @throws Exception allows any exception to propagate
+	 * @param testContext 应为其执行依赖注入的测试上下文（从不为 {@code null}）
+	 * @throws Exception 允许任何异常传播
 	 * @see #prepareTestInstance(TestContext)
 	 * @see #beforeTestMethod(TestContext)
 	 */

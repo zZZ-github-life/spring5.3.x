@@ -160,8 +160,8 @@ public class ResourceRegionEncoder extends AbstractEncoder<ResourceRegion> {
 
 	/**
 	 * 尽可能在不读取内容的情况下确定给定资源的 contentLength。
-	 * @param resource the resource instance
-	 * @return the contentLength of the resource
+	 * @param resource 资源实例
+	 * @return 该资源的 contentLength
 	 */
 	private OptionalLong contentLength(Resource resource) {
 		// Don't try to determine contentLength on InputStreamResource - cannot be read afterwards...

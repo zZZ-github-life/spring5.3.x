@@ -40,7 +40,7 @@ import org.springframework.util.Assert;
  *
  * @author Juergen Hoeller
  * @since 19.05.2003
- * @param <E> the element type
+ * @param <E> 元素类型
  * @see #getPageList()
  * @see org.springframework.beans.support.MutableSortDefinition
  */
@@ -90,7 +90,7 @@ public class PagedListHolder<E> implements Serializable {
 	/**
 	 * 使用给定的源列表创建一个新的持有者实例，起始时使用默认排序定义（已启用
 	 * "toggleAscendingOnProperty"）。
-	 * @param source the source List
+	 * @param source 源 List
 	 * @see MutableSortDefinition#setToggleAscendingOnProperty
 	 */
 	public PagedListHolder(List<E> source) {
@@ -99,8 +99,8 @@ public class PagedListHolder<E> implements Serializable {
 
 	/**
 	 * 使用给定的源列表创建一个新的持有者实例。
-	 * @param source the source List
-	 * @param sort the SortDefinition to start with
+	 * @param source 源 List
+	 * @param sort 初始使用的 SortDefinition
 	 */
 	public PagedListHolder(List<E> source, SortDefinition sort) {
 		setSource(source);
@@ -315,8 +315,8 @@ public class PagedListHolder<E> implements Serializable {
 	 * <p>默认实现会创建一个 MutableSortDefinition 实例。可以在子类中覆盖，特别是在自定义扩展
 	 * SortDefinition 接口的情况下。允许返回 null，这意味着不保留任何排序状态，从而在每次
 	 * {@code resort} 调用时触发实际排序。
-	 * @param sort the current SortDefinition object
-	 * @return a deep copy of the SortDefinition object
+	 * @param sort 当前的 SortDefinition 对象
+	 * @return SortDefinition 对象的深拷贝
 	 * @see MutableSortDefinition#MutableSortDefinition(SortDefinition)
 	 */
 	protected SortDefinition copySortDefinition(SortDefinition sort) {

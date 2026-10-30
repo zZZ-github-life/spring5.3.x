@@ -36,7 +36,7 @@ public class DelegatingServerHttpResponse implements ServerHttpResponse {
 
 	/**
 	 * 创建一个新的 {@code DelegatingServerHttpResponse}。
-	 * @param delegate the response to delegate to
+	 * @param delegate 要委托到的响应
 	 */
 	public DelegatingServerHttpResponse(ServerHttpResponse delegate) {
 		Assert.notNull(delegate, "Delegate must not be null");
@@ -45,7 +45,7 @@ public class DelegatingServerHttpResponse implements ServerHttpResponse {
 
 	/**
 	 * 返回此响应所委托的目标响应。
-	 * @return the delegate
+	 * @return 委托对象
 	 */
 	public ServerHttpResponse getDelegate() {
 		return this.delegate;

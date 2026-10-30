@@ -134,7 +134,7 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 	/**
 	 * 指示在无法推断通知参数名的情况下，是否必须视情况抛出 {@link IllegalArgumentException} 和
 	 * {@link AmbiguousBindingException}。
-	 * @param raiseExceptions {@code true} if exceptions are to be thrown
+	 * @param raiseExceptions 如果要抛出异常，则为 {@code true}
 	 */
 	public void setRaiseExceptions(boolean raiseExceptions) {
 		this.raiseExceptions = raiseExceptions;
@@ -142,7 +142,7 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 
 	/**
 	 * 如果 {@code afterReturning} 通知绑定返回值，则必须指定 returning 变量名。
-	 * @param returningName the name of the returning variable
+	 * @param returningName 返回值变量的名称
 	 */
 	public void setReturningName(@Nullable String returningName) {
 		this.returningName = returningName;
@@ -150,7 +150,7 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 
 	/**
 	 * 如果 {@code afterThrowing} 通知绑定抛出的值，则必须指定 throwing 变量名。
-	 * @param throwingName the name of the throwing variable
+	 * @param throwingName 异常值变量的名称
 	 */
 	public void setThrowingName(@Nullable String throwingName) {
 		this.throwingName = throwingName;
@@ -160,8 +160,8 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 	/**
 	 * 推断通知方法的参数名称。<p>有关所用算法的详细信息，请参见
 	 * {@link AspectJAdviceParameterNameDiscoverer class level javadoc}。
-	 * @param method the target {@link Method}
-	 * @return the parameter names
+	 * @param method 目标 {@link Method}
+	 * @return 参数名称
 	 */
 	@Override
 	@Nullable
@@ -241,8 +241,7 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 	/**
 	 * 在 Spring 中，通知方法永远不可能是构造器。
 	 * @return {@code null}
-	 * @throws UnsupportedOperationException if
-	 * {@link #setRaiseExceptions(boolean) raiseExceptions} has been set to {@code true}
+	 * @throws UnsupportedOperationException 如果 {@link #setRaiseExceptions(boolean) raiseExceptions} 已被设置为 {@code true}
 	 */
 	@Override
 	@Nullable
@@ -717,7 +716,7 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 
 		/**
 		 * 使用指定消息构造一个新的 AmbiguousBindingException。
-		 * @param msg the detail message
+		 * @param msg 详细消息
 		 */
 		public AmbiguousBindingException(String msg) {
 			super(msg);

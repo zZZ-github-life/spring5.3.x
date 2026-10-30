@@ -29,7 +29,7 @@ public interface FailureCallback {
 	 * 当 {@link ListenableFuture} 以失败完成时调用。
 	 *
 	 * <p>请注意，此方法抛出的 Exception 将被忽略。
-	 * @param ex the failure
+	 * @param ex 失败信息
 	 */
 	void onFailure(Throwable ex);
 

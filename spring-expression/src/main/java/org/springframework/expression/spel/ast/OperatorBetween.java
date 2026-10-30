@@ -43,9 +43,9 @@ public class OperatorBetween extends Operator {
 	/**
 	 * 根据某个值是否在表达的范围之内返回布尔值。第一个操作数是任意值，而第二个操作数是包含两个值的列表
 	 * —— 这两个值就是第一个操作数所允许的边界（包含边界）。
-	 * @param state the expression state
-	 * @return true if the left operand is in the range specified, false otherwise
-	 * @throws EvaluationException if there is a problem evaluating the expression
+	 * @param state 表达式状态
+	 * @return 如果左操作数位于指定范围内则返回 true，否则返回 false
+	 * @throws EvaluationException 如果对表达式求值时出现问题
 	 */
 	@Override
 	public BooleanTypedValue getValueInternal(ExpressionState state) throws EvaluationException {

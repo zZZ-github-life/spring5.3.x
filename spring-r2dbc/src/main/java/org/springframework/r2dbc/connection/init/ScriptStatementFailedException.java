@@ -31,11 +31,11 @@ public class ScriptStatementFailedException extends ScriptException {
 
 	/**
 	 * 创建一个新的 {@code ScriptStatementFailedException}。
-	 * @param stmt the actual SQL statement that failed
-	 * @param stmtNumber the statement number in the SQL script (i.e.,
-	 * the n<sup>th</sup> statement present in the resource)
-	 * @param encodedResource the resource from which the SQL statement was read
-	 * @param cause the underlying cause of the failure
+	 * @param stmt 实际失败的 SQL 语句
+	 * @param stmtNumber SQL 脚本中的语句编号（即资源中
+	 * 第 n<sup>th</sup> 条语句）
+	 * @param encodedResource 读取 SQL 语句的资源
+	 * @param cause 失败的底层原因
 	 */
 	public ScriptStatementFailedException(String stmt, int stmtNumber, EncodedResource encodedResource, Throwable cause) {
 		super(buildErrorMessage(stmt, stmtNumber, encodedResource), cause);
@@ -44,12 +44,12 @@ public class ScriptStatementFailedException extends ScriptException {
 
 	/**
 	 * 根据所提供的参数，为 SQL 脚本执行失败构建一条错误消息。
-	 * @param stmt the actual SQL statement that failed
-	 * @param stmtNumber the statement number in the SQL script (i.e.,
-	 * the n<sup>th</sup> statement present in the resource)
-	 * @param encodedResource the resource from which the SQL statement was read
-	 * @return an error message suitable for an exception's <em>detail message</em>
-	 * or logging
+	 * @param stmt 实际失败的 SQL 语句
+	 * @param stmtNumber SQL 脚本中的语句编号（即资源中
+	 * 第 n<sup>th</sup> 条语句）
+	 * @param encodedResource 读取 SQL 语句的资源
+	 * @return 适合作为异常的 <em>详细消息</em> 或用于
+	 * 日志记录的错误消息
 	 */
 	public static String buildErrorMessage(String stmt, int stmtNumber, EncodedResource encodedResource) {
 		return String.format("Failed to execute SQL script statement #%s of %s: %s", stmtNumber, encodedResource, stmt);

@@ -76,7 +76,7 @@ public class DefaultRequestToViewNameTranslator implements RequestToViewNameTran
 
 	/**
 	 * 设置要前置到生成的视图名称之前的前缀。
-	 * @param prefix the prefix to prepend to generated view names
+	 * @param prefix 要添加到生成的视图名称前面的前缀
 	 */
 	public void setPrefix(@Nullable String prefix) {
 		this.prefix = (prefix != null ? prefix : "");
@@ -84,7 +84,7 @@ public class DefaultRequestToViewNameTranslator implements RequestToViewNameTran
 
 	/**
 	 * 设置要追加到生成的视图名称之后的 suffix。
-	 * @param suffix the suffix to append to generated view names
+	 * @param suffix 要追加到生成的视图名称后面的后缀
 	 */
 	public void setSuffix(@Nullable String suffix) {
 		this.suffix = (suffix != null ? suffix : "");
@@ -167,8 +167,8 @@ public class DefaultRequestToViewNameTranslator implements RequestToViewNameTran
 	/**
 	 * 根据所配置的参数，将传入的 {@link HttpServletRequest} 的请求 URI
 	 * 转换为视图名称。
-	 * @throws IllegalArgumentException if neither a parsed RequestPath, nor a
-	 * String lookupPath have been resolved and cached as a request attribute.
+	 * @throws IllegalArgumentException 如果既没有解析出 RequestPath，也没有解析出
+	 * String 类型的 lookupPath 并将其缓存为请求属性
 	 * @see ServletRequestPathUtils#getCachedPath(ServletRequest)
 	 * @see #transformPath
 	 */
@@ -181,10 +181,9 @@ public class DefaultRequestToViewNameTranslator implements RequestToViewNameTran
 	/**
 	 * 转换请求 URI（在 Web 应用上下文中），去除
 	 * 斜杠和扩展名，并按需替换分隔符。
-	 * @param lookupPath the lookup path for the current request,
-	 * as determined by the UrlPathHelper
-	 * @return the transformed path, with slashes and extensions stripped
-	 * if desired
+	 * @param lookupPath 当前请求的查找路径，
+	 * 由 UrlPathHelper 确定
+	 * @return 转换后的路径；如需要则去除斜杠和扩展名
 	 */
 	@Nullable
 	protected String transformPath(String lookupPath) {

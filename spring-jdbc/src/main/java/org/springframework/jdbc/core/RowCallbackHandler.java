@@ -45,9 +45,9 @@ public interface RowCallbackHandler {
 	 * 此方法不应调用ResultSet上的{@code next()}；它只应该提取当前行的值。
 	 * <p>实现选择做什么完全由它决定：
 	 * 一个简单的实现可能只是计算行数，而另一个实现可能构建一个XML文档。
-	 * @param rs the ResultSet to process (pre-initialized for the current row)
-	 * @throws SQLException if an SQLException is encountered getting
-	 * column values (that is, there's no need to catch SQLException)
+	 * @param rs 要处理的 ResultSet（已为当前行预先初始化）
+	 * @throws SQLException 如果在获取列值时遇到 SQLException
+	 * （也就是说，无需捕获 SQLException）
 	 */
 	void processRow(ResultSet rs) throws SQLException;
 

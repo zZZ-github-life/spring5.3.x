@@ -377,8 +377,8 @@ public class LocalValidatorFactoryBean extends SpringValidatorAdapter
 	 * 对给定的 Bean Validation 配置进行后处理，添加或覆盖其中的任何设置。
 	 *
 	 * <p>在构建 {@link ValidatorFactory} 之前立即调用。
-	 * @param configuration the Configuration object, pre-populated with
-	 * settings driven by LocalValidatorFactoryBean's properties
+	 * @param configuration Configuration 对象，已预先填充
+	 * 由 LocalValidatorFactoryBean 的属性驱动的设置。
 	 */
 	protected void postProcessConfiguration(Configuration<?> configuration) {
 	}

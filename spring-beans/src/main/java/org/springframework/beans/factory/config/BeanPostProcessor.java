@@ -53,11 +53,11 @@ public interface BeanPostProcessor {
 	 * <i>之前</i>，将此 {@code BeanPostProcessor} 应用于给定的新 Bean 实例。此时 Bean 已填充好属性值。
 	 * 返回的 Bean 实例可能是原始实例的包装器。
 	 * <p>默认实现会原样返回给定的 {@code bean}。
-	 * @param bean the new bean instance
-	 * @param beanName the name of the bean
-	 * @return the bean instance to use, either the original or a wrapped one;
-	 * if {@code null}, no subsequent BeanPostProcessors will be invoked
-	 * @throws org.springframework.beans.BeansException in case of errors
+	 * @param bean 新的 Bean 实例
+	 * @param beanName 该 Bean 的名称
+	 * @return 要使用的 Bean 实例，可以是原始实例或包装后的实例；
+	 * 如果为 {@code null}，则不会调用后续的 BeanPostProcessors
+	 * @throws org.springframework.beans.BeansException 如果出错则抛出
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
 	 */
 	@Nullable
@@ -76,11 +76,11 @@ public interface BeanPostProcessor {
 	 * {@link InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation} 方法触发的短路之后调
 	 * 用。
 	 * <p>默认实现会原样返回给定的 {@code bean}。
-	 * @param bean the new bean instance
-	 * @param beanName the name of the bean
-	 * @return the bean instance to use, either the original or a wrapped one;
-	 * if {@code null}, no subsequent BeanPostProcessors will be invoked
-	 * @throws org.springframework.beans.BeansException in case of errors
+	 * @param bean 新的 Bean 实例
+	 * @param beanName 该 Bean 的名称
+	 * @return 要使用的 Bean 实例，可以是原始实例或包装后的实例；
+	 * 如果为 {@code null}，则不会调用后续的 BeanPostProcessors
+	 * @throws org.springframework.beans.BeansException 如果出错则抛出
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
 	 * @see org.springframework.beans.factory.FactoryBean
 	 */

@@ -39,8 +39,8 @@ public interface TaskDecorator {
 	/**
 	 * 装饰给定的 {@code Runnable}，返回一个可能经过包装的 {@code Runnable} 用于实际执行，并在内部委托
 	 * 给原始的 {@link Runnable#run()} 实现。
-	 * @param runnable the original {@code Runnable}
-	 * @return the decorated {@code Runnable}
+	 * @param runnable 原始的 {@code Runnable}
+	 * @return 装饰后的 {@code Runnable}
 	 */
 	Runnable decorate(Runnable runnable);
 

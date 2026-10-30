@@ -140,9 +140,9 @@ public class ExpressionState {
 	/**
 	 * 将指定 {@link Supplier} 创建的值赋给求值上下文中的命名变量。<p>与
 	 * {@link #setVariable(String, Object)} 不同，此方法只应在支持表达式内赋值时调用。
-	 * @param name the name of the variable to assign
-	 * @param valueSupplier the supplier of the value to be assigned to the variable
-	 * @return a {@link TypedValue} wrapping the assigned value
+	 * @param name 要赋值的变量名称
+	 * @param valueSupplier 提供要赋给该变量的值的 Supplier
+	 * @return 包装所赋值的 {@link TypedValue}
 	 * @since 5.2.24
 	 * @see EvaluationContext#assignVariable(String, Supplier)
 	 */
@@ -153,8 +153,8 @@ public class ExpressionState {
 	/**
 	 * 将求值上下文中的命名变量设置为指定值。<p>与 {@link #assignVariable(String, Supplier)} 不同，此方
 	 * 法只应以编程方式调用。
-	 * @param name the name of the variable to set
-	 * @param value the value to be placed in the variable
+	 * @param name 要设置的变量名称
+	 * @param value 要放入该变量的值
 	 * @see EvaluationContext#setVariable(String, Object)
 	 */
 	public void setVariable(String name, @Nullable Object value) {

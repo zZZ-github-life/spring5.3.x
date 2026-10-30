@@ -42,8 +42,8 @@ public interface ClientHttpResponse extends ReactiveHttpInputMessage {
 
 	/**
 	 * 以 {@link HttpStatus} 枚举值形式返回 HTTP 状态码。
-	 * @return the HTTP status as an HttpStatus enum value (never {@code null})
-	 * @throws IllegalArgumentException in case of an unknown HTTP status code
+	 * @return 以 HttpStatus 枚举值表示的 HTTP 状态（永不为 {@code null}）
+	 * @throws IllegalArgumentException 如果 HTTP 状态码未知
 	 * @since #getRawStatusCode()
 	 * @see HttpStatus#valueOf(int)
 	 */
@@ -52,7 +52,7 @@ public interface ClientHttpResponse extends ReactiveHttpInputMessage {
 	/**
 	 * 以整数形式返回 HTTP 状态码（可能非标准且
 	 * 无法通过 {@link HttpStatus} 枚举解析）。
-	 * @return the HTTP status as an integer value
+	 * @return 以整数值表示的 HTTP 状态
 	 * @since 5.0.6
 	 * @see #getStatusCode()
 	 * @see HttpStatus#resolve(int)

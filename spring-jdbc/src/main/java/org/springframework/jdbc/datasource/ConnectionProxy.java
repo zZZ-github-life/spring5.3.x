@@ -38,7 +38,7 @@ public interface ConnectionProxy extends Connection {
 	 * 返回此代理的目标 Connection。
 	 * <p>这通常是原生驱动程序的 Connection，
 	 * 或连接池中的包装器。
-	 * @return the underlying Connection (never {@code null})
+	 * @return 底层 Connection（永不为 {@code null}）
 	 */
 	Connection getTargetConnection();
 

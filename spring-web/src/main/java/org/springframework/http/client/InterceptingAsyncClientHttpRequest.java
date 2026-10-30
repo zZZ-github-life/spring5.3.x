@@ -51,10 +51,10 @@ class InterceptingAsyncClientHttpRequest extends AbstractBufferingAsyncClientHtt
 
 	/**
 	 * 创建 {@link InterceptingAsyncClientHttpRequest} 的新实例。
-	 * @param requestFactory the async request factory
-	 * @param interceptors the list of interceptors
-	 * @param uri the request URI
-	 * @param httpMethod the HTTP method
+	 * @param requestFactory 异步请求工厂
+	 * @param interceptors 拦截器列表
+	 * @param uri 请求 URI
+	 * @param httpMethod HTTP 方法
 	 */
 	public InterceptingAsyncClientHttpRequest(AsyncClientHttpRequestFactory requestFactory,
 			List<AsyncClientHttpRequestInterceptor> interceptors, URI uri, HttpMethod httpMethod) {

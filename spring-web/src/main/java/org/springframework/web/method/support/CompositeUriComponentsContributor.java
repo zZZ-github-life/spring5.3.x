@@ -51,8 +51,8 @@ public class CompositeUriComponentsContributor implements UriComponentsContribut
 	 * 由于两者通常由同一个类实现，最便捷的做法是获取
 	 * {@code RequestMappingHandlerAdapter} 中配置的
 	 * {@code HandlerMethodArgumentResolvers}，并将其提供给此构造函数。
-	 * @param contributors a collection of {@link UriComponentsContributor}
-	 * or {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}
+	 * @param contributors {@link UriComponentsContributor} 或
+	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers} 的集合
 	 */
 	public CompositeUriComponentsContributor(UriComponentsContributor... contributors) {
 		this.contributors = Arrays.asList((Object[]) contributors);
@@ -65,8 +65,8 @@ public class CompositeUriComponentsContributor implements UriComponentsContribut
 	 * 由于两者通常由同一个类实现，最便捷的做法是获取
 	 * {@code RequestMappingHandlerAdapter} 中配置的
 	 * {@code HandlerMethodArgumentResolvers}，并将其提供给此构造函数。
-	 * @param contributors a collection of {@link UriComponentsContributor}
-	 * or {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}
+	 * @param contributors {@link UriComponentsContributor} 或
+	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers} 的集合
 	 */
 	public CompositeUriComponentsContributor(Collection<?> contributors) {
 		this(contributors, null);
@@ -80,10 +80,10 @@ public class CompositeUriComponentsContributor implements UriComponentsContribut
 	 * {@code HandlerMethodArgumentResolvers}，并将其提供给此构造函数。
 	 * <p>如果 {@link ConversionService} 参数为 {@code null}，
 	 * 则默认使用 {@link org.springframework.format.support.DefaultFormattingConversionService}。
-	 * @param contributors a collection of {@link UriComponentsContributor}
-	 * or {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}
-	 * @param cs a ConversionService to use when method argument values
-	 * need to be formatted as Strings before being added to the URI
+	 * @param contributors {@link UriComponentsContributor} 或
+	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers} 的集合
+	 * @param cs 当方法参数值在添加到 URI 之前需要格式化为
+	 * String 时使用的 ConversionService
 	 */
 	public CompositeUriComponentsContributor(@Nullable Collection<?> contributors, @Nullable ConversionService cs) {
 		this.contributors = (contributors != null ? new ArrayList<>(contributors) : Collections.emptyList());
@@ -92,8 +92,8 @@ public class CompositeUriComponentsContributor implements UriComponentsContribut
 
 	/**
 	 * 判断此 {@code CompositeUriComponentsContributor} 是否有任何贡献器。
-	 * @return {@code true} if this {@code CompositeUriComponentsContributor}
-	 * was created with contributors to delegate to
+	 * @return 如果此 {@code CompositeUriComponentsContributor} 创建时带有
+	 * 可委托的贡献者则返回 {@code true}
 	 */
 	public boolean hasContributors() {
 		return !this.contributors.isEmpty();

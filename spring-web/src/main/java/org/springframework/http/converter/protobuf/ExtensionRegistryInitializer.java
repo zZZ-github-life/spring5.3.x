@@ -36,7 +36,7 @@ public interface ExtensionRegistryInitializer {
 
 	/**
 	 * 使用 Protocol Message 扩展初始化 {@code ExtensionRegistry}。
-	 * @param registry the registry to populate
+	 * @param registry 要填充的注册表
 	 */
 	void initializeExtensionRegistry(ExtensionRegistry registry);
 

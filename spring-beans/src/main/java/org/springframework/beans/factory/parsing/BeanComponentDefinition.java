@@ -43,8 +43,8 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 
 	/**
 	 * 为给定的 Bean 创建一个新的 BeanComponentDefinition。
-	 * @param beanDefinition the BeanDefinition
-	 * @param beanName the name of the bean
+	 * @param beanDefinition 该 BeanDefinition
+	 * @param beanName 该 Bean 的名称
 	 */
 	public BeanComponentDefinition(BeanDefinition beanDefinition, String beanName) {
 		this(new BeanDefinitionHolder(beanDefinition, beanName));
@@ -52,9 +52,9 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 
 	/**
 	 * 为给定的 Bean 创建一个新的 BeanComponentDefinition。
-	 * @param beanDefinition the BeanDefinition
-	 * @param beanName the name of the bean
-	 * @param aliases alias names for the bean, or {@code null} if none
+	 * @param beanDefinition 该 BeanDefinition
+	 * @param beanName 该 Bean 的名称
+	 * @param aliases 该 Bean 的别名；若没有则为 {@code null}
 	 */
 	public BeanComponentDefinition(BeanDefinition beanDefinition, String beanName, @Nullable String[] aliases) {
 		this(new BeanDefinitionHolder(beanDefinition, beanName, aliases));
@@ -62,8 +62,7 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 
 	/**
 	 * 为给定的 Bean 创建一个新的 BeanComponentDefinition。
-	 * @param beanDefinitionHolder the BeanDefinitionHolder encapsulating
-	 * the bean definition as well as the name of the bean
+	 * @param beanDefinitionHolder 封装 Bean 定义及 Bean 名称的 BeanDefinitionHolder
 	 */
 	public BeanComponentDefinition(BeanDefinitionHolder beanDefinitionHolder) {
 		super(beanDefinitionHolder);

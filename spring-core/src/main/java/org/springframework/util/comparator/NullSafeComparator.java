@@ -28,7 +28,7 @@ import org.springframework.util.Assert;
  * @author Keith Donald
  * @author Juergen Hoeller
  * @since 1.2.2
- * @param <T> the type of objects that may be compared by this comparator
+ * @param <T> 该比较器可以比较的对象类型
  * @see Comparable
  */
 public class NullSafeComparator<T> implements Comparator<T> {
@@ -61,7 +61,7 @@ public class NullSafeComparator<T> implements Comparator<T> {
 	 *
 	 * <p>为方便起见，可以使用默认的共享实例：{@code NullSafeComparator.NULLS_LOW} 和
 	 * {@code NullSafeComparator.NULLS_HIGH}。
-	 * @param nullsLow whether to treat nulls lower or higher than non-null objects
+	 * @param nullsLow 是否将 null 视为低于还是高于非 null 对象
 	 * @see Comparable
 	 * @see #NULLS_LOW
 	 * @see #NULLS_HIGH
@@ -77,8 +77,8 @@ public class NullSafeComparator<T> implements Comparator<T> {
 	 *
 	 * <p>比较两个非 null 对象时，将使用指定的 Comparator。给定的底层 Comparator 必须能够处理此
 	 * Comparator 将应用于的元素。
-	 * @param comparator the comparator to use when comparing two non-null objects
-	 * @param nullsLow whether to treat nulls lower or higher than non-null objects
+	 * @param comparator 比较两个非 null 对象时使用的比较器
+	 * @param nullsLow 是否将 null 视为低于还是高于非 null 对象
 	 */
 	public NullSafeComparator(Comparator<T> comparator, boolean nullsLow) {
 		Assert.notNull(comparator, "Non-null Comparator is required");

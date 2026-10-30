@@ -38,11 +38,11 @@ public interface MimeMarshaller extends Marshaller {
 	/**
 	 * 将给定根对象的对象图 marshal 到所提供的 {@link Result} 中，
 	 * 并将二进制数据写入 {@link MimeContainer}。
-	 * @param graph the root of the object graph to marshal
-	 * @param result the result to marshal to
-	 * @param mimeContainer the MIME container to write extracted binary content to
-	 * @throws XmlMappingException if the given object cannot be marshalled to the result
-	 * @throws IOException if an I/O exception occurs
+	 * @param graph 要编组的对象图的根
+	 * @param result 要编组到的结果
+	 * @param mimeContainer 用于写入提取出的二进制内容的 MIME 容器
+	 * @throws XmlMappingException 如果给定对象无法编组到结果中
+	 * @throws IOException 如果发生 I/O 异常
 	 */
 	void marshal(Object graph, Result result, @Nullable MimeContainer mimeContainer) throws XmlMappingException, IOException;
 

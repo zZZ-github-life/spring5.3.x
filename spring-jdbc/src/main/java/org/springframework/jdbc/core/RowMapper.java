@@ -38,7 +38,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see JdbcTemplate
  * @see RowCallbackHandler
  * @see ResultSetExtractor
@@ -51,11 +51,11 @@ public interface RowMapper<T> {
 	 * 实现必须实现此方法来映射{@code ResultSet}中的每一行数据。
 	 * 此方法不应调用{@code ResultSet}上的{@code next()}；
 	 * 它只应该映射当前行的值。
-	 * @param rs the {@code ResultSet} to map (pre-initialized for the current row)
-	 * @param rowNum the number of the current row
-	 * @return the result object for the current row (may be {@code null})
-	 * @throws SQLException if an SQLException is encountered while getting
-	 * column values (that is, there's no need to catch SQLException)
+	 * @param rs 要映射的 {@code ResultSet}（已为当前行预先初始化）
+	 * @param rowNum 当前行的编号
+	 * @return 当前行的结果对象（可以为 {@code null}）
+	 * @throws SQLException 如果在获取列值时遇到 SQLException
+	 * （也就是说，无需捕获 SQLException）
 	 */
 	@Nullable
 	T mapRow(ResultSet rs, int rowNum) throws SQLException;

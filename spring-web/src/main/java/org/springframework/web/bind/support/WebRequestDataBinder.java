@@ -77,8 +77,7 @@ public class WebRequestDataBinder extends WebDataBinder {
 
 	/**
 	 * 创建一个新的 WebRequestDataBinder 实例，使用默认对象名称。
-	 * @param target the target object to bind onto (or {@code null}
-	 * if the binder is just used to convert a plain parameter value)
+	 * @param target 要绑定的目标对象（如果绑定器仅用于转换普通参数值，则可为 {@code null}）
 	 * @see #DEFAULT_OBJECT_NAME
 	 */
 	public WebRequestDataBinder(@Nullable Object target) {
@@ -87,9 +86,8 @@ public class WebRequestDataBinder extends WebDataBinder {
 
 	/**
 	 * 创建一个新的 WebRequestDataBinder 实例。
-	 * @param target the target object to bind onto (or {@code null}
-	 * if the binder is just used to convert a plain parameter value)
-	 * @param objectName the name of the target object
+	 * @param target 要绑定的目标对象（如果绑定器仅用于转换普通参数值，则可为 {@code null}）
+	 * @param objectName 目标对象的名称
 	 */
 	public WebRequestDataBinder(@Nullable Object target, String objectName) {
 		super(target, objectName);
@@ -107,7 +105,7 @@ public class WebRequestDataBinder extends WebDataBinder {
 	 * <p>多部分文件的目标属性类型可以是 MultipartFile、byte[] 或 String。
 	 * 当请求尚未通过 MultipartResolver 解析为 MultipartRequest 时，
 	 * 也支持 Servlet Part 绑定。
-	 * @param request the request with parameters to bind (can be multipart)
+	 * @param request 带有要绑定参数的请求（可能为 multipart）
 	 * @see org.springframework.web.multipart.MultipartRequest
 	 * @see org.springframework.web.multipart.MultipartFile
 	 * @see javax.servlet.http.Part
@@ -136,7 +134,7 @@ public class WebRequestDataBinder extends WebDataBinder {
 	 * 将错误视为致命错误。
 	 * <p>仅在输入无效即构成错误时使用此方法。
 	 * 例如，如果所有输入都来自下拉列表，这可能适用。
-	 * @throws BindException if binding errors have been encountered
+	 * @throws BindException 如果遇到绑定错误
 	 */
 	public void closeNoCatch() throws BindException {
 		if (getBindingResult().hasErrors()) {

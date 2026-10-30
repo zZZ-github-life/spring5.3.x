@@ -65,10 +65,9 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 
 	/**
 	 * 使用 {@link ConversionService} 和 {@link BeanFactory} 的构造函数。
-	 * @param conversionService conversion service for converting String values
-	 * to the target method parameter type
-	 * @param beanFactory a bean factory for resolving {@code ${...}}
-	 * placeholders and {@code #{...}} SpEL expressions in default values
+	 * @param conversionService 用于将 String 值转换为目标方法参数类型的转换服务
+	 * @param beanFactory 用于解析默认值中的 {@code ${...}} 占位符和
+	 * {@code #{...}} SpEL 表达式的 Bean 工厂
 	 */
 	protected AbstractNamedValueMethodArgumentResolver(ConversionService conversionService,
 			@Nullable ConfigurableBeanFactory beanFactory) {
@@ -141,8 +140,8 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 	 * 为给定方法参数创建 {@link NamedValueInfo} 对象。
 	 * 实现通常通过 {@link MethodParameter#getParameterAnnotation(Class)}
 	 * 获取方法注解。
-	 * @param parameter the method parameter
-	 * @return the named value information
+	 * @param parameter 方法参数
+	 * @return 具名值信息
 	 */
 	protected abstract NamedValueInfo createNamedValueInfo(MethodParameter parameter);
 
@@ -182,11 +181,11 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 
 	/**
 	 * 将给定参数类型和值名称解析为参数值。
-	 * @param parameter the method parameter to resolve to an argument value
-	 * @param message the current request
-	 * @param name the name of the value being resolved
-	 * @return the resolved argument. May be {@code null}
-	 * @throws Exception in case of errors
+	 * @param parameter 要解析为参数值的方法参数
+	 * @param message 当前请求
+	 * @param name 正在解析的值的名称
+	 * @return 解析得到的参数。可以为 {@code null}
+	 * @throws Exception 如果发生错误
 	 */
 	@Nullable
 	protected abstract Object resolveArgumentInternal(MethodParameter parameter, Message<?> message, String name)
@@ -195,9 +194,9 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 	/**
 	 * 当需要值，但 {@link #resolveArgumentInternal} 返回 {@code null}
 	 * 且没有默认值时调用。子类可以为此情况抛出适当的异常。
-	 * @param name the name for the value
-	 * @param parameter the target method parameter
-	 * @param message the message being processed
+	 * @param name 值的名称
+	 * @param parameter 目标方法参数
+	 * @param message 正在处理的消息
 	 */
 	protected abstract void handleMissingValue(String name, MethodParameter parameter, Message<?> message);
 
@@ -224,10 +223,10 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 
 	/**
 	 * 在值解析后调用。
-	 * @param arg the resolved argument value
-	 * @param name the argument name
-	 * @param parameter the argument parameter type
-	 * @param message the message
+	 * @param arg 解析得到的参数值
+	 * @param name 参数名
+	 * @param parameter 参数类型
+	 * @param message 消息
 	 */
 	protected void handleResolvedValue(
 			@Nullable Object arg, String name, MethodParameter parameter, Message<?> message) {

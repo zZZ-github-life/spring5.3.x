@@ -33,8 +33,7 @@ public interface Profiles {
 
 	/**
 	 * 测试此 {@code Profiles} 实例是否与给定的活动 profile 谓词<em>匹配</em>。
-	 * @param activeProfiles a predicate that tests whether a given profile is
-	 * currently active
+	 * @param activeProfiles 用于测试给定 profile 当前是否激活的谓词
 	 */
 	boolean matches(Predicate<String> activeProfiles);
 
@@ -58,8 +57,8 @@ public interface Profiles {
 	 * <p>从 Spring Framework 5.1.17 起，此方法返回的两个 {@code Profiles} 实例
 	 * 如果使用相同的 <em>profile 字符串</em>创建，则被视为彼此等价
 	 * （就 {@code equals()} 和 {@code hashCode()} 的语义而言）。
-	 * @param profiles the <em>profile strings</em> to include
-	 * @return a new {@link Profiles} instance
+	 * @param profiles 要包含的<em>profile 字符串</em>
+	 * @return 新的 {@link Profiles} 实例
 	 */
 	static Profiles of(String... profiles) {
 		return ProfilesParser.parse(profiles);

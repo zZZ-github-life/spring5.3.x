@@ -65,8 +65,8 @@ public abstract class ObjectUtils {
 	/**
 	 * 返回给定的 throwable 是否为受检异常：
 	 * 即既不是 RuntimeException 也不是 Error。
-	 * @param ex the throwable to check
-	 * @return whether the throwable is a checked exception
+	 * @param ex 要检查的 throwable
+	 * @return 该 throwable 是否为受检异常
 	 * @see java.lang.Exception
 	 * @see java.lang.RuntimeException
 	 * @see java.lang.Error
@@ -77,9 +77,9 @@ public abstract class ObjectUtils {
 
 	/**
 	 * 检查给定异常是否与指定的异常类型兼容，如 throws 子句中所声明的那样。
-	 * @param ex the exception to check
-	 * @param declaredExceptions the exception types declared in the throws clause
-	 * @return whether the given exception is compatible
+	 * @param ex 要检查的异常
+	 * @param declaredExceptions throws 子句中声明的异常类型
+	 * @return 给定异常是否兼容
 	 */
 	public static boolean isCompatibleWithThrowsClause(Throwable ex, @Nullable Class<?>... declaredExceptions) {
 		if (!isCheckedException(ex)) {
@@ -98,7 +98,7 @@ public abstract class ObjectUtils {
 	/**
 	 * 判断给定对象是否为数组：
 	 * 即 Object 数组或基本类型数组。
-	 * @param obj the object to check
+	 * @param obj 要检查的对象
 	 */
 	public static boolean isArray(@Nullable Object obj) {
 		return (obj != null && obj.getClass().isArray());
@@ -107,7 +107,7 @@ public abstract class ObjectUtils {
 	/**
 	 * 判断给定数组是否为空：
 	 * 即 {@code null} 或长度为零。
-	 * @param array the array to check
+	 * @param array 要检查的数组
 	 * @see #isEmpty(Object)
 	 */
 	public static boolean isEmpty(@Nullable Object[] array) {
@@ -125,8 +125,8 @@ public abstract class ObjectUtils {
 	 * <li>{@link Map}：委托给 {@link Map#isEmpty()}</li>
 	 * </ul>
 	 * <p>如果给定对象非 null 且不属于上述受支持的类型，此方法返回 {@code false}。
-	 * @param obj the object to check
-	 * @return {@code true} if the object is {@code null} or <em>empty</em>
+	 * @param obj 要检查的对象
+	 * @return 如果对象为 {@code null} 或<em>空</em>，则返回 {@code true}
 	 * @since 4.2
 	 * @see Optional#isPresent()
 	 * @see ObjectUtils#isEmpty(Object[])
@@ -161,9 +161,9 @@ public abstract class ObjectUtils {
 
 	/**
 	 * 解包给定对象，它可能是一个 {@link java.util.Optional}。
-	 * @param obj the candidate object
-	 * @return either the value held within the {@code Optional}, {@code null}
-	 * if the {@code Optional} is empty, or simply the given object as-is
+	 * @param obj 候选对象
+	 * @return {@code Optional} 中持有的值（如果 {@code Optional} 为空则为 {@code null}），
+	 * 或者就是给定的对象本身
 	 * @since 5.0
 	 */
 	@Nullable
@@ -182,10 +182,10 @@ public abstract class ObjectUtils {
 
 	/**
 	 * 检查给定数组是否包含给定元素。
-	 * @param array the array to check (may be {@code null},
-	 * in which case the return value will always be {@code false})
-	 * @param element the element to check for
-	 * @return whether the element has been found in the given array
+	 * @param array 要检查的数组（可为 {@code null}，
+	 * 此时返回值始终为 {@code false}）
+	 * @param element 要查找的元素
+	 * @return 在给定数组中是否找到了该元素
 	 */
 	public static boolean containsElement(@Nullable Object[] array, Object element) {
 		if (array == null) {
@@ -201,9 +201,9 @@ public abstract class ObjectUtils {
 
 	/**
 	 * 检查给定的枚举常量数组是否包含具有给定名称的常量，在确定匹配时忽略大小写。
-	 * @param enumValues the enum values to check, typically obtained via {@code MyEnum.values()}
-	 * @param constant the constant name to find (must not be null or empty string)
-	 * @return whether the constant has been found in the given array
+	 * @param enumValues 要检查的枚举值，通常通过 {@code MyEnum.values()} 获得
+	 * @param constant 要查找的常量名称（不能为 null 或空字符串）
+	 * @return 在给定数组中是否找到了该常量
 	 */
 	public static boolean containsConstant(Enum<?>[] enumValues, String constant) {
 		return containsConstant(enumValues, constant, false);
@@ -211,10 +211,10 @@ public abstract class ObjectUtils {
 
 	/**
 	 * 检查给定的枚举常量数组是否包含具有给定名称的常量。
-	 * @param enumValues the enum values to check, typically obtained via {@code MyEnum.values()}
-	 * @param constant the constant name to find (must not be null or empty string)
-	 * @param caseSensitive whether case is significant in determining a match
-	 * @return whether the constant has been found in the given array
+	 * @param enumValues 要检查的枚举值，通常通过 {@code MyEnum.values()} 获得
+	 * @param constant 要查找的常量名称（不能为 null 或空字符串）
+	 * @param caseSensitive 确定匹配时是否区分大小写
+	 * @return 在给定数组中是否找到了该常量
 	 */
 	public static boolean containsConstant(Enum<?>[] enumValues, String constant, boolean caseSensitive) {
 		for (Enum<?> candidate : enumValues) {
@@ -228,11 +228,11 @@ public abstract class ObjectUtils {
 
 	/**
 	 * {@link Enum#valueOf(Class, String)} 的不区分大小写的替代方法。
-	 * @param <E> the concrete Enum type
-	 * @param enumValues the array of all Enum constants in question, usually per {@code Enum.values()}
-	 * @param constant the constant to get the enum value of
-	 * @throws IllegalArgumentException if the given constant is not found in the given array
-	 * of enum values. Use {@link #containsConstant(Enum[], String)} as a guard to avoid this exception.
+	 * @param <E> 具体的 Enum 类型
+	 * @param enumValues 所有相关 Enum 常量的数组，通常来自 {@code Enum.values()}
+	 * @param constant 要获取其枚举值的常量
+	 * @throws IllegalArgumentException 如果给定的常量在给定的枚举值数组中未找到。
+	 * 可使用 {@link #containsConstant(Enum[], String)} 作为守卫来避免此异常。
 	 */
 	public static <E extends Enum<?>> E caseInsensitiveValueOf(E[] enumValues, String constant) {
 		for (E candidate : enumValues) {
@@ -247,9 +247,9 @@ public abstract class ObjectUtils {
 	/**
 	 * 将给定对象追加到给定数组，返回一个新数组，
 	 * 其中包含输入数组的内容加上给定对象。
-	 * @param array the array to append to (can be {@code null})
-	 * @param obj the object to append
-	 * @return the new array (of the same component type; never {@code null})
+	 * @param array 要追加到的数组（可为 {@code null}）
+	 * @param obj 要追加的对象
+	 * @return 新的数组（组件类型相同；绝不为 {@code null}）
 	 */
 	public static <A, O extends A> A[] addObjectToArray(@Nullable A[] array, @Nullable O obj) {
 		Class<?> compType = Object.class;
@@ -272,9 +272,9 @@ public abstract class ObjectUtils {
 	/**
 	 * 将给定数组（可能是基本类型数组）转换为对象数组（如有必要，转换为基本类型包装对象）。
 	 * <p>{@code null} 源值将被转换为空的 Object 数组。
-	 * @param source the (potentially primitive) array
-	 * @return the corresponding object array (never {@code null})
-	 * @throws IllegalArgumentException if the parameter is not an array
+	 * @param source （可能为基本类型的）数组
+	 * @return 对应的对象数组（绝不为 {@code null}）
+	 * @throws IllegalArgumentException 如果参数不是数组
 	 */
 	public static Object[] toObjectArray(@Nullable Object source) {
 		if (source instanceof Object[]) {
@@ -307,9 +307,9 @@ public abstract class ObjectUtils {
 	 * 判断给定对象是否相等，如果两者都为 {@code null} 则返回 {@code true}，如果只有一个为 {@code null}
 	 * 则返回 {@code false}。
 	 * <p>使用 {@code Arrays.equals} 比较数组，基于数组元素而不是数组引用执行相等性检查。
-	 * @param o1 first Object to compare
-	 * @param o2 second Object to compare
-	 * @return whether the given objects are equal
+	 * @param o1 要比较的第一个 Object
+	 * @param o2 要比较的第二个 Object
+	 * @return 给定对象是否相等
 	 * @see Object#equals(Object)
 	 * @see java.util.Arrays#equals
 	 */
@@ -331,9 +331,9 @@ public abstract class ObjectUtils {
 
 	/**
 	 * 使用 {@code Arrays.equals} 比较给定数组，基于数组元素而不是数组引用执行相等性检查。
-	 * @param o1 first array to compare
-	 * @param o2 second array to compare
-	 * @return whether the given objects are equal
+	 * @param o1 要比较的第一个数组
+	 * @param o2 要比较的第二个数组
+	 * @return 给定对象是否相等
 	 * @see #nullSafeEquals(Object, Object)
 	 * @see java.util.Arrays#equals
 	 */
@@ -596,9 +596,9 @@ public abstract class ObjectUtils {
 
 	/**
 	 * 返回对象整体标识的 String 表示形式。
-	 * @param obj the object (may be {@code null})
-	 * @return the object's identity as String representation,
-	 * or an empty String if the object was {@code null}
+	 * @param obj 对象（可为 {@code null}）
+	 * @return 对象的标识作为 String 表示形式，
+	 * 如果对象为 {@code null} 则为空 String
 	 */
 	public static String identityToString(@Nullable Object obj) {
 		if (obj == null) {
@@ -609,8 +609,8 @@ public abstract class ObjectUtils {
 
 	/**
 	 * 返回对象标识哈希码的十六进制 String 形式。
-	 * @param obj the object
-	 * @return the object's identity code in hex notation
+	 * @param obj 对象
+	 * @return 对象的标识码，以十六进制表示
 	 */
 	public static String getIdentityHexString(Object obj) {
 		return Integer.toHexString(System.identityHashCode(obj));
@@ -620,8 +620,8 @@ public abstract class ObjectUtils {
 	 * 如果 {@code obj} 不为 {@code null}，则返回基于内容的 String 表示形式；否则返回空 String。
 	 * <p>与 {@link #nullSafeToString(Object)} 的区别在于，对于 {@code null} 值，它返回空 String 而不是
 	 * "null"。
-	 * @param obj the object to build a display String for
-	 * @return a display String representation of {@code obj}
+	 * @param obj 要为其构建显示 String 的对象
+	 * @return {@code obj} 的显示 String 表示形式
 	 * @see #nullSafeToString(Object)
 	 */
 	public static String getDisplayString(@Nullable Object obj) {
@@ -634,8 +634,8 @@ public abstract class ObjectUtils {
 	/**
 	 * 确定给定对象的类名。
 	 * <p>如果 {@code obj} 为 {@code null}，则返回 {@code "null"} String。
-	 * @param obj the object to introspect (may be {@code null})
-	 * @return the corresponding class name
+	 * @param obj 要内省的对象（可为 {@code null}）
+	 * @return 对应的类名
 	 */
 	public static String nullSafeClassName(@Nullable Object obj) {
 		return (obj != null ? obj.getClass().getName() : NULL_STRING);
@@ -645,8 +645,8 @@ public abstract class ObjectUtils {
 	 * 返回指定 Object 的 String 表示形式。
 	 * <p>如果对象是数组，则构建其内容的 String 表示形式。
 	 * 如果 {@code obj} 为 {@code null}，则返回 {@code "null"} String。
-	 * @param obj the object to build a String representation for
-	 * @return a String representation of {@code obj}
+	 * @param obj 要为其构建 String 表示形式的对象
+	 * @return {@code obj} 的 String 表示形式
 	 * @see #nullSafeConciseToString(Object)
 	 */
 	public static String nullSafeToString(@Nullable Object obj) {
@@ -691,8 +691,8 @@ public abstract class ObjectUtils {
 	 * 返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括
 	 * 号（{@code "{}"}）中。相邻元素由字符 {@code ", "}（逗号后跟一个空格）分隔。 如果 {@code array}
 	 * 为 {@code null}，则返回 {@code "null"} String。
-	 * @param array the array to build a String representation for
-	 * @return a String representation of {@code array}
+	 * @param array 要为其构建 String 表示形式的数组
+	 * @return {@code array} 的 String 表示形式
 	 */
 	public static String nullSafeToString(@Nullable Object[] array) {
 		if (array == null) {
@@ -713,8 +713,8 @@ public abstract class ObjectUtils {
 	 * 返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括
 	 * 号（{@code "{}"}）中。相邻元素由字符 {@code ", "}（逗号后跟一个空格）分隔。 如果 {@code array}
 	 * 为 {@code null}，则返回 {@code "null"} String。
-	 * @param array the array to build a String representation for
-	 * @return a String representation of {@code array}
+	 * @param array 要为其构建 String 表示形式的数组
+	 * @return {@code array} 的 String 表示形式
 	 */
 	public static String nullSafeToString(@Nullable boolean[] array) {
 		if (array == null) {
@@ -735,8 +735,8 @@ public abstract class ObjectUtils {
 	 * 返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括
 	 * 号（{@code "{}"}）中。相邻元素由字符 {@code ", "}（逗号后跟一个空格）分隔。 如果 {@code array}
 	 * 为 {@code null}，则返回 {@code "null"} String。
-	 * @param array the array to build a String representation for
-	 * @return a String representation of {@code array}
+	 * @param array 要为其构建 String 表示形式的数组
+	 * @return {@code array} 的 String 表示形式
 	 */
 	public static String nullSafeToString(@Nullable byte[] array) {
 		if (array == null) {
@@ -757,8 +757,8 @@ public abstract class ObjectUtils {
 	 * 返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括
 	 * 号（{@code "{}"}）中。相邻元素由字符 {@code ", "}（逗号后跟一个空格）分隔。 如果 {@code array}
 	 * 为 {@code null}，则返回 {@code "null"} String。
-	 * @param array the array to build a String representation for
-	 * @return a String representation of {@code array}
+	 * @param array 要为其构建 String 表示形式的数组
+	 * @return {@code array} 的 String 表示形式
 	 */
 	public static String nullSafeToString(@Nullable char[] array) {
 		if (array == null) {
@@ -779,8 +779,8 @@ public abstract class ObjectUtils {
 	 * 返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括
 	 * 号（{@code "{}"}）中。相邻元素由字符 {@code ", "}（逗号后跟一个空格）分隔。 如果 {@code array}
 	 * 为 {@code null}，则返回 {@code "null"} String。
-	 * @param array the array to build a String representation for
-	 * @return a String representation of {@code array}
+	 * @param array 要为其构建 String 表示形式的数组
+	 * @return {@code array} 的 String 表示形式
 	 */
 	public static String nullSafeToString(@Nullable double[] array) {
 		if (array == null) {
@@ -801,8 +801,8 @@ public abstract class ObjectUtils {
 	 * 返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括
 	 * 号（{@code "{}"}）中。相邻元素由字符 {@code ", "}（逗号后跟一个空格）分隔。 如果 {@code array}
 	 * 为 {@code null}，则返回 {@code "null"} String。
-	 * @param array the array to build a String representation for
-	 * @return a String representation of {@code array}
+	 * @param array 要为其构建 String 表示形式的数组
+	 * @return {@code array} 的 String 表示形式
 	 */
 	public static String nullSafeToString(@Nullable float[] array) {
 		if (array == null) {
@@ -823,8 +823,8 @@ public abstract class ObjectUtils {
 	 * 返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括
 	 * 号（{@code "{}"}）中。相邻元素由字符 {@code ", "}（逗号后跟一个空格）分隔。 如果 {@code array}
 	 * 为 {@code null}，则返回 {@code "null"} String。
-	 * @param array the array to build a String representation for
-	 * @return a String representation of {@code array}
+	 * @param array 要为其构建 String 表示形式的数组
+	 * @return {@code array} 的 String 表示形式
 	 */
 	public static String nullSafeToString(@Nullable int[] array) {
 		if (array == null) {
@@ -845,8 +845,8 @@ public abstract class ObjectUtils {
 	 * 返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括
 	 * 号（{@code "{}"}）中。相邻元素由字符 {@code ", "}（逗号后跟一个空格）分隔。 如果 {@code array}
 	 * 为 {@code null}，则返回 {@code "null"} String。
-	 * @param array the array to build a String representation for
-	 * @return a String representation of {@code array}
+	 * @param array 要为其构建 String 表示形式的数组
+	 * @return {@code array} 的 String 表示形式
 	 */
 	public static String nullSafeToString(@Nullable long[] array) {
 		if (array == null) {
@@ -867,8 +867,8 @@ public abstract class ObjectUtils {
 	 * 返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括
 	 * 号（{@code "{}"}）中。相邻元素由字符 {@code ", "}（逗号后跟一个空格）分隔。 如果 {@code array}
 	 * 为 {@code null}，则返回 {@code "null"} String。
-	 * @param array the array to build a String representation for
-	 * @return a String representation of {@code array}
+	 * @param array 要为其构建 String 表示形式的数组
+	 * @return {@code array} 的 String 表示形式
 	 */
 	public static String nullSafeToString(@Nullable short[] array) {
 		if (array == null) {
@@ -899,8 +899,8 @@ public abstract class ObjectUtils {
 	 * <p>在此方法的上下文中，<em>简单类型</em>是以下任意一种：基本类型包装器（不包括 {@link Void}）、
 	 * {@link Enum}、{@link Number}、{@link Date}、{@link Temporal}、{@link URI}、{@link URL} 或
 	 * {@link Locale}。
-	 * @param obj the object to build a string representation for
-	 * @return a concise string representation of the supplied object
+	 * @param obj 要为其构建字符串表示形式的对象
+	 * @return 所提供对象的简洁字符串表示形式
 	 * @since 5.3.27
 	 * @see #nullSafeToString(Object)
 	 * @see StringUtils#truncate(CharSequence)
@@ -930,8 +930,8 @@ public abstract class ObjectUtils {
 	 * <p>检查给定类型是否表示 "简单" 值类型：基本类型或基本类型包装器、枚举、String 或其他
 	 * CharSequence、Number、Date、Temporal、URI、URL、Locale 或 Class。
 	 * <p>{@code Void} 和 {@code void} 不被视为简单值类型。
-	 * @param type the type to check
-	 * @return whether the given type represents a "simple" value type
+	 * @param type 要检查的类型
+	 * @return 给定类型是否表示“简单”值类型
 	 */
 	private static boolean isSimpleValueType(Class<?> type) {
 		return (Void.class != type && void.class != type &&

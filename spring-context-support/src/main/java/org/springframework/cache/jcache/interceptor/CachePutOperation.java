@@ -76,8 +76,8 @@ class CachePutOperation extends AbstractJCacheKeyOperation<CachePut> {
 	/**
 	 * 返回持有待缓存值的参数所对应的 {@link CacheInvocationParameter}。
 	 * <p>方法参数必须与相关方法调用的签名一致
-	 * @param values the parameters value for a particular invocation
-	 * @return the {@link CacheInvocationParameter} instance for the value parameter
+	 * @param values 特定调用的参数值
+	 * @return 值参数的 {@link CacheInvocationParameter} 实例
 	 */
 	public CacheInvocationParameter getValueParameter(Object... values) {
 		int parameterPosition = this.valueParameterDetail.getParameterPosition();

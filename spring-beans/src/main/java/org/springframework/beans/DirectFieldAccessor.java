@@ -50,7 +50,7 @@ public class DirectFieldAccessor extends AbstractNestablePropertyAccessor {
 
 	/**
 	 * 为给定对象创建一个新的 DirectFieldAccessor。
-	 * @param object the object wrapped by this DirectFieldAccessor
+	 * @param object 该 DirectFieldAccessor 所包装的对象
 	 */
 	public DirectFieldAccessor(Object object) {
 		super(object);
@@ -58,9 +58,9 @@ public class DirectFieldAccessor extends AbstractNestablePropertyAccessor {
 
 	/**
 	 * 为给定对象创建一个新的 DirectFieldAccessor，并注册该对象所处的嵌套路径。
-	 * @param object the object wrapped by this DirectFieldAccessor
-	 * @param nestedPath the nested path of the object
-	 * @param parent the containing DirectFieldAccessor (must not be {@code null})
+	 * @param object 该 DirectFieldAccessor 所包装的对象
+	 * @param nestedPath 该对象的嵌套路径
+	 * @param parent 包含该对象的 DirectFieldAccessor（不能为 {@code null}）
 	 */
 	protected DirectFieldAccessor(Object object, String nestedPath, DirectFieldAccessor parent) {
 		super(object, nestedPath, parent);

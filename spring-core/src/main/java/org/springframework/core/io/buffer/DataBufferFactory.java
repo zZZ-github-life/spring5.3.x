@@ -30,30 +30,30 @@ public interface DataBufferFactory {
 
 	/**
 	 * 分配具有默认初始容量的数据缓冲区。取决于底层实现及其配置，这将是基于堆的缓冲区或直接缓冲区。
-	 * @return the allocated buffer
+	 * @return 分配的缓冲区
 	 */
 	DataBuffer allocateBuffer();
 
 	/**
 	 * 分配具有给定初始容量的数据缓冲区。取决于底层实现及其配置，这将是基于堆的缓冲区或直接缓冲区。
-	 * @param initialCapacity the initial capacity of the buffer to allocate
-	 * @return the allocated buffer
+	 * @param initialCapacity 要分配的缓冲区的初始容量
+	 * @return 分配的缓冲区
 	 */
 	DataBuffer allocateBuffer(int initialCapacity);
 
 	/**
 	 * 将给定 {@link ByteBuffer} 包装为 {@code DataBuffer}。与
 	 * {@linkplain #allocateBuffer(int) allocating} 不同，包装不会使用新的内存。
-	 * @param byteBuffer the NIO byte buffer to wrap
-	 * @return the wrapped buffer
+	 * @param byteBuffer 要包装的 NIO 字节缓冲区
+	 * @return 包装后的缓冲区
 	 */
 	DataBuffer wrap(ByteBuffer byteBuffer);
 
 	/**
 	 * 将给定 {@code byte} 数组包装为 {@code DataBuffer}。与
 	 * {@linkplain #allocateBuffer(int) allocating} 不同，包装不会使用新的内存。
-	 * @param bytes the byte array to wrap
-	 * @return the wrapped buffer
+	 * @param bytes 要包装的字节数组
+	 * @return 包装后的缓冲区
 	 */
 	DataBuffer wrap(byte[] bytes);
 
@@ -63,8 +63,8 @@ public interface DataBufferFactory {
 	 * 缓冲区。
 	 * <p>请注意，给定的数据缓冲区<strong>不必</strong>释放，因为它们会作为返回的复合缓冲区的一部分被释
 	 * 放。
-	 * @param dataBuffers the data buffers to be composed
-	 * @return a buffer that is composed of the {@code dataBuffers} argument
+	 * @param dataBuffers 要组合的数据缓冲区
+	 * @return 由 {@code dataBuffers} 参数组合而成的缓冲区
 	 * @since 5.0.3
 	 */
 	DataBuffer join(List<? extends DataBuffer> dataBuffers);

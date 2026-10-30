@@ -125,7 +125,7 @@ public final class CachedIntrospectionResults {
 	 * 与应用程序耦合的场景中才有意义。在这种场景下，CachedIntrospectionResults 默认不会缓存应用程序的
 	 * 任何类，因为它们会在 common ClassLoader 中造成泄漏。<p>应用程序启动时的任何
 	 * {@code acceptClassLoader} 调用都应与应用程序关闭时的 {@link #clearClassLoader} 调用配对使用。
-	 * @param classLoader the ClassLoader to accept
+	 * @param classLoader 要接受的 ClassLoader
 	 */
 	public static void acceptClassLoader(@Nullable ClassLoader classLoader) {
 		if (classLoader != null) {
@@ -136,7 +136,7 @@ public final class CachedIntrospectionResults {
 	/**
 	 * 清除给定 ClassLoader 的内省缓存，移除该 ClassLoader 下所有类的内省结果，并将该 ClassLoader（及其
 	 * 子 ClassLoader）从接受列表中移除。
-	 * @param classLoader the ClassLoader to clear the cache for
+	 * @param classLoader 要清除其缓存的 ClassLoader
 	 */
 	public static void clearClassLoader(@Nullable ClassLoader classLoader) {
 		acceptedClassLoaders.removeIf(new Predicate<ClassLoader>() {
@@ -153,9 +153,9 @@ public final class CachedIntrospectionResults {
 
 	/**
 	 * 为给定 Bean 类创建 CachedIntrospectionResults。
-	 * @param beanClass the bean class to analyze
-	 * @return the corresponding CachedIntrospectionResults
-	 * @throws BeansException in case of introspection failure
+	 * @param beanClass 要分析的 Bean 类
+	 * @return 对应的 CachedIntrospectionResults
+	 * @throws BeansException 如果内省失败
 	 */
 	static CachedIntrospectionResults forClass(Class<?> beanClass) throws BeansException {
 		CachedIntrospectionResults results = strongClassCache.get(beanClass);
@@ -187,8 +187,8 @@ public final class CachedIntrospectionResults {
 
 	/**
 	 * 检查此 CachedIntrospectionResults 类是否配置为接受给定 ClassLoader。
-	 * @param classLoader the ClassLoader to check
-	 * @return whether the given ClassLoader is accepted
+	 * @param classLoader 要检查的 ClassLoader
+	 * @return 给定的 ClassLoader 是否被接受
 	 * @see #acceptClassLoader
 	 */
 	private static boolean isClassLoaderAccepted(ClassLoader classLoader) {
@@ -202,8 +202,8 @@ public final class CachedIntrospectionResults {
 
 	/**
 	 * 检查给定 ClassLoader 是否位于给定父级之下，即父级是否在候选者的层级结构中。
-	 * @param candidate the candidate ClassLoader to check
-	 * @param parent the parent ClassLoader to check for
+	 * @param candidate 要检查的候选 ClassLoader
+	 * @param parent 要检查的父 ClassLoader
 	 */
 	private static boolean isUnderneathClassLoader(@Nullable ClassLoader candidate, @Nullable ClassLoader parent) {
 		if (candidate == parent) {
@@ -224,9 +224,9 @@ public final class CachedIntrospectionResults {
 
 	/**
 	 * 获取给定目标类的 {@link BeanInfo} 描述符。
-	 * @param beanClass the target class to introspect
-	 * @return the resulting {@code BeanInfo} descriptor (never {@code null})
-	 * @throws IntrospectionException from the underlying {@link Introspector}
+	 * @param beanClass 要内省的目标类
+	 * @return 得到的 {@code BeanInfo} 描述符（永不为 {@code null}）
+	 * @throws IntrospectionException 来自底层的 {@link Introspector}
 	 */
 	private static BeanInfo getBeanInfo(Class<?> beanClass) throws IntrospectionException {
 		for (BeanInfoFactory beanInfoFactory : beanInfoFactories) {
@@ -253,8 +253,8 @@ public final class CachedIntrospectionResults {
 
 	/**
 	 * 为给定类创建一个新的 CachedIntrospectionResults 实例。
-	 * @param beanClass the bean class to analyze
-	 * @throws BeansException in case of introspection failure
+	 * @param beanClass 要分析的 Bean 类
+	 * @throws BeansException 如果内省失败
 	 */
 	private CachedIntrospectionResults(Class<?> beanClass) throws BeansException {
 		try {

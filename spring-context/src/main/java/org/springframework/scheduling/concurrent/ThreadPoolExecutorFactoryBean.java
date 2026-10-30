@@ -165,13 +165,13 @@ public class ThreadPoolExecutorFactoryBean extends ExecutorConfigurationSupport
 	 * 创建 {@link ThreadPoolExecutor} 或其子类的新实例。
 	 * <p>默认实现创建一个标准的 {@link ThreadPoolExecutor}。可以重写以提供自定义的
 	 * {@link ThreadPoolExecutor} 子类。
-	 * @param corePoolSize the specified core pool size
-	 * @param maxPoolSize the specified maximum pool size
-	 * @param keepAliveSeconds the specified keep-alive time in seconds
-	 * @param queue the BlockingQueue to use
-	 * @param threadFactory the ThreadFactory to use
-	 * @param rejectedExecutionHandler the RejectedExecutionHandler to use
-	 * @return a new ThreadPoolExecutor instance
+	 * @param corePoolSize 指定的核心池大小
+	 * @param maxPoolSize 指定的最大池大小
+	 * @param keepAliveSeconds 指定的保持存活时间（秒）
+	 * @param queue 要使用的 BlockingQueue
+	 * @param threadFactory 要使用的 ThreadFactory
+	 * @param rejectedExecutionHandler 要使用的 RejectedExecutionHandler
+	 * @return 新的 ThreadPoolExecutor 实例
 	 * @see #afterPropertiesSet()
 	 */
 	protected ThreadPoolExecutor createExecutor(
@@ -185,8 +185,8 @@ public class ThreadPoolExecutorFactoryBean extends ExecutorConfigurationSupport
 	/**
 	 * 创建供 ThreadPoolExecutor 使用的 BlockingQueue。
 	 * <p>容量值为正时会创建 LinkedBlockingQueue 实例；否则创建 SynchronousQueue。
-	 * @param queueCapacity the specified queue capacity
-	 * @return the BlockingQueue instance
+	 * @param queueCapacity 指定的队列容量
+	 * @return BlockingQueue 实例
 	 * @see java.util.concurrent.LinkedBlockingQueue
 	 * @see java.util.concurrent.SynchronousQueue
 	 */

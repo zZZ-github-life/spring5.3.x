@@ -43,9 +43,9 @@ public interface HttpHandler {
 
 	/**
 	 * 处理给定的请求并写入响应。
-	 * @param request current request
-	 * @param response current response
-	 * @return indicates completion of request handling
+	 * @param request 当前请求
+	 * @param response 当前响应
+	 * @return 表示请求处理已完成
 	 */
 	Mono<Void> handle(ServerHttpRequest request, ServerHttpResponse response);
 

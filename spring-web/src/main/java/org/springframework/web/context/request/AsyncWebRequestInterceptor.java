@@ -36,7 +36,7 @@ public interface AsyncWebRequestInterceptor extends WebRequestInterceptor{
 
 	/**
 	 * 当处理器开始并发处理请求时，代替 {@code postHandle} 和 {@code afterCompletion} 被调用。
-	 * @param request the current request
+	 * @param request 当前请求
 	 */
 	void afterConcurrentHandlingStarted(WebRequest request);
 

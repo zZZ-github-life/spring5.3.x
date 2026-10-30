@@ -70,8 +70,8 @@ public class AspectMetadata implements Serializable {
 
 	/**
 	 * 为给定的切面类创建一个新的 AspectMetadata 实例。
-	 * @param aspectClass the aspect class
-	 * @param aspectName the name of the aspect
+	 * @param aspectClass 切面类
+	 * @param aspectName 切面的名称
 	 */
 	public AspectMetadata(Class<?> aspectClass, String aspectName) {
 		this.aspectName = aspectName;

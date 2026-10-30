@@ -74,8 +74,8 @@ public interface View {
 	/**
 	 * 返回视图的内容类型（如果已预先确定）。
 	 * <p>可用于预先检查视图的内容类型，即在实际尝试渲染之前。
-	 * @return the content type String (optionally including a character set),
-	 * or {@code null} if not predetermined
+	 * @return 内容类型 String（可选地包含字符集）；
+	 * 如果未预先确定则为 {@code null}
 	 */
 	@Nullable
 	default String getContentType() {
@@ -86,11 +86,11 @@ public interface View {
 	 * 使用指定的模型渲染视图。
 	 * <p>第一步是准备请求：在 JSP 场景中，这意味着将模型对象设置为请求属性。
 	 * 第二步是实际渲染视图，例如通过 RequestDispatcher 引入 JSP。
-	 * @param model a Map with name Strings as keys and corresponding model
-	 * objects as values (Map can also be {@code null} in case of empty model)
-	 * @param request current HTTP request
-	 * @param response he HTTP response we are building
-	 * @throws Exception if rendering failed
+	 * @param model 以名称 String 为键、对应模型对象为值的 Map
+	 * （模型为空时 Map 也可以为 {@code null}）
+	 * @param request 当前 HTTP 请求
+	 * @param response 我们正在构建的 HTTP 响应
+	 * @throws Exception 如果渲染失败
 	 */
 	void render(@Nullable Map<String, ?> model, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;

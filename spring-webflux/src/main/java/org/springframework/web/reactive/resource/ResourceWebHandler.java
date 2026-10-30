@@ -268,7 +268,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 	/**
 	 * 添加从静态 {@link Resource} 的文件名中提取的文件扩展名与响应用媒体类型之间的映射。
 	 * <p>通常不需要使用此方法，因为也可以通过 {@link MediaTypeFactory#getMediaType(Resource)} 确定映射。
-	 * @param mediaTypes media type mappings
+	 * @param mediaTypes 媒体类型映射
 	 * @since 5.3.2
 	 */
 	public void setMediaTypes(Map<String, MediaType> mediaTypes) {
@@ -478,8 +478,8 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 
 	/**
 	 * 检查给定路径是否包含无效的转义序列。
-	 * @param path the path to validate
-	 * @return {@code true} if the path is invalid, {@code false} otherwise
+	 * @param path 要校验的路径
+	 * @return 如果路径无效则返回 {@code true}，否则返回 {@code false}
 	 */
 	private boolean isInvalidEncodedPath(String path) {
 		if (path.contains("%")) {
@@ -512,8 +512,8 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 	 * <li>表示{@link ResourceUtils#isUrl 有效 URL}的路径，或在移除前导斜杠后将表示有效 URL 的路径。
 	 * </ul>
 	 * <p><strong>注意：</strong>此方法假定前导的、重复的 '/' 或控制字符（例如空白）已被修剪，因此路径可预测地以单个 '/' 开头，或者没有 '/'。
-	 * @param path the path to validate
-	 * @return {@code true} if the path is invalid, {@code false} otherwise
+	 * @param path 要校验的路径
+	 * @return 如果路径无效则返回 {@code true}，否则返回 {@code false}
 	 */
 	protected boolean isInvalidPath(String path) {
 		if (path.contains("WEB-INF") || path.contains("META-INF")) {
@@ -564,9 +564,9 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 
 	/**
 	 * 在响应上设置头。对 GET 和 HEAD 请求都会调用。
-	 * @param exchange current exchange
-	 * @param resource the identified resource (never {@code null})
-	 * @param mediaType the resource's media type (never {@code null})
+	 * @param exchange 当前交换
+	 * @param resource 标识出的资源（永不为 {@code null}）
+	 * @param mediaType 资源的媒体类型（永不为 {@code null}）
 	 */
 	protected void setHeaders(ServerWebExchange exchange, Resource resource, @Nullable MediaType mediaType)
 			throws IOException {

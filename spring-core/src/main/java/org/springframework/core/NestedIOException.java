@@ -50,7 +50,7 @@ public class NestedIOException extends IOException {
 
 	/**
 	 * 使用指定的详细消息构造一个 {@code NestedIOException}。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public NestedIOException(String msg) {
 		super(msg);
@@ -58,8 +58,8 @@ public class NestedIOException extends IOException {
 
 	/**
 	 * 使用指定的详细消息和嵌套异常构造一个 {@code NestedIOException}。
-	 * @param msg the detail message
-	 * @param cause the nested exception
+	 * @param msg 详细消息
+	 * @param cause 嵌套异常
 	 */
 	public NestedIOException(@Nullable String msg, @Nullable Throwable cause) {
 		super(msg, cause);

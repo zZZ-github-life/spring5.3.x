@@ -30,7 +30,7 @@ import io.r2dbc.spi.Connection;
  * @author Mark Paluch
  * @author Simon Baslé
  * @since 5.3
- * @param <R> the type of the result of the function.
+ * @param <R> 函数结果的类型。
  */
 interface ConnectionFunction<R> extends Function<Connection, R>, SqlProvider {
 }

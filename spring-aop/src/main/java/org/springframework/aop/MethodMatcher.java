@@ -50,9 +50,9 @@ public interface MethodMatcher {
 	 * 执行静态检查，判断给定方法是否匹配。<p>如果此方法返回 {@code false}，或者 {@link #isRuntime()}
 	 * 方法返回 {@code false}，则不会进行运行时检查（即不会调用
 	 * {@link #matches(java.lang.reflect.Method, Class, Object[])}）。
-	 * @param method the candidate method
-	 * @param targetClass the target class
-	 * @return whether this method matches statically
+	 * @param method 候选方法
+	 * @param targetClass 目标类
+	 * @return 该方法是否静态匹配
 	 */
 	boolean matches(Method method, Class<?> targetClass);
 
@@ -60,9 +60,8 @@ public interface MethodMatcher {
 	 * 此 MethodMatcher 是否为动态的，也就是说，即使 2 参数版本的 matches 方法返回 {@code true}，也必须
 	 * 在运行时对 {@link #matches(java.lang.reflect.Method, Class, Object[])} 方法进行最终调用吗？<p>可
 	 * 以在创建 AOP 代理时调用，并且无需在每次方法调用之前再次调用。
-	 * @return whether a runtime match via the 3-arg
-	 * {@link #matches(java.lang.reflect.Method, Class, Object[])} method
-	 * is required if static matching passed
+	 * @return 在静态匹配通过后，是否需要通过 3 参数方法
+	 * {@link #matches(java.lang.reflect.Method, Class, Object[])} 进行运行时匹配
 	 */
 	boolean isRuntime();
 
@@ -70,10 +69,10 @@ public interface MethodMatcher {
 	 * 检查此方法是否存在运行时（动态）匹配，该方法必须已经通过静态匹配。<p>仅当 2 参数版本的 matches
 	 * 方法对给定方法和目标类返回 {@code true}，并且 {@link #isRuntime()} 方法返回 {@code true} 时，才
 	 * 会调用此方法。它会在通知可能运行之前立即调用，且是在通知链中较早的通知运行之后。
-	 * @param method the candidate method
-	 * @param targetClass the target class
-	 * @param args arguments to the method
-	 * @return whether there's a runtime match
+	 * @param method 候选方法
+	 * @param targetClass 目标类
+	 * @param args 方法的参数
+	 * @return 是否存在运行时匹配
 	 * @see MethodMatcher#matches(Method, Class)
 	 */
 	boolean matches(Method method, Class<?> targetClass, Object... args);

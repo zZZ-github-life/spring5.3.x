@@ -110,15 +110,15 @@ public abstract class AbstractWebSocketClient implements WebSocketClient {
 
 	/**
 	 * 执行实际的握手以建立到服务器的连接。
-	 * @param webSocketHandler the client-side handler for WebSocket messages
-	 * @param headers the HTTP headers to use for the handshake, with unwanted (forbidden)
-	 * headers filtered out (never {@code null})
-	 * @param uri the target URI for the handshake (never {@code null})
-	 * @param subProtocols requested sub-protocols, or an empty list
-	 * @param extensions requested WebSocket extensions, or an empty list
-	 * @param attributes the attributes to associate with the WebSocketSession, i.e. via
-	 * {@link WebSocketSession#getAttributes()}; currently always an empty map.
-	 * @return the established WebSocket session wrapped in a ListenableFuture.
+	 * @param webSocketHandler 客户端侧的 WebSocket 消息处理器
+	 * @param headers 用于握手的 HTTP 头，其中不需要（被禁止）的头
+	 * 已被过滤掉（永不为 {@code null}）
+	 * @param uri 握手的目标 URI（永不为 {@code null}）
+	 * @param subProtocols 请求的子协议，或空列表
+	 * @param extensions 请求的 WebSocket 扩展，或空列表
+	 * @param attributes 要与 WebSocketSession 关联的属性，即通过
+	 * {@link WebSocketSession#getAttributes()} 获取；目前始终为空 Map。
+	 * @return 已建立的 WebSocket 会话，封装在 ListenableFuture 中。
 	 */
 	protected abstract ListenableFuture<WebSocketSession> doHandshakeInternal(WebSocketHandler webSocketHandler,
 			HttpHeaders headers, URI uri, List<String> subProtocols, List<WebSocketExtension> extensions,

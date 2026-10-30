@@ -46,7 +46,7 @@ public class WeavingTransformer {
 
 	/**
 	 * 为给定的类加载器创建一个新的 WeavingTransformer。
-	 * @param classLoader the ClassLoader to build a transformer for
+	 * @param classLoader 要为其构建转换器的 ClassLoader
 	 */
 	public WeavingTransformer(@Nullable ClassLoader classLoader) {
 		this.classLoader = classLoader;
@@ -55,7 +55,7 @@ public class WeavingTransformer {
 
 	/**
 	 * 添加一个由该织入器应用的类文件转换器。
-	 * @param transformer the class file transformer to register
+	 * @param transformer 要注册的类文件转换器
 	 */
 	public void addTransformer(ClassFileTransformer transformer) {
 		Assert.notNull(transformer, "Transformer must not be null");
@@ -66,9 +66,9 @@ public class WeavingTransformer {
 	/**
 	 * 对给定的类字节定义应用转换。该方法始终返回非 null 的字节数组（如果未发生任何转换，数组内容将与原
 	 * 始内容相同）。
-	 * @param className the full qualified name of the class in dot format (i.e. some.package.SomeClass)
-	 * @param bytes class byte definition
-	 * @return (possibly transformed) class byte definition
+	 * @param className 以点分隔格式表示的类全限定名（即 some.package.SomeClass）
+	 * @param bytes 类字节定义
+	 * @return （可能已转换的）类字节定义
 	 */
 	public byte[] transformIfNecessary(String className, byte[] bytes) {
 		String internalName = StringUtils.replace(className, ".", "/");
@@ -78,11 +78,11 @@ public class WeavingTransformer {
 	/**
 	 * 对给定的类字节定义应用转换。该方法始终返回非 null 的字节数组（如果未发生任何转换，数组内容将与原
 	 * 始内容相同）。
-	 * @param className the full qualified name of the class in dot format (i.e. some.package.SomeClass)
-	 * @param internalName class name internal name in / format (i.e. some/package/SomeClass)
-	 * @param bytes class byte definition
-	 * @param pd protection domain to be used (can be null)
-	 * @return (possibly transformed) class byte definition
+	 * @param className 以点分隔格式表示的类全限定名（即 some.package.SomeClass）
+	 * @param internalName 以 / 格式表示的内部类名（即 some/package/SomeClass）
+	 * @param bytes 类字节定义
+	 * @param pd 要使用的保护域（可以为 null）
+	 * @return （可能已转换的）类字节定义
 	 */
 	public byte[] transformIfNecessary(String className, String internalName, byte[] bytes, @Nullable ProtectionDomain pd) {
 		byte[] result = bytes;

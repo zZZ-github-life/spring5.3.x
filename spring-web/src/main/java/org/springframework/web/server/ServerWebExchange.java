@@ -68,9 +68,9 @@ public interface ServerWebExchange {
 
 	/**
 	 * 如果存在，返回请求属性值。
-	 * @param name the attribute name
-	 * @param <T> the attribute type
-	 * @return the attribute value
+	 * @param name 属性名称
+	 * @param <T> 属性类型
+	 * @return 属性值
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable
@@ -81,9 +81,9 @@ public interface ServerWebExchange {
 	/**
 	 * 返回请求属性值，如果不存在则抛出
 	 * {@link IllegalArgumentException}。
-	 * @param name the attribute name
-	 * @param <T> the attribute type
-	 * @return the attribute value
+	 * @param name 属性名称
+	 * @param <T> 属性类型
+	 * @return 属性值
 	 */
 	@SuppressWarnings("unchecked")
 	default <T> T getRequiredAttribute(String name) {
@@ -94,10 +94,10 @@ public interface ServerWebExchange {
 
 	/**
 	 * 返回请求属性值，或返回一个默认的后备值。
-	 * @param name the attribute name
-	 * @param defaultValue a default value to return instead
-	 * @param <T> the attribute type
-	 * @return the attribute value
+	 * @param name 属性名称
+	 * @param defaultValue 作为替代返回的默认值
+	 * @param <T> 属性类型
+	 * @return 属性值
 	 */
 	@SuppressWarnings("unchecked")
 	default <T> T getAttributeOrDefault(String name, T defaultValue) {
@@ -160,16 +160,16 @@ public interface ServerWebExchange {
 	/**
 	 * {@link #checkNotModified(String, Instant)} 的重载变体，仅带有
 	 * 最后修改时间戳。
-	 * @param lastModified the last-modified time
-	 * @return whether the request qualifies as not modified
+	 * @param lastModified 最后修改时间
+	 * @return 该请求是否可视为未修改
 	 */
 	boolean checkNotModified(Instant lastModified);
 
 	/**
 	 * {@link #checkNotModified(String, Instant)} 的重载变体，仅带有
 	 * {@code ETag}（实体标记）值。
-	 * @param etag the entity tag for the underlying resource.
-	 * @return true if the request does not require further processing.
+	 * @param etag 底层资源的实体标签。
+	 * @return 如果请求不需要进一步处理则返回 true。
 	 */
 	boolean checkNotModified(String etag);
 
@@ -181,12 +181,10 @@ public interface ServerWebExchange {
 	 * <p><strong>注意：</strong>HTTP 规范建议同时设置 ETag 和 Last-Modified 值，
 	 * 但你也可以使用 {@code #checkNotModified(String)} 或
 	 * {@link #checkNotModified(Instant)}。
-	 * @param etag the entity tag that the application determined for the
-	 * underlying resource. This parameter will be padded with quotes (")
-	 * if necessary.
-	 * @param lastModified the last-modified timestamp that the application
-	 * determined for the underlying resource
-	 * @return true if the request does not require further processing.
+	 * @param etag 应用程序为底层资源确定的实体标签。
+	 * 如有必要，将为此参数补上引号 (")
+	 * @param lastModified 应用程序为底层资源确定的最后修改时间戳
+	 * @return 如果请求不需要进一步处理则返回 true。
 	 */
 	boolean checkNotModified(@Nullable String etag, Instant lastModified);
 
@@ -194,8 +192,8 @@ public interface ServerWebExchange {
 	 * 根据已注册的转换函数转换给定的 url。
 	 * 默认情况下，此方法返回给定的 {@code url}，
 	 * 不过可以通过 {@link #addUrlTransformer} 注册额外的转换函数。
-	 * @param url the URL to transform
-	 * @return the transformed URL
+	 * @param url 要转换的 URL
+	 * @return 转换后的 URL
 	 */
 	String transformUrl(String url);
 
@@ -203,7 +201,7 @@ public interface ServerWebExchange {
 	 * 注册一个供 {@link #transformUrl} 使用的额外 URL 转换函数。
 	 * 给定的函数可用于插入用于认证的 id、用于 CSRF 防护的 nonce 等。
 	 * <p>请注意，给定的函数会在所有先前注册的函数之后应用。
-	 * @param transformer a URL transformation function to add
+	 * @param transformer 要添加的 URL 转换函数
 	 */
 	void addUrlTransformer(Function<String, String> transformer);
 
@@ -211,8 +209,7 @@ public interface ServerWebExchange {
 	 * 返回用于关联此交换的消息的日志消息前缀。
 	 * 该前缀基于属性 {@link #LOG_ID_ATTRIBUTE} 的值，并附加一些额外的格式，
 	 * 以便可以方便地直接前置该前缀，无需进一步格式化或分隔符。
-	 * @return the log message prefix or an empty String if the
-	 * {@link #LOG_ID_ATTRIBUTE} is not set.
+	 * @return 日志消息前缀；如果未设置 {@link #LOG_ID_ATTRIBUTE}，则为空 String。
 	 * @since 5.1
 	 */
 	String getLogPrefix();

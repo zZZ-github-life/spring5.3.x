@@ -40,7 +40,7 @@ import org.springframework.util.FileCopyUtils;
  * @author Arjen Poutsma
  * @author Sam Brannen
  * @since 3.0
- * @param <T> the data type
+ * @param <T> 数据类型
  * @see RestTemplate
  */
 public class HttpMessageConverterExtractor<T> implements ResponseExtractor<T> {
@@ -129,8 +129,8 @@ public class HttpMessageConverterExtractor<T> implements ResponseExtractor<T> {
 	/**
 	 * 基于 "Content-Type" 头确定响应的 Content-Type，否则默认为
 	 * {@link MediaType#APPLICATION_OCTET_STREAM}。
-	 * @param response the response
-	 * @return the MediaType, or "application/octet-stream"
+	 * @param response 响应
+	 * @return 该 MediaType，或 "application/octet-stream"
 	 */
 	protected MediaType getContentType(ClientHttpResponse response) {
 		MediaType contentType = response.getHeaders().getContentType();

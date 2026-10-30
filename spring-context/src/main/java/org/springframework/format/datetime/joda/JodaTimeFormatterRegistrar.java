@@ -118,7 +118,7 @@ public class JodaTimeFormatterRegistrar implements FormatterRegistrar {
 	 * 设置用于表示日期值的对象的格式化器。<p>此格式化器将用于 {@link LocalDate} 类型。指定后，
 	 * {@link #setDateStyle(String) dateStyle} 和 {@link #setUseIsoFormat(boolean) useIsoFormat} 属性将
 	 * 被忽略。
-	 * @param formatter the formatter to use
+	 * @param formatter 要使用的格式化器
 	 * @since 3.2
 	 * @see #setTimeFormatter
 	 * @see #setDateTimeFormatter
@@ -131,7 +131,7 @@ public class JodaTimeFormatterRegistrar implements FormatterRegistrar {
 	 * 设置用于表示时间值的对象的格式化器。<p>此格式化器将用于 {@link LocalTime} 类型。指定后，
 	 * {@link #setTimeStyle(String) timeStyle} 和 {@link #setUseIsoFormat(boolean) useIsoFormat} 属性将
 	 * 被忽略。
-	 * @param formatter the formatter to use
+	 * @param formatter 要使用的格式化器
 	 * @since 3.2
 	 * @see #setDateFormatter
 	 * @see #setDateTimeFormatter
@@ -145,7 +145,7 @@ public class JodaTimeFormatterRegistrar implements FormatterRegistrar {
 	 * {@link ReadableInstant}、{@link Date} 和 {@link Calendar} 类型。指定后，
 	 * {@link #setDateTimeStyle(String) dateTimeStyle} 和
 	 * {@link #setUseIsoFormat(boolean) useIsoFormat} 属性将被忽略。
-	 * @param formatter the formatter to use
+	 * @param formatter 要使用的格式化器
 	 * @since 3.2
 	 * @see #setDateFormatter
 	 * @see #setTimeFormatter

@@ -58,8 +58,8 @@ public abstract class BeanFactoryUtils {
 
 	/**
 	 * 返回给定名称是否为工厂解引用（以工厂解引用前缀开头）。
-	 * @param name the name of the bean
-	 * @return whether the given name is a factory dereference
+	 * @param name Bean 的名称
+	 * @return 给定名称是否为工厂解引用
 	 * @see BeanFactory#FACTORY_BEAN_PREFIX
 	 */
 	public static boolean isFactoryDereference(@Nullable String name) {
@@ -68,8 +68,8 @@ public abstract class BeanFactoryUtils {
 
 	/**
 	 * 返回实际的 Bean 名称，去除工厂解引用前缀（如果有，若发现重复的工厂前缀也一并去除）。
-	 * @param name the name of the bean
-	 * @return the transformed name
+	 * @param name Bean 的名称
+	 * @return 转换后的名称
 	 * @see BeanFactory#FACTORY_BEAN_PREFIX
 	 */
 	public static String transformedBeanName(String name) {
@@ -88,8 +88,8 @@ public abstract class BeanFactoryUtils {
 
 	/**
 	 * 返回给定名称是否为默认命名策略生成的 Bean 名称（包含 "#..." 部分）。
-	 * @param name the name of the bean
-	 * @return whether the given name is a generated bean name
+	 * @param name Bean 的名称
+	 * @return 给定名称是否为生成的 Bean 名称
 	 * @see #GENERATED_BEAN_NAME_SEPARATOR
 	 * @see org.springframework.beans.factory.support.BeanDefinitionReaderUtils#generateBeanName
 	 * @see org.springframework.beans.factory.support.DefaultBeanNameGenerator
@@ -101,8 +101,8 @@ public abstract class BeanFactoryUtils {
 	/**
 	 * 从给定（可能是生成的）Bean 名称中提取 "raw" Bean 名称，排除任何可能为唯一性而添加的 "#..." 后缀。
 	 *
-	 * @param name the potentially generated bean name
-	 * @return the raw bean name
+	 * @param name 可能是生成的 Bean 名称
+	 * @return 原始 Bean 名称
 	 * @see #GENERATED_BEAN_NAME_SEPARATOR
 	 */
 	public static String originalBeanName(String name) {
@@ -117,8 +117,8 @@ public abstract class BeanFactoryUtils {
 	/**
 	 * 统计此工厂参与的任何层次结构中的所有 Bean。包括对祖先 Bean 工厂的统计。<p>"被覆盖"的 Bean（在子
 	 * 工厂中以相同名称指定）只统计一次。
-	 * @param lbf the bean factory
-	 * @return count of beans including those defined in ancestor factories
+	 * @param lbf Bean 工厂
+	 * @return 包含祖先工厂中定义的 Bean 在内的 Bean 数量
 	 * @see #beanNamesIncludingAncestors
 	 */
 	public static int countBeansIncludingAncestors(ListableBeanFactory lbf) {
@@ -127,8 +127,8 @@ public abstract class BeanFactoryUtils {
 
 	/**
 	 * 返回工厂中的所有 Bean 名称，包括祖先工厂。
-	 * @param lbf the bean factory
-	 * @return the array of matching bean names, or an empty array if none
+	 * @param lbf Bean 工厂
+	 * @return 匹配的 Bean 名称数组；若没有则为空数组
 	 * @see #beanNamesForTypeIncludingAncestors
 	 */
 	public static String[] beanNamesIncludingAncestors(ListableBeanFactory lbf) {
@@ -140,9 +140,9 @@ public abstract class BeanFactoryUtils {
 	 * 名称。<p>会考虑由 FactoryBean 创建的对象，这意味着 FactoryBean 将被初始化。如果 FactoryBean 创建
 	 * 的对象不匹配，则会将原始 FactoryBean 本身与该类型进行匹配。<p>此版本的
 	 * {@code beanNamesForTypeIncludingAncestors} 自动包含原型和 FactoryBean。
-	 * @param lbf the bean factory
-	 * @param type the type that beans must match (as a {@code ResolvableType})
-	 * @return the array of matching bean names, or an empty array if none
+	 * @param lbf Bean 工厂
+	 * @param type Bean 必须匹配的类型（作为 {@code ResolvableType}）
+	 * @return 匹配的 Bean 名称数组；若没有则为空数组
 	 * @since 4.2
 	 * @see ListableBeanFactory#getBeanNamesForType(ResolvableType)
 	 */
@@ -166,16 +166,14 @@ public abstract class BeanFactoryUtils {
 	 * FactoryBean 将被初始化。如果 FactoryBean 创建的对象不匹配，则会将原始 FactoryBean 本身与该类型进
 	 * 行匹配。如果未设置 "allowEagerInit"，则只检查原始 FactoryBean（这不需要初始化每个 FactoryBean）。
 	 *
-	 * @param lbf the bean factory
-	 * @param type the type that beans must match (as a {@code ResolvableType})
-	 * @param includeNonSingletons whether to include prototype or scoped beans too
-	 * or just singletons (also applies to FactoryBeans)
-	 * @param allowEagerInit whether to initialize <i>lazy-init singletons</i> and
-	 * <i>objects created by FactoryBeans</i> (or by factory methods with a
-	 * "factory-bean" reference) for the type check. Note that FactoryBeans need to be
-	 * eagerly initialized to determine their type: So be aware that passing in "true"
-	 * for this flag will initialize FactoryBeans and "factory-bean" references.
-	 * @return the array of matching bean names, or an empty array if none
+	 * @param lbf Bean 工厂
+	 * @param type Bean 必须匹配的类型（作为 {@code ResolvableType}）
+	 * @param includeNonSingletons 是否也包含原型或作用域 Bean，还是仅包含单例（同样适用于 FactoryBeans）
+	 * @param allowEagerInit 是否为了类型检查而初始化 <i>lazy-init singletons</i> 和
+	 * <i>由 FactoryBeans 创建的对象</i>（或通过带有 "factory-bean" 引用的工厂方法创建的对象）。
+	 * 注意，FactoryBeans 需要被急切初始化才能确定其类型：因此为此标志传入 "true"
+	 * 将初始化 FactoryBeans 和 "factory-bean" 引用。
+	 * @return 匹配的 Bean 名称数组；若没有则为空数组
 	 * @since 5.2
 	 * @see ListableBeanFactory#getBeanNamesForType(ResolvableType, boolean, boolean)
 	 */
@@ -200,9 +198,9 @@ public abstract class BeanFactoryUtils {
 	 * 名称。<p>会考虑由 FactoryBean 创建的对象，这意味着 FactoryBean 将被初始化。如果 FactoryBean 创建
 	 * 的对象不匹配，则会将原始 FactoryBean 本身与该类型进行匹配。<p>此版本的
 	 * {@code beanNamesForTypeIncludingAncestors} 自动包含原型和 FactoryBean。
-	 * @param lbf the bean factory
-	 * @param type the type that beans must match (as a {@code Class})
-	 * @return the array of matching bean names, or an empty array if none
+	 * @param lbf Bean 工厂
+	 * @param type Bean 必须匹配的类型（作为 {@code Class}）
+	 * @return 匹配的 Bean 名称数组；若没有则为空数组
 	 * @see ListableBeanFactory#getBeanNamesForType(Class)
 	 */
 	public static String[] beanNamesForTypeIncludingAncestors(ListableBeanFactory lbf, Class<?> type) {
@@ -225,16 +223,14 @@ public abstract class BeanFactoryUtils {
 	 * FactoryBean 将被初始化。如果 FactoryBean 创建的对象不匹配，则会将原始 FactoryBean 本身与该类型进
 	 * 行匹配。如果未设置 "allowEagerInit"，则只检查原始 FactoryBean（这不需要初始化每个 FactoryBean）。
 	 *
-	 * @param lbf the bean factory
-	 * @param includeNonSingletons whether to include prototype or scoped beans too
-	 * or just singletons (also applies to FactoryBeans)
-	 * @param allowEagerInit whether to initialize <i>lazy-init singletons</i> and
-	 * <i>objects created by FactoryBeans</i> (or by factory methods with a
-	 * "factory-bean" reference) for the type check. Note that FactoryBeans need to be
-	 * eagerly initialized to determine their type: So be aware that passing in "true"
-	 * for this flag will initialize FactoryBeans and "factory-bean" references.
-	 * @param type the type that beans must match
-	 * @return the array of matching bean names, or an empty array if none
+	 * @param lbf Bean 工厂
+	 * @param includeNonSingletons 是否也包含原型或作用域 Bean，还是仅包含单例（同样适用于 FactoryBeans）
+	 * @param allowEagerInit 是否为了类型检查而初始化 <i>lazy-init singletons</i> 和
+	 * <i>由 FactoryBeans 创建的对象</i>（或通过带有 "factory-bean" 引用的工厂方法创建的对象）。
+	 * 注意，FactoryBeans 需要被急切初始化才能确定其类型：因此为此标志传入 "true"
+	 * 将初始化 FactoryBeans 和 "factory-bean" 引用。
+	 * @param type Bean 必须匹配的类型
+	 * @return 匹配的 Bean 名称数组；若没有则为空数组
 	 * @see ListableBeanFactory#getBeanNamesForType(Class, boolean, boolean)
 	 */
 	public static String[] beanNamesForTypeIncludingAncestors(
@@ -256,9 +252,9 @@ public abstract class BeanFactoryUtils {
 	/**
 	 * 获取其 {@code Class} 具有所提供的 {@link Annotation} 类型的所有 Bean 名称，包括在祖先工厂中定义
 	 * 的那些，且不创建任何 Bean 实例。在 Bean 定义被覆盖的情况下将返回唯一的名称。
-	 * @param lbf the bean factory
-	 * @param annotationType the type of annotation to look for
-	 * @return the array of matching bean names, or an empty array if none
+	 * @param lbf Bean 工厂
+	 * @param annotationType 要查找的注解类型
+	 * @return 匹配的 Bean 名称数组；若没有则为空数组
 	 * @since 5.0
 	 * @see ListableBeanFactory#getBeanNamesForAnnotation(Class)
 	 */
@@ -288,10 +284,10 @@ public abstract class BeanFactoryUtils {
 	 * 该类型进行匹配。<p><b>注意：同名 Bean 将在“最低”工厂层级上优先，即此类 Bean 将从找到它们的最低工
 	 * 厂返回，并隐藏祖先工厂中的对应 Bean。</b>此特性允许通过在子工厂中显式选择相同的 Bean 名称来“替换”
 	 * Bean；此时祖先工厂中的该 Bean 将不可见，即使按类型查找也不可见。
-	 * @param lbf the bean factory
-	 * @param type type of bean to match
-	 * @return the Map of matching bean instances, or an empty Map if none
-	 * @throws BeansException if a bean could not be created
+	 * @param lbf Bean 工厂
+	 * @param type 要匹配的 Bean 类型
+	 * @return 匹配的 Bean 实例 Map；若没有则为空 Map
+	 * @throws BeansException 如果某个 Bean 无法创建
 	 * @see ListableBeanFactory#getBeansOfType(Class)
 	 */
 	public static <T> Map<String, T> beansOfTypeIncludingAncestors(ListableBeanFactory lbf, Class<T> type)
@@ -324,17 +320,15 @@ public abstract class BeanFactoryUtils {
 	 * 即此类 Bean 将从找到它们的最低工厂返回，并隐藏祖先工厂中的对应 Bean。</b>此特性允许通过在子工厂
 	 * 中显式选择相同的 Bean 名称来“替换”Bean；此时祖先工厂中的该 Bean 将不可见，即使按类型查找也不可见。
 	 *
-	 * @param lbf the bean factory
-	 * @param type type of bean to match
-	 * @param includeNonSingletons whether to include prototype or scoped beans too
-	 * or just singletons (also applies to FactoryBeans)
-	 * @param allowEagerInit whether to initialize <i>lazy-init singletons</i> and
-	 * <i>objects created by FactoryBeans</i> (or by factory methods with a
-	 * "factory-bean" reference) for the type check. Note that FactoryBeans need to be
-	 * eagerly initialized to determine their type: So be aware that passing in "true"
-	 * for this flag will initialize FactoryBeans and "factory-bean" references.
-	 * @return the Map of matching bean instances, or an empty Map if none
-	 * @throws BeansException if a bean could not be created
+	 * @param lbf Bean 工厂
+	 * @param type 要匹配的 Bean 类型
+	 * @param includeNonSingletons 是否也包含原型或作用域 Bean，还是仅包含单例（同样适用于 FactoryBeans）
+	 * @param allowEagerInit 是否为了类型检查而初始化 <i>lazy-init singletons</i> 和
+	 * <i>由 FactoryBeans 创建的对象</i>（或通过带有 "factory-bean" 引用的工厂方法创建的对象）。
+	 * 注意，FactoryBeans 需要被急切初始化才能确定其类型：因此为此标志传入 "true"
+	 * 将初始化 FactoryBeans 和 "factory-bean" 引用。
+	 * @return 匹配的 Bean 实例 Map；若没有则为空 Map
+	 * @throws BeansException 如果某个 Bean 无法创建
 	 * @see ListableBeanFactory#getBeansOfType(Class, boolean, boolean)
 	 */
 	public static <T> Map<String, T> beansOfTypeIncludingAncestors(
@@ -368,12 +362,12 @@ public abstract class BeanFactoryUtils {
 	 * 工厂层级上优先，即此类 Bean 将从找到它们的最低工厂返回，并隐藏祖先工厂中的对应 Bean。</b>此特性
 	 * 允许通过在子工厂中显式选择相同的 Bean 名称来“替换”Bean；此时祖先工厂中的该 Bean 将不可见，即使按
 	 * 类型查找也不可见。
-	 * @param lbf the bean factory
-	 * @param type type of bean to match
-	 * @return the matching bean instance
-	 * @throws NoSuchBeanDefinitionException if no bean of the given type was found
-	 * @throws NoUniqueBeanDefinitionException if more than one bean of the given type was found
-	 * @throws BeansException if the bean could not be created
+	 * @param lbf Bean 工厂
+	 * @param type 要匹配的 Bean 类型
+	 * @return 匹配的 Bean 实例
+	 * @throws NoSuchBeanDefinitionException 如果未找到给定类型的 Bean
+	 * @throws NoUniqueBeanDefinitionException 如果找到多个给定类型的 Bean
+	 * @throws BeansException 如果无法创建该 Bean
 	 * @see #beansOfTypeIncludingAncestors(ListableBeanFactory, Class)
 	 */
 	public static <T> T beanOfTypeIncludingAncestors(ListableBeanFactory lbf, Class<T> type)
@@ -392,19 +386,17 @@ public abstract class BeanFactoryUtils {
 	 * Bean 将在“最低”工厂层级上优先，即此类 Bean 将从找到它们的最低工厂返回，并隐藏祖先工厂中的对应
 	 * Bean。</b>此特性允许通过在子工厂中显式选择相同的 Bean 名称来“替换”Bean；此时祖先工厂中的该 Bean
 	 * 将不可见，即使按类型查找也不可见。
-	 * @param lbf the bean factory
-	 * @param type type of bean to match
-	 * @param includeNonSingletons whether to include prototype or scoped beans too
-	 * or just singletons (also applies to FactoryBeans)
-	 * @param allowEagerInit whether to initialize <i>lazy-init singletons</i> and
-	 * <i>objects created by FactoryBeans</i> (or by factory methods with a
-	 * "factory-bean" reference) for the type check. Note that FactoryBeans need to be
-	 * eagerly initialized to determine their type: So be aware that passing in "true"
-	 * for this flag will initialize FactoryBeans and "factory-bean" references.
-	 * @return the matching bean instance
-	 * @throws NoSuchBeanDefinitionException if no bean of the given type was found
-	 * @throws NoUniqueBeanDefinitionException if more than one bean of the given type was found
-	 * @throws BeansException if the bean could not be created
+	 * @param lbf Bean 工厂
+	 * @param type 要匹配的 Bean 类型
+	 * @param includeNonSingletons 是否也包含原型或作用域 Bean，还是仅包含单例（同样适用于 FactoryBeans）
+	 * @param allowEagerInit 是否为了类型检查而初始化 <i>lazy-init singletons</i> 和
+	 * <i>由 FactoryBeans 创建的对象</i>（或通过带有 "factory-bean" 引用的工厂方法创建的对象）。
+	 * 注意，FactoryBeans 需要被急切初始化才能确定其类型：因此为此标志传入 "true"
+	 * 将初始化 FactoryBeans 和 "factory-bean" 引用。
+	 * @return 匹配的 Bean 实例
+	 * @throws NoSuchBeanDefinitionException 如果未找到给定类型的 Bean
+	 * @throws NoUniqueBeanDefinitionException 如果找到多个给定类型的 Bean
+	 * @throws BeansException 如果无法创建该 Bean
 	 * @see #beansOfTypeIncludingAncestors(ListableBeanFactory, Class, boolean, boolean)
 	 */
 	public static <T> T beanOfTypeIncludingAncestors(
@@ -420,12 +412,12 @@ public abstract class BeanFactoryUtils {
 	 * 是一个有用的便捷方法。<p>会考虑由 FactoryBean 创建的对象，这意味着 FactoryBean 将被初始化。如果
 	 * FactoryBean 创建的对象不匹配，则会将原始 FactoryBean 本身与该类型进行匹配。<p>此版本的
 	 * {@code beanOfType} 自动包含原型和 FactoryBean。
-	 * @param lbf the bean factory
-	 * @param type type of bean to match
-	 * @return the matching bean instance
-	 * @throws NoSuchBeanDefinitionException if no bean of the given type was found
-	 * @throws NoUniqueBeanDefinitionException if more than one bean of the given type was found
-	 * @throws BeansException if the bean could not be created
+	 * @param lbf Bean 工厂
+	 * @param type 要匹配的 Bean 类型
+	 * @return 匹配的 Bean 实例
+	 * @throws NoSuchBeanDefinitionException 如果未找到给定类型的 Bean
+	 * @throws NoUniqueBeanDefinitionException 如果找到多个给定类型的 Bean
+	 * @throws BeansException 如果无法创建该 Bean
 	 * @see ListableBeanFactory#getBeansOfType(Class)
 	 */
 	public static <T> T beanOfType(ListableBeanFactory lbf, Class<T> type) throws BeansException {
@@ -440,19 +432,17 @@ public abstract class BeanFactoryUtils {
 	 * 意味着 FactoryBean 将被初始化。如果 FactoryBean 创建的对象不匹配，则会将原始 FactoryBean 本身与
 	 * 该类型进行匹配。如果未设置 "allowEagerInit"，则只检查原始 FactoryBean（这不需要初始化每个
 	 * FactoryBean）。
-	 * @param lbf the bean factory
-	 * @param type type of bean to match
-	 * @param includeNonSingletons whether to include prototype or scoped beans too
-	 * or just singletons (also applies to FactoryBeans)
-	 * @param allowEagerInit whether to initialize <i>lazy-init singletons</i> and
-	 * <i>objects created by FactoryBeans</i> (or by factory methods with a
-	 * "factory-bean" reference) for the type check. Note that FactoryBeans need to be
-	 * eagerly initialized to determine their type: So be aware that passing in "true"
-	 * for this flag will initialize FactoryBeans and "factory-bean" references.
-	 * @return the matching bean instance
-	 * @throws NoSuchBeanDefinitionException if no bean of the given type was found
-	 * @throws NoUniqueBeanDefinitionException if more than one bean of the given type was found
-	 * @throws BeansException if the bean could not be created
+	 * @param lbf Bean 工厂
+	 * @param type 要匹配的 Bean 类型
+	 * @param includeNonSingletons 是否也包含原型或作用域 Bean，还是仅包含单例（同样适用于 FactoryBeans）
+	 * @param allowEagerInit 是否为了类型检查而初始化 <i>lazy-init singletons</i> 和
+	 * <i>由 FactoryBeans 创建的对象</i>（或通过带有 "factory-bean" 引用的工厂方法创建的对象）。
+	 * 注意，FactoryBeans 需要被急切初始化才能确定其类型：因此为此标志传入 "true"
+	 * 将初始化 FactoryBeans 和 "factory-bean" 引用。
+	 * @return 匹配的 Bean 实例
+	 * @throws NoSuchBeanDefinitionException 如果未找到给定类型的 Bean
+	 * @throws NoUniqueBeanDefinitionException 如果找到多个给定类型的 Bean
+	 * @throws BeansException 如果无法创建该 Bean
 	 * @see ListableBeanFactory#getBeansOfType(Class, boolean, boolean)
 	 */
 	public static <T> T beanOfType(
@@ -467,10 +457,10 @@ public abstract class BeanFactoryUtils {
 
 	/**
 	 * 将给定的 Bean 名称结果与给定的父结果合并。
-	 * @param result the local bean name result
-	 * @param parentResult the parent bean name result (possibly empty)
-	 * @param hbf the local bean factory
-	 * @return the merged result (possibly the local result as-is)
+	 * @param result 本地 Bean 名称结果
+	 * @param parentResult 父级 Bean 名称结果（可能为空）
+	 * @param hbf 本地 Bean 工厂
+	 * @return 合并后的结果（可能就是本地结果本身）
 	 * @since 4.3.15
 	 */
 	private static String[] mergeNamesWithParent(String[] result, String[] parentResult, HierarchicalBeanFactory hbf) {
@@ -489,11 +479,11 @@ public abstract class BeanFactoryUtils {
 
 	/**
 	 * 从给定的匹配 Bean Map 中提取给定类型的唯一 Bean。
-	 * @param type type of bean to match
-	 * @param matchingBeans all matching beans found
-	 * @return the unique bean instance
-	 * @throws NoSuchBeanDefinitionException if no bean of the given type was found
-	 * @throws NoUniqueBeanDefinitionException if more than one bean of the given type was found
+	 * @param type 要匹配的 Bean 类型
+	 * @param matchingBeans 找到的所有匹配 Bean
+	 * @return 唯一的 Bean 实例
+	 * @throws NoSuchBeanDefinitionException 如果未找到给定类型的 Bean
+	 * @throws NoUniqueBeanDefinitionException 如果找到多个给定类型的 Bean
 	 */
 	private static <T> T uniqueBean(Class<T> type, Map<String, T> matchingBeans) {
 		int count = matchingBeans.size();

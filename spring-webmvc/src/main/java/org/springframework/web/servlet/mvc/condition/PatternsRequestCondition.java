@@ -64,8 +64,8 @@ public class PatternsRequestCondition extends AbstractRequestCondition<PatternsR
 
 	/**
 	 * 使用 URL 模式的构造函数，必要时会在模式前添加 "/"。
-	 * @param patterns 0 or more URL patterns; no patterns results in an empty
-	 * path {@code ""} mapping which matches all requests.
+	 * @param patterns 0 个或多个 URL 模式；无模式会得到一个空路径 {@code ""} 映射，
+	 * 可匹配所有请求。
 	 */
 	public PatternsRequestCondition(String... patterns) {
 		this(patterns, true, null);
@@ -269,10 +269,9 @@ public class PatternsRequestCondition extends AbstractRequestCondition<PatternsR
 	 * <li>模式匹配
 	 * <li>如果模式尚未以 "/" 结尾，则追加 "/" 后进行模式匹配
 	 * </ul>
-	 * @param request the current request
-	 * @return the same instance if the condition contains no patterns;
-	 * or a new condition with sorted matching patterns;
-	 * or {@code null} if no patterns match.
+	 * @param request 当前请求
+	 * @return 如果条件不包含模式，则为同一实例；或包含已排序匹配模式的新条件；
+	 * 如果无模式匹配，则为 {@code null}。
 	 */
 	@Override
 	@Nullable
@@ -287,8 +286,8 @@ public class PatternsRequestCondition extends AbstractRequestCondition<PatternsR
 	 * 产生与调用 {@link #getMatchingCondition} 等价的结果。
 	 * 此方法作为替代方案提供，用于没有可用请求的场景
 	 * （例如内省、工具等）。
-	 * @param lookupPath the lookup path to match to existing patterns
-	 * @return a collection of matching patterns sorted with the closest match at the top
+	 * @param lookupPath 要与现有模式匹配的查找路径
+	 * @return 匹配模式的集合，按最接近的匹配排在前面排序
 	 */
 	public List<String> getMatchingPatterns(String lookupPath) {
 		List<String> matches = null;

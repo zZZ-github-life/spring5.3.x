@@ -201,7 +201,7 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 	 * 添加此转换器要支持的 {@link MediaType} 对象。
 	 * <p>所提供的 {@code MediaType} 对象将被追加到
 	 * {@linkplain #getSupportedMediaTypes() 受支持的 MediaType 对象}列表中。
-	 * @param supportedMediaTypes a var-args list of {@code MediaType} objects to add
+	 * @param supportedMediaTypes 要添加的 {@code MediaType} 对象可变参数列表
 	 * @since 5.2
 	 * @see #setSupportedMediaTypes(List)
 	 */
@@ -413,8 +413,8 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 	 * 如果 {@code contentType} 为 {@code null}，
 	 * 则返回 {@code application/x-www-form-urlencoded; charset=UTF-8}。
 	 * <p>子类可以重写此方法以改变此行为。
-	 * @param contentType the preferred content type (can be {@code null})
-	 * @return the content type to be used
+	 * @param contentType 首选内容类型（可以为 {@code null}）
+	 * @return 要使用的内容类型
 	 * @since 5.2.2
 	 */
 	protected MediaType getFormContentType(@Nullable MediaType contentType) {
@@ -554,9 +554,9 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 
 	/**
 	 * 返回给定部件对象的 {@link HttpEntity}。
-	 * @param part the part to return an {@link HttpEntity} for
-	 * @return the part Object itself it is an {@link HttpEntity},
-	 * or a newly built {@link HttpEntity} wrapper for that part
+	 * @param part 要为其返回 {@link HttpEntity} 的部分
+	 * @return 如果该部分对象本身是 {@link HttpEntity}，则为该对象本身，
+	 * 否则为针对该部分新构建的 {@link HttpEntity} 包装器
 	 */
 	protected HttpEntity<?> getHttpEntity(Object part) {
 		return (part instanceof HttpEntity ? (HttpEntity<?>) part : new HttpEntity<>(part));
@@ -568,8 +568,8 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 	 * <p>默认实现会在部件为 {@code Resource} 时返回
 	 * {@link Resource#getFilename()}，其他情况下返回 {@code null}。
 	 * 可在子类中重写。
-	 * @param part the part to determine the file name for
-	 * @return the filename, or {@code null} if not known
+	 * @param part 要确定其文件名的部分
+	 * @return 文件名，如果未知则为 {@code null}
 	 */
 	@Nullable
 	protected String getFilename(Object part) {

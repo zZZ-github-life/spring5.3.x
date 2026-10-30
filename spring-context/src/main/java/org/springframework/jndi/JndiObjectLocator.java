@@ -54,7 +54,7 @@ public abstract class JndiObjectLocator extends JndiLocatorSupport implements In
 	/**
 	 * 指定要查找的 JNDI 名称。如果它不以 "java:comp/env/" 开头，则在 "resourceRef" 设置为 "true" 时会
 	 * 自动添加该前缀。
-	 * @param jndiName the JNDI name to look up
+	 * @param jndiName 要查找的 JNDI 名称
 	 * @see #setResourceRef
 	 */
 	public void setJndiName(@Nullable String jndiName) {
@@ -94,9 +94,9 @@ public abstract class JndiObjectLocator extends JndiLocatorSupport implements In
 
 	/**
 	 * 执行此定位器目标资源的实际 JNDI 查找。
-	 * @return the located target object
-	 * @throws NamingException if the JNDI lookup failed or if the
-	 * located JNDI object is not assignable to the expected type
+	 * @return 定位到的目标对象
+	 * @throws NamingException 如果 JNDI 查找失败，
+	 * 或者定位到的 JNDI 对象不能赋值给预期类型
 	 * @see #setJndiName
 	 * @see #setExpectedType
 	 * @see #lookup(String, Class)

@@ -40,11 +40,9 @@ public interface DatabasePopulator {
 	 * 例如，Spring 的 {@link ResourceDatabasePopulator} 和
 	 * {@link DatabasePopulatorUtils} 会将所有 {@code SQLException}
 	 * 包装为 {@code ScriptException}。
-	 * @param connection the JDBC connection to use; already configured and
-	 * ready to use; never {@code null}
-	 * @throws SQLException if an unrecoverable data access exception occurs
-	 * while interacting with the database
-	 * @throws ScriptException in all other error cases
+	 * @param connection 要使用的 JDBC 连接；已完成配置并可直接使用；永不为 {@code null}
+	 * @throws SQLException 在与数据库交互时发生不可恢复的数据访问异常
+	 * @throws ScriptException 在所有其他错误情况下
 	 * @see DatabasePopulatorUtils#execute
 	 */
 	void populate(Connection connection) throws SQLException, ScriptException;

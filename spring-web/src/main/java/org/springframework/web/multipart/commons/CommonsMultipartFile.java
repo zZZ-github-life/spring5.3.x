@@ -56,7 +56,7 @@ public class CommonsMultipartFile implements MultipartFile, Serializable {
 
 	/**
 	 * 创建一个包装给定 FileItem 的实例。
-	 * @param fileItem the FileItem to wrap
+	 * @param fileItem 要包装的 FileItem
 	 */
 	public CommonsMultipartFile(FileItem fileItem) {
 		this.fileItem = fileItem;

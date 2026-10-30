@@ -182,7 +182,7 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 	 * {@code RSocketStrategies} 也会被修改以更改其中的提取器。
 	 * <p>默认情况下，此项设置为 {@code RSocketStrategies} 中的
 	 * {@link org.springframework.messaging.rsocket.RSocketStrategies.Builder#metadataExtractor(MetadataExtractor) defaults}。
-	 * @param extractor the extractor to use
+	 * @param extractor 要使用的提取器
 	 */
 	public void setMetadataExtractor(MetadataExtractor extractor) {
 		this.strategies = this.strategies.mutate().metadataExtractor(extractor).build();
@@ -228,7 +228,7 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 	/**
 	 * 配置当 {@code SETUP} 帧未指定数据 MimeType 时用于数据负载的默认内容类型。
 	 * <p>默认情况下不设置此项。
-	 * @param mimeType the MimeType to use
+	 * @param mimeType 要使用的 MimeType
 	 */
 	public void setDefaultDataMimeType(@Nullable MimeType mimeType) {
 		this.defaultDataMimeType = mimeType;
@@ -246,7 +246,7 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 	/**
 	 * 配置当 {@code SETUP} 帧未指定时用于负载数据的默认 {@code MimeType}。
 	 * <p>默认情况下此项设置为 {@code "message/x.rsocket.composite-metadata.v0"}
-	 * @param mimeType the MimeType to use
+	 * @param mimeType 要使用的 MimeType
 	 */
 	public void setDefaultMetadataMimeType(MimeType mimeType) {
 		Assert.notNull(mimeType, "'metadataMimeType' is required");
@@ -452,13 +452,10 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 	 * 这有助于避免与同一应用程序中可能使用的服务器端处理器发生重叠。
 	 * 不过，对于更高级的场景（例如通过自定义构造型注解发现处理器），
 	 * 请考虑将 {@code RSocketMessageHandler} 声明为 bean，然后从中获取响应方。
-	 * @param strategies the strategies to set on the created
-	 * {@code RSocketMessageHandler}
-	 * @param candidateHandlers a list of Objects and/or Classes with annotated
-	 * handler methods; used to call {@link #setHandlers(List)} with
-	 * on the created {@code RSocketMessageHandler}
-	 * @return a configurer that may be passed into
-	 * {@link org.springframework.messaging.rsocket.RSocketRequester.Builder#rsocketConnector}
+	 * @param strategies 要设置在创建的 {@code RSocketMessageHandler} 上的策略
+	 * @param candidateHandlers 包含带注解处理器方法的 Object 和/或 Class 列表；
+	 * 会在创建的 {@code RSocketMessageHandler} 上用它调用 {@link #setHandlers(List)}
+	 * @return 可传入 {@link org.springframework.messaging.rsocket.RSocketRequester.Builder#rsocketConnector} 的配置器
 	 * @since 5.2.6
 	 */
 	public static SocketAcceptor responder(RSocketStrategies strategies, Object... candidateHandlers) {

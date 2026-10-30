@@ -30,8 +30,8 @@ public class CannotReadScriptException extends ScriptException {
 
 	/**
 	 * 创建一个新的 {@code CannotReadScriptException}。
-	 * @param resource the resource that cannot be read from
-	 * @param cause the underlying cause of the resource access failure
+	 * @param resource 无法从中读取的资源
+	 * @param cause 资源访问失败的根本原因
 	 */
 	public CannotReadScriptException(EncodedResource resource, Throwable cause) {
 		super("Cannot read SQL script from " + resource, cause);

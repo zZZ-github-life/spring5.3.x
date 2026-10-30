@@ -42,7 +42,7 @@ public abstract class SimpAttributesContextHolder {
 
 	/**
 	 * 将给定 SimpAttributes 绑定到当前线程。
-	 * @param attributes the RequestAttributes to expose
+	 * @param attributes 要暴露的 RequestAttributes
 	 */
 	public static void setAttributes(@Nullable SimpAttributes attributes) {
 		if (attributes != null) {
@@ -56,7 +56,7 @@ public abstract class SimpAttributesContextHolder {
 	/**
 	 * 从给定消息中提取 SiMP 会话属性，将其包装在 {@link SimpAttributes} 实例中，
 	 * 并绑定到当前线程。
-	 * @param message the message to extract session attributes from
+	 * @param message 要从中提取会话属性的消息
 	 */
 	public static void setAttributesFromMessage(Message<?> message) {
 		setAttributes(SimpAttributes.fromMessage(message));
@@ -64,7 +64,7 @@ public abstract class SimpAttributesContextHolder {
 
 	/**
 	 * 返回当前绑定到线程的 SimpAttributes。
-	 * @return the attributes or {@code null} if not bound
+	 * @return 属性，如果未绑定则为 {@code null}
 	 */
 	@Nullable
 	public static SimpAttributes getAttributes() {
@@ -74,8 +74,8 @@ public abstract class SimpAttributesContextHolder {
 	/**
 	 * 返回当前绑定到线程的 SimpAttributes；如果未绑定，
 	 * 则抛出 {@link java.lang.IllegalStateException}。
-	 * @return the attributes, never {@code null}
-	 * @throws java.lang.IllegalStateException if attributes are not bound
+	 * @return 属性，永不为 {@code null}
+	 * @throws java.lang.IllegalStateException 如果属性未绑定
 	 */
 	public static SimpAttributes currentAttributes() throws IllegalStateException {
 		SimpAttributes attributes = getAttributes();

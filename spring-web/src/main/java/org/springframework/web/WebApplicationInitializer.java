@@ -171,9 +171,8 @@ public interface WebApplicationInitializer {
 	 * 使用初始化此 Web 应用所需的任何 Servlet、过滤器、监听器、
 	 * context-param 和属性来配置给定的 {@link ServletContext}。示例请参阅
 	 * {@linkplain WebApplicationInitializer 上文}。
-	 * @param servletContext the {@code ServletContext} to initialize
-	 * @throws ServletException if any call against the given {@code ServletContext}
-	 * throws a {@code ServletException}
+	 * @param servletContext 要初始化的 {@code ServletContext}
+	 * @throws ServletException 如果对给定的 {@code ServletContext} 的任何调用抛出 {@code ServletException}
 	 */
 	void onStartup(ServletContext servletContext) throws ServletException;
 

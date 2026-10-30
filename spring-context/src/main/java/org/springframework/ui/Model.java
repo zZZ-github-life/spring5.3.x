@@ -35,8 +35,8 @@ public interface Model {
 
 	/**
 	 * 在给定名称下添加提供的属性。
-	 * @param attributeName the name of the model attribute (never {@code null})
-	 * @param attributeValue the model attribute value (can be {@code null})
+	 * @param attributeName 模型属性的名称（永不为 {@code null}）
+	 * @param attributeValue 模型属性值（可为 {@code null}）
 	 */
 	Model addAttribute(String attributeName, @Nullable Object attributeValue);
 
@@ -47,7 +47,7 @@ public interface Model {
 	 * <p><i>注意：使用此方法时，空的 {@link java.util.Collection Collections} 不会被添加到模型中，因为
 	 * 我们无法正确确定真正的约定名称。视图代码应检查 {@code null}，而不是检查空集合，JSTL 标签已经这样
 	 * 做了。</i>
-	 * @param attributeValue the model attribute value (never {@code null})
+	 * @param attributeValue 模型属性值（永不为 {@code null}）
 	 */
 	Model addAttribute(Object attributeValue);
 
@@ -70,15 +70,15 @@ public interface Model {
 
 	/**
 	 * 此模型是否包含给定名称的属性？
-	 * @param attributeName the name of the model attribute (never {@code null})
-	 * @return whether this model contains a corresponding attribute
+	 * @param attributeName 模型属性的名称（永不为 {@code null}）
+	 * @return 此模型是否包含相应的属性
 	 */
 	boolean containsAttribute(String attributeName);
 
 	/**
 	 * 返回给定名称的属性值（如果有）。
-	 * @param attributeName the name of the model attribute (never {@code null})
-	 * @return the corresponding attribute value, or {@code null} if none
+	 * @param attributeName 模型属性的名称（永不为 {@code null}）
+	 * @return 相应的属性值，如果没有则为 {@code null}
 	 * @since 5.2
 	 */
 	@Nullable

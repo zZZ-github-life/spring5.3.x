@@ -63,7 +63,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	/**
 	 * 深拷贝构造函数。保证 PropertyValue 引用相互独立，但不能深拷贝各个 PropertyValue 对象当前引用的对
 	 * 象。
-	 * @param original the PropertyValues to copy
+	 * @param original 要复制的 PropertyValues
 	 * @see #addPropertyValues(PropertyValues)
 	 */
 	public MutablePropertyValues(@Nullable PropertyValues original) {
@@ -83,7 +83,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 
 	/**
 	 * 从 Map 构造一个新的 MutablePropertyValues 对象。
-	 * @param original a Map with property values keyed by property name Strings
+	 * @param original 以属性名字符串为键的属性值 Map
 	 * @see #addPropertyValues(Map)
 	 */
 	public MutablePropertyValues(@Nullable Map<?, ?> original) {
@@ -102,7 +102,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	/**
 	 * 使用给定的 PropertyValue 对象 List 按原样构造一个新的 MutablePropertyValues 对象。
 	 * <p>此构造函数适用于高级使用场景，不适用于典型的编程用途。
-	 * @param propertyValueList a List of PropertyValue objects
+	 * @param propertyValueList PropertyValue 对象的 List
 	 */
 	public MutablePropertyValues(@Nullable List<PropertyValue> propertyValueList) {
 		this.propertyValueList =
@@ -128,8 +128,8 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	/**
 	 * 将所有给定的 PropertyValues 复制到此对象中。保证 PropertyValue 引用相互独立，但不能深拷贝各个
 	 * PropertyValue 对象当前引用的对象。
-	 * @param other the PropertyValues to copy
-	 * @return this in order to allow for adding multiple property values in a chain
+	 * @param other 要复制的 PropertyValues
+	 * @return this，以便以链式方式添加多个属性值
 	 */
 	public MutablePropertyValues addPropertyValues(@Nullable PropertyValues other) {
 		if (other != null) {
@@ -143,9 +143,8 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 
 	/**
 	 * 添加给定 Map 中的所有属性值。
-	 * @param other a Map with property values keyed by property name,
-	 * which must be a String
-	 * @return this in order to allow for adding multiple property values in a chain
+	 * @param other 以属性名为键的属性值 Map，键必须是 String
+	 * @return this，以便以链式方式添加多个属性值
 	 */
 	public MutablePropertyValues addPropertyValues(@Nullable Map<?, ?> other) {
 		if (other != null) {
@@ -157,8 +156,8 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 
 	/**
 	 * 添加一个 PropertyValue 对象，替换对应属性的任何现有对象，或与之合并（如果适用）。
-	 * @param pv the PropertyValue object to add
-	 * @return this in order to allow for adding multiple property values in a chain
+	 * @param pv 要添加的 PropertyValue 对象
+	 * @return this，以便以链式方式添加多个属性值
 	 */
 	public MutablePropertyValues addPropertyValue(PropertyValue pv) {
 		for (int i = 0; i < this.propertyValueList.size(); i++) {
@@ -176,8 +175,8 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	/**
 	 * {@code addPropertyValue} 的重载版本，接受属性名和属性值。
 	 * <p>注意：从 Spring 3.0 开始，建议使用更简洁且支持链式调用的变体 {@link #add}。
-	 * @param propertyName name of the property
-	 * @param propertyValue value of the property
+	 * @param propertyName 属性的名称
+	 * @param propertyValue 属性的值
 	 * @see #addPropertyValue(PropertyValue)
 	 */
 	public void addPropertyValue(String propertyName, Object propertyValue) {
@@ -186,9 +185,9 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 
 	/**
 	 * 添加一个 PropertyValue 对象，替换对应属性的任何现有对象，或与之合并（如果适用）。
-	 * @param propertyName name of the property
-	 * @param propertyValue value of the property
-	 * @return this in order to allow for adding multiple property values in a chain
+	 * @param propertyName 属性的名称
+	 * @param propertyValue 属性的值
+	 * @return this，以便以链式方式添加多个属性值
 	 */
 	public MutablePropertyValues add(String propertyName, @Nullable Object propertyValue) {
 		addPropertyValue(new PropertyValue(propertyName, propertyValue));
@@ -221,7 +220,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 
 	/**
 	 * 如果包含给定的 PropertyValue，则将其移除。
-	 * @param pv the PropertyValue to remove
+	 * @param pv 要移除的 PropertyValue
 	 */
 	public void removePropertyValue(PropertyValue pv) {
 		this.propertyValueList.remove(pv);
@@ -229,7 +228,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 
 	/**
 	 * {@code removePropertyValue} 的重载版本，接受属性名。
-	 * @param propertyName name of the property
+	 * @param propertyName 属性的名称
 	 * @see #removePropertyValue(PropertyValue)
 	 */
 	public void removePropertyValue(String propertyName) {
@@ -270,8 +269,8 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 
 	/**
 	 * 获取原始属性值（如果有）。
-	 * @param propertyName the name to search for
-	 * @return the raw property value, or {@code null} if none found
+	 * @param propertyName 要搜索的名称
+	 * @return 原始属性值，如果未找到则为 {@code null}
 	 * @since 4.0
 	 * @see #getPropertyValue(String)
 	 * @see PropertyValue#getValue()
@@ -315,7 +314,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	/**
 	 * 将指定属性注册为“已处理”，即某个处理器在 PropertyValue(s) 机制之外调用了对应的 setter 方法。
 	 * <p>这将导致对指定属性调用 {@link #contains} 时返回 {@code true}。
-	 * @param propertyName the name of the property.
+	 * @param propertyName 属性的名称。
 	 */
 	public void registerProcessedProperty(String propertyName) {
 		if (this.processedProperties == null) {

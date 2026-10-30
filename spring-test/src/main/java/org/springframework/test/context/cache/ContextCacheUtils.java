@@ -31,7 +31,7 @@ public abstract class ContextCacheUtils {
 	 * 获取 {@link ContextCache} 的最大大小。
 	 * <p>使用 {@link SpringProperties} 获取名为 {@code spring.test.context.cache.maxSize} 的系统属性或 Spring 属性。
 	 * <p>如果未设置此类属性或该属性不是整数，则回退到 {@link ContextCache#DEFAULT_MAX_CONTEXT_CACHE_SIZE} 的值。
-	 * @return the maximum size of the context cache
+	 * @return 上下文缓存的最大大小
 	 * @see ContextCache#MAX_CONTEXT_CACHE_SIZE_PROPERTY_NAME
 	 */
 	public static int retrieveMaxCacheSize() {

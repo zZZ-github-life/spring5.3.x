@@ -80,9 +80,9 @@ public class ConcurrentModel extends ConcurrentHashMap<String, Object> implement
 
 	/**
 	 * 在给定名称下添加提供的属性。
-	 * @param attributeName the name of the model attribute (never {@code null})
-	 * @param attributeValue the model attribute value (ignored if {@code null},
-	 * just removing an existing entry if any)
+	 * @param attributeName 模型属性的名称（永不为 {@code null}）
+	 * @param attributeValue 模型属性值（如果为 {@code null} 则忽略，
+	 * 仅移除现有条目（如果有））
 	 */
 	@Override
 	public ConcurrentModel addAttribute(String attributeName, @Nullable Object attributeValue) {
@@ -97,7 +97,7 @@ public class ConcurrentModel extends ConcurrentHashMap<String, Object> implement
 	 *
 	 * <p><i>注意：使用此方法时，空的 {@link Collection Collections} 不会被添加到模型中，因为我们无法正
 	 * 确确定真正的约定名称。视图代码应检查 {@code null}，而不是检查空集合，JSTL 标签已经这样做了。</i>
-	 * @param attributeValue the model attribute value (never {@code null})
+	 * @param attributeValue 模型属性值（永不为 {@code null}）
 	 */
 	@Override
 	public ConcurrentModel addAttribute(Object attributeValue) {
@@ -151,8 +151,8 @@ public class ConcurrentModel extends ConcurrentHashMap<String, Object> implement
 
 	/**
 	 * 此模型是否包含给定名称的属性？
-	 * @param attributeName the name of the model attribute (never {@code null})
-	 * @return whether this model contains a corresponding attribute
+	 * @param attributeName 模型属性的名称（永不为 {@code null}）
+	 * @return 此模型是否包含相应的属性
 	 */
 	@Override
 	public boolean containsAttribute(String attributeName) {

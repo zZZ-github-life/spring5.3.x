@@ -449,7 +449,7 @@ public class CorsConfiguration {
 	 * 校验当 {@link #setAllowCredentials allowCredentials} 为 {@code true} 时，
 	 * {@link #setAllowedOrigins allowedOrigins} 不包含特殊值 {@code "*"}，
 	 * 因为在这种情况下 "Access-Control-Allow-Origin" 无法设置为 {@code "*"}。
-	 * @throws IllegalArgumentException if the validation fails
+	 * @throws IllegalArgumentException 如果校验失败
 	 * @since 5.3
 	 */
 	public void validateAllowCredentials() {
@@ -474,8 +474,8 @@ public class CorsConfiguration {
 	 * {@code ["GET", "POST", "PATCH"]}。不过，将 {@code ["GET", "POST"]}
 	 * 与 {@code ["*"]} 合并会得到 {@code ["*"]}。另请注意，任何显式定义的值
 	 * 都会覆盖 {@link CorsConfiguration#applyPermitDefaultValues()} 设置的默认许可值。
-	 * @return the combined {@code CorsConfiguration}, or {@code this}
-	 * configuration if the supplied configuration is {@code null}
+	 * @return 合并后的 {@code CorsConfiguration}，如果提供的配置为 {@code null}
+	 * 则为 {@code this} 配置
 	 */
 	public CorsConfiguration combine(@Nullable CorsConfiguration other) {
 		if (other == null) {
@@ -544,9 +544,9 @@ public class CorsConfiguration {
 
 	/**
 	 * 根据配置的允许 origin 检查请求的 origin。
-	 * @param origin the origin to check
-	 * @return the origin to use for the response, or {@code null} which
-	 * means the request origin is not allowed
+	 * @param origin 要检查的源
+	 * @return 用于响应的源；如果为 {@code null}，
+	 * 则表示请求源不被允许
 	 */
 	@Nullable
 	public String checkOrigin(@Nullable String origin) {
@@ -578,9 +578,9 @@ public class CorsConfiguration {
 	/**
 	 * 根据配置的允许方法检查 HTTP 请求方法（对于预检请求，则为
 	 * {@code Access-Control-Request-Method} 头中的方法）。
-	 * @param requestMethod the HTTP request method to check
-	 * @return the list of HTTP methods to list in the response of a pre-flight
-	 * request, or {@code null} if the supplied {@code requestMethod} is not allowed
+	 * @param requestMethod 要检查的 HTTP 请求方法
+	 * @return 在预检请求响应中列出的 HTTP 方法列表；
+	 * 如果提供的 {@code requestMethod} 不被允许，则为 {@code null}
 	 */
 	@Nullable
 	public List<HttpMethod> checkHttpMethod(@Nullable HttpMethod requestMethod) {
@@ -596,9 +596,9 @@ public class CorsConfiguration {
 	/**
 	 * 根据配置的允许请求头检查所提供的请求头（或预检请求的
 	 * {@code Access-Control-Request-Headers} 中列出的请求头）。
-	 * @param requestHeaders the request headers to check
-	 * @return the list of allowed headers to list in the response of a pre-flight
-	 * request, or {@code null} if none of the supplied request headers is allowed
+	 * @param requestHeaders 要检查的请求头
+	 * @return 在预检请求响应中列出的允许的标头列表；
+	 * 如果提供的请求头均不被允许，则为 {@code null}
 	 */
 	@Nullable
 	public List<String> checkHeaders(@Nullable List<String> requestHeaders) {

@@ -200,7 +200,7 @@ public class ContextLoader {
 	 * {@link WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE} 属性名
 	 * 注册到 ServletContext 中，子类可自由地在容器关闭时调用
 	 * {@link #closeWebApplicationContext} 方法来关闭应用上下文。
-	 * @param context the application context to manage
+	 * @param context 要管理的应用上下文
 	 * @see #initWebApplicationContext(ServletContext)
 	 * @see #closeWebApplicationContext(ServletContext)
 	 */
@@ -231,8 +231,8 @@ public class ContextLoader {
 	 * 使用构造时提供的应用上下文，或者根据
 	 * "{@link #CONTEXT_CLASS_PARAM contextClass}" 和
 	 * "{@link #CONFIG_LOCATION_PARAM contextConfigLocation}" 上下文参数新建一个。
-	 * @param servletContext current servlet context
-	 * @return the new WebApplicationContext
+	 * @param servletContext 当前 Servlet 上下文
+	 * @return 新的 WebApplicationContext
 	 * @see #ContextLoader(WebApplicationContext)
 	 * @see #CONTEXT_CLASS_PARAM
 	 * @see #CONFIG_LOCATION_PARAM
@@ -300,8 +300,8 @@ public class ContextLoader {
 	 * 类。
 	 * <p>此实现要求自定义上下文实现 {@link ConfigurableWebApplicationContext} 接口。可在子类中覆盖。
 	 * <p>此外，在刷新上下文之前还会调用 {@link #customizeContext}，允许子类对上下文执行自定义修改。
-	 * @param sc current servlet context
-	 * @return the root WebApplicationContext
+	 * @param sc 当前 Servlet 上下文
+	 * @return 根 WebApplicationContext
 	 * @see ConfigurableWebApplicationContext
 	 */
 	protected WebApplicationContext createWebApplicationContext(ServletContext sc) {
@@ -316,8 +316,8 @@ public class ContextLoader {
 	/**
 	 * 返回要使用的 WebApplicationContext 实现类，即默认的 XmlWebApplicationContext，或者在指定了自定义上下文类
 	 * 时使用该自定义类。
-	 * @param servletContext current servlet context
-	 * @return the WebApplicationContext implementation class to use
+	 * @param servletContext 当前 Servlet 上下文
+	 * @return 要使用的 WebApplicationContext 实现类
 	 * @see #CONTEXT_CLASS_PARAM
 	 * @see org.springframework.web.context.support.XmlWebApplicationContext
 	 */
@@ -400,8 +400,8 @@ public class ContextLoader {
 	 * <p>任何实现了 {@link org.springframework.core.Ordered Ordered} 或标注了 @{@link
 	 * org.springframework.core.annotation.Order Order} 的 {@code ApplicationContextInitializers}
 	 * 都会按相应顺序排序。
-	 * @param sc the current servlet context
-	 * @param wac the newly created application context
+	 * @param sc 当前 Servlet 上下文
+	 * @param wac 新创建的应用上下文
 	 * @see #CONTEXT_INITIALIZER_CLASSES_PARAM
 	 * @see ApplicationContextInitializer#initialize(ConfigurableApplicationContext)
 	 */
@@ -431,7 +431,7 @@ public class ContextLoader {
 	/**
 	 * 返回要使用的 {@link ApplicationContextInitializer} 实现类（如果有通过
 	 * {@link #CONTEXT_INITIALIZER_CLASSES_PARAM} 指定的实现类）。
-	 * @param servletContext current servlet context
+	 * @param servletContext 当前 Servlet 上下文
 	 * @see #CONTEXT_INITIALIZER_CLASSES_PARAM
 	 */
 	protected List<Class<ApplicationContextInitializer<ConfigurableApplicationContext>>>
@@ -478,8 +478,8 @@ public class ContextLoader {
 	 * <p>在此处加载父上下文的主要原因，是允许多个根 Web 应用上下文都作为共享 EAR 上下文的子上下文，或者同时共
 	 * 享对 EJB 可见的同一个父上下文。对于纯 Web 应用，通常无需为根 Web 应用上下文设置父上下文。
 	 * <p>自 5.0 起，默认实现仅返回 {@code null}。
-	 * @param servletContext current servlet context
-	 * @return the parent application context, or {@code null} if none
+	 * @param servletContext 当前 Servlet 上下文
+	 * @return 父应用上下文；如果没有则为 {@code null}
 	 */
 	@Nullable
 	protected ApplicationContext loadParentContext(ServletContext servletContext) {
@@ -489,7 +489,7 @@ public class ContextLoader {
 	/**
 	 * 关闭针对给定 Servlet 上下文的 Spring Web 应用上下文。<p>如果覆盖了
 	 * {@link #loadParentContext(ServletContext)}，则可能也需要覆盖此方法。
-	 * @param servletContext the ServletContext that the WebApplicationContext runs in
+	 * @param servletContext WebApplicationContext 运行所在的 ServletContext
 	 */
 	public void closeWebApplicationContext(ServletContext servletContext) {
 		servletContext.log("Closing Spring root WebApplicationContext");
@@ -514,8 +514,7 @@ public class ContextLoader {
 	/**
 	 * 获取当前线程（即当前线程的上下文 ClassLoader，它需要是 Web 应用的 ClassLoader）的 Spring 根 Web 应用上下
 	 * 文。
-	 * @return the current root web application context, or {@code null}
-	 * if none found
+	 * @return 当前的根 Web 应用上下文；如果未找到则为 {@code null}
 	 * @see org.springframework.web.context.support.SpringBeanAutowiringSupport
 	 */
 	@Nullable

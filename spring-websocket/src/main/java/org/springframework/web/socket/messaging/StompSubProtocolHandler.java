@@ -124,7 +124,7 @@ public class StompSubProtocolHandler implements SubProtocolHandler, ApplicationE
 	 * 或阻止发送错误消息。
 	 * <p>默认情况下未配置此项，此时会发送一个 ERROR 帧，
 	 * 并在消息头中反映该错误。
-	 * @param errorHandler the error handler
+	 * @param errorHandler 错误处理器
 	 */
 	public void setErrorHandler(StompSubProtocolErrorHandler errorHandler) {
 		this.errorHandler = errorHandler;

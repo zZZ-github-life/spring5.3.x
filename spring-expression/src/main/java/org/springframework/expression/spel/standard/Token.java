@@ -38,8 +38,8 @@ class Token {
 
 	/**
 	 * 当 token 没有特定数据（例如 TRUE 或 '+'）时使用的构造器。
-	 * @param startPos the exact start
-	 * @param endPos the index to the last character
+	 * @param startPos 精确的起始位置
+	 * @param endPos 最后一个字符的索引
 	 */
 	Token(TokenKind tokenKind, int startPos, int endPos) {
 		this.kind = tokenKind;

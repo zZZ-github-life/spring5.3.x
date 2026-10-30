@@ -53,8 +53,8 @@ public class BeanFactoryConnectionFactoryLookup implements ConnectionFactoryLook
 	 * 因为所提供的 {@link BeanFactory} 会被创建它的 {@link BeanFactory}
 	 * 替换（参见 {@link BeanFactoryAware} 约定）。因此，只有在 Spring IoC
 	 * 容器之外使用此类时才应使用此构造函数。
-	 * @param beanFactory the bean factory to be used to lookup {@link ConnectionFactory
-	 * ConnectionFactories}
+	 * @param beanFactory 用于查找 {@link ConnectionFactory ConnectionFactories} 的
+	 * Bean 工厂
 	 */
 	public BeanFactoryConnectionFactoryLookup(BeanFactory beanFactory) {
 		Assert.notNull(beanFactory, "BeanFactory must not be null");

@@ -27,7 +27,7 @@ public class ValidationFailureException extends XmlMappingException {
 
 	/**
 	 * 使用指定的详细消息构造一个 {@code ValidationFailureException}。
-	 * @param msg the detail message
+	 * @param msg 详细信息
 	 */
 	public ValidationFailureException(String msg) {
 		super(msg);
@@ -35,8 +35,8 @@ public class ValidationFailureException extends XmlMappingException {
 
 	/**
 	 * 使用指定的详细消息和嵌套异常构造一个 {@code ValidationFailureException}。
-	 * @param msg the detail message
-	 * @param cause the nested exception
+	 * @param msg 详细信息
+	 * @param cause 嵌套异常
 	 */
 	public ValidationFailureException(String msg, Throwable cause) {
 		super(msg, cause);

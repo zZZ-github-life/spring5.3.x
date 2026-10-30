@@ -42,7 +42,7 @@ public class SimpleInstrumentableClassLoader extends OverridingClassLoader {
 
 	/**
 	 * 为给定的 ClassLoader 创建一个新的 SimpleInstrumentableClassLoader。
-	 * @param parent the ClassLoader to build an instrumentable ClassLoader for
+	 * @param parent 要为其构建可插桩 ClassLoader 的 ClassLoader
 	 */
 	public SimpleInstrumentableClassLoader(@Nullable ClassLoader parent) {
 		super(parent);
@@ -52,7 +52,7 @@ public class SimpleInstrumentableClassLoader extends OverridingClassLoader {
 
 	/**
 	 * 添加一个由该 ClassLoader 应用的 {@link ClassFileTransformer}。
-	 * @param transformer the {@link ClassFileTransformer} to register
+	 * @param transformer 要注册的 {@link ClassFileTransformer}
 	 */
 	public void addTransformer(ClassFileTransformer transformer) {
 		this.weavingTransformer.addTransformer(transformer);

@@ -35,7 +35,7 @@ public class IncorrectResultSizeDataAccessException extends DataRetrievalFailure
 
 	/**
 	 * IncorrectResultSizeDataAccessException 的构造方法。
-	 * @param expectedSize the expected result size
+	 * @param expectedSize 预期的结果大小
 	 */
 	public IncorrectResultSizeDataAccessException(int expectedSize) {
 		super("Incorrect result size: expected " + expectedSize);
@@ -45,8 +45,8 @@ public class IncorrectResultSizeDataAccessException extends DataRetrievalFailure
 
 	/**
 	 * IncorrectResultSizeDataAccessException 的构造方法。
-	 * @param expectedSize the expected result size
-	 * @param actualSize the actual result size (or -1 if unknown)
+	 * @param expectedSize 预期的结果大小
+	 * @param actualSize 实际结果大小（如果未知则为 -1）
 	 */
 	public IncorrectResultSizeDataAccessException(int expectedSize, int actualSize) {
 		super("Incorrect result size: expected " + expectedSize + ", actual " + actualSize);
@@ -56,8 +56,8 @@ public class IncorrectResultSizeDataAccessException extends DataRetrievalFailure
 
 	/**
 	 * IncorrectResultSizeDataAccessException 的构造方法。
-	 * @param msg the detail message
-	 * @param expectedSize the expected result size
+	 * @param msg 详细信息
+	 * @param expectedSize 预期的结果大小
 	 */
 	public IncorrectResultSizeDataAccessException(String msg, int expectedSize) {
 		super(msg);
@@ -67,9 +67,9 @@ public class IncorrectResultSizeDataAccessException extends DataRetrievalFailure
 
 	/**
 	 * IncorrectResultSizeDataAccessException 的构造方法。
-	 * @param msg the detail message
-	 * @param expectedSize the expected result size
-	 * @param ex the wrapped exception
+	 * @param msg 详细信息
+	 * @param expectedSize 预期的结果大小
+	 * @param ex 被包装的异常
 	 */
 	public IncorrectResultSizeDataAccessException(String msg, int expectedSize, Throwable ex) {
 		super(msg, ex);
@@ -79,9 +79,9 @@ public class IncorrectResultSizeDataAccessException extends DataRetrievalFailure
 
 	/**
 	 * IncorrectResultSizeDataAccessException 的构造方法。
-	 * @param msg the detail message
-	 * @param expectedSize the expected result size
-	 * @param actualSize the actual result size (or -1 if unknown)
+	 * @param msg 详细信息
+	 * @param expectedSize 预期的结果大小
+	 * @param actualSize 实际结果大小（如果未知则为 -1）
 	 */
 	public IncorrectResultSizeDataAccessException(String msg, int expectedSize, int actualSize) {
 		super(msg);
@@ -91,10 +91,10 @@ public class IncorrectResultSizeDataAccessException extends DataRetrievalFailure
 
 	/**
 	 * IncorrectResultSizeDataAccessException 的构造方法。
-	 * @param msg the detail message
-	 * @param expectedSize the expected result size
-	 * @param actualSize the actual result size (or -1 if unknown)
-	 * @param ex the wrapped exception
+	 * @param msg 详细信息
+	 * @param expectedSize 预期的结果大小
+	 * @param actualSize 实际结果大小（如果未知则为 -1）
+	 * @param ex 被包装的异常
 	 */
 	public IncorrectResultSizeDataAccessException(String msg, int expectedSize, int actualSize, Throwable ex) {
 		super(msg, ex);

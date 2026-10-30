@@ -33,7 +33,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <T> the type of elements in the input stream
+ * @param <T> 输入流中的元素类型
  */
 public interface HttpMessageEncoder<T> extends Encoder<T> {
 
@@ -45,14 +45,13 @@ public interface HttpMessageEncoder<T> extends Encoder<T> {
 
 	/**
 	 * 根据服务器请求或目标控制器方法参数上的注解获取解码提示。
-	 * @param actualType the actual source type to encode, possibly a reactive
-	 * wrapper and sourced from {@link org.springframework.core.MethodParameter},
-	 * i.e. providing access to method annotations.
-	 * @param elementType the element type within {@code Flux/Mono} that we're
-	 * trying to encode.
-	 * @param request the current request
-	 * @param response the current response
-	 * @return a Map with hints, possibly empty
+	 * @param actualType 要编码的实际源类型，可能是响应式包装类型，
+	 * 来源于 {@link org.springframework.core.MethodParameter}，
+	 * 即提供对方法注解的访问。
+	 * @param elementType 我们要编码的 {@code Flux/Mono} 中的元素类型。
+	 * @param request 当前请求
+	 * @param response 当前响应
+	 * @return 包含提示的 Map，可能为空
 	 */
 	default Map<String, Object> getEncodeHints(ResolvableType actualType, ResolvableType elementType,
 			@Nullable MediaType mediaType, ServerHttpRequest request, ServerHttpResponse response) {

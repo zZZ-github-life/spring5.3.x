@@ -124,7 +124,7 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 
 	/**
 	 * 创建一个新的 DataSourceTransactionManager 实例。
-	 * @param dataSource the JDBC DataSource to manage transactions for
+	 * @param dataSource 要为其管理事务的 JDBC DataSource
 	 */
 	public DataSourceTransactionManager(DataSource dataSource) {
 		this();
@@ -171,8 +171,8 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 
 	/**
 	 * 获取实际使用的 DataSource。
-	 * @return the DataSource (never {@code null})
-	 * @throws IllegalStateException in case of no DataSource set
+	 * @return 该 DataSource（永不为 {@code null}）
+	 * @throws IllegalStateException 如果未设置 DataSource
 	 * @since 5.0
 	 */
 	protected DataSource obtainDataSource() {
@@ -389,9 +389,9 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 	 * <p>"SET TRANSACTION READ ONLY" 能被 Oracle、MySQL 和 Postgres 理解，
 	 * 也可能适用于其他数据库。如果你希望调整这一处理方式，
 	 * 请相应地重写此方法。
-	 * @param con the transactional JDBC Connection
-	 * @param definition the current transaction definition
-	 * @throws SQLException if thrown by JDBC API
+	 * @param con 事务性 JDBC Connection
+	 * @param definition 当前事务定义
+	 * @throws SQLException 如果由 JDBC API 抛出
 	 * @since 4.3.7
 	 * @see #setEnforceReadOnly
 	 */
@@ -410,10 +410,10 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 	 * 以便从 {@link #commit}/{@link #rollback} 调用中传播。
 	 * <p>默认实现抛出 {@link TransactionSystemException}。
 	 * 子类可以专门识别并发失败等情况。
-	 * @param task the task description (commit or rollback)
-	 * @param ex the SQLException thrown from commit/rollback
-	 * @return the translated exception to throw, either a
-	 * {@link org.springframework.dao.DataAccessException} or a
+	 * @param task 任务描述（提交或回滚）
+	 * @param ex 从 commit/rollback 抛出的 SQLException
+	 * @return 要抛出的转换后异常，
+	 * 可以是 {@link org.springframework.dao.DataAccessException} 或
 	 * {@link org.springframework.transaction.TransactionException}
 	 * @since 5.3
 	 */

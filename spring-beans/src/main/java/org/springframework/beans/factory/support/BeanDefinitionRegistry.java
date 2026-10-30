@@ -46,11 +46,10 @@ public interface BeanDefinitionRegistry extends AliasRegistry {
 
 	/**
 	 * 向此注册表注册新的 Bean 定义。必须支持 RootBeanDefinition 和 ChildBeanDefinition。
-	 * @param beanName the name of the bean instance to register
-	 * @param beanDefinition definition of the bean instance to register
-	 * @throws BeanDefinitionStoreException if the BeanDefinition is invalid
-	 * @throws BeanDefinitionOverrideException if there is already a BeanDefinition
-	 * for the specified bean name and we are not allowed to override it
+	 * @param beanName 要注册的 Bean 实例的名称
+	 * @param beanDefinition 要注册的 Bean 实例的定义
+	 * @throws BeanDefinitionStoreException 如果 BeanDefinition 无效
+	 * @throws BeanDefinitionOverrideException 如果指定的 Bean 名称已存在 BeanDefinition 且不允许覆盖
 	 * @see GenericBeanDefinition
 	 * @see RootBeanDefinition
 	 * @see ChildBeanDefinition
@@ -60,43 +59,42 @@ public interface BeanDefinitionRegistry extends AliasRegistry {
 
 	/**
 	 * 移除给定名称对应的 BeanDefinition。
-	 * @param beanName the name of the bean instance to register
-	 * @throws NoSuchBeanDefinitionException if there is no such bean definition
+	 * @param beanName 要注册的 Bean 实例的名称
+	 * @throws NoSuchBeanDefinitionException 如果不存在这样的 Bean 定义
 	 */
 	void removeBeanDefinition(String beanName) throws NoSuchBeanDefinitionException;
 
 	/**
 	 * 返回给定 bean 名称对应的 BeanDefinition。
-	 * @param beanName name of the bean to find a definition for
-	 * @return the BeanDefinition for the given name (never {@code null})
-	 * @throws NoSuchBeanDefinitionException if there is no such bean definition
+	 * @param beanName 要查找定义的 Bean 名称
+	 * @return 给定名称对应的 BeanDefinition（永不为 {@code null}）
+	 * @throws NoSuchBeanDefinitionException 如果不存在这样的 Bean 定义
 	 */
 	BeanDefinition getBeanDefinition(String beanName) throws NoSuchBeanDefinitionException;
 
 	/**
 	 * 检查此注册表中是否包含给定名称的 Bean 定义。
-	 * @param beanName the name of the bean to look for
-	 * @return if this registry contains a bean definition with the given name
+	 * @param beanName 要查找的 Bean 名称
+	 * @return 如果此注册表包含具有给定名称的 Bean 定义，则返回 true
 	 */
 	boolean containsBeanDefinition(String beanName);
 
 	/**
 	 * 返回此注册表中定义的所有 bean 的名称。
-	 * @return the names of all beans defined in this registry,
-	 * or an empty array if none defined
+	 * @return 此注册表中定义的所有 Bean 的名称，如果没有定义任何 Bean 则为空数组
 	 */
 	String[] getBeanDefinitionNames();
 
 	/**
 	 * 返回注册表中定义的 bean 数量。
-	 * @return the number of beans defined in the registry
+	 * @return 注册表中定义的 Bean 数量
 	 */
 	int getBeanDefinitionCount();
 
 	/**
 	 * 确定给定 bean 名称是否已在此注册表中使用，即该名称下是否注册了本地 bean 或别名。
-	 * @param beanName the name to check
-	 * @return whether the given bean name is already in use
+	 * @param beanName 要检查的名称
+	 * @return 给定的 Bean 名称是否已被使用
 	 */
 	boolean isBeanNameInUse(String beanName);
 

@@ -30,16 +30,16 @@ public interface HandlerResultHandler {
 
 	/**
 	 * 此处理器是否支持给定的 {@link HandlerResult}。
-	 * @param result the result object to check
-	 * @return whether this object can use the given result
+	 * @param result 要检查的结果对象
+	 * @return 此对象能否使用给定的结果
 	 */
 	boolean supports(HandlerResult result);
 
 	/**
 	 * 处理给定的结果，修改响应头并/或向响应写入数据。
-	 * @param exchange current server exchange
-	 * @param result the result from the handling
-	 * @return {@code Mono<Void>} to indicate when request handling is complete.
+	 * @param exchange 当前的服务器交换
+	 * @param result 处理得到的结果
+	 * @return {@code Mono<Void>}，用于指示请求处理何时完成。
 	 */
 	Mono<Void> handleResult(ServerWebExchange exchange, HandlerResult result);
 

@@ -84,7 +84,7 @@ public interface SmartContextLoader extends ContextLoader {
 	 * {@code locations} 或 {@code classes} 属性。因此，将
 	 * {@code locations} 或 {@code classes} 属性保留为空表示
 	 * 此 {@code SmartContextLoader} 无法生成或检测到默认值。
-	 * @param configAttributes the context configuration attributes to process
+	 * @param configAttributes 要处理的上下文配置属性
 	 */
 	void processContextConfiguration(ContextConfigurationAttributes configAttributes);
 
@@ -109,10 +109,9 @@ public interface SmartContextLoader extends ContextLoader {
 	 * 实例将在 JVM 关闭时自动关闭。这样可以
 	 * 释放上下文中 Bean 持有的外部资源（例如
 	 * 临时文件）。
-	 * @param mergedConfig the merged context configuration to use to load the
-	 * application context
-	 * @return a new application context
-	 * @throws Exception if context loading failed
+	 * @param mergedConfig 用于加载应用上下文的合并上下文配置
+	 * @return 新的应用上下文
+	 * @throws Exception 如果上下文加载失败
 	 * @see #processContextConfiguration(ContextConfigurationAttributes)
 	 * @see org.springframework.context.annotation.AnnotationConfigUtils
 	 * #registerAnnotationConfigProcessors(org.springframework.beans.factory.support.BeanDefinitionRegistry)

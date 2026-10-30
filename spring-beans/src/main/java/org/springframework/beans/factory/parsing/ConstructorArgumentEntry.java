@@ -39,9 +39,8 @@ public class ConstructorArgumentEntry implements ParseState.Entry {
 
 	/**
 	 * 创建 {@link ConstructorArgumentEntry} 类的新实例，表示位于给定 {@code index} 处的构造器参数。
-	 * @param index the index of the constructor argument
-	 * @throws IllegalArgumentException if the supplied {@code index}
-	 * is less than zero
+	 * @param index 构造器参数的索引
+	 * @throws IllegalArgumentException 如果提供的 {@code index} 小于零
 	 */
 	public ConstructorArgumentEntry(int index) {
 		Assert.isTrue(index >= 0, "Constructor argument index must be greater than or equal to zero");

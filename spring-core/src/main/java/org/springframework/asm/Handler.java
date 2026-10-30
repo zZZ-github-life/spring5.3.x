@@ -70,12 +70,11 @@ final class Handler {
   /**
    * 构造一个新的 Handler。
    *
-   * @param startPc the start_pc field of this JVMS exception_table entry.
-   * @param endPc the end_pc field of this JVMS exception_table entry.
-   * @param handlerPc the handler_pc field of this JVMS exception_table entry.
-   * @param catchType The catch_type field of this JVMS exception_table entry.
-   * @param catchTypeDescriptor The internal name of the type of exceptions handled by this handler,
-   *     or {@literal null} to catch any exceptions.
+   * @param startPc 此 JVMS exception_table 条目的 start_pc 字段。
+   * @param endPc 此 JVMS exception_table 条目的 end_pc 字段。
+   * @param handlerPc 此 JVMS exception_table 条目的 handler_pc 字段。
+   * @param catchType 此 JVMS exception_table 条目的 catch_type 字段。
+   * @param catchTypeDescriptor 此处理器所处理异常类型的内部名称，或 {@literal null} 以捕获所有异常。
    */
   Handler(
       final Label startPc,
@@ -93,9 +92,9 @@ final class Handler {
   /**
    * 根据给定的 Handler 构造一个新的 Handler，其作用域不同。
    *
-   * @param handler an existing Handler.
-   * @param startPc the start_pc field of this JVMS exception_table entry.
-   * @param endPc the end_pc field of this JVMS exception_table entry.
+   * @param handler 一个现有的 Handler。
+   * @param startPc 此 JVMS exception_table 条目的 start_pc 字段。
+   * @param endPc 此 JVMS exception_table 条目的 end_pc 字段。
    */
   Handler(final Handler handler, final Label startPc, final Label endPc) {
     this(startPc, endPc, handler.handlerPc, handler.catchType, handler.catchTypeDescriptor);
@@ -105,10 +104,10 @@ final class Handler {
   /**
    * 从以给定元素开头的 Handler 列表中移除 start 与 end 之间的范围。
    *
-   * @param firstHandler the beginning of a Handler list. May be {@literal null}.
-   * @param start the start of the range to be removed.
-   * @param end the end of the range to be removed. Maybe {@literal null}.
-   * @return the exception handler list with the start-end range removed.
+   * @param firstHandler Handler 列表的起始。可以为 {@literal null}。
+   * @param start 要移除范围的起始。
+   * @param end 要移除范围的结束。可以为 {@literal null}。
+   * @return 移除了 start-end 范围的异常处理器列表。
    */
   static Handler removeRange(final Handler firstHandler, final Label start, final Label end) {
     if (firstHandler == null) {
@@ -146,8 +145,8 @@ final class Handler {
   /**
    * 返回以给定元素开头的 Handler 列表的元素数量。
    *
-   * @param firstHandler the beginning of a Handler list. May be {@literal null}.
-   * @return the number of elements of the Handler list that begins with 'handler'.
+   * @param firstHandler Handler 列表的起始。可以为 {@literal null}。
+   * @return 以 'handler' 开头的 Handler 列表的元素数量。
    */
   static int getExceptionTableLength(final Handler firstHandler) {
     int length = 0;
@@ -163,8 +162,8 @@ final class Handler {
    * 返回与以给定元素开头的 Handler 列表相对应的 JVMS exception_table 的字节大小。<i>这包括
    * exception_table_length 字段。</i>
    *
-   * @param firstHandler the beginning of a Handler list. May be {@literal null}.
-   * @return the size in bytes of the exception_table_length and exception_table structures.
+   * @param firstHandler Handler 列表的起始。可以为 {@literal null}。
+   * @return exception_table_length 和 exception_table 结构的字节大小。
    */
   static int getExceptionTableSize(final Handler firstHandler) {
     return 2 + 8 * getExceptionTableLength(firstHandler);
@@ -174,8 +173,8 @@ final class Handler {
    * 放入与以给定元素开头的 Handler 列表相对应的 JVMS exception_table。<i>这包括
    * exception_table_length 字段。</i>
    *
-   * @param firstHandler the beginning of a Handler list. May be {@literal null}.
-   * @param output where the exception_table_length and exception_table structures must be put.
+   * @param firstHandler Handler 列表的起始。可以为 {@literal null}。
+   * @param output 放置 exception_table_length 和 exception_table 结构的位置。
    */
   static void putExceptionTable(final Handler firstHandler, final ByteVector output) {
     output.putShort(getExceptionTableLength(firstHandler));

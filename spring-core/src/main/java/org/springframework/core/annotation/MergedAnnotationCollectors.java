@@ -53,9 +53,8 @@ public abstract class MergedAnnotationCollectors {
 	 * 版本的 {@link LinkedHashSet} 中。<p>此方法返回的收集器实际上等同于
 	 * {@code Collectors.mapping(MergedAnnotation::synthesize, Collectors.toCollection(LinkedHashSet::new))}，
 	 * 但避免了创建复合收集器。
-	 * @param <A> the annotation type
-	 * @return a {@link Collector} which collects and synthesizes the
-	 * annotations into a {@link Set}
+	 * @param <A> 注解类型
+	 * @return 一个 {@link Collector}，用于收集并合成注解到一个 {@link Set} 中
 	 */
 	public static <A extends Annotation> Collector<MergedAnnotation<A>, ?, Set<A>> toAnnotationSet() {
 		return Collector.of(LinkedHashSet::new, (set, annotation) -> set.add(annotation.synthesize()),
@@ -65,9 +64,8 @@ public abstract class MergedAnnotationCollectors {
 	/**
 	 * 创建新的 {@link Collector}，将合并注解累积到包含 {@linkplain MergedAnnotation#synthesize() 合成}
 	 * 版本的 {@link Annotation} 数组中。
-	 * @param <A> the annotation type
-	 * @return a {@link Collector} which collects and synthesizes the
-	 * annotations into an {@code Annotation[]}
+	 * @param <A> 注解类型
+	 * @return 一个 {@link Collector}，用于收集并合成注解到一个 {@code Annotation[]} 中
 	 * @see #toAnnotationArray(IntFunction)
 	 */
 	public static <A extends Annotation> Collector<MergedAnnotation<A>, ?, Annotation[]> toAnnotationArray() {
@@ -77,12 +75,10 @@ public abstract class MergedAnnotationCollectors {
 	/**
 	 * 创建新的 {@link Collector}，将合并注解累积到包含 {@linkplain MergedAnnotation#synthesize() 合成}
 	 * 版本的 {@link Annotation} 数组中。
-	 * @param <A> the annotation type
-	 * @param <R> the resulting array type
-	 * @param generator a function which produces a new array of the desired
-	 * type and the provided length
-	 * @return a {@link Collector} which collects and synthesizes the
-	 * annotations into an annotation array
+	 * @param <A> 注解类型
+	 * @param <R> 结果数组类型
+	 * @param generator 一个函数，用于按所需类型和给定长度创建新数组
+	 * @return 一个 {@link Collector}，用于收集并合成注解到一个注解数组中
 	 * @see #toAnnotationArray
 	 */
 	public static <R extends Annotation, A extends R> Collector<MergedAnnotation<A>, ?, R[]> toAnnotationArray(
@@ -96,10 +92,9 @@ public abstract class MergedAnnotationCollectors {
 	 * 创建新的 {@link Collector}，将合并注解累积到 {@link MultiValueMap} 中，其条目由每个合并注解
 	 * {@linkplain MergedAnnotation#asMap(Adapt...) 作为映射}
 	 * {@linkplain MultiValueMap#add(Object, Object) 添加}。
-	 * @param <A> the annotation type
-	 * @param adaptations the adaptations that should be applied to the annotation values
-	 * @return a {@link Collector} which collects and synthesizes the
-	 * annotations into a {@link LinkedMultiValueMap}
+	 * @param <A> 注解类型
+	 * @param adaptations 应应用于注解值的适配
+	 * @return 一个 {@link Collector}，用于收集并合成注解到一个 {@link LinkedMultiValueMap} 中
 	 * @see #toMultiValueMap(Function, MergedAnnotation.Adapt...)
 	 */
 	public static <A extends Annotation> Collector<MergedAnnotation<A>, ?, MultiValueMap<String, Object>> toMultiValueMap(
@@ -112,11 +107,10 @@ public abstract class MergedAnnotationCollectors {
 	 * 创建新的 {@link Collector}，将合并注解累积到 {@link MultiValueMap} 中，其条目由每个合并注解
 	 * {@linkplain MergedAnnotation#asMap(Adapt...) 作为映射}
 	 * {@linkplain MultiValueMap#add(Object, Object) 添加}。
-	 * @param <A> the annotation type
-	 * @param finisher the finisher function for the new {@link MultiValueMap}
-	 * @param adaptations the adaptations that should be applied to the annotation values
-	 * @return a {@link Collector} which collects and synthesizes the
-	 * annotations into a {@link LinkedMultiValueMap}
+	 * @param <A> 注解类型
+	 * @param finisher 用于新 {@link MultiValueMap} 的收尾函数
+	 * @param adaptations 应应用于注解值的适配
+	 * @return 一个 {@link Collector}，用于收集并合成注解到一个 {@link LinkedMultiValueMap} 中
 	 * @see #toMultiValueMap(MergedAnnotation.Adapt...)
 	 */
 	public static <A extends Annotation> Collector<MergedAnnotation<A>, ?, MultiValueMap<String, Object>> toMultiValueMap(

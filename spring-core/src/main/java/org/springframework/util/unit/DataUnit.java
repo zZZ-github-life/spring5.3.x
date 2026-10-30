@@ -81,10 +81,10 @@ public enum DataUnit {
 
 	/**
 	 * 返回与指定 {@code suffix} 匹配的 {@link DataUnit}。
-	 * @param suffix one of the standard suffixes
-	 * @return the {@link DataUnit} matching the specified {@code suffix}
-	 * @throws IllegalArgumentException if the suffix does not match the suffix
-	 * of any of this enum's constants
+	 * @param suffix 标准后缀之一
+	 * @return 与指定 {@code suffix} 匹配的 {@link DataUnit}
+	 * @throws IllegalArgumentException 如果该后缀与该枚举任何常量的后缀
+	 * 都不匹配
 	 */
 	public static DataUnit fromSuffix(String suffix) {
 		for (DataUnit candidate : values()) {

@@ -133,7 +133,7 @@ public class RedirectView extends AbstractUrlBasedView {
 	 * <p>所有其他主机将被视为外部主机。
 	 * <p>实际上，这提供了一种方式：对于具有主机且该主机未列为已知主机的 URL，关闭编码。
 	 * <p>如果未设置（默认），则对所有重定向 URL 进行编码。
-	 * @param hosts one or more application hosts
+	 * @param hosts 一个或多个应用主机
 	 */
 	public void setHosts(@Nullable String... hosts) {
 		this.hosts = hosts;
@@ -266,8 +266,8 @@ public class RedirectView extends AbstractUrlBasedView {
 
 	/**
 	 * 向 HTTP 客户端发送重定向。
-	 * @param targetUrl the target URL to redirect to
-	 * @param exchange current exchange
+	 * @param targetUrl 要重定向到的目标 URL
+	 * @param exchange 当前交换
 	 */
 	protected Mono<Void> sendRedirect(String targetUrl, ServerWebExchange exchange) {
 		String transformedUrl = (isRemoteHost(targetUrl) ? targetUrl : exchange.transformUrl(targetUrl));
@@ -280,9 +280,9 @@ public class RedirectView extends AbstractUrlBasedView {
 	/**
 	 * 给定 targetUrl 是否具有“外部”系统主机，在这种情况下不会应用 {@link javax.servlet.http.HttpServletResponse#encodeRedirectURL}。
 	 * <p>如果配置了 {@link #setHosts(String[])} 属性且目标 URL 的主机不匹配，则此方法返回 {@code true}。
-	 * @param targetUrl the target redirect URL
-	 * @return {@code true} if the target URL has a remote host, {@code false} if
-	 * the URL does not have a host or the "host" property is not configured
+	 * @param targetUrl 目标重定向 URL
+	 * @return 如果目标 URL 具有远程主机则为 {@code true}；
+	 * 如果该 URL 没有主机或未配置 "host" 属性则为 {@code false}
 	 */
 	protected boolean isRemoteHost(String targetUrl) {
 		if (ObjectUtils.isEmpty(this.hosts)) {

@@ -40,9 +40,9 @@ public class BeanDefinitionOverrideException extends BeanDefinitionStoreExceptio
 
 	/**
 	 * 为给定的新定义和现有定义创建一个新的 BeanDefinitionOverrideException。
-	 * @param beanName the name of the bean
-	 * @param beanDefinition the newly registered bean definition
-	 * @param existingDefinition the existing bean definition for the same name
+	 * @param beanName 该 Bean 的名称
+	 * @param beanDefinition 新注册的 Bean 定义
+	 * @param existingDefinition 同名 Bean 的现有定义
 	 */
 	public BeanDefinitionOverrideException(
 			String beanName, BeanDefinition beanDefinition, BeanDefinition existingDefinition) {

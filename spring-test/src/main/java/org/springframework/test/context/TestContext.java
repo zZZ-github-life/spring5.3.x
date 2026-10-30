@@ -57,7 +57,7 @@ public interface TestContext extends AttributeAccessor, Serializable {
 	 * 覆写此方法并提供更有意义的实现。请注意，
 	 * Spring 中标准的 {@code TestContext} 实现已适当地
 	 * 覆写了此方法。
-	 * @return {@code true} if the application context has already been loaded
+	 * @return 如果应用上下文已加载，则返回 {@code true}。
 	 * @since 5.2
 	 * @see #getApplicationContext()
 	 */
@@ -70,9 +70,8 @@ public interface TestContext extends AttributeAccessor, Serializable {
 	 * {@linkplain ApplicationContext 应用程序上下文}，可能已缓存。
 	 * <p>此方法的实现负责在相应上下文尚未加载时
 	 * 加载应用程序上下文，并可能缓存该上下文。
-	 * @return the application context (never {@code null})
-	 * @throws IllegalStateException if an error occurs while retrieving the
-	 * application context
+	 * @return 应用上下文（永不为 {@code null}）
+	 * @throws IllegalStateException 在检索应用上下文时发生错误
 	 * @see #hasApplicationContext()
 	 */
 	ApplicationContext getApplicationContext();
@@ -82,7 +81,7 @@ public interface TestContext extends AttributeAccessor, Serializable {
 	 * 测试上下文的 {@linkplain ApplicationContext 应用程序上下文}。
 	 * <p>仅当此测试上下文的应用程序
 	 * 上下文{@linkplain #hasApplicationContext() 可用}时，才会发布 {@code ApplicationEvent}。
-	 * @param eventFactory factory for lazy creation of the {@code ApplicationEvent}
+	 * @param eventFactory 用于延迟创建 {@code ApplicationEvent} 的工厂
 	 * @since 5.2
 	 * @see #hasApplicationContext()
 	 * @see #getApplicationContext()
@@ -95,14 +94,14 @@ public interface TestContext extends AttributeAccessor, Serializable {
 
 	/**
 	 * 获取此测试上下文的 {@linkplain Class 测试类}。
-	 * @return the test class (never {@code null})
+	 * @return 测试类（永不为 {@code null}）
 	 */
 	Class<?> getTestClass();
 
 	/**
 	 * 获取此测试上下文的当前 {@linkplain Object 测试实例}。
 	 * <p>注意：这是一个可变属性。
-	 * @return the current test instance (never {@code null})
+	 * @return 当前测试实例（永不为 {@code null}）
 	 * @see #updateState(Object, Method, Throwable)
 	 */
 	Object getTestInstance();
@@ -110,7 +109,7 @@ public interface TestContext extends AttributeAccessor, Serializable {
 	/**
 	 * 获取此测试上下文的当前 {@linkplain Method 测试方法}。
 	 * <p>注意：这是一个可变属性。
-	 * @return the current test method (never {@code null})
+	 * @return 当前测试方法（永不为 {@code null}）
 	 * @see #updateState(Object, Method, Throwable)
 	 */
 	Method getTestMethod();
@@ -119,7 +118,7 @@ public interface TestContext extends AttributeAccessor, Serializable {
 	 * 获取在
 	 * {@linkplain #getTestMethod() 测试方法}执行期间抛出的 {@linkplain Throwable 异常}。
 	 * <p>注意：这是一个可变属性。
-	 * @return the exception that was thrown, or {@code null} if no exception was thrown
+	 * @return 抛出的异常，如果未抛出异常则为 {@code null}
 	 * @see #updateState(Object, Method, Throwable)
 	 */
 	@Nullable
@@ -131,8 +130,8 @@ public interface TestContext extends AttributeAccessor, Serializable {
 	 * 移除。
 	 * <p>如果测试修改了上下文（例如
 	 * 修改单例 Bean 的状态、修改嵌入式数据库的状态等），请执行此操作。
-	 * @param hierarchyMode the context cache clearing mode to be applied if the
-	 * context is part of a hierarchy (may be {@code null})
+	 * @param hierarchyMode 如果上下文属于层次结构则要应用的
+	 * 上下文缓存清理模式（可为 {@code null}）
 	 */
 	void markApplicationContextDirty(@Nullable HierarchyMode hierarchyMode);
 
@@ -142,10 +141,10 @@ public interface TestContext extends AttributeAccessor, Serializable {
 	 * {@link TestContextManager} 调用。
 	 * <p>注意：对此方法的并发调用可能不是线程安全的，
 	 * 具体取决于底层实现。
-	 * @param testInstance the current test instance (may be {@code null})
-	 * @param testMethod the current test method (may be {@code null})
-	 * @param testException the exception that was thrown in the test method,
-	 * or {@code null} if no exception was thrown
+	 * @param testInstance 当前测试实例（可为 {@code null}）
+	 * @param testMethod 当前测试方法（可为 {@code null}）
+	 * @param testException 测试方法中抛出的异常，
+	 * 如果未抛出异常则为 {@code null}
 	 */
 	void updateState(@Nullable Object testInstance, @Nullable Method testMethod, @Nullable Throwable testException);
 

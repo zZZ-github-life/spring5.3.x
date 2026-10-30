@@ -29,9 +29,9 @@ public interface ConnectionFactoryLookup {
 
 	/**
 	 * 获取由给定名称标识的 {@link ConnectionFactory}。
-	 * @param connectionFactoryName the name of the {@link ConnectionFactory}
-	 * @return the {@link ConnectionFactory} (never {@code null})
-	 * @throws ConnectionFactoryLookupFailureException if the lookup failed
+	 * @param connectionFactoryName {@link ConnectionFactory} 的名称
+	 * @return {@link ConnectionFactory}（永不为 {@code null}）
+	 * @throws ConnectionFactoryLookupFailureException 如果查找失败
 	 */
 	ConnectionFactory getConnectionFactory(String connectionFactoryName)
 			throws ConnectionFactoryLookupFailureException;

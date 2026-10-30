@@ -38,7 +38,7 @@ public interface ConnectionHandle {
 	/**
 	 * 释放此句柄所引用的 JDBC Connection。
 	 * <p>默认实现为空，假定连接的生命周期由外部管理。
-	 * @param con the JDBC Connection to release
+	 * @param con 要释放的 JDBC Connection
 	 */
 	default void releaseConnection(Connection con) {
 	}

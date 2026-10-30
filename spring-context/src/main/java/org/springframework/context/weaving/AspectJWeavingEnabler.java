@@ -79,8 +79,8 @@ public class AspectJWeavingEnabler
 
 	/**
 	 * 使用给定的 {@link LoadTimeWeaver} 启用 AspectJ 织入。
-	 * @param weaverToUse the LoadTimeWeaver to apply to (or {@code null} for a default weaver)
-	 * @param beanClassLoader the class loader to create a default weaver for (if necessary)
+	 * @param weaverToUse 要应用的 LoadTimeWeaver（或 {@code null} 表示使用默认织入器）
+	 * @param beanClassLoader 要为其创建默认织入器的类加载器（如果需要）
 	 */
 	public static void enableAspectJWeaving(
 			@Nullable LoadTimeWeaver weaverToUse, @Nullable ClassLoader beanClassLoader) {

@@ -124,7 +124,7 @@ public class WebClientResponseException extends WebClientException {
 
 	/**
 	 * 返回 HTTP 状态码值。
-	 * @throws IllegalArgumentException in case of an unknown HTTP status code
+	 * @throws IllegalArgumentException 在 HTTP 状态码未知的情况下
 	 */
 	public HttpStatus getStatusCode() {
 		return HttpStatus.valueOf(this.statusCode);
@@ -167,8 +167,7 @@ public class WebClientResponseException extends WebClientException {
 
 	/**
 	 * {@link #getResponseBodyAsString()} 的变体，允许指定在无法从响应的媒体类型获取字符集时回退使用的字符集。
-	 * @param defaultCharset the charset to use if the {@literal Content-Type}
-	 * of the response does not specify one.
+	 * @param defaultCharset 当响应的 {@literal Content-Type} 未指定字符集时使用的字符集。
 	 * @since 5.3.7
 	 */
 	public String getResponseBodyAsString(Charset defaultCharset) {

@@ -140,7 +140,7 @@ public final class CloseStatus implements Serializable {
 
 	/**
 	 * 创建一个新的 {@link CloseStatus} 实例。
-	 * @param code the status code
+	 * @param code 状态码
 	 */
 	public CloseStatus(int code) {
 		this(code, null);
@@ -148,8 +148,8 @@ public final class CloseStatus implements Serializable {
 
 	/**
 	 * 创建一个新的 {@link CloseStatus} 实例。
-	 * @param code the status code
-	 * @param reason the reason
+	 * @param code 状态码
+	 * @param reason 原因
 	 */
 	public CloseStatus(int code, @Nullable String reason) {
 		Assert.isTrue((code >= 1000 && code < 5000), () -> "Invalid status code: " + code);
@@ -175,8 +175,8 @@ public final class CloseStatus implements Serializable {
 
 	/**
 	 * 根据当前实例创建一个带有指定原因的新 {@link CloseStatus}。
-	 * @param reason the reason
-	 * @return a new {@link CloseStatus} instance
+	 * @param reason 原因
+	 * @return 新的 {@link CloseStatus} 实例
 	 */
 	public CloseStatus withReason(String reason) {
 		Assert.hasText(reason, "Reason must not be empty");

@@ -156,8 +156,8 @@ public class SpringContextResourceAdapter implements ResourceAdapter {
 	 * 为给定的 JCA BootstrapContext 构建 Spring ApplicationContext。
 	 * <p>默认实现构建 {@link ResourceAdapterApplicationContext}，
 	 * 并委托 {@link #loadBeanDefinitions} 实际解析指定的配置文件。
-	 * @param bootstrapContext this ResourceAdapter's BootstrapContext
-	 * @return the Spring ApplicationContext instance
+	 * @param bootstrapContext 此 ResourceAdapter 的 BootstrapContext
+	 * @return Spring ApplicationContext 实例
 	 */
 	protected ConfigurableApplicationContext createApplicationContext(BootstrapContext bootstrapContext) {
 		ResourceAdapterApplicationContext applicationContext =
@@ -178,8 +178,8 @@ public class SpringContextResourceAdapter implements ResourceAdapter {
 
 	/**
 	 * 根据指定的配置文件将 bean 定义加载到给定的注册表中。
-	 * @param registry the registry to load into
-	 * @param configLocations the parsed config locations
+	 * @param registry 要加载到的注册表
+	 * @param configLocations 解析后的配置位置
 	 * @see #setContextConfigLocation
 	 */
 	protected void loadBeanDefinitions(BeanDefinitionRegistry registry, String[] configLocations) {

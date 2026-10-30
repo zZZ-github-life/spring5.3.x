@@ -98,7 +98,7 @@ public class StandardEvaluationContext implements EvaluationContext {
 
 	/**
 	 * 创建一个使用给定根对象的 {@code StandardEvaluationContext}。
-	 * @param rootObject the root object to use
+	 * @param rootObject 要使用的根对象
 	 * @see #setRootObject
 	 */
 	public StandardEvaluationContext(@Nullable Object rootObject) {
@@ -258,9 +258,9 @@ public class StandardEvaluationContext implements EvaluationContext {
 	/**
 	 * 注册一个 {@code MethodFilter}，它将在指定类型的方法解析过程中被调用。<p>{@code MethodFilter} 可
 	 * 以移除方法和/或对方法排序，随后 SpEL 会将这些方法用作查找匹配的候选方法。
-	 * @param type the type for which the filter should be called
-	 * @param filter a {@code MethodFilter}, or {@code null} to unregister a filter for the type
-	 * @throws IllegalStateException if the {@link ReflectiveMethodResolver} is not in use
+	 * @param type 应为其调用过滤器的类型
+	 * @param filter 一个 {@code MethodFilter}；若要注销该类型的过滤器则为 {@code null}
+	 * @throws IllegalStateException 如果未使用 {@link ReflectiveMethodResolver}
 	 */
 	public void registerMethodFilter(Class<?> type, MethodFilter filter) throws IllegalStateException {
 		initMethodResolvers();

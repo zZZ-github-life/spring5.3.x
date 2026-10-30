@@ -27,8 +27,8 @@ import org.springframework.web.reactive.function.server.support.ServerRequestWra
  * 表示过滤{@linkplain HandlerFunction 处理函数}的函数。
  * @author Arjen Poutsma
  * @since 5.0
- * @param <T> the type of the {@linkplain HandlerFunction handler function} to filter
- * @param <R> the type of the response of the function
+ * @param <T> 要过滤的 {@linkplain HandlerFunction 处理函数} 的类型
+ * @param <R> 该函数响应的类型
  * @see RouterFunction#filter(HandlerFilterFunction)
  */
 @FunctionalInterface
@@ -36,18 +36,17 @@ public interface HandlerFilterFunction<T extends ServerResponse, R extends Serve
 
 	/**
 	 * 将此过滤器应用于给定的处理函数。给定的{@linkplain HandlerFunction 处理函数}表示链中的下一个实体，可以{@linkplain HandlerFunction#handle(ServerRequest) 调用}它以继续处理该实体，或不调用它以阻断链。
-	 * @param request the request
-	 * @param next the next handler or filter function in the chain
-	 * @return the filtered response
+	 * @param request 请求
+	 * @param next 链中的下一个处理函数或过滤器函数
+	 * @return 过滤后的响应
 	 * @see ServerRequestWrapper
 	 */
 	Mono<R> filter(ServerRequest request, HandlerFunction<T> next);
 
 	/**
 	 * 返回组合过滤器函数，先应用此过滤器，然后应用 {@code after} 过滤器。
-	 * @param after the filter to apply after this filter is applied
-	 * @return a composed filter that first applies this function and then applies the
-	 * {@code after} function
+	 * @param after 在此过滤器应用后应用的过滤器
+	 * @return 先应用此函数、再应用 {@code after} 函数的组合过滤器
 	 */
 	default HandlerFilterFunction<T, R> andThen(HandlerFilterFunction<T, T> after) {
 		Assert.notNull(after, "HandlerFilterFunction must not be null");
@@ -59,8 +58,8 @@ public interface HandlerFilterFunction<T extends ServerResponse, R extends Serve
 
 	/**
 	 * 将此过滤器应用于给定的处理函数，生成过滤后的处理函数。
-	 * @param handler the handler function to filter
-	 * @return the filtered handler function
+	 * @param handler 要过滤的处理函数
+	 * @return 过滤后的处理函数
 	 */
 	default HandlerFunction<R> apply(HandlerFunction<T> handler) {
 		Assert.notNull(handler, "HandlerFunction must not be null");
@@ -69,8 +68,8 @@ public interface HandlerFilterFunction<T extends ServerResponse, R extends Serve
 
 	/**
 	 * 将给定的请求处理器函数适配为仅对 {@code ServerRequest} 操作的过滤器函数。
-	 * @param requestProcessor the request processor
-	 * @return the filter adaptation of the request processor
+	 * @param requestProcessor 请求处理器
+	 * @return 请求处理器的过滤器适配
 	 */
 	static HandlerFilterFunction<?, ?> ofRequestProcessor(
 			Function<ServerRequest, Mono<ServerRequest>> requestProcessor) {
@@ -81,8 +80,8 @@ public interface HandlerFilterFunction<T extends ServerResponse, R extends Serve
 
 	/**
 	 * 将给定的响应处理器函数适配为仅对 {@code ServerResponse} 操作的过滤器函数。
-	 * @param responseProcessor the response processor
-	 * @return the filter adaptation of the request processor
+	 * @param responseProcessor 响应处理器
+	 * @return 请求处理器的过滤器适配
 	 */
 	static <T extends ServerResponse, R extends ServerResponse> HandlerFilterFunction<T, R> ofResponseProcessor(
 			Function<T, Mono<R>> responseProcessor) {

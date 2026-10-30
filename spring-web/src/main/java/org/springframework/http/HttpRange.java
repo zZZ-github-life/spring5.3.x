@@ -52,8 +52,8 @@ public abstract class HttpRange {
 
 	/**
 	 * 使用当前 {@code HttpRange} 中包含的范围信息将 {@code Resource} 转换为 {@link ResourceRegion}。
-	 * @param resource the {@code Resource} to select the region from
-	 * @return the selected region of the given {@code Resource}
+	 * @param resource 要从中选择区域的 {@code Resource}
+	 * @return 给定 {@code Resource} 的选定区域
 	 * @since 4.3
 	 */
 	public ResourceRegion toResourceRegion(Resource resource) {
@@ -70,23 +70,23 @@ public abstract class HttpRange {
 
 	/**
 	 * 在给定表示形式总长度的情况下，返回范围的起始位置。
-	 * @param length the length of the representation
-	 * @return the start of this range for the representation
+	 * @param length 表示内容的长度
+	 * @return 该范围在表示内容中的起始位置
 	 */
 	public abstract long getRangeStart(long length);
 
 	/**
 	 * 在给定表示形式总长度的情况下，返回范围的结束位置（包含）。
-	 * @param length the length of the representation
-	 * @return the end of the range for the representation
+	 * @param length 表示内容的长度
+	 * @return 该范围在表示内容中的结束位置
 	 */
 	public abstract long getRangeEnd(long length);
 
 
 	/**
 	 * 创建从给定位置到末尾的 {@code HttpRange}。
-	 * @param firstBytePos the first byte position
-	 * @return a byte range that ranges from {@code firstPos} till the end
+	 * @param firstBytePos 首个字节位置
+	 * @return 从 {@code firstPos} 一直到末尾的字节范围
 	 * @see <a href="https://tools.ietf.org/html/rfc7233#section-2.1">Byte Ranges</a>
 	 */
 	public static HttpRange createByteRange(long firstBytePos) {
@@ -95,9 +95,9 @@ public abstract class HttpRange {
 
 	/**
 	 * 创建从给定的第一个位置到最后一个位置的 {@code HttpRange}。
-	 * @param firstBytePos the first byte position
-	 * @param lastBytePos the last byte position
-	 * @return a byte range that ranges from {@code firstPos} till {@code lastPos}
+	 * @param firstBytePos 首个字节位置
+	 * @param lastBytePos 最后一个字节位置
+	 * @return 从 {@code firstPos} 到 {@code lastPos} 的字节范围
 	 * @see <a href="https://tools.ietf.org/html/rfc7233#section-2.1">Byte Ranges</a>
 	 */
 	public static HttpRange createByteRange(long firstBytePos, long lastBytePos) {
@@ -106,8 +106,8 @@ public abstract class HttpRange {
 
 	/**
 	 * 创建一个覆盖最后给定字节数的 {@code HttpRange}。
-	 * @param suffixLength the number of bytes for the range
-	 * @return a byte range that ranges over the last {@code suffixLength} number of bytes
+	 * @param suffixLength 该范围的字节数
+	 * @return 覆盖最后 {@code suffixLength} 个字节的字节范围
 	 * @see <a href="https://tools.ietf.org/html/rfc7233#section-2.1">Byte Ranges</a>
 	 */
 	public static HttpRange createSuffixRange(long suffixLength) {
@@ -117,10 +117,9 @@ public abstract class HttpRange {
 	/**
 	 * 将给定的逗号分隔字符串解析为 {@code HttpRange} 对象列表。
 	 * <p>此方法可用于解析 {@code Range} 头。
-	 * @param ranges the string to parse
-	 * @return the list of ranges
-	 * @throws IllegalArgumentException if the string cannot be parsed
-	 * or if the number of ranges is greater than 100
+	 * @param ranges 要解析的字符串
+	 * @return 范围列表
+	 * @throws IllegalArgumentException 如果字符串无法解析，或范围数量超过 100
 	 */
 	public static List<HttpRange> parseRanges(@Nullable String ranges) {
 		if (!StringUtils.hasLength(ranges)) {
@@ -166,10 +165,10 @@ public abstract class HttpRange {
 
 	/**
 	 * 将每个 {@code HttpRange} 转换为 {@code ResourceRegion}，利用 HTTP Range 信息选择给定 {@code Resource} 的相应片段。
-	 * @param ranges the list of ranges
-	 * @param resource the resource to select the regions from
-	 * @return the list of regions for the given resource
-	 * @throws IllegalArgumentException if the sum of all ranges exceeds the resource length
+	 * @param ranges 范围列表
+	 * @param resource 要从中选择区域的资源
+	 * @return 给定资源的区域列表
+	 * @throws IllegalArgumentException 如果所有范围的总和超过资源长度
 	 * @since 4.3
 	 */
 	public static List<ResourceRegion> toResourceRegions(List<HttpRange> ranges, Resource resource) {
@@ -208,8 +207,8 @@ public abstract class HttpRange {
 	/**
 	 * 返回给定 {@code HttpRange} 对象列表的字符串表示形式。
 	 * <p>此方法可用于生成 {@code Range} 头。
-	 * @param ranges the ranges to create a string of
-	 * @return the string representation
+	 * @param ranges 要为其创建字符串的范围
+	 * @return 字符串表示
 	 */
 	public static String toString(Collection<HttpRange> ranges) {
 		Assert.notEmpty(ranges, "Ranges Collection must not be empty");

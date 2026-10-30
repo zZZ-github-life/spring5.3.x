@@ -49,10 +49,8 @@ class MergedTestPropertySources {
 
 	/**
 	 * 使用所提供的 {@code locations} 和 {@code properties} 创建 {@code MergedTestPropertySources} 实例。
-	 * @param locations the resource locations of properties files; may be
-	 * empty but never {@code null}
-	 * @param properties the properties in the form of {@code key=value} pairs;
-	 * may be empty but never {@code null}
+	 * @param locations 属性文件的资源位置；可以为空，但从不为 {@code null}
+	 * @param properties 以 {@code key=value} 对形式给出的属性；可以为空，但从不为 {@code null}
 	 */
 	MergedTestPropertySources(String[] locations, String[] properties) {
 		Assert.notNull(locations, "The locations array must not be null");

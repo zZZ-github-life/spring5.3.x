@@ -58,9 +58,8 @@ public class EventPublicationInterceptor
 	/**
 	 * 设置要发布的应用事件类。<p>事件类<b>必须</b>具有一个接受单个 {@code Object} 参数（用于事件源）的
 	 * 构造函数。拦截器会传入被调用的对象。
-	 * @throws IllegalArgumentException if the supplied {@code Class} is
-	 * {@code null} or if it is not an {@code ApplicationEvent} subclass or
-	 * if it does not expose a constructor that takes a single {@code Object} argument
+	 * @throws IllegalArgumentException 如果提供的 {@code Class} 为 {@code null}，或者它不是 {@code ApplicationEvent} 的子类，
+	 * 或者未公开接受单个 {@code Object} 参数的构造器
 	 */
 	public void setApplicationEventClass(Class<?> applicationEventClass) {
 		if (ApplicationEvent.class == applicationEventClass ||

@@ -32,9 +32,9 @@ public interface ViewResolver {
 
 	/**
 	 * 将视图名称解析为 View 实例。
-	 * @param viewName the name of the view to resolve
-	 * @param locale the locale for the request
-	 * @return the resolved view or an empty stream
+	 * @param viewName 要解析的视图名称
+	 * @param locale 请求的 Locale
+	 * @return 解析后的视图或空流
 	 */
 	Mono<View> resolveViewName(String viewName, Locale locale);
 

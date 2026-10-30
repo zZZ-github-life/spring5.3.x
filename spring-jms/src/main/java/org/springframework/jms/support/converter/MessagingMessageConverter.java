@@ -58,7 +58,7 @@ public class MessagingMessageConverter implements MessageConverter, Initializing
 
 	/**
 	 * 使用指定的负载转换器创建实例。
-	 * @param payloadConverter the payload converter to use
+	 * @param payloadConverter 要使用的有效负载转换器
 	 * @since 4.3.12
 	 */
 	public MessagingMessageConverter(MessageConverter payloadConverter) {

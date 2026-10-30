@@ -39,7 +39,7 @@ public class DataBufferWrapper implements DataBuffer {
 
 	/**
 	 * 创建一个新的 {@code DataBufferWrapper}，包装给定的缓冲区。
-	 * @param delegate the buffer to wrap
+	 * @param delegate 要包装的缓冲区
 	 */
 	public DataBufferWrapper(DataBuffer delegate) {
 		Assert.notNull(delegate, "Delegate must not be null");

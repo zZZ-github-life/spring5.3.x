@@ -66,9 +66,8 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	/**
 	 * 设置此 Bean 工厂的父工厂。
 	 * <p>注意，父工厂不可更改：如果工厂实例化时父工厂尚不可用，则只应在构造函数之外设置它。
-	 * @param parentBeanFactory the parent BeanFactory
-	 * @throws IllegalStateException if this factory is already associated with
-	 * a parent BeanFactory
+	 * @param parentBeanFactory 父 BeanFactory
+	 * @throws IllegalStateException 如果此工厂已关联了父 BeanFactory 则抛出
 	 * @see #getParentBeanFactory()
 	 */
 	void setParentBeanFactory(BeanFactory parentBeanFactory) throws IllegalStateException;
@@ -77,8 +76,8 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	 * 设置用于加载 Bean 类的类加载器。默认是线程上下文类加载器。
 	 * <p>注意，此类加载器仅适用于尚未携带已解析 Bean 类的 Bean 定义。从 Spring 2.0 起默认就是这种情况：
 	 * Bean 定义只携带 Bean 类名，等到工厂处理该 Bean 定义时再解析。
-	 * @param beanClassLoader the class loader to use,
-	 * or {@code null} to suggest the default class loader
+	 * @param beanClassLoader 要使用的类加载器，
+	 * 或 {@code null} 表示建议使用默认类加载器
 	 */
 	void setBeanClassLoader(@Nullable ClassLoader beanClassLoader);
 
@@ -150,7 +149,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	 * <p>此类注册器会创建新的 PropertyEditor 实例，并在每次 Bean 创建尝试时将它们注册到给定的注册表上。
 	 * 这避免了对自定义编辑器进行同步的需要；因此，通常优先使用此方法而不是
 	 * {@link #registerCustomEditor}。
-	 * @param registrar the PropertyEditorRegistrar to register
+	 * @param registrar 要注册的 PropertyEditorRegistrar
 	 */
 	void addPropertyEditorRegistrar(PropertyEditorRegistrar registrar);
 
@@ -158,14 +157,14 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	 * 为给定类型的所有属性注册给定的自定义属性编辑器。将在工厂配置期间调用。
 	 * <p>注意，此方法会注册一个共享的自定义编辑器实例；对该实例的访问将进行同步以保证线程安全。通常更
 	 * 推荐使用 {@link #addPropertyEditorRegistrar} 而不是此方法，以避免对自定义编辑器进行同步的需要。
-	 * @param requiredType type of the property
-	 * @param propertyEditorClass the {@link PropertyEditor} class to register
+	 * @param requiredType 属性的类型
+	 * @param propertyEditorClass 要注册的 {@link PropertyEditor} 类
 	 */
 	void registerCustomEditor(Class<?> requiredType, Class<? extends PropertyEditor> propertyEditorClass);
 
 	/**
 	 * 用已注册到此 BeanFactory 的自定义编辑器初始化给定的 PropertyEditorRegistry。
-	 * @param registry the PropertyEditorRegistry to initialize
+	 * @param registry 要初始化的 PropertyEditorRegistry
 	 */
 	void copyRegisteredEditorsTo(PropertyEditorRegistry registry);
 
@@ -190,7 +189,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 
 	/**
 	 * 为嵌入值（例如注解属性）添加 String 解析器。
-	 * @param valueResolver the String resolver to apply to embedded values
+	 * @param valueResolver 要应用于内嵌值的 String 解析器
 	 * @since 3.0
 	 */
 	void addEmbeddedValueResolver(StringValueResolver valueResolver);
@@ -203,8 +202,8 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 
 	/**
 	 * 解析给定的嵌入值，例如注解属性。
-	 * @param value the value to resolve
-	 * @return the resolved value (may be the original value as-is)
+	 * @param value 要解析的值
+	 * @return 解析后的值（可能为原始值本身）
 	 * @since 3.0
 	 */
 	@Nullable
@@ -215,7 +214,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	 * <p>注意：此处提交的后处理器将按注册顺序应用；通过实现 {@link org.springframework.core.Ordered}
 	 * 接口所表达的任何排序语义都将被忽略。注意，自动检测到的后处理器（例如作为 ApplicationContext 中的
 	 * Bean）将始终在以编程方式注册的后处理器之后应用。
-	 * @param beanPostProcessor the post-processor to register
+	 * @param beanPostProcessor 要注册的后处理器
 	 */
 	void addBeanPostProcessor(BeanPostProcessor beanPostProcessor);
 
@@ -226,15 +225,15 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 
 	/**
 	 * 注册给定的作用域，由给定的 Scope 实现提供支持。
-	 * @param scopeName the scope identifier
-	 * @param scope the backing Scope implementation
+	 * @param scopeName 作用域标识符
+	 * @param scope 底层 Scope 实现
 	 */
 	void registerScope(String scopeName, Scope scope);
 
 	/**
 	 * 返回当前所有已注册作用域的名称。
 	 * <p>这只会返回显式注册的作用域的名称。诸如 "singleton" 和 "prototype" 之类的内置作用域不会暴露。
-	 * @return the array of scope names, or an empty array if none
+	 * @return 作用域名称数组；如果没有则为空数组
 	 * @see #registerScope
 	 */
 	String[] getRegisteredScopeNames();
@@ -242,8 +241,8 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	/**
 	 * 返回给定作用域名称对应的 Scope 实现（如果有）。
 	 * <p>这只会返回显式注册的作用域。诸如 "singleton" 和 "prototype" 之类的内置作用域不会暴露。
-	 * @param scopeName the name of the scope
-	 * @return the registered Scope implementation, or {@code null} if none
+	 * @param scopeName 作用域的名称
+	 * @return 已注册的 Scope 实现；如果没有则为 {@code null}
 	 * @see #registerScope
 	 */
 	@Nullable
@@ -252,7 +251,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	/**
 	 * 为此 Bean 工厂设置 {@code ApplicationStartup}。
 	 * <p>这允许应用上下文在应用启动期间记录指标。
-	 * @param applicationStartup the new application startup
+	 * @param applicationStartup 新的应用启动
 	 * @since 5.3
 	 */
 	void setApplicationStartup(ApplicationStartup applicationStartup);
@@ -265,7 +264,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 
 	/**
 	 * 提供与此工厂相关的安全访问控制上下文。
-	 * @return the applicable AccessControlContext (never {@code null})
+	 * @return 适用的 AccessControlContext（永不为 {@code null}）
 	 * @since 3.0
 	 */
 	AccessControlContext getAccessControlContext();
@@ -274,7 +273,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	 * 复制给定其他工厂的所有相关配置。
 	 * <p>应包含所有标准配置设置以及 BeanPostProcessors、Scopes 和工厂特定的内部设置。不应包含实际 Bean
 	 * 定义的任何元数据，例如 BeanDefinition 对象和 Bean 名称别名。
-	 * @param otherFactory the other BeanFactory to copy from
+	 * @param otherFactory 要从中复制的另一个 BeanFactory
 	 */
 	void copyConfigurationFrom(ConfigurableBeanFactory otherFactory);
 
@@ -282,16 +281,16 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	 * 给定一个 Bean 名称，创建一个别名。我们通常使用此方法来支持在 XML id（用于 Bean 名称）中不合法的
 	 * 名称。
 	 * <p>通常在工厂配置期间调用，但也可用于在运行时注册别名。因此，工厂实现应同步别名的访问。
-	 * @param beanName the canonical name of the target bean
-	 * @param alias the alias to be registered for the bean
-	 * @throws BeanDefinitionStoreException if the alias is already in use
+	 * @param beanName 目标 Bean 的规范名称
+	 * @param alias 要为该 Bean 注册的别名
+	 * @throws BeanDefinitionStoreException 如果别名已被使用则抛出
 	 */
 	void registerAlias(String beanName, String alias) throws BeanDefinitionStoreException;
 
 	/**
 	 * 解析此工厂中注册的所有别名目标名称和别名，对它们应用给定的 StringValueResolver。
 	 * <p>例如，值解析器可以解析目标 Bean 名称乃至别名中的占位符。
-	 * @param valueResolver the StringValueResolver to apply
+	 * @param valueResolver 要应用的 StringValueResolver
 	 * @since 2.5
 	 */
 	void resolveAliases(StringValueResolver valueResolver);
@@ -299,60 +298,60 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	/**
 	 * 返回给定 Bean 名称的合并 BeanDefinition，如有必要，将子 Bean 定义与其父定义合并。也会考虑祖先工
 	 * 厂中的 Bean 定义。
-	 * @param beanName the name of the bean to retrieve the merged definition for
-	 * @return a (potentially merged) BeanDefinition for the given bean
-	 * @throws NoSuchBeanDefinitionException if there is no bean definition with the given name
+	 * @param beanName 要获取合并定义的目标 Bean 的名称
+	 * @return 给定 Bean 的（可能已合并的）BeanDefinition
+	 * @throws NoSuchBeanDefinitionException 如果没有给定名称的 Bean 定义则抛出
 	 * @since 2.5
 	 */
 	BeanDefinition getMergedBeanDefinition(String beanName) throws NoSuchBeanDefinitionException;
 
 	/**
 	 * 确定给定名称的 Bean 是否为 FactoryBean。
-	 * @param name the name of the bean to check
-	 * @return whether the bean is a FactoryBean
-	 * ({@code false} means the bean exists but is not a FactoryBean)
-	 * @throws NoSuchBeanDefinitionException if there is no bean with the given name
+	 * @param name 要检查的 Bean 的名称
+	 * @return 该 Bean 是否为 FactoryBean
+	 * （{@code false} 表示该 Bean 存在但不是 FactoryBean）
+	 * @throws NoSuchBeanDefinitionException 如果没有给定名称的 Bean 则抛出
 	 * @since 2.5
 	 */
 	boolean isFactoryBean(String name) throws NoSuchBeanDefinitionException;
 
 	/**
 	 * 显式控制指定 Bean 当前的创建中状态。仅供容器内部使用。
-	 * @param beanName the name of the bean
-	 * @param inCreation whether the bean is currently in creation
+	 * @param beanName 该 Bean 的名称
+	 * @param inCreation 该 Bean 当前是否正在创建
 	 * @since 3.1
 	 */
 	void setCurrentlyInCreation(String beanName, boolean inCreation);
 
 	/**
 	 * 确定指定 Bean 当前是否正在创建中。
-	 * @param beanName the name of the bean
-	 * @return whether the bean is currently in creation
+	 * @param beanName 该 Bean 的名称
+	 * @return 该 Bean 当前是否正在创建
 	 * @since 2.5
 	 */
 	boolean isCurrentlyInCreation(String beanName);
 
 	/**
 	 * 为给定 Bean 注册一个依赖 Bean，使其在给定 Bean 被销毁之前销毁。
-	 * @param beanName the name of the bean
-	 * @param dependentBeanName the name of the dependent bean
+	 * @param beanName 该 Bean 的名称
+	 * @param dependentBeanName 依赖 Bean 的名称
 	 * @since 2.5
 	 */
 	void registerDependentBean(String beanName, String dependentBeanName);
 
 	/**
 	 * 返回依赖指定 Bean 的所有 Bean 的名称（如果有）。
-	 * @param beanName the name of the bean
-	 * @return the array of dependent bean names, or an empty array if none
+	 * @param beanName 该 Bean 的名称
+	 * @return 依赖 Bean 名称数组；如果没有则为空数组
 	 * @since 2.5
 	 */
 	String[] getDependentBeans(String beanName);
 
 	/**
 	 * 返回指定 Bean 所依赖的所有 Bean 的名称（如果有）。
-	 * @param beanName the name of the bean
-	 * @return the array of names of beans which the bean depends on,
-	 * or an empty array if none
+	 * @param beanName 该 Bean 的名称
+	 * @return 该 Bean 所依赖的 Bean 名称数组，
+	 * 如果没有则为空数组
 	 * @since 2.5
 	 */
 	String[] getDependenciesForBean(String beanName);
@@ -360,15 +359,15 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	/**
 	 * 根据其 Bean 定义销毁给定的 Bean 实例（通常是从此工厂获取的 prototype 实例）。
 	 * <p>销毁期间出现的任何异常都应被捕获并记录，而不是传播给此方法的调用方。
-	 * @param beanName the name of the bean definition
-	 * @param beanInstance the bean instance to destroy
+	 * @param beanName Bean 定义的名称
+	 * @param beanInstance 要销毁的 Bean 实例
 	 */
 	void destroyBean(String beanName, Object beanInstance);
 
 	/**
 	 * 销毁当前目标作用域中的指定作用域 Bean（如果有）。
 	 * <p>销毁期间出现的任何异常都应被捕获并记录，而不是传播给此方法的调用方。
-	 * @param beanName the name of the scoped bean
+	 * @param beanName 作用域 Bean 的名称
 	 */
 	void destroyScopedBean(String beanName);
 

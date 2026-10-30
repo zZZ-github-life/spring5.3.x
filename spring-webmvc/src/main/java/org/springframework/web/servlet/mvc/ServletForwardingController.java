@@ -153,9 +153,9 @@ public class ServletForwardingController extends AbstractController implements B
 	 * <p>会检查请求中是否存在 include URI 属性（表示这是一次 include 请求），
 	 * 以及响应是否已被提交。
 	 * 在这两种情况下都会执行 include，因为此时已无法再执行 forward。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @return {@code true} for include, {@code false} for forward
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @return 包含（include）时为 {@code true}，转发（forward）时为 {@code false}
 	 * @see javax.servlet.RequestDispatcher#forward
 	 * @see javax.servlet.RequestDispatcher#include
 	 * @see javax.servlet.ServletResponse#isCommitted

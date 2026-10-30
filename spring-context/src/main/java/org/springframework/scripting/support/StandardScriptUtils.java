@@ -39,11 +39,11 @@ public abstract class StandardScriptUtils {
 	/**
 	 * 按名称从给定的 {@link ScriptEngineManager} 中获取 {@link ScriptEngine}，将操作委托给
 	 * {@link ScriptEngineManager#getEngineByName}，但如果未找到或初始化失败，则抛出描述性异常。
-	 * @param scriptEngineManager the ScriptEngineManager to use
-	 * @param engineName the name of the engine
-	 * @return a corresponding ScriptEngine (never {@code null})
-	 * @throws IllegalArgumentException if no matching engine has been found
-	 * @throws IllegalStateException if the desired engine failed to initialize
+	 * @param scriptEngineManager 要使用的 ScriptEngineManager
+	 * @param engineName 引擎的名称
+	 * @return 对应的 ScriptEngine（永不为 {@code null}）
+	 * @throws IllegalArgumentException 如果未找到匹配的引擎
+	 * @throws IllegalStateException 如果所需引擎初始化失败
 	 */
 	public static ScriptEngine retrieveEngineByName(ScriptEngineManager scriptEngineManager, String engineName) {
 		ScriptEngine engine = scriptEngineManager.getEngineByName(engineName);

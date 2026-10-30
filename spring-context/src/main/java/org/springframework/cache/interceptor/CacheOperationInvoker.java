@@ -32,8 +32,8 @@ public interface CacheOperationInvoker {
 
 	/**
 	 * 调用由此实例定义的缓存操作。将调用期间抛出的任何异常包装为 {@link ThrowableWrapper}。
-	 * @return the result of the operation
-	 * @throws ThrowableWrapper if an error occurred while invoking the operation
+	 * @return 操作的结果
+	 * @throws ThrowableWrapper 如果调用该操作时发生错误
 	 */
 	@Nullable
 	Object invoke() throws ThrowableWrapper;

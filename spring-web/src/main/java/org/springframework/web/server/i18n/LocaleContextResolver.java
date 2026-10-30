@@ -41,18 +41,18 @@ public interface LocaleContextResolver {
 	 * 只需应用 {@code instanceof} 检查并相应地向下转型即可。
 	 * <p>自定义解析器实现还可以在返回的上下文中返回额外的设置，
 	 * 同样可以通过向下转型来访问。
-	 * @param exchange current server exchange
-	 * @return the current locale context (never {@code null})
+	 * @param exchange 当前服务器交换
+	 * @return 当前区域上下文（永不为 {@code null}）
 	 */
 	LocaleContext resolveLocaleContext(ServerWebExchange exchange);
 
 	/**
 	 * 将当前区域设置上下文设置为给定值，
 	 * 其中可能包含带有相关时区信息的区域设置。
-	 * @param exchange current server exchange
-	 * @param localeContext the new locale context, or {@code null} to clear the locale
-	 * @throws UnsupportedOperationException if the LocaleResolver implementation
-	 * does not support dynamic changing of the locale or time zone
+	 * @param exchange 当前服务器交换
+	 * @param localeContext 新的区域上下文；为 {@code null} 则清除 Locale
+	 * @throws UnsupportedOperationException 如果 LocaleResolver 实现不支持
+	 * 动态更改 Locale 或时区
 	 * @see org.springframework.context.i18n.SimpleLocaleContext
 	 * @see org.springframework.context.i18n.SimpleTimeZoneAwareLocaleContext
 	 */

@@ -38,8 +38,8 @@ public abstract class SqlParameterSourceUtils {
 	 * 创建一组用传入值（{@link Map} 或 bean 对象）填充的
 	 * {@link SqlParameterSource} 对象数组。
 	 * 这将确定批量操作中包含的内容。
-	 * @param candidates object array of objects containing the values to be used
-	 * @return an array of {@link SqlParameterSource}
+	 * @param candidates 包含要使用的值的对象数组
+	 * @return {@link SqlParameterSource} 数组
 	 * @see MapSqlParameterSource
 	 * @see BeanPropertySqlParameterSource
 	 * @see NamedParameterJdbcTemplate#batchUpdate(String, SqlParameterSource[])
@@ -52,8 +52,8 @@ public abstract class SqlParameterSourceUtils {
 	 * 创建一组用传入值（{@link Map} 或 bean 对象）填充的
 	 * {@link SqlParameterSource} 对象数组。
 	 * 这将确定批量操作中包含的内容。
-	 * @param candidates collection of objects containing the values to be used
-	 * @return an array of {@link SqlParameterSource}
+	 * @param candidates 包含要使用的值的对象集合
+	 * @return {@link SqlParameterSource} 数组
 	 * @since 5.0.2
 	 * @see MapSqlParameterSource
 	 * @see BeanPropertySqlParameterSource
@@ -74,8 +74,8 @@ public abstract class SqlParameterSourceUtils {
 	/**
 	 * 创建一组用传入值填充的 {@link MapSqlParameterSource} 对象数组。
 	 * 这将确定批量操作中包含的内容。
-	 * @param valueMaps array of {@link Map} instances containing the values to be used
-	 * @return an array of {@link SqlParameterSource}
+	 * @param valueMaps 包含要使用的值的 {@link Map} 实例数组
+	 * @return {@link SqlParameterSource} 数组
 	 * @see MapSqlParameterSource
 	 * @see NamedParameterJdbcTemplate#batchUpdate(String, Map[])
 	 */
@@ -89,9 +89,9 @@ public abstract class SqlParameterSourceUtils {
 
 	/**
 	 * 如果参数包含类型信息则创建包装后的值，否则创建普通对象。
-	 * @param source the source of parameter values and type information
-	 * @param parameterName the name of the parameter
-	 * @return the value object
+	 * @param source 参数值和类型信息的来源
+	 * @param parameterName 参数的名称
+	 * @return 值对象
 	 * @see SqlParameterValue
 	 */
 	@Nullable
@@ -107,8 +107,8 @@ public abstract class SqlParameterSourceUtils {
 
 	/**
 	 * 创建包含大小写不敏感的（小写）参数名及原始名称的 Map。
-	 * @param parameterSource the source of parameter names
-	 * @return the Map that can be used for case-insensitive matching of parameter names
+	 * @param parameterSource 参数名称的来源
+	 * @return 可用于参数名称不区分大小写匹配的 Map
 	 */
 	public static Map<String, String> extractCaseInsensitiveParameterNames(SqlParameterSource parameterSource) {
 		Map<String, String> caseInsensitiveParameterNames = new HashMap<>();

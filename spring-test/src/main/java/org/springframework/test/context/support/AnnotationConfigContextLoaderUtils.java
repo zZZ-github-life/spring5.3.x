@@ -45,9 +45,8 @@ public abstract class AnnotationConfigContextLoaderUtils {
 	 * 为所提供的测试类检测默认配置类。
 	 * <p>返回的类数组将包含所提供的类的所有静态嵌套类，这些类满足 {@link Configuration @Configuration} 文档中规定的 {@code @Configuration} 类实现要求。
 	 * <p>此方法的实现遵循 {@link org.springframework.test.context.SmartContextLoader SmartContextLoader} SPI 中定义的契约。具体而言，此方法使用内省来检测符合 {@code @Configuration} 类实现所需约束的默认配置类。如果某个潜在候选配置类不满足这些要求，此方法将记录一条调试消息，并忽略该潜在候选类。
-	 * @param declaringClass the test class that declared {@code @ContextConfiguration}
-	 * @return an array of default configuration classes, potentially empty but
-	 * never {@code null}
+	 * @param declaringClass 声明了 {@code @ContextConfiguration} 的测试类
+	 * @return 默认配置类的数组，可能为空，但从不为 {@code null}
 	 */
 	public static Class<?>[] detectDefaultConfigurationClasses(Class<?> declaringClass) {
 		Assert.notNull(declaringClass, "Declaring class must not be null");
@@ -89,8 +88,8 @@ public abstract class AnnotationConfigContextLoaderUtils {
 	 * <li>必须为 {@code static}</li>
 	 * <li>必须带有 {@code @Configuration} 注解或元注解</li>
 	 * </ul>
-	 * @param clazz the class to check
-	 * @return {@code true} if the supplied class meets the candidate criteria
+	 * @param clazz 要检查的类
+	 * @return 如果所提供的类符合候选条件，则为 {@code true}
 	 */
 	private static boolean isDefaultConfigurationClassCandidate(@Nullable Class<?> clazz) {
 		return (clazz != null && isStaticNonPrivateAndNonFinal(clazz) &&

@@ -84,9 +84,9 @@ public final class SpelCompiler implements Opcodes {
 	/**
 	 * 尝试编译所提供的表达式。在编译继续之前，会检查它是否可编译。该检查包括遍历表达式 AST 中的所有节
 	 * 点，并确保已掌握足够的状态信息以便为它们生成字节码。
-	 * @param expression the expression to compile
-	 * @return an instance of the class implementing the compiled expression,
-	 * or {@code null} if compilation is not possible
+	 * @param expression 要编译的表达式
+	 * @return 实现已编译表达式的类的实例，
+	 * 如果无法编译则为 {@code null}
 	 */
 	@Nullable
 	public CompiledExpression compile(SpelNodeImpl expression) {
@@ -118,9 +118,9 @@ public final class SpelCompiler implements Opcodes {
 
 	/**
 	 * 生成封装编译后表达式的类并定义它。生成的类将是 CompiledExpression 的子类型。
-	 * @param expressionToCompile the expression to be compiled
-	 * @return the expression call, or {@code null} if the decision was to opt out of
-	 * compilation during code generation
+	 * @param expressionToCompile 要编译的表达式
+	 * @return 表达式调用对象，
+	 * 如果在代码生成期间决定不进行编译则为 {@code null}
 	 */
 	@Nullable
 	private Class<? extends CompiledExpression> createExpressionClass(SpelNodeImpl expressionToCompile) {
@@ -181,9 +181,9 @@ public final class SpelCompiler implements Opcodes {
 	/**
 	 * 加载编译后的表达式类。需确保不滥用类加载器，因为它们会在内存中锚定编译后的类并阻止 GC。如果你有
 	 * 表达式随时间不断重新编译，那么通过定期替换类加载器，至少可以让部分较旧的变体被垃圾回收。
-	 * @param name the name of the class
-	 * @param bytes the bytecode for the class
-	 * @return the Class object for the compiled expression
+	 * @param name 类名
+	 * @param bytes 该类的字节码
+	 * @return 已编译表达式的 Class 对象
 	 */
 	@SuppressWarnings("unchecked")
 	private Class<? extends CompiledExpression> loadClass(String name, byte[] bytes) {
@@ -209,8 +209,8 @@ public final class SpelCompiler implements Opcodes {
 	/**
 	 * 编译器实例的工厂方法。返回的 SpelCompiler 会将一个类加载器作为给定类加载器的子级附加，该子级将用
 	 * 于加载编译后的表达式。
-	 * @param classLoader the ClassLoader to use as the basis for compilation
-	 * @return a corresponding SpelCompiler instance
+	 * @param classLoader 用作编译基础的 ClassLoader
+	 * @return 对应的 SpelCompiler 实例
 	 */
 	public static SpelCompiler getCompiler(@Nullable ClassLoader classLoader) {
 		ClassLoader clToUse = (classLoader != null ? classLoader : ClassUtils.getDefaultClassLoader());
@@ -232,9 +232,8 @@ public final class SpelCompiler implements Opcodes {
 	/**
 	 * 请求尝试编译指定的表达式。如果表达式的各组件不适合编译，或涉及的数据类型不适合编译，则可能失败。
 	 * 用于测试。
-	 * @param expression the expression to compile
-	 * @return {@code true} if the expression was successfully compiled,
-	 * {@code false} otherwise
+	 * @param expression 要编译的表达式
+	 * @return 如果表达式编译成功则返回 {@code true}，否则返回 {@code false}。
 	 */
 	public static boolean compile(Expression expression) {
 		return (expression instanceof SpelExpression && ((SpelExpression) expression).compileExpression());
@@ -242,7 +241,7 @@ public final class SpelCompiler implements Opcodes {
 
 	/**
 	 * 请求回退到解释器进行表达式求值。任何编译形式都会被丢弃，但可以通过之后的再次重新编译重新创建。
-	 * @param expression the expression
+	 * @param expression 该表达式
 	 */
 	public static void revertToInterpreted(Expression expression) {
 		if (expression instanceof SpelExpression) {

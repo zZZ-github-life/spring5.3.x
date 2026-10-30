@@ -84,10 +84,10 @@ public class RequestParamMethodArgumentResolver extends AbstractNamedValueMethod
 
 	/**
 	 * 创建一个新的 {@link RequestParamMethodArgumentResolver} 实例。
-	 * @param useDefaultResolution in default resolution mode a method argument
-	 * that is a simple type, as defined in {@link BeanUtils#isSimpleProperty},
-	 * is treated as a request parameter even if it isn't annotated, the
-	 * request parameter name is derived from the method parameter name.
+	 * @param useDefaultResolution 在默认解析模式下，属于简单类型的方法参数
+	 * （如 {@link BeanUtils#isSimpleProperty} 中所定义）
+	 * 即使没有注解也会被视为请求参数，
+	 * 请求参数名称由方法参数名称推导得出。
 	 */
 	public RequestParamMethodArgumentResolver(boolean useDefaultResolution) {
 		this.useDefaultResolution = useDefaultResolution;
@@ -95,13 +95,13 @@ public class RequestParamMethodArgumentResolver extends AbstractNamedValueMethod
 
 	/**
 	 * 创建一个新的 {@link RequestParamMethodArgumentResolver} 实例。
-	 * @param beanFactory a bean factory used for resolving  ${...} placeholder
-	 * and #{...} SpEL expressions in default values, or {@code null} if default
-	 * values are not expected to contain expressions
-	 * @param useDefaultResolution in default resolution mode a method argument
-	 * that is a simple type, as defined in {@link BeanUtils#isSimpleProperty},
-	 * is treated as a request parameter even if it isn't annotated, the
-	 * request parameter name is derived from the method parameter name.
+	 * @param beanFactory 用于解析默认值中的 ${...} 占位符
+	 * 和 #{...} SpEL 表达式的 Bean 工厂，如果默认值
+	 * 预计不包含表达式，则为 {@code null}
+	 * @param useDefaultResolution 在默认解析模式下，属于简单类型的方法参数
+	 * （如 {@link BeanUtils#isSimpleProperty} 中所定义）
+	 * 即使没有注解也会被视为请求参数，
+	 * 请求参数名称由方法参数名称推导得出。
 	 */
 	public RequestParamMethodArgumentResolver(@Nullable ConfigurableBeanFactory beanFactory,
 			boolean useDefaultResolution) {

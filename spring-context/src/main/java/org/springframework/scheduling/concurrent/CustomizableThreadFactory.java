@@ -43,7 +43,7 @@ public class CustomizableThreadFactory extends CustomizableThreadCreator impleme
 
 	/**
 	 * 使用给定的线程名前缀创建一个新的 CustomizableThreadFactory。
-	 * @param threadNamePrefix the prefix to use for the names of newly created threads
+	 * @param threadNamePrefix 用于新建线程名称的前缀
 	 */
 	public CustomizableThreadFactory(String threadNamePrefix) {
 		super(threadNamePrefix);

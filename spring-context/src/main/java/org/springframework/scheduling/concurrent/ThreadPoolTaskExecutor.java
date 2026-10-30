@@ -274,8 +274,8 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 	/**
 	 * 创建供 ThreadPoolExecutor 使用的 BlockingQueue。
 	 * <p>容量值为正时会创建 LinkedBlockingQueue 实例；否则创建 SynchronousQueue。
-	 * @param queueCapacity the specified queue capacity
-	 * @return the BlockingQueue instance
+	 * @param queueCapacity 指定的队列容量
+	 * @return BlockingQueue 实例
 	 * @see java.util.concurrent.LinkedBlockingQueue
 	 * @see java.util.concurrent.SynchronousQueue
 	 */
@@ -290,8 +290,8 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 
 	/**
 	 * 返回底层的 ThreadPoolExecutor，以便进行原生访问。
-	 * @return the underlying ThreadPoolExecutor (never {@code null})
-	 * @throws IllegalStateException if the ThreadPoolTaskExecutor hasn't been initialized yet
+	 * @return 底层的 ThreadPoolExecutor（永不为 {@code null}）
+	 * @throws IllegalStateException 如果 ThreadPoolTaskExecutor 尚未初始化
 	 */
 	public ThreadPoolExecutor getThreadPoolExecutor() throws IllegalStateException {
 		Assert.state(this.threadPoolExecutor != null, "ThreadPoolTaskExecutor not initialized");

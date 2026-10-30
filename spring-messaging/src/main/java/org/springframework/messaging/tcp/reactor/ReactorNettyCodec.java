@@ -30,21 +30,21 @@ import org.springframework.messaging.Message;
  *
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <P> the message payload type
+ * @param <P> 消息载荷类型
  */
 public interface ReactorNettyCodec<P> {
 
 	/**
 	 * 将输入的 {@link ByteBuf} 解码为一条或多条 {@link Message Messages}。
-	 * @param inputBuffer the input buffer to decode from
-	 * @return 0 or more decoded messages
+	 * @param inputBuffer 要从中解码的输入缓冲区
+	 * @return 0 个或多个已解码的消息
 	 */
 	Collection<Message<P>> decode(ByteBuf inputBuffer);
 
 	/**
 	 * 将给定的 {@link Message} 编码到输出 {@link ByteBuf} 中。
-	 * @param message the message to encode
-	 * @param outputBuffer the buffer to write to
+	 * @param message 要编码的消息
+	 * @param outputBuffer 要写入的缓冲区
 	 */
 	void encode(Message<P> message, ByteBuf outputBuffer);
 

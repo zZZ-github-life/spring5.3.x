@@ -43,8 +43,8 @@ public class DefaultScopedObject implements ScopedObject, Serializable {
 
 	/**
 	 * 创建 {@link DefaultScopedObject} 类的新实例。
-	 * @param beanFactory the {@link ConfigurableBeanFactory} that holds the scoped target object
-	 * @param targetBeanName the name of the target bean
+	 * @param beanFactory 持有作用域目标对象的 {@link ConfigurableBeanFactory}
+	 * @param targetBeanName 目标 Bean 的名称
 	 */
 	public DefaultScopedObject(ConfigurableBeanFactory beanFactory, String targetBeanName) {
 		Assert.notNull(beanFactory, "BeanFactory must not be null");

@@ -43,10 +43,10 @@ public class SessionDisconnectEvent extends AbstractSubProtocolEvent {
 
 	/**
 	 * 创建一个新的 SessionDisconnectEvent。
-	 * @param source the component that published the event (never {@code null})
-	 * @param message the message (never {@code null})
-	 * @param sessionId the disconnect message
-	 * @param closeStatus the status object
+	 * @param source 发布该事件的组件（永不为 {@code null}）
+	 * @param message 该消息（永不为 {@code null}）
+	 * @param sessionId 断开连接消息
+	 * @param closeStatus 状态对象
 	 */
 	public SessionDisconnectEvent(Object source, Message<byte[]> message, String sessionId,
 			CloseStatus closeStatus) {
@@ -56,11 +56,11 @@ public class SessionDisconnectEvent extends AbstractSubProtocolEvent {
 
 	/**
 	 * 创建一个新的 SessionDisconnectEvent。
-	 * @param source the component that published the event (never {@code null})
-	 * @param message the message (never {@code null})
-	 * @param sessionId the disconnect message
-	 * @param closeStatus the status object
-	 * @param user the current session user
+	 * @param source 发布该事件的组件（永不为 {@code null}）
+	 * @param message 该消息（永不为 {@code null}）
+	 * @param sessionId 断开连接消息
+	 * @param closeStatus 状态对象
+	 * @param user 当前会话用户
 	 */
 	public SessionDisconnectEvent(Object source, Message<byte[]> message, String sessionId,
 			CloseStatus closeStatus, @Nullable Principal user) {

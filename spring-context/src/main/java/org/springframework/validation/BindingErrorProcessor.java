@@ -40,11 +40,11 @@ public interface BindingErrorProcessor {
 
 	/**
 	 * 将缺失字段错误应用到给定的 BindException。<p>通常，会为缺失的必填字段创建字段错误。
-	 * @param missingField the field that was missing during binding
-	 * @param bindingResult the errors object to add the error(s) to.
-	 * You can add more than just one error or maybe even ignore it.
-	 * The {@code BindingResult} object features convenience utils such as
-	 * a {@code resolveMessageCodes} method to resolve an error code.
+	 * @param missingField 绑定期间缺失的字段
+	 * @param bindingResult 要向其添加错误的错误对象。
+	 * 你可以添加不止一个错误，甚至可以忽略它。
+	 * {@code BindingResult} 对象提供便利工具，
+	 * 例如用于解析错误码的 {@code resolveMessageCodes} 方法。
 	 * @see BeanPropertyBindingResult#addError
 	 * @see BeanPropertyBindingResult#resolveMessageCodes
 	 */
@@ -54,11 +54,11 @@ public interface BindingErrorProcessor {
 	 * 将给定的 {@code PropertyAccessException} 转换为注册在给定 {@code Errors} 实例上的适当错误。<p>请
 	 * 注意，有两种可用的错误类型：{@code FieldError} 和 {@code ObjectError}。通常会创建字段错误，但在
 	 * 某些情况下可能希望改为创建全局的 {@code ObjectError}。
-	 * @param ex the {@code PropertyAccessException} to translate
-	 * @param bindingResult the errors object to add the error(s) to.
-	 * You can add more than just one error or maybe even ignore it.
-	 * The {@code BindingResult} object features convenience utils such as
-	 * a {@code resolveMessageCodes} method to resolve an error code.
+	 * @param ex 要转换的 {@code PropertyAccessException}
+	 * @param bindingResult 要向其添加错误的错误对象。
+	 * 你可以添加不止一个错误，甚至可以忽略它。
+	 * {@code BindingResult} 对象提供便利工具，
+	 * 例如用于解析错误码的 {@code resolveMessageCodes} 方法。
 	 * @see Errors
 	 * @see FieldError
 	 * @see ObjectError

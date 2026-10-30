@@ -43,7 +43,7 @@ public class RuntimeBeanReference implements BeanReference {
 
 	/**
 	 * 为给定 Bean 名称创建一个新的 RuntimeBeanReference。
-	 * @param beanName name of the target bean
+	 * @param beanName 目标 Bean 的名称
 	 */
 	public RuntimeBeanReference(String beanName) {
 		this(beanName, false);
@@ -51,9 +51,8 @@ public class RuntimeBeanReference implements BeanReference {
 
 	/**
 	 * 为给定 Bean 名称创建一个新的 RuntimeBeanReference，可选择将其标记为对父工厂中 Bean 的引用。
-	 * @param beanName name of the target bean
-	 * @param toParent whether this is an explicit reference to a bean in the
-	 * parent factory
+	 * @param beanName 目标 Bean 的名称
+	 * @param toParent 这是否是对父工厂中 Bean 的显式引用
 	 */
 	public RuntimeBeanReference(String beanName, boolean toParent) {
 		Assert.hasText(beanName, "'beanName' must not be empty");
@@ -64,7 +63,7 @@ public class RuntimeBeanReference implements BeanReference {
 
 	/**
 	 * 为给定类型的 Bean 创建一个新的 RuntimeBeanReference。
-	 * @param beanType type of the target bean
+	 * @param beanType 目标 Bean 的类型
 	 * @since 5.2
 	 */
 	public RuntimeBeanReference(Class<?> beanType) {
@@ -73,9 +72,8 @@ public class RuntimeBeanReference implements BeanReference {
 
 	/**
 	 * 为给定类型的 Bean 创建一个新的 RuntimeBeanReference，可选择将其标记为对父工厂中 Bean 的引用。
-	 * @param beanType type of the target bean
-	 * @param toParent whether this is an explicit reference to a bean in the
-	 * parent factory
+	 * @param beanType 目标 Bean 的类型
+	 * @param toParent 这是否是对父工厂中 Bean 的显式引用
 	 * @since 5.2
 	 */
 	public RuntimeBeanReference(Class<?> beanType, boolean toParent) {

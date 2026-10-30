@@ -36,7 +36,7 @@ public class ExpressionException extends RuntimeException {
 
 	/**
 	 * 构造一个新的表达式异常。
-	 * @param message a descriptive message
+	 * @param message 描述性消息
 	 */
 	public ExpressionException(String message) {
 		super(message);
@@ -46,8 +46,8 @@ public class ExpressionException extends RuntimeException {
 
 	/**
 	 * 构造一个新的表达式异常。
-	 * @param message a descriptive message
-	 * @param cause the underlying cause of this exception
+	 * @param message 描述性消息
+	 * @param cause 此异常的根本原因
 	 */
 	public ExpressionException(String message, Throwable cause) {
 		super(message, cause);
@@ -57,8 +57,8 @@ public class ExpressionException extends RuntimeException {
 
 	/**
 	 * 构造一个新的表达式异常。
-	 * @param expressionString the expression string
-	 * @param message a descriptive message
+	 * @param expressionString 表达式字符串
+	 * @param message 描述性消息
 	 */
 	public ExpressionException(@Nullable String expressionString, String message) {
 		super(message);
@@ -68,9 +68,9 @@ public class ExpressionException extends RuntimeException {
 
 	/**
 	 * 构造一个新的表达式异常。
-	 * @param expressionString the expression string
-	 * @param position the position in the expression string where the problem occurred
-	 * @param message a descriptive message
+	 * @param expressionString 表达式字符串
+	 * @param position 问题在表达式字符串中出现的位置
+	 * @param message 描述性消息
 	 */
 	public ExpressionException(@Nullable String expressionString, int position, String message) {
 		super(message);
@@ -80,8 +80,8 @@ public class ExpressionException extends RuntimeException {
 
 	/**
 	 * 构造一个新的表达式异常。
-	 * @param position the position in the expression string where the problem occurred
-	 * @param message a descriptive message
+	 * @param position 问题在表达式字符串中出现的位置
+	 * @param message 描述性消息
 	 */
 	public ExpressionException(int position, String message) {
 		super(message);
@@ -91,9 +91,9 @@ public class ExpressionException extends RuntimeException {
 
 	/**
 	 * 构造一个新的表达式异常。
-	 * @param position the position in the expression string where the problem occurred
-	 * @param message a descriptive message
-	 * @param cause the underlying cause of this exception
+	 * @param position 问题在表达式字符串中出现的位置
+	 * @param message 描述性消息
+	 * @param cause 此异常的根本原因
 	 */
 	public ExpressionException(int position, String message, Throwable cause) {
 		super(message, cause);

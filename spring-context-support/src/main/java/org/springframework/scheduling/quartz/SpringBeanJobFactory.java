@@ -118,7 +118,7 @@ public class SpringBeanJobFactory extends AdaptableJobFactory
 	 * 返回给定的 job 对象是否符合填充其 bean 属性的条件。
 	 * <p>默认实现忽略 {@link QuartzJobBean} 实例，
 	 * 它们会自行注入 bean 属性。
-	 * @param jobObject the job object to introspect
+	 * @param jobObject 要内省的作业对象
 	 * @see QuartzJobBean
 	 */
 	protected boolean isEligibleForPropertyPopulation(Object jobObject) {

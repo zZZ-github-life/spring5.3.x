@@ -112,7 +112,7 @@ public class CachingConnectionFactory extends SingleConnectionFactory {
 
 	/**
 	 * 为给定的目标 ConnectionFactory 创建一个新的 CachingConnectionFactory。
-	 * @param targetConnectionFactory the target ConnectionFactory
+	 * @param targetConnectionFactory 目标 ConnectionFactory
 	 */
 	public CachingConnectionFactory(ConnectionFactory targetConnectionFactory) {
 		super(targetConnectionFactory);
@@ -257,9 +257,9 @@ public class CachingConnectionFactory extends SingleConnectionFactory {
 	 * 用代理包装给定的 Session，该代理将每个方法调用都委托给它，
 	 * 但会适配 close 调用。这对于允许应用代码像处理普通 Session 一样
 	 * 处理特殊的框架 Session 很有用。
-	 * @param target the original Session to wrap
-	 * @param sessionList the List of cached Sessions that the given Session belongs to
-	 * @return the wrapped Session
+	 * @param target 要包装的原始 Session
+	 * @param sessionList 给定 Session 所属的缓存 Session 列表
+	 * @return 包装后的 Session
 	 */
 	protected Session getCachedSessionProxy(Session target, Deque<Session> sessionList) {
 		List<Class<?>> classes = new ArrayList<>(3);

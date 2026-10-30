@@ -47,7 +47,7 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * 创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link GenericBeanDefinition}。
-	 * @param beanClassName the class name for the bean that the definition is being created for
+	 * @param beanClassName 正在为其创建定义的 Bean 的类名
 	 */
 	public static BeanDefinitionBuilder genericBeanDefinition(String beanClassName) {
 		BeanDefinitionBuilder builder = new BeanDefinitionBuilder(new GenericBeanDefinition());
@@ -57,7 +57,7 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * 创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link GenericBeanDefinition}。
-	 * @param beanClass the {@code Class} of the bean that the definition is being created for
+	 * @param beanClass 正在为其创建定义的 Bean 的 {@code Class}
 	 */
 	public static BeanDefinitionBuilder genericBeanDefinition(Class<?> beanClass) {
 		BeanDefinitionBuilder builder = new BeanDefinitionBuilder(new GenericBeanDefinition());
@@ -67,8 +67,8 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * 创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link GenericBeanDefinition}。
-	 * @param beanClass the {@code Class} of the bean that the definition is being created for
-	 * @param instanceSupplier a callback for creating an instance of the bean
+	 * @param beanClass 正在为其创建定义的 Bean 的 {@code Class}
+	 * @param instanceSupplier 用于创建 Bean 实例的回调
 	 * @since 5.0
 	 */
 	public static <T> BeanDefinitionBuilder genericBeanDefinition(Class<T> beanClass, Supplier<T> instanceSupplier) {
@@ -80,7 +80,7 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * 创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link RootBeanDefinition}。
-	 * @param beanClassName the class name for the bean that the definition is being created for
+	 * @param beanClassName 正在为其创建定义的 Bean 的类名
 	 */
 	public static BeanDefinitionBuilder rootBeanDefinition(String beanClassName) {
 		return rootBeanDefinition(beanClassName, null);
@@ -88,8 +88,8 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * 创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link RootBeanDefinition}。
-	 * @param beanClassName the class name for the bean that the definition is being created for
-	 * @param factoryMethodName the name of the method to use to construct the bean instance
+	 * @param beanClassName 正在为其创建定义的 Bean 的类名
+	 * @param factoryMethodName 用于构造 Bean 实例的方法的名称
 	 */
 	public static BeanDefinitionBuilder rootBeanDefinition(String beanClassName, @Nullable String factoryMethodName) {
 		BeanDefinitionBuilder builder = new BeanDefinitionBuilder(new RootBeanDefinition());
@@ -100,7 +100,7 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * 创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link RootBeanDefinition}。
-	 * @param beanClass the {@code Class} of the bean that the definition is being created for
+	 * @param beanClass 正在为其创建定义的 Bean 的 {@code Class}
 	 */
 	public static BeanDefinitionBuilder rootBeanDefinition(Class<?> beanClass) {
 		return rootBeanDefinition(beanClass, (String) null);
@@ -108,8 +108,8 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * 创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link RootBeanDefinition}。
-	 * @param beanClass the {@code Class} of the bean that the definition is being created for
-	 * @param factoryMethodName the name of the method to use to construct the bean instance
+	 * @param beanClass 正在为其创建定义的 Bean 的 {@code Class}
+	 * @param factoryMethodName 用于构造 Bean 实例的方法的名称
 	 */
 	public static BeanDefinitionBuilder rootBeanDefinition(Class<?> beanClass, @Nullable String factoryMethodName) {
 		BeanDefinitionBuilder builder = new BeanDefinitionBuilder(new RootBeanDefinition());
@@ -120,8 +120,8 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * 创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link RootBeanDefinition}。
-	 * @param beanType the {@link ResolvableType type} of the bean that the definition is being created for
-	 * @param instanceSupplier a callback for creating an instance of the bean
+	 * @param beanType 正在为其创建定义的 Bean 的 {@link ResolvableType type}
+	 * @param instanceSupplier 用于创建 Bean 实例的回调
 	 * @since 5.3.9
 	 */
 	public static <T> BeanDefinitionBuilder rootBeanDefinition(ResolvableType beanType, Supplier<T> instanceSupplier) {
@@ -133,8 +133,8 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * 创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link RootBeanDefinition}。
-	 * @param beanClass the {@code Class} of the bean that the definition is being created for
-	 * @param instanceSupplier a callback for creating an instance of the bean
+	 * @param beanClass 正在为其创建定义的 Bean 的 {@code Class}
+	 * @param instanceSupplier 用于创建 Bean 实例的回调
 	 * @since 5.3.9
 	 * @see #rootBeanDefinition(ResolvableType, Supplier)
 	 */
@@ -144,7 +144,7 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * 创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link ChildBeanDefinition}。
-	 * @param parentName the name of the parent bean
+	 * @param parentName 父 Bean 的名称
 	 */
 	public static BeanDefinitionBuilder childBeanDefinition(String parentName) {
 		return new BeanDefinitionBuilder(new ChildBeanDefinition(parentName));
@@ -204,8 +204,8 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * 设置要用于此定义的非静态工厂方法的名称，包括要在其上调用该方法的工厂实例的 Bean 名称。
-	 * @param factoryMethod the name of the factory method
-	 * @param factoryBean the name of the bean to call the specified factory method on
+	 * @param factoryMethod 工厂方法的名称
+	 * @param factoryBean 要在其上调用指定工厂方法的 Bean 的名称
 	 * @since 4.3.6
 	 */
 	public BeanDefinitionBuilder setFactoryMethodOnBean(String factoryMethod, String factoryBean) {
@@ -243,8 +243,8 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * 在指定属性下添加对指定 Bean 名称的引用。
-	 * @param name the name of the property to add the reference to
-	 * @param beanName the name of the bean being referenced
+	 * @param name 要为其添加引用的属性名称
+	 * @param beanName 被引用的 Bean 的名称
 	 */
 	public BeanDefinitionBuilder addPropertyReference(String name, String beanName) {
 		this.beanDefinition.getPropertyValues().add(name, new RuntimeBeanReference(beanName));
@@ -253,7 +253,7 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * 为指定 Bean 上的指定属性添加自动装配标记。
-	 * @param name the name of the property to mark as autowired
+	 * @param name 要标记为自动装配的属性名称
 	 * @since 5.2
 	 * @see AutowiredPropertyMarker
 	 */

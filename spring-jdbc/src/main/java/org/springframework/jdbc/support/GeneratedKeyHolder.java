@@ -52,7 +52,7 @@ public class GeneratedKeyHolder implements KeyHolder {
 
 	/**
 	 * 使用给定列表创建新的 GeneratedKeyHolder。
-	 * @param keyList a list to hold maps of keys
+	 * @param keyList 用于存放键映射的列表
 	 */
 	public GeneratedKeyHolder(List<Map<String, Object>> keyList) {
 		this.keyList = keyList;

@@ -68,7 +68,7 @@ public final class ProducesRequestCondition extends AbstractRequestCondition<Pro
 	/**
 	 * 根据 "produces" 表达式创建一个新实例。如果总共提供了 0 个表达式，
 	 * 此条件将匹配任何请求。
-	 * @param produces expressions with syntax defined by {@link RequestMapping#produces()}
+	 * @param produces 使用 {@link RequestMapping#produces()} 所定义语法的表达式
 	 */
 	public ProducesRequestCondition(String... produces) {
 		this(produces, null, null);
@@ -78,8 +78,8 @@ public final class ProducesRequestCondition extends AbstractRequestCondition<Pro
 	 * 使用 "produces" 和 "header" 表达式创建一个新实例。头名称不是
 	 * 'Accept' 或未定义头值的 "header" 表达式将被忽略。
 	 * 如果总共提供了 0 个表达式，此条件将匹配任何请求。
-	 * @param produces expressions with syntax defined by {@link RequestMapping#produces()}
-	 * @param headers expressions with syntax defined by {@link RequestMapping#headers()}
+	 * @param produces 使用 {@link RequestMapping#produces()} 所定义语法的表达式
+	 * @param headers 使用 {@link RequestMapping#headers()} 所定义语法的表达式
 	 */
 	public ProducesRequestCondition(String[] produces, @Nullable String[] headers) {
 		this(produces, headers, null);
@@ -88,9 +88,9 @@ public final class ProducesRequestCondition extends AbstractRequestCondition<Pro
 	/**
 	 * 与 {@link #ProducesRequestCondition(String[], String[])} 相同，但还可以
 	 * 接受一个 {@link ContentNegotiationManager}。
-	 * @param produces expressions with syntax defined by {@link RequestMapping#produces()}
-	 * @param headers expressions with syntax defined by {@link RequestMapping#headers()}
-	 * @param manager used to determine requested media types
+	 * @param produces 使用 {@link RequestMapping#produces()} 所定义语法的表达式
+	 * @param headers 使用 {@link RequestMapping#headers()} 所定义语法的表达式
+	 * @param manager 用于确定请求的媒体类型
 	 */
 	public ProducesRequestCondition(String[] produces, @Nullable String[] headers,
 			@Nullable ContentNegotiationManager manager) {
@@ -187,10 +187,9 @@ public final class ProducesRequestCondition extends AbstractRequestCondition<Pro
 	 * 请求的 'Content-Type' 头，并返回一个保证
 	 * 只包含匹配表达式的实例。匹配通过
 	 * {@link MediaType#isCompatibleWith(MediaType)} 执行。
-	 * @param request the current request
-	 * @return the same instance if there are no expressions;
-	 * or a new condition with matching expressions;
-	 * or {@code null} if no expressions match.
+	 * @param request 当前请求
+	 * @return 如果没有任何表达式，则为同一实例；或包含匹配表达式的新条件；
+	 * 如果无表达式匹配，则为 {@code null}。
 	 */
 	@Override
 	@Nullable
@@ -337,7 +336,7 @@ public final class ProducesRequestCondition extends AbstractRequestCondition<Pro
 	/**
 	 * 使用此项清除包含已解析的请求媒体类型的
 	 * {@link #MEDIA_TYPES_ATTRIBUTE}。
-	 * @param request the current request
+	 * @param request 当前请求
 	 * @since 5.2
 	 */
 	public static void clearMediaTypesAttribute(HttpServletRequest request) {

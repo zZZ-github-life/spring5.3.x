@@ -36,8 +36,8 @@ public interface DynamicIntroductionAdvice extends Advice {
 
 	/**
 	 * 此引入通知是否实现了给定接口？
-	 * @param intf the interface to check
-	 * @return whether the advice implements the specified interface
+	 * @param intf 要检查的接口
+	 * @return 该通知是否实现了指定的接口
 	 */
 	boolean implementsInterface(Class<?> intf);
 

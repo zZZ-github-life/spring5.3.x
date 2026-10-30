@@ -49,7 +49,7 @@ public class TagWriter {
 
 	/**
 	 * 创建一个写入给定 {@link PageContext} 的 {@link TagWriter} 类的新实例。
-	 * @param pageContext the JSP PageContext to obtain the {@link Writer} from
+	 * @param pageContext 用于获取 {@link Writer} 的 JSP PageContext
 	 */
 	public TagWriter(PageContext pageContext) {
 		Assert.notNull(pageContext, "PageContext must not be null");
@@ -58,7 +58,7 @@ public class TagWriter {
 
 	/**
 	 * 创建一个写入给定 {@link Writer} 的 {@link TagWriter} 类的新实例。
-	 * @param writer the {@link Writer} to write tag content to
+	 * @param writer 用于写入标签内容的 {@link Writer}
 	 */
 	public TagWriter(Writer writer) {
 		Assert.notNull(writer, "Writer must not be null");
@@ -80,7 +80,7 @@ public class TagWriter {
 
 	/**
 	 * 写入具有指定名称和值的 HTML 属性。<p>请确保在写入任何内部文本或嵌套标签<strong>之前</strong>写入所有属性。
-	 * @throws IllegalStateException if the opening tag is closed
+	 * @throws IllegalStateException 如果开始标签已关闭
 	 */
 	public void writeAttribute(String attributeName, String attributeValue) throws JspException {
 		if (currentState().isBlockTag()) {
@@ -113,7 +113,7 @@ public class TagWriter {
 
 	/**
 	 * 关闭当前打开的标签（如有必要），并将给定值作为内部文本追加。
-	 * @throws IllegalStateException if no tag is open
+	 * @throws IllegalStateException 如果没有打开的标签
 	 */
 	public void appendValue(String value) throws JspException {
 		if (!inTag()) {
@@ -143,8 +143,8 @@ public class TagWriter {
 
 	/**
 	 * 关闭当前标签，允许强制使用完整的闭合标签。<p>如果尚未写入任何内部文本或嵌套标签，则正确地写出空标签。
-	 * @param enforceClosingTag whether a full closing tag should be
-	 * rendered in any case, even in case of a non-block tag
+	 * @param enforceClosingTag 是否在任何情况下都渲染完整的结束标签，
+	 * 即使是非块标签
 	 */
 	public void endTag(boolean enforceClosingTag) throws JspException {
 		if (!inTag()) {

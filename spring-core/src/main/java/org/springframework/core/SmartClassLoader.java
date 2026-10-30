@@ -36,9 +36,8 @@ public interface SmartClassLoader {
 	 * 判断给定类（在此 ClassLoader 中）是否可重载。
 	 * <p>通常用于检查结果是否可以（针对此 ClassLoader）被缓存，或者是否每次都需要重新获取。默认实现始
 	 * 终返回 {@code false}。
-	 * @param clazz the class to check (usually loaded from this ClassLoader)
-	 * @return whether the class should be expected to appear in a reloaded
-	 * version (with a different {@code Class} object) later on
+	 * @param clazz 要检查的类（通常从此 ClassLoader 加载）
+	 * @return 该类是否预期稍后出现在重新加载的版本中（使用不同的 {@code Class} 对象）
 	 */
 	default boolean isClassReloadable(Class<?> clazz) {
 		return false;
@@ -52,7 +51,7 @@ public interface SmartClassLoader {
 	 * <p>这特别用于 Spring 的 AOP 框架中，当目标类未在当前类加载器中定义时，用于确定特定代理的类加载器。
 	 * 对于可重载的类加载器，对于未在可重载类加载器自身中定义的通用类，我们更倾向于使用基础应用程序类
 	 * 加载器来进行代理。
-	 * @return the original ClassLoader (the same reference by default)
+	 * @return 原始的 ClassLoader（默认情况下为同一引用）
 	 * @since 5.3.5
 	 * @see ClassLoader#getParent()
 	 * @see org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator
@@ -70,14 +69,13 @@ public interface SmartClassLoader {
 	 * {@code return defineClass(name, b, 0, b.length, protectionDomain)}。请注意，JDK 9+ 的
 	 * {@code Lookup#defineClass} 方法并不支持为新定义指定自定义目标类加载器；它始终在查找上下文类所在
 	 * 的同一个类加载器中定义该类。
-	 * @param name the name of the class
-	 * @param b the bytes defining the class
-	 * @param protectionDomain the protection domain for the class, if any
-	 * @return the newly created class
-	 * @throws LinkageError in case of a bad class definition
-	 * @throws SecurityException in case of an invalid definition attempt
-	 * @throws UnsupportedOperationException in case of a custom definition attempt
-	 * not being possible (thrown by the default implementation in this interface)
+	 * @param name 类的名称
+	 * @param b 定义该类的字节
+	 * @param protectionDomain 该类的保护域（如果有）
+	 * @return 新创建的类
+	 * @throws LinkageError 类定义错误时
+	 * @throws SecurityException 定义尝试无效时
+	 * @throws UnsupportedOperationException 无法进行自定义定义时（由此接口中的默认实现抛出）
 	 * @since 5.3.4
 	 * @see ClassLoader#defineClass(String, byte[], int, int, ProtectionDomain)
 	 */

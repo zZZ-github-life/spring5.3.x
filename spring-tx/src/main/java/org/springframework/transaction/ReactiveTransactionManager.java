@@ -43,13 +43,12 @@ public interface ReactiveTransactionManager extends TransactionManager {
 	 * 正确的事务管理器实现遇到不支持的设置时应抛出异常。
 	 * <p>上述规则的一个例外是只读标志，如果不支持显式的只读模式，
 	 * 则应忽略该标志。本质上，只读标志只是一个潜在优化的提示。
-	 * @param definition the TransactionDefinition instance,
-	 * describing propagation behavior, isolation level, timeout etc.
-	 * @return transaction status object representing the new or current transaction
-	 * @throws TransactionException in case of lookup, creation, or system errors
-	 * @throws IllegalTransactionStateException if the given transaction definition
-	 * cannot be executed (for example, if a currently active transaction is in
-	 * conflict with the specified propagation behavior)
+	 * @param definition TransactionDefinition 实例，
+	 * 描述传播行为、隔离级别、超时等
+	 * @return 表示新事务或当前事务的事务状态对象
+	 * @throws TransactionException 在查找、创建或系统出错的情况下
+	 * @throws IllegalTransactionStateException 如果给定的 TransactionDefinition 无法执行
+	 * （例如当前活动事务与指定的传播行为冲突）
 	 * @see TransactionDefinition#getPropagationBehavior
 	 * @see TransactionDefinition#getIsolationLevel
 	 * @see TransactionDefinition#getTimeout
@@ -69,15 +68,14 @@ public interface ReactiveTransactionManager extends TransactionManager {
 	 * 一个 O/R Mapping 工具可能在提交前尝试将更改刷新到数据库，
 	 * 由此产生的 DataAccessException 导致事务失败。
 	 * 在这种情况下，原始异常将传播到此 commit 方法的调用者。
-	 * @param transaction object returned by the {@code getTransaction} method
-	 * @throws UnexpectedRollbackException in case of an unexpected rollback
-	 * that the transaction coordinator initiated
-	 * @throws HeuristicCompletionException in case of a transaction failure
-	 * caused by a heuristic decision on the side of the transaction coordinator
-	 * @throws TransactionSystemException in case of commit or system errors
-	 * (typically caused by fundamental resource failures)
-	 * @throws IllegalTransactionStateException if the given transaction
-	 * is already completed (that is, committed or rolled back)
+	 * @param transaction 由 {@code getTransaction} 方法返回的对象
+	 * @throws UnexpectedRollbackException 在事务协调器发起意外回滚的情况下
+	 * @throws HeuristicCompletionException 在因事务协调器一侧的启发式决定
+	 * 导致事务失败的情况下
+	 * @throws TransactionSystemException 在提交或系统出错的情况下
+	 * （通常由基础资源故障引起）
+	 * @throws IllegalTransactionStateException 如果给定事务已经完成
+	 * （即已提交或已回滚）
 	 * @see ReactiveTransaction#setRollbackOnly
 	 */
 	Mono<Void> commit(ReactiveTransaction transaction) throws TransactionException;
@@ -89,11 +87,11 @@ public interface ReactiveTransactionManager extends TransactionManager {
 	 * <p><b>如果 commit 抛出异常，不要对事务调用 rollback。</b>
 	 * 事务在 commit 返回时已经被完成和清理，即使在 commit 异常的情况下也是如此。
 	 * 因此，在 commit 失败后调用 rollback 将导致 IllegalTransactionStateException。
-	 * @param transaction object returned by the {@code getTransaction} method
-	 * @throws TransactionSystemException in case of rollback or system errors
-	 * (typically caused by fundamental resource failures)
-	 * @throws IllegalTransactionStateException if the given transaction
-	 * is already completed (that is, committed or rolled back)
+	 * @param transaction 由 {@code getTransaction} 方法返回的对象
+	 * @throws TransactionSystemException 在回滚或系统出错的情况下
+	 * （通常由基础资源故障引起）
+	 * @throws IllegalTransactionStateException 如果给定事务已经完成
+	 * （即已提交或已回滚）
 	 */
 	Mono<Void> rollback(ReactiveTransaction transaction) throws TransactionException;
 

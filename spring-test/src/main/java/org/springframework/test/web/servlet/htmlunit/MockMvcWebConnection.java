@@ -75,8 +75,8 @@ public final class MockMvcWebConnection implements WebConnection {
 	 * 为 {@code ""}（即根上下文）。
 	 * <p>例如，URL {@code http://localhost/test/this} 将使用
 	 * {@code ""} 作为上下文路径。
-	 * @param mockMvc the {@code MockMvc} instance to use; never {@code null}
-	 * @param webClient the {@link WebClient} to use. never {@code null}
+	 * @param mockMvc 要使用的 {@code MockMvc} 实例；永不为 {@code null}
+	 * @param webClient 要使用的 {@link WebClient}。永不为 {@code null}
 	 */
 	public MockMvcWebConnection(MockMvc mockMvc, WebClient webClient) {
 		this(mockMvc, webClient, "");
@@ -89,9 +89,9 @@ public final class MockMvcWebConnection implements WebConnection {
 	 * {@link javax.servlet.http.HttpServletRequest#getContextPath()}
 	 * 的要求，即可以是空字符串，否则必须以“/”字符开头且
 	 * 不以“/”字符结尾。
-	 * @param mockMvc the {@code MockMvc} instance to use (never {@code null})
-	 * @param webClient the {@link WebClient} to use (never {@code null})
-	 * @param contextPath the contextPath to use
+	 * @param mockMvc 要使用的 {@code MockMvc} 实例（永不为 {@code null}）
+	 * @param webClient 要使用的 {@link WebClient}（永不为 {@code null}）
+	 * @param contextPath 要使用的 contextPath
 	 */
 	public MockMvcWebConnection(MockMvc mockMvc, WebClient webClient, @Nullable String contextPath) {
 		Assert.notNull(mockMvc, "MockMvc must not be null");
@@ -108,7 +108,7 @@ public final class MockMvcWebConnection implements WebConnection {
 	 * <p>如果该值不为 {@code null}，它必须符合
 	 * {@link javax.servlet.http.HttpServletRequest#getContextPath()} 的要求，
 	 * 即可以是空字符串，否则必须以“/”字符开头且不以“/”字符结尾。
-	 * @param contextPath the path to validate
+	 * @param contextPath 要验证的路径
 	 */
 	static void validateContextPath(@Nullable String contextPath) {
 		if (contextPath == null || contextPath.isEmpty()) {

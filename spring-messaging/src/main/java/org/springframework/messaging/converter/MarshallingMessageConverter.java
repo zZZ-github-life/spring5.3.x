@@ -69,7 +69,7 @@ public class MarshallingMessageConverter extends AbstractMessageConverter {
 
 	/**
 	 * 使用给定的受支持 MIME 类型列表的构造函数。
-	 * @param supportedMimeTypes the MIME types
+	 * @param supportedMimeTypes MIME 类型
 	 */
 	public MarshallingMessageConverter(MimeType... supportedMimeTypes) {
 		super(supportedMimeTypes);
@@ -80,7 +80,7 @@ public class MarshallingMessageConverter extends AbstractMessageConverter {
 	 * 实现了 {@link Unmarshaller}，则它也会用于解组。
 	 * <p>注意，Spring 中的所有 {@code Marshaller} 实现也都实现了
 	 * {@code Unmarshaller}，因此可以安全地使用此构造函数。
-	 * @param marshaller object used as marshaller and unmarshaller
+	 * @param marshaller 用作编组器和解组器的对象
 	 */
 	public MarshallingMessageConverter(Marshaller marshaller) {
 		this();

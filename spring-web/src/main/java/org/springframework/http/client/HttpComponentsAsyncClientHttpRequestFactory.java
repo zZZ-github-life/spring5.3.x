@@ -66,7 +66,7 @@ public class HttpComponentsAsyncClientHttpRequestFactory extends HttpComponentsC
 	/**
 	 * 使用给定的 {@link HttpAsyncClient} 实例和默认的 {@link HttpClient}
 	 * 创建新的 {@code HttpComponentsAsyncClientHttpRequestFactory} 实例。
-	 * @param asyncClient the HttpAsyncClient instance to use for this request factory
+	 * @param asyncClient 此请求工厂要使用的 HttpAsyncClient 实例
 	 * @since 4.3.10
 	 */
 	public HttpComponentsAsyncClientHttpRequestFactory(HttpAsyncClient asyncClient) {
@@ -77,7 +77,7 @@ public class HttpComponentsAsyncClientHttpRequestFactory extends HttpComponentsC
 	/**
 	 * 使用给定的 {@link CloseableHttpAsyncClient} 实例和默认的 {@link HttpClient}
 	 * 创建新的 {@code HttpComponentsAsyncClientHttpRequestFactory} 实例。
-	 * @param asyncClient the CloseableHttpAsyncClient instance to use for this request factory
+	 * @param asyncClient 此请求工厂要使用的 CloseableHttpAsyncClient 实例
 	 */
 	public HttpComponentsAsyncClientHttpRequestFactory(CloseableHttpAsyncClient asyncClient) {
 		super();
@@ -87,8 +87,8 @@ public class HttpComponentsAsyncClientHttpRequestFactory extends HttpComponentsC
 	/**
 	 * 使用给定的 {@link HttpClient} 和 {@link HttpAsyncClient} 实例
 	 * 创建新的 {@code HttpComponentsAsyncClientHttpRequestFactory} 实例。
-	 * @param httpClient the HttpClient instance to use for this request factory
-	 * @param asyncClient the HttpAsyncClient instance to use for this request factory
+	 * @param httpClient 此请求工厂要使用的 HttpClient 实例
+	 * @param asyncClient 此请求工厂要使用的 HttpAsyncClient 实例
 	 * @since 4.3.10
 	 */
 	public HttpComponentsAsyncClientHttpRequestFactory(HttpClient httpClient, HttpAsyncClient asyncClient) {
@@ -99,8 +99,8 @@ public class HttpComponentsAsyncClientHttpRequestFactory extends HttpComponentsC
 	/**
 	 * 使用给定的 {@link CloseableHttpClient} 和 {@link CloseableHttpAsyncClient} 实例
 	 * 创建新的 {@code HttpComponentsAsyncClientHttpRequestFactory} 实例。
-	 * @param httpClient the CloseableHttpClient instance to use for this request factory
-	 * @param asyncClient the CloseableHttpAsyncClient instance to use for this request factory
+	 * @param httpClient 此请求工厂要使用的 CloseableHttpClient 实例
+	 * @param asyncClient 此请求工厂要使用的 CloseableHttpAsyncClient 实例
 	 */
 	public HttpComponentsAsyncClientHttpRequestFactory(
 			CloseableHttpClient httpClient, CloseableHttpAsyncClient asyncClient) {

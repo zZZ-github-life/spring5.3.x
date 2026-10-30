@@ -56,10 +56,10 @@ public interface GenericConverter {
 
 	/**
 	 * 将源对象转换为 {@code TypeDescriptor} 所描述的目标类型。
-	 * @param source the source object to convert (may be {@code null})
-	 * @param sourceType the type descriptor of the field we are converting from
-	 * @param targetType the type descriptor of the field we are converting to
-	 * @return the converted object
+	 * @param source 要转换的源对象（可为 {@code null}）
+	 * @param sourceType 我们要从中转换的字段的类型描述符
+	 * @param targetType 我们要转换到的字段的类型描述符
+	 * @return 转换后的对象
 	 */
 	@Nullable
 	Object convert(@Nullable Object source, TypeDescriptor sourceType, TypeDescriptor targetType);
@@ -76,8 +76,8 @@ public interface GenericConverter {
 
 		/**
 		 * 创建一个新的源到目标类型对。
-		 * @param sourceType the source type
-		 * @param targetType the target type
+		 * @param sourceType 源类型
+		 * @param targetType 目标类型
 		 */
 		public ConvertiblePair(Class<?> sourceType, Class<?> targetType) {
 			Assert.notNull(sourceType, "Source type must not be null");

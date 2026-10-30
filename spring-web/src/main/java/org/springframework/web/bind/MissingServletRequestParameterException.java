@@ -32,8 +32,8 @@ public class MissingServletRequestParameterException extends MissingRequestValue
 
 	/**
 	 * MissingServletRequestParameterException 的构造函数。
-	 * @param parameterName the name of the missing parameter
-	 * @param parameterType the expected type of the missing parameter
+	 * @param parameterName 缺失的参数名称
+	 * @param parameterType 缺失参数的预期类型
 	 */
 	public MissingServletRequestParameterException(String parameterName, String parameterType) {
 		this(parameterName, parameterType, false);
@@ -41,9 +41,9 @@ public class MissingServletRequestParameterException extends MissingRequestValue
 
 	/**
 	 * 当值存在但被转换为 {@code null} 时使用的构造函数。
-	 * @param parameterName the name of the missing parameter
-	 * @param parameterType the expected type of the missing parameter
-	 * @param missingAfterConversion whether the value became null after conversion
+	 * @param parameterName 缺失的参数名称
+	 * @param parameterType 缺失参数的预期类型
+	 * @param missingAfterConversion 转换后值是否变为 null
 	 * @since 5.3.6
 	 */
 	public MissingServletRequestParameterException(

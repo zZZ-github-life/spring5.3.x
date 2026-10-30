@@ -97,8 +97,8 @@ public class SimpleNamingContextBuilder implements InitialContextFactoryBuilder 
 
 	/**
 	 * 检查是否有 SimpleNamingContextBuilder 处于活动状态。
-	 * @return the current SimpleNamingContextBuilder instance,
-	 * or {@code null} if none
+	 * @return 当前 SimpleNamingContextBuilder 实例，
+	 * 如果没有则为 {@code null}
 	 */
 	@Nullable
 	public static SimpleNamingContextBuilder getCurrentContextBuilder() {
@@ -111,8 +111,7 @@ public class SimpleNamingContextBuilder implements InitialContextFactoryBuilder 
 	 * SimpleNamingContextBuilder，清除它并返回。
 	 * <p>这主要面向希望反复从头
 	 * 重新初始化 JNDI 绑定的测试套件。
-	 * @return an empty SimpleNamingContextBuilder that can be used
-	 * to control JNDI bindings
+	 * @return 可用于控制 JNDI 绑定的空 SimpleNamingContextBuilder
 	 */
 	public static SimpleNamingContextBuilder emptyActivatedContextBuilder() throws NamingException {
 		SimpleNamingContextBuilder builder = activated;
@@ -140,8 +139,8 @@ public class SimpleNamingContextBuilder implements InitialContextFactoryBuilder 
 	 * 请注意，一旦完成此操作，{@code new InitialContext()} 将始终
 	 * 返回来自此工厂的上下文。可使用 {@code emptyActivatedContextBuilder()}
 	 * 静态方法获取空上下文（例如在测试方法中）。
-	 * @throws IllegalStateException if there's already a naming context builder
-	 * registered with the JNDI NamingManager
+	 * @throws IllegalStateException 如果已有命名上下文构建器
+	 * 注册到 JNDI NamingManager
 	 */
 	public void activate() throws IllegalStateException, NamingException {
 		logger.info("Activating simple JNDI environment");
@@ -182,8 +181,8 @@ public class SimpleNamingContextBuilder implements InitialContextFactoryBuilder 
 	/**
 	 * 针对此上下文构建器将生成的所有命名上下文，
 	 * 将给定对象绑定到给定名称下。
-	 * @param name the JNDI name of the object (e.g. "java:comp/env/jdbc/myds")
-	 * @param obj the object to bind (e.g. a DataSource implementation)
+	 * @param name 对象的 JNDI 名称（例如 "java:comp/env/jdbc/myds"）
+	 * @param obj 要绑定的对象（例如 DataSource 实现）
 	 */
 	public void bind(String name, Object obj) {
 		if (logger.isInfoEnabled()) {

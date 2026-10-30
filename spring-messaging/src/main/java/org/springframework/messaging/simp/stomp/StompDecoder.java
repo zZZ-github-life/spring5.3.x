@@ -78,9 +78,9 @@ public class StompDecoder {
 	 * 将给定 {@code ByteBuffer} 中的一个或多个 STOMP 帧解码为
 	 * {@link Message Messages} 列表。如果输入缓冲区包含部分 STOMP 帧内容，
 	 * 或包含带有部分 STOMP 帧的额外内容，则重置缓冲区并返回 {@code null}。
-	 * @param byteBuffer the buffer to decode the STOMP frame from
-	 * @return the decoded messages, or an empty list if none
-	 * @throws StompConversionException raised in case of decoding issues
+	 * @param byteBuffer 用于解码 STOMP 帧的缓冲区
+	 * @return 解码后的消息，如果没有则为空列表
+	 * @throws StompConversionException 在解码出现问题时抛出
 	 */
 	public List<Message<byte[]>> decode(ByteBuffer byteBuffer) {
 		return decode(byteBuffer, null);
@@ -96,12 +96,11 @@ public class StompDecoder {
 	 * <p>输出 partialMessageHeaders 映射用于在内容不完整时存储成功解析的头。
 	 * 然后调用方可以检查是否读取了 "content-length" 头，
 	 * 这有助于确定在下一次尝试解码之前还需要多少内容。
-	 * @param byteBuffer the buffer to decode the STOMP frame from
-	 * @param partialMessageHeaders an empty output map that will store the last
-	 * successfully parsed partialMessageHeaders in case of partial message content
-	 * in cases where the partial buffer ended with a partial STOMP frame
-	 * @return the decoded messages, or an empty list if none
-	 * @throws StompConversionException raised in case of decoding issues
+	 * @param byteBuffer 用于解码 STOMP 帧的缓冲区
+	 * @param partialMessageHeaders 一个空的输出映射，当缓冲区以不完整的 STOMP 帧结尾、
+	 * 导致消息内容不完整时，用于保存最后成功解析的 partialMessageHeaders
+	 * @return 解码后的消息，如果没有则为空列表
+	 * @throws StompConversionException 在解码出现问题时抛出
 	 */
 	public List<Message<byte[]>> decode(ByteBuffer byteBuffer,
 			@Nullable MultiValueMap<String, String> partialMessageHeaders) {
@@ -339,7 +338,7 @@ public class StompDecoder {
 
 	/**
 	 * 尝试读取一个 EOL，如果成功则递增缓冲区位置。
-	 * @return whether an EOL was consumed
+	 * @return 是否消费了行尾（EOL）
 	 */
 	private boolean tryConsumeEndOfLine(ByteBuffer byteBuffer) {
 		if (byteBuffer.remaining() > 0) {

@@ -37,8 +37,8 @@ public abstract class StylerUtils {
 
 	/**
 	 * 按照默认约定为指定的值设置样式。
-	 * @param value the Object value to style
-	 * @return the styled String
+	 * @param value 要设置样式的 Object 值
+	 * @return 设置样式后的 String
 	 * @see DefaultValueStyler
 	 */
 	public static String style(Object value) {

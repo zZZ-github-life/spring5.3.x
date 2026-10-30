@@ -68,8 +68,8 @@ public abstract class AbstractNumberFormatter implements Formatter<Number> {
 
 	/**
 	 * 获取指定区域设置的具体 NumberFormat。
-	 * @param locale the current locale
-	 * @return the NumberFormat instance (never {@code null})
+	 * @param locale 当前区域设置
+	 * @return NumberFormat 实例（永不为 {@code null}）
 	 */
 	protected abstract NumberFormat getNumberFormat(Locale locale);
 

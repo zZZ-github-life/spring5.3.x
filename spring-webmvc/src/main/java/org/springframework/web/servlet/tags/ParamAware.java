@@ -27,7 +27,7 @@ public interface ParamAware {
 
 	/**
 	 * 供嵌套的 spring:param 标签将其值传递给父标签的回调钩子。
-	 * @param param the result of the nested {@code spring:param} tag
+	 * @param param 嵌套 {@code spring:param} 标签的结果
 	 */
 	void addParam(Param param);
 

@@ -34,7 +34,7 @@ public class BeanInitializationException extends FatalBeanException {
 
 	/**
 	 * 使用指定消息创建一个新的 BeanInitializationException。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public BeanInitializationException(String msg) {
 		super(msg);
@@ -42,8 +42,8 @@ public class BeanInitializationException extends FatalBeanException {
 
 	/**
 	 * 使用指定消息和根本原因创建一个新的 BeanInitializationException。
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param msg 详细消息
+	 * @param cause 根本原因
 	 */
 	public BeanInitializationException(String msg, Throwable cause) {
 		super(msg, cause);

@@ -36,7 +36,7 @@ public interface PropertyResolver {
 
 	/**
 	 * 返回与给定键关联的属性值，如果该键无法解析则返回 {@code null}。
-	 * @param key the property name to resolve
+	 * @param key 要解析的属性名
 	 * @see #getProperty(String, String)
 	 * @see #getProperty(String, Class)
 	 * @see #getRequiredProperty(String)
@@ -46,8 +46,8 @@ public interface PropertyResolver {
 
 	/**
 	 * 返回与给定键关联的属性值，如果该键无法解析则返回 {@code defaultValue}。
-	 * @param key the property name to resolve
-	 * @param defaultValue the default value to return if no value is found
+	 * @param key 要解析的属性名
+	 * @param defaultValue 未找到值时返回的默认值
 	 * @see #getRequiredProperty(String)
 	 * @see #getProperty(String, Class)
 	 */
@@ -55,8 +55,8 @@ public interface PropertyResolver {
 
 	/**
 	 * 返回与给定键关联的属性值，如果该键无法解析则返回 {@code null}。
-	 * @param key the property name to resolve
-	 * @param targetType the expected type of the property value
+	 * @param key 要解析的属性名
+	 * @param targetType 属性值的预期类型
 	 * @see #getRequiredProperty(String, Class)
 	 */
 	@Nullable
@@ -64,32 +64,32 @@ public interface PropertyResolver {
 
 	/**
 	 * 返回与给定键关联的属性值，如果该键无法解析则返回 {@code defaultValue}。
-	 * @param key the property name to resolve
-	 * @param targetType the expected type of the property value
-	 * @param defaultValue the default value to return if no value is found
+	 * @param key 要解析的属性名
+	 * @param targetType 属性值的预期类型
+	 * @param defaultValue 未找到值时返回的默认值
 	 * @see #getRequiredProperty(String, Class)
 	 */
 	<T> T getProperty(String key, Class<T> targetType, T defaultValue);
 
 	/**
 	 * 返回与给定键关联的属性值（永远不会是 {@code null}）。
-	 * @throws IllegalStateException if the key cannot be resolved
+	 * @throws IllegalStateException 如果无法解析该键
 	 * @see #getRequiredProperty(String, Class)
 	 */
 	String getRequiredProperty(String key) throws IllegalStateException;
 
 	/**
 	 * 返回与给定键关联的属性值，并转换为给定的 targetType（永远不会是 {@code null}）。
-	 * @throws IllegalStateException if the given key cannot be resolved
+	 * @throws IllegalStateException 如果无法解析给定的键
 	 */
 	<T> T getRequiredProperty(String key, Class<T> targetType) throws IllegalStateException;
 
 	/**
 	 * 解析给定文本中的 ${...} 占位符，将其替换为通过 {@link #getProperty} 解析得到的相应属性值。
 	 * 没有默认值且无法解析的占位符会被忽略并原样传递。
-	 * @param text the String to resolve
-	 * @return the resolved String (never {@code null})
-	 * @throws IllegalArgumentException if given text is {@code null}
+	 * @param text 要解析的 String
+	 * @return 解析后的 String（永不为 {@code null}）
+	 * @throws IllegalArgumentException 如果给定的文本为 {@code null}
 	 * @see #resolveRequiredPlaceholders
 	 */
 	String resolvePlaceholders(String text);
@@ -97,9 +97,9 @@ public interface PropertyResolver {
 	/**
 	 * 解析给定文本中的 ${...} 占位符，将其替换为通过 {@link #getProperty} 解析得到的相应属性值。
 	 * 没有默认值且无法解析的占位符将导致抛出 IllegalArgumentException。
-	 * @return the resolved String (never {@code null})
-	 * @throws IllegalArgumentException if given text is {@code null}
-	 * or if any placeholders are unresolvable
+	 * @return 解析后的 String（永不为 {@code null}）
+	 * @throws IllegalArgumentException 如果给定的文本为 {@code null}，
+	 * 或任一占位符无法解析
 	 */
 	String resolveRequiredPlaceholders(String text) throws IllegalArgumentException;
 

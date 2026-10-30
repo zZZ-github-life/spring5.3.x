@@ -45,7 +45,7 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 
 	/**
 	 * 创建一个新的 HttpRequestMethodNotSupportedException。
-	 * @param method the unsupported HTTP request method
+	 * @param method 不受支持的 HTTP 请求方法
 	 */
 	public HttpRequestMethodNotSupportedException(String method) {
 		this(method, (String[]) null);
@@ -53,8 +53,8 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 
 	/**
 	 * 创建一个新的 HttpRequestMethodNotSupportedException。
-	 * @param method the unsupported HTTP request method
-	 * @param msg the detail message
+	 * @param method 不受支持的 HTTP 请求方法
+	 * @param msg 详细消息
 	 */
 	public HttpRequestMethodNotSupportedException(String method, String msg) {
 		this(method, null, msg);
@@ -62,8 +62,8 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 
 	/**
 	 * 创建一个新的 HttpRequestMethodNotSupportedException。
-	 * @param method the unsupported HTTP request method
-	 * @param supportedMethods the actually supported HTTP methods (may be {@code null})
+	 * @param method 不受支持的 HTTP 请求方法
+	 * @param supportedMethods 实际支持的 HTTP 方法（可能为 {@code null}）
 	 */
 	public HttpRequestMethodNotSupportedException(String method, @Nullable Collection<String> supportedMethods) {
 		this(method, (supportedMethods != null ? StringUtils.toStringArray(supportedMethods) : null));
@@ -71,8 +71,8 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 
 	/**
 	 * 创建一个新的 HttpRequestMethodNotSupportedException。
-	 * @param method the unsupported HTTP request method
-	 * @param supportedMethods the actually supported HTTP methods (may be {@code null})
+	 * @param method 不受支持的 HTTP 请求方法
+	 * @param supportedMethods 实际支持的 HTTP 方法（可能为 {@code null}）
 	 */
 	public HttpRequestMethodNotSupportedException(String method, @Nullable String[] supportedMethods) {
 		this(method, supportedMethods, "Request method '" + method + "' not supported");
@@ -80,9 +80,9 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 
 	/**
 	 * 创建一个新的 HttpRequestMethodNotSupportedException。
-	 * @param method the unsupported HTTP request method
-	 * @param supportedMethods the actually supported HTTP methods
-	 * @param msg the detail message
+	 * @param method 不受支持的 HTTP 请求方法
+	 * @param supportedMethods 实际支持的 HTTP 方法
+	 * @param msg 详细消息
 	 */
 	public HttpRequestMethodNotSupportedException(String method, @Nullable String[] supportedMethods, String msg) {
 		super(msg);

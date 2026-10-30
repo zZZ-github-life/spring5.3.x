@@ -36,18 +36,17 @@ public interface Marshaller {
 
 	/**
 	 * 指示此 marshaller 是否能够 marshal 所提供类型的实例。
-	 * @param clazz the class that this marshaller is being asked if it can marshal
-	 * @return {@code true} if this marshaller can indeed marshal instances of the supplied class;
-	 * {@code false} otherwise
+	 * @param clazz 询问此 marshaller 是否能编组的类
+	 * @return 如果此 marshaller 确实能编组所提供类的实例，则返回 {@code true}；否则返回 {@code false}
 	 */
 	boolean supports(Class<?> clazz);
 
 	/**
 	 * 将给定根对象的对象图 marshal 到所提供的 {@link Result} 中。
-	 * @param graph the root of the object graph to marshal
-	 * @param result the result to marshal to
-	 * @throws IOException if an I/O error occurs
-	 * @throws XmlMappingException if the given object cannot be marshalled to the result
+	 * @param graph 要编组的对象图的根
+	 * @param result 要编组到的结果
+	 * @throws IOException 如果发生 I/O 错误
+	 * @throws XmlMappingException 如果给定对象无法编组到结果中
 	 */
 	void marshal(Object graph, Result result) throws IOException, XmlMappingException;
 

@@ -43,10 +43,9 @@ public abstract class MethodMatchers {
 
 	/**
 	 * 匹配给定的 MethodMatcher 中<i>任一</i>（或两者）匹配的所有方法。
-	 * @param mm1 the first MethodMatcher
-	 * @param mm2 the second MethodMatcher
-	 * @return a distinct MethodMatcher that matches all methods that either
-	 * of the given MethodMatchers matches
+	 * @param mm1 第一个 MethodMatcher
+	 * @param mm2 第二个 MethodMatcher
+	 * @return 一个独立的 MethodMatcher，匹配给定 MethodMatcher 中任一者所匹配的所有方法
 	 */
 	public static MethodMatcher union(MethodMatcher mm1, MethodMatcher mm2) {
 		return (mm1 instanceof IntroductionAwareMethodMatcher || mm2 instanceof IntroductionAwareMethodMatcher ?
@@ -55,12 +54,11 @@ public abstract class MethodMatchers {
 
 	/**
 	 * 匹配给定的 MethodMatcher 中<i>任一</i>（或两者）匹配的所有方法。
-	 * @param mm1 the first MethodMatcher
-	 * @param cf1 the corresponding ClassFilter for the first MethodMatcher
-	 * @param mm2 the second MethodMatcher
-	 * @param cf2 the corresponding ClassFilter for the second MethodMatcher
-	 * @return a distinct MethodMatcher that matches all methods that either
-	 * of the given MethodMatchers matches
+	 * @param mm1 第一个 MethodMatcher
+	 * @param cf1 第一个 MethodMatcher 对应的 ClassFilter
+	 * @param mm2 第二个 MethodMatcher
+	 * @param cf2 第二个 MethodMatcher 对应的 ClassFilter
+	 * @return 一个独立的 MethodMatcher，匹配给定 MethodMatcher 中任一者所匹配的所有方法
 	 */
 	static MethodMatcher union(MethodMatcher mm1, ClassFilter cf1, MethodMatcher mm2, ClassFilter cf2) {
 		return (mm1 instanceof IntroductionAwareMethodMatcher || mm2 instanceof IntroductionAwareMethodMatcher ?
@@ -70,10 +68,9 @@ public abstract class MethodMatchers {
 
 	/**
 	 * 匹配给定的两个 MethodMatcher <i>都</i>匹配的所有方法。
-	 * @param mm1 the first MethodMatcher
-	 * @param mm2 the second MethodMatcher
-	 * @return a distinct MethodMatcher that matches all methods that both
-	 * of the given MethodMatchers match
+	 * @param mm1 第一个 MethodMatcher
+	 * @param mm2 第二个 MethodMatcher
+	 * @return 一个独立的 MethodMatcher，匹配给定 MethodMatcher 共同匹配的所有方法
 	 */
 	public static MethodMatcher intersection(MethodMatcher mm1, MethodMatcher mm2) {
 		return (mm1 instanceof IntroductionAwareMethodMatcher || mm2 instanceof IntroductionAwareMethodMatcher ?
@@ -83,12 +80,12 @@ public abstract class MethodMatchers {
 	/**
 	 * 将给定的 MethodMatcher 应用于给定的 Method，支持
 	 * {@link org.springframework.aop.IntroductionAwareMethodMatcher}（如果适用）。
-	 * @param mm the MethodMatcher to apply (may be an IntroductionAwareMethodMatcher)
-	 * @param method the candidate method
-	 * @param targetClass the target class
-	 * @param hasIntroductions {@code true} if the object on whose behalf we are
-	 * asking is the subject on one or more introductions; {@code false} otherwise
-	 * @return whether this method matches statically
+	 * @param mm 要应用的 MethodMatcher（可能是 IntroductionAwareMethodMatcher）
+	 * @param method 候选方法
+	 * @param targetClass 目标类
+	 * @param hasIntroductions 如果被询问的对象是一个或多个引介的目标，则为 {@code true}；
+	 * 否则为 {@code false}
+	 * @return 该方法是否静态匹配
 	 */
 	public static boolean matches(MethodMatcher mm, Method method, Class<?> targetClass, boolean hasIntroductions) {
 		Assert.notNull(mm, "MethodMatcher must not be null");

@@ -60,7 +60,7 @@ public class GlassFishLoadTimeWeaver implements LoadTimeWeaver {
 
 	/**
 	 * 使用提供的 {@link ClassLoader} 创建 {@link GlassFishLoadTimeWeaver} 类的新实例。
-	 * @param classLoader the {@code ClassLoader} to delegate to for weaving
+	 * @param classLoader 用于织入时委托的 {@code ClassLoader}
 	 */
 	public GlassFishLoadTimeWeaver(@Nullable ClassLoader classLoader) {
 		Assert.notNull(classLoader, "ClassLoader must not be null");

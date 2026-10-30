@@ -227,7 +227,7 @@ class ConfigurationClassParser {
 	 * 这里会递归调用解析扫描到的每个类，以及类的子类，内部类
 	 * @param configClass
 	 * @param filter 需要过滤的包名
-	 * @throws IOException io
+	 * @throws IOException IO 异常
 	 */
 	protected void processConfigurationClass(ConfigurationClass configClass, Predicate<String> filter) throws IOException {
 		if (this.conditionEvaluator.shouldSkip(configClass.getMetadata(), ConfigurationPhase.PARSE_CONFIGURATION)) {
@@ -282,9 +282,9 @@ class ConfigurationClassParser {
 	/**
 	 * 通过从源类读取注解、成员和方法来应用处理并构建完整的 {@link ConfigurationClass}。随着相关源被发
 	 * 现，此方法可以被多次调用。
-	 * @param configClass the configuration class being build
-	 * @param sourceClass a source class
-	 * @return the superclass, or {@code null} if none found or previously processed
+	 * @param configClass 正在构建的配置类
+	 * @param sourceClass 一个源类
+	 * @return 父类；如果未找到或此前已处理过，则为 {@code null}
 	 */
 	@Nullable
 	protected final SourceClass doProcessConfigurationClass(
@@ -503,8 +503,8 @@ class ConfigurationClassParser {
 
 	/**
 	 * 处理给定的 <code>@PropertySource</code> 注解元数据。
-	 * @param propertySource metadata for the <code>@PropertySource</code> annotation found
-	 * @throws IOException if loading a property source failed
+	 * @param propertySource 找到的 <code>@PropertySource</code> 注解的元数据
+	 * @throws IOException 如果加载属性源失败
 	 */
 	private void processPropertySource(AnnotationAttributes propertySource) throws IOException {
 		String name = propertySource.getString("name");
@@ -595,10 +595,10 @@ class ConfigurationClassParser {
 	 * 是有效的；从类上的第一个元注解返回值这一常规过程并不足够。
 	 * <p>例如，{@code @Configuration} 类除了声明源自 {@code @Enable} 注解的元导入之外，还常常声明直接
 	 * 的 {@code @Import}。
-	 * @param sourceClass the class to search
-	 * @param imports the imports collected so far
-	 * @param visited used to track visited classes to prevent infinite recursion
-	 * @throws IOException if there is any problem reading metadata from the named class
+	 * @param sourceClass 要搜索的类
+	 * @param imports 目前已收集的 import
+	 * @param visited 用于跟踪已访问的类以防止无限递归
+	 * @throws IOException 如果从指定的类读取元数据时出现问题
 	 */
 	private void collectImports(SourceClass sourceClass, Set<SourceClass> imports, Set<SourceClass> visited)
 			throws IOException {
@@ -850,8 +850,8 @@ class ConfigurationClassParser {
 		 * 处理指定的 {@link DeferredImportSelector}。如果正在收集延迟导入选择器，则将此实例注册到列表中。
 		 * 如果正在处理它们，则还会根据其 {@link DeferredImportSelector.Group} 立即处理该
 		 * {@link DeferredImportSelector}。
-		 * @param configClass the source configuration class
-		 * @param importSelector the selector to handle
+		 * @param configClass 源配置类
+		 * @param importSelector 要处理的 selector
 		 */
 		public void handle(ConfigurationClass configClass, DeferredImportSelector importSelector) {
 			DeferredImportSelectorHolder holder = new DeferredImportSelectorHolder(configClass, importSelector);
@@ -973,7 +973,7 @@ class ConfigurationClassParser {
 
 		/**
 		 * 返回该组定义的导入。
-		 * @return each import with its associated configuration class
+		 * @return 每个 import 及其关联的配置类
 		 */
 		public Iterable<Group.Entry> getImports() {
 			for (DeferredImportSelectorHolder deferredImport : this.deferredImports) {

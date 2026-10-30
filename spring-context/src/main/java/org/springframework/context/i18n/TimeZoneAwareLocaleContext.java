@@ -35,7 +35,7 @@ public interface TimeZoneAwareLocaleContext extends LocaleContext {
 
 	/**
 	 * 返回当前 TimeZone，它可以是固定的，也可以根据实现策略动态确定。
-	 * @return the current TimeZone, or {@code null} if no specific TimeZone associated
+	 * @return 当前 TimeZone；如果未关联特定 TimeZone，则为 {@code null}
 	 */
 	@Nullable
 	TimeZone getTimeZone();

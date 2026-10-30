@@ -200,8 +200,8 @@ public class BindTag extends HtmlEscapingAwareTag implements EditorAwareTag {
 	 * 获取此标签当前所绑定的属性，如果绑定的是对象而非
 	 * 特定属性，则返回 {@code null}。
 	 * 供协作的嵌套标签使用。
-	 * @return the property that this tag is currently bound to,
-	 * or {@code null} if none
+	 * @return 该标签当前绑定到的属性，
+	 * 如果没有则为 {@code null}
 	 */
 	@Nullable
 	public final String getProperty() {
@@ -211,7 +211,7 @@ public class BindTag extends HtmlEscapingAwareTag implements EditorAwareTag {
 	/**
 	 * 获取此标签当前所绑定的 Errors 实例。
 	 * 供协作的嵌套标签使用。
-	 * @return the current Errors instance, or {@code null} if none
+	 * @return 当前的 Errors 实例，如果没有则为 {@code null}
 	 */
 	@Nullable
 	public final Errors getErrors() {

@@ -36,8 +36,8 @@ public interface DisposableBean {
 
 	/**
 	 * 在 Bean 销毁时由包含它的 {@code BeanFactory} 调用。
-	 * @throws Exception in case of shutdown errors. Exceptions will get logged
-	 * but not rethrown to allow other beans to release their resources as well.
+	 * @throws Exception 如果发生关闭错误。异常会被记录但不会重新抛出，
+	 * 以便其他 Bean 也能释放其资源。
 	 */
 	void destroy() throws Exception;
 

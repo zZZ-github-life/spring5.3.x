@@ -24,21 +24,21 @@ import org.springframework.messaging.MessageHeaders;
  *
  * @author Mark Fisher
  * @since 4.1
- * @param <T> type of the instance to and from which headers will be mapped
+ * @param <T> 进行消息头映射的实例类型
  */
 public interface HeaderMapper<T> {
 
 	/**
 	 * 将给定的 {@link MessageHeaders} 映射到指定的目标消息。
-	 * @param headers the abstracted MessageHeaders
-	 * @param target the native target message
+	 * @param headers 抽象后的 MessageHeaders
+	 * @param target 原生目标消息
 	 */
 	void fromHeaders(MessageHeaders headers, T target);
 
 	/**
 	 * 将给定的目标消息映射为抽象的 {@link MessageHeaders}。
-	 * @param source the native target message
-	 * @return the abstracted MessageHeaders
+	 * @param source 原生目标消息
+	 * @return 抽象后的 MessageHeaders
 	 */
 	MessageHeaders toHeaders(T source);
 

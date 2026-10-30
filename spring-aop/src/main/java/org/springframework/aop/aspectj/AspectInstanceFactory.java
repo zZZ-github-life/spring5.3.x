@@ -33,13 +33,13 @@ public interface AspectInstanceFactory extends Ordered {
 
 	/**
 	 * 创建此工厂的切面实例。
-	 * @return the aspect instance (never {@code null})
+	 * @return 切面实例（永不为 {@code null}）
 	 */
 	Object getAspectInstance();
 
 	/**
 	 * 暴露此工厂使用的切面类加载器。
-	 * @return the aspect class loader (or {@code null} for the bootstrap loader)
+	 * @return 切面类加载器（对于引导加载器则为 {@code null}）
 	 * @see org.springframework.util.ClassUtils#getDefaultClassLoader()
 	 */
 	@Nullable

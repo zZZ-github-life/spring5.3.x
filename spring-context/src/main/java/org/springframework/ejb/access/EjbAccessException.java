@@ -29,7 +29,7 @@ public class EjbAccessException extends NestedRuntimeException {
 
 	/**
 	 * EjbAccessException 的构造函数。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public EjbAccessException(String msg) {
 		super(msg);
@@ -37,8 +37,8 @@ public class EjbAccessException extends NestedRuntimeException {
 
 	/**
 	 * EjbAccessException 的构造函数。
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param msg 详细消息
+	 * @param cause 根本原因
 	 */
 	public EjbAccessException(String msg, Throwable cause) {
 		super(msg, cause);

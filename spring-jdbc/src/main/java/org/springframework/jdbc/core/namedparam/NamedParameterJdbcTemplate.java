@@ -82,7 +82,7 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 	/**
 	 * 为给定的 {@link DataSource} 创建一个新的 NamedParameterJdbcTemplate。
 	 * <p>创建经典的 Spring {@link org.springframework.jdbc.core.JdbcTemplate} 并包装它。
-	 * @param dataSource the JDBC DataSource to access
+	 * @param dataSource 要访问的 JDBC DataSource
 	 */
 	public NamedParameterJdbcTemplate(DataSource dataSource) {
 		Assert.notNull(dataSource, "DataSource must not be null");
@@ -92,7 +92,7 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 	/**
 	 * 为给定的经典 Spring {@link org.springframework.jdbc.core.JdbcTemplate}
 	 * 创建一个新的 NamedParameterJdbcTemplate。
-	 * @param classicJdbcTemplate the classic Spring JdbcTemplate to wrap
+	 * @param classicJdbcTemplate 要包装的经典 Spring JdbcTemplate
 	 */
 	public NamedParameterJdbcTemplate(JdbcOperations classicJdbcTemplate) {
 		Assert.notNull(classicJdbcTemplate, "JdbcTemplate must not be null");
@@ -388,9 +388,9 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 	 * 基于给定的 SQL 和命名参数构建 {@link PreparedStatementCreator}。
 	 * <p>注意：由所有 {@code query} 变体直接调用。委托给通用的
 	 * {@link #getPreparedStatementCreator(String, SqlParameterSource, Consumer)} 方法。
-	 * @param sql the SQL statement to execute
-	 * @param paramSource container of arguments to bind
-	 * @return the corresponding {@link PreparedStatementCreator}
+	 * @param sql 要执行的 SQL 语句
+	 * @param paramSource 用于绑定的参数容器
+	 * @return 对应的 {@link PreparedStatementCreator}
 	 * @see #getPreparedStatementCreator(String, SqlParameterSource, Consumer)
 	 */
 	protected PreparedStatementCreator getPreparedStatementCreator(String sql, SqlParameterSource paramSource) {
@@ -401,12 +401,11 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 	 * 基于给定的 SQL 和命名参数构建 {@link PreparedStatementCreator}。
 	 * <p>注意：用于带生成键处理的 {@code update} 变体，同时也
 	 * 由 {@link #getPreparedStatementCreator(String, SqlParameterSource)} 委托调用。
-	 * @param sql the SQL statement to execute
-	 * @param paramSource container of arguments to bind
-	 * @param customizer callback for setting further properties on the
-	 * {@link PreparedStatementCreatorFactory} in use, applied before the
-	 * actual {@code newPreparedStatementCreator} call
-	 * @return the corresponding {@link PreparedStatementCreator}
+	 * @param sql 要执行的 SQL 语句
+	 * @param paramSource 用于绑定的参数容器
+	 * @param customizer 用于在当前使用的 {@link PreparedStatementCreatorFactory} 上设置更多属性的回调，
+	 * 在实际调用 {@code newPreparedStatementCreator} 之前应用
+	 * @return 对应的 {@link PreparedStatementCreator}
 	 * @since 5.0.5
 	 * @see #getParsedSql(String)
 	 * @see PreparedStatementCreatorFactory#PreparedStatementCreatorFactory(String, List)
@@ -427,8 +426,8 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 	/**
 	 * 获取给定 SQL 语句的已解析表示。
 	 * <p>默认实现使用上限为 256 个条目的 LRU 缓存。
-	 * @param sql the original SQL statement
-	 * @return a representation of the parsed SQL statement
+	 * @param sql 原始 SQL 语句
+	 * @return 解析后的 SQL 语句的表示形式
 	 */
 	protected ParsedSql getParsedSql(String sql) {
 		return this.parsedSqlCache.get(sql);
@@ -436,9 +435,9 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 
 	/**
 	 * 基于给定的 SQL 和命名参数构建 {@link PreparedStatementCreatorFactory}。
-	 * @param parsedSql parsed representation of the given SQL statement
-	 * @param paramSource container of arguments to bind
-	 * @return the corresponding {@link PreparedStatementCreatorFactory}
+	 * @param parsedSql 给定 SQL 语句的解析表示
+	 * @param paramSource 用于绑定的参数容器
+	 * @return 对应的 {@link PreparedStatementCreatorFactory}
 	 * @since 5.1.3
 	 * @see #getPreparedStatementCreator(String, SqlParameterSource, Consumer)
 	 * @see #getParsedSql(String)

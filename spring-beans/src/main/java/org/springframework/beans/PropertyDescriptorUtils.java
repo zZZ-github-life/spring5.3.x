@@ -45,9 +45,9 @@ abstract class PropertyDescriptorUtils {
 	 * 针对基本 set/get/is 访问器方法的简单内省算法，为它们构建相应的 JavaBeans 属性描述符。
 	 * <p>它仅支持基本的 JavaBeans 约定，不支持索引属性或任何定制器，也不支持其他 BeanInfo 元数据。对于
 	 * 标准 JavaBeans 内省，请使用 JavaBeans Introspector。
-	 * @param beanClass the target class to introspect
-	 * @return a collection of property descriptors
-	 * @throws IntrospectionException from introspecting the given bean class
+	 * @param beanClass 要内省的目标类
+	 * @return 属性描述符的集合
+	 * @throws IntrospectionException 来自对给定 Bean 类的内省
 	 * @since 5.3.24
 	 * @see SimpleBeanInfoFactory
 	 * @see java.beans.Introspector#getBeanInfo(Class)

@@ -33,7 +33,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Arjen Poutsma
  * @since 3.0
- * @param <T> the data type
+ * @param <T> 数据类型
  * @see RestTemplate#execute
  */
 @FunctionalInterface
@@ -41,9 +41,9 @@ public interface ResponseExtractor<T> {
 
 	/**
 	 * 从给定 {@code ClientHttpResponse} 中提取数据并返回。
-	 * @param response the HTTP response
-	 * @return the extracted data
-	 * @throws IOException in case of I/O errors
+	 * @param response HTTP 响应
+	 * @return 提取的数据
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	@Nullable
 	T extractData(ClientHttpResponse response) throws IOException;

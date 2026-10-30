@@ -58,7 +58,7 @@ public interface ImportSelector {
 
 	/**
 	 * 根据导入方 @{@link Configuration} 类的 {@link AnnotationMetadata}，选择并返回应导入的类的名称。
-	 * @return the class names, or an empty array if none
+	 * @return 类名；如果没有，则为空数组
 	 */
 	String[] selectImports(AnnotationMetadata importingClassMetadata);
 
@@ -66,8 +66,8 @@ public interface ImportSelector {
 	 * 返回一个用于从导入候选中排除类的谓词，该谓词将以传递方式应用于通过此选择器的导入所找到的所有类。
 	 * <p>如果该谓词对给定的完全限定类名返回 {@code true}，则该类不会被视为导入的配置类，从而绕过类文件
 	 * 加载以及元数据内省。
-	 * @return the filter predicate for fully-qualified candidate class names
-	 * of transitively imported configuration classes, or {@code null} if none
+	 * @return 用于传递导入的配置类的全限定候选类名的过滤谓词；
+	 * 如果没有，则为 {@code null}
 	 * @since 5.2.4
 	 */
 	@Nullable

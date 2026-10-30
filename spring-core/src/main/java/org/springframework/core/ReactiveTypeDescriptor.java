@@ -126,8 +126,8 @@ public final class ReactiveTypeDescriptor {
 
 	/**
 	 * 可产生 0..N 个值的响应式类型的描述符。
-	 * @param type the reactive type
-	 * @param emptySupplier a supplier of an empty-value instance of the reactive type
+	 * @param type 响应式类型
+	 * @param emptySupplier 响应式类型的空值实例的供应器
 	 */
 	public static ReactiveTypeDescriptor multiValue(Class<?> type, Supplier<?> emptySupplier) {
 		return new ReactiveTypeDescriptor(type, true, false, emptySupplier);
@@ -135,8 +135,8 @@ public final class ReactiveTypeDescriptor {
 
 	/**
 	 * 可产生 0..1 个值的响应式类型的描述符。
-	 * @param type the reactive type
-	 * @param emptySupplier a supplier of an empty-value instance of the reactive type
+	 * @param type 响应式类型
+	 * @param emptySupplier 响应式类型的空值实例的供应器
 	 */
 	public static ReactiveTypeDescriptor singleOptionalValue(Class<?> type, Supplier<?> emptySupplier) {
 		return new ReactiveTypeDescriptor(type, false, false, emptySupplier);
@@ -144,7 +144,7 @@ public final class ReactiveTypeDescriptor {
 
 	/**
 	 * 必须产生 1 个值才能完成的响应式类型的描述符。
-	 * @param type the reactive type
+	 * @param type 响应式类型
 	 */
 	public static ReactiveTypeDescriptor singleRequiredValue(Class<?> type) {
 		return new ReactiveTypeDescriptor(type, false, false, null);
@@ -152,8 +152,8 @@ public final class ReactiveTypeDescriptor {
 
 	/**
 	 * 不产生任何值的响应式类型的描述符。
-	 * @param type the reactive type
-	 * @param emptySupplier a supplier of an empty-value instance of the reactive type
+	 * @param type 响应式类型
+	 * @param emptySupplier 响应式类型的空值实例的供应器
 	 */
 	public static ReactiveTypeDescriptor noValue(Class<?> type, Supplier<?> emptySupplier) {
 		return new ReactiveTypeDescriptor(type, false, true, emptySupplier);
@@ -162,8 +162,8 @@ public final class ReactiveTypeDescriptor {
 	/**
 	 * 与 {@link #singleOptionalValue(Class, Supplier)} 相同，但用于非延迟的异步类型，例如
 	 * {@link java.util.concurrent.CompletableFuture}。
-	 * @param type the reactive type
-	 * @param emptySupplier a supplier of an empty-value instance of the reactive type
+	 * @param type 响应式类型
+	 * @param emptySupplier 响应式类型的空值实例的供应器
 	 * @since 5.2.7
 	 */
 	public static ReactiveTypeDescriptor nonDeferredAsyncValue(Class<?> type, Supplier<?> emptySupplier) {

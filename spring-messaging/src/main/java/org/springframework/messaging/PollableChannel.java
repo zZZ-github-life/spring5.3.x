@@ -28,16 +28,16 @@ public interface PollableChannel extends MessageChannel {
 
 	/**
 	 * 从此通道接收消息，如有必要会无限期阻塞。
-	 * @return the next available {@link Message} or {@code null} if interrupted
+	 * @return 下一个可用的 {@link Message}；如果被中断则返回 {@code null}
 	 */
 	@Nullable
 	Message<?> receive();
 
 	/**
 	 * 从此通道接收消息，阻塞直到有消息可用或指定的超时时间过去。
-	 * @param timeout the timeout in milliseconds or {@link MessageChannel#INDEFINITE_TIMEOUT}.
-	 * @return the next available {@link Message} or {@code null} if the specified timeout
-	 * period elapses or the message reception is interrupted
+	 * @param timeout 以毫秒为单位的超时时间，或 {@link MessageChannel#INDEFINITE_TIMEOUT}
+	 * @return 下一个可用的 {@link Message}；如果指定的超时时间已过
+	 * 或消息接收被中断，则返回 {@code null}
 	 */
 	@Nullable
 	Message<?> receive(long timeout);

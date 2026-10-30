@@ -37,7 +37,7 @@ public class FormatterPropertyEditorAdapter extends PropertyEditorSupport {
 
 	/**
 	 * 为给定的 {@link Formatter} 创建一个新的 {@code FormatterPropertyEditorAdapter}。
-	 * @param formatter the {@link Formatter} to wrap
+	 * @param formatter 要包装的 {@link Formatter}
 	 */
 	@SuppressWarnings("unchecked")
 	public FormatterPropertyEditorAdapter(Formatter<?> formatter) {
@@ -48,10 +48,9 @@ public class FormatterPropertyEditorAdapter extends PropertyEditorSupport {
 
 	/**
 	 * 确定 {@link Formatter} 所声明的字段类型。
-	 * @return the field type declared in the wrapped {@link Formatter} implementation
-	 * (never {@code null})
-	 * @throws IllegalArgumentException if the {@link Formatter}-declared field type
-	 * cannot be inferred
+	 * @return 所包装的 {@link Formatter} 实现中声明的字段类型
+	 * （永不为 {@code null}）
+	 * @throws IllegalArgumentException 如果无法推断 {@link Formatter} 声明的字段类型
 	 */
 	public Class<?> getFieldType() {
 		return FormattingConversionService.getFieldType(this.formatter);

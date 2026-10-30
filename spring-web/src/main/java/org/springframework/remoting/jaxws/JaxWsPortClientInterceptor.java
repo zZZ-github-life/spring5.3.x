@@ -268,8 +268,8 @@ public class JaxWsPortClientInterceptor extends LocalJaxWsServiceFactory
 
 	/**
 	 * 为此 JAX-WS BindingProvider 添加自定义属性。
-	 * @param name the name of the attribute to expose
-	 * @param value the attribute value to expose
+	 * @param name 要暴露的属性的名称
+	 * @param value 要暴露的属性值
 	 * @see javax.xml.ws.BindingProvider#getRequestContext()
 	 */
 	public void addCustomProperty(String name, Object value) {
@@ -367,7 +367,7 @@ public class JaxWsPortClientInterceptor extends LocalJaxWsServiceFactory
 	 * （即如果 "wsdlDocumentUrl"、"namespaceUri"、"serviceName"
 	 * 和 "portName" 尚未设置，但相应值已在指定服务接口的
 	 * 注解级别声明）。
-	 * @param ann the WebService annotation found on the specified service interface
+	 * @param ann 在指定服务接口上找到的 WebService 注解
 	 */
 	protected void applyDefaultsFromAnnotation(WebService ann) {
 		if (getWsdlDocumentUrl() == null) {
@@ -424,10 +424,10 @@ public class JaxWsPortClientInterceptor extends LocalJaxWsServiceFactory
 
 	/**
 	 * 从给定的 JAX-WS Service 中获取端口 stub。
-	 * @param service the Service object to obtain the port from
-	 * @param portQName the name of the desired port, if specified
-	 * @return the corresponding port object as returned from
-	 * {@code Service.getPort(...)}
+	 * @param service 要从中获取端口的 Service 对象
+	 * @param portQName 所需端口的名称（如果已指定）
+	 * @return 从 {@code Service.getPort(...)} 返回的
+	 * 对应端口对象
 	 */
 	protected Object getPortStub(Service service, @Nullable QName portQName) {
 		if (this.portFeatures != null) {
@@ -443,7 +443,7 @@ public class JaxWsPortClientInterceptor extends LocalJaxWsServiceFactory
 	/**
 	 * 准备给定的 JAX-WS 端口 stub，并对其应用属性。
 	 * 由 {@link #prepare} 调用。
-	 * @param stub the current JAX-WS port stub
+	 * @param stub 当前 JAX-WS 端口 stub
 	 * @see #setUsername
 	 * @see #setPassword
 	 * @see #setEndpointAddress
@@ -511,9 +511,9 @@ public class JaxWsPortClientInterceptor extends LocalJaxWsServiceFactory
 
 	/**
 	 * 基于给定的方法调用执行 JAX-WS 服务调用。
-	 * @param invocation the AOP method invocation
-	 * @return the invocation result, if any
-	 * @throws Throwable in case of invocation failure
+	 * @param invocation AOP 方法调用
+	 * @return 调用结果（如果有）
+	 * @throws Throwable 如果调用失败则抛出
 	 * @see #getPortStub()
 	 * @see #doInvoke(org.aopalliance.intercept.MethodInvocation, Object)
 	 */
@@ -537,10 +537,10 @@ public class JaxWsPortClientInterceptor extends LocalJaxWsServiceFactory
 
 	/**
 	 * 在给定的端口 stub 上执行 JAX-WS 服务调用。
-	 * @param invocation the AOP method invocation
-	 * @param portStub the RMI port stub to invoke
-	 * @return the invocation result, if any
-	 * @throws Throwable in case of invocation failure
+	 * @param invocation AOP 方法调用
+	 * @param portStub 要调用的 RMI 端口 stub
+	 * @return 调用结果（如果有）
+	 * @throws Throwable 如果调用失败则抛出
 	 * @see #getPortStub()
 	 */
 	@Nullable

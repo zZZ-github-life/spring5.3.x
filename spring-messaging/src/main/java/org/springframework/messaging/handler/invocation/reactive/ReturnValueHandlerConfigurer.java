@@ -36,7 +36,7 @@ public class ReturnValueHandlerConfigurer {
 
 	/**
 	 * 为处理器方法配置自定义返回值处理器。
-	 * @param handlers the handlers to add
+	 * @param handlers 要添加的处理器
 	 */
 	public void addCustomHandler(HandlerMethodReturnValueHandler... handlers) {
 		Assert.notNull(handlers, "'handlers' must not be null");

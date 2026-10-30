@@ -82,10 +82,10 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 
 	/**
 	 * 使用默认的 {@link AsyncUncaughtExceptionHandler} 创建一个新实例。
-	 * @param defaultExecutor the {@code Executor} (typically a Spring {@code AsyncTaskExecutor}
-	 * or {@link java.util.concurrent.ExecutorService}) to delegate to, unless a more specific
-	 * executor has been requested via a qualifier on the async method, in which case the
-	 * executor will be looked up at invocation time against the enclosing bean factory
+	 * @param defaultExecutor 要委托的 {@code Executor}（通常是 Spring {@code AsyncTaskExecutor}
+	 * 或 {@link java.util.concurrent.ExecutorService}）；除非已通过异步方法上的
+	 * 限定符请求了更具体的执行器，此时将在调用时针对所属 Bean 工厂
+	 * 查找执行器
 	 */
 	public AsyncExecutionAspectSupport(@Nullable Executor defaultExecutor) {
 		this.defaultExecutor = new SingletonSupplier<>(defaultExecutor, () -> getDefaultExecutor(this.beanFactory));
@@ -94,11 +94,11 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 
 	/**
 	 * 使用给定的异常处理器创建一个新的 {@link AsyncExecutionAspectSupport}。
-	 * @param defaultExecutor the {@code Executor} (typically a Spring {@code AsyncTaskExecutor}
-	 * or {@link java.util.concurrent.ExecutorService}) to delegate to, unless a more specific
-	 * executor has been requested via a qualifier on the async method, in which case the
-	 * executor will be looked up at invocation time against the enclosing bean factory
-	 * @param exceptionHandler the {@link AsyncUncaughtExceptionHandler} to use
+	 * @param defaultExecutor 要委托的 {@code Executor}（通常是 Spring {@code AsyncTaskExecutor}
+	 * 或 {@link java.util.concurrent.ExecutorService}）；除非已通过异步方法上的
+	 * 限定符请求了更具体的执行器，此时将在调用时针对所属 Bean 工厂
+	 * 查找执行器
+	 * @param exceptionHandler 要使用的 {@link AsyncUncaughtExceptionHandler}
 	 */
 	public AsyncExecutionAspectSupport(@Nullable Executor defaultExecutor, AsyncUncaughtExceptionHandler exceptionHandler) {
 		this.defaultExecutor = new SingletonSupplier<>(defaultExecutor, () -> getDefaultExecutor(this.beanFactory));
@@ -119,10 +119,10 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 
 	/**
 	 * 提供执行异步方法时要使用的执行器。
-	 * @param defaultExecutor the {@code Executor} (typically a Spring {@code AsyncTaskExecutor}
-	 * or {@link java.util.concurrent.ExecutorService}) to delegate to, unless a more specific
-	 * executor has been requested via a qualifier on the async method, in which case the
-	 * executor will be looked up at invocation time against the enclosing bean factory
+	 * @param defaultExecutor 要委托的 {@code Executor}（通常是 Spring {@code AsyncTaskExecutor}
+	 * 或 {@link java.util.concurrent.ExecutorService}）；除非已通过异步方法上的
+	 * 限定符请求了更具体的执行器，此时将在调用时针对所属 Bean 工厂
+	 * 查找执行器
 	 * @see #getExecutorQualifier(Method)
 	 * @see #setBeanFactory(BeanFactory)
 	 * @see #getDefaultExecutor(BeanFactory)
@@ -152,7 +152,7 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 
 	/**
 	 * 确定执行给定方法时要使用的特定执行器。最好返回一个 {@link AsyncListenableTaskExecutor} 实现。
-	 * @return the executor to use (or {@code null}, but just if no default executor is available)
+	 * @return 要使用的执行器（仅在无默认执行器可用时为 {@code null}）
 	 */
 	@Nullable
 	protected AsyncTaskExecutor determineAsyncExecutor(Method method) {
@@ -179,8 +179,8 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 	/**
 	 * 返回执行给定异步方法时要使用的执行器的限定符或 Bean 名称，通常以注解属性的形式指定。返回空字符串
 	 * 或 {@code null} 表示未指定特定执行器，应使用{@linkplain #setExecutor(Executor) 默认执行器}。
-	 * @param method the method to inspect for executor qualifier metadata
-	 * @return the qualifier if specified, otherwise empty String or {@code null}
+	 * @param method 要检查执行器限定符元数据的方法
+	 * @return 限定符（如果已指定），否则为空字符串或 {@code null}
 	 * @see #determineAsyncExecutor(Method)
 	 * @see #findQualifiedExecutor(BeanFactory, String)
 	 */
@@ -189,8 +189,8 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 
 	/**
 	 * 为给定限定符获取目标执行器。
-	 * @param qualifier the qualifier to resolve
-	 * @return the target executor, or {@code null} if none available
+	 * @param qualifier 要解析的限定符
+	 * @return 目标执行器；如果没有则返回 {@code null}
 	 * @since 4.2.6
 	 * @see #getExecutorQualifier(Method)
 	 */
@@ -207,8 +207,8 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 	 * 为此通知实例获取或构建默认执行器。从此处返回的执行器将被缓存以供进一步使用。
 	 * <p>默认实现会在上下文中搜索唯一的 {@link TaskExecutor} Bean，否则搜索名为 "taskExecutor" 的
 	 * {@link Executor} Bean。如果两者都无法解析，此实现将返回 {@code null}。
-	 * @param beanFactory the BeanFactory to use for a default executor lookup
-	 * @return the default executor, or {@code null} if none available
+	 * @param beanFactory 用于查找默认执行器的 BeanFactory
+	 * @return 默认执行器；如果没有则返回 {@code null}
 	 * @since 4.2.6
 	 * @see #findQualifiedExecutor(BeanFactory, String)
 	 * @see #DEFAULT_TASK_EXECUTOR_BEAN_NAME
@@ -255,10 +255,10 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 
 	/**
 	 * 用于使用所选执行器实际执行给定任务的委托。
-	 * @param task the task to execute
-	 * @param executor the chosen executor
-	 * @param returnType the declared return type (potentially a {@link Future} variant)
-	 * @return the execution result (potentially a corresponding {@link Future} handle)
+	 * @param task 要执行的任务
+	 * @param executor 所选的执行器
+	 * @param returnType 声明的返回类型（可能是某种 {@link Future} 变体）
+	 * @return 执行结果（可能是对应的 {@link Future} 句柄）
 	 */
 	@Nullable
 	protected Object doSubmit(Callable<Object> task, AsyncTaskExecutor executor, Class<?> returnType) {
@@ -289,9 +289,9 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 	 * <p>如果该方法的返回类型是 {@link Future} 对象，则只需在更高层抛出原始异常即可传播它。然而，对于
 	 * 所有其他情况，该异常不会被传回客户端。在后一种情况下，将使用当前的
 	 * {@link AsyncUncaughtExceptionHandler} 来管理此类异常。
-	 * @param ex the exception to handle
-	 * @param method the method that was invoked
-	 * @param params the parameters used to invoke the method
+	 * @param ex 要处理的异常
+	 * @param method 被调用的方法
+	 * @param params 调用该方法所用的参数
 	 */
 	protected void handleError(Throwable ex, Method method, Object... params) throws Exception {
 		if (Future.class.isAssignableFrom(method.getReturnType())) {

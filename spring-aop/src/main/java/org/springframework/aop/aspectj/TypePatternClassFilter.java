@@ -51,7 +51,7 @@ public class TypePatternClassFilter implements ClassFilter {
 
 	/**
 	 * 使用给定的类型模式创建一个完全配置好的 {@link TypePatternClassFilter}。
-	 * @param typePattern the type pattern that AspectJ weaver should parse
+	 * @param typePattern AspectJ 织入器应解析的类型模式
 	 */
 	public TypePatternClassFilter(String typePattern) {
 		setTypePattern(typePattern);
@@ -70,7 +70,7 @@ public class TypePatternClassFilter implements ClassFilter {
 	 * </code>
 	 * 这将匹配 {@code ITestBean} 接口以及任何实现它的类。
 	 * <p>这些约定由 AspectJ 制定，而不是 Spring AOP。
-	 * @param typePattern the type pattern that AspectJ weaver should parse
+	 * @param typePattern AspectJ 织入器应解析的类型模式
 	 */
 	public void setTypePattern(String typePattern) {
 		Assert.notNull(typePattern, "Type pattern must not be null");
@@ -90,9 +90,9 @@ public class TypePatternClassFilter implements ClassFilter {
 
 	/**
 	 * 切点是否应应用于给定的接口或目标类？
-	 * @param clazz candidate target class
-	 * @return whether the advice should apply to this candidate target class
-	 * @throws IllegalStateException if no {@link #setTypePattern(String)} has been set
+	 * @param clazz 候选目标类
+	 * @return 该通知是否应应用于此候选目标类
+	 * @throws IllegalStateException 如果尚未设置 {@link #setTypePattern(String)}
 	 */
 	@Override
 	public boolean matches(Class<?> clazz) {

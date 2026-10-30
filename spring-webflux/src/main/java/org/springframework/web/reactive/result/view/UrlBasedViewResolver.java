@@ -77,8 +77,8 @@ public class UrlBasedViewResolver extends ViewResolverSupport
 
 	/**
 	 * 设置应用于创建视图的视图类。
-	 * @param viewClass a class that is assignable to the required view class
-	 * (by default: AbstractUrlBasedView)
+	 * @param viewClass 可赋值给所需视图类的类
+	 * （默认为 AbstractUrlBasedView）
 	 * @see #requiredViewClass()
 	 * @see #instantiateView()
 	 * @see AbstractUrlBasedView
@@ -154,7 +154,7 @@ public class UrlBasedViewResolver extends ViewResolverSupport
 
 	/**
 	 * 为所有视图设置 {@link RequestContext} 属性的名称。
-	 * @param requestContextAttribute name of the RequestContext attribute
+	 * @param requestContextAttribute RequestContext 属性的名称
 	 * @see AbstractView#setRequestContextAttribute
 	 */
 	public void setRequestContextAttribute(@Nullable String requestContextAttribute) {
@@ -225,9 +225,9 @@ public class UrlBasedViewResolver extends ViewResolverSupport
 
 	/**
 	 * 指示此 {@link ViewResolver} 是否可以处理提供的视图名称。如果无法处理，则返回空结果。默认实现会检查配置的 {@link #setViewNames 视图名称}。
-	 * @param viewName the name of the view to retrieve
-	 * @param locale the Locale to retrieve the view for
-	 * @return whether this resolver applies to the specified view
+	 * @param viewName 要获取的视图名称
+	 * @param locale 要为其获取视图的 Locale
+	 * @return 此解析器是否适用于指定的视图
 	 * @see org.springframework.util.PatternMatchUtils#simpleMatch(String, String)
 	 */
 	protected boolean canHandle(String viewName, Locale locale) {
@@ -247,7 +247,7 @@ public class UrlBasedViewResolver extends ViewResolverSupport
 	/**
 	 * 实例化指定的视图类。
 	 * <p>默认实现使用反射实例化该类。
-	 * @return a new instance of the view class
+	 * @return 视图类的新实例
 	 * @since 5.3
 	 * @see #setViewClass
 	 */
@@ -261,8 +261,8 @@ public class UrlBasedViewResolver extends ViewResolverSupport
 	 * 创建指定视图类的新 View 实例并进行配置。
 	 * <p><i>不</i>对预定义 View 实例执行任何查找。
 	 * <p>无需在此调用 Bean 容器定义的 Spring 生命周期方法：如果 {@link #setApplicationContext ApplicationContext} 可用，它们将在之后自动应用。
-	 * @param viewName the name of the view to build
-	 * @return the View instance
+	 * @param viewName 要构建的视图名称
+	 * @return View 实例
 	 * @see #getViewClass()
 	 * @see #applyLifecycleMethods
 	 */
@@ -282,11 +282,11 @@ public class UrlBasedViewResolver extends ViewResolverSupport
 
 	/**
 	 * 如果包含的 {@link ApplicationContext} 可用，则将其生命周期方法应用到给定 {@link View} 实例。
-	 * @param viewName the name of the view
-	 * @param view the freshly created View instance, pre-configured with
-	 * {@link AbstractUrlBasedView}'s properties
-	 * @return the {@link View} instance to use (either the original one
-	 * or a decorated variant)
+	 * @param viewName 视图的名称
+	 * @param view 新创建的 View 实例，
+	 * 已使用 {@link AbstractUrlBasedView} 的属性预先配置
+	 * @return 要使用的 {@link View} 实例
+	 * （原始实例或装饰后的变体）
 	 * @see #getApplicationContext()
 	 * @see ApplicationContext#getAutowireCapableBeanFactory()
 	 * @see org.springframework.beans.factory.config.AutowireCapableBeanFactory#initializeBean

@@ -83,7 +83,7 @@ public abstract class AnnotatedElementUtils {
 	/**
 	 * 为给定注解构建一个适配的 {@link AnnotatedElement}，通常用于 {@link AnnotatedElementUtils} 上的其
 	 * 他方法。
-	 * @param annotations the annotations to expose through the {@code AnnotatedElement}
+	 * @param annotations 要通过 {@code AnnotatedElement} 暴露的注解
 	 * @since 4.3
 	 */
 	public static AnnotatedElement forAnnotations(Annotation... annotations) {
@@ -94,10 +94,9 @@ public abstract class AnnotatedElementUtils {
 	 * 获取所提供的 {@link AnnotatedElement} 上该注解（指定 {@code annotationType} 的注解）中所有<em>存
 	 * 在</em>的元注解类型的完全限定类名。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>get 语义</em>。
-	 * @param element the annotated element
-	 * @param annotationType the annotation type on which to find meta-annotations
-	 * @return the names of all meta-annotations present on the annotation,
-	 * or an empty set if not found
+	 * @param element 被注解的元素
+	 * @param annotationType 要在其上查找元注解的注解类型
+	 * @return 该注解上存在的所有元注解的名称，如果未找到则为空 Set
 	 * @since 4.2
 	 * @see #getMetaAnnotationTypes(AnnotatedElement, String)
 	 * @see #hasMetaAnnotationTypes
@@ -112,11 +111,9 @@ public abstract class AnnotatedElementUtils {
 	 * 获取所提供的 {@link AnnotatedElement} 上该注解（指定 {@code annotationName} 的注解）中所有<em>存
 	 * 在</em>的元注解类型的完全限定类名。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>get 语义</em>。
-	 * @param element the annotated element
-	 * @param annotationName the fully qualified class name of the annotation
-	 * type on which to find meta-annotations
-	 * @return the names of all meta-annotations present on the annotation,
-	 * or an empty set if none found
+	 * @param element 被注解的元素
+	 * @param annotationName 要在其上查找元注解的注解类型的完全限定类名
+	 * @return 该注解上存在的所有元注解的名称，如果未找到则为空 Set
 	 * @see #getMetaAnnotationTypes(AnnotatedElement, Class)
 	 * @see #hasMetaAnnotationTypes
 	 */
@@ -142,9 +139,9 @@ public abstract class AnnotatedElementUtils {
 	 * 判断所提供的 {@link AnnotatedElement} 是否标注了一个<em>组合注解</em>，该注解以指定
 	 * {@code annotationType} 的注解作为元注解。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>get 语义</em>。
-	 * @param element the annotated element
-	 * @param annotationType the meta-annotation type to find
-	 * @return {@code true} if a matching meta-annotation is present
+	 * @param element 被注解的元素
+	 * @param annotationType 要查找的元注解类型
+	 * @return 如果存在匹配的元注解则返回 {@code true}
 	 * @since 4.2.3
 	 * @see #getMetaAnnotationTypes
 	 */
@@ -156,10 +153,9 @@ public abstract class AnnotatedElementUtils {
 	 * 判断所提供的 {@link AnnotatedElement} 是否标注了一个<em>组合注解</em>，该注解以指定
 	 * {@code annotationName} 的注解作为元注解。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>get 语义</em>。
-	 * @param element the annotated element
-	 * @param annotationName the fully qualified class name of the
-	 * meta-annotation type to find
-	 * @return {@code true} if a matching meta-annotation is present
+	 * @param element 被注解的元素
+	 * @param annotationName 要查找的元注解类型的完全限定类名
+	 * @return 如果存在匹配的元注解则返回 {@code true}
 	 * @see #getMetaAnnotationTypes
 	 */
 	public static boolean hasMetaAnnotationTypes(AnnotatedElement element, String annotationName) {
@@ -171,9 +167,9 @@ public abstract class AnnotatedElementUtils {
 	 * 或位于指定元素<em>之上</em>的注解层级中。
 	 * <p>如果此方法返回 {@code true}，则 {@link #getMergedAnnotationAttributes} 将返回非 null 值。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>get 语义</em>。
-	 * @param element the annotated element
-	 * @param annotationType the annotation type to find
-	 * @return {@code true} if a matching annotation is present
+	 * @param element 被注解的元素
+	 * @param annotationType 要查找的注解类型
+	 * @return 如果存在匹配的注解则返回 {@code true}
 	 * @since 4.2.3
 	 * @see #hasAnnotation(AnnotatedElement, Class)
 	 */
@@ -192,9 +188,9 @@ public abstract class AnnotatedElementUtils {
 	 * 或在指定元素<em>之上</em>的注解层级中。
 	 * <p>如果此方法返回 {@code true}，则 {@link #getMergedAnnotationAttributes} 将返回非 null 值。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>get 语义</em>。
-	 * @param element the annotated element
-	 * @param annotationName the fully qualified class name of the annotation type to find
-	 * @return {@code true} if a matching annotation is present
+	 * @param element 被注解的元素
+	 * @param annotationName 要查找的注解类型的完全限定类名
+	 * @return 如果存在匹配的注解则返回 {@code true}
 	 */
 	public static boolean isAnnotated(AnnotatedElement element, String annotationName) {
 		return getAnnotations(element).isPresent(annotationName);
@@ -205,9 +201,9 @@ public abstract class AnnotatedElementUtils {
 	 * 注解层级中，并将该注解的属性与注解层级较低层中注解的<em>匹配</em>属性合并。
 	 * <p>在单个注解内以及注解层级内，都完全支持 {@link AliasFor @AliasFor} 语义。
 	 * <p>此方法委托给 {@link #getMergedAnnotationAttributes(AnnotatedElement, String)}。
-	 * @param element the annotated element
-	 * @param annotationType the annotation type to find
-	 * @return the merged {@code AnnotationAttributes}, or {@code null} if not found
+	 * @param element 被注解的元素
+	 * @param annotationType 要查找的注解类型
+	 * @return 合并后的 {@code AnnotationAttributes}，如果未找到则为 {@code null}
 	 * @since 4.2
 	 * @see #getMergedAnnotationAttributes(AnnotatedElement, String, boolean, boolean)
 	 * @see #findMergedAnnotationAttributes(AnnotatedElement, String, boolean, boolean)
@@ -230,9 +226,9 @@ public abstract class AnnotatedElementUtils {
 	 * <p>此方法委托给
 	 * {@link #getMergedAnnotationAttributes(AnnotatedElement, String, boolean, boolean)}，并为
 	 * {@code classValuesAsString} 和 {@code nestedAnnotationsAsMap} 传入 {@code false}。
-	 * @param element the annotated element
-	 * @param annotationName the fully qualified class name of the annotation type to find
-	 * @return the merged {@code AnnotationAttributes}, or {@code null} if not found
+	 * @param element 被注解的元素
+	 * @param annotationName 要查找的注解类型的完全限定类名
+	 * @return 合并后的 {@code AnnotationAttributes}，如果未找到则为 {@code null}
 	 * @since 4.2
 	 * @see #getMergedAnnotationAttributes(AnnotatedElement, String, boolean, boolean)
 	 * @see #findMergedAnnotationAttributes(AnnotatedElement, String, boolean, boolean)
@@ -255,13 +251,12 @@ public abstract class AnnotatedElementUtils {
 	 * {@code annotationName} 的第一个注解后将停止搜索注解层级。因此，指定 {@code annotationName} 的其
 	 * 他注解将被忽略。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>get 语义</em>。
-	 * @param element the annotated element
-	 * @param annotationName the fully qualified class name of the annotation type to find
-	 * @param classValuesAsString whether to convert Class references into Strings or to
-	 * preserve them as Class references
-	 * @param nestedAnnotationsAsMap whether to convert nested Annotation instances
-	 * into {@code AnnotationAttributes} maps or to preserve them as Annotation instances
-	 * @return the merged {@code AnnotationAttributes}, or {@code null} if not found
+	 * @param element 被注解的元素
+	 * @param annotationName 要查找的注解类型的完全限定类名
+	 * @param classValuesAsString 是将 Class 引用转换为 String，还是将其保留为 Class 引用
+	 * @param nestedAnnotationsAsMap 是将嵌套的 Annotation 实例转换为 {@code AnnotationAttributes} Map，
+	 * 还是将其保留为 Annotation 实例
+	 * @return 合并后的 {@code AnnotationAttributes}，如果未找到则为 {@code null}
 	 * @since 4.2
 	 * @see #findMergedAnnotation(AnnotatedElement, Class)
 	 * @see #findMergedAnnotationAttributes(AnnotatedElement, String, boolean, boolean)
@@ -281,9 +276,9 @@ public abstract class AnnotatedElementUtils {
 	 * 注解层级中，将该注解的属性与注解层级较低层中注解的<em>匹配</em>属性合并，并将结果合成为指定
 	 * {@code annotationType} 的注解。
 	 * <p>在单个注解内以及注解层级内，都完全支持 {@link AliasFor @AliasFor} 语义。
-	 * @param element the annotated element
-	 * @param annotationType the annotation type to find
-	 * @return the merged, synthesized {@code Annotation}, or {@code null} if not found
+	 * @param element 被注解的元素
+	 * @param annotationType 要查找的注解类型
+	 * @return 合并后的、合成的 {@code Annotation}，如果未找到则为 {@code null}
 	 * @since 4.2
 	 * @see #findMergedAnnotation(AnnotatedElement, Class)
 	 */
@@ -306,10 +301,9 @@ public abstract class AnnotatedElementUtils {
 	 * <em>匹配</em>属性合并，并将结果合成为指定 {@code annotationType} 的注解。
 	 * <p>在单个注解内以及注解层级内，都完全支持 {@link AliasFor @AliasFor} 语义。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>get 语义</em>。
-	 * @param element the annotated element (never {@code null})
-	 * @param annotationType the annotation type to find (never {@code null})
-	 * @return the set of all merged, synthesized {@code Annotations} found,
-	 * or an empty set if none were found
+	 * @param element 被注解的元素（永不为 {@code null}）
+	 * @param annotationType 要查找的注解类型（永不为 {@code null}）
+	 * @return 找到的所有合并的、合成的 {@code Annotations} 的 Set，如果未找到则为空 Set
 	 * @since 4.3
 	 * @see #getMergedAnnotation(AnnotatedElement, Class)
 	 * @see #getAllAnnotationAttributes(AnnotatedElement, String)
@@ -328,10 +322,9 @@ public abstract class AnnotatedElementUtils {
 	 * <em>匹配</em>属性合并，并将结果合成为相应 {@code annotationType} 的注解。
 	 * <p>在单个注解内以及注解层级内，都完全支持 {@link AliasFor @AliasFor} 语义。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>get 语义</em>。
-	 * @param element the annotated element (never {@code null})
-	 * @param annotationTypes the annotation types to find
-	 * @return the set of all merged, synthesized {@code Annotations} found,
-	 * or an empty set if none were found
+	 * @param element 被注解的元素（永不为 {@code null}）
+	 * @param annotationTypes 要查找的注解类型
+	 * @return 找到的所有合并的、合成的 {@code Annotations} 的 Set，如果未找到则为空 Set
 	 * @since 5.1
 	 * @see #getAllMergedAnnotations(AnnotatedElement, Class)
 	 */
@@ -350,12 +343,10 @@ public abstract class AnnotatedElementUtils {
 	 * <p>存放可重复注解的容器类型将通过 {@link java.lang.annotation.Repeatable} 查找。
 	 * <p>在单个注解内以及注解层级内，都完全支持 {@link AliasFor @AliasFor} 语义。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>get 语义</em>。
-	 * @param element the annotated element (never {@code null})
-	 * @param annotationType the annotation type to find (never {@code null})
-	 * @return the set of all merged repeatable {@code Annotations} found,
-	 * or an empty set if none were found
-	 * @throws IllegalArgumentException if the {@code element} or {@code annotationType}
-	 * is {@code null}, or if the container type cannot be resolved
+	 * @param element 被注解的元素（永不为 {@code null}）
+	 * @param annotationType 要查找的注解类型（永不为 {@code null}）
+	 * @return 找到的所有合并的可重复 {@code Annotations} 的 Set，如果未找到则为空 Set
+	 * @throws IllegalArgumentException 如果 {@code element} 或 {@code annotationType} 为 {@code null}，或无法解析容器类型
 	 * @since 4.3
 	 * @see #getMergedAnnotation(AnnotatedElement, Class)
 	 * @see #getAllMergedAnnotations(AnnotatedElement, Class)
@@ -380,17 +371,13 @@ public abstract class AnnotatedElementUtils {
 	 * 接使用 {@link MergedAnnotations} API，并结合通过
 	 * {@linkplain RepeatableContainers#and(Class, Class) composed} 组合的 {@link RepeatableContainers}
 	 * 来支持多种可重复注解类型。
-	 * @param element the annotated element (never {@code null})
-	 * @param annotationType the annotation type to find (never {@code null})
-	 * @param containerType the type of the container that holds the annotations;
-	 * may be {@code null} if the container type should be looked up via
-	 * {@link java.lang.annotation.Repeatable}
-	 * @return the set of all merged repeatable {@code Annotations} found,
-	 * or an empty set if none were found
-	 * @throws IllegalArgumentException if the {@code element} or {@code annotationType}
-	 * is {@code null}, or if the container type cannot be resolved
-	 * @throws AnnotationConfigurationException if the supplied {@code containerType}
-	 * is not a valid container annotation for the supplied {@code annotationType}
+	 * @param element 被注解的元素（永不为 {@code null}）
+	 * @param annotationType 要查找的注解类型（永不为 {@code null}）
+	 * @param containerType 存放注解的容器类型；如果应通过
+	 * {@link java.lang.annotation.Repeatable} 查找容器类型，则可以为 {@code null}
+	 * @return 找到的所有合并的可重复 {@code Annotations} 的 Set，如果未找到则为空 Set
+	 * @throws IllegalArgumentException 如果 {@code element} 或 {@code annotationType} 为 {@code null}，或无法解析容器类型
+	 * @throws AnnotationConfigurationException 如果提供的 {@code containerType} 不是提供的 {@code annotationType} 的有效容器注解
 	 * @since 4.3
 	 * @see #getMergedAnnotation(AnnotatedElement, Class)
 	 * @see #getAllMergedAnnotations(AnnotatedElement, Class)
@@ -410,10 +397,10 @@ public abstract class AnnotatedElementUtils {
 	 * <p>注意：与 {@link #getMergedAnnotationAttributes(AnnotatedElement, String)} 不同，此方法<em>不
 	 * </em>支持属性覆盖。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>get 语义</em>。
-	 * @param element the annotated element
-	 * @param annotationName the fully qualified class name of the annotation type to find
-	 * @return a {@link MultiValueMap} keyed by attribute name, containing the annotation
-	 * attributes from all annotations found, or {@code null} if not found
+	 * @param element 被注解的元素
+	 * @param annotationName 要查找的注解类型的完全限定类名
+	 * @return 以属性名为键的 {@link MultiValueMap}，包含找到的所有注解的注解属性，
+	 * 如果未找到则为 {@code null}
 	 * @see #getAllAnnotationAttributes(AnnotatedElement, String, boolean, boolean)
 	 */
 	@Nullable
@@ -429,14 +416,13 @@ public abstract class AnnotatedElementUtils {
 	 * <p>注意：与 {@link #getMergedAnnotationAttributes(AnnotatedElement, String)} 不同，此方法<em>不
 	 * </em>支持属性覆盖。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>get 语义</em>。
-	 * @param element the annotated element
-	 * @param annotationName the fully qualified class name of the annotation type to find
-	 * @param classValuesAsString whether to convert Class references into Strings or to
-	 * preserve them as Class references
-	 * @param nestedAnnotationsAsMap whether to convert nested Annotation instances into
-	 * {@code AnnotationAttributes} maps or to preserve them as Annotation instances
-	 * @return a {@link MultiValueMap} keyed by attribute name, containing the annotation
-	 * attributes from all annotations found, or {@code null} if not found
+	 * @param element 被注解的元素
+	 * @param annotationName 要查找的注解类型的完全限定类名
+	 * @param classValuesAsString 是将 Class 引用转换为 String，还是将其保留为 Class 引用
+	 * @param nestedAnnotationsAsMap 是将嵌套的 Annotation 实例转换为 {@code AnnotationAttributes} Map，
+	 * 还是将其保留为 Annotation 实例
+	 * @return 以属性名为键的 {@link MultiValueMap}，包含找到的所有注解的注解属性，
+	 * 如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public static MultiValueMap<String, Object> getAllAnnotationAttributes(AnnotatedElement element,
@@ -455,9 +441,9 @@ public abstract class AnnotatedElementUtils {
 	 * <p>如果此方法返回 {@code true}，则 {@link #findMergedAnnotationAttributes} 将返回非 null 值。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>find 语义</em>。
 	 *
-	 * @param element the annotated element
-	 * @param annotationType the annotation type to find
-	 * @return {@code true} if a matching annotation is present
+	 * @param element 被注解的元素
+	 * @param annotationType 要查找的注解类型
+	 * @return 如果存在匹配的注解则返回 {@code true}
 	 * @since 4.3
 	 * @see #isAnnotated(AnnotatedElement, Class)
 	 */
@@ -481,13 +467,12 @@ public abstract class AnnotatedElementUtils {
 	 * 他注解将被忽略。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>find 语义</em>。
 	 *
-	 * @param element the annotated element
-	 * @param annotationType the annotation type to find
-	 * @param classValuesAsString whether to convert Class references into
-	 * Strings or to preserve them as Class references
-	 * @param nestedAnnotationsAsMap whether to convert nested Annotation instances into
-	 * {@code AnnotationAttributes} maps or to preserve them as Annotation instances
-	 * @return the merged {@code AnnotationAttributes}, or {@code null} if not found
+	 * @param element 被注解的元素
+	 * @param annotationType 要查找的注解类型
+	 * @param classValuesAsString 是将 Class 引用转换为 String，还是将其保留为 Class 引用
+	 * @param nestedAnnotationsAsMap 是将嵌套的 Annotation 实例转换为 {@code AnnotationAttributes} Map，
+	 * 还是将其保留为 Annotation 实例
+	 * @return 合并后的 {@code AnnotationAttributes}，如果未找到则为 {@code null}
 	 * @since 4.2
 	 * @see #findMergedAnnotation(AnnotatedElement, Class)
 	 * @see #getMergedAnnotationAttributes(AnnotatedElement, String, boolean, boolean)
@@ -511,13 +496,12 @@ public abstract class AnnotatedElementUtils {
 	 * 他注解将被忽略。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>find 语义</em>。
 	 *
-	 * @param element the annotated element
-	 * @param annotationName the fully qualified class name of the annotation type to find
-	 * @param classValuesAsString whether to convert Class references into Strings or to
-	 * preserve them as Class references
-	 * @param nestedAnnotationsAsMap whether to convert nested Annotation instances into
-	 * {@code AnnotationAttributes} maps or to preserve them as Annotation instances
-	 * @return the merged {@code AnnotationAttributes}, or {@code null} if not found
+	 * @param element 被注解的元素
+	 * @param annotationName 要查找的注解类型的完全限定类名
+	 * @param classValuesAsString 是将 Class 引用转换为 String，还是将其保留为 Class 引用
+	 * @param nestedAnnotationsAsMap 是将嵌套的 Annotation 实例转换为 {@code AnnotationAttributes} Map，
+	 * 还是将其保留为 Annotation 实例
+	 * @return 合并后的 {@code AnnotationAttributes}，如果未找到则为 {@code null}
 	 * @since 4.2
 	 * @see #findMergedAnnotation(AnnotatedElement, Class)
 	 * @see #getMergedAnnotationAttributes(AnnotatedElement, String, boolean, boolean)
@@ -538,9 +522,9 @@ public abstract class AnnotatedElementUtils {
 	 * <p>在单个注解内以及注解层级内，都完全支持 {@link AliasFor @AliasFor} 语义。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>find 语义</em>。
 	 *
-	 * @param element the annotated element
-	 * @param annotationType the annotation type to find
-	 * @return the merged, synthesized {@code Annotation}, or {@code null} if not found
+	 * @param element 被注解的元素
+	 * @param annotationType 要查找的注解类型
+	 * @return 合并后的、合成的 {@code Annotation}，如果未找到则为 {@code null}
 	 * @since 4.2
 	 * @see #findAllMergedAnnotations(AnnotatedElement, Class)
 	 * @see #findMergedAnnotationAttributes(AnnotatedElement, String, boolean, boolean)
@@ -566,10 +550,9 @@ public abstract class AnnotatedElementUtils {
 	 * <p>在单个注解内以及注解层级内，都完全支持 {@link AliasFor @AliasFor} 语义。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>find 语义</em>。
 	 *
-	 * @param element the annotated element (never {@code null})
-	 * @param annotationType the annotation type to find (never {@code null})
-	 * @return the set of all merged, synthesized {@code Annotations} found,
-	 * or an empty set if none were found
+	 * @param element 被注解的元素（永不为 {@code null}）
+	 * @param annotationType 要查找的注解类型（永不为 {@code null}）
+	 * @return 找到的所有合并的、合成的 {@code Annotations} 的 Set，如果未找到则为空 Set
 	 * @since 4.3
 	 * @see #findMergedAnnotation(AnnotatedElement, Class)
 	 * @see #getAllMergedAnnotations(AnnotatedElement, Class)
@@ -587,10 +570,9 @@ public abstract class AnnotatedElementUtils {
 	 * <p>在单个注解内以及注解层级内，都完全支持 {@link AliasFor @AliasFor} 语义。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>find 语义</em>。
 	 *
-	 * @param element the annotated element (never {@code null})
-	 * @param annotationTypes the annotation types to find
-	 * @return the set of all merged, synthesized {@code Annotations} found,
-	 * or an empty set if none were found
+	 * @param element 被注解的元素（永不为 {@code null}）
+	 * @param annotationTypes 要查找的注解类型
+	 * @return 找到的所有合并的、合成的 {@code Annotations} 的 Set，如果未找到则为空 Set
 	 * @since 5.1
 	 * @see #findAllMergedAnnotations(AnnotatedElement, Class)
 	 */
@@ -609,12 +591,10 @@ public abstract class AnnotatedElementUtils {
 	 * <p>在单个注解内以及注解层级内，都完全支持 {@link AliasFor @AliasFor} 语义。
 	 * <p>此方法遵循 {@linkplain AnnotatedElementUtils class-level javadoc}中所述的 <em>find 语义</em>。
 	 *
-	 * @param element the annotated element (never {@code null})
-	 * @param annotationType the annotation type to find (never {@code null})
-	 * @return the set of all merged repeatable {@code Annotations} found,
-	 * or an empty set if none were found
-	 * @throws IllegalArgumentException if the {@code element} or {@code annotationType}
-	 * is {@code null}, or if the container type cannot be resolved
+	 * @param element 被注解的元素（永不为 {@code null}）
+	 * @param annotationType 要查找的注解类型（永不为 {@code null}）
+	 * @return 找到的所有合并的可重复 {@code Annotations} 的 Set，如果未找到则为空 Set
+	 * @throws IllegalArgumentException 如果 {@code element} 或 {@code annotationType} 为 {@code null}，或无法解析容器类型
 	 * @since 4.3
 	 * @see #findMergedAnnotation(AnnotatedElement, Class)
 	 * @see #findAllMergedAnnotations(AnnotatedElement, Class)
@@ -640,17 +620,13 @@ public abstract class AnnotatedElementUtils {
 	 * 直接使用 {@link MergedAnnotations} API，并结合通过
 	 * {@linkplain RepeatableContainers#and(Class, Class) composed} 组合的 {@link RepeatableContainers}
 	 * 来支持多种可重复注解类型。
-	 * @param element the annotated element (never {@code null})
-	 * @param annotationType the annotation type to find (never {@code null})
-	 * @param containerType the type of the container that holds the annotations;
-	 * may be {@code null} if the container type should be looked up via
-	 * {@link java.lang.annotation.Repeatable}
-	 * @return the set of all merged repeatable {@code Annotations} found,
-	 * or an empty set if none were found
-	 * @throws IllegalArgumentException if the {@code element} or {@code annotationType}
-	 * is {@code null}, or if the container type cannot be resolved
-	 * @throws AnnotationConfigurationException if the supplied {@code containerType}
-	 * is not a valid container annotation for the supplied {@code annotationType}
+	 * @param element 被注解的元素（永不为 {@code null}）
+	 * @param annotationType 要查找的注解类型（永不为 {@code null}）
+	 * @param containerType 存放注解的容器类型；如果应通过
+	 * {@link java.lang.annotation.Repeatable} 查找容器类型，则可以为 {@code null}
+	 * @return 找到的所有合并的可重复 {@code Annotations} 的 Set，如果未找到则为空 Set
+	 * @throws IllegalArgumentException 如果 {@code element} 或 {@code annotationType} 为 {@code null}，或无法解析容器类型
+	 * @throws AnnotationConfigurationException 如果提供的 {@code containerType} 不是提供的 {@code annotationType} 的有效容器注解
 	 * @since 4.3
 	 * @see #findMergedAnnotation(AnnotatedElement, Class)
 	 * @see #findAllMergedAnnotations(AnnotatedElement, Class)

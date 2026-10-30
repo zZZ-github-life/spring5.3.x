@@ -43,10 +43,9 @@ public class DefaultActiveProfilesResolver implements ActiveProfilesResolver {
 
 	/**
 	 * 根据通过 {@link ActiveProfiles#profiles} 或 {@link ActiveProfiles#value} 以声明方式配置的配置文件，为给定的 {@linkplain Class 测试类}解析<em>Bean 定义配置文件</em>。
-	 * @param testClass the test class for which the profiles should be resolved;
-	 * never {@code null}
-	 * @return the list of bean definition profiles to use when loading the
-	 * {@code ApplicationContext}; never {@code null}
+	 * @param testClass 应为其解析 profile 的测试类；从不为 {@code null}
+	 * @return 加载 {@code ApplicationContext} 时要使用的 Bean 定义 profile 列表；
+	 * 从不为 {@code null}
 	 */
 	@Override
 	public String[] resolve(Class<?> testClass) {

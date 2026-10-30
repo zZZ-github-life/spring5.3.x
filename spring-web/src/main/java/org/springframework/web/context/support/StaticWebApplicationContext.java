@@ -119,7 +119,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext
 
 	/**
 	 * {@link StaticWebApplicationContext} 类不支持此方法。
-	 * @throws UnsupportedOperationException <b>always</b>
+	 * @throws UnsupportedOperationException <b>总是</b>
 	 */
 	@Override
 	public void setConfigLocation(String configLocation) {
@@ -128,7 +128,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext
 
 	/**
 	 * {@link StaticWebApplicationContext} 类不支持此方法。
-	 * @throws UnsupportedOperationException <b>always</b>
+	 * @throws UnsupportedOperationException <b>总是</b>
 	 */
 	@Override
 	public void setConfigLocations(String... configLocations) {

@@ -36,7 +36,7 @@ public class BeanFactoryResolver implements BeanResolver {
 
 	/**
 	 * 为给定的工厂创建一个新的 {@link BeanFactoryResolver}。
-	 * @param beanFactory the {@link BeanFactory} to resolve bean names against
+	 * @param beanFactory 用于解析 Bean 名称的 {@link BeanFactory}
 	 */
 	public BeanFactoryResolver(BeanFactory beanFactory) {
 		Assert.notNull(beanFactory, "BeanFactory must not be null");

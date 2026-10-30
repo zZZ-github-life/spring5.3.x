@@ -85,8 +85,8 @@ public class HibernateExceptionTranslator implements PersistenceExceptionTransla
 	 * 相应的异常。
 	 * <p>会自动将指定的 SQLExceptionTranslator 应用于
 	 * Hibernate JDBCException，否则依赖 Hibernate 的默认转换。
-	 * @param ex the HibernateException that occurred
-	 * @return a corresponding DataAccessException
+	 * @param ex 发生的 HibernateException
+	 * @return 相应的 DataAccessException
 	 * @see SessionFactoryUtils#convertHibernateAccessException
 	 */
 	protected DataAccessException convertHibernateAccessException(HibernateException ex) {

@@ -30,7 +30,7 @@ public class NonTransientDataAccessResourceException extends NonTransientDataAcc
 
 	/**
 	 * NonTransientDataAccessResourceException 的构造方法。
-	 * @param msg the detail message
+	 * @param msg 详细信息
 	 */
 	public NonTransientDataAccessResourceException(String msg) {
 		super(msg);
@@ -38,8 +38,8 @@ public class NonTransientDataAccessResourceException extends NonTransientDataAcc
 
 	/**
 	 * NonTransientDataAccessResourceException 的构造方法。
-	 * @param msg the detail message
-	 * @param cause the root cause from the data access API in use
+	 * @param msg 详细信息
+	 * @param cause 来自所用数据访问 API 的根本原因
 	 */
 	public NonTransientDataAccessResourceException(String msg, @Nullable Throwable cause) {
 		super(msg, cause);

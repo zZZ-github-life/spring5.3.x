@@ -37,7 +37,7 @@ public class ExceptionDepthComparator implements Comparator<Class<? extends Thro
 
 	/**
 	 * 为给定的异常创建新的 ExceptionDepthComparator。
-	 * @param exception the target exception to compare to when sorting by depth
+	 * @param exception 按深度排序时要比较的目标异常
 	 */
 	public ExceptionDepthComparator(Throwable exception) {
 		Assert.notNull(exception, "Target exception must not be null");
@@ -46,7 +46,7 @@ public class ExceptionDepthComparator implements Comparator<Class<? extends Thro
 
 	/**
 	 * 为给定的异常类型创建新的 ExceptionDepthComparator。
-	 * @param exceptionType the target exception type to compare to when sorting by depth
+	 * @param exceptionType 按深度排序时要比较的目标异常类型
 	 */
 	public ExceptionDepthComparator(Class<? extends Throwable> exceptionType) {
 		Assert.notNull(exceptionType, "Target exception type must not be null");
@@ -76,9 +76,9 @@ public class ExceptionDepthComparator implements Comparator<Class<? extends Thro
 
 	/**
 	 * 从给定的异常类型中获取与给定目标异常最接近的匹配项。
-	 * @param exceptionTypes the collection of exception types
-	 * @param targetException the target exception to find a match for
-	 * @return the closest matching exception type from the given collection
+	 * @param exceptionTypes 异常类型的集合
+	 * @param targetException 要为其查找匹配的目标异常
+	 * @return 给定集合中最接近匹配的异常类型
 	 */
 	public static Class<? extends Throwable> findClosestMatch(
 			Collection<Class<? extends Throwable>> exceptionTypes, Throwable targetException) {

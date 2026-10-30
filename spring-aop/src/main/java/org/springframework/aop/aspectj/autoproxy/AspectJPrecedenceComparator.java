@@ -63,7 +63,7 @@ class AspectJPrecedenceComparator implements Comparator<Advisor> {
 	/**
 	 * 创建一个 {@code AspectJPrecedenceComparator}，使用给定的 {@link Comparator} 比较
 	 * {@link org.springframework.aop.Advisor} 实例。
-	 * @param advisorComparator the {@code Comparator} to use for advisors
+	 * @param advisorComparator 用于通知器的 {@code Comparator}
 	 */
 	public AspectJPrecedenceComparator(Comparator<? super Advisor> advisorComparator) {
 		Assert.notNull(advisorComparator, "Advisor comparator must not be null");

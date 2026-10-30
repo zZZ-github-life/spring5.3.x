@@ -55,15 +55,15 @@ public abstract class DaoSupport implements InitializingBean {
 	/**
 	 * 抽象子类必须覆盖此方法以检查其配置。
 	 * <p>如果不允许具体子类覆盖此模板方法，则实现者应标记为 {@code final}。
-	 * @throws IllegalArgumentException in case of illegal configuration
+	 * @throws IllegalArgumentException 在配置非法的情况下
 	 */
 	protected abstract void checkDaoConfig() throws IllegalArgumentException;
 
 	/**
 	 * 具体子类可以覆盖此方法以自定义初始化行为。
 	 * 在此实例的 Bean 属性填充完成后调用。
-	 * @throws Exception if DAO initialization fails
-	 * (will be rethrown as a BeanInitializationException)
+	 * @throws Exception 如果 DAO 初始化失败
+	 * （将作为 BeanInitializationException 重新抛出）
 	 * @see org.springframework.beans.factory.BeanInitializationException
 	 */
 	protected void initDao() throws Exception {

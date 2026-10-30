@@ -85,7 +85,7 @@ public final class SpringBeanContainer implements BeanContainer {
 
 	/**
 	 * 为给定的 bean 工厂实例化一个新的 SpringBeanContainer。
-	 * @param beanFactory the Spring bean factory to delegate to
+	 * @param beanFactory 要委托的 Spring Bean 工厂
 	 */
 	public SpringBeanContainer(ConfigurableListableBeanFactory beanFactory) {
 		Assert.notNull(beanFactory, "ConfigurableListableBeanFactory is required");

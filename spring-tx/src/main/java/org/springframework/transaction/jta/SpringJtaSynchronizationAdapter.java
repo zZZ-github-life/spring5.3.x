@@ -55,7 +55,7 @@ public class SpringJtaSynchronizationAdapter implements Synchronization {
 
 	/**
 	 * 为给定的Spring TransactionSynchronization创建一个新的SpringJtaSynchronizationAdapter。
-	 * @param springSynchronization the Spring TransactionSynchronization to delegate to
+	 * @param springSynchronization 要委派到的 Spring TransactionSynchronization
 	 */
 	public SpringJtaSynchronizationAdapter(TransactionSynchronization springSynchronization) {
 		Assert.notNull(springSynchronization, "TransactionSynchronization must not be null");
@@ -67,11 +67,11 @@ public class SpringJtaSynchronizationAdapter implements Synchronization {
 	 * <p>请注意, 此适配器在WebLogic上永远不会执行rollback-only调用,
 	 * 因为已知WebLogic Server在出现{@code beforeCompletion}异常时会自动将事务标记为rollback-only。
 	 * 因此, 在WLS上, 此构造器等同于单参数构造器。
-	 * @param springSynchronization the Spring TransactionSynchronization to delegate to
-	 * @param jtaUserTransaction the JTA UserTransaction to use for rollback-only
-	 * setting in case of an exception thrown in {@code beforeCompletion}
-	 * (can be omitted if the JTA provider itself marks the transaction rollback-only
-	 * in such a scenario, which is required by the JTA specification as of JTA 1.1).
+	 * @param springSynchronization 要委派到的 Spring TransactionSynchronization
+	 * @param jtaUserTransaction 在 {@code beforeCompletion} 中抛出异常的情况下，
+	 * 用于设置仅回滚标记的 JTA UserTransaction
+	 * （如果 JTA 提供者自身在这种情况下会将事务标记为仅回滚，
+	 * 则可以省略；自 JTA 1.1 起规范要求如此）。
 	 */
 	public SpringJtaSynchronizationAdapter(TransactionSynchronization springSynchronization,
 			@Nullable UserTransaction jtaUserTransaction) {
@@ -87,11 +87,11 @@ public class SpringJtaSynchronizationAdapter implements Synchronization {
 	 * <p>请注意, 此适配器在WebLogic上永远不会执行rollback-only调用,
 	 * 因为已知WebLogic Server在出现{@code beforeCompletion}异常时会自动将事务标记为rollback-only。
 	 * 因此, 在WLS上, 此构造器等同于单参数构造器。
-	 * @param springSynchronization the Spring TransactionSynchronization to delegate to
-	 * @param jtaTransactionManager the JTA TransactionManager to use for rollback-only
-	 * setting in case of an exception thrown in {@code beforeCompletion}
-	 * (can be omitted if the JTA provider itself marks the transaction rollback-only
-	 * in such a scenario, which is required by the JTA specification as of JTA 1.1)
+	 * @param springSynchronization 要委派到的 Spring TransactionSynchronization
+	 * @param jtaTransactionManager 在 {@code beforeCompletion} 中抛出异常的情况下，
+	 * 用于设置仅回滚标记的 JTA TransactionManager
+	 * （如果 JTA 提供者自身在这种情况下会将事务标记为仅回滚，
+	 * 则可以省略；自 JTA 1.1 起规范要求如此）
 	 */
 	public SpringJtaSynchronizationAdapter(
 			TransactionSynchronization springSynchronization, @Nullable TransactionManager jtaTransactionManager) {

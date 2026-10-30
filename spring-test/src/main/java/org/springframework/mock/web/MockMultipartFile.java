@@ -53,8 +53,8 @@ public class MockMultipartFile implements MultipartFile {
 
 	/**
 	 * 使用给定内容创建一个新的 MockMultipartFile。
-	 * @param name the name of the file
-	 * @param content the content of the file
+	 * @param name 文件的名称
+	 * @param content 文件的内容
 	 */
 	public MockMultipartFile(String name, @Nullable byte[] content) {
 		this(name, "", null, content);
@@ -62,9 +62,9 @@ public class MockMultipartFile implements MultipartFile {
 
 	/**
 	 * 使用给定内容创建一个新的 MockMultipartFile。
-	 * @param name the name of the file
-	 * @param contentStream the content of the file as stream
-	 * @throws IOException if reading from the stream failed
+	 * @param name 文件的名称
+	 * @param contentStream 文件内容（以流形式）
+	 * @throws IOException 如果从流读取失败
 	 */
 	public MockMultipartFile(String name, InputStream contentStream) throws IOException {
 		this(name, "", null, FileCopyUtils.copyToByteArray(contentStream));
@@ -72,10 +72,10 @@ public class MockMultipartFile implements MultipartFile {
 
 	/**
 	 * 使用给定内容创建一个新的 MockMultipartFile。
-	 * @param name the name of the file
-	 * @param originalFilename the original filename (as on the client's machine)
-	 * @param contentType the content type (if known)
-	 * @param content the content of the file
+	 * @param name 文件的名称
+	 * @param originalFilename 原始文件名（与客户端机器上的相同）
+	 * @param contentType 内容类型（如果已知）
+	 * @param content 文件的内容
 	 */
 	public MockMultipartFile(
 			String name, @Nullable String originalFilename, @Nullable String contentType, @Nullable byte[] content) {
@@ -89,11 +89,11 @@ public class MockMultipartFile implements MultipartFile {
 
 	/**
 	 * 使用给定内容创建一个新的 MockMultipartFile。
-	 * @param name the name of the file
-	 * @param originalFilename the original filename (as on the client's machine)
-	 * @param contentType the content type (if known)
-	 * @param contentStream the content of the file as stream
-	 * @throws IOException if reading from the stream failed
+	 * @param name 文件的名称
+	 * @param originalFilename 原始文件名（与客户端机器上的相同）
+	 * @param contentType 内容类型（如果已知）
+	 * @param contentStream 文件内容（以流形式）
+	 * @throws IOException 如果从流读取失败
 	 */
 	public MockMultipartFile(
 			String name, @Nullable String originalFilename, @Nullable String contentType, InputStream contentStream)

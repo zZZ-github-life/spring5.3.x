@@ -30,7 +30,7 @@ import org.springframework.messaging.Message;
  *
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <P> the message payload type
+ * @param <P> 消息载荷类型
  */
 public abstract class AbstractNioBufferReactorNettyCodec<P> implements ReactorNettyCodec<P> {
 

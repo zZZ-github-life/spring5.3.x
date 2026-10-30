@@ -54,7 +54,7 @@ public class NestedServletException extends ServletException {
 
 	/**
 	 * 使用指定的详细消息构造一个 {@code NestedServletException}。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public NestedServletException(String msg) {
 		super(msg);
@@ -62,8 +62,8 @@ public class NestedServletException extends ServletException {
 
 	/**
 	 * 使用指定的详细消息和嵌套异常构造一个 {@code NestedServletException}。
-	 * @param msg the detail message
-	 * @param cause the nested exception
+	 * @param msg 详细消息
+	 * @param cause 嵌套异常
 	 */
 	public NestedServletException(@Nullable String msg, @Nullable Throwable cause) {
 		super(msg, cause);

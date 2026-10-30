@@ -65,10 +65,10 @@ public class InvocableHandlerMethod extends HandlerMethod {
 
 	/**
 	 * 使用给定 Bean 实例、方法名称和参数构造新的处理器方法。
-	 * @param bean the object bean
-	 * @param methodName the method name
-	 * @param parameterTypes the method parameter types
-	 * @throws NoSuchMethodException when the method cannot be found
+	 * @param bean 对象 Bean
+	 * @param methodName 方法名
+	 * @param parameterTypes 方法参数类型
+	 * @throws NoSuchMethodException 当找不到该方法时
 	 */
 	public InvocableHandlerMethod(Object bean, String methodName, Class<?>... parameterTypes)
 			throws NoSuchMethodException {
@@ -103,11 +103,10 @@ public class InvocableHandlerMethod extends HandlerMethod {
 	 * 即无需参数解析。
 	 * <p>委托给 {@link #getMethodArgumentValues}，并使用解析出的参数调用
 	 * {@link #doInvoke}。
-	 * @param message the current message being processed
-	 * @param providedArgs "given" arguments matched by type, not resolved
-	 * @return the raw value returned by the invoked method
-	 * @throws Exception raised if no suitable argument resolver can be found,
-	 * or if the method raised an exception
+	 * @param message 当前正在处理的消息
+	 * @param providedArgs 按类型匹配的“给定”参数，不进行解析
+	 * @return 被调用方法返回的原始值
+	 * @throws Exception 如果找不到合适的参数解析器，或该方法抛出了异常，则抛出该异常
 	 * @see #getMethodArgumentValues
 	 * @see #doInvoke
 	 */

@@ -41,7 +41,7 @@ final class CompositeLog implements Log {
 
 	/**
 	 * 带有日志记录器列表的包级私有构造器。
-	 * @param loggers the loggers to use
+	 * @param loggers 要使用的日志记录器
 	 */
 	CompositeLog(List<Log> loggers) {
 		this.loggers = loggers;

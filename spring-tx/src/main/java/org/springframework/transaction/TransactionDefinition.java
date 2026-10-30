@@ -180,7 +180,7 @@ public interface TransactionDefinition {
 	 * <p>必须返回定义在 {@link TransactionDefinition 此接口}上的
 	 * {@code PROPAGATION_XXX} 常量之一。
 	 * <p>默认为 {@link #PROPAGATION_REQUIRED}。
-	 * @return the propagation behavior
+	 * @return 传播行为
 	 * @see #PROPAGATION_REQUIRED
 	 * @see org.springframework.transaction.support.TransactionSynchronizationManager#isActualTransactionActive()
 	 */
@@ -201,7 +201,7 @@ public interface TransactionDefinition {
 	 * <p>默认为 {@link #ISOLATION_DEFAULT}。请注意，
 	 * 不支持自定义隔离级别的事务管理器在给定
 	 * {@link #ISOLATION_DEFAULT} 以外的任何级别时将抛出异常。
-	 * @return the isolation level
+	 * @return 隔离级别
 	 * @see #ISOLATION_DEFAULT
 	 * @see org.springframework.transaction.support.AbstractPlatformTransactionManager#setValidateExistingTransaction
 	 */
@@ -217,7 +217,7 @@ public interface TransactionDefinition {
 	 * <p>请注意，不支持超时的事务管理器在给定
 	 * {@link #TIMEOUT_DEFAULT} 以外的任何超时时将抛出异常。
 	 * <p>默认为 {@link #TIMEOUT_DEFAULT}。
-	 * @return the transaction timeout
+	 * @return 事务超时时间
 	 */
 	default int getTimeout() {
 		return TIMEOUT_DEFAULT;
@@ -233,8 +233,8 @@ public interface TransactionDefinition {
 	 * <p>这仅作为实际事务子系统的提示；
 	 * 它<i>不一定</i>会导致写入访问尝试失败。
 	 * 无法解读只读提示的事务管理器在被要求只读事务时<i>不会</i>抛出异常。
-	 * @return {@code true} if the transaction is to be optimized as read-only
-	 * ({@code false} by default)
+	 * @return 如果事务要优化为只读，则为 {@code true}
+	 * （默认为 {@code false}）
 	 * @see org.springframework.transaction.support.TransactionSynchronization#beforeCommit(boolean)
 	 * @see org.springframework.transaction.support.TransactionSynchronizationManager#isCurrentTransactionReadOnly()
 	 */
@@ -248,7 +248,7 @@ public interface TransactionDefinition {
 	 * 此名称将用作事务监视器中显示的事务名称。
 	 * <p>对于 Spring 的声明式事务，公开的名称默认为
 	 * {@code 全限定类名 + "." + 方法名}。
-	 * @return the name of this transaction ({@code null} by default}
+	 * @return 此事务的名称（默认为 {@code null}）
 	 * @see org.springframework.transaction.interceptor.TransactionAspectSupport
 	 * @see org.springframework.transaction.support.TransactionSynchronizationManager#getCurrentTransactionName()
 	 */

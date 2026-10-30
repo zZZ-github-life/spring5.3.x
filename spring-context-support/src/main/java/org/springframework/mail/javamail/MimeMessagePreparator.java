@@ -39,13 +39,12 @@ public interface MimeMessagePreparator {
 
 	/**
 	 * 准备给定的新 MimeMessage 实例。
-	 * @param mimeMessage the message to prepare
-	 * @throws javax.mail.MessagingException passing any exceptions thrown by MimeMessage
-	 * methods through for automatic conversion to the MailException hierarchy
-	 * @throws java.io.IOException passing any exceptions thrown by MimeMessage methods
-	 * through for automatic conversion to the MailException hierarchy
-	 * @throws Exception if mail preparation failed, for example when a
-	 * FreeMarker template cannot be rendered for the mail text
+	 * @param mimeMessage 要准备的消息
+	 * @throws javax.mail.MessagingException 传递 MimeMessage 方法抛出的任何异常，
+	 * 以便自动转换为 MailException 层次结构
+	 * @throws java.io.IOException 传递 MimeMessage 方法抛出的任何异常，
+	 * 以便自动转换为 MailException 层次结构
+	 * @throws Exception 邮件准备失败时，例如无法为邮件文本渲染 FreeMarker 模板
 	 */
 	void prepare(MimeMessage mimeMessage) throws Exception;
 

@@ -31,8 +31,7 @@ public class ContextStoppedEvent extends ApplicationContextEvent {
 
 	/**
 	 * 创建一个新的 ContextStoppedEvent。
-	 * @param source the {@code ApplicationContext} that has been stopped
-	 * (must not be {@code null})
+	 * @param source 已停止的 {@code ApplicationContext}（不能为 {@code null}）
 	 */
 	public ContextStoppedEvent(ApplicationContext source) {
 		super(source);

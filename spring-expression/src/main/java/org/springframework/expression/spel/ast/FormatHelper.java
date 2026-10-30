@@ -32,9 +32,9 @@ abstract class FormatHelper {
 
 	/**
 	 * 为带指定参数的给定方法名生成可读的表示形式。
-	 * @param name the name of the method
-	 * @param argumentTypes the types of the arguments to the method
-	 * @return a nicely formatted representation, e.g. {@code foo(String,int)}
+	 * @param name 方法名称
+	 * @param argumentTypes 方法参数的类型
+	 * @return 格式良好的表示形式，例如 {@code foo(String,int)}
 	 */
 	public static String formatMethodForMessage(String name, List<TypeDescriptor> argumentTypes) {
 		StringJoiner sj = new StringJoiner(",", "(", ")");
@@ -52,8 +52,8 @@ abstract class FormatHelper {
 	/**
 	 * 确定给定 Class 对象的可读名称。
 	 * <p>String 数组的格式化名称为 "java.lang.String[]"。
-	 * @param clazz the Class whose name is to be formatted
-	 * @return a formatted String suitable for message inclusion
+	 * @param clazz 要格式化其名称的 Class
+	 * @return 适合包含在消息中的格式化字符串
 	 * @see ClassUtils#getQualifiedName(Class)
 	 */
 	public static String formatClassNameForMessage(@Nullable Class<?> clazz) {

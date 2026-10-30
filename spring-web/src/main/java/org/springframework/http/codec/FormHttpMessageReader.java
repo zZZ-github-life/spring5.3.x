@@ -88,7 +88,7 @@ public class FormHttpMessageReader extends LoggingCodecSupport
 	 * 这有助于限制缓冲的数据量。一旦超过限制，将抛出
 	 * {@link DataBufferLimitException}。
 	 * <p>默认设置为 256K。
-	 * @param byteCount the max number of bytes to buffer, or -1 for unlimited
+	 * @param byteCount 要缓冲的最大字节数，-1 表示不限
 	 * @since 5.1.11
 	 */
 	public void setMaxInMemorySize(int byteCount) {

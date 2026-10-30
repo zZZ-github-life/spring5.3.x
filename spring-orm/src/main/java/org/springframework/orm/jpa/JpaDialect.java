@@ -62,14 +62,14 @@ public interface JpaDialect extends PersistenceExceptionTranslator {
 	 * <p>如果持久化提供者支持，此方法还允许通过返回一个实现 Spring
 	 * {@link org.springframework.transaction.SavepointManager} 接口的对象
 	 * 来暴露保存点能力。{@link JpaTransactionManager} 将在需要时使用此能力。
-	 * @param entityManager the EntityManager to begin a JPA transaction on
-	 * @param definition the Spring transaction definition that defines semantics
-	 * @return an arbitrary object that holds transaction data, if any
-	 * (to be passed into {@link #cleanupTransaction}). May implement the
-	 * {@link org.springframework.transaction.SavepointManager} interface.
-	 * @throws javax.persistence.PersistenceException if thrown by JPA methods
-	 * @throws java.sql.SQLException if thrown by JDBC methods
-	 * @throws org.springframework.transaction.TransactionException in case of invalid arguments
+	 * @param entityManager 要在其上开启 JPA 事务的 EntityManager
+	 * @param definition 定义语义的 Spring 事务定义
+	 * @return 保存事务数据的任意对象（如果有），将传入
+	 * {@link #cleanupTransaction}。可实现
+	 * {@link org.springframework.transaction.SavepointManager} 接口。
+	 * @throws javax.persistence.PersistenceException 如果由 JPA 方法抛出
+	 * @throws java.sql.SQLException 如果由 JDBC 方法抛出
+	 * @throws org.springframework.transaction.TransactionException 如果参数无效
 	 * @see #cleanupTransaction
 	 * @see javax.persistence.EntityTransaction#begin
 	 * @see org.springframework.jdbc.datasource.DataSourceUtils#prepareConnectionForTransaction
@@ -87,12 +87,11 @@ public interface JpaDialect extends PersistenceExceptionTranslator {
 	 * （可能还有其他数据），以便在 {@code cleanupTransaction} 中重置。
 	 * <p>实现还可以使用 Spring 事务名称，针对特定的数据访问用例进行优化
 	 * （实际上就是将当前事务名称用作用例标识符）。
-	 * @param entityManager the EntityManager to begin a JPA transaction on
-	 * @param readOnly whether the transaction is supposed to be read-only
-	 * @param name the name of the transaction (if any)
-	 * @return an arbitrary object that holds transaction data, if any
-	 * (to be passed into cleanupTransaction)
-	 * @throws javax.persistence.PersistenceException if thrown by JPA methods
+	 * @param entityManager 要在其上开启 JPA 事务的 EntityManager
+	 * @param readOnly 事务是否应为只读
+	 * @param name 事务的名称（如果有）
+	 * @return 保存事务数据的任意对象（如果有），将传入 cleanupTransaction
+	 * @throws javax.persistence.PersistenceException 如果由 JPA 方法抛出
 	 * @see #cleanupTransaction
 	 */
 	@Nullable
@@ -104,8 +103,8 @@ public interface JpaDialect extends PersistenceExceptionTranslator {
 	 * EntityManagerFactoryUtils 在事务清理时调用。
 	 * <p>例如，实现可以重置底层 JDBC Connection 的只读标志和隔离级别。
 	 * 此外，还可以在此处重置已暴露的数据访问用例。
-	 * @param transactionData arbitrary object that holds transaction data, if any
-	 * (as returned by beginTransaction or prepareTransaction)
+	 * @param transactionData 保存事务数据的任意对象（如果有），
+	 * 由 beginTransaction 或 prepareTransaction 返回
 	 * @see #beginTransaction
 	 * @see org.springframework.jdbc.datasource.DataSourceUtils#resetConnectionAfterTransaction
 	 */
@@ -126,12 +125,12 @@ public interface JpaDialect extends PersistenceExceptionTranslator {
 	 * 或者可以通过 Connection 对象本身释放，则实现可以返回一个仅包含该 Connection
 	 * 的 SimpleConnectionHandle。如果 {@code releaseJdbcConnection} 中需要其他对象，
 	 * 实现应使用一个引用该其他对象的特殊句柄。
-	 * @param entityManager the current JPA EntityManager
-	 * @param readOnly whether the Connection is only needed for read-only purposes
-	 * @return a handle for the Connection, to be passed into {@code releaseJdbcConnection},
-	 * or {@code null} if no JDBC Connection can be retrieved
-	 * @throws javax.persistence.PersistenceException if thrown by JPA methods
-	 * @throws java.sql.SQLException if thrown by JDBC methods
+	 * @param entityManager 当前的 JPA EntityManager
+	 * @param readOnly Connection 是否仅用于只读目的
+	 * @return Connection 的句柄，将传入 {@code releaseJdbcConnection}；
+	 * 如果无法获取 JDBC Connection，则为 {@code null}
+	 * @throws javax.persistence.PersistenceException 如果由 JPA 方法抛出
+	 * @throws java.sql.SQLException 如果由 JDBC 方法抛出
 	 * @see #releaseJdbcConnection
 	 * @see org.springframework.jdbc.datasource.ConnectionHandle#getConnection
 	 * @see org.springframework.jdbc.datasource.SimpleConnectionHandle
@@ -147,10 +146,10 @@ public interface JpaDialect extends PersistenceExceptionTranslator {
 	 * 以便正确释放所获取的 Connection 句柄。
 	 * <p>如果 {@code getJdbcConnection} 返回的 Connection 会在 JPA 事务完成时
 	 * 或 EntityManager 关闭时隐式关闭，则实现可以简单地不执行任何操作。
-	 * @param conHandle the JDBC Connection handle to release
-	 * @param entityManager the current JPA EntityManager
-	 * @throws javax.persistence.PersistenceException if thrown by JPA methods
-	 * @throws java.sql.SQLException if thrown by JDBC methods
+	 * @param conHandle 要释放的 JDBC Connection 句柄
+	 * @param entityManager 当前的 JPA EntityManager
+	 * @throws javax.persistence.PersistenceException 如果由 JPA 方法抛出
+	 * @throws java.sql.SQLException 如果由 JDBC 方法抛出
 	 * @see #getJdbcConnection
 	 */
 	void releaseJdbcConnection(ConnectionHandle conHandle, EntityManager entityManager)

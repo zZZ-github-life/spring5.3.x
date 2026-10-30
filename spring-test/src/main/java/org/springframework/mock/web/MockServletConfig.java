@@ -52,7 +52,7 @@ public class MockServletConfig implements ServletConfig {
 
 	/**
 	 * 使用默认的 {@link MockServletContext} 创建一个新的 MockServletConfig。
-	 * @param servletName the name of the servlet
+	 * @param servletName Servlet 的名称
 	 */
 	public MockServletConfig(String servletName) {
 		this(null, servletName);
@@ -60,7 +60,7 @@ public class MockServletConfig implements ServletConfig {
 
 	/**
 	 * 创建一个新的 MockServletConfig。
-	 * @param servletContext the ServletContext that the servlet runs in
+	 * @param servletContext Servlet 运行所在的 ServletContext
 	 */
 	public MockServletConfig(@Nullable ServletContext servletContext) {
 		this(servletContext, "");
@@ -68,8 +68,8 @@ public class MockServletConfig implements ServletConfig {
 
 	/**
 	 * 创建一个新的 MockServletConfig。
-	 * @param servletContext the ServletContext that the servlet runs in
-	 * @param servletName the name of the servlet
+	 * @param servletContext Servlet 运行所在的 ServletContext
+	 * @param servletName Servlet 的名称
 	 */
 	public MockServletConfig(@Nullable ServletContext servletContext, String servletName) {
 		this.servletContext = (servletContext != null ? servletContext : new MockServletContext());

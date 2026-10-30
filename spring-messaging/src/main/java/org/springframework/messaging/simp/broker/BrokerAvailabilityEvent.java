@@ -33,11 +33,9 @@ public class BrokerAvailabilityEvent extends ApplicationEvent {
 	/**
 	 * 创建新的 {@code BrokerAvailabilityEvent}。
 	 *
-	 * @param brokerAvailable {@code true} if the broker is available, {@code}
-	 * false otherwise
-	 * @param source the component that is acting as the broker, or as a relay
-	 * for an external broker, that has changed availability. Must not be {@code
-	 * null}.
+	 * @param brokerAvailable 如果 Broker 可用则为 {@code true}，否则为 {@code false}
+	 * @param source 作为 Broker 或作为外部 Broker 的中继且可用性发生变化的组件。
+	 * 不能为 {@code null}。
 	 */
 	public BrokerAvailabilityEvent(boolean brokerAvailable, Object source) {
 		super(source);

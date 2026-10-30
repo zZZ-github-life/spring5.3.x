@@ -31,22 +31,22 @@ public interface DataFieldMaxValueIncrementer {
 
 	/**
 	 * 以 int 形式递增数据存储字段的最大值。
-	 * @return int next data store value such as <b>max + 1</b>
-	 * @throws org.springframework.dao.DataAccessException in case of errors
+	 * @return int 类型的下一个数据存储值，例如 <b>max + 1</b>
+	 * @throws org.springframework.dao.DataAccessException 发生错误时
 	 */
 	int nextIntValue() throws DataAccessException;
 
 	/**
 	 * 以 long 形式递增数据存储字段的最大值。
-	 * @return int next data store value such as <b>max + 1</b>
-	 * @throws org.springframework.dao.DataAccessException in case of errors
+	 * @return int 类型的下一个数据存储值，例如 <b>max + 1</b>
+	 * @throws org.springframework.dao.DataAccessException 发生错误时
 	 */
 	long nextLongValue() throws DataAccessException;
 
 	/**
 	 * 以 String 形式递增数据存储字段的最大值。
-	 * @return next data store value such as <b>max + 1</b>
-	 * @throws org.springframework.dao.DataAccessException in case of errors
+	 * @return 下一个数据存储值，例如 <b>max + 1</b>
+	 * @throws org.springframework.dao.DataAccessException 发生错误时
 	 */
 	String nextStringValue() throws DataAccessException;
 

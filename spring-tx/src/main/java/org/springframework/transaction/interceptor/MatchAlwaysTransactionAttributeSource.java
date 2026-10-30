@@ -42,7 +42,7 @@ public class MatchAlwaysTransactionAttributeSource implements TransactionAttribu
 
 	/**
 	 * 允许使用字符串形式指定事务属性, 例如"PROPAGATION_REQUIRED"。
-	 * @param transactionAttribute the String form of the transactionAttribute to use.
+	 * @param transactionAttribute 要使用的 transactionAttribute 的 String 形式。
 	 * @see org.springframework.transaction.interceptor.TransactionAttributeEditor
 	 */
 	public void setTransactionAttribute(TransactionAttribute transactionAttribute) {

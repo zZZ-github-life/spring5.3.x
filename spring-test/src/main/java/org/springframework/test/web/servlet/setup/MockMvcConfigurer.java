@@ -43,7 +43,7 @@ public interface MockMvcConfigurer {
 
 	/**
 	 * 当通过 {@link ConfigurableMockMvcBuilder#apply} 添加此 {@code MockMvcConfigurer} 时立即调用。
-	 * @param builder the builder for the MockMvc
+	 * @param builder MockMvc 的构建器
 	 */
 	default void afterConfigurerAdded(ConfigurableMockMvcBuilder<?> builder) {
 	}
@@ -51,10 +51,10 @@ public interface MockMvcConfigurer {
 	/**
 	 * 当即将使用 MockMvc 构建器以及将传递给 {@code DispatcherServlet} 的
 	 * Spring WebApplicationContext 创建 MockMvc 实例时调用。
-	 * @param builder the builder for the MockMvc
-	 * @param context the Spring configuration
-	 * @return a post processor to be applied to every request performed
-	 * through the {@code MockMvc} instance.
+	 * @param builder MockMvc 的构建器
+	 * @param context Spring 配置
+	 * @return 要应用到通过该 {@code MockMvc} 实例执行的每个
+	 * 请求的后处理器。
 	 */
 	@Nullable
 	default RequestPostProcessor beforeMockMvcCreated(

@@ -69,7 +69,7 @@ public class WebSocketHandlerAdapter implements HandlerAdapter, Ordered {
 	/**
 	 * 设置此适配器的顺序值。
 	 * <p>默认设置为 2。
-	 * @param order the value to set to
+	 * @param order 要设置的值
 	 * @since 5.3
 	 */
 	public void setOrder(int order) {

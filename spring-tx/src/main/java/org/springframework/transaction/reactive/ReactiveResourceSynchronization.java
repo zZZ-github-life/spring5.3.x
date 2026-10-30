@@ -41,9 +41,9 @@ public abstract class ReactiveResourceSynchronization<O, K> implements Transacti
 
 	/**
 	 * 为给定的持有者创建一个新的ReactiveResourceSynchronization。
-	 * @param resourceObject the resource object to manage
-	 * @param resourceKey the key to bind the resource object for
-	 * @param synchronizationManager the synchronization manager bound to the current transaction
+	 * @param resourceObject 要管理的资源对象
+	 * @param resourceKey 要为其绑定资源对象的键
+	 * @param synchronizationManager 绑定到当前事务的同步管理器
 	 * @see TransactionSynchronizationManager#bindResource
 	 */
 	public ReactiveResourceSynchronization(
@@ -160,7 +160,7 @@ public abstract class ReactiveResourceSynchronization<O, K> implements Transacti
 	 * 给定资源持有者的提交后回调。
 	 * 仅在资源尚未被释放时调用
 	 * （{@link #shouldReleaseBeforeCompletion()}）。
-	 * @param resourceHolder the resource holder to process
+	 * @param resourceHolder 要处理的资源持有者
 	 */
 	protected Mono<Void> processResourceAfterCommit(O resourceHolder) {
 		return Mono.empty();
@@ -168,8 +168,8 @@ public abstract class ReactiveResourceSynchronization<O, K> implements Transacti
 
 	/**
 	 * 释放给定的资源（在其从线程解绑之后）。
-	 * @param resourceHolder the resource holder to process
-	 * @param resourceKey the key that the resource object was bound for
+	 * @param resourceHolder 要处理的资源持有者
+	 * @param resourceKey 资源对象所绑定到的键
 	 */
 	protected Mono<Void> releaseResource(O resourceHolder, K resourceKey) {
 		return Mono.empty();
@@ -177,10 +177,10 @@ public abstract class ReactiveResourceSynchronization<O, K> implements Transacti
 
 	/**
 	 * 对给定的资源执行清理操作（资源保持绑定到线程）。
-	 * @param resourceHolder the resource holder to process
-	 * @param resourceKey the key that the resource object was bound for
-	 * @param committed whether the transaction has committed ({@code true})
-	 * or rolled back ({@code false})
+	 * @param resourceHolder 要处理的资源持有者
+	 * @param resourceKey 资源对象所绑定到的键
+	 * @param committed 事务是否已提交（{@code true}）
+	 * 或已回滚（{@code false}）
 	 */
 	protected Mono<Void> cleanupResource(O resourceHolder, K resourceKey, boolean committed) {
 		return Mono.empty();

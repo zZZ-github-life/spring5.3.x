@@ -42,8 +42,8 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 
 	/**
 	 * 创建一个新的 ObjectError 类实例。
-	 * @param objectName the name of the affected object
-	 * @param defaultMessage the default message to be used to resolve this message
+	 * @param objectName 受影响对象的名称。
+	 * @param defaultMessage 用于解析此消息的默认消息。
 	 */
 	public ObjectError(String objectName, String defaultMessage) {
 		this(objectName, null, null, defaultMessage);
@@ -51,10 +51,10 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 
 	/**
 	 * 创建一个新的 ObjectError 类实例。
-	 * @param objectName the name of the affected object
-	 * @param codes the codes to be used to resolve this message
-	 * @param arguments	the array of arguments to be used to resolve this message
-	 * @param defaultMessage the default message to be used to resolve this message
+	 * @param objectName 受影响对象的名称。
+	 * @param codes 用于解析此消息的代码。
+	 * @param arguments 用于解析此消息的参数数组。
+	 * @param defaultMessage 用于解析此消息的默认消息。
 	 */
 	public ObjectError(
 			String objectName, @Nullable String[] codes, @Nullable Object[] arguments, @Nullable String defaultMessage) {
@@ -78,7 +78,7 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 	 * {@link javax.validation.ConstraintViolation}。
 	 *
 	 * <p>请注意，任何此类源对象都以 transient 方式存储：也就是说，它不会成为序列化错误表示的一部分。
-	 * @param source the source object
+	 * @param source 源对象。
 	 * @since 5.0.4
 	 */
 	public void wrap(Object source) {
@@ -95,9 +95,9 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 	 *
 	 * <p>还会对最外层异常的原因进行内省，例如底层的转换异常或从 setter 抛出的异常（而不必再反过来解开
 	 * {@code PropertyAccessException}）。
-	 * @return the source object of the given type
-	 * @throws IllegalArgumentException if no such source object is available
-	 * (i.e. none specified or not available anymore after deserialization)
+	 * @return 指定类型的源对象。
+	 * @throws IllegalArgumentException 如果不存在此类源对象
+	 * （即未指定，或在反序列化后已不可用）。
 	 * @since 5.0.4
 	 */
 	public <T> T unwrap(Class<T> sourceType) {
@@ -120,7 +120,7 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 	 *
 	 * <p>还会对最外层异常的原因进行内省，例如底层的转换异常或从 setter 抛出的异常（而不必再反过来解开
 	 * {@code PropertyAccessException}）。
-	 * @return whether this error has been caused by a source object of the given type
+	 * @return 此错误是否由给定类型的源对象引起。
 	 * @since 5.0.4
 	 */
 	public boolean contains(Class<?> sourceType) {

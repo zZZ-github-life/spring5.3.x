@@ -105,10 +105,9 @@ public class JmsInvokerServiceExporter extends RemoteInvocationBasedExporter
 
 	/**
 	 * 从给定的 JMS 消息中读取 RemoteInvocation。
-	 * @param requestMessage current request message
-	 * @return the RemoteInvocation object (or {@code null}
-	 * in case of an invalid message that will simply be ignored)
-	 * @throws javax.jms.JMSException in case of message access failure
+	 * @param requestMessage 当前请求消息
+	 * @return RemoteInvocation 对象（如果消息无效且将被直接忽略，则为 {@code null}）
+	 * @throws javax.jms.JMSException 消息访问失败时
 	 */
 	@Nullable
 	protected RemoteInvocation readRemoteInvocation(Message requestMessage) throws JMSException {
@@ -122,10 +121,10 @@ public class JmsInvokerServiceExporter extends RemoteInvocationBasedExporter
 
 	/**
 	 * 将给定的 RemoteInvocationResult 作为 JMS 消息发送给发起方。
-	 * @param requestMessage current request message
-	 * @param session the JMS Session to use
-	 * @param result the RemoteInvocationResult object
-	 * @throws javax.jms.JMSException if thrown by trying to send the message
+	 * @param requestMessage 当前请求消息
+	 * @param session 要使用的 JMS Session
+	 * @param result RemoteInvocationResult 对象
+	 * @throws javax.jms.JMSException 如果尝试发送消息时抛出
 	 */
 	protected void writeRemoteInvocationResult(
 			Message requestMessage, Session session, RemoteInvocationResult result) throws JMSException {
@@ -145,11 +144,11 @@ public class JmsInvokerServiceExporter extends RemoteInvocationBasedExporter
 	 * <p>默认实现为给定的 RemoteInvocationResult 对象创建一个 JMS ObjectMessage。
 	 * 它将响应的关联 ID 设置为请求消息的关联 ID（如果存在）；
 	 * 否则设置为请求消息 ID。
-	 * @param request the original request message
-	 * @param session the JMS session to use
-	 * @param result the invocation result
-	 * @return the message response to send
-	 * @throws javax.jms.JMSException if creating the message failed
+	 * @param request 原始请求消息
+	 * @param session 要使用的 JMS Session
+	 * @param result 调用结果
+	 * @return 要发送的响应消息
+	 * @throws javax.jms.JMSException 如果创建消息失败
 	 */
 	protected Message createResponseMessage(Message request, Session session, RemoteInvocationResult result)
 			throws JMSException {
@@ -168,11 +167,10 @@ public class JmsInvokerServiceExporter extends RemoteInvocationBasedExporter
 	 * <p>默认实现会根据 "ignoreInvalidRequests" 标志
 	 * 丢弃无效消息或抛出 MessageFormatException，
 	 * 该标志默认设置为 "true"（即丢弃无效消息）。
-	 * @param requestMessage the invalid request message
-	 * @return the RemoteInvocation to expose for the invalid request (typically
-	 * {@code null} in case of an invalid message that will simply be ignored)
-	 * @throws javax.jms.JMSException in case of the invalid request supposed
-	 * to lead to an exception (instead of ignoring it)
+	 * @param requestMessage 无效的请求消息
+	 * @return 为无效请求暴露的 RemoteInvocation
+	 * （通常，如果消息无效且将被直接忽略，则为 {@code null}）
+	 * @throws javax.jms.JMSException 如果无效请求应导致异常（而不是被忽略）
 	 * @see #readRemoteInvocation
 	 * @see #setIgnoreInvalidRequests
 	 */

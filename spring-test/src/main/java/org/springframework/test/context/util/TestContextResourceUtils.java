@@ -52,9 +52,9 @@ public abstract class TestContextResourceUtils {
 	/**
 	 * 将提供的路径转换为类路径资源路径。
 	 * <p>委托给 {@link #convertToClasspathResourcePaths(Class, boolean, String...)}，并将 {@code preservePlaceholders} 标志提供为 {@code false}。
-	 * @param clazz the class with which the paths are associated
-	 * @param paths the paths to be converted
-	 * @return a new array of converted resource paths
+	 * @param clazz 路径所关联的类
+	 * @param paths 要转换的路径
+	 * @return 转换后资源路径的新数组
 	 * @see #convertToResources
 	 */
 	public static String[] convertToClasspathResourcePaths(Class<?> clazz, String... paths) {
@@ -70,10 +70,10 @@ public abstract class TestContextResourceUtils {
 	 * <li>已带有 URL 协议前缀的路径（例如 {@code classpath:}、{@code file:}、{@code http:} 等）将不会修改其协议。
 	 * </ul>
 	 * <p>然后，除非 {@code preservePlaceholders} 标志为 {@code true} 且路径包含一个或多个 <code>${placeholder.name}</code> 形式的占位符，否则每个路径都会被{@linkplain StringUtils#cleanPath 清理}。
-	 * @param clazz the class with which the paths are associated
-	 * @param preservePlaceholders {@code true} if placeholders should be preserved
-	 * @param paths the paths to be converted
-	 * @return a new array of converted resource paths
+	 * @param clazz 路径所关联的类
+	 * @param preservePlaceholders 如果应保留占位符，则为 {@code true}
+	 * @param paths 要转换的路径
+	 * @return 转换后资源路径的新数组
 	 * @since 5.2
 	 * @see #convertToResources
 	 * @see ResourceUtils#CLASSPATH_URL_PREFIX
@@ -107,9 +107,9 @@ public abstract class TestContextResourceUtils {
 
 	/**
 	 * 使用给定的 {@link ResourceLoader} 将提供的路径转换为 {@link Resource} 句柄数组。
-	 * @param resourceLoader the {@code ResourceLoader} to use to convert the paths
-	 * @param paths the paths to be converted
-	 * @return a new array of resources
+	 * @param resourceLoader 用于转换路径的 {@code ResourceLoader}
+	 * @param paths 要转换的路径
+	 * @return 新的资源数组
 	 * @see #convertToResourceList(ResourceLoader, String...)
 	 * @see #convertToClasspathResourcePaths
 	 */
@@ -119,9 +119,9 @@ public abstract class TestContextResourceUtils {
 
 	/**
 	 * 使用给定的 {@link ResourceLoader} 将提供的路径转换为 {@link Resource} 句柄列表。
-	 * @param resourceLoader the {@code ResourceLoader} to use to convert the paths
-	 * @param paths the paths to be converted
-	 * @return a new list of resources
+	 * @param resourceLoader 用于转换路径的 {@code ResourceLoader}
+	 * @param paths 要转换的路径
+	 * @return 新的资源列表
 	 * @since 4.2
 	 * @see #convertToResources(ResourceLoader, String...)
 	 * @see #convertToClasspathResourcePaths

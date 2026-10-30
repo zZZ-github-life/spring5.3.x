@@ -58,10 +58,10 @@ public class ModelMBeanNotificationPublisher implements NotificationPublisher {
 	/**
 	 * 创建 {@link ModelMBeanNotificationPublisher} 类的新实例，它会将所有
 	 * {@link javax.management.Notification Notifications} 发布到提供的 {@link ModelMBean}。
-	 * @param modelMBean the target {@link ModelMBean}; must not be {@code null}
-	 * @param objectName the {@link ObjectName} of the source {@link ModelMBean}
-	 * @param managedResource the managed resource exposed by the supplied {@link ModelMBean}
-	 * @throws IllegalArgumentException if any of the parameters is {@code null}
+	 * @param modelMBean 目标 {@link ModelMBean}；不得为 {@code null}
+	 * @param objectName 源 {@link ModelMBean} 的 {@link ObjectName}
+	 * @param managedResource 由给定 {@link ModelMBean} 暴露的受管资源
+	 * @throws IllegalArgumentException 如果任一参数为 {@code null}
 	 */
 	public ModelMBeanNotificationPublisher(
 			ModelMBeanNotificationBroadcaster modelMBean, ObjectName objectName, Object managedResource) {
@@ -77,9 +77,9 @@ public class ModelMBeanNotificationPublisher implements NotificationPublisher {
 
 	/**
 	 * 使用包装的 {@link ModelMBean} 实例发送提供的 {@link Notification}。
-	 * @param notification the {@link Notification} to be sent
-	 * @throws IllegalArgumentException if the supplied {@code notification} is {@code null}
-	 * @throws UnableToSendNotificationException if the supplied {@code notification} could not be sent
+	 * @param notification 要发送的 {@link Notification}
+	 * @throws IllegalArgumentException 如果给定的 {@code notification} 为 {@code null}
+	 * @throws UnableToSendNotificationException 如果给定的 {@code notification} 无法发送
 	 */
 	@Override
 	public void sendNotification(Notification notification) {
@@ -101,8 +101,8 @@ public class ModelMBeanNotificationPublisher implements NotificationPublisher {
 	/**
 	 * 必要时替换通知源。摘自 {@link Notification javadoc}：<i>“强烈建议通知发送者使用对象名称而不是
 	 * MBean 对象的引用作为源。”</i>
-	 * @param notification the {@link Notification} whose
-	 * {@link javax.management.Notification#getSource()} might need massaging
+	 * @param notification {@link Notification}，其 {@link javax.management.Notification#getSource()}
+	 * 可能需要调整
 	 */
 	private void replaceNotificationSourceIfNecessary(Notification notification) {
 		if (notification.getSource() == null || notification.getSource().equals(this.managedResource)) {

@@ -126,8 +126,8 @@ public class JndiRmiServiceExporter extends RmiBasedExporter implements Initiali
 
 	/**
 	 * 初始化此服务导出器，将指定的服务绑定到 JNDI。
-	 * @throws NamingException if service binding failed
-	 * @throws RemoteException if service export failed
+	 * @throws NamingException 如果服务绑定失败
+	 * @throws RemoteException 如果服务导出失败
 	 */
 	public void prepare() throws NamingException, RemoteException {
 		if (this.jndiName == null) {
@@ -143,7 +143,7 @@ public class JndiRmiServiceExporter extends RmiBasedExporter implements Initiali
 
 	/**
 	 * 将指定的服务重新绑定到 JNDI，以便在目标注册表重启后恢复。
-	 * @throws NamingException if service binding failed
+	 * @throws NamingException 如果服务绑定失败
 	 */
 	public void rebind() throws NamingException {
 		if (logger.isDebugEnabled()) {

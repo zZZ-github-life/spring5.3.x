@@ -52,8 +52,8 @@ public final class JodaTimeContextHolder {
 
 	/**
 	 * 将给定的 JodaTimeContext 关联到当前线程。
-	 * @param jodaTimeContext the current JodaTimeContext,
-	 * or {@code null} to reset the thread-bound context
+	 * @param jodaTimeContext 当前 JodaTimeContext，
+	 * 或 {@code null} 以重置线程绑定的上下文
 	 */
 	public static void setJodaTimeContext(@Nullable JodaTimeContext jodaTimeContext) {
 		if (jodaTimeContext == null) {
@@ -66,7 +66,7 @@ public final class JodaTimeContextHolder {
 
 	/**
 	 * 返回与当前线程关联的 JodaTimeContext（如果有）。
-	 * @return the current JodaTimeContext, or {@code null} if none
+	 * @return 当前 JodaTimeContext，如果没有则为 {@code null}
 	 */
 	@Nullable
 	public static JodaTimeContext getJodaTimeContext() {
@@ -76,10 +76,10 @@ public final class JodaTimeContextHolder {
 
 	/**
 	 * 获取应用了用户特定设置的 DateTimeFormatter，作用于给定的基础 Formatter。
-	 * @param formatter the base formatter that establishes default formatting rules
-	 * (generally user independent)
-	 * @param locale the current user locale (may be {@code null} if not known)
-	 * @return the user-specific DateTimeFormatter
+	 * @param formatter 建立默认格式化规则的基础格式化器
+	 * （通常与用户无关）
+	 * @param locale 当前用户区域设置（未知时可以为 {@code null}）
+	 * @return 用户特定的 DateTimeFormatter
 	 */
 	public static DateTimeFormatter getFormatter(DateTimeFormatter formatter, @Nullable Locale locale) {
 		DateTimeFormatter formatterToUse = (locale != null ? formatter.withLocale(locale) : formatter);

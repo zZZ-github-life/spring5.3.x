@@ -45,10 +45,10 @@ public class XpathResultMatchers {
 	 * 受保护的构造函数，不用于直接实例化。请使用
 	 * {@link MockMvcResultMatchers#xpath(String, Object...)} 或
 	 * {@link MockMvcResultMatchers#xpath(String, Map, Object...)}。
-	 * @param expression the XPath expression
-	 * @param namespaces the XML namespaces referenced in the XPath expression, or {@code null}
-	 * @param args arguments to parameterize the XPath expression with using the
-	 * formatting specifiers defined in {@link String#format(String, Object...)}
+	 * @param expression XPath 表达式
+	 * @param namespaces XPath 表达式中引用的 XML 命名空间，或 {@code null}
+	 * @param args 用于对 XPath 表达式进行参数化的参数，
+	 * 使用 {@link String#format(String, Object...)} 中定义的格式说明符
 	 */
 	protected XpathResultMatchers(String expression, @Nullable Map<String, String> namespaces, Object ... args)
 			throws XPathExpressionException {

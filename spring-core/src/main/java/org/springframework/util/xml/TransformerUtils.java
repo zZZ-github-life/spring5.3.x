@@ -42,7 +42,7 @@ public abstract class TransformerUtils {
 	 * 为提供的 {@link javax.xml.transform.Transformer} 启用缩进。
 	 * <p>如果底层 XSLT 引擎是 Xalan，则特殊输出键 {@code indent-amount}
 	 * 也将设置为 {@link #DEFAULT_INDENT_AMOUNT} 个字符的值。
-	 * @param transformer the target transformer
+	 * @param transformer 目标转换器
 	 * @see javax.xml.transform.Transformer#setOutputProperty(String, String)
 	 * @see javax.xml.transform.OutputKeys#INDENT
 	 */
@@ -54,8 +54,8 @@ public abstract class TransformerUtils {
 	 * 为提供的 {@link javax.xml.transform.Transformer} 启用缩进。
 	 * <p>如果底层 XSLT 引擎是 Xalan，则特殊输出键 {@code indent-amount}
 	 * 也将设置为 {@link #DEFAULT_INDENT_AMOUNT} 个字符的值。
-	 * @param transformer the target transformer
-	 * @param indentAmount the size of the indent (2 characters, 3 characters, etc)
+	 * @param transformer 目标转换器
+	 * @param indentAmount 缩进的大小（2 个字符、3 个字符等）
 	 * @see javax.xml.transform.Transformer#setOutputProperty(String, String)
 	 * @see javax.xml.transform.OutputKeys#INDENT
 	 */
@@ -75,7 +75,7 @@ public abstract class TransformerUtils {
 
 	/**
 	 * 为提供的 {@link javax.xml.transform.Transformer} 禁用缩进。
-	 * @param transformer the target transformer
+	 * @param transformer 目标转换器
 	 * @see javax.xml.transform.OutputKeys#INDENT
 	 */
 	public static void disableIndenting(Transformer transformer) {

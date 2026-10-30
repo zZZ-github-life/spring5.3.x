@@ -41,7 +41,7 @@ public class UserRoleAuthorizationInterceptor implements HandlerInterceptor {
 
 	/**
 	 * 设置此拦截器应视为已授权的角色。
-	 * @param authorizedRoles array of role names
+	 * @param authorizedRoles 角色名称数组
 	 */
 	public final void setAuthorizedRoles(String... authorizedRoles) {
 		this.authorizedRoles = authorizedRoles;
@@ -68,11 +68,11 @@ public class UserRoleAuthorizationInterceptor implements HandlerInterceptor {
 	 * 默认实现发送 HTTP 状态码 403（"forbidden"）。
 	 * <p>可以重写此方法以写入自定义消息、转发或
 	 * 重定向到某个错误页面或登录页面，或者抛出 ServletException。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler chosen handler to execute, for type and/or instance evaluation
-	 * @throws javax.servlet.ServletException if there is an internal error
-	 * @throws java.io.IOException in case of an I/O error when writing the response
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 选中的待执行处理器，用于类型和/或实例判断
+	 * @throws javax.servlet.ServletException 发生内部错误时
+	 * @throws java.io.IOException 写入响应时发生 I/O 错误的情况下
 	 */
 	protected void handleNotAuthorized(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws ServletException, IOException {

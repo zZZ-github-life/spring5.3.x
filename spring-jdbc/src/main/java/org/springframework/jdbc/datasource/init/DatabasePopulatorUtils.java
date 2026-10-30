@@ -40,9 +40,9 @@ public abstract class DatabasePopulatorUtils {
 	 * 的 {@link Connection} 未配置为{@link Connection#getAutoCommit() 自动提交}
 	 * 且不是{@linkplain DataSourceUtils#isConnectionTransactional 事务性的}，
 	 * 它将被{@linkplain Connection#commit() 提交}。
-	 * @param populator the {@code DatabasePopulator} to execute
-	 * @param dataSource the {@code DataSource} to execute against
-	 * @throws DataAccessException if an error occurs, specifically a {@link ScriptException}
+	 * @param populator 要执行的 {@code DatabasePopulator}
+	 * @param dataSource 要对其执行操作的 {@code DataSource}
+	 * @throws DataAccessException 如果发生错误，特别是 {@link ScriptException}
 	 * @see DataSourceUtils#isConnectionTransactional(Connection, DataSource)
 	 */
 	public static void execute(DatabasePopulator populator, DataSource dataSource) throws DataAccessException {

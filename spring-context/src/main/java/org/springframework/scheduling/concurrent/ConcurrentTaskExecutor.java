@@ -95,7 +95,7 @@ public class ConcurrentTaskExecutor implements AsyncListenableTaskExecutor, Sche
 	 * 创建一个新的 ConcurrentTaskExecutor，使用给定的 {@link java.util.concurrent.Executor}。
 	 * <p>自动检测 JSR-236 的 {@link javax.enterprise.concurrent.ManagedExecutorService}，以便为其暴露
 	 * {@link javax.enterprise.concurrent.ManagedTask} 适配器。
-	 * @param executor the {@link java.util.concurrent.Executor} to delegate to
+	 * @param executor 要委托给的 {@link java.util.concurrent.Executor}
 	 */
 	public ConcurrentTaskExecutor(@Nullable Executor executor) {
 		this.concurrentExecutor = (executor != null ? executor : Executors.newSingleThreadExecutor());

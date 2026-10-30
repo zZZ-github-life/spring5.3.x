@@ -36,7 +36,7 @@ public abstract class AbstractClientHttpRequestFactoryWrapper implements ClientH
 
 	/**
 	 * 创建一个包装给定请求工厂的 {@code AbstractClientHttpRequestFactoryWrapper}。
-	 * @param requestFactory the request factory to be wrapped
+	 * @param requestFactory 要包装的请求工厂
 	 */
 	protected AbstractClientHttpRequestFactoryWrapper(ClientHttpRequestFactory requestFactory) {
 		Assert.notNull(requestFactory, "ClientHttpRequestFactory must not be null");
@@ -58,11 +58,11 @@ public abstract class AbstractClientHttpRequestFactoryWrapper implements ClientH
 	 * 通过传入的请求工厂为指定的 URI 和 HTTP 方法
 	 * 创建新的 {@link ClientHttpRequest}。
 	 * <p>由 {@link #createRequest(URI, HttpMethod)} 调用。
-	 * @param uri the URI to create a request for
-	 * @param httpMethod the HTTP method to execute
-	 * @param requestFactory the wrapped request factory
-	 * @return the created request
-	 * @throws IOException in case of I/O errors
+	 * @param uri 为其创建请求的 URI
+	 * @param httpMethod 要执行的 HTTP 方法
+	 * @param requestFactory 被包装的请求工厂
+	 * @return 所创建的请求
+	 * @throws IOException 如果发生 I/O 错误
 	 */
 	protected abstract ClientHttpRequest createRequest(
 			URI uri, HttpMethod httpMethod, ClientHttpRequestFactory requestFactory) throws IOException;

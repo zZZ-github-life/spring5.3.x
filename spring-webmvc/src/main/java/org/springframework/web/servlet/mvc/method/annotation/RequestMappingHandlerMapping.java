@@ -144,7 +144,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	 * {@code Predicate} 匹配。将使用第一个匹配的谓词对应的前缀。
 	 * <p>可考虑使用 {@link org.springframework.web.method.HandlerTypePredicate
 	 * HandlerTypePredicate} 对控制器进行分组。
-	 * @param prefixes a map with path prefixes as key
+	 * @param prefixes 以路径前缀为键的 Map
 	 * @since 5.1
 	 */
 	public void setPathPrefixes(Map<String, Predicate<Class<?>>> prefixes) {
@@ -249,7 +249,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	 * 设置 {@link RequestMappingInfo.Builder#options(RequestMappingInfo.BuilderConfiguration)}。
 	 * <p>这对于通过
 	 * {@link #registerHandlerMethod(Object, Method, RequestMappingInfo)} 以编程方式注册请求映射很有用。
-	 * @return the builder configuration that reflects the internal state
+	 * @return 反映内部状态的构建器配置
 	 * @since 5.3.14
 	 */
 	public RequestMappingInfo.BuilderConfiguration getBuilderConfiguration() {
@@ -271,8 +271,8 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	/**
 	 * 使用方法和类型级别的 @{@link RequestMapping} 注解创建
 	 * RequestMappingInfo。
-	 * @return the created RequestMappingInfo, or {@code null} if the method
-	 * does not have a {@code @RequestMapping} annotation.
+	 * @return 创建的 RequestMappingInfo，
+	 * 若该方法没有 {@code @RequestMapping} 注解则为 {@code null}。
 	 * @see #getCustomMethodCondition(Method)
 	 * @see #getCustomTypeCondition(Class)
 	 */
@@ -330,8 +330,8 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	 * <p>可考虑为自定义条件类型扩展 {@link AbstractRequestCondition}，
 	 * 并使用 {@link CompositeRequestCondition} 提供
 	 * 多个自定义条件。
-	 * @param handlerType the handler type for which to create the condition
-	 * @return the condition, or {@code null}
+	 * @param handlerType 要为其创建条件的处理器类型
+	 * @return 条件，或 {@code null}
 	 */
 	@Nullable
 	protected RequestCondition<?> getCustomTypeCondition(Class<?> handlerType) {
@@ -346,8 +346,8 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	 * <p>可考虑为自定义条件类型扩展 {@link AbstractRequestCondition}，
 	 * 并使用 {@link CompositeRequestCondition} 提供
 	 * 多个自定义条件。
-	 * @param method the handler method for which to create the condition
-	 * @return the condition, or {@code null}
+	 * @param method 要为其创建条件的处理器方法
+	 * @return 条件，或 {@code null}
 	 */
 	@Nullable
 	protected RequestCondition<?> getCustomMethodCondition(Method method) {
@@ -379,7 +379,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 
 	/**
 	 * 解析给定模式数组中的占位符值。
-	 * @return a new array with updated patterns
+	 * @return 包含更新后模式的新数组
 	 */
 	protected String[] resolveEmbeddedValuesInPatterns(String[] patterns) {
 		if (this.embeddedValueResolver == null) {
@@ -409,9 +409,9 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	 * 很重要，例如可以确保使用
 	 * {@link org.springframework.web.util.pattern.PathPattern} 还是
 	 * {@link org.springframework.util.PathMatcher} 进行匹配。
-	 * @param handler the bean name of the handler or the handler instance
-	 * @param method the method to register
-	 * @param mapping the mapping conditions associated with the handler method
+	 * @param handler 处理器的 Bean 名称或处理器实例
+	 * @param method 要注册的方法
+	 * @param mapping 与处理器方法关联的映射条件
 	 */
 	@Override
 	protected void registerHandlerMethod(Object handler, Method method, RequestMappingInfo mapping) {

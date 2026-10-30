@@ -127,9 +127,9 @@ class TestPropertySourceAttributes {
 	/**
 	 * 将所提供的所有元素添加到给定列表中，并遵循 {@code prepend} 标志。
 	 * <p>如果 {@code prepend} 标志为 {@code false}，则元素将追加到列表中。
-	 * @param prepend whether the elements should be prepended to the list
-	 * @param list the list to which to add the elements
-	 * @param elements the elements to add to the list
+	 * @param prepend 是否应将元素添加到列表开头
+	 * @param list 要向其添加元素的列表
+	 * @param elements 要添加到列表的元素
 	 */
 	private void addAll(boolean prepend, List<String> list, String... elements) {
 		list.addAll((prepend ? 0 : list.size()), Arrays.asList(elements));
@@ -157,7 +157,7 @@ class TestPropertySourceAttributes {
 
 	/**
 	 * 获取声明 {@code @TestPropertySource} 的{@linkplain Class 类}。
-	 * @return the declaring class; never {@code null}
+	 * @return 声明类；从不为 {@code null}
 	 */
 	Class<?> getDeclaringClass() {
 		return this.declaringClass;
@@ -166,7 +166,7 @@ class TestPropertySourceAttributes {
 	/**
 	 * 获取通过 {@code @TestPropertySource} 声明的资源位置。
 	 * <p>注意：返回的值可能表示<em>检测到的默认值</em>或合并后的位置，它们可能与通过单个 {@code @TestPropertySource} 注解声明的原始值不匹配。
-	 * @return the resource locations; potentially <em>empty</em>
+	 * @return 资源位置；可能为<em>空</em>
 	 * @see TestPropertySource#value
 	 * @see TestPropertySource#locations
 	 */
@@ -176,7 +176,7 @@ class TestPropertySourceAttributes {
 
 	/**
 	 * 获取通过 {@code @TestPropertySource} 声明的 {@code inheritLocations} 标志。
-	 * @return the {@code inheritLocations} flag
+	 * @return 该 {@code inheritLocations} 标志
 	 * @see TestPropertySource#inheritLocations
 	 */
 	boolean isInheritLocations() {
@@ -186,7 +186,7 @@ class TestPropertySourceAttributes {
 	/**
 	 * 获取通过 {@code @TestPropertySource} 声明的内联属性。
 	 * <p>注意：返回的值可能表示合并后的属性，它们可能与通过单个 {@code @TestPropertySource} 注解声明的原始值不匹配。
-	 * @return the inlined properties; potentially <em>empty</em>
+	 * @return 内联属性；可能为<em>空</em>
 	 * @see TestPropertySource#properties
 	 */
 	String[] getProperties() {
@@ -195,7 +195,7 @@ class TestPropertySourceAttributes {
 
 	/**
 	 * 获取通过 {@code @TestPropertySource} 声明的 {@code inheritProperties} 标志。
-	 * @return the {@code inheritProperties} flag
+	 * @return 该 {@code inheritProperties} 标志
 	 * @see TestPropertySource#inheritProperties
 	 */
 	boolean isInheritProperties() {

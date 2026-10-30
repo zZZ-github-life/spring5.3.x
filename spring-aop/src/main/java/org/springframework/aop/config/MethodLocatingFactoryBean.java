@@ -46,7 +46,7 @@ public class MethodLocatingFactoryBean implements FactoryBean<Method>, BeanFacto
 	/**
 	 * 设置要在其上定位 {@link Method} 的 Bean 名称。
 	 * <p>此属性是必需的。
-	 * @param targetBeanName the name of the bean to locate the {@link Method} on
+	 * @param targetBeanName 要在其上定位 {@link Method} 的 Bean 名称
 	 */
 	public void setTargetBeanName(String targetBeanName) {
 		this.targetBeanName = targetBeanName;
@@ -55,7 +55,7 @@ public class MethodLocatingFactoryBean implements FactoryBean<Method>, BeanFacto
 	/**
 	 * 设置要定位的 {@link Method} 名称。
 	 * <p>此属性是必需的。
-	 * @param methodName the name of the {@link Method} to locate
+	 * @param methodName 要定位的 {@link Method} 的名称
 	 */
 	public void setMethodName(String methodName) {
 		this.methodName = methodName;

@@ -40,7 +40,7 @@ public interface SchedulingConfigurer {
 	 * 回调，允许将 {@link org.springframework.scheduling.TaskScheduler TaskScheduler} 和特定的
 	 * {@link org.springframework.scheduling.config.Task Task} 实例注册到给定的
 	 * {@link ScheduledTaskRegistrar}。
-	 * @param taskRegistrar the registrar to be configured.
+	 * @param taskRegistrar 要配置的注册器。
 	 */
 	void configureTasks(ScheduledTaskRegistrar taskRegistrar);
 

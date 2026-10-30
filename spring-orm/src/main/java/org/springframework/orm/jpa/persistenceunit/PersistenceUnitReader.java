@@ -95,9 +95,9 @@ final class PersistenceUnitReader {
 
 	/**
 	 * 创建一个新的 PersistenceUnitReader。
-	 * @param resourcePatternResolver the ResourcePatternResolver to use for loading resources
-	 * @param dataSourceLookup the DataSourceLookup to resolve DataSource names in
-	 * {@code persistence.xml} files against
+	 * @param resourcePatternResolver 用于加载资源的 ResourcePatternResolver
+	 * @param dataSourceLookup 用于解析 {@code persistence.xml} 文件中 DataSource 名称的
+	 * DataSourceLookup
 	 */
 	public PersistenceUnitReader(ResourcePatternResolver resourcePatternResolver, DataSourceLookup dataSourceLookup) {
 		Assert.notNull(resourcePatternResolver, "ResourceLoader must not be null");
@@ -109,8 +109,8 @@ final class PersistenceUnitReader {
 
 	/**
 	 * 解析并构建指定 XML 文件中定义的所有持久化单元信息。
-	 * @param persistenceXmlLocation the resource location (can be a pattern)
-	 * @return the resulting PersistenceUnitInfo instances
+	 * @param persistenceXmlLocation 资源位置（可以是模式）
+	 * @return 得到的 PersistenceUnitInfo 实例
 	 */
 	public SpringPersistenceUnitInfo[] readPersistenceUnitInfos(String persistenceXmlLocation) {
 		return readPersistenceUnitInfos(new String[] {persistenceXmlLocation});
@@ -118,8 +118,8 @@ final class PersistenceUnitReader {
 
 	/**
 	 * 解析并构建给定 XML 文件中定义的所有持久化单元信息。
-	 * @param persistenceXmlLocations the resource locations (can be patterns)
-	 * @return the resulting PersistenceUnitInfo instances
+	 * @param persistenceXmlLocations 资源位置（可以是模式）
+	 * @return 得到的 PersistenceUnitInfo 实例
 	 */
 	public SpringPersistenceUnitInfo[] readPersistenceUnitInfos(String[] persistenceXmlLocations) {
 		ErrorHandler handler = new SimpleSaxErrorHandler(logger);
@@ -327,9 +327,9 @@ final class PersistenceUnitReader {
 	/**
 	 * 根据给定资源（它指向我们正在读取的 {@code persistence.xml} 文件）
 	 * 确定持久化单元根 URL。
-	 * @param resource the resource to check
-	 * @return the corresponding persistence unit root URL
-	 * @throws IOException if the checking failed
+	 * @param resource 要检查的资源
+	 * @return 对应的持久化单元根 URL
+	 * @throws IOException 如果检查失败
 	 */
 	@Nullable
 	static URL determinePersistenceUnitRootUrl(Resource resource) throws IOException {

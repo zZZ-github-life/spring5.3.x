@@ -46,7 +46,7 @@ import org.springframework.util.ObjectUtils;
  *
  * @author Chris Beams
  * @since 3.1
- * @param <T> the source type
+ * @param <T> 源类型
  * @see PropertySources
  * @see PropertyResolver
  * @see PropertySourcesPropertyResolver
@@ -64,8 +64,8 @@ public abstract class PropertySource<T> {
 
 	/**
 	 * 使用给定的名称和源对象创建一个新的 {@code PropertySource}。
-	 * @param name the associated name
-	 * @param source the source object
+	 * @param name 关联的名称
+	 * @param source 源对象
 	 */
 	public PropertySource(String name, T source) {
 		Assert.hasText(name, "Property source name must contain at least one character");
@@ -103,7 +103,7 @@ public abstract class PropertySource<T> {
 	 * 返回此 {@code PropertySource} 是否包含给定的名称。
 	 * <p>此实现只是检查 {@link #getProperty(String)} 是否返回 {@code null}。
 	 * 子类可以在可能的情况下实现更高效的算法。
-	 * @param name the property name to find
+	 * @param name 要查找的属性名
 	 */
 	public boolean containsProperty(String name) {
 		return (getProperty(name) != null);
@@ -111,7 +111,7 @@ public abstract class PropertySource<T> {
 
 	/**
 	 * 返回与给定名称关联的值，如果未找到则返回 {@code null}。
-	 * @param name the property to find
+	 * @param name 要查找的属性
 	 * @see PropertyResolver#getRequiredProperty(String)
 	 */
 	@Nullable
@@ -173,7 +173,7 @@ public abstract class PropertySource<T> {
 	 * }</pre>
 	 * 如果调用了除 {@code equals(Object)}、{@code hashCode()} 和 {@code toString()}
 	 * 之外的任何方法，返回的 {@code PropertySource} 将抛出 {@code UnsupportedOperationException}。
-	 * @param name the name of the comparison {@code PropertySource} to be created and returned.
+	 * @param name 要创建并返回的比较用 {@code PropertySource} 的名称。
 	 */
 	public static PropertySource<?> named(String name) {
 		return new ComparisonPropertySource(name);

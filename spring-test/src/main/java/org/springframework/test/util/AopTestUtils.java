@@ -37,11 +37,11 @@ public abstract class AopTestUtils {
 	/**
 	 * 获取所提供 {@code candidate} 对象的<em>目标</em>对象。
 	 * <p>如果所提供的 {@code candidate} 是 Spring {@linkplain AopUtils#isAopProxy 代理}，则将返回该代理的目标；否则，将<em>原样</em>返回 {@code candidate}。
-	 * @param <T> the type of the target object
-	 * @param candidate the instance to check (potentially a Spring AOP proxy;
-	 * never {@code null})
-	 * @return the target object or the {@code candidate} (never {@code null})
-	 * @throws IllegalStateException if an error occurs while unwrapping a proxy
+	 * @param <T> 目标对象的类型
+	 * @param candidate 要检查的实例（可能是 Spring AOP 代理；
+	 * 永不为 {@code null}）
+	 * @return 目标对象或 {@code candidate}（永不为 {@code null}）
+	 * @throws IllegalStateException 如果解包代理时发生错误。
 	 * @see Advised#getTargetSource()
 	 * @see #getUltimateTargetObject
 	 */
@@ -66,11 +66,11 @@ public abstract class AopTestUtils {
 	 * 获取所提供 {@code candidate} 对象的最终<em>目标</em>对象，不仅解包顶层代理，还解包任意数量的嵌套代理。
 	 * <p>如果所提供的 {@code candidate} 是 Spring {@linkplain AopUtils#isAopProxy 代理}，则将返回所有嵌套代理的最终目标；否则，将<em>原样</em>返回 {@code candidate}。
 	 * <p>注意：如果顶层代理或某个嵌套代理不是由{@linkplain org.springframework.aop.TargetSource#isStatic() 静态}{@link org.springframework.aop.TargetSource TargetSource} 支持的，则调用此实用方法可能导致不良行为，例如无限递归并导致 {@link StackOverflowError}。
-	 * @param <T> the type of the target object
-	 * @param candidate the instance to check (potentially a Spring AOP proxy;
-	 * never {@code null})
-	 * @return the target object or the {@code candidate} (never {@code null})
-	 * @throws IllegalStateException if an error occurs while unwrapping a proxy
+	 * @param <T> 目标对象的类型
+	 * @param candidate 要检查的实例（可能是 Spring AOP 代理；
+	 * 永不为 {@code null}）
+	 * @return 目标对象或 {@code candidate}（永不为 {@code null}）
+	 * @throws IllegalStateException 如果解包代理时发生错误。
 	 * @see Advised#getTargetSource()
 	 * @see org.springframework.aop.TargetSource#isStatic()
 	 * @see org.springframework.aop.framework.AopProxyUtils#ultimateTargetClass

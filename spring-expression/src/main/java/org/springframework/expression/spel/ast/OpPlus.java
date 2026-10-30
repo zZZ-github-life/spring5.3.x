@@ -189,9 +189,9 @@ public class OpPlus extends Operator {
 
 	/**
 	 * 使用已注册的转换器或 {@code toString} 方法将操作数值转换为字符串。
-	 * @param value typed value to be converted
-	 * @param state expression state
-	 * @return {@code TypedValue} instance converted to {@code String}
+	 * @param value 要转换的类型化值
+	 * @param state 表达式状态
+	 * @return 转换为 {@code String} 的 {@code TypedValue} 实例
 	 */
 	private static String convertTypedValueToString(TypedValue value, ExpressionState state) {
 		TypeConverter typeConverter = state.getEvaluationContext().getTypeConverter();

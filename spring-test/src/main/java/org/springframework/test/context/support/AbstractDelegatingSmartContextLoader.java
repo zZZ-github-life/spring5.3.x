@@ -62,7 +62,7 @@ public abstract class AbstractDelegatingSmartContextLoader implements SmartConte
 
 	/**
 	 * {@code AbstractDelegatingSmartContextLoader} 不支持 {@link ContextLoader#processLocations(Class, String...)} 方法。请改用 {@link #processContextConfiguration(ContextConfigurationAttributes)}。
-	 * @throws UnsupportedOperationException in this implementation
+	 * @throws UnsupportedOperationException 在此实现中
 	 */
 	@Override
 	public final String[] processLocations(Class<?> clazz, @Nullable String... locations) {
@@ -73,7 +73,7 @@ public abstract class AbstractDelegatingSmartContextLoader implements SmartConte
 
 	/**
 	 * {@code AbstractDelegatingSmartContextLoader} 不支持 {@link ContextLoader#loadContext(String...) } 方法。请改用 {@link #loadContext(MergedContextConfiguration)}。
-	 * @throws UnsupportedOperationException in this implementation
+	 * @throws UnsupportedOperationException 在此实现中
 	 */
 	@Override
 	public final ApplicationContext loadContext(String... locations) throws Exception {
@@ -93,15 +93,13 @@ public abstract class AbstractDelegatingSmartContextLoader implements SmartConte
 	 * <li>否则，将允许基于 XML 的加载器处理该配置以检测默认资源位置。如果基于 XML 的加载器检测到默认资源位置，将记录一条 {@code info} 消息。</li>
 	 * <li>随后，将允许基于注解的加载器处理该配置以检测默认配置类。如果基于注解的加载器检测到默认配置类，将记录一条 {@code info} 消息。</li>
 	 * </ul>
-	 * @param configAttributes the context configuration attributes to process
-	 * @throws IllegalArgumentException if the supplied configuration attributes are
-	 * {@code null}, or if the supplied configuration attributes include both
-	 * resource locations and annotated classes
-	 * @throws IllegalStateException if the XML-based loader detects default
-	 * configuration classes; if the annotation-based loader detects default
-	 * resource locations; if neither candidate loader detects defaults for the supplied
-	 * context configuration; or if both candidate loaders detect defaults for the
-	 * supplied context configuration
+	 * @param configAttributes 要处理的上下文配置属性
+	 * @throws IllegalArgumentException 如果所提供的配置属性为 {@code null}，
+	 * 或者所提供的配置属性同时包含资源位置和注解类
+	 * @throws IllegalStateException 如果基于 XML 的加载器检测到默认配置类；
+	 * 如果基于注解的加载器检测到默认资源位置；
+	 * 如果两个候选加载器都未针对所提供的上下文配置检测到默认值；
+	 * 或者如果两个候选加载器都针对所提供的上下文配置检测到默认值
 	 */
 	@Override
 	public void processContextConfiguration(final ContextConfigurationAttributes configAttributes) {
@@ -169,10 +167,10 @@ public abstract class AbstractDelegatingSmartContextLoader implements SmartConte
 	 * <li>如果所提供的 {@code MergedContextConfiguration} 中的资源位置不为空且注解类为空，则基于 XML 的加载器将加载该 {@code ApplicationContext}。</li>
 	 * <li>如果所提供的 {@code MergedContextConfiguration} 中的注解类不为空且资源位置为空，则基于注解的加载器将加载该 {@code ApplicationContext}。</li>
 	 * </ul>
-	 * @param mergedConfig the merged context configuration to use to load the application context
-	 * @throws IllegalArgumentException if the supplied merged configuration is {@code null}
-	 * @throws IllegalStateException if neither candidate loader is capable of loading an
-	 * {@code ApplicationContext} from the supplied merged context configuration
+	 * @param mergedConfig 用于加载应用上下文的合并上下文配置
+	 * @throws IllegalArgumentException 如果所提供的合并配置为 {@code null}
+	 * @throws IllegalStateException 如果两个候选加载器都无法从所提供的合并上下文配置
+	 * 加载 {@code ApplicationContext}
 	 */
 	@Override
 	public ApplicationContext loadContext(MergedContextConfiguration mergedConfig) throws Exception {

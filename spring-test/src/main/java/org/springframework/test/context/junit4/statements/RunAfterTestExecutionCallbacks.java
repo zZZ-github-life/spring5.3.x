@@ -47,12 +47,10 @@ public class RunAfterTestExecutionCallbacks extends Statement {
 
 	/**
 	 * 构造一个新的 {@code RunAfterTestExecutionCallbacks} 语句。
-	 * @param next the next {@code Statement} in the execution chain
-	 * @param testInstance the current test instance (never {@code null})
-	 * @param testMethod the test method which has just been executed on the
-	 * test instance
-	 * @param testContextManager the TestContextManager upon which to call
-	 * {@code afterTestExecution()}
+	 * @param next 执行链中的下一个 {@code Statement}
+	 * @param testInstance 当前的测试实例（从不为 {@code null}）
+	 * @param testMethod 刚刚在测试实例上执行的测试方法
+	 * @param testContextManager 要在其上调用 {@code afterTestExecution()} 的 TestContextManager
 	 */
 	public RunAfterTestExecutionCallbacks(Statement next, Object testInstance, Method testMethod,
 			TestContextManager testContextManager) {

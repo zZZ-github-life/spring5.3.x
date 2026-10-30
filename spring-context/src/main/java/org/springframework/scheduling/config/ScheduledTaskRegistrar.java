@@ -145,7 +145,7 @@ public class ScheduledTaskRegistrar implements ScheduledTaskHolder, Initializing
 
 	/**
 	 * 以不可修改的 {@link TriggerTask} 对象列表形式获取触发任务。
-	 * @return the list of tasks (never {@code null})
+	 * @return 任务列表（永不为 {@code null}）
 	 * @since 4.2
 	 */
 	public List<TriggerTask> getTriggerTaskList() {
@@ -173,7 +173,7 @@ public class ScheduledTaskRegistrar implements ScheduledTaskHolder, Initializing
 
 	/**
 	 * 以不可修改的 {@link CronTask} 对象列表形式获取 cron 任务。
-	 * @return the list of tasks (never {@code null})
+	 * @return 任务列表（永不为 {@code null}）
 	 * @since 4.2
 	 */
 	public List<CronTask> getCronTaskList() {
@@ -201,7 +201,7 @@ public class ScheduledTaskRegistrar implements ScheduledTaskHolder, Initializing
 
 	/**
 	 * 以不可修改的 {@link IntervalTask} 对象列表形式获取固定速率任务。
-	 * @return the list of tasks (never {@code null})
+	 * @return 任务列表（永不为 {@code null}）
 	 * @since 4.2
 	 */
 	public List<IntervalTask> getFixedRateTaskList() {
@@ -229,7 +229,7 @@ public class ScheduledTaskRegistrar implements ScheduledTaskHolder, Initializing
 
 	/**
 	 * 以不可修改的 {@link IntervalTask} 对象列表形式获取固定延迟任务。
-	 * @return the list of tasks (never {@code null})
+	 * @return 任务列表（永不为 {@code null}）
 	 * @since 4.2
 	 */
 	public List<IntervalTask> getFixedDelayTaskList() {
@@ -381,7 +381,7 @@ public class ScheduledTaskRegistrar implements ScheduledTaskHolder, Initializing
 
 	/**
 	 * 调度指定的触发任务：如果可能则立即调度，否则在调度器初始化时调度。
-	 * @return a handle to the scheduled task, allowing to cancel it
+	 * @return 已调度任务的句柄，可用于取消该任务
 	 * @since 4.3
 	 */
 	@Nullable
@@ -404,8 +404,8 @@ public class ScheduledTaskRegistrar implements ScheduledTaskHolder, Initializing
 
 	/**
 	 * 调度指定的 cron 任务：如果可能则立即调度，否则在调度器初始化时调度。
-	 * @return a handle to the scheduled task, allowing to cancel it
-	 * (or {@code null} if processing a previously registered task)
+	 * @return 已调度任务的句柄，可用于取消该任务
+	 * （如果正在处理先前注册的任务，则为 {@code null}）
 	 * @since 4.3
 	 */
 	@Nullable
@@ -428,8 +428,8 @@ public class ScheduledTaskRegistrar implements ScheduledTaskHolder, Initializing
 
 	/**
 	 * 调度指定的固定速率任务：如果可能则立即调度，否则在调度器初始化时调度。
-	 * @return a handle to the scheduled task, allowing to cancel it
-	 * (or {@code null} if processing a previously registered task)
+	 * @return 已调度任务的句柄，可用于取消该任务
+	 * （如果正在处理先前注册的任务，则为 {@code null}）
 	 * @since 4.3
 	 * @deprecated as of 5.0.2, in favor of {@link #scheduleFixedRateTask(FixedRateTask)}
 	 */
@@ -443,8 +443,8 @@ public class ScheduledTaskRegistrar implements ScheduledTaskHolder, Initializing
 
 	/**
 	 * 调度指定的固定速率任务：如果可能则立即调度，否则在调度器初始化时调度。
-	 * @return a handle to the scheduled task, allowing to cancel it
-	 * (or {@code null} if processing a previously registered task)
+	 * @return 已调度任务的句柄，可用于取消该任务
+	 * （如果正在处理先前注册的任务，则为 {@code null}）
 	 * @since 5.0.2
 	 */
 	@Nullable
@@ -475,8 +475,8 @@ public class ScheduledTaskRegistrar implements ScheduledTaskHolder, Initializing
 
 	/**
 	 * 调度指定的固定延迟任务：如果可能则立即调度，否则在调度器初始化时调度。
-	 * @return a handle to the scheduled task, allowing to cancel it
-	 * (or {@code null} if processing a previously registered task)
+	 * @return 已调度任务的句柄，可用于取消该任务
+	 * （如果正在处理先前注册的任务，则为 {@code null}）
 	 * @since 4.3
 	 * @deprecated as of 5.0.2, in favor of {@link #scheduleFixedDelayTask(FixedDelayTask)}
 	 */
@@ -490,8 +490,8 @@ public class ScheduledTaskRegistrar implements ScheduledTaskHolder, Initializing
 
 	/**
 	 * 调度指定的固定延迟任务：如果可能则立即调度，否则在调度器初始化时调度。
-	 * @return a handle to the scheduled task, allowing to cancel it
-	 * (or {@code null} if processing a previously registered task)
+	 * @return 已调度任务的句柄，可用于取消该任务
+	 * （如果正在处理先前注册的任务，则为 {@code null}）
 	 * @since 5.0.2
 	 */
 	@Nullable

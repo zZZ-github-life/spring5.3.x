@@ -52,9 +52,9 @@ abstract class AbstractBufferingClientHttpRequest extends AbstractClientHttpRequ
 
 	/**
 	 * 将给定头部和内容写入 HTTP 请求的抽象模板方法。
-	 * @param headers the HTTP headers
-	 * @param bufferedOutput the body content
-	 * @return the response object for the executed request
+	 * @param headers HTTP 头
+	 * @param bufferedOutput 请求体内容
+	 * @return 所执行请求的响应对象
 	 */
 	protected abstract ClientHttpResponse executeInternal(HttpHeaders headers, byte[] bufferedOutput)
 			throws IOException;

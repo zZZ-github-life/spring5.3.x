@@ -40,7 +40,7 @@ public final class LocalTimeParser implements Parser<LocalTime> {
 
 	/**
 	 * 创建一个新的 DateTimeParser。
-	 * @param formatter the Joda DateTimeFormatter instance
+	 * @param formatter Joda DateTimeFormatter 实例
 	 */
 	public LocalTimeParser(DateTimeFormatter formatter) {
 		this.formatter = formatter;

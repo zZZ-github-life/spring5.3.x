@@ -400,7 +400,7 @@ public @interface Configuration {
 	 * <p>仅当 {@code @Configuration} 类通过组件扫描被发现或直接提供给
 	 * {@link AnnotationConfigApplicationContext} 时，自定义名称才适用。如果 {@code @Configuration} 类
 	 * 注册为传统的 XML Bean 定义，则以 Bean 元素的 name/id 为准。
-	 * @return the explicit component name, if any (or empty String otherwise)
+	 * @return 显式的组件名称（如果有；否则为空 String）
 	 * @see AnnotationBeanNameGenerator
 	 */
 	@AliasFor(annotation = Component.class)

@@ -63,7 +63,7 @@ public class ConnectionHolder extends ResourceHolderSupport {
 
 	/**
 	 * 为给定的 ConnectionHandle 创建一个新的 ConnectionHolder。
-	 * @param connectionHandle the ConnectionHandle to hold
+	 * @param connectionHandle 要持有的 ConnectionHandle
 	 */
 	public ConnectionHolder(ConnectionHandle connectionHandle) {
 		Assert.notNull(connectionHandle, "ConnectionHandle must not be null");
@@ -74,7 +74,7 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	 * 为给定的 JDBC Connection 创建一个新的 ConnectionHolder，
 	 * 并将其包装为 {@link SimpleConnectionHandle}，
 	 * 假定当前没有正在进行的事务。
-	 * @param connection the JDBC Connection to hold
+	 * @param connection 要持有的 JDBC Connection
 	 * @see SimpleConnectionHandle
 	 * @see #ConnectionHolder(java.sql.Connection, boolean)
 	 */
@@ -85,9 +85,8 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	/**
 	 * 为给定的 JDBC Connection 创建一个新的 ConnectionHolder，
 	 * 并将其包装为 {@link SimpleConnectionHandle}。
-	 * @param connection the JDBC Connection to hold
-	 * @param transactionActive whether the given Connection is involved
-	 * in an ongoing transaction
+	 * @param connection 要持有的 JDBC Connection
+	 * @param transactionActive 给定的 Connection 是否参与正在进行的事务
 	 * @see SimpleConnectionHandle
 	 */
 	public ConnectionHolder(Connection connection, boolean transactionActive) {
@@ -167,7 +166,7 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	/**
 	 * 返回是否支持 JDBC 3.0 保存点（Savepoint）。
 	 * 该标志会在 ConnectionHolder 的整个生命周期内缓存。
-	 * @throws SQLException if thrown by the JDBC driver
+	 * @throws SQLException 如果由 JDBC 驱动抛出
 	 */
 	public boolean supportsSavepoints() throws SQLException {
 		if (this.savepointsSupported == null) {
@@ -179,8 +178,8 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	/**
 	 * 为当前 Connection 创建一个新的 JDBC 3.0 保存点（Savepoint），
 	 * 使用对该 Connection 唯一的自动生成保存点名称。
-	 * @return the new Savepoint
-	 * @throws SQLException if thrown by the JDBC driver
+	 * @return 新的 Savepoint
+	 * @throws SQLException 如果由 JDBC 驱动抛出
 	 */
 	public Savepoint createSavepoint() throws SQLException {
 		this.savepointCounter++;

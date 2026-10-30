@@ -30,8 +30,8 @@ public interface WebRequestMatcher {
 
 	/**
 	 * 此匹配器是否匹配提供的 Web 请求。
-	 * @param request the {@link WebRequest} to attempt to match on
-	 * @return {@code true} if this matcher matches on the {@code WebRequest}
+	 * @param request 要尝试匹配的 {@link WebRequest}
+	 * @return 如果该匹配器匹配 {@code WebRequest}，则为 {@code true}
 	 */
 	boolean matches(WebRequest request);
 

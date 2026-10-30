@@ -235,7 +235,7 @@ public class SimpleMessageListenerContainer extends AbstractMessageListenerConta
 	/**
 	 * JMS ExceptionListener 实现，在连接失败时由 JMS 提供者调用。
 	 * 如有必要，重新初始化此监听器容器的共享连接及其会话和消费者。
-	 * @param ex the reported connection exception
+	 * @param ex 报告的连接异常
 	 * @see #setRecoverOnException
 	 * @see #refreshSharedConnection()
 	 * @see #initializeConsumers()
@@ -268,7 +268,7 @@ public class SimpleMessageListenerContainer extends AbstractMessageListenerConta
 
 	/**
 	 * 为此容器初始化 JMS Session 和 MessageConsumer。
-	 * @throws JMSException in case of setup failure
+	 * @throws JMSException 设置失败时
 	 */
 	protected void initializeConsumers() throws JMSException {
 		// Register Sessions and MessageConsumers.
@@ -290,9 +290,9 @@ public class SimpleMessageListenerContainer extends AbstractMessageListenerConta
 	/**
 	 * 为给定的 JMS Session 创建 MessageConsumer，
 	 * 并为指定的监听器注册 MessageListener。
-	 * @param session the JMS Session to work on
-	 * @return the MessageConsumer
-	 * @throws JMSException if thrown by JMS methods
+	 * @param session 要操作的 JMS Session
+	 * @return 该 MessageConsumer
+	 * @throws JMSException 如果由 JMS 方法抛出
 	 * @see #executeListener
 	 */
 	protected MessageConsumer createListenerConsumer(final Session session) throws JMSException {
@@ -318,8 +318,8 @@ public class SimpleMessageListenerContainer extends AbstractMessageListenerConta
 	 * 处理从提供者收到的消息。
 	 * <p>执行监听器，并将当前 JMS Session 暴露为
 	 * 线程绑定资源（如果 "exposeListenerSession" 为 "true"）。
-	 * @param message the received JMS Message
-	 * @param session the JMS Session to operate on
+	 * @param message 收到的 JMS 消息
+	 * @param session 要操作的 JMS Session
 	 * @see #executeListener
 	 * @see #setExposeListenerSession
 	 */

@@ -82,9 +82,9 @@ public abstract class TestContextAnnotationUtils {
 	 * <em>存在</em>或<em>元存在</em>于提供的 {@link Class} 上。
 	 * <p>如果此方法返回 {@code true}，则 {@code findMergedAnnotation(...)}
 	 * 将返回非 null 值。
-	 * @param clazz the class to look for annotations on
-	 * @param annotationType the type of annotation to look for
-	 * @return {@code true} if a matching annotation is present
+	 * @param clazz 要查找注解的类
+	 * @param annotationType 要查找的注解类型
+	 * @return 如果存在匹配的注解，则返回 {@code true}。
 	 * @since 5.3.3
 	 * @see #findMergedAnnotation(Class, Class)
 	 */
@@ -103,9 +103,9 @@ public abstract class TestContextAnnotationUtils {
 	 * 语义进行搜索。
 	 * <p>完全支持 {@link org.springframework.core.annotation.AliasFor @AliasFor} 语义，
 	 * 无论是在单个注解内还是在注解层次结构内。
-	 * @param clazz the class to look for annotations on
-	 * @param annotationType the type of annotation to look for
-	 * @return the merged, synthesized {@code Annotation}, or {@code null} if not found
+	 * @param clazz 要查找注解的类
+	 * @param annotationType 要查找的注解类型
+	 * @return 合并、合成的 {@code Annotation}，如果未找到则为 {@code null}
 	 * @see AnnotatedElementUtils#findMergedAnnotation(java.lang.reflect.AnnotatedElement, Class)
 	 * @see #findAnnotationDescriptor(Class, Class)
 	 * @see #searchEnclosingClass(Class)
@@ -138,10 +138,10 @@ public abstract class TestContextAnnotationUtils {
 	 * <p>存放可重复注解的容器类型将通过 {@link java.lang.annotation.Repeatable} 查找。
 	 * <p>完全支持 {@link org.springframework.core.annotation.AliasFor @AliasFor} 语义，
 	 * 无论是在单个注解内还是在注解层次结构内。
-	 * @param clazz the class on which to search for annotations (never {@code null})
-	 * @param annotationType the annotation type to find (never {@code null})
-	 * @return the set of all merged repeatable annotations found, or an empty set
-	 * if none were found
+	 * @param clazz 要在其上搜索注解的类（永不为 {@code null}）
+	 * @param annotationType 要查找的注解类型（永不为 {@code null}）
+	 * @return 找到的所有合并可重复注解的集合，
+	 * 如果未找到则为空集合
 	 * @see AnnotatedElementUtils#getMergedRepeatableAnnotations(java.lang.reflect.AnnotatedElement, Class)
 	 * @see #searchEnclosingClass(Class)
 	 */
@@ -185,10 +185,10 @@ public abstract class TestContextAnnotationUtils {
 	 * <p>在此上下文中，术语<em>递归</em>意味着搜索
 	 * 过程继续返回到第 1 步，将当前注解、
 	 * 接口、超类或封闭类作为要查找注解的类。
-	 * @param clazz the class to look for annotations on
-	 * @param annotationType the type of annotation to look for
-	 * @return the corresponding annotation descriptor if the annotation was found;
-	 * otherwise {@code null}
+	 * @param clazz 要查找注解的类
+	 * @param annotationType 要查找的注解类型
+	 * @return 如果找到该注解，则为对应的注解描述符；
+	 * 否则为 {@code null}
 	 * @see #findAnnotationDescriptorForTypes(Class, Class...)
 	 */
 	@Nullable
@@ -203,13 +203,13 @@ public abstract class TestContextAnnotationUtils {
 	/**
 	 * 执行 {@link #findAnnotationDescriptor(Class, Class)} 的搜索算法，
 	 * 通过跟踪已<em>访问</em>的注解来避免无限递归。
-	 * @param clazz the class to look for annotations on
-	 * @param annotationType the type of annotation to look for
-	 * @param searchEnclosingClass a predicate which evaluates to {@code true}
-	 * if a search should be performed on the enclosing class
-	 * @param visited the set of annotations that have already been visited
-	 * @return the corresponding annotation descriptor if the annotation was found;
-	 * otherwise {@code null}
+	 * @param clazz 要查找注解的类
+	 * @param annotationType 要查找的注解类型
+	 * @param searchEnclosingClass 一个谓词，如果应对封闭类执行搜索，
+	 * 则其求值为 {@code true}
+	 * @param visited 已访问过的注解集合
+	 * @return 如果找到该注解，则为对应的注解描述符；
+	 * 否则为 {@code null}
 	 */
 	@Nullable
 	private static <T extends Annotation> AnnotationDescriptor<T> findAnnotationDescriptor(
@@ -284,10 +284,10 @@ public abstract class TestContextAnnotationUtils {
 	 * <p>在此上下文中，术语<em>递归</em>意味着搜索
 	 * 过程继续返回到第 1 步，将当前注解、
 	 * 接口、超类或封闭类作为要查找注解的类。
-	 * @param clazz the class to look for annotations on
-	 * @param annotationTypes the types of annotations to look for
-	 * @return the corresponding annotation descriptor if one of the annotations
-	 * was found; otherwise {@code null}
+	 * @param clazz 要查找注解的类
+	 * @param annotationTypes 要查找的注解类型
+	 * @return 如果找到其中一个注解，则为对应的注解描述符；
+	 * 否则为 {@code null}
 	 * @see #findAnnotationDescriptor(Class, Class)
 	 */
 	@SuppressWarnings("unchecked")
@@ -302,11 +302,11 @@ public abstract class TestContextAnnotationUtils {
 	/**
 	 * 执行 {@link #findAnnotationDescriptorForTypes(Class, Class...)} 的搜索算法，
 	 * 通过跟踪已<em>访问</em>的注解来避免无限递归。
-	 * @param clazz the class to look for annotations on
-	 * @param annotationTypes the types of annotations to look for
-	 * @param visited the set of annotations that have already been visited
-	 * @return the corresponding annotation descriptor if one of the annotations
-	 * was found; otherwise {@code null}
+	 * @param clazz 要查找注解的类
+	 * @param annotationTypes 要查找的注解类型
+	 * @param visited 已访问过的注解集合
+	 * @return 如果找到其中一个注解，则为对应的注解描述符；
+	 * 否则为 {@code null}
 	 */
 	@Nullable
 	private static UntypedAnnotationDescriptor findAnnotationDescriptorForTypes(@Nullable Class<?> clazz,
@@ -365,9 +365,9 @@ public abstract class TestContextAnnotationUtils {
 	/**
 	 * 确定 <em>Spring TestContext Framework</em> 中的注解搜索算法是否应搜索
 	 * 所提供类的封闭类上的注解。
-	 * @param clazz the class whose enclosing class should potentially be searched
-	 * @return {@code true} if the supplied class is an inner class whose enclosing
-	 * class should be searched
+	 * @param clazz 可能应搜索其封闭类的类
+	 * @return 如果提供的类是内部类且应搜索其封闭类，
+	 * 则返回 {@code true}。
 	 * @see ClassUtils#isInnerClass(Class)
 	 * @see NestedTestConfiguration @NestedTestConfiguration
 	 */
@@ -383,9 +383,8 @@ public abstract class TestContextAnnotationUtils {
 
 	/**
 	 * 获取所提供类的 {@link EnclosingConfiguration} 模式。
-	 * @param clazz the class for which the enclosing configuration mode should
-	 * be resolved
-	 * @return the resolved enclosing configuration mode
+	 * @param clazz 应为其解析封闭配置模式的类
+	 * @return 解析得到的封闭配置模式
 	 */
 	private static EnclosingConfiguration getEnclosingConfiguration(Class<?> clazz) {
 		return cachedEnclosingConfigurationModes.get(clazz);
@@ -463,7 +462,7 @@ public abstract class TestContextAnnotationUtils {
 	 * public class UserRepositoryTests { }
 	 * </pre>
 	 *
-	 * @param <T> the annotation type
+	 * @param <T> 注解类型
 	 */
 	public static class AnnotationDescriptor<T extends Annotation> {
 
@@ -520,8 +519,8 @@ public abstract class TestContextAnnotationUtils {
 		 * 将尝试在
 		 * 根声明类的 {@linkplain Class#getEnclosingClass() 封闭类}层次结构中
 		 * 查找相应的注解。
-		 * @return the next corresponding annotation descriptor if the annotation
-		 * was found; otherwise {@code null}
+		 * @return 如果找到该注解，则为下一个对应的注解描述符；
+		 * 否则为 {@code null}
 		 */
 		@Nullable
 		public AnnotationDescriptor<T> next() {
@@ -539,8 +538,8 @@ public abstract class TestContextAnnotationUtils {
 		 * 查找<em>存在</em>或<em>元存在</em>于此描述符的 {@linkplain #getRootDeclaringClass()
 		 * 根声明类}上或根声明类实现的任何接口上的指定注解类型的
 		 * <strong>所有</strong>注解。
-		 * @return the set of all merged, synthesized {@code Annotations} found,
-		 * or an empty set if none were found
+		 * @return 找到的所有合并、合成的 {@code Annotation} 集合，
+		 * 如果未找到则为空集合
 		 */
 		public Set<T> findAllLocalMergedAnnotations() {
 			SearchStrategy searchStrategy = SearchStrategy.TYPE_HIERARCHY;
@@ -595,8 +594,8 @@ public abstract class TestContextAnnotationUtils {
 		 * 将尝试在根声明类的
 		 * {@linkplain Class#getEnclosingClass() 封闭类}层次结构中
 		 * 查找相应的注解。
-		 * @return the next corresponding annotation descriptor if one of the
-		 * annotations was found; otherwise {@code null}
+		 * @return 如果找到其中一个注解，
+		 * 则为下一个对应的注解描述符；否则为 {@code null}
 		 * @see AnnotationDescriptor#next()
 		 */
 		@Override

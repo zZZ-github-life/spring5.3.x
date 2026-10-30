@@ -41,13 +41,13 @@ public interface PropertySources extends Iterable<PropertySource<?>> {
 
 	/**
 	 * 返回是否包含具有给定名称的属性源。
-	 * @param name the {@linkplain PropertySource#getName() name of the property source} to find
+	 * @param name 要查找的{@linkplain PropertySource#getName() name of the property source}
 	 */
 	boolean contains(String name);
 
 	/**
 	 * 返回具有给定名称的属性源，如果未找到则返回 {@code null}。
-	 * @param name the {@linkplain PropertySource#getName() name of the property source} to find
+	 * @param name 要查找的{@linkplain PropertySource#getName() name of the property source}
 	 */
 	@Nullable
 	PropertySource<?> get(String name);

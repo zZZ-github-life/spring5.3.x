@@ -78,12 +78,11 @@ public final class MappedInterceptor implements HandlerInterceptor {
 	/**
 	 * 使用给定的包含和排除模式以及用于映射的目标拦截器
 	 * 创建实例。
-	 * @param includePatterns patterns to which requests must match, or null to
-	 * match all paths
-	 * @param excludePatterns patterns to which requests must not match
-	 * @param interceptor the target interceptor
-	 * @param parser a parser to use to pre-parse patterns into {@link PathPattern};
-	 * when not provided, {@link PathPatternParser#defaultInstance} is used.
+	 * @param includePatterns 请求必须匹配的模式，或 null 表示匹配所有路径
+	 * @param excludePatterns 请求不得匹配的模式
+	 * @param interceptor 目标拦截器
+	 * @param parser 用于将模式预解析为 {@link PathPattern} 的解析器；
+	 * 未提供时使用 {@link PathPatternParser#defaultInstance}。
 	 * @since 5.3
 	 */
 	public MappedInterceptor(@Nullable String[] includePatterns, @Nullable String[] excludePatterns,
@@ -175,8 +174,8 @@ public final class MappedInterceptor implements HandlerInterceptor {
 	 * 检查此拦截器是否映射到该请求。
 	 * <p>预期请求映射路径已在外部解析。
 	 * 另请参阅类级 Javadoc。
-	 * @param request the request to match to
-	 * @return {@code true} if the interceptor should be applied to the request
+	 * @param request 要匹配的请求
+	 * @return 如果该拦截器应应用于该请求，则返回 {@code true}
 	 */
 	public boolean matches(HttpServletRequest request) {
 		Object path = ServletRequestPathUtils.getCachedPath(request);
@@ -204,9 +203,9 @@ public final class MappedInterceptor implements HandlerInterceptor {
 
 	/**
 	 * 确定给定查找路径的匹配结果。
-	 * @param lookupPath the current request path
-	 * @param pathMatcher a path matcher for path pattern matching
-	 * @return {@code true} if the interceptor applies to the given request path
+	 * @param lookupPath 当前请求路径
+	 * @param pathMatcher 用于路径模式匹配的路径匹配器
+	 * @return 如果该拦截器适用于给定的请求路径，则为 {@code true}
 	 * @deprecated 自 5.3 起，建议使用 {@link #matches(HttpServletRequest)}
 	 */
 	@Deprecated

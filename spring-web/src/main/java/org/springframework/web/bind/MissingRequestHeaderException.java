@@ -36,8 +36,8 @@ public class MissingRequestHeaderException extends MissingRequestValueException 
 
 	/**
 	 * MissingRequestHeaderException 的构造函数。
-	 * @param headerName the name of the missing request header
-	 * @param parameter the method parameter
+	 * @param headerName 缺失的请求头名称
+	 * @param parameter 方法参数
 	 */
 	public MissingRequestHeaderException(String headerName, MethodParameter parameter) {
 		this(headerName, parameter, false);
@@ -45,9 +45,9 @@ public class MissingRequestHeaderException extends MissingRequestValueException 
 
 	/**
 	 * 当值存在但被转换为 {@code null} 时使用的构造函数。
-	 * @param headerName the name of the missing request header
-	 * @param parameter the method parameter
-	 * @param missingAfterConversion whether the value became null after conversion
+	 * @param headerName 缺失的请求头名称
+	 * @param parameter 方法参数
+	 * @param missingAfterConversion 转换后值是否变为 null
 	 * @since 5.3.6
 	 */
 	public MissingRequestHeaderException(

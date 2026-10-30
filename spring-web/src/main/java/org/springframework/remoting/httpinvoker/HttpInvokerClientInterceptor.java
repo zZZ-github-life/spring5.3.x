@@ -174,11 +174,11 @@ public class HttpInvokerClientInterceptor extends RemoteInvocationBasedAccessor
 	 * 通过 {@link HttpInvokerRequestExecutor} 执行给定的远程调用。
 	 * <p>此实现委托给 {@link #executeRequest(RemoteInvocation)}。
 	 * 可重写以针对特定的原始 MethodInvocation 做出反应。
-	 * @param invocation the RemoteInvocation to execute
-	 * @param originalInvocation the original MethodInvocation (can e.g. be cast
-	 * to the ProxyMethodInvocation interface for accessing user attributes)
-	 * @return the RemoteInvocationResult object
-	 * @throws Exception in case of errors
+	 * @param invocation 要执行的 RemoteInvocation
+	 * @param originalInvocation 原始 MethodInvocation（例如可以强制转换为
+	 * ProxyMethodInvocation 接口以访问用户属性）
+	 * @return RemoteInvocationResult 对象
+	 * @throws Exception 发生错误时抛出
 	 */
 	protected RemoteInvocationResult executeRequest(
 			RemoteInvocation invocation, MethodInvocation originalInvocation) throws Exception {
@@ -191,11 +191,11 @@ public class HttpInvokerClientInterceptor extends RemoteInvocationBasedAccessor
 	 * <p>可在子类中重写，以向执行器传递不同的配置对象。
 	 * 或者，在此访问器的子类中添加更多配置属性：默认情况下，
 	 * 访问器将自身作为配置对象传递给执行器。
-	 * @param invocation the RemoteInvocation to execute
-	 * @return the RemoteInvocationResult object
-	 * @throws IOException if thrown by I/O operations
-	 * @throws ClassNotFoundException if thrown during deserialization
-	 * @throws Exception in case of general errors
+	 * @param invocation 要执行的 RemoteInvocation
+	 * @return RemoteInvocationResult 对象
+	 * @throws IOException 如果由 I/O 操作抛出则传播
+	 * @throws ClassNotFoundException 如果在反序列化期间抛出则传播
+	 * @throws Exception 发生一般错误时抛出
 	 * @see #getHttpInvokerRequestExecutor
 	 * @see HttpInvokerClientConfiguration
 	 */
@@ -206,9 +206,9 @@ public class HttpInvokerClientInterceptor extends RemoteInvocationBasedAccessor
 	/**
 	 * 将给定的 HTTP invoker 访问异常转换为相应的
 	 * Spring {@link RemoteAccessException}。
-	 * @param ex the exception to convert
-	 * @return the RemoteAccessException to throw, or {@code null} to have the
-	 * original exception propagated to the caller
+	 * @param ex 要转换的异常
+	 * @return 要抛出的 RemoteAccessException；返回 {@code null} 表示
+	 * 将原始异常传播给调用方
 	 */
 	@Nullable
 	protected RemoteAccessException convertHttpInvokerAccessException(Throwable ex) {

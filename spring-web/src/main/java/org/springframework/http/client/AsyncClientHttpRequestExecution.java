@@ -40,10 +40,10 @@ public interface AsyncClientHttpRequestExecution {
 	/**
 	 * 通过调用链中的下一个拦截器或向远程服务执行请求
 	 * 来恢复请求执行。
-	 * @param request the HTTP request, containing the HTTP method and headers
-	 * @param body the body of the request
-	 * @return a corresponding future handle
-	 * @throws IOException in case of I/O errors
+	 * @param request HTTP 请求，包含 HTTP 方法和头信息
+	 * @param body 请求体
+	 * @return 对应的 Future 句柄
+	 * @throws IOException 如果发生 I/O 错误
 	 */
 	ListenableFuture<ClientHttpResponse> executeAsync(HttpRequest request, byte[] body) throws IOException;
 

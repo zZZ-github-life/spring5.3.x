@@ -79,7 +79,7 @@ public class UrlBasedCorsConfigurationSource implements CorsConfigurationSource 
 
 	/**
 	 * 使用 {@link PathPatternParser} 解析模式的构造函数。
-	 * @param parser the parser to use
+	 * @param parser 要使用的解析器
 	 * @since 5.3
 	 */
 	public UrlBasedCorsConfigurationSource(PathPatternParser parser) {
@@ -163,8 +163,7 @@ public class UrlBasedCorsConfigurationSource implements CorsConfigurationSource 
 	 * 此时可以通过
 	 * {@link org.springframework.web.filter.ServletRequestPathFilter
 	 * ServletRequestPathFilter} 更早地解析 {@code RequestPath}。
-	 * @param allowInitLookupPath whether to disable lazy initialization
-	 * and fail if not already resolved
+	 * @param allowInitLookupPath 是否禁用延迟初始化，并在尚未解析时失败
 	 * @since 5.3
 	 */
 	public void setAllowInitLookupPath(boolean allowInitLookupPath) {
@@ -176,7 +175,7 @@ public class UrlBasedCorsConfigurationSource implements CorsConfigurationSource 
 	 * {@link UrlPathHelper#getLookupPathForRequest(HttpServletRequest)}
 	 * 提取的 lookupPath 的属性名。
 	 * <p>默认值为 {@link UrlPathHelper#PATH_ATTRIBUTE}。
-	 * @param name the request attribute to check
+	 * @param name 要检查的请求属性
 	 * @since 5.2
 	 * @deprecated as of 5.3 in favor of {@link UrlPathHelper#PATH_ATTRIBUTE}.
 	 */
@@ -204,7 +203,7 @@ public class UrlBasedCorsConfigurationSource implements CorsConfigurationSource 
 	 * <p>有关模式语法，请参阅 {@link AntPathMatcher} 和 {@link PathPattern}，
 	 * 以及类级 Javadoc，以了解实际使用哪一种。通常两者的语法大体相同，
 	 * 而 {@link PathPattern} 更适合 Web 场景。
-	 * @param corsConfigurations the mappings to use
+	 * @param corsConfigurations 要使用的映射
 	 * @see PathPattern
 	 * @see AntPathMatcher
 	 */
@@ -217,8 +216,8 @@ public class UrlBasedCorsConfigurationSource implements CorsConfigurationSource 
 
 	/**
 	 * {@link #setCorsConfigurations(Map)} 的变体，用于一次注册一个映射。
-	 * @param pattern the mapping pattern
-	 * @param config the CORS configuration to use for the pattern
+	 * @param pattern 映射模式
+	 * @param config 要用于该模式的 CORS 配置
 	 * @see PathPattern
 	 * @see AntPathMatcher
 	 */

@@ -45,9 +45,9 @@ public interface SimpMessageSendingOperations extends MessageSendingOperations<S
 
 	/**
 	 * 向给定用户发送消息。
-	 * @param user the user that should receive the message.
-	 * @param destination the destination to send the message to.
-	 * @param payload the payload to send
+	 * @param user 应接收该消息的用户。
+	 * @param destination 发送消息的目标地址。
+	 * @param payload 要发送的负载
 	 */
 	void convertAndSendToUser(String user, String destination, Object payload) throws MessagingException;
 
@@ -74,20 +74,20 @@ public interface SimpMessageSendingOperations extends MessageSendingOperations<S
 	 * <p><strong>注意：</strong>如果如上例所示 {@code MessageHeaders} 是可变的，
 	 * 此接口的实现应注意在同一实例中更新头（而不是复制或重新创建），
 	 * 然后在发送最终消息之前将其设置为不可变。
-	 * @param user the user that should receive the message (must not be {@code null})
-	 * @param destination the destination to send the message to (must not be {@code null})
-	 * @param payload the payload to send (may be {@code null})
-	 * @param headers the message headers (may be {@code null})
+	 * @param user 应接收该消息的用户（不能为 {@code null}）
+	 * @param destination 发送消息的目标地址（不能为 {@code null}）
+	 * @param payload 要发送的负载（可以为 {@code null}）
+	 * @param headers 消息头（可以为 {@code null}）
 	 */
 	void convertAndSendToUser(String user, String destination, Object payload, Map<String, Object> headers)
 			throws MessagingException;
 
 	/**
 	 * 向给定用户发送消息。
-	 * @param user the user that should receive the message (must not be {@code null})
-	 * @param destination the destination to send the message to (must not be {@code null})
-	 * @param payload the payload to send (may be {@code null})
-	 * @param postProcessor a postProcessor to post-process or modify the created message
+	 * @param user 应接收该消息的用户（不能为 {@code null}）
+	 * @param destination 发送消息的目标地址（不能为 {@code null}）
+	 * @param payload 要发送的负载（可以为 {@code null}）
+	 * @param postProcessor 用于后处理或修改所创建消息的 postProcessor
 	 */
 	void convertAndSendToUser(String user, String destination, Object payload, MessagePostProcessor postProcessor)
 			throws MessagingException;
@@ -96,11 +96,11 @@ public interface SimpMessageSendingOperations extends MessageSendingOperations<S
 	 * 向给定用户发送消息。
 	 * <p>有关输入头的重要说明，请参阅
 	 * {@link #convertAndSend(Object, Object, java.util.Map)}。
-	 * @param user the user that should receive the message
-	 * @param destination the destination to send the message to
-	 * @param payload the payload to send
-	 * @param headers the message headers
-	 * @param postProcessor a postProcessor to post-process or modify the created message
+	 * @param user 应接收该消息的用户
+	 * @param destination 发送消息的目标地址
+	 * @param payload 要发送的负载
+	 * @param headers 消息头
+	 * @param postProcessor 用于后处理或修改所创建消息的 postProcessor
 	 */
 	void convertAndSendToUser(String user, String destination, Object payload, @Nullable Map<String, Object> headers,
 			@Nullable MessagePostProcessor postProcessor) throws MessagingException;

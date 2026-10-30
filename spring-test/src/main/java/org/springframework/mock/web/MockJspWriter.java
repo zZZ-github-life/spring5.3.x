@@ -43,7 +43,7 @@ public class MockJspWriter extends JspWriter {
 	/**
 	 * 为给定响应创建一个 MockJspWriter，
 	 * 使用响应的默认 Writer。
-	 * @param response the servlet response to wrap
+	 * @param response 要包装的 Servlet 响应
 	 */
 	public MockJspWriter(HttpServletResponse response) {
 		this(response, null);
@@ -51,7 +51,7 @@ public class MockJspWriter extends JspWriter {
 
 	/**
 	 * 为给定的普通 Writer 创建一个 MockJspWriter。
-	 * @param targetWriter the target Writer to wrap
+	 * @param targetWriter 要包装的目标 Writer
 	 */
 	public MockJspWriter(Writer targetWriter) {
 		this(null, targetWriter);
@@ -59,8 +59,8 @@ public class MockJspWriter extends JspWriter {
 
 	/**
 	 * 为给定响应创建一个 MockJspWriter。
-	 * @param response the servlet response to wrap
-	 * @param targetWriter the target Writer to wrap
+	 * @param response 要包装的 Servlet 响应
+	 * @param targetWriter 要包装的目标 Writer
 	 */
 	public MockJspWriter(@Nullable HttpServletResponse response, @Nullable Writer targetWriter) {
 		super(DEFAULT_BUFFER, true);

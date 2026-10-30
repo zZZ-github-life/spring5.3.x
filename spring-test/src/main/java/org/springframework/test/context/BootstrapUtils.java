@@ -71,8 +71,8 @@ abstract class BootstrapUtils {
 	 * {@link CacheAwareContextLoaderDelegate#DEFAULT_CACHE_AWARE_CONTEXT_LOADER_DELEGATE_PROPERTY_NAME}
 	 * 系统属性配置，如果该系统属性未定义，则回退到
 	 * {@link org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate}。
-	 * @param testClass the test class for which the bootstrap context should be created
-	 * @return a new {@code BootstrapContext}; never {@code null}
+	 * @param testClass 应为其创建引导上下文的测试类
+	 * @return 新的 {@code BootstrapContext}；永不为 {@code null}
 	 */
 	@SuppressWarnings("unchecked")
 	static BootstrapContext createBootstrapContext(Class<?> testClass) {
@@ -127,8 +127,8 @@ abstract class BootstrapUtils {
 	 * DefaultTestContextBootstrapper} 或
 	 * {@link org.springframework.test.context.web.WebTestContextBootstrapper
 	 * WebTestContextBootstrapper}。
-	 * @param bootstrapContext the bootstrap context to use
-	 * @return a fully configured {@code TestContextBootstrapper}
+	 * @param bootstrapContext 要使用的引导上下文
+	 * @return 完全配置好的 {@code TestContextBootstrapper}
 	 */
 	static TestContextBootstrapper resolveTestContextBootstrapper(BootstrapContext bootstrapContext) {
 		Class<?> testClass = bootstrapContext.getTestClass();

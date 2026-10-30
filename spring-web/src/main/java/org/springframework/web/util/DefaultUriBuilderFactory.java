@@ -64,7 +64,7 @@ public class DefaultUriBuilderFactory implements UriBuilderFactory {
 	 * <p>给定的 URI 模板通过 {@link UriComponentsBuilder#fromUriString} 解析，
 	 * 然后通过 {@link UriComponentsBuilder#uriComponents} 应用为每个 UriBuilder
 	 * 的基础 URI，除非该 UriBuilder 本身是使用已包含目标地址的 URI 模板创建的。
-	 * @param baseUriTemplate the URI template to use a base URL
+	 * @param baseUriTemplate 用作基础 URL 的 URI 模板
 	 */
 	public DefaultUriBuilderFactory(String baseUriTemplate) {
 		this.baseUri = UriComponentsBuilder.fromUriString(baseUriTemplate);
@@ -86,7 +86,7 @@ public class DefaultUriBuilderFactory implements UriBuilderFactory {
 	 * <p><strong>注意：</strong>在 5.1 之前，默认值为
 	 * {@link EncodingMode#URI_COMPONENT EncodingMode.URI_COMPONENT}，
 	 * 因此 {@code WebClient} 和 {@code RestTemplate} 已改用新的默认行为。
-	 * @param encodingMode the encoding mode to use
+	 * @param encodingMode 要使用的编码模式
 	 */
 	public void setEncodingMode(EncodingMode encodingMode) {
 		this.encodingMode = encodingMode;
@@ -101,7 +101,7 @@ public class DefaultUriBuilderFactory implements UriBuilderFactory {
 
 	/**
 	 * 提供在使用变量 Map 展开 URI 模板时要使用的默认 URI 变量值。
-	 * @param defaultUriVariables default URI variable values
+	 * @param defaultUriVariables 默认 URI 变量值
 	 */
 	public void setDefaultUriVariables(@Nullable Map<String, ?> defaultUriVariables) {
 		this.defaultUriVariables.clear();
@@ -122,7 +122,7 @@ public class DefaultUriBuilderFactory implements UriBuilderFactory {
 	 * 时，是否将输入路径解析为路径段，以此确保路径中的 URI 变量按照路径段规则进行编码，
 	 * 例如 '/' 会被编码。
 	 * <p>默认设置为 {@code true}。
-	 * @param parsePath whether to parse the path into path segments
+	 * @param parsePath 是否将路径解析为路径段
 	 */
 	public void setParsePath(boolean parsePath) {
 		this.parsePath = parsePath;

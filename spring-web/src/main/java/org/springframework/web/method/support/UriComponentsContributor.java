@@ -41,11 +41,11 @@ public interface UriComponentsContributor {
 	/**
 	 * 处理方法参数，并更新 {@link UriComponentsBuilder}，
 	 * 或向 URI 变量映射中添加内容，以便在所有参数处理完毕后展开 URI。
-	 * @param parameter the controller method parameter (never {@code null})
-	 * @param value the argument value (possibly {@code null})
-	 * @param builder the builder to update (never {@code null})
-	 * @param uriVariables a map to add URI variables to (never {@code null})
-	 * @param conversionService a ConversionService to format values as Strings
+	 * @param parameter 控制器方法参数（永不为 {@code null}）
+	 * @param value 参数值（可能为 {@code null}）
+	 * @param builder 要更新的构建器（永不为 {@code null}）
+	 * @param uriVariables 用于添加 URI 变量的 map（永不为 {@code null}）
+	 * @param conversionService 用于将值格式化为 String 的 ConversionService
 	 */
 	void contributeMethodArgument(MethodParameter parameter, Object value, UriComponentsBuilder builder,
 			Map<String, Object> uriVariables, ConversionService conversionService);

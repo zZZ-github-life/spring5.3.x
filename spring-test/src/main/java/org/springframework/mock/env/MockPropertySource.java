@@ -59,7 +59,7 @@ public class MockPropertySource extends PropertiesPropertySource {
 	/**
 	 * 使用给定名称创建一个新的 {@code MockPropertySource}，
 	 * 它将维护自己内部的 {@link Properties} 实例。
-	 * @param name the {@linkplain #getName() name} of the property source
+	 * @param name 属性源的 {@linkplain #getName() name}
 	 */
 	public MockPropertySource(String name) {
 		this(name, new Properties());
@@ -68,7 +68,7 @@ public class MockPropertySource extends PropertiesPropertySource {
 	/**
 	 * 创建一个名为 {@value #MOCK_PROPERTIES_PROPERTY_SOURCE_NAME} 的新 {@code MockPropertySource}，
 	 * 并由给定的 {@link Properties} 对象提供支持。
-	 * @param properties the properties to use
+	 * @param properties 要使用的属性
 	 */
 	public MockPropertySource(Properties properties) {
 		this(MOCK_PROPERTIES_PROPERTY_SOURCE_NAME, properties);
@@ -77,8 +77,8 @@ public class MockPropertySource extends PropertiesPropertySource {
 	/**
 	 * 使用给定名称创建一个新的 {@code MockPropertySource}，并由给定的
 	 * {@link Properties} 对象提供支持。
-	 * @param name the {@linkplain #getName() name} of the property source
-	 * @param properties the properties to use
+	 * @param name 属性源的 {@linkplain #getName() name}
+	 * @param properties 要使用的属性
 	 */
 	public MockPropertySource(String name, Properties properties) {
 		super(name, properties);
@@ -94,7 +94,7 @@ public class MockPropertySource extends PropertiesPropertySource {
 	/**
 	 * {@link #setProperty} 的便捷同义词，返回当前实例。
 	 * 适用于方法链和流式风格的使用。
-	 * @return this {@link MockPropertySource} instance
+	 * @return 该 {@link MockPropertySource} 实例
 	 */
 	public MockPropertySource withProperty(String name, Object value) {
 		this.setProperty(name, value);

@@ -132,9 +132,9 @@ public class MockHttpServletRequestBuilder
 	 * 包级私有构造函数。要获取实例，请使用 {@link MockMvcRequestBuilders} 中的静态工厂方法。
 	 * <p>尽管此类无法被继承，但可以通过 {@link #with(RequestPostProcessor)}
 	 * 插入其他初始化 {@code MockHttpServletRequest} 的方式。
-	 * @param httpMethod the HTTP method (GET, POST, etc)
-	 * @param url a URL template; the resulting URL will be encoded
-	 * @param vars zero or more URI variables
+	 * @param httpMethod HTTP 方法（GET、POST 等）
+	 * @param url URL 模板；生成的 URL 将被编码
+	 * @param vars 零个或多个 URI 变量
 	 */
 	MockHttpServletRequestBuilder(HttpMethod httpMethod, String url, Object... vars) {
 		this(httpMethod.name(), initUri(url, vars));
@@ -150,8 +150,8 @@ public class MockHttpServletRequestBuilder
 	/**
 	 * {@link #MockHttpServletRequestBuilder(HttpMethod, String, Object...)} 的替代方案，
 	 * 使用预先构建的 URI。
-	 * @param httpMethod the HTTP method (GET, POST, etc)
-	 * @param url the URL
+	 * @param httpMethod HTTP 方法（GET、POST 等）
+	 * @param url 该 URL
 	 * @since 4.0.3
 	 */
 	MockHttpServletRequestBuilder(HttpMethod httpMethod, URI url) {
@@ -160,8 +160,8 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * 用于自定义 HTTP 方法的替代构造函数。
-	 * @param httpMethod the HTTP method (GET, POST, etc)
-	 * @param url the URL
+	 * @param httpMethod HTTP 方法（GET、POST 等）
+	 * @param url 该 URL
 	 * @since 4.3
 	 */
 	MockHttpServletRequestBuilder(String httpMethod, URI url) {
@@ -223,7 +223,7 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * 设置 {@link ServletRequest} 的 secure 属性，以指示使用安全通道（如 HTTPS）。
-	 * @param secure whether the request is using a secure channel
+	 * @param secure 请求是否使用安全通道
 	 */
 	public MockHttpServletRequestBuilder secure(boolean secure){
 		this.secure = secure;
@@ -232,7 +232,7 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * 设置请求的字符编码。
-	 * @param encoding the character encoding
+	 * @param encoding 字符编码
 	 * @since 5.3.10
 	 * @see StandardCharsets
 	 * @see #characterEncoding(String)
@@ -243,7 +243,7 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * 设置请求的字符编码。
-	 * @param encoding the character encoding
+	 * @param encoding 字符编码
 	 */
 	public MockHttpServletRequestBuilder characterEncoding(String encoding) {
 		this.characterEncoding = encoding;
@@ -255,7 +255,7 @@ public class MockHttpServletRequestBuilder
 	 * <p>如果提供了内容，且 {@link #contentType(MediaType)} 设置为
 	 * {@code application/x-www-form-urlencoded}，则会解析该内容并用其填充
 	 * {@link #param(String, String...) request parameters} 映射。
-	 * @param content the body content
+	 * @param content 正文内容
 	 */
 	public MockHttpServletRequestBuilder content(byte[] content) {
 		this.content = content;
@@ -267,7 +267,7 @@ public class MockHttpServletRequestBuilder
 	 * <p>如果提供了内容，且 {@link #contentType(MediaType)} 设置为
 	 * {@code application/x-www-form-urlencoded}，则会解析该内容并用其填充
 	 * {@link #param(String, String...) request parameters} 映射。
-	 * @param content the body content
+	 * @param content 正文内容
 	 */
 	public MockHttpServletRequestBuilder content(String content) {
 		this.content = content.getBytes(StandardCharsets.UTF_8);
@@ -279,7 +279,7 @@ public class MockHttpServletRequestBuilder
 	 * <p>如果提供了内容，且 {@code contentType} 设置为
 	 * {@code application/x-www-form-urlencoded}，则会解析该内容并用其填充
 	 * {@link #param(String, String...) request parameters} 映射。
-	 * @param contentType the content type
+	 * @param contentType 内容类型
 	 */
 	public MockHttpServletRequestBuilder contentType(MediaType contentType) {
 		Assert.notNull(contentType, "'contentType' must not be null");
@@ -290,7 +290,7 @@ public class MockHttpServletRequestBuilder
 	/**
 	 * 以原始字符串值设置请求的 'Content-Type' 头，
 	 * 该值甚至可能不符合规范（用于测试目的）。
-	 * @param contentType the content type
+	 * @param contentType 内容类型
 	 * @since 4.1.2
 	 */
 	public MockHttpServletRequestBuilder contentType(String contentType) {
@@ -301,7 +301,7 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * 将 'Accept' 头设置为给定的媒体类型。
-	 * @param mediaTypes one or more media types
+	 * @param mediaTypes 一个或多个媒体类型
 	 */
 	public MockHttpServletRequestBuilder accept(MediaType... mediaTypes) {
 		Assert.notEmpty(mediaTypes, "'mediaTypes' must not be empty");
@@ -312,8 +312,8 @@ public class MockHttpServletRequestBuilder
 	/**
 	 * 使用原始字符串值设置 {@code Accept} 头，
 	 * 这些值甚至可能不符合规范（用于测试目的）。
-	 * @param mediaTypes one or more media types; internally joined as
-	 * comma-separated String
+	 * @param mediaTypes 一个或多个媒体类型；内部以
+	 * 逗号分隔的 String 连接
 	 */
 	public MockHttpServletRequestBuilder accept(String... mediaTypes) {
 		Assert.notEmpty(mediaTypes, "'mediaTypes' must not be empty");
@@ -323,8 +323,8 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * 向请求中添加一个头。值总是被追加。
-	 * @param name the header name
-	 * @param values one or more header values
+	 * @param name 标头名称
+	 * @param values 一个或多个标头值
 	 */
 	public MockHttpServletRequestBuilder header(String name, Object... values) {
 		addToMultiValueMap(this.headers, name, values);
@@ -333,7 +333,7 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * 向请求中添加所有头。值总是被追加。
-	 * @param httpHeaders the headers and values to add
+	 * @param httpHeaders 要添加的标头和值
 	 */
 	public MockHttpServletRequestBuilder headers(HttpHeaders httpHeaders) {
 		httpHeaders.forEach(this.headers::addAll);
@@ -351,8 +351,8 @@ public class MockHttpServletRequestBuilder
 	 * <li>提供 {@link #content}，并将 {@link #contentType} 设为
 	 * {@code application/x-www-form-urlencoded}。
 	 * </ul>
-	 * @param name the parameter name
-	 * @param values one or more values
+	 * @param name 参数名称
+	 * @param values 一个或多个值
 	 */
 	public MockHttpServletRequestBuilder param(String name, String... values) {
 		addToMultiValueMap(this.parameters, name, values);
@@ -361,7 +361,7 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * {@link #param(String, String...)} 的变体，使用 {@link MultiValueMap}。
-	 * @param params the parameters to add
+	 * @param params 要添加的参数
 	 * @since 4.2.4
 	 */
 	public MockHttpServletRequestBuilder params(MultiValueMap<String, String> params) {
@@ -377,8 +377,8 @@ public class MockHttpServletRequestBuilder
 	 * 追加到查询字符串，同时也添加到
 	 * {@link #param(String, String...) request parameters} 映射。参数名称和值
 	 * 在添加到查询字符串时会被编码。
-	 * @param name the parameter name
-	 * @param values one or more values
+	 * @param name 参数名称
+	 * @param values 一个或多个值
 	 * @since 5.2.2
 	 */
 	public MockHttpServletRequestBuilder queryParam(String name, String... values) {
@@ -391,7 +391,7 @@ public class MockHttpServletRequestBuilder
 	 * 追加到查询字符串，同时也添加到
 	 * {@link #params(MultiValueMap) request parameters} 映射。参数名称和值
 	 * 在添加到查询字符串时会被编码。
-	 * @param params the parameters to add
+	 * @param params 要添加的参数
 	 * @since 5.2.2
 	 */
 	public MockHttpServletRequestBuilder queryParams(MultiValueMap<String, String> params) {
@@ -402,7 +402,7 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * 向请求中添加给定的 cookie。Cookie 总是被追加。
-	 * @param cookies the cookies to add
+	 * @param cookies 要添加的 Cookie
 	 */
 	public MockHttpServletRequestBuilder cookie(Cookie... cookies) {
 		Assert.notEmpty(cookies, "'cookies' must not be empty");
@@ -412,7 +412,7 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * 将指定的区域设置添加为首选请求区域设置。
-	 * @param locales the locales to add
+	 * @param locales 要添加的区域设置
 	 * @since 4.3.6
 	 * @see #locale(Locale)
 	 */
@@ -424,7 +424,7 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * 设置请求的区域设置，覆盖之前的任何区域设置。
-	 * @param locale the locale, or {@code null} to reset it
+	 * @param locale 该区域设置，或 {@code null} 表示重置它
 	 * @see #locale(Locale...)
 	 */
 	public MockHttpServletRequestBuilder locale(@Nullable Locale locale) {
@@ -437,8 +437,8 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * 设置请求属性。
-	 * @param name the attribute name
-	 * @param value the attribute value
+	 * @param name 属性名称
+	 * @param value 属性值
 	 */
 	public MockHttpServletRequestBuilder requestAttr(String name, Object value) {
 		addToMap(this.requestAttributes, name, value);
@@ -447,8 +447,8 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * 设置会话属性。
-	 * @param name the session attribute name
-	 * @param value the session attribute value
+	 * @param name 会话属性名称
+	 * @param value 会话属性值
 	 */
 	public MockHttpServletRequestBuilder sessionAttr(String name, Object value) {
 		addToMap(this.sessionAttributes, name, value);
@@ -457,7 +457,7 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * 设置会话属性。
-	 * @param sessionAttributes the session attributes
+	 * @param sessionAttributes 会话属性
 	 */
 	public MockHttpServletRequestBuilder sessionAttrs(Map<String, Object> sessionAttributes) {
 		Assert.notEmpty(sessionAttributes, "'sessionAttributes' must not be empty");
@@ -467,8 +467,8 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * 设置一个 “input” flash 属性。
-	 * @param name the flash attribute name
-	 * @param value the flash attribute value
+	 * @param name flash 属性名称
+	 * @param value flash 属性值
 	 */
 	public MockHttpServletRequestBuilder flashAttr(String name, Object value) {
 		addToMap(this.flashAttributes, name, value);
@@ -477,7 +477,7 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * 设置 flash 属性。
-	 * @param flashAttributes the flash attributes
+	 * @param flashAttributes flash 属性
 	 */
 	public MockHttpServletRequestBuilder flashAttrs(Map<String, Object> flashAttributes) {
 		Assert.notEmpty(flashAttributes, "'flashAttributes' must not be empty");
@@ -489,7 +489,7 @@ public class MockHttpServletRequestBuilder
 	 * 设置要使用的 HTTP 会话，该会话可以跨请求重用。
 	 * <p>通过 {@link #sessionAttr(String, Object)} 提供的单个属性
 	 * 会覆盖此处提供的会话内容。
-	 * @param session the HTTP session
+	 * @param session HTTP 会话
 	 */
 	public MockHttpServletRequestBuilder session(MockHttpSession session) {
 		Assert.notNull(session, "'session' must not be null");
@@ -499,7 +499,7 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * 设置请求的 principal。
-	 * @param principal the principal
+	 * @param principal 该 principal
 	 */
 	public MockHttpServletRequestBuilder principal(Principal principal) {
 		Assert.notNull(principal, "'principal' must not be null");
@@ -511,7 +511,7 @@ public class MockHttpServletRequestBuilder
 	 * 一个扩展点，用于以未直接内置于 {@code MockHttpServletRequestBuilder} 的方式
 	 * 进一步初始化 {@link MockHttpServletRequest}。此接口的实现自身可以拥有
 	 * 构建器风格的方法，并通过静态工厂方法提供访问。
-	 * @param postProcessor a post-processor to add
+	 * @param postProcessor 要添加的后处理器
 	 */
 	@Override
 	public MockHttpServletRequestBuilder with(RequestPostProcessor postProcessor) {
@@ -523,7 +523,7 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * {@inheritDoc}
-	 * @return always returns {@code true}.
+	 * @return 始终返回 {@code true}。
 	 */
 	@Override
 	public boolean isMergeEnabled() {
@@ -533,8 +533,8 @@ public class MockHttpServletRequestBuilder
 	/**
 	 * 合并 “parent” RequestBuilder 的属性，
 	 * 仅当 “this” 实例中尚未设置相应值时才接受这些值。
-	 * @param parent the parent {@code RequestBuilder} to inherit properties from
-	 * @return the result of the merge
+	 * @param parent 要从中继承属性的父 {@code RequestBuilder}
+	 * @return 合并的结果
 	 */
 	@Override
 	public Object merge(@Nullable Object parent) {

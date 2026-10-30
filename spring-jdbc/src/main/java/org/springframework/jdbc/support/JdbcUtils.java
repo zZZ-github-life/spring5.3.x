@@ -77,7 +77,7 @@ public abstract class JdbcUtils {
 	/**
 	 * 关闭给定的 JDBC Connection，并忽略任何抛出的异常。
 	 * 这对于手动 JDBC 代码中典型的 finally 块很有用。
-	 * @param con the JDBC Connection to close (may be {@code null})
+	 * @param con 要关闭的 JDBC Connection（可以为 {@code null}）
 	 */
 	public static void closeConnection(@Nullable Connection con) {
 		if (con != null) {
@@ -97,7 +97,7 @@ public abstract class JdbcUtils {
 	/**
 	 * 关闭给定的 JDBC Statement，并忽略任何抛出的异常。
 	 * 这对于手动 JDBC 代码中典型的 finally 块很有用。
-	 * @param stmt the JDBC Statement to close (may be {@code null})
+	 * @param stmt 要关闭的 JDBC Statement（可以为 {@code null}）
 	 */
 	public static void closeStatement(@Nullable Statement stmt) {
 		if (stmt != null) {
@@ -117,7 +117,7 @@ public abstract class JdbcUtils {
 	/**
 	 * 关闭给定的 JDBC ResultSet，并忽略任何抛出的异常。
 	 * 这对于手动 JDBC 代码中典型的 finally 块很有用。
-	 * @param rs the JDBC ResultSet to close (may be {@code null})
+	 * @param rs 要关闭的 JDBC ResultSet（可以为 {@code null}）
 	 */
 	public static void closeResultSet(@Nullable ResultSet rs) {
 		if (rs != null) {
@@ -140,12 +140,12 @@ public abstract class JdbcUtils {
 	 * {@link #getResultSetValue(java.sql.ResultSet, int)}。
 	 * <p>请注意，对于未知类型，返回的值可能无法赋值给指定的必需类型。
 	 * 调用方代码需要妥善处理这种情况，例如抛出相应的异常。
-	 * @param rs is the ResultSet holding the data
-	 * @param index is the column index
-	 * @param requiredType the required value type (may be {@code null})
-	 * @return the value object (possibly not of the specified required type,
-	 * with further conversion steps necessary)
-	 * @throws SQLException if thrown by the JDBC API
+	 * @param rs 保存数据的 ResultSet
+	 * @param index 列索引
+	 * @param requiredType 所需的值类型（可以为 {@code null}）
+	 * @return 值对象（可能不属于指定的必需类型，
+	 * 需要进一步的转换步骤）
+	 * @throws SQLException 如果由 JDBC API 抛出
 	 * @see #getResultSetValue(ResultSet, int)
 	 */
 	@Nullable
@@ -267,10 +267,10 @@ public abstract class JdbcUtils {
 	 * Oracle 10g 的问题：其 TIMESTAMP 数据类型返回非标准对象，DATE 列则返回
 	 * 缺少时间部分的 {@code java.sql.Date}。这些列将被显式提取为标准
 	 * {@code java.sql.Timestamp} 对象。
-	 * @param rs is the ResultSet holding the data
-	 * @param index is the column index
-	 * @return the value object
-	 * @throws SQLException if thrown by the JDBC API
+	 * @param rs 保存数据的 ResultSet
+	 * @param index 列索引
+	 * @return 值对象
+	 * @throws SQLException 如果由 JDBC API 抛出
 	 * @see java.sql.Blob
 	 * @see java.sql.Clob
 	 * @see java.sql.Timestamp
@@ -317,11 +317,11 @@ public abstract class JdbcUtils {
 	 * <p>任何异常都将包装在 MetaDataAccessException 中。这是一个受检异常，
 	 * 所有调用方代码都应捕获并处理它。你可以仅记录错误并碰碰运气，但当你
 	 * 再次尝试访问数据库时，很可能会重现一个更严重的错误。
-	 * @param dataSource the DataSource to extract meta-data for
-	 * @param action callback that will do the actual work
-	 * @return object containing the extracted information, as returned by
-	 * the DatabaseMetaDataCallback's {@code processMetaData} method
-	 * @throws MetaDataAccessException if meta-data access failed
+	 * @param dataSource 要为其提取元数据的 DataSource
+	 * @param action 实际执行工作的回调
+	 * @return 包含所提取信息的对象，
+	 * 由 DatabaseMetaDataCallback 的 {@code processMetaData} 方法返回
+	 * @throws MetaDataAccessException 如果元数据访问失败
 	 * @see java.sql.DatabaseMetaData
 	 */
 	public static <T> T extractDatabaseMetaData(DataSource dataSource, DatabaseMetaDataCallback<T> action)
@@ -372,11 +372,11 @@ public abstract class JdbcUtils {
 	/**
 	 * 针对给定的 DataSource 调用 DatabaseMetaData 上的指定方法，
 	 * 并提取调用结果。
-	 * @param dataSource the DataSource to extract meta-data for
-	 * @param metaDataMethodName the name of the DatabaseMetaData method to call
-	 * @return the object returned by the specified DatabaseMetaData method
-	 * @throws MetaDataAccessException if we couldn't access the DatabaseMetaData
-	 * or failed to invoke the specified method
+	 * @param dataSource 要为其提取元数据的 DataSource
+	 * @param metaDataMethodName 要调用的 DatabaseMetaData 方法名称
+	 * @return 指定 DatabaseMetaData 方法返回的对象
+	 * @throws MetaDataAccessException 如果无法访问 DatabaseMetaData
+	 * 或调用指定方法失败
 	 * @see java.sql.DatabaseMetaData
 	 * @deprecated as of 5.2.9, in favor of
 	 * {@link #extractDatabaseMetaData(DataSource, DatabaseMetaDataCallback)}
@@ -416,8 +416,8 @@ public abstract class JdbcUtils {
 	 * JDBC 2.0 批处理机制执行，还是采用传统的逐条执行方式。
 	 * <p>如果 "supportsBatchUpdates" 方法抛出异常，则记录一条警告，
 	 * 并在这种情况下直接返回 {@code false}。
-	 * @param con the Connection to check
-	 * @return whether JDBC 2.0 batch updates are supported
+	 * @param con 要检查的 Connection
+	 * @return 是否支持 JDBC 2.0 批量更新
 	 * @see java.sql.DatabaseMetaData#supportsBatchUpdates()
 	 */
 	public static boolean supportsBatchUpdates(Connection con) {
@@ -442,8 +442,8 @@ public abstract class JdbcUtils {
 	/**
 	 * 提取所用目标数据库的通用名称，即使各种驱动/平台在运行时提供了
 	 * 不同的名称。
-	 * @param source the name as provided in database meta-data
-	 * @return the common name to be used (e.g. "DB2" or "Sybase")
+	 * @param source 数据库元数据中提供的名称
+	 * @return 要使用的通用名称（例如 "DB2" 或 "Sybase"）
 	 */
 	@Nullable
 	public static String commonDatabaseName(@Nullable String source) {
@@ -465,8 +465,8 @@ public abstract class JdbcUtils {
 
 	/**
 	 * 检查给定的 SQL 类型是否为数值类型。
-	 * @param sqlType the SQL type to be checked
-	 * @return whether the type is numeric
+	 * @param sqlType 要检查的 SQL 类型
+	 * @return 该类型是否为数值类型
 	 */
 	public static boolean isNumeric(int sqlType) {
 		return (Types.BIT == sqlType || Types.BIGINT == sqlType || Types.DECIMAL == sqlType ||
@@ -477,9 +477,9 @@ public abstract class JdbcUtils {
 
 	/**
 	 * 尽可能解析给定 SQL 类型的标准类型名称。
-	 * @param sqlType the SQL type to resolve
-	 * @return the corresponding constant name in {@link java.sql.Types}
-	 * (e.g. "VARCHAR"/"NUMERIC"), or {@code null} if not resolvable
+	 * @param sqlType 要解析的 SQL 类型
+	 * @return {@link java.sql.Types} 中对应的常量名称
+	 * （例如 "VARCHAR"/"NUMERIC"），如果无法解析则为 {@code null}
 	 * @since 5.2
 	 */
 	@Nullable
@@ -492,10 +492,10 @@ public abstract class JdbcUtils {
 	 * <p>此方法的实现考虑了 JDBC 4.0 规范中近期的澄清说明：
 	 * <p><i>columnLabel —— 使用 SQL AS 子句为列指定的标签。
 	 * 如果未指定 SQL AS 子句，则该标签就是列的名称</i>。
-	 * @param resultSetMetaData the current meta-data to use
-	 * @param columnIndex the index of the column for the lookup
-	 * @return the column name to use
-	 * @throws SQLException in case of lookup failure
+	 * @param resultSetMetaData 要使用的当前元数据
+	 * @param columnIndex 用于查找的列索引
+	 * @return 要使用的列名
+	 * @throws SQLException 如果查找失败
 	 */
 	public static String lookupColumnName(ResultSetMetaData resultSetMetaData, int columnIndex) throws SQLException {
 		String name = resultSetMetaData.getColumnLabel(columnIndex);
@@ -508,8 +508,8 @@ public abstract class JdbcUtils {
 	/**
 	 * 使用“驼峰命名法”将带下划线的列名转换为对应的属性名。
 	 * 例如 "customer_number" 这样的名称将匹配 "customerNumber" 属性名。
-	 * @param name the column name to be converted
-	 * @return the name using "camel case"
+	 * @param name 要转换的列名
+	 * @return 使用“驼峰式”命名的名称
 	 */
 	public static String convertUnderscoreNameToPropertyName(@Nullable String name) {
 		StringBuilder result = new StringBuilder();

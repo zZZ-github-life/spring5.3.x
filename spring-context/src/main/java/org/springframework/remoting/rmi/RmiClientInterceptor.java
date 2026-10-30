@@ -128,7 +128,7 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 
 	/**
 	 * 如有必要，在启动时获取 RMI 存根。
-	 * @throws RemoteLookupFailureException if RMI stub creation failed
+	 * @throws RemoteLookupFailureException 如果 RMI 桩创建失败
 	 * @see #setLookupStubOnStartup
 	 * @see #lookupStub
 	 */
@@ -158,8 +158,8 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 	 * <p>如果 "cacheStub" 为 "true"，则在拦截器初始化时调用；否则由 {@link #getStub()} 在每次调用时调
 	 * 用。
 	 * <p>默认实现通过 {@code java.rmi.Naming} 查找服务 URL。可以在子类中重写。
-	 * @return the RMI stub to store in this interceptor
-	 * @throws RemoteLookupFailureException if RMI stub creation failed
+	 * @return 要存储在此拦截器中的 RMI 桩
+	 * @throws RemoteLookupFailureException 如果 RMI 桩创建失败
 	 * @see #setCacheStub
 	 * @see java.rmi.Naming#lookup
 	 */
@@ -210,8 +210,8 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 	 * 返回要使用的 RMI 存根。每次调用时都会调用此方法。
 	 * <p>默认实现返回初始化时创建的存根（如果有）。否则，它会调用 {@link #lookupStub} 为每次调用获取新
 	 * 的存根。可以在子类中重写，例如为了在重新创建存根之前将其缓存一段时间，或者测试存根是否仍然存活。
-	 * @return the RMI stub to use for an invocation
-	 * @throws RemoteLookupFailureException if RMI stub creation failed
+	 * @return 要用于调用的 RMI 桩
+	 * @throws RemoteLookupFailureException 如果 RMI 桩创建失败
 	 * @see #lookupStub
 	 */
 	protected Remote getStub() throws RemoteLookupFailureException {
@@ -262,8 +262,8 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 	/**
 	 * 判断给定的 RMI 异常是否表示连接失败。
 	 * <p>默认实现委托给 {@link RmiClientInterceptorUtils#isConnectFailure}。
-	 * @param ex the RMI exception to check
-	 * @return whether the exception should be treated as connect failure
+	 * @param ex 要检查的 RMI 异常
+	 * @return 该异常是否应被视为连接失败
 	 */
 	protected boolean isConnectFailure(RemoteException ex) {
 		return RmiClientInterceptorUtils.isConnectFailure(ex);
@@ -272,11 +272,10 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 	/**
 	 * 如有必要，刷新存根并重试远程调用。
 	 * <p>如果未配置为在连接失败时刷新，此方法只是重新抛出原始异常。
-	 * @param invocation the invocation that failed
-	 * @param ex the exception raised on remote invocation
-	 * @return the result value of the new invocation, if succeeded
-	 * @throws Throwable an exception raised by the new invocation,
-	 * if it failed as well
+	 * @param invocation 失败的调用
+	 * @param ex 远程调用时引发的异常
+	 * @return 新调用的结果值（如果成功）
+	 * @throws Throwable 新调用同样失败时引发的异常
 	 * @see #setRefreshStubOnConnectFailure
 	 * @see #doInvoke
 	 */
@@ -299,9 +298,9 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 
 	/**
 	 * 刷新 RMI 存根并重试给定的调用。在连接失败时由 invoke 调用。
-	 * @param invocation the AOP method invocation
-	 * @return the invocation result, if any
-	 * @throws Throwable in case of invocation failure
+	 * @param invocation AOP 方法调用
+	 * @return 调用结果（如果有）
+	 * @throws Throwable 在调用失败时
 	 * @see #invoke
 	 */
 	@Nullable
@@ -319,10 +318,10 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 
 	/**
 	 * 在给定的 RMI 存根上执行给定的调用。
-	 * @param invocation the AOP method invocation
-	 * @param stub the RMI stub to invoke
-	 * @return the invocation result, if any
-	 * @throws Throwable in case of invocation failure
+	 * @param invocation AOP 方法调用
+	 * @param stub 要调用的 RMI 桩
+	 * @return 调用结果（如果有）
+	 * @throws Throwable 在调用失败时
 	 */
 	@Nullable
 	protected Object doInvoke(MethodInvocation invocation, Remote stub) throws Throwable {
@@ -367,13 +366,13 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 	/**
 	 * 将给定的 AOP 方法调用应用到给定的 {@link RmiInvocationHandler}。
 	 * <p>默认实现委托给 {@link #createRemoteInvocation}。
-	 * @param methodInvocation the current AOP method invocation
-	 * @param invocationHandler the RmiInvocationHandler to apply the invocation to
-	 * @return the invocation result
-	 * @throws RemoteException in case of communication errors
-	 * @throws NoSuchMethodException if the method name could not be resolved
-	 * @throws IllegalAccessException if the method could not be accessed
-	 * @throws InvocationTargetException if the method invocation resulted in an exception
+	 * @param methodInvocation 当前 AOP 方法调用
+	 * @param invocationHandler 要应用该调用的 RmiInvocationHandler
+	 * @return 调用结果
+	 * @throws RemoteException 在通信出错时
+	 * @throws NoSuchMethodException 如果无法解析方法名
+	 * @throws IllegalAccessException 如果无法访问该方法
+	 * @throws InvocationTargetException 如果方法调用导致异常
 	 * @see org.springframework.remoting.support.RemoteInvocation
 	 */
 	@Nullable

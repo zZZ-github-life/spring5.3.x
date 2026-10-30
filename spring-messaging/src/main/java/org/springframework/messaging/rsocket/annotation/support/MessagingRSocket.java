@@ -98,8 +98,8 @@ class MessagingRSocket implements RSocket {
 	/**
 	 * 使用 {@link Message} 包装 {@link ConnectionSetupPayload}，
 	 * 并委托给 {@link #handle(Payload, FrameType)} 进行处理。
-	 * @param payload the connection payload
-	 * @return completion handle for success or error
+	 * @param payload 连接负载
+	 * @return 用于成功或错误的完成句柄
 	 */
 	public Mono<Void> handleConnectionSetupPayload(ConnectionSetupPayload payload) {
 		// frameDecoder does not apply to connectionSetupPayload

@@ -226,15 +226,15 @@ final class Jackson2Tokenizer {
 
 	/**
 	 * 将给定的 {@code Flux<DataBuffer>} 分词为 {@code Flux<TokenBuffer>}。
-	 * @param dataBuffers the source data buffers
-	 * @param jsonFactory the factory to use
-	 * @param objectMapper the current mapper instance
-	 * @param tokenizeArrays if {@code true} and the "top level" JSON object is
-	 * an array, each element is returned individually immediately after it is received
-	 * @param forceUseOfBigDecimal if {@code true}, any floating point values encountered
-	 * in source will use {@link java.math.BigDecimal}
-	 * @param maxInMemorySize maximum memory size
-	 * @return the resulting token buffers
+	 * @param dataBuffers 源数据缓冲区
+	 * @param jsonFactory 要使用的工厂
+	 * @param objectMapper 当前映射器实例
+	 * @param tokenizeArrays 如果为 {@code true} 且“顶层” JSON 对象是数组，
+	 * 则每个元素在接收到后立即单独返回
+	 * @param forceUseOfBigDecimal 如果为 {@code true}，则在源中遇到的任何浮点值
+	 * 都将使用 {@link java.math.BigDecimal}
+	 * @param maxInMemorySize 最大内存大小
+	 * @return 生成的 Token 缓冲区
 	 */
 	public static Flux<TokenBuffer> tokenize(Flux<DataBuffer> dataBuffers, JsonFactory jsonFactory,
 			ObjectMapper objectMapper, boolean tokenizeArrays, boolean forceUseOfBigDecimal, int maxInMemorySize) {

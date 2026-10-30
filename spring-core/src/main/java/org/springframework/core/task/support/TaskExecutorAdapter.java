@@ -53,7 +53,7 @@ public class TaskExecutorAdapter implements AsyncListenableTaskExecutor {
 
 	/**
 	 * 使用给定的 JDK 并发执行器创建一个新的 TaskExecutorAdapter。
-	 * @param concurrentExecutor the JDK concurrent executor to delegate to
+	 * @param concurrentExecutor 要委托的 JDK 并发执行器
 	 */
 	public TaskExecutorAdapter(Executor concurrentExecutor) {
 		Assert.notNull(concurrentExecutor, "Executor must not be null");
@@ -166,10 +166,10 @@ public class TaskExecutorAdapter implements AsyncListenableTaskExecutor {
 	/**
 	 * 使用给定的执行器实际执行给定的 {@code Runnable}（它可能是用户提供的任务，也可能是对用户提供任务
 	 * 的包装）。
-	 * @param concurrentExecutor the underlying JDK concurrent executor to delegate to
-	 * @param taskDecorator the specified decorator to be applied, if any
-	 * @param runnable the runnable to execute
-	 * @throws RejectedExecutionException if the given runnable cannot be accepted
+	 * @param concurrentExecutor 要委托的底层 JDK 并发执行器
+	 * @param taskDecorator 要应用的指定装饰器（如果有）
+	 * @param runnable 要执行的 runnable
+	 * @throws RejectedExecutionException 如果给定的 runnable 无法被接受
 	 * @since 4.3
 	 */
 	protected void doExecute(Executor concurrentExecutor, @Nullable TaskDecorator taskDecorator, Runnable runnable)

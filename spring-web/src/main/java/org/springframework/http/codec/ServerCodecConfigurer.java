@@ -93,7 +93,7 @@ public interface ServerCodecConfigurer extends CodecConfigurer {
 		 * <p>请注意，如果配置了 {@link #maxInMemorySize(int)} 和/或
 		 * {@link #enableLoggingRequestDetails(boolean)}，
 		 * 它们将应用于给定的读取器（如适用）。
-		 * @param reader the message reader to use for multipart requests.
+		 * @param reader 用于 multipart 请求的消息读取器。
 		 * @since 5.1.11
 		 */
 		void multipartReader(HttpMessageReader<?> reader);

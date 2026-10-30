@@ -48,7 +48,7 @@ public class NumberStyleFormatter extends AbstractNumberFormatter {
 
 	/**
 	 * 创建一个使用指定模式的 NumberStyleFormatter。
-	 * @param pattern the format pattern
+	 * @param pattern 格式模式
 	 * @see #setPattern
 	 */
 	public NumberStyleFormatter(String pattern) {

@@ -37,9 +37,9 @@ public class UncategorizedR2dbcException extends UncategorizedDataAccessExceptio
 
 	/**
 	 * {@code UncategorizedSQLException} 的构造函数。
-	 * @param msg the detail message
-	 * @param sql the offending SQL statement
-	 * @param ex the exception thrown by underlying data access API
+	 * @param msg 详细消息
+	 * @param sql 出错的 SQL 语句
+	 * @param ex 底层数据访问 API 抛出的异常
 	 */
 	public UncategorizedR2dbcException(String msg, @Nullable String sql, R2dbcException ex) {
 		super(msg, ex);

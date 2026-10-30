@@ -178,7 +178,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 * 另一方面，"动态"属性是作为模型一部分
 	 * 传入的值。
 	 * <p>可以使用 XML bean 定义中的 "map" 或 "props" 元素进行填充。
-	 * @param attributes a Map with name Strings as keys and attribute objects as values
+	 * @param attributes 一个 Map，键为名称 String，值为属性对象
 	 */
 	public void setAttributesMap(@Nullable Map<String, ?> attributes) {
 		if (attributes != null) {
@@ -203,8 +203,8 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 * 另一方面，"动态"属性是作为模型一部分
 	 * 传入的值。
 	 * <p>必须在任何 {@code render} 调用之前调用。
-	 * @param name the name of the attribute to expose
-	 * @param value the attribute value to expose
+	 * @param name 要暴露的属性的名称
+	 * @param value 要暴露的属性值
 	 * @see #render
 	 */
 	public void addStaticAttribute(String name, Object value) {
@@ -215,7 +215,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 * 返回此视图的静态属性。便于测试。
 	 * <p>返回一个不可修改的 Map，因为其目的不是
 	 * 操作该 Map，而只是检查其内容。
-	 * @return the static attributes in this view
+	 * @return 该视图中的静态属性
 	 */
 	public Map<String, Object> getStaticAttributes() {
 		return Collections.unmodifiableMap(this.staticAttributes);
@@ -230,7 +230,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 * <p>添加到模型中的路径变量会覆盖静态属性（参见 {@link #setAttributes(Properties)}），
 	 * 但不会覆盖模型中已存在的属性。
 	 * <p>默认情况下此标志设为 {@code true}。具体的视图类型可以覆盖此设置。
-	 * @param exposePathVariables {@code true} to expose path variables, and {@code false} otherwise
+	 * @param exposePathVariables 为 {@code true} 则暴露路径变量，否则为 {@code false}
 	 */
 	public void setExposePathVariables(boolean exposePathVariables) {
 		this.exposePathVariables = exposePathVariables;
@@ -349,10 +349,10 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 * 创建一个 RequestContext 并在指定属性名称下公开。
 	 * <p>默认实现为给定请求和模型创建一个标准的 RequestContext 实例。
 	 * 可在子类中重写以使用自定义实例。
-	 * @param request current HTTP request
-	 * @param model combined output Map (never {@code null}),
-	 * with dynamic values taking precedence over static attributes
-	 * @return the RequestContext instance
+	 * @param request 当前 HTTP 请求
+	 * @param model 合并后的输出 Map（永不为 {@code null}），
+	 * 其中动态值优先于静态属性
+	 * @return RequestContext 实例
 	 * @see #setRequestContextAttribute
 	 * @see org.springframework.web.servlet.support.RequestContext
 	 */
@@ -366,8 +366,8 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 * 为渲染准备给定的响应。
 	 * <p>默认实现针对通过 HTTPS 发送下载内容时
 	 * 的 IE 缺陷应用了一个变通方案。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
 	 */
 	protected void prepareResponse(HttpServletRequest request, HttpServletResponse response) {
 		if (generatesDownloadContent()) {
@@ -393,8 +393,8 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 * 获取要公开给 {@link #renderMergedOutputModel}（即视图）的请求句柄。
 	 * <p>默认实现会包装原始请求，以便按要求将 Spring bean
 	 * 作为请求属性公开。
-	 * @param originalRequest the original servlet request as provided by the engine
-	 * @return the wrapped request, or the original request if no wrapping is necessary
+	 * @param originalRequest 由引擎提供的原始 Servlet 请求
+	 * @return 包装后的请求；如果无需包装则为原始请求
 	 * @see #setExposeContextBeansAsAttributes
 	 * @see #setExposedContextBeanNames
 	 * @see org.springframework.web.context.support.ContextExposingHttpServletRequest
@@ -414,11 +414,11 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 * 这意味着将模型对象设置为请求属性。
 	 * 第二步是视图的实际渲染，
 	 * 例如通过 RequestDispatcher 包含 JSP。
-	 * @param model combined output Map (never {@code null}),
-	 * with dynamic values taking precedence over static attributes
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @throws Exception if rendering failed
+	 * @param model 合并后的输出 Map（永不为 {@code null}），
+	 * 其中动态值优先于静态属性
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @throws Exception 如果渲染失败
 	 */
 	protected abstract void renderMergedOutputModel(
 			Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception;
@@ -428,8 +428,8 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 * 将给定 Map 中的模型对象作为请求属性公开。
 	 * 名称取自模型 Map。
 	 * 此方法适用于 {@link javax.servlet.RequestDispatcher} 可访问的所有资源。
-	 * @param model a Map of model objects to expose
-	 * @param request current HTTP request
+	 * @param model 要暴露的模型对象 Map
+	 * @param request 当前 HTTP 请求
 	 */
 	protected void exposeModelAsRequestAttributes(Map<String, Object> model,
 			HttpServletRequest request) throws Exception {
@@ -455,9 +455,9 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/**
 	 * 将给定的临时 OutputStream 写入 HTTP 响应。
-	 * @param response current HTTP response
-	 * @param baos the temporary OutputStream to write
-	 * @throws IOException if writing/flushing failed
+	 * @param response 当前 HTTP 响应
+	 * @param baos 要写入的临时 OutputStream
+	 * @throws IOException 如果写入或刷新失败
 	 */
 	protected void writeToResponse(HttpServletResponse response, ByteArrayOutputStream baos) throws IOException {
 		// Write content type and also length (determined via byte array).

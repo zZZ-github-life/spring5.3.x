@@ -43,8 +43,8 @@ class RmiInvocationWrapper implements RmiInvocationHandler {
 
 	/**
 	 * 为给定的对象创建一个新的 RmiInvocationWrapper。
-	 * @param wrappedObject the object to wrap with an RmiInvocationHandler
-	 * @param rmiExporter the RMI exporter to handle the actual invocation
+	 * @param wrappedObject 要用 RmiInvocationHandler 包装的对象
+	 * @param rmiExporter 负责实际调用的 RMI 导出器
 	 */
 	public RmiInvocationWrapper(Object wrappedObject, RmiBasedExporter rmiExporter) {
 		Assert.notNull(wrappedObject, "Object to wrap is required");

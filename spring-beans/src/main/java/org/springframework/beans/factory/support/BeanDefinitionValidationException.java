@@ -30,7 +30,7 @@ public class BeanDefinitionValidationException extends FatalBeanException {
 
 	/**
 	 * 使用指定消息创建一个新的 BeanDefinitionValidationException。
-	 * @param msg the detail message
+	 * @param msg 详细信息消息
 	 */
 	public BeanDefinitionValidationException(String msg) {
 		super(msg);
@@ -38,8 +38,8 @@ public class BeanDefinitionValidationException extends FatalBeanException {
 
 	/**
 	 * 使用指定消息和根本原因创建一个新的 BeanDefinitionValidationException。
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param msg 详细信息消息
+	 * @param cause 根本原因
 	 */
 	public BeanDefinitionValidationException(String msg, Throwable cause) {
 		super(msg, cause);

@@ -433,9 +433,8 @@ public class PersistenceAnnotationBeanPostProcessor
 
 	/**
 	 * 返回通过 "persistenceUnits" map 为给定单元名称指定的持久化单元。
-	 * @param unitName the name of the persistence unit
-	 * @return the corresponding EntityManagerFactory,
-	 * or {@code null} if none found
+	 * @param unitName 持久化单元的名称
+	 * @return 对应的 EntityManagerFactory；如果未找到，则为 {@code null}
 	 * @see #setPersistenceUnits
 	 */
 	@Nullable
@@ -464,9 +463,9 @@ public class PersistenceAnnotationBeanPostProcessor
 	/**
 	 * 返回通过 "persistenceContexts"（或 "extendedPersistenceContexts"）map
 	 * 为给定单元名称指定的持久化上下文。
-	 * @param unitName the name of the persistence unit
-	 * @param extended whether to obtain an extended persistence context
-	 * @return the corresponding EntityManager, or {@code null} if none found
+	 * @param unitName 持久化单元的名称
+	 * @param extended 是否获取扩展持久化上下文
+	 * @return 对应的 EntityManager；如果未找到，则为 {@code null}
 	 * @see #setPersistenceContexts
 	 * @see #setExtendedPersistenceContexts
 	 */
@@ -497,10 +496,10 @@ public class PersistenceAnnotationBeanPostProcessor
 	/**
 	 * 在当前 Spring 应用上下文中查找具有给定名称的 EntityManagerFactory；
 	 * 如果未指定单元名称，则回退到单个默认的 EntityManagerFactory（如果有）。
-	 * @param unitName the name of the persistence unit (may be {@code null} or empty)
-	 * @param requestingBeanName the name of the requesting bean
-	 * @return the EntityManagerFactory
-	 * @throws NoSuchBeanDefinitionException if there is no such EntityManagerFactory in the context
+	 * @param unitName 持久化单元的名称（可能为 {@code null} 或空）
+	 * @param requestingBeanName 发起请求的 Bean 的名称
+	 * @return 该 EntityManagerFactory
+	 * @throws NoSuchBeanDefinitionException 如果上下文中没有这样的 EntityManagerFactory
 	 */
 	protected EntityManagerFactory findEntityManagerFactory(@Nullable String unitName, @Nullable String requestingBeanName)
 			throws NoSuchBeanDefinitionException {
@@ -519,10 +518,10 @@ public class PersistenceAnnotationBeanPostProcessor
 
 	/**
 	 * 在当前 Spring 应用上下文中查找具有给定名称的 EntityManagerFactory。
-	 * @param unitName the name of the persistence unit (never empty)
-	 * @param requestingBeanName the name of the requesting bean
-	 * @return the EntityManagerFactory
-	 * @throws NoSuchBeanDefinitionException if there is no such EntityManagerFactory in the context
+	 * @param unitName 持久化单元的名称（永不为空）
+	 * @param requestingBeanName 发起请求的 Bean 的名称
+	 * @return 该 EntityManagerFactory
+	 * @throws NoSuchBeanDefinitionException 如果上下文中没有这样的 EntityManagerFactory
 	 */
 	protected EntityManagerFactory findNamedEntityManagerFactory(String unitName, @Nullable String requestingBeanName)
 			throws NoSuchBeanDefinitionException {
@@ -538,8 +537,8 @@ public class PersistenceAnnotationBeanPostProcessor
 
 	/**
 	 * 在 Spring 应用上下文中查找单个默认的 EntityManagerFactory。
-	 * @return the default EntityManagerFactory
-	 * @throws NoSuchBeanDefinitionException if there is no single EntityManagerFactory in the context
+	 * @return 默认的 EntityManagerFactory
+	 * @throws NoSuchBeanDefinitionException 如果上下文中没有唯一的 EntityManagerFactory
 	 */
 	protected EntityManagerFactory findDefaultEntityManagerFactory(@Nullable String requestingBeanName)
 			throws NoSuchBeanDefinitionException {
@@ -565,10 +564,10 @@ public class PersistenceAnnotationBeanPostProcessor
 	 * 按名称对给定资源执行 JNDI 查找。
 	 * <p>当为特定持久化单元映射了 JNDI 名称时，用于
 	 * EntityManagerFactory 和 EntityManager 的查找。
-	 * @param jndiName the JNDI name to look up
-	 * @param requiredType the required type of the object
-	 * @return the obtained object
-	 * @throws Exception if the JNDI lookup failed
+	 * @param jndiName 要查找的 JNDI 名称
+	 * @param requiredType 对象所需的类型
+	 * @return 获取到的对象
+	 * @throws Exception 如果 JNDI 查找失败
 	 */
 	protected <T> T lookup(String jndiName, Class<T> requiredType) throws Exception {
 		return new LocatorDelegate().lookup(jndiName, requiredType);

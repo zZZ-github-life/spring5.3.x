@@ -51,7 +51,7 @@ class StaxEventHandler extends AbstractStaxHandler {
 	/**
 	 * 构造一个写入给定 {@code XMLEventWriter} 的 {@code StaxEventContentHandler} 新实例。
 	 * 将创建默认的 {@code XMLEventFactory}。
-	 * @param eventWriter the writer to write events to
+	 * @param eventWriter 要向其写入事件的写入器
 	 */
 	public StaxEventHandler(XMLEventWriter eventWriter) {
 		this.eventFactory = XMLEventFactory.newInstance();
@@ -61,8 +61,8 @@ class StaxEventHandler extends AbstractStaxHandler {
 	/**
 	 * 构造一个 {@code StaxEventContentHandler} 新实例，它使用给定的事件工厂创建事件，
 	 * 并写入到给定的 {@code XMLEventConsumer}。
-	 * @param eventWriter the writer to write events to
-	 * @param factory the factory used to create events
+	 * @param eventWriter 要向其写入事件的写入器
+	 * @param factory 用于创建事件的工厂
 	 */
 	public StaxEventHandler(XMLEventWriter eventWriter, XMLEventFactory factory) {
 		this.eventFactory = factory;

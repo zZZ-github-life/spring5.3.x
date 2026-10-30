@@ -33,7 +33,7 @@ import org.springframework.lang.Nullable;
  * @author Stephane Nicoll
  * @author Sam Brannen
  * @since 27.05.2003
- * @param <E> the element type
+ * @param <E> 元素类型
  */
 @SuppressWarnings("serial")
 public class ManagedList<E> extends ArrayList<E> implements Mergeable, BeanMetadataElement {
@@ -57,9 +57,9 @@ public class ManagedList<E> extends ArrayList<E> implements Mergeable, BeanMetad
 
 	/**
 	 * 创建一个包含任意数量元素的新实例。
-	 * @param elements the elements to be contained in the list
-	 * @param <E> the {@code List}'s element type
-	 * @return a {@code ManagedList} containing the specified elements
+	 * @param elements 要包含在列表中的元素
+	 * @param <E> {@code List} 的元素类型
+	 * @return 包含指定元素的 {@code ManagedList}
 	 * @since 5.3.16
 	 */
 	@SafeVarargs

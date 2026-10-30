@@ -219,7 +219,7 @@ public class ProxyFactoryBean extends ProxyCreatorSupport
 	/**
 	 * 返回一个代理。当客户端从此工厂 Bean 获取 Bean 时调用。创建要由此工厂返回的 AOP 代理实例。该实例
 	 * 对单例会被缓存，而对代理则在每次调用 {@code getObject()} 时创建。
-	 * @return a fresh AOP proxy reflecting the current state of this factory
+	 * @return 反映此工厂当前状态的新 AOP 代理
 	 */
 	@Override
 	@Nullable
@@ -273,8 +273,8 @@ public class ProxyFactoryBean extends ProxyCreatorSupport
 	/**
 	 * 为给定接口创建一个组合接口 Class，在一个 Class 中实现这些接口。
 	 * <p>默认实现会为给定接口构建一个 JDK 代理类。
-	 * @param interfaces the interfaces to merge
-	 * @return the merged interface as Class
+	 * @param interfaces 要合并的接口
+	 * @return 合并后的接口（以 Class 形式）
 	 * @see java.lang.reflect.Proxy#getProxyClass
 	 */
 	protected Class<?> createCompositeInterface(Class<?>[] interfaces) {
@@ -283,7 +283,7 @@ public class ProxyFactoryBean extends ProxyCreatorSupport
 
 	/**
 	 * 返回此类代理对象的单例实例，如果尚未创建则延迟创建。
-	 * @return the shared singleton proxy
+	 * @return 共享的单例代理
 	 */
 	private synchronized Object getSingletonInstance() {
 		if (this.singletonInstance == null) {
@@ -305,7 +305,7 @@ public class ProxyFactoryBean extends ProxyCreatorSupport
 
 	/**
 	 * 创建此类所创建的代理对象的新原型实例，由独立的 AdvisedSupport 配置支持。
-	 * @return a totally independent proxy, whose advice we may manipulate in isolation
+	 * @return 完全独立的代理，可以单独操作它的通知
 	 */
 	private synchronized Object newPrototypeInstance() {
 		// In the case of a prototype, we need to give the proxy
@@ -332,8 +332,8 @@ public class ProxyFactoryBean extends ProxyCreatorSupport
 	/**
 	 * 返回要暴露的代理对象。
 	 * <p>默认实现使用工厂的 Bean ClassLoader 调用 {@code getProxy}。可以覆盖此方法以指定自定义类加载器。
-	 * @param aopProxy the prepared AopProxy instance to get the proxy from
-	 * @return the proxy object to expose
+	 * @param aopProxy 已准备好的 AopProxy 实例，用于从中获取代理
+	 * @return 要暴露的代理对象
 	 * @see AopProxy#getProxy(ClassLoader)
 	 */
 	protected Object getProxy(AopProxy aopProxy) {
@@ -366,8 +366,8 @@ public class ProxyFactoryBean extends ProxyCreatorSupport
 	/**
 	 * 查看 Bean 工厂元数据，以判断这个位于 interceptorNames 列表末尾的 Bean 名称是 Advisor 还是 Advice，
 	 * 或者可能是目标。
-	 * @param beanName bean name to check
-	 * @return {@code true} if it's an Advisor or Advice
+	 * @param beanName 要检查的 Bean 名称
+	 * @return 如果它是 Advisor 或 Advice，则返回 {@code true}
 	 */
 	private boolean isNamedBeanAnAdvisorOrAdvice(String beanName) {
 		Assert.state(this.beanFactory != null, "No BeanFactory set");
@@ -494,7 +494,7 @@ public class ProxyFactoryBean extends ProxyCreatorSupport
 	 * 在创建通知链时调用。
 	 * <p>将给定的 advice、advisor 或对象添加到拦截器列表。由于存在这三种可能性，我们无法把签名定义得更
 	 * 具体。
-	 * @param next advice, advisor or target object
+	 * @param next 通知、通知器或目标对象
 	 */
 	private void addAdvisorOnChainCreation(Object next) {
 		// We need to convert to an Advisor if necessary so that our source reference

@@ -48,8 +48,7 @@ public class RemoteInvocationResult implements Serializable {
 
 	/**
 	 * 为给定的结果值创建一个新的 RemoteInvocationResult。
-	 * @param value the result value returned by a successful invocation
-	 * of the target method
+	 * @param value 目标方法成功调用后返回的结果值
 	 */
 	public RemoteInvocationResult(@Nullable Object value) {
 		this.value = value;
@@ -57,8 +56,7 @@ public class RemoteInvocationResult implements Serializable {
 
 	/**
 	 * 为给定的异常创建一个新的 RemoteInvocationResult。
-	 * @param exception the exception thrown by an unsuccessful invocation
-	 * of the target method
+	 * @param exception 目标方法调用失败时抛出的异常
 	 */
 	public RemoteInvocationResult(@Nullable Throwable exception) {
 		this.exception = exception;
@@ -129,8 +127,8 @@ public class RemoteInvocationResult implements Serializable {
 
 	/**
 	 * 重建调用结果：如果目标方法调用成功，则返回结果值；否则重新抛出目标方法抛出的异常。
-	 * @return the result value, if any
-	 * @throws Throwable the exception, if any
+	 * @return 结果值（如果有）
+	 * @throws Throwable 异常（如果有）
 	 */
 	@Nullable
 	public Object recreate() throws Throwable {

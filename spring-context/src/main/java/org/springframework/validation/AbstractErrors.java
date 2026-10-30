@@ -101,8 +101,8 @@ public abstract class AbstractErrors implements Errors, Serializable {
 
 	/**
 	 * 确定给定字段的规范字段名。<p>默认实现直接原样返回字段名。
-	 * @param field the original field name
-	 * @return the canonical field name
+	 * @param field 原始字段名
+	 * @return 规范字段名
 	 */
 	protected String canonicalFieldName(String field) {
 		return field;
@@ -221,9 +221,9 @@ public abstract class AbstractErrors implements Errors, Serializable {
 
 	/**
 	 * 检查给定的 FieldError 是否与给定字段匹配。
-	 * @param field the field that we are looking up FieldErrors for
-	 * @param fieldError the candidate FieldError
-	 * @return whether the FieldError matches the given field
+	 * @param field 要查找其 FieldErrors 的字段
+	 * @param fieldError 候选 FieldError
+	 * @return FieldError 是否与给定字段匹配
 	 */
 	protected boolean isMatchingFieldError(String field, FieldError fieldError) {
 		if (field.equals(fieldError.getField())) {

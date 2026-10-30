@@ -37,9 +37,9 @@ public class UncategorizedSQLException extends UncategorizedDataAccessException 
 
 	/**
 	 * 创建UncategorizedSQLException实例。
-	 * @param task name of current task
-	 * @param sql the offending SQL statement
-	 * @param ex the root cause
+	 * @param task 当前任务的名称
+	 * @param sql 出错的 SQL 语句
+	 * @param ex 根本原因
 	 */
 	public UncategorizedSQLException(String task, @Nullable String sql, SQLException ex) {
 		super(task + "; uncategorized SQLException" + (sql != null ? " for SQL [" + sql + "]" : "") +

@@ -67,12 +67,12 @@ public abstract class AbstractSqlTypeValue implements SqlTypeValue {
 
 	/**
 	 * 创建要传入 {@code PreparedStatement.setObject} 的类型值。
-	 * @param con the JDBC Connection, if needed to create any database-specific objects
-	 * @param sqlType the SQL type of the parameter we are setting
-	 * @param typeName the type name of the parameter
-	 * @return the type value
-	 * @throws SQLException if an SQLException is encountered setting
-	 * parameter values (that is, there's no need to catch SQLException)
+	 * @param con JDBC Connection，在需要创建任何数据库特定的对象时使用
+	 * @param sqlType 我们所设置的参数的 SQL 类型
+	 * @param typeName 参数的类型名称
+	 * @return 类型值
+	 * @throws SQLException 如果设置参数值时遇到 SQLException
+	 * （即无需捕获 SQLException）
 	 * @see java.sql.PreparedStatement#setObject(int, Object, int)
 	 */
 	protected abstract Object createTypeValue(Connection con, int sqlType, @Nullable String typeName)

@@ -29,9 +29,9 @@ public interface WebExceptionHandler {
 	/**
 	 * 处理给定的异常。通过返回值发出的完成信号表示错误处理已完成，
 	 * 而错误信号表示该异常仍未得到处理。
-	 * @param exchange the current exchange
-	 * @param ex the exception to handle
-	 * @return {@code Mono<Void>} to indicate when exception handling is complete
+	 * @param exchange 当前交换
+	 * @param ex 要处理的异常
+	 * @return 用于指示异常处理何时完成的 {@code Mono<Void>}
 	 */
 	Mono<Void> handle(ServerWebExchange exchange, Throwable ex);
 

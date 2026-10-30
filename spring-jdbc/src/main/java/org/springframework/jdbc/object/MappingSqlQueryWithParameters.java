@@ -41,7 +41,7 @@ import org.springframework.lang.Nullable;
  * @author Rod Johnson
  * @author Thomas Risberg
  * @author Jean-Pierre Pawlak
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see org.springframework.jdbc.object.MappingSqlQuery
  * @see org.springframework.jdbc.object.SqlQuery
  */
@@ -55,8 +55,8 @@ public abstract class MappingSqlQueryWithParameters<T> extends SqlQuery<T> {
 
 	/**
 	 * 使用 DataSource 和 SQL 字符串的便捷构造函数。
-	 * @param ds the DataSource to use to get connections
-	 * @param sql the SQL to run
+	 * @param ds 用于获取连接的 DataSource
+	 * @param sql 要运行的 SQL
 	 */
 	public MappingSqlQueryWithParameters(DataSource ds, String sql) {
 		super(ds, sql);
@@ -73,17 +73,17 @@ public abstract class MappingSqlQueryWithParameters<T> extends SqlQuery<T> {
 
 	/**
 	 * 子类必须实现此方法，将 ResultSet 的每一行转换为结果类型的对象。
-	 * @param rs the ResultSet we're working through
-	 * @param rowNum row number (from 0) we're up to
-	 * @param parameters to the query (passed to the execute() method).
-	 * Subclasses are rarely interested in these.
-	 * It can be {@code null} if there are no parameters.
-	 * @param context passed to the execute() method.
-	 * It can be {@code null} if no contextual information is need.
-	 * @return an object of the result type
-	 * @throws SQLException if there's an error extracting data.
-	 * Subclasses can simply not catch SQLExceptions, relying on the
-	 * framework to clean up.
+	 * @param rs 正在处理的 ResultSet
+	 * @param rowNum 当前行号（从 0 开始）
+	 * @param parameters 传递给查询（传入 execute() 方法）的参数。
+	 * 子类很少关注这些参数。
+	 * 如果没有参数，则可以为 {@code null}。
+	 * @param context 传递给 execute() 方法的上下文。
+	 * 如果不需要上下文信息，则可以为 {@code null}。
+	 * @return 结果类型的对象
+	 * @throws SQLException 如果提取数据时出错。
+	 * 子类可以简单地不捕获 SQLExceptions，
+	 * 并依赖框架进行清理。
 	 */
 	@Nullable
 	protected abstract T mapRow(ResultSet rs, int rowNum, @Nullable Object[] parameters, @Nullable Map<?, ?> context)

@@ -87,7 +87,7 @@ class ScriptBeanDefinitionParser extends AbstractBeanDefinitionParser {
 	/**
 	 * 创建此解析器的新实例，为提供的 {@link org.springframework.scripting.ScriptFactory} 类创建 Bean
 	 * 定义。
-	 * @param scriptFactoryClassName the ScriptFactory class to operate on
+	 * @param scriptFactoryClassName 要操作的 ScriptFactory 类
 	 */
 	public ScriptBeanDefinitionParser(String scriptFactoryClassName) {
 		this.scriptFactoryClassName = scriptFactoryClassName;

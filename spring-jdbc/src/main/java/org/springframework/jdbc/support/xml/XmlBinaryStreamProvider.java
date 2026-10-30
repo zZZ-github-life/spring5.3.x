@@ -30,8 +30,8 @@ public interface XmlBinaryStreamProvider {
 
 	/**
 	 * 实现类必须实现此方法，以为 {@code OutputStream} 提供 XML 内容。
-	 * @param outputStream the {@code OutputStream} object being used to provide the XML input
-	 * @throws IOException if an I/O error occurs while providing the XML
+	 * @param outputStream 用于提供 XML 输入的 {@code OutputStream} 对象
+	 * @throws IOException 在提供 XML 时发生 I/O 错误
 	 */
 	void provideXml(OutputStream outputStream) throws IOException;
 

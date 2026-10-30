@@ -90,8 +90,8 @@ public class NameMatchTransactionAttributeSource
 	/**
 	 * 为事务方法添加属性。
 	 * <p>方法名可以是精确匹配, 也可以是"xxx*"、"*xxx"或"*xxx*"模式以匹配多个方法。
-	 * @param methodName the name of the method
-	 * @param attr attribute associated with the method
+	 * @param methodName 方法名称
+	 * @param attr 与方法关联的属性
 	 */
 	public void addTransactionalMethod(String methodName, TransactionAttribute attr) {
 		if (logger.isDebugEnabled()) {
@@ -147,9 +147,9 @@ public class NameMatchTransactionAttributeSource
 	/**
 	 * 确定给定的方法名是否匹配映射名称。
 	 * <p>默认实现检查"xxx*"、"*xxx"和"*xxx*"匹配, 以及直接相等。可以在子类中重写。
-	 * @param methodName the method name of the class
-	 * @param mappedName the name in the descriptor
-	 * @return {@code true} if the names match
+	 * @param methodName 该类的方法名称
+	 * @param mappedName 描述符中的名称
+	 * @return 如果名称匹配，则返回 {@code true}
 	 * @see org.springframework.util.PatternMatchUtils#simpleMatch(String, String)
 	 */
 	protected boolean isMatch(String methodName, String mappedName) {

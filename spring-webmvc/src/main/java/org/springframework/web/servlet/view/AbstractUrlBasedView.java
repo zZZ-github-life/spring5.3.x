@@ -42,7 +42,7 @@ public abstract class AbstractUrlBasedView extends AbstractView implements Initi
 
 	/**
 	 * 使用给定的 URL 创建一个新的 AbstractUrlBasedView。
-	 * @param url the URL to forward to
+	 * @param url 要转发到的 URL
 	 */
 	protected AbstractUrlBasedView(String url) {
 		this.url = url;
@@ -84,10 +84,10 @@ public abstract class AbstractUrlBasedView extends AbstractView implements Initi
 	/**
 	 * 检查所配置的 URL 指向的底层资源是否
 	 * 实际存在。
-	 * @param locale the desired Locale that we're looking for
-	 * @return {@code true} if the resource exists (or is assumed to exist);
-	 * {@code false} if we know that it does not exist
-	 * @throws Exception if the resource exists but is invalid (e.g. could not be parsed)
+	 * @param locale 我们要查找的目标 Locale
+	 * @return 如果资源存在（或被假定存在）则为 {@code true}；
+	 * 如果我们已知其不存在则为 {@code false}
+	 * @throws Exception 如果资源存在但无效（例如无法解析）
 	 */
 	public boolean checkResource(Locale locale) throws Exception {
 		return true;

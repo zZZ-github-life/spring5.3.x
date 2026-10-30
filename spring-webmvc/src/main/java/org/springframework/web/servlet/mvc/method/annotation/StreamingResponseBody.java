@@ -38,8 +38,8 @@ public interface StreamingResponseBody {
 
 	/**
 	 * 用于向响应体写入数据的回调。
-	 * @param outputStream the stream for the response body
-	 * @throws IOException an exception while writing
+	 * @param outputStream 用于响应体的输出流
+	 * @throws IOException 写入时发生的异常
 	 */
 	void writeTo(OutputStream outputStream) throws IOException;
 

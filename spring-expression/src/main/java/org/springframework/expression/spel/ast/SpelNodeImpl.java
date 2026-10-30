@@ -132,10 +132,9 @@ public abstract class SpelNodeImpl implements SpelNode, Opcodes {
 	 * <p>当值应当延迟计算时，优先使用此方法而不是 {@link #setValue(ExpressionState, Object)}。
 	 * <p>默认情况下，此方法抛出 {@link SpelEvaluationException}，实际上禁用了此特性。子类可以重写此方
 	 * 法以提供实际的实现。
-	 * @param expressionState the current expression state (includes the context)
-	 * @param valueSupplier a supplier of the new value
-	 * @throws EvaluationException if any problem occurs evaluating the expression or
-	 * setting the new value
+	 * @param expressionState 当前的表达式状态（包含上下文）
+	 * @param valueSupplier 新值的 Supplier
+	 * @throws EvaluationException 如果对表达式求值或设置新值时出现任何问题
 	 * @since 5.2.24
 	 */
 	public TypedValue setValueInternal(ExpressionState expressionState, Supplier<TypedValue> valueSupplier)
@@ -176,7 +175,7 @@ public abstract class SpelNodeImpl implements SpelNode, Opcodes {
 	/**
 	 * 检查节点能否编译为字节码。各节点的判断理由可能不同，但通常涉及检查节点的出口类型描述符是否已知，
 	 * 以及所有相关子节点是否可编译。
-	 * @return {@code true} if this node can be compiled to bytecode
+	 * @return 如果此节点可编译为字节码则返回 {@code true}
 	 */
 	public boolean isCompilable() {
 		return false;
@@ -185,8 +184,8 @@ public abstract class SpelNodeImpl implements SpelNode, Opcodes {
 	/**
 	 * 为此节点生成字节码并写入所提供的 visitor。有关当前正在编译的表达式的上下文信息可在 codeflow 对象
 	 * 中获取，例如包括当前位于栈上的对象类型的信息。
-	 * @param mv the ASM MethodVisitor into which code should be generated
-	 * @param cf a context object with info about what is on the stack
+	 * @param mv 生成代码的目标 ASM MethodVisitor
+	 * @param cf 包含栈上内容信息的上下文对象
 	 */
 	public void generateCode(MethodVisitor mv, CodeFlow cf) {
 		throw new IllegalStateException(getClass().getName() +" has no generateCode(..) method");
@@ -212,10 +211,10 @@ public abstract class SpelNodeImpl implements SpelNode, Opcodes {
 	/**
 	 * 生成用于构建指定方法的参数值的代码。此方法会考虑被调用的方法是否为可变参数方法，如果是，则参数值
 	 * 会被适当地打包为数组。
-	 * @param mv the method visitor where code should be generated
-	 * @param cf the current codeflow
-	 * @param member the method or constructor for which arguments are being setup
-	 * @param arguments the expression nodes for the expression supplied argument values
+	 * @param mv 生成代码的方法访问器
+	 * @param cf 当前的代码流
+	 * @param member 正在为其准备参数的方法或构造器
+	 * @param arguments 表达式提供的参数值对应的表达式节点
 	 */
 	protected static void generateCodeForArguments(MethodVisitor mv, CodeFlow cf, Member member, SpelNodeImpl[] arguments) {
 		String[] paramDescriptors = null;

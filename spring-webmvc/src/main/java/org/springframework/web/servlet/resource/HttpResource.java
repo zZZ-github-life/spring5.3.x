@@ -30,7 +30,7 @@ public interface HttpResource extends Resource {
 	/**
 	 * 要添加到为当前资源提供服务的 HTTP 响应中的
 	 * HTTP 头。
-	 * @return the HTTP response headers
+	 * @return HTTP 响应头
 	 */
 	HttpHeaders getResponseHeaders();
 

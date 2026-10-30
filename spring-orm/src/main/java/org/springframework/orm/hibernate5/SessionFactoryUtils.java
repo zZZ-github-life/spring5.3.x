@@ -97,9 +97,9 @@ public abstract class SessionFactoryUtils {
 	 * 在给定的 Hibernate Session 上触发刷新，并相应地转换常规的
 	 * {@link HibernateException} 实例以及 Hibernate 5.2 的
 	 * {@link PersistenceException} 包装器。
-	 * @param session the Hibernate Session to flush
-	 * @param synch whether this flush is triggered by transaction synchronization
-	 * @throws DataAccessException in case of flush failures
+	 * @param session 要刷新的 Hibernate Session
+	 * @param synch 此刷新是否由事务同步触发
+	 * @throws DataAccessException 如果刷新失败
 	 * @since 4.3.2
 	 */
 	static void flush(Session session, boolean synch) throws DataAccessException {
@@ -127,7 +127,7 @@ public abstract class SessionFactoryUtils {
 	/**
 	 * 执行 Hibernate Session 的实际关闭，
 	 * 捕获并记录抛出的任何清理异常。
-	 * @param session the Hibernate Session to close (may be {@code null})
+	 * @param session 要关闭的 Hibernate Session（可以为 {@code null}）
 	 * @see Session#close()
 	 */
 	public static void closeSession(@Nullable Session session) {
@@ -145,8 +145,8 @@ public abstract class SessionFactoryUtils {
 
 	/**
 	 * 确定给定 SessionFactory 的 DataSource。
-	 * @param sessionFactory the SessionFactory to check
-	 * @return the DataSource, or {@code null} if none found
+	 * @param sessionFactory 要检查的 SessionFactory
+	 * @return DataSource；如果未找到则返回 {@code null}
 	 * @see ConnectionProvider
 	 */
 	@Nullable
@@ -181,8 +181,8 @@ public abstract class SessionFactoryUtils {
 	/**
 	 * 将给定的 HibernateException 转换为 {@code org.springframework.dao} 层次结构中
 	 * 相应的异常。
-	 * @param ex the HibernateException that occurred
-	 * @return the corresponding DataAccessException instance
+	 * @param ex 发生的 HibernateException
+	 * @return 相应的 DataAccessException 实例
 	 * @see HibernateExceptionTranslator#convertHibernateAccessException
 	 * @see HibernateTransactionManager#convertHibernateAccessException
 	 */

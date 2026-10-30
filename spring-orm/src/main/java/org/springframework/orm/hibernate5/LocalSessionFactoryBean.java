@@ -425,7 +425,7 @@ public class LocalSessionFactoryBean extends HibernateExceptionTranslator
 	 * 确定要使用的 Hibernate {@link MetadataSources}。
 	 * <p>也可以在外部调用，以初始化并预填充一个 {@link MetadataSources}
 	 * 实例，随后将其用于构建 {@link SessionFactory}。
-	 * @return the MetadataSources to use (never {@code null})
+	 * @return 要使用的 MetadataSources（永不为 {@code null}）
 	 * @since 4.3
 	 * @see LocalSessionFactoryBuilder#LocalSessionFactoryBuilder(DataSource, ResourceLoader, MetadataSources)
 	 */
@@ -448,7 +448,7 @@ public class LocalSessionFactoryBean extends HibernateExceptionTranslator
 
 	/**
 	 * 指定用于 Hibernate 元数据的 Spring {@link ResourceLoader}。
-	 * @param resourceLoader the ResourceLoader to use (never {@code null})
+	 * @param resourceLoader 要使用的 ResourceLoader（永不为 {@code null}）
 	 */
 	@Override
 	public void setResourceLoader(ResourceLoader resourceLoader) {
@@ -457,7 +457,7 @@ public class LocalSessionFactoryBean extends HibernateExceptionTranslator
 
 	/**
 	 * 确定用于 Hibernate 元数据的 Spring {@link ResourceLoader}。
-	 * @return the ResourceLoader to use (never {@code null})
+	 * @return 要使用的 ResourceLoader（永不为 {@code null}）
 	 * @since 4.3
 	 */
 	public ResourceLoader getResourceLoader() {
@@ -608,8 +608,8 @@ public class LocalSessionFactoryBean extends HibernateExceptionTranslator
 	 * <p>默认实现调用 LocalSessionFactoryBuilder 的 buildSessionFactory。
 	 * 自定义实现可以以特定方式准备该实例（例如应用
 	 * 自定义 ServiceRegistry）或使用自定义的 SessionFactoryImpl 子类。
-	 * @param sfb a LocalSessionFactoryBuilder prepared by this LocalSessionFactoryBean
-	 * @return the SessionFactory instance
+	 * @param sfb 由本 LocalSessionFactoryBean 准备的 LocalSessionFactoryBuilder
+	 * @return SessionFactory 实例
 	 * @see LocalSessionFactoryBuilder#buildSessionFactory
 	 */
 	protected SessionFactory buildSessionFactory(LocalSessionFactoryBuilder sfb) {
@@ -620,7 +620,7 @@ public class LocalSessionFactoryBean extends HibernateExceptionTranslator
 	/**
 	 * 返回用于构建 SessionFactory 的 Hibernate Configuration 对象。
 	 * 允许访问其中存储的配置元数据（很少需要）。
-	 * @throws IllegalStateException if the Configuration object has not been initialized yet
+	 * @throws IllegalStateException 如果 Configuration 对象尚未初始化
 	 */
 	public final Configuration getConfiguration() {
 		if (this.configuration == null) {

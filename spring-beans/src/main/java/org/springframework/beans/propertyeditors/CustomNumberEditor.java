@@ -53,9 +53,9 @@ public class CustomNumberEditor extends PropertyEditorSupport {
 	 * 使用默认的 {@code valueOf} 方法进行解析、使用 {@code toString} 方法进行渲染，创建新的
 	 * CustomNumberEditor 实例。<p>"allowEmpty" 参数表明解析时是否应允许空 String，即将其解释为
 	 * {@code null} 值。否则，在这种情况下将抛出 IllegalArgumentException。
-	 * @param numberClass the Number subclass to generate
-	 * @param allowEmpty if empty strings should be allowed
-	 * @throws IllegalArgumentException if an invalid numberClass has been specified
+	 * @param numberClass 要生成的 Number 子类
+	 * @param allowEmpty 是否应允许空字符串
+	 * @throws IllegalArgumentException 如果指定了无效的 numberClass
 	 * @see org.springframework.util.NumberUtils#parseNumber(String, Class)
 	 * @see Integer#valueOf
 	 * @see Integer#toString
@@ -68,10 +68,10 @@ public class CustomNumberEditor extends PropertyEditorSupport {
 	 * 使用给定的 NumberFormat 进行解析和渲染，创建新的 CustomNumberEditor 实例。<p>allowEmpty 参数表明
 	 * 解析时是否应允许空 String，即将其解释为 {@code null} 值。否则，在这种情况下将抛出
 	 * IllegalArgumentException。
-	 * @param numberClass the Number subclass to generate
-	 * @param numberFormat the NumberFormat to use for parsing and rendering
-	 * @param allowEmpty if empty strings should be allowed
-	 * @throws IllegalArgumentException if an invalid numberClass has been specified
+	 * @param numberClass 要生成的 Number 子类
+	 * @param numberFormat 用于解析和渲染的 NumberFormat
+	 * @param allowEmpty 是否应允许空字符串
+	 * @throws IllegalArgumentException 如果指定了无效的 numberClass
 	 * @see org.springframework.util.NumberUtils#parseNumber(String, Class, java.text.NumberFormat)
 	 * @see java.text.NumberFormat#parse
 	 * @see java.text.NumberFormat#format

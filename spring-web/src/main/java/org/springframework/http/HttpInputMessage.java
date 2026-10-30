@@ -30,8 +30,8 @@ public interface HttpInputMessage extends HttpMessage {
 
 	/**
 	 * 以输入流的形式返回消息正文。
-	 * @return the input stream body (never {@code null})
-	 * @throws IOException in case of I/O errors
+	 * @return 输入流正文（永不为 {@code null}）
+	 * @throws IOException 如果发生 I/O 错误
 	 */
 	InputStream getBody() throws IOException;
 

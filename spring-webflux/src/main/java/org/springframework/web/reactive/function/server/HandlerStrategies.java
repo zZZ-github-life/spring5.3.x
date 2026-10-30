@@ -41,37 +41,37 @@ public interface HandlerStrategies {
 
 	/**
 	 * 返回用于请求正文转换的 {@link HttpMessageReader HttpMessageReaders}。
-	 * @return the message readers
+	 * @return 消息读取器
 	 */
 	List<HttpMessageReader<?>> messageReaders();
 
 	/**
 	 * 返回用于响应正文转换的 {@link HttpMessageWriter HttpMessageWriters}。
-	 * @return the message writers
+	 * @return 消息写入器
 	 */
 	List<HttpMessageWriter<?>> messageWriters();
 
 	/**
 	 * 返回用于视图名称解析的 {@link ViewResolver ViewResolvers}。
-	 * @return the view resolvers
+	 * @return 视图解析器
 	 */
 	List<ViewResolver> viewResolvers();
 
 	/**
 	 * 返回用于过滤请求和响应的 {@link WebFilter WebFilters}。
-	 * @return the web filters
+	 * @return Web 过滤器
 	 */
 	List<WebFilter> webFilters();
 
 	/**
 	 * 返回用于处理异常的 {@link WebExceptionHandler WebExceptionHandlers}。
-	 * @return the exception handlers
+	 * @return 异常处理器
 	 */
 	List<WebExceptionHandler> exceptionHandlers();
 
 	/**
 	 * 返回用于解析区域上下文的 {@link LocaleContextResolver}。
-	 * @return the locale context resolver
+	 * @return 区域上下文解析器
 	 */
 	LocaleContextResolver localeContextResolver();
 
@@ -80,7 +80,7 @@ public interface HandlerStrategies {
 
 	/**
 	 * 返回具有默认初始化的新 {@code HandlerStrategies}。
-	 * @return the new {@code HandlerStrategies}
+	 * @return 新的 {@code HandlerStrategies}
 	 */
 	static HandlerStrategies withDefaults() {
 		return builder().build();
@@ -88,7 +88,7 @@ public interface HandlerStrategies {
 
 	/**
 	 * 返回具有默认初始化的 {@code HandlerStrategies} 可变构建器。
-	 * @return the builder
+	 * @return 构建器
 	 */
 	static Builder builder() {
 		DefaultHandlerStrategiesBuilder builder = new DefaultHandlerStrategiesBuilder();
@@ -98,7 +98,7 @@ public interface HandlerStrategies {
 
 	/**
 	 * 返回 {@code HandlerStrategies} 的可变空构建器。
-	 * @return the builder
+	 * @return 构建器
 	 */
 	static Builder empty() {
 		return new DefaultHandlerStrategiesBuilder();
@@ -112,42 +112,42 @@ public interface HandlerStrategies {
 
 		/**
 		 * 自定义服务器端 HTTP 消息读写器列表。
-		 * @param consumer the consumer to customize the codecs
-		 * @return this builder
+		 * @param consumer 用于自定义编解码器的消费者
+		 * @return 该构建器
 		 */
 		Builder codecs(Consumer<ServerCodecConfigurer> consumer);
 
 		/**
 		 * 将给定视图解析器添加到此构建器。
-		 * @param viewResolver the view resolver to add
-		 * @return this builder
+		 * @param viewResolver 要添加的视图解析器
+		 * @return 该构建器
 		 */
 		Builder viewResolver(ViewResolver viewResolver);
 
 		/**
 		 * 将给定 Web 过滤器添加到此构建器。
-		 * @param filter the filter to add
-		 * @return this builder
+		 * @param filter 要添加的过滤器
+		 * @return 该构建器
 		 */
 		Builder webFilter(WebFilter filter);
 
 		/**
 		 * 将给定异常处理器添加到此构建器。
-		 * @param exceptionHandler the exception handler to add
-		 * @return this builder
+		 * @param exceptionHandler 要添加的异常处理器
+		 * @return 该构建器
 		 */
 		Builder exceptionHandler(WebExceptionHandler exceptionHandler);
 
 		/**
 		 * 将给定区域上下文解析器添加到此构建器。
-		 * @param localeContextResolver the locale context resolver to add
-		 * @return this builder
+		 * @param localeContextResolver 要添加的区域上下文解析器
+		 * @return 该构建器
 		 */
 		Builder localeContextResolver(LocaleContextResolver localeContextResolver);
 
 		/**
 		 * 构建 {@link HandlerStrategies}。
-		 * @return the built strategies
+		 * @return 构建后的策略
 		 */
 		HandlerStrategies build();
 	}

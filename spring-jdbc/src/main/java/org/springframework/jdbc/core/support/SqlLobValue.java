@@ -79,7 +79,7 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 	/**
 	 * 使用给定的字节数组创建一个新的 BLOB 值，
 	 * 使用 DefaultLobHandler。
-	 * @param bytes the byte array containing the BLOB value
+	 * @param bytes 包含 BLOB 值的字节数组
 	 * @see org.springframework.jdbc.support.lob.DefaultLobHandler
 	 */
 	public SqlLobValue(@Nullable byte[] bytes) {
@@ -88,8 +88,8 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 
 	/**
 	 * 使用给定的字节数组创建一个新的 BLOB 值。
-	 * @param bytes the byte array containing the BLOB value
-	 * @param lobHandler the LobHandler to be used
+	 * @param bytes 包含 BLOB 值的字节数组
+	 * @param lobHandler 要使用的 LobHandler
 	 */
 	public SqlLobValue(@Nullable byte[] bytes, LobHandler lobHandler) {
 		this.content = bytes;
@@ -100,7 +100,7 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 	/**
 	 * 使用给定的内容字符串创建一个新的 CLOB 值，
 	 * 使用 DefaultLobHandler。
-	 * @param content the String containing the CLOB value
+	 * @param content 包含 CLOB 值的 String
 	 * @see org.springframework.jdbc.support.lob.DefaultLobHandler
 	 */
 	public SqlLobValue(@Nullable String content) {
@@ -109,8 +109,8 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 
 	/**
 	 * 使用给定的内容字符串创建一个新的 CLOB 值。
-	 * @param content the String containing the CLOB value
-	 * @param lobHandler the LobHandler to be used
+	 * @param content 包含 CLOB 值的 String
+	 * @param lobHandler 要使用的 LobHandler
 	 */
 	public SqlLobValue(@Nullable String content, LobHandler lobHandler) {
 		this.content = content;
@@ -121,8 +121,8 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 	/**
 	 * 使用给定的流创建一个新的 BLOB/CLOB 值，
 	 * 使用 DefaultLobHandler。
-	 * @param stream the stream containing the LOB value
-	 * @param length the length of the LOB value
+	 * @param stream 包含 LOB 值的流
+	 * @param length LOB 值的长度
 	 * @see org.springframework.jdbc.support.lob.DefaultLobHandler
 	 */
 	public SqlLobValue(InputStream stream, int length) {
@@ -131,9 +131,9 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 
 	/**
 	 * 使用给定的流创建一个新的 BLOB/CLOB 值。
-	 * @param stream the stream containing the LOB value
-	 * @param length the length of the LOB value
-	 * @param lobHandler the LobHandler to be used
+	 * @param stream 包含 LOB 值的流
+	 * @param length LOB 值的长度
+	 * @param lobHandler 要使用的 LobHandler
 	 */
 	public SqlLobValue(InputStream stream, int length, LobHandler lobHandler) {
 		this.content = stream;
@@ -144,8 +144,8 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 	/**
 	 * 使用给定的字符流创建一个新的 CLOB 值，
 	 * 使用 DefaultLobHandler。
-	 * @param reader the character stream containing the CLOB value
-	 * @param length the length of the CLOB value
+	 * @param reader 包含 CLOB 值的字符流
+	 * @param length CLOB 值的长度
 	 * @see org.springframework.jdbc.support.lob.DefaultLobHandler
 	 */
 	public SqlLobValue(Reader reader, int length) {
@@ -154,9 +154,9 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 
 	/**
 	 * 使用给定的字符流创建一个新的 CLOB 值。
-	 * @param reader the character stream containing the CLOB value
-	 * @param length the length of the CLOB value
-	 * @param lobHandler the LobHandler to be used
+	 * @param reader 包含 CLOB 值的字符流
+	 * @param length CLOB 值的长度
+	 * @param lobHandler 要使用的 LobHandler
 	 */
 	public SqlLobValue(Reader reader, int length, LobHandler lobHandler) {
 		this.content = reader;

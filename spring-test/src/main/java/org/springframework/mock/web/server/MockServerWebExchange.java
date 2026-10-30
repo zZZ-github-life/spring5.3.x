@@ -53,8 +53,8 @@ public final class MockServerWebExchange extends DefaultServerWebExchange {
 
 	/**
 	 * 根据给定的 mock 请求创建一个 {@link MockServerWebExchange}。
-	 * @param request the request to use.
-	 * @return the exchange
+	 * @param request 要使用的请求。
+	 * @return 该交换对象
 	 */
 	public static MockServerWebExchange from(MockServerHttpRequest request) {
 		return builder(request).build();
@@ -62,8 +62,8 @@ public final class MockServerWebExchange extends DefaultServerWebExchange {
 
 	/**
 	 * {@link #from(MockServerHttpRequest)} 的变体，使用 mock 请求构建器。
-	 * @param requestBuilder the builder for the mock request.
-	 * @return the exchange
+	 * @param requestBuilder 模拟请求的构建器。
+	 * @return 该交换对象
 	 */
 	public static MockServerWebExchange from(MockServerHttpRequest.BaseBuilder<?> requestBuilder) {
 		return builder(requestBuilder).build();
@@ -71,8 +71,8 @@ public final class MockServerWebExchange extends DefaultServerWebExchange {
 
 	/**
 	 * 从给定的 mock 请求开始创建一个 {@link Builder}。
-	 * @param request the request to use.
-	 * @return the exchange builder
+	 * @param request 要使用的请求。
+	 * @return 交换对象构建器
 	 * @since 5.1
 	 */
 	public static MockServerWebExchange.Builder builder(MockServerHttpRequest request) {
@@ -81,8 +81,8 @@ public final class MockServerWebExchange extends DefaultServerWebExchange {
 
 	/**
 	 * {@link #builder(MockServerHttpRequest)} 的变体，使用 mock 请求构建器。
-	 * @param requestBuilder the builder for the mock request.
-	 * @return the exchange builder
+	 * @param requestBuilder 模拟请求的构建器。
+	 * @return 交换对象构建器
 	 * @since 5.1
 	 */
 	public static MockServerWebExchange.Builder builder(MockServerHttpRequest.BaseBuilder<?> requestBuilder) {
@@ -109,7 +109,7 @@ public final class MockServerWebExchange extends DefaultServerWebExchange {
 		 * 设置用于该交换的会话。
 		 * <p>此方法与
 		 * {@link #sessionManager(WebSessionManager)} 互斥。
-		 * @param session the session to use
+		 * @param session 要使用的会话
 		 * @see MockWebSession
 		 */
 		public Builder session(WebSession session) {
@@ -120,7 +120,7 @@ public final class MockServerWebExchange extends DefaultServerWebExchange {
 		/**
 		 * 提供用于该交换的 {@code WebSessionManager} 实例。
 		 * <p>此方法与 {@link #session(WebSession)} 互斥。
-		 * @param sessionManager the session manager to use
+		 * @param sessionManager 要使用的会话管理器
 		 */
 		public Builder sessionManager(WebSessionManager sessionManager) {
 			this.sessionManager = sessionManager;

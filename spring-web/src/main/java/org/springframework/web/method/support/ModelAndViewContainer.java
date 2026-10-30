@@ -156,7 +156,7 @@ public class ModelAndViewContainer {
 	 * <p>通常建议改用 {@link #getModel()}，它会返回“默认”模型（模板渲染）
 	 * 或“重定向”模型（重定向 URL 准备）。在无论如何都需要访问“默认”模型的高级场景中
 	 * （例如保存通过 {@code @SessionAttributes} 指定的模型属性），可能需要使用此方法。
-	 * @return the default model (never {@code null})
+	 * @return 默认模型（永不为 {@code null}）
 	 * @since 4.1.4
 	 */
 	public ModelMap getDefaultModel() {
@@ -201,7 +201,7 @@ public class ModelAndViewContainer {
 	/**
 	 * 以编程方式注册一个不应进行数据绑定的属性，
 	 * 即使后续声明了 {@code @ModelAttribute} 也不例外。
-	 * @param attributeName the name of the attribute
+	 * @param attributeName 属性的名称
 	 * @since 4.3
 	 */
 	public void setBindingDisabled(String attributeName) {
@@ -221,7 +221,7 @@ public class ModelAndViewContainer {
 	 * 对应于 {@code @ModelAttribute(binding=true/false)} 声明。
 	 * <p>注意：虽然 {@link #isBindingDisabled} 会考虑此标志，
 	 * 但 {@link #setBindingDisabled} 的强制声明始终会覆盖它。
-	 * @param attributeName the name of the attribute
+	 * @param attributeName 属性的名称
 	 * @since 4.3.13
 	 */
 	public void setBinding(String attributeName, boolean enabled) {

@@ -68,7 +68,7 @@ public class FileSystemResource extends AbstractResource implements WritableReso
 	 * <p>注意：通过 {@link #createRelative} 构建相对资源时，此处指定的资源基路径是否以斜杠结尾会产生不
 	 * 同结果。对于 "C:/dir1/"，相对路径将在该根目录之下构建：例如相对路径 "dir2" &rarr; "C:/dir1/dir2"。
 	 * 对于 "C:/dir1"，相对路径将在同一目录级别应用：相对路径 "dir2" &rarr; "C:/dir2"。
-	 * @param path a file path
+	 * @param path 文件路径
 	 * @see #FileSystemResource(Path)
 	 */
 	public FileSystemResource(String path) {
@@ -84,7 +84,7 @@ public class FileSystemResource extends AbstractResource implements WritableReso
 	 * new File("C:/dir1")，相对路径 "dir2" &rarr; "C:/dir2"！如果你希望相对路径在给定根目录之下构建，
 	 * 请使用 {@link #FileSystemResource(String) constructor with a file path} 在根路径后附加结尾斜杠：
 	 * "C:/dir1/"，这表示将该目录作为所有相对路径的根。
-	 * @param file a File handle
+	 * @param file File 句柄
 	 * @see #FileSystemResource(Path)
 	 * @see #getFile()
 	 */
@@ -106,7 +106,7 @@ public class FileSystemResource extends AbstractResource implements WritableReso
 	 * "C:/dir1/"，这表示将该目录作为所有相对路径的根。或者，考虑使用
 	 * {@link PathResource#PathResource(Path)} 在 {@code createRelative} 中解析
 	 * {@code java.nio.path.Path}，始终嵌套相对路径。
-	 * @param filePath a Path handle to a file
+	 * @param filePath 指向文件的 Path 句柄
 	 * @since 5.1
 	 * @see #FileSystemResource(File)
 	 */
@@ -121,8 +121,8 @@ public class FileSystemResource extends AbstractResource implements WritableReso
 	 * 从 {@link FileSystem} 句柄创建一个新的 {@code FileSystemResource}，定位指定的路径。
 	 * <p>这是 {@link #FileSystemResource(String)} 的替代方案，通过 NIO.2 而不是 {@link File} 执行所有
 	 * 文件系统交互。
-	 * @param fileSystem the FileSystem to locate the path within
-	 * @param path a file path
+	 * @param fileSystem 用于定位该路径的 FileSystem
+	 * @param path 文件路径
 	 * @since 5.1.1
 	 * @see #FileSystemResource(File)
 	 */

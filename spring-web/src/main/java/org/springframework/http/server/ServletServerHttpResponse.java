@@ -54,7 +54,7 @@ public class ServletServerHttpResponse implements ServerHttpResponse {
 
 	/**
 	 * 基于给定的 {@link HttpServletResponse} 构造 ServletServerHttpResponse 的新实例。
-	 * @param servletResponse the servlet response
+	 * @param servletResponse Servlet 响应
 	 */
 	public ServletServerHttpResponse(HttpServletResponse servletResponse) {
 		Assert.notNull(servletResponse, "HttpServletResponse must not be null");

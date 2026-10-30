@@ -36,7 +36,7 @@ public interface ReactiveHttpOutputMessage extends HttpMessage {
 
 	/**
 	 * 返回可用于创建正文的 {@link DataBufferFactory}。
-	 * @return a buffer factory
+	 * @return 缓冲区工厂
 	 * @see #writeWith(Publisher)
 	 */
 	DataBufferFactory bufferFactory();
@@ -44,7 +44,7 @@ public interface ReactiveHttpOutputMessage extends HttpMessage {
 	/**
 	 * 注册一个在 HttpOutputMessage 提交之前执行的操作。
 	 * <p><strong>注意：</strong>提供的操作必须正确延迟执行，例如通过 {@link Mono#defer} 或 {@link Mono#fromRunnable}，以确保它相对于其他操作按正确顺序执行。
-	 * @param action the action to apply
+	 * @param action 要执行的操作
 	 */
 	void beforeCommit(Supplier<? extends Mono<Void>> action);
 
@@ -55,23 +55,23 @@ public interface ReactiveHttpOutputMessage extends HttpMessage {
 
 	/**
 	 * 使用给定的 {@link Publisher} 将消息正文写入底层 HTTP 层。
-	 * @param body the body content publisher
-	 * @return a {@link Mono} that indicates completion or error
+	 * @param body 正文内容发布者
+	 * @return 指示完成或错误的 {@link Mono}
 	 */
 
 	Mono<Void> writeWith(Publisher<? extends DataBuffer> body);
 
 	/**
 	 * 使用给定的 {@code Publishers} 的 {@link Publisher} 将 HttpOutputMessage 的正文写入底层 HTTP 层，并在每个 {@code Publisher<DataBuffer>} 之后刷新。
-	 * @param body the body content publisher
-	 * @return a {@link Mono} that indicates completion or error
+	 * @param body 正文内容发布者
+	 * @return 指示完成或错误的 {@link Mono}
 	 */
 	Mono<Void> writeAndFlushWith(Publisher<? extends Publisher<? extends DataBuffer>> body);
 
 	/**
 	 * 指示消息处理已完成，从而可以执行任何清理或处理结束任务，例如将通过 {@link #getHeaders()} 所做的头更改应用到基础 HTTP 消息（如果尚未应用）。
 	 * <p>此方法应在消息处理结束时自动调用，因此应用程序通常无需调用它。如果多次调用，应没有副作用。
-	 * @return a {@link Mono} that indicates completion or error
+	 * @return 指示完成或错误的 {@link Mono}
 	 */
 	Mono<Void> setComplete();
 

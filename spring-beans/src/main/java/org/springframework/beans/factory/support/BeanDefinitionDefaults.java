@@ -54,7 +54,7 @@ public class BeanDefinitionDefaults {
 
 	/**
 	 * 返回 Bean 是否应默认延迟初始化，即不在启动时急切实例化。仅适用于单例 Bean。
-	 * @return whether to apply lazy-init semantics ({@code false} by default)
+	 * @return 是否应用延迟初始化语义（默认 {@code false}）
 	 */
 	public boolean isLazyInit() {
 		return (this.lazyInit != null && this.lazyInit.booleanValue());
@@ -62,7 +62,7 @@ public class BeanDefinitionDefaults {
 
 	/**
 	 * 返回 Bean 是否应默认延迟初始化，即不在启动时急切实例化。仅适用于单例 Bean。
-	 * @return the lazy-init flag if explicitly set, or {@code null} otherwise
+	 * @return 显式设置时的延迟初始化标志；否则为 {@code null}
 	 * @since 5.2
 	 */
 	@Nullable
@@ -73,8 +73,8 @@ public class BeanDefinitionDefaults {
 	/**
 	 * 设置自动装配模式。这决定是否发生 Bean 引用的自动检测和设置。默认值为 AUTOWIRE_NO，意味着不会进行
 	 * 基于约定的按名称或按类型自动装配（不过，仍可能存在显式的注解驱动自动装配）。
-	 * @param autowireMode the autowire mode to set.
-	 * Must be one of the constants defined in {@link AbstractBeanDefinition}.
+	 * @param autowireMode 要设置的自动装配模式。
+	 * 必须是 {@link AbstractBeanDefinition} 中定义的常量之一。
 	 * @see AbstractBeanDefinition#setAutowireMode
 	 */
 	public void setAutowireMode(int autowireMode) {
@@ -90,8 +90,8 @@ public class BeanDefinitionDefaults {
 
 	/**
 	 * 设置依赖检查代码。
-	 * @param dependencyCheck the code to set.
-	 * Must be one of the constants defined in {@link AbstractBeanDefinition}.
+	 * @param dependencyCheck 要设置的代码。
+	 * 必须是 {@link AbstractBeanDefinition} 中定义的常量之一。
 	 * @see AbstractBeanDefinition#setDependencyCheck
 	 */
 	public void setDependencyCheck(int dependencyCheck) {

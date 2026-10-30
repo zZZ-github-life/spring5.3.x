@@ -65,8 +65,8 @@ public class StandardMultipartHttpServletRequest extends AbstractMultipartHttpSe
 	/**
 	 * 为给定请求创建一个新的 StandardMultipartHttpServletRequest 包装器，
 	 * 并立即解析 multipart 内容。
-	 * @param request the servlet request to wrap
-	 * @throws MultipartException if parsing failed
+	 * @param request 要包装的 Servlet 请求
+	 * @throws MultipartException 如果解析失败
 	 */
 	public StandardMultipartHttpServletRequest(HttpServletRequest request) throws MultipartException {
 		this(request, false);
@@ -74,10 +74,10 @@ public class StandardMultipartHttpServletRequest extends AbstractMultipartHttpSe
 
 	/**
 	 * 为给定请求创建一个新的 StandardMultipartHttpServletRequest 包装器。
-	 * @param request the servlet request to wrap
-	 * @param lazyParsing whether multipart parsing should be triggered lazily on
-	 * first access of multipart files or parameters
-	 * @throws MultipartException if an immediate parsing attempt failed
+	 * @param request 要包装的 Servlet 请求
+	 * @param lazyParsing 是否应在首次访问 multipart 文件或参数时
+	 * 延迟触发 multipart 解析
+	 * @throws MultipartException 如果立即解析尝试失败
 	 * @since 3.2.9
 	 */
 	public StandardMultipartHttpServletRequest(HttpServletRequest request, boolean lazyParsing)

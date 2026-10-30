@@ -72,7 +72,7 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 
 	/**
 	 * 为给定的请求创建一个新的 ServletRequestAttributes 实例。
-	 * @param request current HTTP request
+	 * @param request 当前 HTTP 请求
 	 */
 	public ServletRequestAttributes(HttpServletRequest request) {
 		Assert.notNull(request, "Request must not be null");
@@ -81,8 +81,8 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 
 	/**
 	 * 为给定的请求创建一个新的 ServletRequestAttributes 实例。
-	 * @param request current HTTP request
-	 * @param response current HTTP response (for optional exposure)
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应（用于可选暴露）
 	 */
 	public ServletRequestAttributes(HttpServletRequest request, @Nullable HttpServletResponse response) {
 		this(request);
@@ -107,7 +107,7 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 
 	/**
 	 * 暴露我们正在包装的 {@link HttpSession}。
-	 * @param allowCreate whether to allow creation of a new session if none exists yet
+	 * @param allowCreate 在尚不存在会话时是否允许创建新会话
 	 */
 	@Nullable
 	protected final HttpSession getSession(boolean allowCreate) {
@@ -296,10 +296,10 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 	 * 其值在内部不会发生有意义的改变。
 	 * <p>对于 {@code String}、{@code Character}、{@code Boolean} 和标准 {@code Number} 值，默认实现
 	 * 返回 {@code true}。
-	 * @param name the name of the attribute
-	 * @param value the corresponding value to check
-	 * @return {@code true} if the value is to be considered as immutable for the
-	 * purposes of session attribute management; {@code false} otherwise
+	 * @param name 属性的名称
+	 * @param value 要检查的相应值
+	 * @return 如果该值在会话属性管理意义上应视为不可变，
+	 * 则返回 {@code true}；否则返回 {@code false}
 	 * @see #updateAccessedSessionAttributes()
 	 */
 	protected boolean isImmutableSessionAttribute(String name, @Nullable Object value) {
@@ -309,8 +309,8 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 	/**
 	 * 注册给定的回调，使其在会话终止后执行。
 	 * <p>注意：回调对象应可序列化，以便在 Web 应用重启后仍然有效。
-	 * @param name the name of the attribute to register the callback for
-	 * @param callback the callback to be executed for destruction
+	 * @param name 为其注册回调的属性的名称
+	 * @param callback 销毁时要执行的回调
 	 */
 	protected void registerSessionDestructionCallback(String name, Runnable callback) {
 		HttpSession session = obtainSession();

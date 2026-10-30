@@ -41,7 +41,7 @@ public class JCacheCache extends AbstractValueAdaptingCache {
 
 	/**
 	 * 创建一个 {@code JCacheCache} 实例。
-	 * @param jcache backing JCache Cache instance
+	 * @param jcache 底层 JCache Cache 实例
 	 */
 	public JCacheCache(Cache<Object, Object> jcache) {
 		this(jcache, true);
@@ -49,8 +49,8 @@ public class JCacheCache extends AbstractValueAdaptingCache {
 
 	/**
 	 * 创建一个 {@code JCacheCache} 实例。
-	 * @param jcache backing JCache Cache instance
-	 * @param allowNullValues whether to accept and convert null values for this cache
+	 * @param jcache 底层 JCache Cache 实例
+	 * @param allowNullValues 此缓存是否接受并转换 null 值
 	 */
 	public JCacheCache(Cache<Object, Object> jcache, boolean allowNullValues) {
 		super(allowNullValues);

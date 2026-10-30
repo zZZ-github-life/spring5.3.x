@@ -55,9 +55,9 @@ public abstract class AopProxyUtils {
 
 	/**
 	 * 获取给定代理背后的单例目标对象（如果有）。
-	 * @param candidate the (potential) proxy to check
-	 * @return the singleton target object managed in a {@link SingletonTargetSource},
-	 * or {@code null} in any other case (not a proxy, not an existing singleton target)
+	 * @param candidate 要检查的（潜在）代理
+	 * @return 在 {@link SingletonTargetSource} 中管理的单例目标对象，
+	 * 其他情况下（不是代理、不是现有的单例目标）则为 {@code null}
 	 * @since 4.3.8
 	 * @see Advised#getTargetSource()
 	 * @see SingletonTargetSource#getTarget()
@@ -76,9 +76,9 @@ public abstract class AopProxyUtils {
 	/**
 	 * 确定给定 Bean 实例的最终目标类，不仅会遍历顶层代理，还会遍历任意数量的嵌套代理 &mdash; 只要不产
 	 * 生副作用就尽可能深入，也就是说，仅针对单例目标。
-	 * @param candidate the instance to check (might be an AOP proxy)
-	 * @return the ultimate target class (or the plain class of the given
-	 * object as fallback; never {@code null})
+	 * @param candidate 要检查的实例（可能是 AOP 代理）
+	 * @return 最终的目标类（如果无法确定，则回退为给定对象的普通类；
+	 * 永不为 {@code null}）
 	 * @see org.springframework.aop.TargetClassAware#getTargetClass()
 	 * @see Advised#getTargetSource()
 	 */
@@ -101,8 +101,8 @@ public abstract class AopProxyUtils {
 	 * <p>此方法始终会添加 {@link Advised} 接口，除非 AdvisedSupport 的
 	 * {@link AdvisedSupport#setOpaque "opaque"} 标志已开启。并且始终添加
 	 * {@link org.springframework.aop.SpringProxy} 标记接口。
-	 * @param advised the proxy config
-	 * @return the complete set of interfaces to proxy
+	 * @param advised 代理配置
+	 * @return 要代理的完整接口集合
 	 * @see SpringProxy
 	 * @see Advised
 	 */
@@ -115,9 +115,9 @@ public abstract class AopProxyUtils {
 	 * <p>此方法始终会添加 {@link Advised} 接口，除非 AdvisedSupport 的
 	 * {@link AdvisedSupport#setOpaque "opaque"} 标志已开启。并且始终添加
 	 * {@link org.springframework.aop.SpringProxy} 标记接口。
-	 * @param advised the proxy config
-	 * @param decoratingProxy whether to expose the {@link DecoratingProxy} interface
-	 * @return the complete set of interfaces to proxy
+	 * @param advised 代理配置
+	 * @param decoratingProxy 是否暴露 {@link DecoratingProxy} 接口
+	 * @return 要代理的完整接口集合
 	 * @since 4.3
 	 * @see SpringProxy
 	 * @see Advised
@@ -159,9 +159,9 @@ public abstract class AopProxyUtils {
 
 	/**
 	 * 提取给定代理所实现的用户指定接口，即该代理实现的所有非 Advised 接口。
-	 * @param proxy the proxy to analyze (usually a JDK dynamic proxy)
-	 * @return all user-specified interfaces that the proxy implements,
-	 * in the original order (never {@code null} or empty)
+	 * @param proxy 要分析的代理（通常是 JDK 动态代理）
+	 * @return 该代理实现的所有用户指定的接口，按原始顺序排列
+	 * （永不为 {@code null} 或空）
 	 * @see Advised
 	 */
 	public static Class<?>[] proxiedUserInterfaces(Object proxy) {
@@ -208,9 +208,9 @@ public abstract class AopProxyUtils {
 	/**
 	 * 如有必要，将给定参数适配为给定方法中的目标签名：特别是当给定的可变参数数组与方法中声明的可变参数
 	 * 的数组类型不匹配时。
-	 * @param method the target method
-	 * @param arguments the given arguments
-	 * @return a cloned argument array, or the original if no adaptation is needed
+	 * @param method 目标方法
+	 * @param arguments 给定的参数
+	 * @return 克隆的参数数组，如果无需适配则为原数组
 	 * @since 4.2.3
 	 */
 	static Object[] adaptArgumentsIfNecessary(Method method, @Nullable Object[] arguments) {

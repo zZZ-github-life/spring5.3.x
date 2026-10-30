@@ -36,7 +36,7 @@ public interface MessageSourceAware extends Aware {
 	 *
 	 * <p>在填充普通 Bean 属性之后、在诸如 InitializingBean 的 afterPropertiesSet 或自定义 init-method
 	 * 之类的初始化回调之前调用。在 ApplicationContextAware 的 setApplicationContext 之前调用。
-	 * @param messageSource message source to be used by this object
+	 * @param messageSource 此对象要使用的消息源
 	 */
 	void setMessageSource(MessageSource messageSource);
 

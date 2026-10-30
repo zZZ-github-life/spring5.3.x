@@ -29,8 +29,8 @@ import org.springframework.cache.interceptor.KeyGenerator;
  *
  * @author Stephane Nicoll
  * @since 4.1
- * @param <O> the operation type
- * @param <A> the annotation type
+ * @param <O> 操作类型
+ * @param <A> 注解类型
  */
 @SuppressWarnings("serial")
 abstract class AbstractKeyCacheInterceptor<O extends AbstractJCacheKeyOperation<A>, A extends Annotation>
@@ -43,8 +43,8 @@ abstract class AbstractKeyCacheInterceptor<O extends AbstractJCacheKeyOperation<
 
 	/**
 	 * 为指定的调用生成键。
-	 * @param context the context of the invocation
-	 * @return the key to use
+	 * @param context 调用的上下文
+	 * @return 要使用的键
 	 */
 	protected Object generateKey(CacheOperationInvocationContext<O> context) {
 		KeyGenerator keyGenerator = context.getOperation().getKeyGenerator();
@@ -57,8 +57,8 @@ abstract class AbstractKeyCacheInterceptor<O extends AbstractJCacheKeyOperation<
 
 	/**
 	 * 基于指定的调用创建 {@link CacheKeyInvocationContext}。
-	 * @param context the context of the invocation.
-	 * @return the related {@code CacheKeyInvocationContext}
+	 * @param context 调用的上下文。
+	 * @return 相关的 {@code CacheKeyInvocationContext}
 	 */
 	protected CacheKeyInvocationContext<A> createCacheKeyInvocationContext(CacheOperationInvocationContext<O> context) {
 		return new DefaultCacheKeyInvocationContext<>(context.getOperation(), context.getTarget(), context.getArgs());

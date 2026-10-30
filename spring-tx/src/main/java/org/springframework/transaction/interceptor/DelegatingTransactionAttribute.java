@@ -39,7 +39,7 @@ public abstract class DelegatingTransactionAttribute extends DelegatingTransacti
 
 	/**
 	 * 为给定的目标属性创建DelegatingTransactionAttribute。
-	 * @param targetAttribute the target TransactionAttribute to delegate to
+	 * @param targetAttribute 要委派到的目标 TransactionAttribute
 	 */
 	public DelegatingTransactionAttribute(TransactionAttribute targetAttribute) {
 		super(targetAttribute);

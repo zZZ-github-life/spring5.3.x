@@ -30,8 +30,8 @@ public interface SmartConnectionFactory extends ConnectionFactory {
 
 	/**
 	 * 是否应停止从此 ConnectionFactory 获取的 Connection？
-	 * @param con the Connection to check
-	 * @return whether a stop call is necessary
+	 * @param con 要检查的 Connection
+	 * @return 是否需要调用 stop
 	 * @see javax.jms.Connection#stop()
 	 */
 	boolean shouldStop(Connection con);

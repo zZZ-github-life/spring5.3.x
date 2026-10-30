@@ -45,8 +45,8 @@ public interface InterruptibleBatchPreparedStatementSetter extends BatchPrepared
 	 * <p><b>注意：</b>如果此方法返回{@code true}，在最后一次{@code setValues}调用期间
 	 * 可能已设置的任何参数都将被忽略！确保如果在{@code setValues}实现的<em>开始</em>处
 	 * 检测到耗尽，设置相应的内部标志，让此方法基于该标志返回{@code true}。
-	 * @param i index of the statement we're issuing in the batch, starting from 0
-	 * @return whether the batch is already exhausted
+	 * @param i 我们在批次中发出语句的索引，从 0 开始
+	 * @return 批次是否已耗尽
 	 * @see #setValues
 	 * @see org.springframework.jdbc.core.support.AbstractInterruptibleBatchPreparedStatementSetter#setValuesIfAvailable
 	 */

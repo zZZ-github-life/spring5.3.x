@@ -32,13 +32,13 @@ public interface MetadataAwareAspectInstanceFactory extends AspectInstanceFactor
 
 	/**
 	 * 获取此工厂切面的 AspectJ AspectMetadata。
-	 * @return the aspect metadata
+	 * @return 切面元数据
 	 */
 	AspectMetadata getAspectMetadata();
 
 	/**
 	 * 获取此工厂尽可能最佳的创建互斥体。
-	 * @return the mutex object (may be {@code null} for no mutex to use)
+	 * @return 互斥对象（可能为 {@code null}，表示不使用互斥）
 	 * @since 4.3
 	 */
 	@Nullable

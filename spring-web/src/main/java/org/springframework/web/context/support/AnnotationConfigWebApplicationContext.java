@@ -149,8 +149,7 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 	/**
 	 * 注册一个或多个要处理的组件类。
 	 * <p>注意，必须调用 {@link #refresh()} 才能让上下文完整处理新的类。
-	 * @param componentClasses one or more component classes,
-	 * e.g. {@link org.springframework.context.annotation.Configuration @Configuration} classes
+	 * @param componentClasses 一个或多个组件类，例如 {@link org.springframework.context.annotation.Configuration @Configuration} 类
 	 * @see #scan(String...)
 	 * @see #loadBeanDefinitions(DefaultListableBeanFactory)
 	 * @see #setConfigLocation(String)
@@ -165,7 +164,7 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 	/**
 	 * 在指定的基础包中执行扫描。
 	 * <p>注意，必须调用 {@link #refresh()} 才能让上下文完整处理新的类。
-	 * @param basePackages the packages to check for component classes
+	 * @param basePackages 要检查组件类的包
 	 * @see #loadBeanDefinitions(DefaultListableBeanFactory)
 	 * @see #register(Class...)
 	 * @see #setConfigLocation(String)
@@ -190,7 +189,7 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 	 * 及相关注解。
 	 * <p>除非在构造型注解中提供了 {@code value} 属性，否则配置类的 bean 定义会使用生成的
 	 * bean 定义名称注册。
-	 * @param beanFactory the bean factory to load bean definitions into
+	 * @param beanFactory 用于加载 Bean 定义的 Bean 工厂
 	 * @see #register(Class...)
 	 * @see #scan(String...)
 	 * @see #setConfigLocation(String)
@@ -261,7 +260,7 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 	 * 为给定的 bean 工厂构建一个 {@link AnnotatedBeanDefinitionReader}。
 	 * <p>应使用 {@code Environment}（如果需要）对其预配置，但此时不要配置 {@code BeanNameGenerator}
 	 * 或 {@code ScopeMetadataResolver}。
-	 * @param beanFactory the bean factory to load bean definitions into
+	 * @param beanFactory 用于加载 Bean 定义的 Bean 工厂
 	 * @since 4.1.9
 	 * @see #getEnvironment()
 	 * @see #getBeanNameGenerator()
@@ -275,7 +274,7 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 	 * 为给定的 bean 工厂构建一个 {@link ClassPathBeanDefinitionScanner}。
 	 * <p>应使用 {@code Environment}（如果需要）对其预配置，但此时不要配置 {@code BeanNameGenerator}
 	 * 或 {@code ScopeMetadataResolver}。
-	 * @param beanFactory the bean factory to load bean definitions into
+	 * @param beanFactory 用于加载 Bean 定义的 Bean 工厂
 	 * @since 4.1.9
 	 * @see #getEnvironment()
 	 * @see #getBeanNameGenerator()

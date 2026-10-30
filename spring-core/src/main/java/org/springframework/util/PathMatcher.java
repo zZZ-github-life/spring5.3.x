@@ -38,27 +38,27 @@ public interface PathMatcher {
 	 * 给定的 {@code path} 是否表示一个可由本接口实现进行匹配的模式？
 	 * <p>如果返回值为 {@code false}，则无需使用 {@link #match} 方法，因为对静态路径字符串进行直接相等
 	 * 比较会得到相同的结果。
-	 * @param path the path to check
-	 * @return {@code true} if the given {@code path} represents a pattern
+	 * @param path 要检查的路径
+	 * @return 如果给定的 {@code path} 表示模式，则返回 {@code true}
 	 */
 	boolean isPattern(String path);
 
 	/**
 	 * 根据此 PathMatcher 的匹配策略，将给定的 {@code path} 与给定的 {@code pattern} 进行匹配。
-	 * @param pattern the pattern to match against
-	 * @param path the path to test
-	 * @return {@code true} if the supplied {@code path} matched,
-	 * {@code false} if it didn't
+	 * @param pattern 要匹配的模式
+	 * @param path 要测试的路径
+	 * @return 如果所提供的 {@code path} 匹配则返回 {@code true}，
+	 * 不匹配则返回 {@code false}
 	 */
 	boolean match(String pattern, String path);
 
 	/**
 	 * 根据此 PathMatcher 的匹配策略，将给定的 {@code path} 与给定 {@code pattern} 的对应部分进行匹配。
 	 * <p>判断模式至少在给定基础路径的范围内是否匹配，并假定完整路径随后也可能匹配。
-	 * @param pattern the pattern to match against
-	 * @param path the path to test
-	 * @return {@code true} if the supplied {@code path} matched,
-	 * {@code false} if it didn't
+	 * @param pattern 要匹配的模式
+	 * @param path 要测试的路径
+	 * @return 如果所提供的 {@code path} 匹配则返回 {@code true}，
+	 * 不匹配则返回 {@code false}
 	 */
 	boolean matchStart(String pattern, String path);
 
@@ -71,10 +71,9 @@ public interface PathMatcher {
 	 * <p>简单的实现可以在模式为实际模式时原样返回给定的完整路径，并在模式不包含任何动态部分（即
 	 * {@code pattern} 参数是静态路径，不符合实际 {@link #isPattern pattern} 的条件）时返回空字符串。复
 	 * 杂的实现会区分给定路径模式中的静态部分和动态部分。
-	 * @param pattern the path pattern
-	 * @param path the full path to introspect
-	 * @return the pattern-mapped part of the given {@code path}
-	 * (never {@code null})
+	 * @param pattern 路径模式
+	 * @param path 要内省的完整路径
+	 * @return 给定 {@code path} 中由模式映射的部分（绝不为 {@code null}）
 	 */
 	String extractPathWithinPattern(String pattern, String path);
 
@@ -82,9 +81,9 @@ public interface PathMatcher {
 	 * 给定模式与完整路径，提取 URI 模板变量。URI 模板变量通过花括号（'{' 和 '}'）表示。
 	 * <p>例如：对于模式 "/hotels/{hotel}" 和路径 "/hotels/1"，此方法将返回包含 "hotel" &rarr; "1" 的映
 	 * 射。
-	 * @param pattern the path pattern, possibly containing URI templates
-	 * @param path the full path to extract template variables from
-	 * @return a map, containing variable names as keys; variables values as values
+	 * @param pattern 路径模式，可能包含 URI 模板
+	 * @param path 要从中提取模板变量的完整路径
+	 * @return 一个映射，以变量名作为键，以变量值作为值
 	 */
 	Map<String, String> extractUriTemplateVariables(String pattern, String path);
 
@@ -93,18 +92,18 @@ public interface PathMatcher {
 	 * <p>所使用的完整算法取决于底层实现，但通常返回的 {@code Comparator} 会通过
 	 * {@linkplain java.util.List#sort(java.util.Comparator) sort} 对列表排序，使更具体的模式排在通用模
 	 * 式之前。
-	 * @param path the full path to use for comparison
-	 * @return a comparator capable of sorting patterns in order of explicitness
+	 * @param path 用于比较的完整路径
+	 * @return 一个能够按明确程度对模式排序的比较器
 	 */
 	Comparator<String> getPatternComparator(String path);
 
 	/**
 	 * 将两个模式合并为一个返回的新模式。
 	 * <p>用于合并两个模式的完整算法取决于底层实现。
-	 * @param pattern1 the first pattern
-	 * @param pattern2 the second pattern
-	 * @return the combination of the two patterns
-	 * @throws IllegalArgumentException when the two patterns cannot be combined
+	 * @param pattern1 第一个模式
+	 * @param pattern2 第二个模式
+	 * @return 两个模式的组合
+	 * @throws IllegalArgumentException 当两个模式无法组合时
 	 */
 	String combine(String pattern1, String pattern2);
 

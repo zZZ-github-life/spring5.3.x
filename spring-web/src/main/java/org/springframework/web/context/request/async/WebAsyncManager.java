@@ -108,7 +108,7 @@ public final class WebAsyncManager {
 	 * 以准确反映请求的当前状态（例如在转发、请求/响应包装之后等）。不过，
 	 * 不应在并发处理进行中（即 {@link #isConcurrentHandlingStarted()} 为
 	 * {@code true} 时）设置此属性。
-	 * @param asyncWebRequest the web request to use
+	 * @param asyncWebRequest 要使用的 Web 请求
 	 */
 	public void setAsyncWebRequest(AsyncWebRequest asyncWebRequest) {
 		Assert.notNull(asyncWebRequest, "AsyncWebRequest must not be null");
@@ -143,8 +143,8 @@ public final class WebAsyncManager {
 
 	/**
 	 * 提供对并发处理结果的访问。
-	 * @return an Object, possibly an {@code Exception} or {@code Throwable} if
-	 * concurrent handling raised one.
+	 * @return 一个 Object；如果并发处理抛出了 {@code Exception} 或
+	 * {@code Throwable}，则可能是其中之一。
 	 * @see #clearConcurrentResult()
 	 */
 	public Object getConcurrentResult() {
@@ -161,8 +161,8 @@ public final class WebAsyncManager {
 
 	/**
 	 * 获取在给定键下注册的 {@link CallableProcessingInterceptor}。
-	 * @param key the key
-	 * @return the interceptor registered under that key, or {@code null} if none
+	 * @param key 键
+	 * @return 在该键下注册的拦截器；如果没有则为 {@code null}
 	 */
 	@Nullable
 	public CallableProcessingInterceptor getCallableInterceptor(Object key) {
@@ -171,8 +171,8 @@ public final class WebAsyncManager {
 
 	/**
 	 * 获取在给定键下注册的 {@link DeferredResultProcessingInterceptor}。
-	 * @param key the key
-	 * @return the interceptor registered under that key, or {@code null} if none
+	 * @param key 键
+	 * @return 在该键下注册的拦截器；如果没有则为 {@code null}
 	 */
 	@Nullable
 	public DeferredResultProcessingInterceptor getDeferredResultInterceptor(Object key) {
@@ -181,8 +181,8 @@ public final class WebAsyncManager {
 
 	/**
 	 * 在给定键下注册 {@link CallableProcessingInterceptor}。
-	 * @param key the key
-	 * @param interceptor the interceptor to register
+	 * @param key 键
+	 * @param interceptor 要注册的拦截器
 	 */
 	public void registerCallableInterceptor(Object key, CallableProcessingInterceptor interceptor) {
 		Assert.notNull(key, "Key is required");
@@ -192,7 +192,7 @@ public final class WebAsyncManager {
 
 	/**
 	 * 注册不带键的 {@link CallableProcessingInterceptor}。键由类名和哈希码派生。
-	 * @param interceptors one or more interceptors to register
+	 * @param interceptors 要注册的一个或多个拦截器
 	 */
 	public void registerCallableInterceptors(CallableProcessingInterceptor... interceptors) {
 		Assert.notNull(interceptors, "A CallableProcessingInterceptor is required");
@@ -204,8 +204,8 @@ public final class WebAsyncManager {
 
 	/**
 	 * 在给定键下注册 {@link DeferredResultProcessingInterceptor}。
-	 * @param key the key
-	 * @param interceptor the interceptor to register
+	 * @param key 键
+	 * @param interceptor 要注册的拦截器
 	 */
 	public void registerDeferredResultInterceptor(Object key, DeferredResultProcessingInterceptor interceptor) {
 		Assert.notNull(key, "Key is required");
@@ -217,7 +217,7 @@ public final class WebAsyncManager {
 	 * 注册一个或多个未指定键的
 	 * {@link DeferredResultProcessingInterceptor DeferredResultProcessingInterceptors}。默认键由拦截
 	 * 器类名和哈希码派生。
-	 * @param interceptors one or more interceptors to register
+	 * @param interceptors 要注册的一个或多个拦截器
 	 */
 	public void registerDeferredResultInterceptors(DeferredResultProcessingInterceptor... interceptors) {
 		Assert.notNull(interceptors, "A DeferredResultProcessingInterceptor is required");
@@ -242,10 +242,10 @@ public final class WebAsyncManager {
 	 * 启动并发请求处理，并使用 {@link #setTaskExecutor(AsyncTaskExecutor) AsyncTaskExecutor} 执行给
 	 * 定任务。任务执行的结果会被保存，并分派请求以恢复对该结果的处理。如果任务抛出 Exception，则保存
 	 * 的结果将是所抛出的 Exception。
-	 * @param callable a unit of work to be executed asynchronously
-	 * @param processingContext additional context to save that can be accessed
-	 * via {@link #getConcurrentResultContext()}
-	 * @throws Exception if concurrent processing failed to start
+	 * @param callable 要异步执行的工作单元
+	 * @param processingContext 要保存的额外上下文，可通过
+	 * {@link #getConcurrentResultContext()} 访问
+	 * @throws Exception 如果并发处理启动失败
 	 * @see #getConcurrentResult()
 	 * @see #getConcurrentResultContext()
 	 */
@@ -259,10 +259,10 @@ public final class WebAsyncManager {
 	 * 在委托给 {@link #startCallableProcessing(Callable, Object...)} 之前，
 	 * 使用给定的 {@link WebAsyncTask} 配置任务执行器以及
 	 * {@code AsyncWebRequest} 的超时值。
-	 * @param webAsyncTask a WebAsyncTask containing the target {@code Callable}
-	 * @param processingContext additional context to save that can be accessed
-	 * via {@link #getConcurrentResultContext()}
-	 * @throws Exception if concurrent processing failed to start
+	 * @param webAsyncTask 包含目标 {@code Callable} 的 WebAsyncTask
+	 * @param processingContext 要保存的额外上下文，可通过
+	 * {@link #getConcurrentResultContext()} 访问
+	 * @throws Exception 如果并发处理启动失败
 	 */
 	public void startCallableProcessing(final WebAsyncTask<?> webAsyncTask, Object... processingContext)
 			throws Exception {
@@ -394,10 +394,10 @@ public final class WebAsyncManager {
 	 * 该处理器会保存结果并分派请求以恢复对该结果的处理。{@code AsyncWebRequest} 还会被更新：添加一个
 	 * 使 {@code DeferredResult} 过期的完成处理器，以及一个超时处理器（假定 {@code DeferredResult} 具
 	 * 有默认的超时结果）。
-	 * @param deferredResult the DeferredResult instance to initialize
-	 * @param processingContext additional context to save that can be accessed
-	 * via {@link #getConcurrentResultContext()}
-	 * @throws Exception if concurrent processing failed to start
+	 * @param deferredResult 要初始化的 DeferredResult 实例
+	 * @param processingContext 要保存的额外上下文，可通过
+	 * {@link #getConcurrentResultContext()} 访问
+	 * @throws Exception 如果并发处理启动失败
 	 * @see #getConcurrentResult()
 	 * @see #getConcurrentResultContext()
 	 */

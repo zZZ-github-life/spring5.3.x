@@ -128,10 +128,10 @@ public class ConfigurableMimeFileTypeMap extends FileTypeMap implements Initiali
 	 * 根据给定映射文件中的映射和给定的映射条目编译一个 {@link FileTypeMap}。
 	 * <p>默认实现创建一个 Activation Framework 的 {@link MimetypesFileTypeMap}，
 	 * 传入来自映射资源的 InputStream（如果有）并以编程方式注册映射行。
-	 * @param mappingLocation a {@code mime.types} mapping resource (can be {@code null})
-	 * @param mappings an array of MIME type mapping lines (can be {@code null})
-	 * @return the compiled FileTypeMap
-	 * @throws IOException if resource access failed
+	 * @param mappingLocation {@code mime.types} 映射资源（可以为 {@code null}）
+	 * @param mappings MIME 类型映射行的数组（可以为 {@code null}）
+	 * @return 编译后的 FileTypeMap
+	 * @throws IOException 资源访问失败时
 	 * @see javax.activation.MimetypesFileTypeMap#MimetypesFileTypeMap(java.io.InputStream)
 	 * @see javax.activation.MimetypesFileTypeMap#addMimeTypes(String)
 	 */

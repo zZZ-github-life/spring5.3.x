@@ -39,7 +39,7 @@ public class SingletonAspectInstanceFactory implements AspectInstanceFactory, Se
 
 	/**
 	 * 为给定的切面实例创建一个新的 SingletonAspectInstanceFactory。
-	 * @param aspectInstance the singleton aspect instance
+	 * @param aspectInstance 单例切面实例
 	 */
 	public SingletonAspectInstanceFactory(Object aspectInstance) {
 		Assert.notNull(aspectInstance, "Aspect instance must not be null");
@@ -76,7 +76,7 @@ public class SingletonAspectInstanceFactory implements AspectInstanceFactory, Se
 	 * 确定当切面实例未通过实现 {@link org.springframework.core.Ordered} 接口来表达实例特定顺序时所使用
 	 * 的回退顺序。
 	 * <p>默认实现仅返回 {@code Ordered.LOWEST_PRECEDENCE}。
-	 * @param aspectClass the aspect class
+	 * @param aspectClass 切面类
 	 */
 	protected int getOrderForAspectClass(Class<?> aspectClass) {
 		return Ordered.LOWEST_PRECEDENCE;

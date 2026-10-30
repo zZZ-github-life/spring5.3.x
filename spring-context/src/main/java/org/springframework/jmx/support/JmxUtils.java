@@ -67,8 +67,8 @@ public abstract class JmxUtils {
 	/**
 	 * 尝试查找本地运行的 {@code MBeanServer}。如果找不到任何 {@code MBeanServer}，则失败。如果找到多个
 	 * {@code MBeanServer}，会记录一条警告，并返回列表中的第一个。
-	 * @return the {@code MBeanServer} if found
-	 * @throws MBeanServerNotFoundException if no {@code MBeanServer} could be found
+	 * @return 找到的 {@code MBeanServer}（如果存在）
+	 * @throws MBeanServerNotFoundException 如果找不到任何 {@code MBeanServer}
 	 * @see javax.management.MBeanServerFactory#findMBeanServer
 	 */
 	public static MBeanServer locateMBeanServer() throws MBeanServerNotFoundException {
@@ -78,11 +78,11 @@ public abstract class JmxUtils {
 	/**
 	 * 尝试查找本地运行的 {@code MBeanServer}。如果找不到任何 {@code MBeanServer}，则失败。如果找到多个
 	 * {@code MBeanServer}，会记录一条警告，并返回列表中的第一个。
-	 * @param agentId the agent identifier of the MBeanServer to retrieve.
-	 * If this parameter is {@code null}, all registered MBeanServers are considered.
-	 * If the empty String is given, the platform MBeanServer will be returned.
-	 * @return the {@code MBeanServer} if found
-	 * @throws MBeanServerNotFoundException if no {@code MBeanServer} could be found
+	 * @param agentId 要获取的 MBeanServer 的代理标识符。
+	 * 如果该参数为 {@code null}，则考虑所有已注册的 MBeanServer。
+	 * 如果给定空字符串，则返回平台 MBeanServer。
+	 * @return 找到的 {@code MBeanServer}（如果存在）
+	 * @throws MBeanServerNotFoundException 如果找不到任何 {@code MBeanServer}
 	 * @see javax.management.MBeanServerFactory#findMBeanServer(String)
 	 */
 	public static MBeanServer locateMBeanServer(@Nullable String agentId) throws MBeanServerNotFoundException {
@@ -127,9 +127,9 @@ public abstract class JmxUtils {
 
 	/**
 	 * 将 {@code MBeanParameterInfo} 数组转换为与各参数对应的 {@code Class} 实例数组。
-	 * @param paramInfo the JMX parameter info
-	 * @return the parameter types as classes
-	 * @throws ClassNotFoundException if a parameter type could not be resolved
+	 * @param paramInfo JMX 参数信息
+	 * @return 以类表示的参数类型
+	 * @throws ClassNotFoundException 如果无法解析某个参数类型
 	 */
 	@Nullable
 	public static Class<?>[] parameterInfoToTypes(@Nullable MBeanParameterInfo[] paramInfo)
@@ -140,10 +140,10 @@ public abstract class JmxUtils {
 
 	/**
 	 * 将 {@code MBeanParameterInfo} 数组转换为与各参数对应的 {@code Class} 实例数组。
-	 * @param paramInfo the JMX parameter info
-	 * @param classLoader the ClassLoader to use for loading parameter types
-	 * @return the parameter types as classes
-	 * @throws ClassNotFoundException if a parameter type could not be resolved
+	 * @param paramInfo JMX 参数信息
+	 * @param classLoader 用于加载参数类型的 ClassLoader
+	 * @return 以类表示的参数类型
+	 * @throws ClassNotFoundException 如果无法解析某个参数类型
 	 */
 	@Nullable
 	public static Class<?>[] parameterInfoToTypes(
@@ -163,8 +163,8 @@ public abstract class JmxUtils {
 	/**
 	 * 创建一个表示方法参数签名的 {@code String[]}。数组中的每个元素是该方法签名中对应参数的完全限定类
 	 * 名。
-	 * @param method the method to build an argument signature for
-	 * @return the signature as array of argument types
+	 * @param method 要为其构建参数签名的方法
+	 * @return 以参数类型数组表示的签名
 	 */
 	public static String[] getMethodSignature(Method method) {
 		Class<?>[] types = method.getParameterTypes();
@@ -179,9 +179,9 @@ public abstract class JmxUtils {
 	 * 返回给定 JavaBeans 属性要使用的 JMX 属性名。
 	 * <p>使用严格大小写时，带有 {@code getFoo()} 这类 getter 方法的 JavaBean 属性会转换为名为
 	 * {@code Foo} 的属性。禁用严格大小写后，{@code getFoo()} 将只转换为 {@code foo}。
-	 * @param property the JavaBeans property descriptor
-	 * @param useStrictCasing whether to use strict casing
-	 * @return the JMX attribute name to use
+	 * @param property JavaBeans 属性描述符
+	 * @param useStrictCasing 是否使用严格的大小写形式
+	 * @return 要使用的 JMX 属性名
 	 */
 	public static String getAttributeName(PropertyDescriptor property, boolean useStrictCasing) {
 		if (useStrictCasing) {
@@ -198,10 +198,10 @@ public abstract class JmxUtils {
 	 * 例提供唯一的 {@link ObjectName}。当基于
 	 * {@link org.springframework.jmx.export.naming.ObjectNamingStrategy} 提供的模板值，为一组受管资源
 	 * 在运行时生成 {@link ObjectName ObjectNames} 时很有用。
-	 * @param objectName the original JMX ObjectName
-	 * @param managedResource the MBean instance
-	 * @return an ObjectName with the MBean identity added
-	 * @throws MalformedObjectNameException in case of an invalid object name specification
+	 * @param objectName 原始 JMX ObjectName
+	 * @param managedResource MBean 实例
+	 * @return 添加了 MBean 标识后的 ObjectName
+	 * @throws MalformedObjectNameException 在对象名规范无效的情况下
 	 * @see org.springframework.util.ObjectUtils#getIdentityHexString(Object)
 	 */
 	public static ObjectName appendIdentityToObjectName(ObjectName objectName, Object managedResource)
@@ -215,8 +215,8 @@ public abstract class JmxUtils {
 	/**
 	 * 返回给定 Bean 要暴露的类或接口。这是将要在其中搜索属性和操作的类（例如，检查注解）。
 	 * <p>此实现对于 CGLIB 代理返回其父类，其他情况（JDK 代理或普通 Bean 类）返回给定 Bean 的类。
-	 * @param managedBean the bean instance (might be an AOP proxy)
-	 * @return the bean class to expose
+	 * @param managedBean Bean 实例（可能是 AOP 代理）
+	 * @return 要暴露的 Bean 类
 	 * @see org.springframework.util.ClassUtils#getUserClass(Object)
 	 */
 	public static Class<?> getClassToExpose(Object managedBean) {
@@ -226,8 +226,8 @@ public abstract class JmxUtils {
 	/**
 	 * 返回给定 Bean 类要暴露的类或接口。这是将要在其中搜索属性和操作的类（例如，检查注解）。
 	 * <p>此实现对于 CGLIB 代理返回其父类，其他情况（JDK 代理或普通 Bean 类）返回给定的 Bean 类本身。
-	 * @param clazz the bean class (might be an AOP proxy class)
-	 * @return the bean class to expose
+	 * @param clazz Bean 类（可能是 AOP 代理类）
+	 * @return 要暴露的 Bean 类
 	 * @see org.springframework.util.ClassUtils#getUserClass(Class)
 	 */
 	public static Class<?> getClassToExpose(Class<?> clazz) {
@@ -238,8 +238,8 @@ public abstract class JmxUtils {
 	 * 判断给定的 Bean 类是否本身就可作为 MBean。
 	 * <p>此实现会检查 {@link javax.management.DynamicMBean} 类，以及带有对应 "*MBean" 接口（标准 MBean）
 	 * 或对应 "*MXBean" 接口（Java MXBean）的类。
-	 * @param clazz the bean class to analyze
-	 * @return whether the class qualifies as an MBean
+	 * @param clazz 要分析的 Bean 类
+	 * @return 该类是否符合 MBean 的要求
 	 * @see org.springframework.jmx.export.MBeanExporter#isMBean(Class)
 	 */
 	public static boolean isMBean(@Nullable Class<?> clazz) {
@@ -250,8 +250,8 @@ public abstract class JmxUtils {
 
 	/**
 	 * 返回给定类的标准 MBean 接口（如果有），即名称与给定类的类名匹配但带有 "MBean" 后缀的接口。
-	 * @param clazz the class to check
-	 * @return the Standard MBean interface for the given class
+	 * @param clazz 要检查的类
+	 * @return 给定类的 Standard MBean 接口
 	 */
 	@Nullable
 	public static Class<?> getMBeanInterface(@Nullable Class<?> clazz) {
@@ -270,8 +270,8 @@ public abstract class JmxUtils {
 
 	/**
 	 * 返回给定类的 Java MXBean 接口（如果有），即名称以 "MXBean" 结尾和/或带有相应 MXBean 注解的接口。
-	 * @param clazz the class to check
-	 * @return whether there is an MXBean interface for the given class
+	 * @param clazz 要检查的类
+	 * @return 给定类是否存在 MXBean 接口
 	 */
 	@Nullable
 	public static Class<?> getMXBeanInterface(@Nullable Class<?> clazz) {

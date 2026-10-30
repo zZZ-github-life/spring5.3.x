@@ -46,7 +46,7 @@ public class TransactionAwareCacheDecorator implements Cache {
 
 	/**
 	 * 为给定的目标 Cache 创建一个新的 TransactionAwareCache。
-	 * @param targetCache the target Cache to decorate
+	 * @param targetCache 要装饰的目标 Cache
 	 */
 	public TransactionAwareCacheDecorator(Cache targetCache) {
 		Assert.notNull(targetCache, "Target Cache must not be null");

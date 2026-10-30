@@ -102,7 +102,7 @@ public class ReactorNettyRequestUpgradeStrategy implements RequestUpgradeStrateg
 	 * {@link io.netty.handler.codec.http.websocketx.WebSocketServerHandshakerFactory
 	 * WebSocketServerHandshakerFactory} 构造函数中同名参数。
 	 * <p>默认设置为 65536 (64K)。
-	 * @param maxFramePayloadLength the max length for frames.
+	 * @param maxFramePayloadLength 帧的最大长度。
 	 * @since 5.1
 	 * @deprecated as of 5.2.6 in favor of providing a supplier of
 	 * {@link reactor.netty.http.server.WebsocketServerSpec.Builder} with a
@@ -129,7 +129,7 @@ public class ReactorNettyRequestUpgradeStrategy implements RequestUpgradeStrateg
 	 * 这在代理中允许 ping 和 pong 帧通过时很有用。
 	 * <p>默认情况下此值为 {@code false}，此时 ping 帧由 Reactor Netty 自动处理。
 	 * 如果设置为 {@code true}，ping 帧将传递给 {@link WebSocketHandler}。
-	 * @param handlePing whether to let Ping frames through for handling
+	 * @param handlePing 是否让 Ping 帧通过以便处理
 	 * @since 5.2.4
 	 * @deprecated as of 5.2.6 in favor of providing a supplier of
 	 * {@link reactor.netty.http.server.WebsocketServerSpec.Builder} with a

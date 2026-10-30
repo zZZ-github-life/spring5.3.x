@@ -306,7 +306,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	/**
 	 * 基于当前实例创建一个新实例，同时添加给定的
 	 * 自定义条件。
-	 * @param customCondition the custom condition to add
+	 * @param customCondition 要添加的自定义条件
 	 * @since 5.3
 	 */
 	public RequestMappingInfo addCustomCondition(RequestCondition<?> customCondition) {
@@ -321,7 +321,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	 * 将 "this" 请求映射信息（即当前实例）与
 	 * 另一个请求映射信息实例组合起来。
 	 * <p>示例：组合类型级别和方法级别的请求映射。
-	 * @return a new request mapping info instance; never {@code null}
+	 * @return 新的请求映射信息实例；永不为 {@code null}
 	 */
 	@Override
 	public RequestMappingInfo combine(RequestMappingInfo other) {
@@ -366,7 +366,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	 * 新请求映射信息。
 	 * <p>例如，返回的实例可能包含与当前请求匹配的 URL
 	 * 模式子集，并按最匹配的模式排在前面进行排序。
-	 * @return a new instance in case of a match; or {@code null} otherwise
+	 * @return 匹配时为新实例；否则为 {@code null}
 	 */
 	@Override
 	@Nullable
@@ -529,7 +529,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 	/**
 	 * 返回一个构建器，用于通过修改此实例来创建新的 RequestMappingInfo。
-	 * @return a builder to create a new, modified instance
+	 * @return 用于创建新的修改后实例的构建器
 	 * @since 5.3.4
 	 */
 	public Builder mutate() {
@@ -539,7 +539,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 	/**
 	 * 使用给定路径创建一个新的 {@code RequestMappingInfo.Builder}。
-	 * @param paths the paths to use
+	 * @param paths 要使用的路径
 	 * @since 4.2
 	 */
 	public static Builder paths(String... paths) {

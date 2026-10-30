@@ -40,7 +40,7 @@ public class ModelAndViewDefiningException extends ServletException {
 	/**
 	 * 使用给定的 ModelAndView 创建一个新的 ModelAndViewDefiningException，
 	 * 通常表示特定的错误页面。
-	 * @param modelAndView the ModelAndView with view to forward to and model to expose
+	 * @param modelAndView 包含要转发到的视图和要暴露的模型的 ModelAndView
 	 */
 	public ModelAndViewDefiningException(ModelAndView modelAndView) {
 		Assert.notNull(modelAndView, "ModelAndView must not be null in ModelAndViewDefiningException");

@@ -64,8 +64,8 @@ public abstract class JmsGatewaySupport implements InitializingBean {
 	 * 为给定的 ConnectionFactory 创建 JmsTemplate。
 	 * 仅在为网关填充 ConnectionFactory 引用时调用。
 	 * <p>可在子类中重写，以提供具有不同配置的 JmsTemplate 实例。
-	 * @param connectionFactory the JMS ConnectionFactory to create a JmsTemplate for
-	 * @return the new JmsTemplate instance
+	 * @param connectionFactory 要为其创建 JmsTemplate 的 JMS ConnectionFactory
+	 * @return 新的 JmsTemplate 实例
 	 * @see #setConnectionFactory
 	 */
 	protected JmsTemplate createJmsTemplate(ConnectionFactory connectionFactory) {
@@ -112,7 +112,7 @@ public abstract class JmsGatewaySupport implements InitializingBean {
 	/**
 	 * 子类可以重写此方法以实现自定义初始化行为。
 	 * 在填充此实例的 bean 属性之后调用。
-	 * @throws java.lang.Exception if initialization fails
+	 * @throws java.lang.Exception 如果初始化失败
 	 */
 	protected void initGateway() throws Exception {
 	}

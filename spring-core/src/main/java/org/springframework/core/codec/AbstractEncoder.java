@@ -32,7 +32,7 @@ import org.springframework.util.MimeType;
  * @author Sebastien Deleuze
  * @author Arjen Poutsma
  * @since 5.0
- * @param <T> the element type
+ * @param <T> 元素类型
  */
 public abstract class AbstractEncoder<T> implements Encoder<T> {
 
@@ -48,7 +48,7 @@ public abstract class AbstractEncoder<T> implements Encoder<T> {
 
 	/**
 	 * 设置一个替代日志记录器，用以替代基于类名的日志记录器。
-	 * @param logger the logger to use
+	 * @param logger 要使用的日志记录器
 	 * @since 5.1
 	 */
 	public void setLogger(Log logger) {

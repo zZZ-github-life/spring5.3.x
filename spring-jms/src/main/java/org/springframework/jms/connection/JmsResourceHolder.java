@@ -76,8 +76,7 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 
 	/**
 	 * 创建一个新的 JmsResourceHolder，可随时向其添加资源。
-	 * @param connectionFactory the JMS ConnectionFactory that this
-	 * resource holder is associated with (may be {@code null})
+	 * @param connectionFactory 此资源持有者关联的 JMS ConnectionFactory（可为 {@code null}）
 	 */
 	public JmsResourceHolder(@Nullable ConnectionFactory connectionFactory) {
 		this.connectionFactory = connectionFactory;
@@ -85,7 +84,7 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 
 	/**
 	 * 为给定的 JMS Session 创建一个新的 JmsResourceHolder。
-	 * @param session the JMS Session
+	 * @param session 该 JMS Session
 	 */
 	public JmsResourceHolder(Session session) {
 		addSession(session);
@@ -94,8 +93,8 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 
 	/**
 	 * 为给定的 JMS 资源创建一个新的 JmsResourceHolder。
-	 * @param connection the JMS Connection
-	 * @param session the JMS Session
+	 * @param connection 该 JMS Connection
+	 * @param session 该 JMS Session
 	 */
 	public JmsResourceHolder(Connection connection, Session session) {
 		addConnection(connection);
@@ -105,10 +104,9 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 
 	/**
 	 * 为给定的 JMS 资源创建一个新的 JmsResourceHolder。
-	 * @param connectionFactory the JMS ConnectionFactory that this
-	 * resource holder is associated with (may be {@code null})
-	 * @param connection the JMS Connection
-	 * @param session the JMS Session
+	 * @param connectionFactory 此资源持有者关联的 JMS ConnectionFactory（可为 {@code null}）
+	 * @param connection 该 JMS Connection
+	 * @param session 该 JMS Session
 	 */
 	public JmsResourceHolder(@Nullable ConnectionFactory connectionFactory, Connection connection, Session session) {
 		this.connectionFactory = connectionFactory;
@@ -226,7 +224,7 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 
 	/**
 	 * 提交此资源持有器的所有 Session。
-	 * @throws JMSException if thrown from a Session commit attempt
+	 * @throws JMSException 如果从 Session 提交尝试中抛出
 	 * @see Session#commit()
 	 */
 	public void commitAll() throws JMSException {

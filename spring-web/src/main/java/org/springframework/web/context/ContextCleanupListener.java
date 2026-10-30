@@ -56,7 +56,7 @@ public class ContextCleanupListener implements ServletContextListener {
 	/**
 	 * 查找所有实现了 {@link DisposableBean} 的 Spring 内部 ServletContext 属性，
 	 * 并对它们调用 destroy 方法。
-	 * @param servletContext the ServletContext to check
+	 * @param servletContext 要检查的 ServletContext
 	 * @see DisposableBean#destroy()
 	 */
 	static void cleanupAttributes(ServletContext servletContext) {

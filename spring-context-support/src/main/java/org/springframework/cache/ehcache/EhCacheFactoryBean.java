@@ -266,8 +266,8 @@ public class EhCacheFactoryBean extends CacheConfiguration implements FactoryBea
 
 	/**
 	 * 如有必要，装饰给定的 Cache。
-	 * @param cache the raw Cache object, based on the configuration of this FactoryBean
-	 * @return the (potentially decorated) cache object to be registered with the CacheManager
+	 * @param cache 原始 Cache 对象，基于此 FactoryBean 的配置
+	 * @return 要注册到 CacheManager 的（可能已装饰的）缓存对象
 	 */
 	protected Ehcache decorateCache(Ehcache cache) {
 		if (this.cacheEntryFactory != null) {

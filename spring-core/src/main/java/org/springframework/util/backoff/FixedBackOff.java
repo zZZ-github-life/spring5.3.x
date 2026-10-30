@@ -47,8 +47,8 @@ public class FixedBackOff implements BackOff {
 
 	/**
 	 * 创建一个实例。
-	 * @param interval the interval between two attempts
-	 * @param maxAttempts the maximum number of attempts
+	 * @param interval 两次尝试之间的间隔
+	 * @param maxAttempts 最大尝试次数
 	 */
 	public FixedBackOff(long interval, long maxAttempts) {
 		this.interval = interval;

@@ -41,8 +41,8 @@ public class BeanInstantiationException extends FatalBeanException {
 
 	/**
 	 * 创建一个新的 BeanInstantiationException。
-	 * @param beanClass the offending bean class
-	 * @param msg the detail message
+	 * @param beanClass 出错的 Bean 类
+	 * @param msg 详细消息
 	 */
 	public BeanInstantiationException(Class<?> beanClass, String msg) {
 		this(beanClass, msg, null);
@@ -50,9 +50,9 @@ public class BeanInstantiationException extends FatalBeanException {
 
 	/**
 	 * 创建一个新的 BeanInstantiationException。
-	 * @param beanClass the offending bean class
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param beanClass 出错的 Bean 类
+	 * @param msg 详细消息
+	 * @param cause 根本原因
 	 */
 	public BeanInstantiationException(Class<?> beanClass, String msg, @Nullable Throwable cause) {
 		super("Failed to instantiate [" + beanClass.getName() + "]: " + msg, cause);
@@ -63,9 +63,9 @@ public class BeanInstantiationException extends FatalBeanException {
 
 	/**
 	 * 创建一个新的 BeanInstantiationException。
-	 * @param constructor the offending constructor
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param constructor 出错的构造函数
+	 * @param msg 详细消息
+	 * @param cause 根本原因
 	 * @since 4.3
 	 */
 	public BeanInstantiationException(Constructor<?> constructor, String msg, @Nullable Throwable cause) {
@@ -77,10 +77,10 @@ public class BeanInstantiationException extends FatalBeanException {
 
 	/**
 	 * 创建一个新的 BeanInstantiationException。
-	 * @param constructingMethod the delegate for bean construction purposes
-	 * (typically, but not necessarily, a static factory method)
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param constructingMethod 用于 Bean 构造的委托
+	 * （通常是静态工厂方法，但并不一定）
+	 * @param msg 详细消息
+	 * @param cause 根本原因
 	 * @since 4.3
 	 */
 	public BeanInstantiationException(Method constructingMethod, String msg, @Nullable Throwable cause) {
@@ -93,7 +93,7 @@ public class BeanInstantiationException extends FatalBeanException {
 
 	/**
 	 * 返回出错的 Bean 类（永不为 {@code null}）。
-	 * @return the class that was to be instantiated
+	 * @return 原本要实例化的类
 	 */
 	public Class<?> getBeanClass() {
 		return this.beanClass;
@@ -101,8 +101,8 @@ public class BeanInstantiationException extends FatalBeanException {
 
 	/**
 	 * 返回出错的构造方法（如果已知）。
-	 * @return the constructor in use, or {@code null} in case of a
-	 * factory method or in case of default instantiation
+	 * @return 正在使用的构造函数；
+	 * 如果是工厂方法或默认实例化则为 {@code null}
 	 * @since 4.3
 	 */
 	@Nullable
@@ -112,8 +112,8 @@ public class BeanInstantiationException extends FatalBeanException {
 
 	/**
 	 * 返回用于 Bean 构造的委托对象（如果已知）。
-	 * @return the method in use (typically a static factory method),
-	 * or {@code null} in case of constructor-based instantiation
+	 * @return 正在使用的方法（通常是静态工厂方法），
+	 * 如果是基于构造函数的实例化则为 {@code null}
 	 * @since 4.3
 	 */
 	@Nullable

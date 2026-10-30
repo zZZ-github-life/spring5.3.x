@@ -104,8 +104,8 @@ public class MultipartHttpMessageWriter extends MultipartWriterSupport
 	/**
 	 * 使用显式的部件序列化写入器列表以及纯表单数据写入器的构造函数，
 	 * 后者在未指定媒体类型且实际 Map 仅包含 String 值时作为后备。
-	 * @param partWriters the writers for serializing parts
-	 * @param formWriter the fallback writer for form data, {@code null} by default
+	 * @param partWriters 用于序列化各部分的写入器
+	 * @param formWriter 表单数据的备用写入器，默认为 {@code null}
 	 */
 	public MultipartHttpMessageWriter(List<HttpMessageWriter<?>> partWriters,
 			@Nullable  HttpMessageWriter<MultiValueMap<String, String>> formWriter) {

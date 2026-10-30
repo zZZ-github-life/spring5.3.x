@@ -28,10 +28,9 @@ public interface BeanNameGenerator {
 
 	/**
 	 * 为给定 Bean 定义生成 Bean 名称。
-	 * @param definition the bean definition to generate a name for
-	 * @param registry the bean definition registry that the given definition
-	 * is supposed to be registered with
-	 * @return the generated bean name
+	 * @param definition 要为其生成名称的 Bean 定义
+	 * @param registry 给定的定义应注册到的 Bean 定义注册表
+	 * @return 生成的 Bean 名称
 	 */
 	String generateBeanName(BeanDefinition definition, BeanDefinitionRegistry registry);
 

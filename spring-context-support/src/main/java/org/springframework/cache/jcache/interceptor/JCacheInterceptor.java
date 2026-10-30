@@ -54,8 +54,8 @@ public class JCacheInterceptor extends JCacheAspectSupport implements MethodInte
 
 	/**
 	 * 使用给定的错误处理器构造一个新的 {@code JCacheInterceptor}。
-	 * @param errorHandler a supplier for the error handler to use,
-	 * applying the default error handler if the supplier is not resolvable
+	 * @param errorHandler 要使用的错误处理器的提供器，
+	 * 如果该提供器无法解析，则应用默认错误处理器
 	 * @since 5.1
 	 */
 	public JCacheInterceptor(@Nullable Supplier<CacheErrorHandler> errorHandler) {

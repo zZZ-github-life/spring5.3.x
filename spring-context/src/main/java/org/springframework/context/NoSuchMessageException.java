@@ -28,8 +28,8 @@ public class NoSuchMessageException extends RuntimeException {
 
 	/**
 	 * 创建一个新异常。
-	 * @param code the code that could not be resolved for given locale
-	 * @param locale the locale that was used to search for the code within
+	 * @param code 在给定区域设置下无法解析的代码
+	 * @param locale 在其中搜索该代码所使用的区域设置
 	 */
 	public NoSuchMessageException(String code, Locale locale) {
 		super("No message found under code '" + code + "' for locale '" + locale + "'.");
@@ -37,7 +37,7 @@ public class NoSuchMessageException extends RuntimeException {
 
 	/**
 	 * 创建一个新异常。
-	 * @param code the code that could not be resolved for given locale
+	 * @param code 在给定区域设置下无法解析的代码
 	 */
 	public NoSuchMessageException(String code) {
 		super("No message found under code '" + code + "' for locale '" + Locale.getDefault() + "'.");

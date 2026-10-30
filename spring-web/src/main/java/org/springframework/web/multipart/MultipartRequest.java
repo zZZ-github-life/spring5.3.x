@@ -36,45 +36,43 @@ public interface MultipartRequest {
 	/**
 	 * 返回一个包含此请求中 multipart 文件参数名称的 String 迭代器。
 	 * 这些名称是表单的字段名（与普通参数类似），而不是原始文件名。
-	 * @return the names of the files
+	 * @return 文件的名称
 	 */
 	Iterator<String> getFileNames();
 
 	/**
 	 * 返回此请求中某个上传文件的内容及描述，如果该文件不存在则返回 {@code null}。
-	 * @param name a String specifying the parameter name of the multipart file
-	 * @return the uploaded content in the form of a {@link MultipartFile} object
+	 * @param name 指定 multipart 文件参数名称的 String
+	 * @return 以 {@link MultipartFile} 对象形式表示的上传内容
 	 */
 	@Nullable
 	MultipartFile getFile(String name);
 
 	/**
 	 * 返回此请求中多个上传文件的内容及描述，如果不存在则返回空列表。
-	 * @param name a String specifying the parameter name of the multipart file
-	 * @return the uploaded content in the form of a {@link MultipartFile} list
+	 * @param name 指定 multipart 文件参数名称的 String
+	 * @return 以 {@link MultipartFile} 列表形式表示的上传内容
 	 * @since 3.0
 	 */
 	List<MultipartFile> getFiles(String name);
 
 	/**
 	 * 返回此请求中所含 multipart 文件的 {@link java.util.Map}。
-	 * @return a map containing the parameter names as keys, and the
-	 * {@link MultipartFile} objects as values
+	 * @return 以参数名称为键、以 {@link MultipartFile} 对象为值的映射
 	 */
 	Map<String, MultipartFile> getFileMap();
 
 	/**
 	 * 返回此请求中所含 multipart 文件的 {@link MultiValueMap}。
-	 * @return a map containing the parameter names as keys, and a list of
-	 * {@link MultipartFile} objects as values
+	 * @return 以参数名称为键、以 {@link MultipartFile} 对象列表为值的映射
 	 * @since 3.0
 	 */
 	MultiValueMap<String, MultipartFile> getMultiFileMap();
 
 	/**
 	 * 确定指定请求部分（part）的内容类型。
-	 * @param paramOrFileName the name of the part
-	 * @return the associated content type, or {@code null} if not defined
+	 * @param paramOrFileName part 的名称
+	 * @return 关联的内容类型；如果未定义则返回 {@code null}
 	 * @since 3.1
 	 */
 	@Nullable

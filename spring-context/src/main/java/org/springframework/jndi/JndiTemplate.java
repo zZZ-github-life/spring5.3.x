@@ -79,9 +79,9 @@ public class JndiTemplate {
 
 	/**
 	 * 执行给定的 JNDI 上下文回调实现。
-	 * @param contextCallback the JndiCallback implementation to use
-	 * @return a result object returned by the callback, or {@code null}
-	 * @throws NamingException thrown by the callback implementation
+	 * @param contextCallback 要使用的 JndiCallback 实现
+	 * @return 回调返回的结果对象，或 {@code null}
+	 * @throws NamingException 由回调实现抛出
 	 * @see #createInitialContext
 	 */
 	@Nullable
@@ -98,8 +98,8 @@ public class JndiTemplate {
 	/**
 	 * 获取与此模板配置对应的 JNDI 上下文。由 {@link #execute} 调用；也可以直接调用。
 	 * <p>默认实现委托给 {@link #createInitialContext()}。
-	 * @return the JNDI context (never {@code null})
-	 * @throws NamingException if context retrieval failed
+	 * @return JNDI 上下文（永不为 {@code null}）
+	 * @throws NamingException 如果获取上下文失败
 	 * @see #releaseContext
 	 */
 	public Context getContext() throws NamingException {
@@ -108,7 +108,7 @@ public class JndiTemplate {
 
 	/**
 	 * 释放从 {@link #getContext()} 获取的 JNDI 上下文。
-	 * @param ctx the JNDI context to release (may be {@code null})
+	 * @param ctx 要释放的 JNDI 上下文（可能为 {@code null}）
 	 * @see #getContext
 	 */
 	public void releaseContext(@Nullable Context ctx) {
@@ -125,8 +125,8 @@ public class JndiTemplate {
 	/**
 	 * 创建一个新的 JNDI 初始上下文。由 {@link #getContext} 调用。
 	 * <p>默认实现使用此模板的环境设置。可以为自定义上下文（例如用于测试）而子类化。
-	 * @return the initial Context instance
-	 * @throws NamingException in case of initialization errors
+	 * @return 初始 Context 实例
+	 * @throws NamingException 在初始化出错时
 	 */
 	protected Context createInitialContext() throws NamingException {
 		Hashtable<?, ?> icEnv = null;
@@ -141,11 +141,10 @@ public class JndiTemplate {
 
 	/**
 	 * 在当前 JNDI 上下文中查找具有给定名称的对象。
-	 * @param name the JNDI name of the object
-	 * @return object found (cannot be {@code null}; if a not so well-behaved
-	 * JNDI implementations returns null, a NamingException gets thrown)
-	 * @throws NamingException if there is no object with the given
-	 * name bound to JNDI
+	 * @param name 对象的 JNDI 名称
+	 * @return 找到的对象（不能为 {@code null}；
+	 * 如果行为不太规范的 JNDI 实现返回 null，则会抛出 NamingException）
+	 * @throws NamingException 如果 JNDI 中未绑定具有给定名称的对象
 	 */
 	public Object lookup(final String name) throws NamingException {
 		if (logger.isDebugEnabled()) {
@@ -161,15 +160,14 @@ public class JndiTemplate {
 
 	/**
 	 * 在当前 JNDI 上下文中查找具有给定名称的对象。
-	 * @param name the JNDI name of the object
-	 * @param requiredType type the JNDI object must match. Can be an interface or
-	 * superclass of the actual class, or {@code null} for any match. For example,
-	 * if the value is {@code Object.class}, this method will succeed whatever
-	 * the class of the returned instance.
-	 * @return object found (cannot be {@code null}; if a not so well-behaved
-	 * JNDI implementations returns null, a NamingException gets thrown)
-	 * @throws NamingException if there is no object with the given
-	 * name bound to JNDI
+	 * @param name 对象的 JNDI 名称
+	 * @param requiredType JNDI 对象必须匹配的类型。
+	 * 可以是实际类的接口或超类，或为 {@code null} 表示任意匹配。
+	 * 例如，如果该值为 {@code Object.class}，
+	 * 则无论返回实例的类是什么，此方法都会成功。
+	 * @return 找到的对象（不能为 {@code null}；
+	 * 如果行为不太规范的 JNDI 实现返回 null，则会抛出 NamingException）
+	 * @throws NamingException 如果 JNDI 中未绑定具有给定名称的对象
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T lookup(String name, @Nullable Class<T> requiredType) throws NamingException {
@@ -182,9 +180,9 @@ public class JndiTemplate {
 
 	/**
 	 * 使用给定名称将给定对象绑定到当前 JNDI 上下文。
-	 * @param name the JNDI name of the object
-	 * @param object the object to bind
-	 * @throws NamingException thrown by JNDI, mostly name already bound
+	 * @param name 对象的 JNDI 名称
+	 * @param object 要绑定的对象
+	 * @throws NamingException 由 JNDI 抛出，通常是名称已绑定
 	 */
 	public void bind(final String name, final Object object) throws NamingException {
 		if (logger.isDebugEnabled()) {
@@ -198,9 +196,9 @@ public class JndiTemplate {
 
 	/**
 	 * 使用给定名称将给定对象重新绑定到当前 JNDI 上下文。会覆盖任何现有的绑定。
-	 * @param name the JNDI name of the object
-	 * @param object the object to rebind
-	 * @throws NamingException thrown by JNDI
+	 * @param name 对象的 JNDI 名称
+	 * @param object 要重新绑定的对象
+	 * @throws NamingException 由 JNDI 抛出
 	 */
 	public void rebind(final String name, final Object object) throws NamingException {
 		if (logger.isDebugEnabled()) {
@@ -214,8 +212,8 @@ public class JndiTemplate {
 
 	/**
 	 * 从当前 JNDI 上下文中移除给定名称的绑定。
-	 * @param name the JNDI name of the object
-	 * @throws NamingException thrown by JNDI, mostly name not found
+	 * @param name 对象的 JNDI 名称
+	 * @throws NamingException 由 JNDI 抛出，通常是名称未找到
 	 */
 	public void unbind(final String name) throws NamingException {
 		if (logger.isDebugEnabled()) {

@@ -54,9 +54,9 @@ public class JsonPathResultMatchers {
 	 * 受保护的构造函数。
 	 * <p>请使用 {@link MockMvcResultMatchers#jsonPath(String, Object...)} 或
 	 * {@link MockMvcResultMatchers#jsonPath(String, Matcher)}。
-	 * @param expression the {@link JsonPath} expression; never {@code null} or empty
-	 * @param args arguments to parameterize the {@code JsonPath} expression with,
-	 * using formatting specifiers defined in {@link String#format(String, Object...)}
+	 * @param expression {@link JsonPath} 表达式；永不为 {@code null} 或空
+	 * @param args 用于对 {@code JsonPath} 表达式进行参数化的参数，
+	 * 使用 {@link String#format(String, Object...)} 中定义的格式说明符
 	 */
 	protected JsonPathResultMatchers(String expression, Object... args) {
 		this.jsonPathHelper = new JsonPathExpectationsHelper(expression, args);
@@ -67,7 +67,7 @@ public class JsonPathResultMatchers {
 	 * 以验证 JSON 载荷带有给定的前缀。
 	 * <p>如果 JSON 载荷带有前缀以避免跨站脚本包含（XSSI）攻击，
 	 * 请使用此方法。
-	 * @param prefix the string prefix prepended to the actual JSON payload
+	 * @param prefix 前置到实际 JSON 载荷的字符串前缀
 	 * @since 4.3
 	 */
 	public JsonPathResultMatchers prefix(String prefix) {

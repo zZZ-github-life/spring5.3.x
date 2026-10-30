@@ -70,9 +70,9 @@ public class StompBrokerRelayRegistration extends AbstractBrokerRegistration {
 
 	/**
 	 * 创建一个新的 {@code StompBrokerRelayRegistration}。
-	 * @param clientInboundChannel the inbound channel
-	 * @param clientOutboundChannel the outbound channel
-	 * @param destinationPrefixes the destination prefixes
+	 * @param clientInboundChannel 入站通道
+	 * @param clientOutboundChannel 出站通道
+	 * @param destinationPrefixes 目标地址前缀
 	 */
 	public StompBrokerRelayRegistration(SubscribableChannel clientInboundChannel,
 			MessageChannel clientOutboundChannel, String[] destinationPrefixes) {
@@ -215,8 +215,8 @@ public class StompBrokerRelayRegistration extends AbstractBrokerRegistration {
 	 * 设置一个目标地址，用于广播那些因用户似乎未连接而仍未解析的用户目标地址对应的消息。
 	 * 在多应用服务器场景中，这为其他应用服务器提供了尝试处理的机会。
 	 * <p>默认情况下不设置此项。
-	 * @param destination the destination to broadcast unresolved messages to,
-	 * e.g. "/topic/unresolved-user-destination"
+	 * @param destination 广播未解析消息的目标地址，
+	 * 例如 "/topic/unresolved-user-destination"
 	 */
 	public StompBrokerRelayRegistration setUserDestinationBroadcast(String destination) {
 		this.userDestinationBroadcast = destination;
@@ -233,8 +233,8 @@ public class StompBrokerRelayRegistration extends AbstractBrokerRegistration {
 	 * 此类广播。在多应用服务器场景中，这使每个服务器的用户注册表能够感知
 	 * 连接到其他服务器的用户。
 	 * <p>默认情况下不设置此项。
-	 * @param destination the destination for broadcasting user registry details,
-	 * e.g. "/topic/simp-user-registry".
+	 * @param destination 广播用户注册表详细信息的目标地址，
+	 * 例如 "/topic/simp-user-registry"。
 	 */
 	public StompBrokerRelayRegistration setUserRegistryBroadcast(String destination) {
 		this.userRegistryBroadcast = destination;

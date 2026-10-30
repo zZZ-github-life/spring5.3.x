@@ -39,10 +39,10 @@ public interface MessagePostProcessor {
 	/**
 	 * 处理给定的消息。
 	 * <p>返回的消息通常是原始消息的修改版本。
-	 * @param message the JMS message from the MessageConverter
-	 * @return a post-processed variant of the message, or simply the incoming
-	 * message; never {@code null}
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
+	 * @param message 来自 MessageConverter 的 JMS 消息
+	 * @return 消息后处理后的变体，或就是传入的消息；
+	 * 永不为 {@code null}
+	 * @throws javax.jms.JMSException 如果由 JMS API 方法抛出
 	 */
 	Message postProcessMessage(Message message) throws JMSException;
 

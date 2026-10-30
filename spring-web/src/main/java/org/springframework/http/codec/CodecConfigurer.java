@@ -103,14 +103,14 @@ public interface CodecConfigurer {
 		 * 覆盖默认的 Jackson JSON {@code Decoder}。
 		 * <p>请注意，如果配置了 {@link #maxInMemorySize(int)}，
 		 * 它将被应用于给定的解码器。
-		 * @param decoder the decoder instance to use
+		 * @param decoder 要使用的解码器实例
 		 * @see org.springframework.http.codec.json.Jackson2JsonDecoder
 		 */
 		void jackson2JsonDecoder(Decoder<?> decoder);
 
 		/**
 		 * 覆盖默认的 Jackson JSON {@code Encoder}。
-		 * @param encoder the encoder instance to use
+		 * @param encoder 要使用的编码器实例
 		 * @see org.springframework.http.codec.json.Jackson2JsonEncoder
 		 */
 		void jackson2JsonEncoder(Encoder<?> encoder);
@@ -119,14 +119,14 @@ public interface CodecConfigurer {
 		 * 覆盖默认的 Jackson Smile {@code Decoder}。
 		 * <p>请注意，如果配置了 {@link #maxInMemorySize(int)}，
 		 * 它将被应用于给定的解码器。
-		 * @param decoder the decoder instance to use
+		 * @param decoder 要使用的解码器实例
 		 * @see org.springframework.http.codec.json.Jackson2SmileDecoder
 		 */
 		void jackson2SmileDecoder(Decoder<?> decoder);
 
 		/**
 		 * 覆盖默认的 Jackson Smile {@code Encoder}。
-		 * @param encoder the encoder instance to use
+		 * @param encoder 要使用的编码器实例
 		 * @see org.springframework.http.codec.json.Jackson2SmileEncoder
 		 */
 		void jackson2SmileEncoder(Encoder<?> encoder);
@@ -135,7 +135,7 @@ public interface CodecConfigurer {
 		 * 覆盖默认的 Protobuf {@code Decoder}。
 		 * <p>请注意，如果配置了 {@link #maxInMemorySize(int)}，
 		 * 它将被应用于给定的解码器。
-		 * @param decoder the decoder instance to use
+		 * @param decoder 要使用的解码器实例
 		 * @since 5.1
 		 * @see org.springframework.http.codec.protobuf.ProtobufDecoder
 		 */
@@ -143,7 +143,7 @@ public interface CodecConfigurer {
 
 		/**
 		 * 覆盖默认的 Protobuf {@code Encoder}。
-		 * @param encoder the encoder instance to use
+		 * @param encoder 要使用的编码器实例
 		 * @since 5.1
 		 * @see org.springframework.http.codec.protobuf.ProtobufEncoder
 		 * @see org.springframework.http.codec.protobuf.ProtobufHttpMessageWriter
@@ -154,7 +154,7 @@ public interface CodecConfigurer {
 		 * 覆盖默认的 JAXB2 {@code Decoder}。
 		 * <p>请注意，如果配置了 {@link #maxInMemorySize(int)}，
 		 * 它将被应用于给定的解码器。
-		 * @param decoder the decoder instance to use
+		 * @param decoder 要使用的解码器实例
 		 * @since 5.1.3
 		 * @see org.springframework.http.codec.xml.Jaxb2XmlDecoder
 		 */
@@ -162,7 +162,7 @@ public interface CodecConfigurer {
 
 		/**
 		 * 覆盖默认的 JABX2 {@code Encoder}。
-		 * @param encoder the encoder instance to use
+		 * @param encoder 要使用的编码器实例
 		 * @since 5.1.3
 		 * @see org.springframework.http.codec.xml.Jaxb2XmlEncoder
 		 */
@@ -170,7 +170,7 @@ public interface CodecConfigurer {
 
 		/**
 		 * 覆盖默认的 Kotlin Serialization JSON {@code Decoder}。
-		 * @param decoder the decoder instance to use
+		 * @param decoder 要使用的解码器实例
 		 * @since 5.3
 		 * @see org.springframework.http.codec.json.KotlinSerializationJsonDecoder
 		 */
@@ -178,7 +178,7 @@ public interface CodecConfigurer {
 
 		/**
 		 * 覆盖默认的 Kotlin Serialization JSON {@code Encoder}。
-		 * @param encoder the encoder instance to use
+		 * @param encoder 要使用的编码器实例
 		 * @since 5.3
 		 * @see org.springframework.http.codec.json.KotlinSerializationJsonEncoder
 		 */
@@ -189,7 +189,7 @@ public interface CodecConfigurer {
 		 * 特定的编解码器或多个编解码器。该消费者会应用于每个默认的
 		 * {@link Encoder}、{@link Decoder}、{@link HttpMessageReader} 和
 		 * {@link HttpMessageWriter} 实例。
-		 * @param codecConsumer the consumer to apply
+		 * @param codecConsumer 要应用的 consumer
 		 * @since 5.3.4
 		 */
 		void configureDefaultCodec(Consumer<Object> codecConsumer);
@@ -203,7 +203,7 @@ public interface CodecConfigurer {
 		 * 适用于分隔符之间缓冲的数据。
 		 * <p>默认情况下不设置此项，此时将采用各编解码器的默认值。
 		 * 默认情况下所有编解码器都限制为 256K。
-		 * @param byteCount the max number of bytes to buffer, or -1 for unlimited
+		 * @param byteCount 要缓冲的最大字节数，-1 表示不限
 		 * @since 5.1.11
 		 */
 		void maxInMemorySize(int byteCount);
@@ -212,7 +212,7 @@ public interface CodecConfigurer {
 		 * 是否以 DEBUG 级别记录表单数据，以 TRACE 级别记录头。
 		 * 两者都可能包含敏感信息。
 		 * <p>默认设置为 {@code false}，因此不会显示请求详情。
-		 * @param enable whether to enable or not
+		 * @param enable 是否启用
 		 * @since 5.1
 		 */
 		void enableLoggingRequestDetails(boolean enable);
@@ -232,7 +232,7 @@ public interface CodecConfigurer {
 		 * <li>{@link Encoder}（内部使用 {@link EncoderHttpMessageWriter} 包装）
 		 * <li>{@link Decoder}（内部使用 {@link DecoderHttpMessageReader} 包装）
 		 * </ul>
-		 * @param codec the codec to register
+		 * @param codec 要注册的编解码器
 		 * @since 5.1.13
 		 */
 		void register(Object codec);
@@ -247,7 +247,7 @@ public interface CodecConfigurer {
 		 * <p>每当使用 {@link #getReaders()} 或
 		 * {@link #getWriters()} 获取已配置的读取器或写入器列表时，
 		 * 都会应用这些属性。
-		 * @param codec the codec to register and apply default config to
+		 * @param codec 要注册并应用默认配置的编解码器
 		 * @since 5.1.13
 		 */
 		void registerWithDefaultConfig(Object codec);
@@ -260,8 +260,8 @@ public interface CodecConfigurer {
 		 * <p>每当使用 {@link #getReaders()} 或
 		 * {@link #getWriters()} 获取已配置的读取器或写入器列表时，
 		 * 都会调用该消费者。
-		 * @param codec the codec to register
-		 * @param configConsumer consumer of the default config
+		 * @param codec 要注册的编解码器
+		 * @param configConsumer 默认配置的 consumer
 		 * @since 5.1.13
 		 */
 		void registerWithDefaultConfig(Object codec, Consumer<DefaultCodecConfig> configConsumer);
@@ -269,7 +269,7 @@ public interface CodecConfigurer {
 		/**
 		 * 添加一个自定义 {@code Decoder}，内部使用
 		 * {@link DecoderHttpMessageReader} 包装。
-		 * @param decoder the decoder to add
+		 * @param decoder 要添加的解码器
 		 * @deprecated as of 5.1.13, use {@link #register(Object)} or
 		 * {@link #registerWithDefaultConfig(Object)} instead.
 		 */
@@ -279,7 +279,7 @@ public interface CodecConfigurer {
 		/**
 		 * 添加一个自定义 {@code Encoder}，内部使用
 		 * {@link EncoderHttpMessageWriter} 包装。
-		 * @param encoder the encoder to add
+		 * @param encoder 要添加的编码器
 		 * @deprecated as of 5.1.13, use {@link #register(Object)} or
 		 * {@link #registerWithDefaultConfig(Object)} instead.
 		 */
@@ -290,7 +290,7 @@ public interface CodecConfigurer {
 		 * 添加一个自定义 {@link HttpMessageReader}。对于类型为
 		 * {@link DecoderHttpMessageReader} 的读取器，可考虑改用快捷方法
 		 * {@link #decoder(Decoder)}。
-		 * @param reader the reader to add
+		 * @param reader 要添加的读取器
 		 * @deprecated as of 5.1.13, use {@link #register(Object)} or
 		 * {@link #registerWithDefaultConfig(Object)} instead.
 		 */
@@ -301,7 +301,7 @@ public interface CodecConfigurer {
 		 * 添加一个自定义 {@link HttpMessageWriter}。对于类型为
 		 * {@link EncoderHttpMessageWriter} 的写入器，可考虑改用快捷方法
 		 * {@link #encoder(Encoder)}。
-		 * @param writer the writer to add
+		 * @param writer 要添加的写入器
 		 * @deprecated as of 5.1.13, use {@link #register(Object)} or
 		 * {@link #registerWithDefaultConfig(Object)} instead.
 		 */
@@ -312,7 +312,7 @@ public interface CodecConfigurer {
 		 * 为应用于默认编解码器的 {@link DefaultCodecConfig 配置}
 		 * 注册回调。这使自定义编解码器能够遵循应用于默认编解码器的
 		 * 通用准则，例如记录详情和限制缓冲数据量。
-		 * @param codecsConfigConsumer the default codecs configuration callback
+		 * @param codecsConfigConsumer 默认编解码器配置回调
 		 * @deprecated as of 5.1.13, use {@link #registerWithDefaultConfig(Object)}
 		 * or {@link #registerWithDefaultConfig(Object, Consumer)} instead.
 		 */

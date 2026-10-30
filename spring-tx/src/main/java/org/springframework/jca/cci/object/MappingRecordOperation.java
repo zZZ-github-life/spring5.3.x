@@ -57,7 +57,7 @@ public abstract class MappingRecordOperation extends EisOperation {
 	/**
 	 * 便捷的构造器，接受 ConnectionFactory 和各规范
 	 * （连接规范和交互规范）。
-	 * @param connectionFactory the ConnectionFactory to use to obtain connections
+	 * @param connectionFactory 用于获取连接的 ConnectionFactory
 	 */
 	public MappingRecordOperation(ConnectionFactory connectionFactory, InteractionSpec interactionSpec) {
 		getCciTemplate().setConnectionFactory(connectionFactory);
@@ -79,10 +79,10 @@ public abstract class MappingRecordOperation extends EisOperation {
 
 	/**
 	 * 执行此操作对象封装的交互。
-	 * @param inputObject the input data, to be converted to a Record
-	 * by the {@code createInputRecord} method
-	 * @return the output data extracted with the {@code extractOutputData} method
-	 * @throws DataAccessException if there is any problem
+	 * @param inputObject 输入数据，将由 {@code createInputRecord} 方法
+	 * 转换为 Record
+	 * @return 使用 {@code extractOutputData} 方法提取的输出数据
+	 * @throws DataAccessException 如果出现任何问题
 	 * @see #createInputRecord
 	 * @see #extractOutputData
 	 */
@@ -97,10 +97,10 @@ public abstract class MappingRecordOperation extends EisOperation {
 
 	/**
 	 * 子类必须实现此方法，从传入 {@code execute} 方法的输入对象生成输入 Record。
-	 * @param inputObject the passed-in input object
-	 * @return the CCI input Record
-	 * @throws ResourceException if thrown by a CCI method, to be auto-converted
-	 * to a DataAccessException
+	 * @param inputObject 传入的输入对象
+	 * @return CCI 输入 Record
+	 * @throws ResourceException 如果由 CCI 方法抛出，
+	 * 将自动转换为 DataAccessException
 	 * @see #execute(Object)
 	 */
 	protected abstract Record createInputRecord(RecordFactory recordFactory, Object inputObject)
@@ -108,10 +108,10 @@ public abstract class MappingRecordOperation extends EisOperation {
 
 	/**
 	 * 子类必须实现此方法，将 CCI 执行返回的 Record 转换为 {@code execute} 方法的结果对象。
-	 * @param outputRecord the Record returned by CCI execution
-	 * @return the result object
-	 * @throws ResourceException if thrown by a CCI method, to be auto-converted
-	 * to a DataAccessException
+	 * @param outputRecord CCI 执行返回的 Record
+	 * @return 结果对象
+	 * @throws ResourceException 如果由 CCI 方法抛出，
+	 * 将自动转换为 DataAccessException
 	 * @see #execute(Object)
 	 */
 	protected abstract Object extractOutputData(Record outputRecord)

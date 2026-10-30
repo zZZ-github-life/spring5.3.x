@@ -58,7 +58,7 @@ public class ResourceHandlerRegistry {
 
 	/**
 	 * 为给定的资源加载器（通常是应用上下文）创建新的资源处理器注册表。
-	 * @param resourceLoader the resource loader to use
+	 * @param resourceLoader 要使用的资源加载器
 	 */
 	public ResourceHandlerRegistry(ResourceLoader resourceLoader) {
 		this.resourceLoader = resourceLoader;
@@ -66,7 +66,7 @@ public class ResourceHandlerRegistry {
 
 	/**
 	 * 配置可供 {@link org.springframework.web.reactive.resource.ResourceTransformer} 实例使用的 {@link ResourceUrlProvider}。
-	 * @param resourceUrlProvider the resource URL provider to use
+	 * @param resourceUrlProvider 要使用的资源 URL 提供者
 	 * @since 5.0.11
 	 */
 	public void setResourceUrlProvider(@Nullable ResourceUrlProvider resourceUrlProvider) {
@@ -78,8 +78,8 @@ public class ResourceHandlerRegistry {
 	/**
 	 * 添加基于指定 URL 路径模式提供静态资源的资源处理器。对于每个匹配指定路径模式之一的传入请求，都会调用该处理器。
 	 * <p>允许使用 {@code "/static/**"} 或 {@code "/css/{filename:\\w+\\.css}"} 等模式。有关语法的更多详情，请参见 {@link org.springframework.web.util.pattern.PathPattern}。
-	 * @return a {@link ResourceHandlerRegistration} to use to further configure
-	 * the registered resource handler
+	 * @return 用于进一步配置所注册资源处理器的
+	 * {@link ResourceHandlerRegistration}
 	 */
 	public ResourceHandlerRegistration addResourceHandler(String... patterns) {
 		ResourceHandlerRegistration registration = new ResourceHandlerRegistration(this.resourceLoader, patterns);

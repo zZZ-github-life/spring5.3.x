@@ -31,7 +31,7 @@ public interface FormatterRegistry extends ConverterRegistry {
 
 	/**
 	 * 添加 Printer，用于打印特定类型的字段。字段类型由参数化的 Printer 实例推断得出。
-	 * @param printer the printer to add
+	 * @param printer 要添加的 Printer
 	 * @since 5.2
 	 * @see #addFormatter(Formatter)
 	 */
@@ -39,7 +39,7 @@ public interface FormatterRegistry extends ConverterRegistry {
 
 	/**
 	 * 添加 Parser，用于解析特定类型的字段。字段类型由参数化的 Parser 实例推断得出。
-	 * @param parser the parser to add
+	 * @param parser 要添加的 Parser
 	 * @since 5.2
 	 * @see #addFormatter(Formatter)
 	 */
@@ -47,7 +47,7 @@ public interface FormatterRegistry extends ConverterRegistry {
 
 	/**
 	 * 添加 Formatter，用于格式化特定类型的字段。字段类型由参数化的 Formatter 实例推断得出。
-	 * @param formatter the formatter to add
+	 * @param formatter 要添加的 Formatter
 	 * @since 3.1
 	 * @see #addFormatterForFieldType(Class, Formatter)
 	 */
@@ -58,8 +58,8 @@ public interface FormatterRegistry extends ConverterRegistry {
 	 * <p>打印时，如果 Formatter 的类型 T 已声明且 {@code fieldType} 不能赋值给 T，则在委托
 	 * {@code formatter} 打印字段值之前会尝试强制转换为 T。解析时，如果 {@code formatter} 返回的解析结
 	 * 果不能赋值给运行时字段类型，则在返回解析出的字段值之前会尝试强制转换为该字段类型。
-	 * @param fieldType the field type to format
-	 * @param formatter the formatter to add
+	 * @param fieldType 要格式化的字段类型
+	 * @param formatter 要添加的 Formatter
 	 */
 	void addFormatterForFieldType(Class<?> fieldType, Formatter<?> formatter);
 
@@ -69,15 +69,15 @@ public interface FormatterRegistry extends ConverterRegistry {
 	 * <p>打印时，如果 Printer 的类型 T 已声明且 {@code fieldType} 不能赋值给 T，则在委托
 	 * {@code printer} 打印字段值之前会尝试强制转换为 T。解析时，如果 Parser 返回的对象不能赋值给运行时
 	 * 字段类型，则在返回解析出的字段值之前会尝试强制转换为该字段类型。
-	 * @param fieldType the field type to format
-	 * @param printer the printing part of the formatter
-	 * @param parser the parsing part of the formatter
+	 * @param fieldType 要格式化的字段类型
+	 * @param printer 格式化器的打印部分
+	 * @param parser 格式化器的解析部分
 	 */
 	void addFormatterForFieldType(Class<?> fieldType, Printer<?> printer, Parser<?> parser);
 
 	/**
 	 * 添加 Formatter，用于格式化标注了特定格式注解的字段。
-	 * @param annotationFormatterFactory the annotation formatter factory to add
+	 * @param annotationFormatterFactory 要添加的注解格式化器工厂
 	 */
 	void addFormatterForFieldAnnotation(AnnotationFormatterFactory<? extends Annotation> annotationFormatterFactory);
 

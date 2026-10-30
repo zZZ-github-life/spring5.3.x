@@ -27,7 +27,7 @@ public interface CachingDestinationResolver extends DestinationResolver {
 	/**
 	 * 从缓存中移除具有给定名称的目的地（如果此解析器曾对其进行缓存）。
 	 * <p>在对指定目的地的访问失败时调用，假定该 JMS Destination 对象可能已失效。
-	 * @param destinationName the name of the destination
+	 * @param destinationName 目标的名称
 	 */
 	void removeFromCache(String destinationName);
 

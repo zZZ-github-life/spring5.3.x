@@ -64,8 +64,8 @@ public abstract class CciDaoSupport extends DaoSupport {
 	 * 仅在使用 ConnectionFactory 引用填充 DAO 时调用！
 	 * <p>可以在子类中重写，以提供具有不同配置的 CciTemplate 实例，
 	 * 或自定义的 CciTemplate 子类。
-	 * @param connectionFactory the CCI ConnectionFactory to create a CciTemplate for
-	 * @return the new CciTemplate instance
+	 * @param connectionFactory 要为其创建 CciTemplate 的 CCI ConnectionFactory
+	 * @return 新的 CciTemplate 实例
 	 * @see #setConnectionFactory(javax.resource.cci.ConnectionFactory)
 	 */
 	protected org.springframework.jca.cci.core.CciTemplate createCciTemplate(ConnectionFactory connectionFactory) {
@@ -106,9 +106,9 @@ public abstract class CciDaoSupport extends DaoSupport {
 	/**
 	 * 获取从主模板实例派生的 CciTemplate，
 	 * 继承 ConnectionFactory 和其他设置，但覆盖用于获取 Connection 的 ConnectionSpec。
-	 * @param connectionSpec the CCI ConnectionSpec that the returned
-	 * template instance is supposed to obtain Connections for
-	 * @return the derived template instance
+	 * @param connectionSpec 返回的模板实例应为其获取 Connection 的
+	 * CCI ConnectionSpec
+	 * @return 派生的模板实例
 	 * @see org.springframework.jca.cci.core.CciTemplate#getDerivedTemplate(javax.resource.cci.ConnectionSpec)
 	 */
 	protected final org.springframework.jca.cci.core.CciTemplate getCciTemplate(ConnectionSpec connectionSpec) {
@@ -119,9 +119,8 @@ public abstract class CciDaoSupport extends DaoSupport {
 
 	/**
 	 * 获取 CCI Connection，来自当前事务或新建的。
-	 * @return the CCI Connection
-	 * @throws org.springframework.jca.cci.CannotGetCciConnectionException
-	 * if the attempt to get a Connection failed
+	 * @return 该 CCI Connection
+	 * @throws org.springframework.jca.cci.CannotGetCciConnectionException 如果获取 Connection 的尝试失败
 	 * @see org.springframework.jca.cci.connection.ConnectionFactoryUtils#getConnection(javax.resource.cci.ConnectionFactory)
 	 */
 	protected final Connection getConnection() throws org.springframework.jca.cci.CannotGetCciConnectionException {
@@ -133,7 +132,7 @@ public abstract class CciDaoSupport extends DaoSupport {
 	/**
 	 * 关闭通过此 bean 的 ConnectionFactory 创建的给定 CCI Connection，
 	 * 如果它未绑定到线程。
-	 * @param con the Connection to close
+	 * @param con 要关闭的 Connection
 	 * @see org.springframework.jca.cci.connection.ConnectionFactoryUtils#releaseConnection
 	 */
 	protected final void releaseConnection(Connection con) {

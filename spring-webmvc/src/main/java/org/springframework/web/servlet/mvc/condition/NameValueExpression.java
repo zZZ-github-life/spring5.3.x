@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 中指定请求参数和请求头条件。
  * @author Rossen Stoyanchev
  * @since 3.1
- * @param <T> the value type
+ * @param <T> 值类型
  * @see RequestMapping#params()
  * @see RequestMapping#headers()
  */

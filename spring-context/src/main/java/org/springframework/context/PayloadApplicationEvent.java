@@ -28,7 +28,7 @@ import org.springframework.util.Assert;
  * @author Stephane Nicoll
  * @author Juergen Hoeller
  * @since 4.2
- * @param <T> the payload type of the event
+ * @param <T> 事件负载的类型
  * @see ApplicationEventPublisher#publishEvent(Object)
  * @see ApplicationListener#forPayload(Consumer)
  */
@@ -40,8 +40,8 @@ public class PayloadApplicationEvent<T> extends ApplicationEvent implements Reso
 
 	/**
 	 * 创建一个新的 PayloadApplicationEvent。
-	 * @param source the object on which the event initially occurred (never {@code null})
-	 * @param payload the payload object (never {@code null})
+	 * @param source 事件最初发生的对象（永不为 {@code null}）
+	 * @param payload 负载对象（永不为 {@code null}）
 	 */
 	public PayloadApplicationEvent(Object source, T payload) {
 		super(source);

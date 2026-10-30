@@ -32,9 +32,9 @@ public class ConversionNotSupportedException extends TypeMismatchException {
 
 	/**
 	 * 创建一个新的 ConversionNotSupportedException。
-	 * @param propertyChangeEvent the PropertyChangeEvent that resulted in the problem
-	 * @param requiredType the required target type (or {@code null} if not known)
-	 * @param cause the root cause (may be {@code null})
+	 * @param propertyChangeEvent 导致该问题的 PropertyChangeEvent
+	 * @param requiredType 所需的目标类型（如果未知则为 {@code null}）
+	 * @param cause 根本原因（可能为 {@code null}）
 	 */
 	public ConversionNotSupportedException(PropertyChangeEvent propertyChangeEvent,
 			@Nullable Class<?> requiredType, @Nullable Throwable cause) {
@@ -43,9 +43,9 @@ public class ConversionNotSupportedException extends TypeMismatchException {
 
 	/**
 	 * 创建一个新的 ConversionNotSupportedException。
-	 * @param value the offending value that couldn't be converted (may be {@code null})
-	 * @param requiredType the required target type (or {@code null} if not known)
-	 * @param cause the root cause (may be {@code null})
+	 * @param value 无法转换的出错值（可能为 {@code null}）
+	 * @param requiredType 所需的目标类型（如果未知则为 {@code null}）
+	 * @param cause 根本原因（可能为 {@code null}）
 	 */
 	public ConversionNotSupportedException(@Nullable Object value, @Nullable Class<?> requiredType, @Nullable Throwable cause) {
 		super(value, requiredType, cause);

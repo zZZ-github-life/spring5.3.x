@@ -52,8 +52,8 @@ public class Jsr330ScopeMetadataResolver implements ScopeMetadataResolver {
 
 	/**
 	 * 注册扩展的 JSR-330 作用域注解，并按名称将其映射到特定的 Spring 作用域。
-	 * @param annotationType the JSR-330 annotation type as a Class
-	 * @param scopeName the Spring scope name
+	 * @param annotationType 作为 Class 的 JSR-330 注解类型
+	 * @param scopeName Spring 作用域名称
 	 */
 	public final void registerScope(Class<?> annotationType, String scopeName) {
 		this.scopeMap.put(annotationType.getName(), scopeName);
@@ -61,8 +61,8 @@ public class Jsr330ScopeMetadataResolver implements ScopeMetadataResolver {
 
 	/**
 	 * 注册扩展的 JSR-330 作用域注解，并按名称将其映射到特定的 Spring 作用域。
-	 * @param annotationType the JSR-330 annotation type by name
-	 * @param scopeName the Spring scope name
+	 * @param annotationType 按名称指定的 JSR-330 注解类型
+	 * @param scopeName Spring 作用域名称
 	 */
 	public final void registerScope(String annotationType, String scopeName) {
 		this.scopeMap.put(annotationType, scopeName);
@@ -71,8 +71,8 @@ public class Jsr330ScopeMetadataResolver implements ScopeMetadataResolver {
 	/**
 	 * 将给定的注解类型解析为具名的 Spring 作用域。
 	 * <p>默认实现仅对照已注册的作用域进行检查。可重写以实现自定义映射规则，例如命名约定。
-	 * @param annotationType the JSR-330 annotation type
-	 * @return the Spring scope name
+	 * @param annotationType JSR-330 注解类型
+	 * @return Spring 作用域名称
 	 */
 	@Nullable
 	protected String resolveScopeName(String annotationType) {

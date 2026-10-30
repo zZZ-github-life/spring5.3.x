@@ -32,7 +32,7 @@ public interface QueryOperation extends Supplier<String> {
 
 	/**
 	 * 返回此操作的字符串表示，供创建 {@link io.r2dbc.spi.Statement} 时使用。
-	 * @return the operation as SQL string
+	 * @return 以 SQL 字符串表示的操作
 	 * @see io.r2dbc.spi.Connection#createStatement(String)
 	 */
 	String toQuery();

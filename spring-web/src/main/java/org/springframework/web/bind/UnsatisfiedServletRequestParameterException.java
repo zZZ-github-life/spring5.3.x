@@ -43,8 +43,8 @@ public class UnsatisfiedServletRequestParameterException extends ServletRequestB
 
 	/**
 	 * 创建一个新的 UnsatisfiedServletRequestParameterException。
-	 * @param paramConditions the parameter conditions that have been violated
-	 * @param actualParams the actual parameter Map associated with the ServletRequest
+	 * @param paramConditions 遭到违反的参数条件
+	 * @param actualParams 与 ServletRequest 关联的实际参数 Map
 	 */
 	public UnsatisfiedServletRequestParameterException(String[] paramConditions, Map<String, String[]> actualParams) {
 		super("");
@@ -54,8 +54,8 @@ public class UnsatisfiedServletRequestParameterException extends ServletRequestB
 
 	/**
 	 * 创建一个新的 UnsatisfiedServletRequestParameterException。
-	 * @param paramConditions all sets of parameter conditions that have been violated
-	 * @param actualParams the actual parameter Map associated with the ServletRequest
+	 * @param paramConditions 所有遭到违反的参数条件集合
+	 * @param actualParams 与 ServletRequest 关联的实际参数 Map
 	 * @since 4.2
 	 */
 	public UnsatisfiedServletRequestParameterException(List<String[]> paramConditions,

@@ -33,8 +33,8 @@ public interface RequestBuilder {
 
 	/**
 	 * 构建请求。
-	 * @param servletContext the {@link ServletContext} to use to create the request
-	 * @return the request
+	 * @param servletContext 用于创建该请求的 {@link ServletContext}
+	 * @return 请求
 	 */
 	MockHttpServletRequest buildRequest(ServletContext servletContext);
 

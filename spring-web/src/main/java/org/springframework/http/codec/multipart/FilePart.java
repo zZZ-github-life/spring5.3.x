@@ -37,8 +37,8 @@ public interface FilePart extends Part {
 	 * 文件名还可能包含 ".." 等可被恶意利用的字符。
 	 * 建议不要直接使用此文件名。最好生成一个唯一的名称，
 	 * 并在必要时将此名称保存到某处以供参考。
-	 * @return the original filename, or the empty String if no file has been chosen
-	 * in the multipart form, or {@code null} if not defined or not available
+	 * @return 原始文件名；如果在 multipart 表单中未选择文件则为空字符串，
+	 * 如果未定义或不可用则为 {@code null}
 	 * @see <a href="https://tools.ietf.org/html/rfc7578#section-4.2">RFC 7578, Section 4.2</a>
 	 * @see <a href="https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload">Unrestricted File Upload</a>
 	 */
@@ -48,9 +48,9 @@ public interface FilePart extends Part {
 	 * 便捷方法，用于将此部件中文件的内容复制到给定的目标文件。
 	 * 如果目标文件已存在，将先被截断。
 	 * <p>默认实现委托给 {@link #transferTo(Path)}。
-	 * @param dest the target file
-	 * @return completion {@code Mono} with the result of the file transfer,
-	 * possibly {@link IllegalStateException} if the part isn't a file
+	 * @param dest 目标文件
+	 * @return 包含文件传输结果的完成 {@code Mono}，
+	 * 如果该部分不是文件则可能为 {@link IllegalStateException}
 	 * @see #transferTo(Path)
 	 */
 	default Mono<Void> transferTo(File dest) {
@@ -60,9 +60,9 @@ public interface FilePart extends Part {
 	/**
 	 * 便捷方法，用于将此部件中文件的内容复制到给定的目标文件。
 	 * 如果目标文件已存在，将先被截断。
-	 * @param dest the target file
-	 * @return completion {@code Mono} with the result of the file transfer,
-	 * possibly {@link IllegalStateException} if the part isn't a file
+	 * @param dest 目标文件
+	 * @return 包含文件传输结果的完成 {@code Mono}，
+	 * 如果该部分不是文件则可能为 {@link IllegalStateException}
 	 * @since 5.1
 	 * @see #transferTo(File)
 	 */

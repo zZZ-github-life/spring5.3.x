@@ -27,7 +27,7 @@ public class AccessException extends Exception {
 
 	/**
 	 * 使用指定的消息创建 AccessException。
-	 * @param message the message
+	 * @param message 消息
 	 */
 	public AccessException(String message) {
 		super(message);
@@ -35,8 +35,8 @@ public class AccessException extends Exception {
 
 	/**
 	 * 使用指定的消息和原因创建 AccessException。
-	 * @param message the message
-	 * @param cause the cause
+	 * @param message 消息
+	 * @param cause 原因
 	 */
 	public AccessException(String message, Exception cause) {
 		super(message, cause);

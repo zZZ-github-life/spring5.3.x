@@ -29,15 +29,15 @@ import org.springframework.messaging.MessagingException;
  * @author Mark Fisher
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <D> the destination type
+ * @param <D> 目标类型
  * @see DestinationResolver
  */
 public interface DestinationResolvingMessageSendingOperations<D> extends MessageSendingOperations<D> {
 
 	/**
 	 * 将给定目标名称解析为目标并向其发送消息。
-	 * @param destinationName the destination name to resolve
-	 * @param message the message to send
+	 * @param destinationName 要解析的目的地名
+	 * @param message 要发送的消息
 	 */
 	void send(String destinationName, Message<?> message) throws MessagingException;
 
@@ -45,8 +45,8 @@ public interface DestinationResolvingMessageSendingOperations<D> extends Message
 	 * 将给定目标名称解析为目标，将载荷 Object 转换为序列化形式
 	 * （可能使用 {@link org.springframework.messaging.converter.MessageConverter}），
 	 * 将其包装为消息并发送到解析后的目标。
-	 * @param destinationName the destination name to resolve
-   	 * @param payload the Object to use as payload
+	 * @param destinationName 要解析的目的地名
+	 * @param payload 用作载荷的对象
 	 */
 	<T> void convertAndSend(String destinationName, T payload) throws MessagingException;
 
@@ -54,9 +54,9 @@ public interface DestinationResolvingMessageSendingOperations<D> extends Message
 	 * 将给定目标名称解析为目标，将载荷 Object 转换为序列化形式
 	 * （可能使用 {@link org.springframework.messaging.converter.MessageConverter}），
 	 * 将其包装为带有给定头的消息并发送到解析后的目标。
-	 * @param destinationName the destination name to resolve
-	 * @param payload the Object to use as payload
- 	 * @param headers the headers for the message to send
+	 * @param destinationName 要解析的目的地名
+	 * @param payload 用作载荷的对象
+	 * @param headers 要发送的消息的消息头
 	 */
 	<T> void convertAndSend(String destinationName, T payload, @Nullable Map<String, Object> headers)
 			throws MessagingException;
@@ -65,9 +65,9 @@ public interface DestinationResolvingMessageSendingOperations<D> extends Message
 	 * 将给定目标名称解析为目标，将载荷 Object 转换为序列化形式
 	 * （可能使用 {@link org.springframework.messaging.converter.MessageConverter}），
 	 * 将其包装为消息，应用给定的后处理器，并将结果消息发送到解析后的目标。
-	 * @param destinationName the destination name to resolve
-	 * @param payload the Object to use as payload
-	 * @param postProcessor the post processor to apply to the message
+	 * @param destinationName 要解析的目的地名
+	 * @param payload 用作载荷的对象
+	 * @param postProcessor 要应用到消息的后处理器
 	 */
 	<T> void convertAndSend(String destinationName, T payload, @Nullable MessagePostProcessor postProcessor)
 			throws MessagingException;
@@ -77,10 +77,10 @@ public interface DestinationResolvingMessageSendingOperations<D> extends Message
 	 * （可能使用 {@link org.springframework.messaging.converter.MessageConverter}），
 	 * 将其包装为带有给定头的消息，应用给定的后处理器，
 	 * 并将结果消息发送到解析后的目标。
-	 * @param destinationName the destination name to resolve
-	 * @param payload the Object to use as payload
-	 * @param headers the headers for the message to send
-	 * @param postProcessor the post processor to apply to the message
+	 * @param destinationName 要解析的目的地名
+	 * @param payload 用作载荷的对象
+	 * @param headers 要发送的消息的消息头
+	 * @param postProcessor 要应用到消息的后处理器
 	 */
 	<T> void convertAndSend(String destinationName, T payload, @Nullable Map<String, Object> headers,
 			@Nullable MessagePostProcessor postProcessor) throws MessagingException;

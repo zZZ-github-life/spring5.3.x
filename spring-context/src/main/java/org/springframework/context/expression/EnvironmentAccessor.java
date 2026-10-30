@@ -39,7 +39,7 @@ public class EnvironmentAccessor implements PropertyAccessor {
 
 	/**
 	 * 可以读取任何 {@link Environment}，因此始终返回 true。
-	 * @return true
+	 * @return 返回 true
 	 */
 	@Override
 	public boolean canRead(EvaluationContext context, @Nullable Object target, String name) throws AccessException {

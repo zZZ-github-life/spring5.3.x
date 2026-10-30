@@ -134,8 +134,7 @@ public class SimpleTriggerFactoryBean implements FactoryBean<SimpleTrigger>, Bea
 	 * 通过给定的 Map 在 JobDataMap 中注册对象。
 	 * <p>这些对象将仅对此 Trigger 可用，
 	 * 与 JobDetail 数据映射中的对象不同。
-	 * @param jobDataAsMap a Map with String keys and any objects as values
-	 * (for example Spring-managed beans)
+	 * @param jobDataAsMap 以 String 为键、任意对象为值的 Map（例如由 Spring 管理的 Bean）
 	 */
 	public void setJobDataAsMap(Map<String, ?> jobDataAsMap) {
 		this.jobDataMap.putAll(jobDataAsMap);

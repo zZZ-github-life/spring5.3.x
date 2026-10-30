@@ -51,8 +51,7 @@ public class WebExchangeDataBinder extends WebDataBinder {
 
 	/**
 	 * 创建一个新实例，使用默认对象名称。
-	 * @param target the target object to bind onto (or {@code null} if the
-	 * binder is just used to convert a plain parameter value)
+	 * @param target 要绑定的目标对象（如果绑定器仅用于转换普通参数值，则可为 {@code null}）
 	 * @see #DEFAULT_OBJECT_NAME
 	 */
 	public WebExchangeDataBinder(@Nullable Object target) {
@@ -61,9 +60,8 @@ public class WebExchangeDataBinder extends WebDataBinder {
 
 	/**
 	 * 创建一个新实例。
-	 * @param target the target object to bind onto (or {@code null} if the
-	 * binder is just used to convert a plain parameter value)
-	 * @param objectName the name of the target object
+	 * @param target 要绑定的目标对象（如果绑定器仅用于转换普通参数值，则可为 {@code null}）
+	 * @param objectName 目标对象的名称
 	 */
 	public WebExchangeDataBinder(@Nullable Object target, String objectName) {
 		super(target, objectName);
@@ -72,8 +70,8 @@ public class WebExchangeDataBinder extends WebDataBinder {
 
 	/**
 	 * 将查询参数、表单数据或多部分表单数据绑定到绑定器目标。
-	 * @param exchange the current exchange
-	 * @return a {@code Mono<Void>} when binding is complete
+	 * @param exchange 当前交换
+	 * @return 绑定完成时的 {@code Mono<Void>}
 	 */
 	public Mono<Void> bind(ServerWebExchange exchange) {
 		return getValuesToBind(exchange)
@@ -84,8 +82,8 @@ public class WebExchangeDataBinder extends WebDataBinder {
 	/**
 	 * 获取用于数据绑定的值。默认情况下，这委托给
 	 * {@link #extractValuesToBind(ServerWebExchange)}。
-	 * @param exchange the current exchange
-	 * @return a map of bind values
+	 * @param exchange 当前交换
+	 * @return 绑定值的 Map
 	 * @since 5.3
 	 */
 	public Mono<Map<String, Object>> getValuesToBind(ServerWebExchange exchange) {
@@ -96,8 +94,8 @@ public class WebExchangeDataBinder extends WebDataBinder {
 	/**
 	 * 将请求体中的多部分表单数据的查询参数和表单数据合并为一个
 	 * {@code Map<String, Object>}，其中包含用于数据绑定的值。
-	 * @param exchange the current exchange
-	 * @return a {@code Mono} with the values to bind
+	 * @param exchange 当前交换
+	 * @return 包含要绑定值的 {@code Mono}
 	 * @see org.springframework.http.server.reactive.ServerHttpRequest#getQueryParams()
 	 * @see ServerWebExchange#getFormData()
 	 * @see ServerWebExchange#getMultipartData()

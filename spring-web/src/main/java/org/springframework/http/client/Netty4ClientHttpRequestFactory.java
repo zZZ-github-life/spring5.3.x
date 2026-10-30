@@ -222,7 +222,7 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 	/**
 	 * 用于更改给定 {@link SocketChannelConfig} 属性的模板方法。
 	 * <p>默认实现根据所设置的属性设置连接超时。
-	 * @param config the channel configuration
+	 * @param config 通道配置
 	 */
 	protected void configureChannel(SocketChannelConfig config) {
 		if (this.connectTimeout >= 0) {

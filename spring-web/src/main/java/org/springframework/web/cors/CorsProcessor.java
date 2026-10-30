@@ -39,10 +39,10 @@ public interface CorsProcessor {
 
 	/**
 	 * 使用给定的 {@code CorsConfiguration} 处理请求。
-	 * @param configuration the applicable CORS configuration (possibly {@code null})
-	 * @param request the current request
-	 * @param response the current response
-	 * @return {@code false} if the request is rejected, {@code true} otherwise
+	 * @param configuration 适用的 CORS 配置（可能为 {@code null}）
+	 * @param request 当前请求
+	 * @param response 当前响应
+	 * @return 如果请求被拒绝则返回 {@code false}，否则返回 {@code true}
 	 */
 	boolean processRequest(@Nullable CorsConfiguration configuration, HttpServletRequest request,
 			HttpServletResponse response) throws IOException;

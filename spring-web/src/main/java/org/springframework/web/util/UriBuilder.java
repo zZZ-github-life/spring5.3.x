@@ -44,27 +44,27 @@ public interface UriBuilder {
 	/**
 	 * 设置 URI scheme，其中可以包含 URI 模板变量；
 	 * 也可以为 {@code null}，以清除此构建器的 scheme。
-	 * @param scheme the URI scheme
+	 * @param scheme URI 方案
 	 */
 	UriBuilder scheme(@Nullable String scheme);
 
 	/**
 	 * 设置 URI 用户信息，其中可以包含 URI 模板变量；
 	 * 也可以为 {@code null}，以清除此构建器的用户信息。
-	 * @param userInfo the URI user info
+	 * @param userInfo URI 用户信息
 	 */
 	UriBuilder userInfo(@Nullable String userInfo);
 
 	/**
 	 * 设置 URI 主机，其中可以包含 URI 模板变量；
 	 * 也可以为 {@code null}，以清除此构建器的主机。
-	 * @param host the URI host
+	 * @param host URI 主机
 	 */
 	UriBuilder host(@Nullable String host);
 
 	/**
 	 * 设置 URI 端口。传入 {@code -1} 将清除此构建器的端口。
-	 * @param port the URI port
+	 * @param port URI 端口
 	 */
 	UriBuilder port(int port);
 
@@ -72,7 +72,7 @@ public interface UriBuilder {
 	 * 设置 URI 端口。仅当端口需要使用 URI 变量参数化时才使用此方法，
 	 * 否则请使用 {@link #port(int)}。
 	 * 传入 {@code null} 将清除此构建器的端口。
-	 * @param port the URI port
+	 * @param port URI 端口
 	 */
 	UriBuilder port(@Nullable String port);
 
@@ -103,13 +103,13 @@ public interface UriBuilder {
 	 * 另请参阅参考文档中的
 	 * <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#web-uri-encoding">
 	 * URI Encoding</a> 一节。
-	 * @param path the URI path
+	 * @param path URI 路径
 	 */
 	UriBuilder path(String path);
 
 	/**
 	 * 覆盖当前路径。
-	 * @param path the URI path, or {@code null} for an empty path
+	 * @param path URI 路径；为 {@code null} 表示空路径
 	 */
 	UriBuilder replacePath(@Nullable String path);
 
@@ -136,7 +136,7 @@ public interface UriBuilder {
 	 * // 结果为 "/first-value/second-value/"
 	 * </pre>
 	 * <p>空的路径段会被忽略，因此生成的完整路径中不会出现重复的斜杠。
-	 * @param pathSegments the URI path segments
+	 * @param pathSegments URI 路径段
 	 */
 	UriBuilder pathSegment(String... pathSegments) throws IllegalArgumentException;
 
@@ -146,7 +146,7 @@ public interface UriBuilder {
 	 * 查询字符串中可以包含 URI 模板变量。
 	 * <p><strong>注意：</strong>有关单个查询参数的处理和编码的更多说明，
 	 * 请查阅 {@link #queryParam(String, Object...)} 的 Javadoc。
-	 * @param query the query string
+	 * @param query 查询字符串
 	 */
 	UriBuilder query(String query);
 
@@ -154,7 +154,7 @@ public interface UriBuilder {
 	 * 清除现有的查询参数，然后委托给 {@link #query(String)}。
 	 * <p><strong>注意：</strong>有关单个查询参数的处理和编码的更多说明，
 	 * 请查阅 {@link #queryParam(String, Object...)} 的 Javadoc。
-	 * @param query the query string; a {@code null} value removes all query parameters.
+	 * @param query 查询字符串；值为 {@code null} 会移除所有查询参数。
 	 */
 	UriBuilder replaceQuery(@Nullable String query);
 
@@ -170,8 +170,8 @@ public interface UriBuilder {
 	 * 有关详细信息，请阅读 Spring Framework 参考文档中的
 	 * <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#web-uri-encoding">"URI Encoding"</a>
 	 * 一节。
-	 * @param name the query parameter name
-	 * @param values the query parameter values
+	 * @param name 查询参数名称
+	 * @param values 查询参数值
 	 * @see #queryParam(String, Collection)
 	 */
 	UriBuilder queryParam(String name, Object... values);
@@ -180,8 +180,8 @@ public interface UriBuilder {
 	 * {@link #queryParam(String, Object...)} 的变体，接受 Collection。
 	 * <p><strong>注意：</strong>有关单个查询参数的处理和编码的更多说明，
 	 * 请查阅 {@link #queryParam(String, Object...)} 的 Javadoc。
-	 * @param name the query parameter name
-	 * @param values the query parameter values
+	 * @param name 查询参数名称
+	 * @param values 查询参数值
 	 * @since 5.2
 	 * @see #queryParam(String, Object...)
 	 */
@@ -191,8 +191,8 @@ public interface UriBuilder {
 	 * 如果给定 {@link Optional} 有值，则委托给
 	 * {@link #queryParam(String, Object...)} 或
 	 * {@link #queryParam(String, Collection)}；如果为空，则完全不添加查询参数。
-	 * @param name the query parameter name
-	 * @param value an Optional, either empty or holding the query parameter value.
+	 * @param name 查询参数名称
+	 * @param value Optional，要么为空，要么包含查询参数值。
 	 * @since 5.3
 	 */
 	UriBuilder queryParamIfPresent(String name, Optional<?> value);
@@ -201,7 +201,7 @@ public interface UriBuilder {
 	 * 添加多个查询参数和值。
 	 * <p><strong>注意：</strong>有关单个查询参数的处理和编码的更多说明，
 	 * 请查阅 {@link #queryParam(String, Object...)} 的 Javadoc。
-	 * @param params the params
+	 * @param params 参数
 	 */
 	UriBuilder queryParams(MultiValueMap<String, String> params);
 
@@ -209,8 +209,8 @@ public interface UriBuilder {
 	 * 设置查询参数值以替换现有值；如果未提供值，则移除该查询参数。
 	 * <p><strong>注意：</strong>有关单个查询参数的处理和编码的更多说明，
 	 * 请查阅 {@link #queryParam(String, Object...)} 的 Javadoc。
-	 * @param name the query parameter name
-	 * @param values the query parameter values
+	 * @param name 查询参数名称
+	 * @param values 查询参数值
 	 * @see #replaceQueryParam(String, Collection)
 	 */
 	UriBuilder replaceQueryParam(String name, Object... values);
@@ -219,8 +219,8 @@ public interface UriBuilder {
 	 * {@link #replaceQueryParam(String, Object...)} 的变体，接受 Collection。
 	 * <p><strong>注意：</strong>有关单个查询参数的处理和编码的更多说明，
 	 * 请查阅 {@link #queryParam(String, Object...)} 的 Javadoc。
-	 * @param name the query parameter name
-	 * @param values the query parameter values
+	 * @param name 查询参数名称
+	 * @param values 查询参数值
 	 * @since 5.2
 	 * @see #replaceQueryParam(String, Object...)
 	 */
@@ -230,28 +230,28 @@ public interface UriBuilder {
 	 * 在移除所有现有查询参数值后设置查询参数值。
 	 * <p><strong>注意：</strong>有关单个查询参数的处理和编码的更多说明，
 	 * 请查阅 {@link #queryParam(String, Object...)} 的 Javadoc。
-	 * @param params the query parameter name
+	 * @param params 查询参数名称
 	 */
 	UriBuilder replaceQueryParams(MultiValueMap<String, String> params);
 
 	/**
 	 * 设置 URI 片段。给定片段可以包含 URI 模板变量，
 	 * 也可以为 {@code null}，以清除此构建器的片段。
-	 * @param fragment the URI fragment
+	 * @param fragment URI 片段
 	 */
 	UriBuilder fragment(@Nullable String fragment);
 
 	/**
 	 * 构建 {@link URI} 实例，并使用数组中的值替换 URI 模板变量。
-	 * @param uriVariables the map of URI variables
-	 * @return the URI
+	 * @param uriVariables URI 变量映射
+	 * @return 该 URI
 	 */
 	URI build(Object... uriVariables);
 
 	/**
 	 * 构建 {@link URI} 实例，并使用 Map 中的值替换 URI 模板变量。
-	 * @param uriVariables the map of URI variables
-	 * @return the URI
+	 * @param uriVariables URI 变量映射
+	 * @return 该 URI
 	 */
 	URI build(Map<String, ?> uriVariables);
 

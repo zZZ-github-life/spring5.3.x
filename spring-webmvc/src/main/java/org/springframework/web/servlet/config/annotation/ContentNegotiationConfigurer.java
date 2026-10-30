@@ -111,7 +111,7 @@ public class ContentNegotiationConfigurer {
 	 * 设置要使用的确切策略列表。
 	 * <p><strong>注意：</strong>使用此方法与使用此类中所有其他用于自定义
 	 * 默认固定策略集的设置方法互斥。更多详情请参见类级别文档。
-	 * @param strategies the strategies to use
+	 * @param strategies 要使用的策略
 	 * @since 5.0
 	 */
 	public void strategies(@Nullable List<ContentNegotiationStrategy> strategies) {
@@ -159,8 +159,8 @@ public class ContentNegotiationConfigurer {
 	 * <p>路径扩展策略还会尝试使用
 	 * {@link ServletContext#getMimeType} 和 {@link MediaTypeFactory} 来解析路径扩展。
 	 * 要更改此行为，请参见 {@link #useRegisteredExtensionsOnly} 属性。
-	 * @param extension the key to look up
-	 * @param mediaType the media type
+	 * @param extension 要查找的键
+	 * @param mediaType 媒体类型
 	 * @see #mediaTypes(Map)
 	 * @see #replaceMediaTypes(Map)
 	 */

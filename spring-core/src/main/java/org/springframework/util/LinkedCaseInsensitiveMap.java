@@ -42,7 +42,7 @@ import org.springframework.lang.Nullable;
  * @author Juergen Hoeller
  * @author Phillip Webb
  * @since 3.0
- * @param <V> the value type
+ * @param <V> 值类型
  */
 @SuppressWarnings("serial")
 public class LinkedCaseInsensitiveMap<V> implements Map<String, V>, Serializable, Cloneable {
@@ -74,7 +74,7 @@ public class LinkedCaseInsensitiveMap<V> implements Map<String, V>, Serializable
 
 	/**
 	 * 创建一个新的 LinkedCaseInsensitiveMap，它根据给定的 Locale 存储不区分大小写的键（以小写形式）。
-	 * @param locale the Locale to use for case-insensitive key conversion
+	 * @param locale 用于大小写不敏感键转换的 Locale
 	 * @see #convertKey(String)
 	 */
 	public LinkedCaseInsensitiveMap(@Nullable Locale locale) {
@@ -85,8 +85,8 @@ public class LinkedCaseInsensitiveMap<V> implements Map<String, V>, Serializable
 	 * 创建一个新的 LinkedCaseInsensitiveMap，它包装一个 {@link LinkedHashMap}，其初始容量可容纳指定数
 	 * 量的元素，预计不会立即发生调整大小/重新哈希操作，并根据默认 Locale（以小写形式）存储不区分大小写
 	 * 的键。
-	 * @param expectedSize the expected number of elements (with a corresponding
-	 * capacity to be derived so that no resize/rehash operations are needed)
+	 * @param expectedSize 预期的元素数量
+	 * （会据此推导相应容量，以免需要扩容或重新哈希）
 	 * @see CollectionUtils#newHashMap(int)
 	 * @see #convertKey(String)
 	 */
@@ -98,9 +98,9 @@ public class LinkedCaseInsensitiveMap<V> implements Map<String, V>, Serializable
 	 * 创建一个新的 LinkedCaseInsensitiveMap，它包装一个 {@link LinkedHashMap}，其初始容量可容纳指定数
 	 * 量的元素，预计不会立即发生调整大小/重新哈希操作，并根据给定的 Locale（以小写形式）存储不区分大小
 	 * 写的键。
-	 * @param expectedSize the expected number of elements (with a corresponding
-	 * capacity to be derived so that no resize/rehash operations are needed)
-	 * @param locale the Locale to use for case-insensitive key conversion
+	 * @param expectedSize 预期的元素数量
+	 * （会据此推导相应容量，以免需要扩容或重新哈希）
+	 * @param locale 用于大小写不敏感键转换的 Locale
 	 * @see CollectionUtils#newHashMap(int)
 	 * @see #convertKey(String)
 	 */
@@ -318,8 +318,8 @@ public class LinkedCaseInsensitiveMap<V> implements Map<String, V>, Serializable
 	 * 将给定键转换为不区分大小写的键。
 	 *
 	 * <p>默认实现根据此 Map 的 Locale 将键转换为小写。
-	 * @param key the user-specified key
-	 * @return the key to use for storing
+	 * @param key 用户指定的键
+	 * @return 用于存储的键
 	 * @see String#toLowerCase(Locale)
 	 */
 	protected String convertKey(String key) {
@@ -328,8 +328,8 @@ public class LinkedCaseInsensitiveMap<V> implements Map<String, V>, Serializable
 
 	/**
 	 * 确定此映射是否应移除给定的最旧条目。
-	 * @param eldest the candidate entry
-	 * @return {@code true} for removing it, {@code false} for keeping it
+	 * @param eldest 候选条目
+	 * @return 返回 {@code true} 表示移除它，返回 {@code false} 表示保留它
 	 * @see LinkedHashMap#removeEldestEntry
 	 */
 	protected boolean removeEldestEntry(Map.Entry<String, V> eldest) {

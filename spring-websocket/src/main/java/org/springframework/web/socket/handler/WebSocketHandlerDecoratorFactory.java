@@ -33,9 +33,9 @@ public interface WebSocketHandlerDecoratorFactory {
 
 	/**
 	 * 装饰给定的 WebSocketHandler。
-	 * @param handler the handler to be decorated.
-	 * @return the same handler or the handler wrapped with a subclass of
-	 * {@code WebSocketHandlerDecorator}.
+	 * @param handler 要装饰的处理器。
+	 * @return 同一个处理器，或用 {@code WebSocketHandlerDecorator}
+	 * 的子类包装后的处理器。
 	 */
 	WebSocketHandler decorate(WebSocketHandler handler);
 

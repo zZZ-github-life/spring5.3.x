@@ -62,8 +62,8 @@ public class PropertyValue extends BeanMetadataAttributeAccessor implements Seri
 
 	/**
 	 * 创建新的 PropertyValue 实例。
-	 * @param name the name of the property (never {@code null})
-	 * @param value the value of the property (possibly before type conversion)
+	 * @param name 属性的名称（永不为 {@code null}）
+	 * @param value 属性的值（可能尚未进行类型转换）
 	 */
 	public PropertyValue(String name, @Nullable Object value) {
 		Assert.notNull(name, "Name must not be null");
@@ -73,7 +73,7 @@ public class PropertyValue extends BeanMetadataAttributeAccessor implements Seri
 
 	/**
 	 * 复制构造函数。
-	 * @param original the PropertyValue to copy (never {@code null})
+	 * @param original 要复制的 PropertyValue（永不为 {@code null}）
 	 */
 	public PropertyValue(PropertyValue original) {
 		Assert.notNull(original, "Original must not be null");
@@ -90,8 +90,8 @@ public class PropertyValue extends BeanMetadataAttributeAccessor implements Seri
 
 	/**
 	 * 为原始值持有者暴露新值的构造函数。原始持有者将作为新持有者的源暴露。
-	 * @param original the PropertyValue to link to (never {@code null})
-	 * @param newValue the new value to apply
+	 * @param original 要链接到的 PropertyValue（永不为 {@code null}）
+	 * @param newValue 要应用的新值
 	 */
 	public PropertyValue(PropertyValue original, @Nullable Object newValue) {
 		Assert.notNull(original, "Original must not be null");
@@ -123,8 +123,8 @@ public class PropertyValue extends BeanMetadataAttributeAccessor implements Seri
 
 	/**
 	 * 返回此值持有者对应的原始 PropertyValue 实例。
-	 * @return the original PropertyValue (either a source of this
-	 * value holder or this value holder itself).
+	 * @return 原始的 PropertyValue
+	 * （要么是该值持有器的来源，要么就是该值持有器本身）。
 	 */
 	public PropertyValue getOriginalPropertyValue() {
 		PropertyValue original = this;

@@ -96,13 +96,13 @@ public class ResponseStatusExceptionResolver extends AbstractHandlerExceptionRes
 	 * 处理 {@link ResponseStatus @ResponseStatus} 注解的模板方法。
 	 * <p>默认实现使用注解中的状态码和原因
 	 * 委托给 {@link #applyStatusAndReason}。
-	 * @param responseStatus the {@code @ResponseStatus} annotation
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler, or {@code null} if none chosen at the
-	 * time of the exception, e.g. if multipart resolution failed
-	 * @param ex the exception
-	 * @return an empty ModelAndView, i.e. exception resolved
+	 * @param responseStatus {@code @ResponseStatus} 注解
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器，若在异常发生时未选择任何处理器则为 {@code null}
+	 * （例如 multipart 解析失败）
+	 * @param ex 异常
+	 * @return 空的 ModelAndView，即异常已解析
 	 */
 	protected ModelAndView resolveResponseStatus(ResponseStatus responseStatus, HttpServletRequest request,
 			HttpServletResponse response, @Nullable Object handler, Exception ex) throws Exception {
@@ -118,12 +118,12 @@ public class ResponseStatusExceptionResolver extends AbstractHandlerExceptionRes
 	 * {@link ResponseStatusException#getResponseHeaders()} 中的响应头，并使用
 	 * 异常中的状态码和原因委托给
 	 * {@link #applyStatusAndReason}。
-	 * @param ex the exception
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler, or {@code null} if none chosen at the
-	 * time of the exception, e.g. if multipart resolution failed
-	 * @return an empty ModelAndView, i.e. exception resolved
+	 * @param ex 异常
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器，若在异常发生时未选择任何处理器则为 {@code null}
+	 * （例如 multipart 解析失败）
+	 * @return 空的 ModelAndView，即异常已解析
 	 * @since 5.0
 	 */
 	protected ModelAndView resolveResponseStatusException(ResponseStatusException ex,
@@ -141,9 +141,9 @@ public class ResponseStatusExceptionResolver extends AbstractHandlerExceptionRes
 	 * {@link HttpServletResponse#sendError(int)} 或
 	 * {@link HttpServletResponse#sendError(int, String)} 发送响应错误，
 	 * 然后返回一个空的 ModelAndView。
-	 * @param statusCode the HTTP status code
-	 * @param reason the associated reason (may be {@code null} or empty)
-	 * @param response current HTTP response
+	 * @param statusCode HTTP 状态码
+	 * @param reason 关联的原因（可能为 {@code null} 或空）
+	 * @param response 当前 HTTP 响应
 	 * @since 5.0
 	 */
 	protected ModelAndView applyStatusAndReason(int statusCode, @Nullable String reason, HttpServletResponse response)

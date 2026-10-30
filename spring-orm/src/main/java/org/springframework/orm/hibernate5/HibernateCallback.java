@@ -29,7 +29,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Juergen Hoeller
  * @since 4.2
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see HibernateTemplate
  * @see HibernateTransactionManager
  */
@@ -43,9 +43,9 @@ public interface HibernateCallback<T> {
 	 * 即一个领域对象或一组领域对象。
 	 * 抛出的自定义 RuntimeException 会被视为应用异常：
 	 * 它将被传播给模板的调用方。
-	 * @param session active Hibernate session
-	 * @return a result object, or {@code null} if none
-	 * @throws HibernateException if thrown by the Hibernate API
+	 * @param session 活动的 Hibernate Session
+	 * @return 结果对象；如果没有则返回 {@code null}
+	 * @throws HibernateException 如果由 Hibernate API 抛出
 	 * @see HibernateTemplate#execute
 	 */
 	@Nullable

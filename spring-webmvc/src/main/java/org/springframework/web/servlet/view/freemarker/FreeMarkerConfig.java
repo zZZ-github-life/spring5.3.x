@@ -35,7 +35,7 @@ public interface FreeMarkerConfig {
 	 * 返回当前 Web 应用上下文的 FreeMarker {@link Configuration} 对象。
 	 * <p>FreeMarker Configuration 对象可用于设置 FreeMarker 属性和共享对象，
 	 * 并允许获取模板。
-	 * @return the FreeMarker Configuration
+	 * @return FreeMarker 的 Configuration
 	 */
 	Configuration getConfiguration();
 

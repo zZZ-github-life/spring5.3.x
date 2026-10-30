@@ -425,8 +425,8 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 
 	/**
 	 * 返回给定头名称的第一个头值（如果有）。
-	 * @param headerName the header name
-	 * @return the first header value, or {@code null} if none
+	 * @param headerName 消息头名称
+	 * @return 第一个消息头的值，如果没有则为 {@code null}
 	 */
 	@Override
 	@Nullable
@@ -437,9 +437,9 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 
 	/**
 	 * 在给定名称下添加给定的单个头值。
-	 * @param headerName the header name
-	 * @param headerValue the header value
-	 * @throws UnsupportedOperationException if adding headers is not supported
+	 * @param headerName 消息头名称
+	 * @param headerValue 消息头的值
+	 * @throws UnsupportedOperationException 如果不支持添加消息头
 	 * @see #put(String, List)
 	 * @see #set(String, String)
 	 */
@@ -462,9 +462,9 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 
 	/**
 	 * 在给定名称下设置给定的单个头值。
-	 * @param headerName the header name
-	 * @param headerValue the header value
-	 * @throws UnsupportedOperationException if adding headers is not supported
+	 * @param headerName 消息头名称
+	 * @param headerValue 消息头的值
+	 * @throws UnsupportedOperationException 如果不支持添加消息头
 	 * @see #put(String, List)
 	 * @see #add(String, String)
 	 */

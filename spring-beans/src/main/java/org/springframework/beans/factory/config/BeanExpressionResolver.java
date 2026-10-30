@@ -32,11 +32,10 @@ public interface BeanExpressionResolver {
 
 	/**
 	 * 在适用时，将给定值作为表达式求值；否则原样返回该值。
-	 * @param value the value to evaluate as an expression
-	 * @param beanExpressionContext the bean expression context to use when
-	 * evaluating the expression
-	 * @return the resolved value (potentially the given value as-is)
-	 * @throws BeansException if evaluation failed
+	 * @param value 要作为表达式求值的值
+	 * @param beanExpressionContext 求值表达式时要使用的 Bean 表达式上下文
+	 * @return 解析后的值（可能是给定的值本身）
+	 * @throws BeansException 如果求值失败则抛出
 	 */
 	@Nullable
 	Object evaluate(@Nullable String value, BeanExpressionContext beanExpressionContext) throws BeansException;

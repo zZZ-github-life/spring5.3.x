@@ -59,7 +59,7 @@ public class ResourceLoaderClassLoadHelper implements ClassLoadHelper {
 
 	/**
 	 * 为指定的 ResourceLoader 创建一个新的 ResourceLoaderClassLoadHelper。
-	 * @param resourceLoader the ResourceLoader to delegate to
+	 * @param resourceLoader 要委托给的 ResourceLoader
 	 */
 	public ResourceLoaderClassLoadHelper(@Nullable ResourceLoader resourceLoader) {
 		this.resourceLoader = resourceLoader;

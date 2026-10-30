@@ -60,7 +60,7 @@ public class ResourceHandlerRegistration {
 
 	/**
 	 * 创建 {@link ResourceHandlerRegistration} 实例。
-	 * @param pathPatterns one or more resource URL path patterns
+	 * @param pathPatterns 一个或多个资源 URL 路径模式
 	 */
 	public ResourceHandlerRegistration(String... pathPatterns) {
 		Assert.notEmpty(pathPatterns, "At least one path pattern is required for resource handling.");
@@ -80,8 +80,8 @@ public class ResourceHandlerRegistration {
 	 * （例如文件、HTTP URL 等），此方法支持一个特殊前缀来指定与该 URL 关联的字符集，
 	 * 以便正确地编码追加到其后的相对路径，例如
 	 * {@code [charset=Windows-31J]https://example.org/path}。
-	 * @return the same {@link ResourceHandlerRegistration} instance, for
-	 * chained method invocation
+	 * @return 同一个 {@link ResourceHandlerRegistration} 实例，
+	 * 用于链式方法调用
 	 */
 	public ResourceHandlerRegistration addResourceLocations(String... locations) {
 		this.locationValues.addAll(Arrays.asList(locations));
@@ -90,9 +90,9 @@ public class ResourceHandlerRegistration {
 
 	/**
 	 * 配置基于预先解析的 {@code Resource} 引用来提供静态资源的位置。
-	 * @param locations the resource locations to use
-	 * @return the same {@link ResourceHandlerRegistration} instance, for
-	 * chained method invocation
+	 * @param locations 要使用的资源位置
+	 * @return 同一个 {@link ResourceHandlerRegistration} 实例，
+	 * 用于链式方法调用
 	 * @since 5.3.3
 	 */
 	public ResourceHandlerRegistration addResourceLocations(Resource... locations) {
@@ -104,8 +104,9 @@ public class ResourceHandlerRegistration {
 	 * 指定资源处理器所服务资源的缓存周期，以秒为单位。默认不发送任何缓存标头，
 	 * 而仅依赖最后修改时间戳。设置为 0 可发送禁止缓存的缓存标头，
 	 * 或设置为正数秒数以发送带有给定 max-age 值的缓存标头。
-	 * @param cachePeriod the time to cache resources in seconds
-	 * @return the same {@link ResourceHandlerRegistration} instance, for chained method invocation
+	 * @param cachePeriod 缓存资源的时间，单位为秒
+	 * @return 同一个 {@link ResourceHandlerRegistration} 实例，
+	 * 用于链式方法调用
 	 */
 	public ResourceHandlerRegistration setCachePeriod(Integer cachePeriod) {
 		this.cachePeriod = cachePeriod;
@@ -115,8 +116,9 @@ public class ResourceHandlerRegistration {
 	/**
 	 * 指定资源处理器应使用的 {@link org.springframework.http.CacheControl}。
 	 * <p>在此处设置自定义值将覆盖通过 {@link #setCachePeriod} 设置的配置。
-	 * @param cacheControl the CacheControl configuration to use
-	 * @return the same {@link ResourceHandlerRegistration} instance, for chained method invocation
+	 * @param cacheControl 要使用的 CacheControl 配置
+	 * @return 同一个 {@link ResourceHandlerRegistration} 实例，
+	 * 用于链式方法调用
 	 * @since 4.2
 	 */
 	public ResourceHandlerRegistration setCacheControl(CacheControl cacheControl) {
@@ -127,8 +129,9 @@ public class ResourceHandlerRegistration {
 	/**
 	 * 设置是否应使用 {@link Resource#lastModified()} 信息来驱动 HTTP 响应。
 	 * <p>此配置默认设置为 {@code true}。
-	 * @param useLastModified whether the "last modified" resource information should be used
-	 * @return the same {@link ResourceHandlerRegistration} instance, for chained method invocation
+	 * @param useLastModified 是否应使用“last modified”资源信息
+	 * @return 同一个 {@link ResourceHandlerRegistration} 实例，
+	 * 用于链式方法调用
 	 * @since 5.3
 	 * @see ResourceHttpRequestHandler#setUseLastModified
 	 */
@@ -143,8 +146,10 @@ public class ResourceHandlerRegistration {
 	 * <p>默认值为 {@code false}，这是为了防范没有目录条目的 zip 文件——
 	 * 这类文件无法提前暴露目录是否存在。如果 jar 布局一致且包含目录条目，
 	 * 可将此标志切换为 {@code true} 以优化访问。
-	 * @param optimizeLocations whether to optimize the locations through an existence check on startup
-	 * @return the same {@link ResourceHandlerRegistration} instance, for chained method invocation
+	 * @param optimizeLocations 是否在启动时通过存在性检查
+	 * 来优化位置
+	 * @return 同一个 {@link ResourceHandlerRegistration} 实例，
+	 * 用于链式方法调用
 	 * @since 5.3.13
 	 * @see ResourceHttpRequestHandler#setOptimizeLocations
 	 */
@@ -157,10 +162,11 @@ public class ResourceHandlerRegistration {
 	 * 配置要使用的资源解析器和转换器链。例如，这对于为资源 URL 应用版本策略很有用。
 	 * <p>如果未调用此方法，默认仅使用一个简单的
 	 * {@link PathResourceResolver} 来将 URL 路径与配置位置下的资源进行匹配。
-	 * @param cacheResources whether to cache the result of resource resolution;
-	 * setting this to "true" is recommended for production (and "false" for
-	 * development, especially when applying a version strategy)
-	 * @return the same {@link ResourceHandlerRegistration} instance, for chained method invocation
+	 * @param cacheResources 是否缓存资源解析结果；
+	 * 建议生产环境设为“true”（开发环境设为“false”，
+	 * 尤其是在应用版本策略时）
+	 * @return 同一个 {@link ResourceHandlerRegistration} 实例，
+	 * 用于链式方法调用
 	 * @since 4.1
 	 */
 	public ResourceChainRegistration resourceChain(boolean cacheResources) {
@@ -172,15 +178,15 @@ public class ResourceHandlerRegistration {
 	 * 配置要使用的资源解析器和转换器链。例如，这对于为资源 URL 应用版本策略很有用。
 	 * <p>如果未调用此方法，默认仅使用一个简单的
 	 * {@link PathResourceResolver} 来将 URL 路径与配置位置下的资源进行匹配。
-	 * @param cacheResources whether to cache the result of resource resolution;
-	 * setting this to "true" is recommended for production (and "false" for
-	 * development, especially when applying a version strategy
-	 * @param cache the cache to use for storing resolved and transformed resources;
-	 * by default a {@link org.springframework.cache.concurrent.ConcurrentMapCache}
-	 * is used. Since Resources aren't serializable and can be dependent on the
-	 * application host, one should not use a distributed cache but rather an
-	 * in-memory cache.
-	 * @return the same {@link ResourceHandlerRegistration} instance, for chained method invocation
+	 * @param cacheResources 是否缓存资源解析结果；
+	 * 建议生产环境设为“true”（开发环境设为“false”，
+	 * 尤其是在应用版本策略时）
+	 * @param cache 用于存储已解析和已转换资源的缓存；
+	 * 默认使用 {@link org.springframework.cache.concurrent.ConcurrentMapCache}。
+	 * 由于 Resource 不可序列化且可能依赖于应用主机，
+	 * 不应使用分布式缓存，而应使用内存缓存。
+	 * @return 同一个 {@link ResourceHandlerRegistration} 实例，
+	 * 用于链式方法调用
 	 * @since 4.1
 	 */
 	public ResourceChainRegistration resourceChain(boolean cacheResources, Cache cache) {

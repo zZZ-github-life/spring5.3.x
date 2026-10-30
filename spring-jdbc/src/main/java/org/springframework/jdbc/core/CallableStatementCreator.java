@@ -42,11 +42,10 @@ public interface CallableStatementCreator {
 
 	/**
 	 * 在此连接中创建可调用语句。允许实现使用CallableStatement。
-	 * @param con the Connection to use to create statement
-	 * @return a callable statement
-	 * @throws SQLException there is no need to catch SQLExceptions
-	 * that may be thrown in the implementation of this method.
-	 * The JdbcTemplate class will handle them.
+	 * @param con 用于创建语句的 Connection
+	 * @return 可调用的语句
+	 * @throws SQLException 无需捕获此方法实现中可能抛出的 SQLException。
+	 * JdbcTemplate 类会处理它们。
 	 */
 	CallableStatement createCallableStatement(Connection con) throws SQLException;
 

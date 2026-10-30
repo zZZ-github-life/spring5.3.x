@@ -35,7 +35,7 @@ public interface ScriptFactory {
 	 * 返回指向脚本源的定位器。由实际创建脚本的后处理器解释。
 	 * <p>通常支持的定位器包括 Spring 资源位置（例如 "file:C:/myScript.bsh" 或
 	 * "classpath:myPackage/myScript.bsh"）以及内联脚本（"inline:myScriptText..."）。
-	 * @return the script source locator
+	 * @return 脚本源定位符
 	 * @see org.springframework.scripting.support.ScriptFactoryPostProcessor#convertToScriptSource
 	 * @see org.springframework.core.io.ResourceLoader
 	 */
@@ -44,7 +44,7 @@ public interface ScriptFactory {
 	/**
 	 * 返回脚本应当实现的业务接口。
 	 * <p>如果脚本本身确定了其 Java 接口（例如 Groovy 的情况），则可以返回 {@code null}。
-	 * @return the interfaces for the script
+	 * @return 脚本的接口
 	 */
 	@Nullable
 	Class<?>[] getScriptInterfaces();
@@ -52,7 +52,7 @@ public interface ScriptFactory {
 	/**
 	 * 返回脚本是否需要为其生成配置接口。通常，对于自身不确定 Java 签名、且未在
 	 * {@code getScriptInterfaces()} 中指定合适配置接口的脚本，情况便是如此。
-	 * @return whether the script requires a generated config interface
+	 * @return 脚本是否需要生成的配置接口
 	 * @see #getScriptInterfaces()
 	 */
 	boolean requiresConfigInterface();
@@ -61,14 +61,12 @@ public interface ScriptFactory {
 	 * 用于创建脚本化 Java 对象的工厂方法。
 	 * <p>鼓励实现缓存脚本元数据，例如生成的脚本类。请注意，此方法可能会被并发调用，必须以线程安全的方
 	 * 式实现。
-	 * @param scriptSource the actual ScriptSource to retrieve
-	 * the script source text from (never {@code null})
-	 * @param actualInterfaces the actual interfaces to expose,
-	 * including script interfaces as well as a generated config interface
-	 * (if applicable; may be {@code null})
-	 * @return the scripted Java object
-	 * @throws IOException if script retrieval failed
-	 * @throws ScriptCompilationException if script compilation failed
+	 * @param scriptSource 用于获取脚本源文本的实际 ScriptSource（永不为 {@code null}）
+	 * @param actualInterfaces 要暴露的实际接口，包括脚本接口以及生成的配置接口
+	 * （如果适用；可为 {@code null}）
+	 * @return 脚本化的 Java 对象
+	 * @throws IOException 如果脚本获取失败
+	 * @throws ScriptCompilationException 如果脚本编译失败
 	 */
 	@Nullable
 	Object getScriptedObject(ScriptSource scriptSource, @Nullable Class<?>... actualInterfaces)
@@ -78,12 +76,10 @@ public interface ScriptFactory {
 	 * 确定脚本化 Java 对象的类型。
 	 * <p>鼓励实现缓存脚本元数据，例如生成的脚本类。请注意，此方法可能会被并发调用，必须以线程安全的方
 	 * 式实现。
-	 * @param scriptSource the actual ScriptSource to retrieve
-	 * the script source text from (never {@code null})
-	 * @return the type of the scripted Java object, or {@code null}
-	 * if none could be determined
-	 * @throws IOException if script retrieval failed
-	 * @throws ScriptCompilationException if script compilation failed
+	 * @param scriptSource 用于获取脚本源文本的实际 ScriptSource（永不为 {@code null}）
+	 * @return 脚本化 Java 对象的类型，如果无法确定则为 {@code null}
+	 * @throws IOException 如果脚本获取失败
+	 * @throws ScriptCompilationException 如果脚本编译失败
 	 * @since 2.0.3
 	 */
 	@Nullable
@@ -92,9 +88,8 @@ public interface ScriptFactory {
 
 	/**
 	 * 确定是否需要刷新（例如通过 ScriptSource 的 {@code isModified()} 方法）。
-	 * @param scriptSource the actual ScriptSource to retrieve
-	 * the script source text from (never {@code null})
-	 * @return whether a fresh {@link #getScriptedObject} call is required
+	 * @param scriptSource 用于获取脚本源文本的实际 ScriptSource（永不为 {@code null}）
+	 * @return 是否需要重新调用 {@link #getScriptedObject}
 	 * @since 2.5.2
 	 * @see ScriptSource#isModified()
 	 */

@@ -38,9 +38,9 @@ public interface InfoReceiver {
 	 * 对 SockJS "Info" URL 执行 HTTP 请求，
 	 * 并返回得到的 JSON 响应内容，或引发异常。
 	 * <p>请注意，自 4.2 起，此方法接受 {@code headers} 参数。
-	 * @param infoUrl the URL to obtain SockJS server information from
-	 * @param headers the headers to use for the request
-	 * @return the body of the response
+	 * @param infoUrl 用于获取 SockJS 服务器信息的 URL
+	 * @param headers 用于该请求的头
+	 * @return 响应的正文
 	 */
 	String executeInfoRequest(URI infoUrl, @Nullable HttpHeaders headers);
 

@@ -33,7 +33,7 @@ public class Task {
 
 	/**
 	 * 创建一个新的 {@code Task}。
-	 * @param runnable the underlying task to execute
+	 * @param runnable 要执行的底层任务
 	 */
 	public Task(Runnable runnable) {
 		Assert.notNull(runnable, "Runnable must not be null");

@@ -82,8 +82,8 @@ public class DelegatingPhaseListenerMulticaster implements PhaseListener {
 
 	/**
 	 * 从 Spring 根 WebApplicationContext 获取委托的 PhaseListener Bean。
-	 * @param facesContext the current JSF context
-	 * @return a Collection of PhaseListener objects
+	 * @param facesContext 当前的 JSF 上下文
+	 * @return PhaseListener 对象的 Collection
 	 * @see #getBeanFactory
 	 * @see org.springframework.beans.factory.ListableBeanFactory#getBeansOfType(Class)
 	 */
@@ -97,8 +97,8 @@ public class DelegatingPhaseListenerMulticaster implements PhaseListener {
 	 * <p>默认实现委托给 {@code getWebApplicationContext}。
 	 * 可以重写此方法以提供一个任意的 ListableBeanFactory 引用用于解析；
 	 * 通常这将是一个完整的 Spring ApplicationContext。
-	 * @param facesContext the current JSF context
-	 * @return the Spring ListableBeanFactory (never {@code null})
+	 * @param facesContext 当前的 JSF 上下文
+	 * @return Spring ListableBeanFactory（永不为 {@code null}）
 	 * @see #getWebApplicationContext
 	 */
 	protected ListableBeanFactory getBeanFactory(FacesContext facesContext) {
@@ -108,8 +108,8 @@ public class DelegatingPhaseListenerMulticaster implements PhaseListener {
 	/**
 	 * 获取用于委托 Bean 名称解析的 Web 应用上下文。
 	 * <p>默认实现委托给 FacesContextUtils。
-	 * @param facesContext the current JSF context
-	 * @return the Spring web application context (never {@code null})
+	 * @param facesContext 当前的 JSF 上下文
+	 * @return Spring Web 应用上下文（永不为 {@code null}）
 	 * @see FacesContextUtils#getRequiredWebApplicationContext
 	 */
 	protected WebApplicationContext getWebApplicationContext(FacesContext facesContext) {

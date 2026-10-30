@@ -42,8 +42,8 @@ public class CompositeComponentDefinition extends AbstractComponentDefinition {
 
 	/**
 	 * 创建一个新的 CompositeComponentDefinition。
-	 * @param name the name of the composite component
-	 * @param source the source element that defines the root of the composite component
+	 * @param name 复合组件的名称
+	 * @param source 定义复合组件根部的源元素
 	 */
 	public CompositeComponentDefinition(String name, @Nullable Object source) {
 		Assert.notNull(name, "Name must not be null");
@@ -66,7 +66,7 @@ public class CompositeComponentDefinition extends AbstractComponentDefinition {
 
 	/**
 	 * 将给定组件添加为此复合组件的嵌套元素。
-	 * @param component the nested component to add
+	 * @param component 要添加的嵌套组件
 	 */
 	public void addNestedComponent(ComponentDefinition component) {
 		Assert.notNull(component, "ComponentDefinition must not be null");
@@ -75,7 +75,7 @@ public class CompositeComponentDefinition extends AbstractComponentDefinition {
 
 	/**
 	 * 返回此复合组件所持有的嵌套组件。
-	 * @return the array of nested components, or an empty array if none
+	 * @return 嵌套组件数组；若没有则为空数组
 	 */
 	public ComponentDefinition[] getNestedComponents() {
 		return this.nestedComponents.toArray(new ComponentDefinition[0]);

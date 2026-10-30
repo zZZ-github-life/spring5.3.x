@@ -190,7 +190,7 @@ public class PropertySourcesPlaceholderConfigurer extends PlaceholderConfigurerS
 
 	/**
 	 * 为兼容 {@link org.springframework.beans.factory.config.PlaceholderConfigurerSupport} 而实现。
-	 * @throws UnsupportedOperationException in this implementation
+	 * @throws UnsupportedOperationException 在此实现中
 	 * @deprecated in favor of
 	 * {@link #processProperties(ConfigurableListableBeanFactory, ConfigurablePropertyResolver)}
 	 */
@@ -204,8 +204,8 @@ public class PropertySourcesPlaceholderConfigurer extends PlaceholderConfigurerS
 	/**
 	 * 返回在{@link #postProcessBeanFactory(ConfigurableListableBeanFactory) 后处理}期间实际应用的属性
 	 * 源。
-	 * @return the property sources that were applied
-	 * @throws IllegalStateException if the property sources have not yet been applied
+	 * @return 已应用的属性源
+	 * @throws IllegalStateException 如果属性源尚未应用
 	 * @since 4.0
 	 */
 	public PropertySources getAppliedPropertySources() throws IllegalStateException {

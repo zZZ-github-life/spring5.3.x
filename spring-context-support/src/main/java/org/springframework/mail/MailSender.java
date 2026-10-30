@@ -32,19 +32,19 @@ public interface MailSender {
 
 	/**
 	 * 发送给定的简单邮件消息。
-	 * @param simpleMessage the message to send
-	 * @throws MailParseException in case of failure when parsing the message
-	 * @throws MailAuthenticationException in case of authentication failure
-	 * @throws MailSendException in case of failure when sending the message
+	 * @param simpleMessage 要发送的消息
+	 * @throws MailParseException 解析消息失败时
+	 * @throws MailAuthenticationException 认证失败时
+	 * @throws MailSendException 发送消息失败时
 	 */
 	void send(SimpleMailMessage simpleMessage) throws MailException;
 
 	/**
 	 * 批量发送给定的简单邮件消息数组。
-	 * @param simpleMessages the messages to send
-	 * @throws MailParseException in case of failure when parsing a message
-	 * @throws MailAuthenticationException in case of authentication failure
-	 * @throws MailSendException in case of failure when sending a message
+	 * @param simpleMessages 要发送的消息
+	 * @throws MailParseException 解析消息失败时
+	 * @throws MailAuthenticationException 认证失败时
+	 * @throws MailSendException 发送消息失败时
 	 */
 	void send(SimpleMailMessage... simpleMessages) throws MailException;
 

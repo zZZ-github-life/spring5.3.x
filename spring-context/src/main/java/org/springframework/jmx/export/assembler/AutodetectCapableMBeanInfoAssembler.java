@@ -31,8 +31,8 @@ public interface AutodetectCapableMBeanInfoAssembler extends MBeanInfoAssembler 
 	/**
 	 * 指示某个特定 Bean 是否应被包含在注册过程中（如果它未在 {@code MBeanExporter} 的 {@code beans} 映
 	 * 射中指定）。
-	 * @param beanClass the class of the bean (might be a proxy class)
-	 * @param beanName the name of the bean in the bean factory
+	 * @param beanClass Bean 的类（可能是代理类）
+	 * @param beanName Bean 在 Bean 工厂中的名称
 	 */
 	boolean includeBean(Class<?> beanClass, String beanName);
 

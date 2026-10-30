@@ -49,7 +49,7 @@ public abstract class DecoratingNavigationHandler extends NavigationHandler {
 
 	/**
 	 * 创建一个带固定原始 NavigationHandler 的 DecoratingNavigationHandler。
-	 * @param originalNavigationHandler the original NavigationHandler to decorate
+	 * @param originalNavigationHandler 要装饰的原始 NavigationHandler
 	 */
 	protected DecoratingNavigationHandler(NavigationHandler originalNavigationHandler) {
 		this.decoratedNavigationHandler = originalNavigationHandler;
@@ -84,13 +84,11 @@ public abstract class DecoratingNavigationHandler extends NavigationHandler {
 	 * javadoc）。或者，也可以直接调用被装饰的 NavigationHandler 或传入的原始
 	 * NavigationHandler；不过，在应对链中可能的位置方面，这种方式不够灵活。
 	 *
-	 * @param facesContext the current JSF context
-	 * @param fromAction the action binding expression that was evaluated to retrieve the
-	 * specified outcome, or {@code null} if the outcome was acquired by some other means
-	 * @param outcome the logical outcome returned by a previous invoked application action
-	 * (which may be {@code null})
-	 * @param originalNavigationHandler the original NavigationHandler,
-	 * or {@code null} if none
+	 * @param facesContext 当前的 JSF 上下文
+	 * @param fromAction 为获取指定结果而求值的动作绑定表达式，
+	 * 如果结果是通过其他方式获得的，则为 {@code null}
+	 * @param outcome 先前调用的应用动作返回的逻辑结果（可能为 {@code null}）
+	 * @param originalNavigationHandler 原始 NavigationHandler，如果没有则为 {@code null}
 	 * @see #callNextHandlerInChain
 	 */
 	public abstract void handleNavigation(FacesContext facesContext, @Nullable String fromAction,
@@ -112,13 +110,11 @@ public abstract class DecoratingNavigationHandler extends NavigationHandler {
 	 * 如果未传入原始 NavigationHandler（例如此实例是链中最后一个元素，
 	 * 而之前的元素都是标准 NavigationHandler），则此方法相当于空操作。
 	 *
-	 * @param facesContext the current JSF context
-	 * @param fromAction the action binding expression that was evaluated to retrieve the
-	 * specified outcome, or {@code null} if the outcome was acquired by some other means
-	 * @param outcome the logical outcome returned by a previous invoked application action
-	 * (which may be {@code null})
-	 * @param originalNavigationHandler the original NavigationHandler,
-	 * or {@code null} if none
+	 * @param facesContext 当前的 JSF 上下文
+	 * @param fromAction 为获取指定结果而求值的动作绑定表达式，
+	 * 如果结果是通过其他方式获得的，则为 {@code null}
+	 * @param outcome 先前调用的应用动作返回的逻辑结果（可能为 {@code null}）
+	 * @param originalNavigationHandler 原始 NavigationHandler，如果没有则为 {@code null}
 	 */
 	protected final void callNextHandlerInChain(FacesContext facesContext, @Nullable String fromAction,
 			@Nullable String outcome, @Nullable NavigationHandler originalNavigationHandler) {

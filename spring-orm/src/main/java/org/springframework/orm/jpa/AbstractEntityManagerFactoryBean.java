@@ -432,9 +432,8 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	/**
 	 * 为给定的 {@link EntityManagerFactory} 创建代理。这样做是为了能够
 	 * 为应用程序管理的 {@link EntityManager} 返回一个事务感知的代理。
-	 * @param emf the EntityManagerFactory as returned by the persistence provider,
-	 * if initialized already
-	 * @return the EntityManagerFactory proxy
+	 * @param emf 持久化提供者返回的 EntityManagerFactory（如果已初始化）
+	 * @return EntityManagerFactory 代理
 	 */
 	protected EntityManagerFactory createEntityManagerFactoryProxy(@Nullable EntityManagerFactory emf) {
 		Set<Class<?>> ifcs = new LinkedHashSet<>();
@@ -519,8 +518,8 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	/**
 	 * 子类必须实现此方法，以创建将由 {@code getObject()} 方法返回的
 	 * EntityManagerFactory。
-	 * @return the EntityManagerFactory instance returned by this FactoryBean
-	 * @throws PersistenceException if the EntityManager cannot be created
+	 * @return 此 FactoryBean 返回的 EntityManagerFactory 实例
+	 * @throws PersistenceException 如果无法创建 EntityManager
 	 */
 	protected abstract EntityManagerFactory createNativeEntityManagerFactory() throws PersistenceException;
 
@@ -581,7 +580,7 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	 * 可选回调，用于在激活使用之前对原生 EntityManager 进行后处理。
 	 * <p>默认实现委托给
 	 * {@link JpaVendorAdapter#postProcessEntityManager}（如果可用）。
-	 * @param rawEntityManager the EntityManager to post-process
+	 * @param rawEntityManager 要后处理的 EntityManager
 	 * @since 5.3
 	 * @see #createNativeEntityManager
 	 * @see JpaVendorAdapter#postProcessEntityManager

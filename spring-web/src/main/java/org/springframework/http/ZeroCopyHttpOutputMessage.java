@@ -33,10 +33,10 @@ public interface ZeroCopyHttpOutputMessage extends ReactiveHttpOutputMessage {
 
 	/**
 	 * 使用给定的 {@link File} 将消息正文写入底层 HTTP 层。
-	 * @param file the file to transfer
-	 * @param position the position within the file from which the transfer is to begin
-	 * @param count the number of bytes to be transferred
-	 * @return a publisher that indicates completion or error.
+	 * @param file 要传输的文件
+	 * @param position 文件内开始传输的位置
+	 * @param count 要传输的字节数
+	 * @return 指示完成或错误的发布者。
 	 */
 	default Mono<Void> writeWith(File file, long position, long count) {
 		return writeWith(file.toPath(), position, count);
@@ -44,10 +44,10 @@ public interface ZeroCopyHttpOutputMessage extends ReactiveHttpOutputMessage {
 
 	/**
 	 * 使用给定的 {@link Path} 将消息正文写入底层 HTTP 层。
-	 * @param file the file to transfer
-	 * @param position the position within the file from which the transfer is to begin
-	 * @param count the number of bytes to be transferred
-	 * @return a publisher that indicates completion or error.
+	 * @param file 要传输的文件
+	 * @param position 文件内开始传输的位置
+	 * @param count 要传输的字节数
+	 * @return 指示完成或错误的发布者。
 	 * @since 5.1
 	 */
 	Mono<Void> writeWith(Path file, long position, long count);

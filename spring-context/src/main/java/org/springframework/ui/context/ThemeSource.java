@@ -31,11 +31,10 @@ public interface ThemeSource {
 	/**
 	 * 返回给定主题名称对应的 Theme 实例。<p>返回的 Theme 将解析特定于主题的消息、代码、文件路径等（例
 	 * 如 Web 环境中的 CSS 和图像文件）。
-	 * @param themeName the name of the theme
-	 * @return the corresponding Theme, or {@code null} if none defined.
-	 * Note that, by convention, a ThemeSource should at least be able to
-	 * return a default Theme for the default theme name "theme" but may also
-	 * return default Themes for other theme names.
+	 * @param themeName 主题的名称
+	 * @return 相应的 Theme，如果未定义则为 {@code null}。
+	 * 注意，按照约定，ThemeSource 至少应能为默认主题名
+	 * “theme” 返回默认 Theme，但也可以为其他主题名返回默认 Theme。
 	 * @see org.springframework.web.servlet.theme.AbstractThemeResolver#ORIGINAL_DEFAULT_THEME_NAME
 	 */
 	@Nullable

@@ -37,7 +37,7 @@ public final class MillisecondInstantPrinter implements Printer<Long> {
 
 	/**
 	 * 创建一个新的 ReadableInstantPrinter。
-	 * @param formatter the Joda DateTimeFormatter instance
+	 * @param formatter Joda DateTimeFormatter 实例
 	 */
 	public MillisecondInstantPrinter(DateTimeFormatter formatter) {
 		this.formatter = formatter;

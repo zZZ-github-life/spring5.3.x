@@ -43,7 +43,7 @@ import org.springframework.util.Assert;
  * @author Rossen Stoyanchev
  * @author Stephane Maldini
  * @since 5.0
- * @param <T> the type of element signaled
+ * @param <T> 所发出信号元素的类型
  */
 public class ChannelSendOperator<T> extends Mono<Void> implements Scannable {
 

@@ -29,9 +29,9 @@ public abstract class PatternMatchUtils {
 	/**
 	 * 将字符串与给定模式进行匹配，支持以下简单模式风格："xxx*"、"*xxx"、"*xxx*" 和 "xxx*yyy" 匹配（模
 	 * 式部分数量任意），以及直接相等。
-	 * @param pattern the pattern to match against
-	 * @param str the String to match
-	 * @return whether the String matches the given pattern
+	 * @param pattern 要匹配的模式
+	 * @param str 要匹配的 String
+	 * @return 该 String 是否匹配给定的模式
 	 */
 	public static boolean simpleMatch(@Nullable String pattern, @Nullable String str) {
 		if (pattern == null || str == null) {
@@ -73,9 +73,9 @@ public abstract class PatternMatchUtils {
 	/**
 	 * 将字符串与给定模式进行匹配，支持以下简单模式风格："xxx*"、"*xxx"、"*xxx*" 和 "xxx*yyy" 匹配（模
 	 * 式部分数量任意），以及直接相等。
-	 * @param patterns the patterns to match against
-	 * @param str the String to match
-	 * @return whether the String matches any of the given patterns
+	 * @param patterns 要匹配的模式
+	 * @param str 要匹配的 String
+	 * @return 该 String 是否匹配给定模式中的任意一个
 	 */
 	public static boolean simpleMatch(@Nullable String[] patterns, String str) {
 		if (patterns != null) {

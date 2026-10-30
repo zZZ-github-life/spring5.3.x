@@ -98,7 +98,7 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 
 	/**
 	 * 使用指定的 MIME 类型创建 {@code Jaxb2XmlDecoder}。
-	 * @param supportedMimeTypes supported MIME types
+	 * @param supportedMimeTypes 支持的 MIME 类型
 	 * @since 5.1.9
 	 */
 	public Jaxb2XmlDecoder(MimeType... supportedMimeTypes) {
@@ -108,7 +108,7 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 
 	/**
 	 * 配置用于自定义 Unmarshaller 实例的处理器函数。
-	 * @param processor the function to use
+	 * @param processor 要使用的函数
 	 * @since 5.1.3
 	 */
 	public void setUnmarshallerProcessor(Function<Unmarshaller, Unmarshaller> processor) {
@@ -129,7 +129,7 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 	 * 进行异步解析时，一个顶层 XML 树的大小。
 	 * 超过限制时会抛出 {@link DataBufferLimitException}。
 	 * <p>默认设置为 256K。
-	 * @param byteCount the max number of bytes to buffer, or -1 for unlimited
+	 * @param byteCount 要缓冲的最大字节数，-1 表示不限
 	 * @since 5.1.11
 	 */
 	public void setMaxInMemorySize(int byteCount) {

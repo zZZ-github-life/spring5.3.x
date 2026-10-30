@@ -36,19 +36,19 @@ public interface HandshakeHandler {
 
 	/**
 	 * 发起握手。
-	 * @param request the current request
-	 * @param response the current response
-	 * @param wsHandler the handler to process WebSocket messages; see
-	 * {@link PerConnectionWebSocketHandler} for providing a handler with
-	 * per-connection lifecycle.
-	 * @param attributes the attributes from the HTTP handshake to associate with the WebSocket
-	 * session; the provided attributes are copied, the original map is not used.
-	 * @return whether the handshake negotiation was successful or not. In either case the
-	 * response status, headers, and body will have been updated to reflect the
-	 * result of the negotiation
-	 * @throws HandshakeFailureException thrown when handshake processing failed to
-	 * complete due to an internal, unrecoverable error, i.e. a server error as
-	 * opposed to a failure to successfully negotiate the handshake.
+	 * @param request 当前请求
+	 * @param response 当前响应
+	 * @param wsHandler 处理 WebSocket 消息的处理器；
+	 * 关于如何为每个连接提供具有独立生命周期的处理器，
+	 * 请参见 {@link PerConnectionWebSocketHandler}。
+	 * @param attributes 要与 WebSocket 会话关联的、来自 HTTP 握手的属性；
+	 * 提供的属性会被复制，不使用原始 Map。
+	 * @return 握手协商是否成功。无论成功与否，
+	 * 响应状态、头和正文都已更新，
+	 * 以反映协商结果
+	 * @throws HandshakeFailureException 当握手处理因内部不可恢复的错误
+	 * 而未能完成时抛出，即服务器错误，
+	 * 而不是握手协商失败。
 	 */
 	boolean doHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
 			Map<String, Object> attributes) throws HandshakeFailureException;

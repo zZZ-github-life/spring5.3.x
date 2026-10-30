@@ -87,9 +87,9 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory
 
 	/**
 	 * 使用 R2DBC 连接 URL 创建一个新的 {@code SingleConnectionFactory}。
-	 * @param url the R2DBC URL to use for accessing {@link ConnectionFactory} discovery
-	 * @param suppressClose if the returned {@link Connection} should be a
-	 * close-suppressing proxy or the physical {@code Connection}
+	 * @param url 用于访问 {@link ConnectionFactory} 发现机制的 R2DBC URL
+	 * @param suppressClose 返回的 {@link Connection} 应是
+	 * 抑制关闭的代理，还是物理 {@code Connection}
 	 * @see ConnectionFactories#get(String)
 	 */
 	public SingleConnectionFactory(String url, boolean suppressClose) {
@@ -101,13 +101,12 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory
 	/**
 	 * 使用给定的 {@link Connection} 和 {@link ConnectionFactoryMetadata}
 	 * 创建一个新的 {@code SingleConnectionFactory}。
-	 * @param target underlying target {@code Connection}
-	 * @param metadata {@code ConnectionFactory} metadata to be associated with
-	 * this {@code ConnectionFactory}
-	 * @param suppressClose {@code true} if the {@code Connection} should be wrapped
-	 * with a {@code Connection} that suppresses {@code close()} calls (to allow
-	 * for normal {@code close()} usage in applications that expect a pooled
-	 * {@code Connection})
+	 * @param target 底层目标 {@code Connection}
+	 * @param metadata 要与此 {@code ConnectionFactory} 关联的
+	 * {@code ConnectionFactory} 元数据
+	 * @param suppressClose 如果 {@code Connection} 应包装为抑制 {@code close()} 调用的
+	 * {@code Connection}，则为 {@code true}（以便期望池化
+	 * {@code Connection} 的应用可以正常使用 {@code close()}）
 	 */
 	public SingleConnectionFactory(Connection target, ConnectionFactoryMetadata metadata, boolean suppressClose) {
 		super(new ConnectionFactory() {
@@ -152,7 +151,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory
 
 	/**
 	 * 返回是否应覆盖返回的 {@link Connection} 的 "autoCommit" 设置。
-	 * @return the "autoCommit" value, or {@code null} if none to be applied
+	 * @return "autoCommit" 值，如果没有要应用的值则为 {@code null}
 	 */
 	@Nullable
 	protected Boolean getAutoCommitValue() {
@@ -204,8 +203,8 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory
 	/**
 	 * 在使用 {@link Connection} 之前对其进行准备。
 	 * 如果配置了 {@linkplain #getAutoCommitValue() 自动提交} 设置，则会应用该设置。
-	 * @param connection the requested {@code Connection}
-	 * @return the prepared {@code Connection}
+	 * @param connection 请求的 {@code Connection}
+	 * @return 准备好的 {@code Connection}
 	 */
 	protected Mono<Connection> prepareConnection(Connection connection) {
 		Boolean autoCommit = getAutoCommitValue();
@@ -218,8 +217,8 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory
 	/**
 	 * 用代理包装给定的 {@link Connection}，该代理将所有方法调用委托给目标，
 	 * 但抑制 close 调用。
-	 * @param target the original {@code Connection} to wrap
-	 * @return the wrapped Connection
+	 * @param target 要包装的原始 {@code Connection}
+	 * @return 包装后的 Connection
 	 */
 	protected Connection getCloseSuppressingConnectionProxy(Connection target) {
 		return (Connection) Proxy.newProxyInstance(SingleConnectionFactory.class.getClassLoader(),

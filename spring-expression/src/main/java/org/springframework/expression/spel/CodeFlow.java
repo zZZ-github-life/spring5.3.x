@@ -83,8 +83,8 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 为给定类构造新的 {@code CodeFlow}。
-	 * @param className the name of the class
-	 * @param classWriter the corresponding ASM {@code ClassWriter}
+	 * @param className 类名
+	 * @param classWriter 对应的 ASM {@code ClassWriter}
 	 */
 	public CodeFlow(String className, ClassWriter classWriter) {
 		this.className = className;
@@ -97,7 +97,7 @@ public class CodeFlow implements Opcodes {
 	/**
 	 * 压入用于加载目标对象的字节码（即作为第一个参数传递给 CompiledExpression.getValue(target,
 	 * context) 的内容）。
-	 * @param mv the visitor into which the load instruction should be inserted
+	 * @param mv 插入加载指令的目标访问器
 	 */
 	public void loadTarget(MethodVisitor mv) {
 		mv.visitVarInsn(ALOAD, 1);
@@ -105,7 +105,7 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 压入用于加载 EvaluationContext 的字节码（传递给编译表达式方法的第二个参数）。
-	 * @param mv the visitor into which the load instruction should be inserted
+	 * @param mv 插入加载指令的目标访问器
 	 * @since 4.3.4
 	 */
 	public void loadEvaluationContext(MethodVisitor mv) {
@@ -114,7 +114,7 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 记录最近求值的表达式元素的描述符。
-	 * @param descriptor type descriptor for most recently evaluated element
+	 * @param descriptor 最近求值元素的类型描述符
 	 */
 	public void pushDescriptor(@Nullable String descriptor) {
 		if (descriptor != null) {
@@ -149,7 +149,7 @@ public class CodeFlow implements Opcodes {
 	/**
 	 * 如果 codeflow 显示最后一个表达式的求值结果为 java.lang.Boolean，则插入必要的指令将其拆箱为
 	 * boolean 基本类型。
-	 * @param mv the visitor into which new instructions should be inserted
+	 * @param mv 插入新指令的目标访问器
 	 */
 	public void unboxBooleanIfNecessary(MethodVisitor mv) {
 		if ("Ljava/lang/Boolean".equals(lastDescriptor())) {
@@ -217,9 +217,9 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 插入任何必要的强制转换和取值调用，以便从装箱类型转换为基本类型值。
-	 * @param mv the method visitor into which instructions should be inserted
-	 * @param ch the primitive type desired as output
-	 * @param stackDescriptor the descriptor of the type on top of the stack
+	 * @param mv 插入指令的目标方法访问器
+	 * @param ch 期望输出的基本类型
+	 * @param stackDescriptor 栈顶类型的描述符
 	 */
 	public static void insertUnboxInsns(MethodVisitor mv, char ch, @Nullable String stackDescriptor) {
 		if (stackDescriptor == null) {
@@ -281,9 +281,9 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 对于数字，使用数字上的相应方法将其转换为所请求的基本类型。
-	 * @param mv the method visitor into which instructions should be inserted
-	 * @param targetDescriptor the primitive type desired as output
-	 * @param stackDescriptor the descriptor of the type on top of the stack
+	 * @param mv 插入指令的目标方法访问器
+	 * @param targetDescriptor 期望输出的基本类型
+	 * @param stackDescriptor 栈顶类型的描述符
 	 */
 	public static void insertUnboxNumberInsns(
 			MethodVisitor mv, char targetDescriptor, @Nullable String stackDescriptor) {
@@ -325,9 +325,9 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 根据栈上的内容和所需的目标类型，插入任何必要的数值转换字节码。
-	 * @param mv the method visitor into which instructions should be placed
-	 * @param targetDescriptor the (primitive) descriptor of the target type
-	 * @param stackDescriptor the descriptor of the operand on top of the stack
+	 * @param mv 放置指令的目标方法访问器
+	 * @param targetDescriptor 目标类型的（基本类型）描述符
+	 * @param stackDescriptor 栈顶操作数的描述符
 	 */
 	public static void insertAnyNecessaryTypeConversionBytecodes(MethodVisitor mv, char targetDescriptor, String stackDescriptor) {
 		if (CodeFlow.isPrimitive(stackDescriptor)) {
@@ -407,8 +407,8 @@ public class CodeFlow implements Opcodes {
 	/**
 	 * 创建方法的 JVM 签名描述符。它由用括号括起来的方法参数描述符，加上返回类型的描述符组成。请注意，
 	 * 这里的描述符是 JVM 描述符，不同于编译器使用的其他描述符形式，后者不包含末尾的分号。
-	 * @param method the method
-	 * @return a String signature descriptor (e.g. "(ILjava/lang/String;)V")
+	 * @param method 方法
+	 * @return 字符串形式的签名描述符（例如 "(ILjava/lang/String;)V"）
 	 */
 	public static String createSignatureDescriptor(Method method) {
 		Class<?>[] params = method.getParameterTypes();
@@ -426,8 +426,8 @@ public class CodeFlow implements Opcodes {
 	 * 创建构造函数的 JVM 签名描述符。它由用括号括起来的构造函数参数描述符，加上返回类型的描述符（始终
 	 * 为 "V"）组成。请注意，这里的描述符是 JVM 描述符，不同于编译器使用的其他描述符形式，后者不包含末
 	 * 尾的分号。
-	 * @param ctor the constructor
-	 * @return a String signature descriptor (e.g. "(ILjava/lang/String;)V")
+	 * @param ctor 构造器
+	 * @return 字符串形式的签名描述符（例如 "(ILjava/lang/String;)V"）
 	 */
 	public static String createSignatureDescriptor(Constructor<?> ctor) {
 		Class<?>[] params = ctor.getParameterTypes();
@@ -443,8 +443,8 @@ public class CodeFlow implements Opcodes {
 	/**
 	 * 确定指定类的 JVM 描述符。不同于编译过程中使用的其他描述符，这是 JVM 所需的描述符，因此它包含任何
 	 * 必要的末尾分号（例如 Ljava/lang/String; 而不是 Ljava/lang/String）。
-	 * @param clazz a class
-	 * @return the JVM descriptor for the class
+	 * @param clazz 一个类
+	 * @return 该类的 JVM 描述符
 	 */
 	public static String toJvmDescriptor(Class<?> clazz) {
 		StringBuilder sb = new StringBuilder();
@@ -493,9 +493,9 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 确定对象实例（或 {@code null}）的描述符。
-	 * @param value an object (possibly {@code null})
-	 * @return the type descriptor for the object
-	 * (descriptor is "Ljava/lang/Object" for {@code null} value)
+	 * @param value 一个对象（可能为 {@code null}）
+	 * @return 该对象的类型描述符
+	 * （对于 {@code null} 值，描述符为 "Ljava/lang/Object"）
 	 */
 	public static String toDescriptorFromObject(@Nullable Object value) {
 		if (value == null) {
@@ -508,8 +508,8 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 判断描述符对应的是 boolean 基本类型还是 boolean 引用类型。
-	 * @param descriptor type descriptor
-	 * @return {@code true} if the descriptor is boolean compatible
+	 * @param descriptor 类型描述符
+	 * @return 如果该描述符与 boolean 兼容则返回 {@code true}
 	 */
 	public static boolean isBooleanCompatible(@Nullable String descriptor) {
 		return (descriptor != null && (descriptor.equals("Z") || descriptor.equals("Ljava/lang/Boolean")));
@@ -517,8 +517,8 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 判断描述符是否对应基本类型。
-	 * @param descriptor type descriptor
-	 * @return {@code true} if a primitive type
+	 * @param descriptor 类型描述符
+	 * @return 如果是基本类型则返回 {@code true}
 	 */
 	public static boolean isPrimitive(@Nullable String descriptor) {
 		return (descriptor != null && descriptor.length() == 1);
@@ -526,8 +526,8 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 判断描述符是否对应基本类型数组（例如 "[[I"）。
-	 * @param descriptor the descriptor for a possible primitive array
-	 * @return {@code true} if the descriptor a primitive array
+	 * @param descriptor 可能为基本类型数组的描述符
+	 * @return 如果该描述符表示基本类型数组则返回 {@code true}
 	 */
 	public static boolean isPrimitiveArray(@Nullable String descriptor) {
 		if (descriptor == null) {
@@ -547,7 +547,7 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 判断装箱/拆箱能否从一种类型转换到另一种类型。假定至少有一种类型是装箱形式（即单字符描述符）。
-	 * @return {@code true} if it is possible to get (via boxing) from one descriptor to the other
+	 * @return 如果可通过装箱从一个描述符得到另一个则返回 {@code true}
 	 */
 	public static boolean areBoxingCompatible(String desc1, String desc2) {
 		if (desc1.equals(desc2)) {
@@ -593,8 +593,8 @@ public class CodeFlow implements Opcodes {
 	/**
 	 * 判断提供的描述符是否对应受支持的数字类型或 boolean。编译过程（目前）只支持某些数字类型，包括
 	 * double、float、long 和 int。
-	 * @param descriptor the descriptor for a type
-	 * @return {@code true} if the descriptor is for a supported numeric type or boolean
+	 * @param descriptor 某个类型的描述符
+	 * @return 如果该描述符表示受支持的数值类型或 boolean 则返回 {@code true}
 	 */
 	public static boolean isPrimitiveOrUnboxableSupportedNumberOrBoolean(@Nullable String descriptor) {
 		if (descriptor == null) {
@@ -609,8 +609,8 @@ public class CodeFlow implements Opcodes {
 	/**
 	 * 判断提供的描述符是否对应受支持的数字。编译过程（目前）只支持某些数字类型，包括 double、float、
 	 * long 和 int。
-	 * @param descriptor the descriptor for a type
-	 * @return {@code true} if the descriptor is for a supported numeric type
+	 * @param descriptor 某个类型的描述符
+	 * @return 如果该描述符表示受支持的数值类型则返回 {@code true}
 	 */
 	public static boolean isPrimitiveOrUnboxableSupportedNumber(@Nullable String descriptor) {
 		if (descriptor == null) {
@@ -630,8 +630,8 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 判断给定数字在字节码级别的数值运算中是否应被视为整数。
-	 * @param number the number to check
-	 * @return {@code true} if it is an {@link Integer}, {@link Short} or {@link Byte}
+	 * @param number 要检查的数字
+	 * @return 如果它是 {@link Integer}、{@link Short} 或 {@link Byte} 则返回 {@code true}
 	 */
 	public static boolean isIntegerForNumericOp(Number number) {
 		return (number instanceof Integer || number instanceof Short || number instanceof Byte);
@@ -639,8 +639,8 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 将类型描述符转换为单字符基本类型描述符。
-	 * @param descriptor a descriptor for a type that should have a primitive representation
-	 * @return the single character descriptor for a primitive input descriptor
+	 * @param descriptor 应具有基本类型表示的类型的描述符
+	 * @return 基本类型输入描述符对应的单字符描述符
 	 */
 	public static char toPrimitiveTargetDesc(String descriptor) {
 		if (descriptor.length() == 1) {
@@ -677,8 +677,8 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 为提供的描述符插入适当的 CHECKCAST 指令。
-	 * @param mv the target visitor into which the instruction should be inserted
-	 * @param descriptor the descriptor of the type to cast to
+	 * @param mv 插入指令的目标访问器
+	 * @param descriptor 要转换到的类型的描述符
 	 */
 	public static void insertCheckCast(MethodVisitor mv, @Nullable String descriptor) {
 		if (descriptor != null && descriptor.length() != 1) {
@@ -701,8 +701,8 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 确定特定类型对应的适当装箱指令（如果需要装箱），并将该指令插入提供的 visitor。
-	 * @param mv the target visitor for the new instructions
-	 * @param descriptor the descriptor of a type that may or may not need boxing
+	 * @param mv 新指令的目标访问器
+	 * @param descriptor 可能需要也可能不需要装箱的类型的描述符
 	 */
 	public static void insertBoxIfNecessary(MethodVisitor mv, @Nullable String descriptor) {
 		if (descriptor != null && descriptor.length() == 1) {
@@ -712,8 +712,8 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 确定特定类型对应的适当装箱指令（如果需要装箱），并将该指令插入提供的 visitor。
-	 * @param mv the target visitor for the new instructions
-	 * @param ch the descriptor of the type that might need boxing
+	 * @param mv 新指令的目标访问器
+	 * @param ch 可能需要装箱的类型的描述符
 	 */
 	public static void insertBoxIfNecessary(MethodVisitor mv, char ch) {
 		switch (ch) {
@@ -754,8 +754,8 @@ public class CodeFlow implements Opcodes {
 	/**
 	 * 推断类型的描述符。描述符类似于 JVM 类型名称，但缺少末尾的 ';'，因此 Object 的描述符是
 	 * "Ljava/lang/Object"，int 的描述符是 "I"。
-	 * @param type the type (may be primitive) for which to determine the descriptor
-	 * @return the descriptor
+	 * @param type 要为其确定描述符的类型（可能是基本类型）
+	 * @return 描述符
 	 */
 	public static String toDescriptor(Class<?> type) {
 		String name = type.getName();
@@ -815,8 +815,8 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 创建描述符数组，表示所提供方法的参数类型。如果没有参数，则返回零长度数组。
-	 * @param method a Method
-	 * @return a String array of descriptors, one entry for each method parameter
+	 * @param method 一个 Method
+	 * @return 描述符字符串数组，每个方法参数对应一项
 	 */
 	public static String[] toParamDescriptors(Method method) {
 		return toDescriptors(method.getParameterTypes());
@@ -824,8 +824,8 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 创建描述符数组，表示所提供构造函数的参数类型。如果没有参数，则返回零长度数组。
-	 * @param ctor a Constructor
-	 * @return a String array of descriptors, one entry for each constructor parameter
+	 * @param ctor 一个 Constructor
+	 * @return 描述符字符串数组，每个构造器参数对应一项
 	 */
 	public static String[] toParamDescriptors(Constructor<?> ctor) {
 		return toDescriptors(ctor.getParameterTypes());
@@ -833,8 +833,8 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 从类数组创建描述符数组。
-	 * @param types the input array of classes
-	 * @return an array of descriptors
+	 * @param types 输入的类数组
+	 * @return 描述符数组
 	 */
 	public static String[] toDescriptors(Class<?>[] types) {
 		int typesCount = types.length;
@@ -847,8 +847,8 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 创建用于在栈上加载数字的最优指令。
-	 * @param mv where to insert the bytecode
-	 * @param value the value to be loaded
+	 * @param mv 插入字节码的位置
+	 * @param value 要加载的值
 	 */
 	public static void insertOptimalLoad(MethodVisitor mv, int value) {
 		if (value < 6) {
@@ -867,8 +867,8 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 生成适当的字节码以将栈项存入数组。使用的指令取决于该类型是基本类型还是引用类型。
-	 * @param mv where to insert the bytecode
-	 * @param arrayElementType the type of the array elements
+	 * @param mv 插入字节码的位置
+	 * @param arrayElementType 数组元素的类型
 	 */
 	public static void insertArrayStore(MethodVisitor mv, String arrayElementType) {
 		if (arrayElementType.length()==1) {
@@ -909,8 +909,8 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 确定用于 NEWARRAY 字节码的适当 T 标记。
-	 * @param arraytype the array primitive component type
-	 * @return the T tag to use for NEWARRAY
+	 * @param arraytype 数组的基本类型组件类型
+	 * @return 用于 NEWARRAY 的 T 标记
 	 */
 	public static int arrayCodeFor(String arraytype) {
 		switch (arraytype.charAt(0)) {
@@ -944,9 +944,9 @@ public class CodeFlow implements Opcodes {
 
 	/**
 	 * 生成用于构建数组的正确字节码。使用的操作码以及随操作码传递的签名可能因数组类型的签名而异。
-	 * @param mv the methodvisitor into which code should be inserted
-	 * @param size the size of the array
-	 * @param arraytype the type of the array
+	 * @param mv 插入代码的目标方法访问器
+	 * @param size 数组的大小
+	 * @param arraytype 数组的类型
 	 */
 	public static void insertNewArrayCode(MethodVisitor mv, int size, String arraytype) {
 		insertOptimalLoad(mv, size);
@@ -973,9 +973,9 @@ public class CodeFlow implements Opcodes {
 	/**
 	 * 用于数学运算符，处理将栈上（可能已装箱的）数字转换为基本数值类型。<p>例如，从 Integer 到 double
 	 * 只需调用 'Number.doubleValue()'，但从 int 到 double 需要使用字节码 'i2d'。
-	 * @param mv the method visitor when instructions should be appended
-	 * @param stackDescriptor a descriptor of the operand on the stack
-	 * @param targetDescriptor a primitive type descriptor
+	 * @param mv 应追加指令的方法访问器
+	 * @param stackDescriptor 栈上操作数的描述符
+	 * @param targetDescriptor 基本类型描述符
 	 */
 	public static void insertNumericUnboxOrPrimitiveTypeCoercion(
 			MethodVisitor mv, @Nullable String stackDescriptor, char targetDescriptor) {

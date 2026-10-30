@@ -50,7 +50,7 @@ public @interface RestController {
 
 	/**
 	 * 该值可用于建议一个逻辑组件名称，在组件被自动检测到时转换为 Spring bean 名称。
-	 * @return the suggested component name, if any (or empty String otherwise)
+	 * @return 建议的组件名称（如果有），否则为空字符串
 	 * @since 4.0.1
 	 */
 	@AliasFor(annotation = Controller.class)

@@ -29,7 +29,7 @@ import org.springframework.util.Assert;
  * @author Thomas Risberg
  * @author Juergen Hoeller
  * @since 3.0
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see #setRowMapper
  * @see #setRowMapperClass
  */

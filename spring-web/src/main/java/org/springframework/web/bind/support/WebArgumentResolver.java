@@ -52,10 +52,10 @@ public interface WebArgumentResolver {
 
 	/**
 	 * 在给定 Web 请求中为给定处理器方法参数解析参数值。
-	 * @param methodParameter the handler method parameter to resolve
-	 * @param webRequest the current web request, allowing access to the native request as well
-	 * @return the argument value, or {@code UNRESOLVED} if not resolvable
-	 * @throws Exception in case of resolution failure
+	 * @param methodParameter 要解析的处理器方法参数
+	 * @param webRequest 当前 Web 请求，同时允许访问原生请求
+	 * @return 参数值；如果无法解析则为 {@code UNRESOLVED}
+	 * @throws Exception 解析失败时
 	 */
 	@Nullable
 	Object resolveArgument(MethodParameter methodParameter, NativeWebRequest webRequest) throws Exception;

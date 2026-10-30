@@ -57,9 +57,8 @@ public class ColumnMapRowMapper implements RowMapper<Map<String, Object>> {
 	/**
 	 * 创建用作列映射的Map实例。
 	 * <p>默认情况下，将创建一个大小写不敏感的Linked Map。
-	 * @param columnCount the column count, to be used as initial
-	 * capacity for the Map
-	 * @return the new Map instance
+	 * @param columnCount 列数，用作 Map 的初始容量
+	 * @return 新的 Map 实例
 	 * @see org.springframework.util.LinkedCaseInsensitiveMap
 	 */
 	protected Map<String, Object> createColumnMap(int columnCount) {
@@ -69,8 +68,8 @@ public class ColumnMapRowMapper implements RowMapper<Map<String, Object>> {
 	/**
 	 * 确定在列Map中给定列使用的键。
 	 * <p>默认情况下，返回提供的列名不做修改。
-	 * @param columnName the column name as returned by the ResultSet
-	 * @return the column key to use
+	 * @param columnName ResultSet 返回的列名
+	 * @return 要使用的列键
 	 * @see java.sql.ResultSetMetaData#getColumnName
 	 */
 	protected String getColumnKey(String columnName) {
@@ -81,9 +80,9 @@ public class ColumnMapRowMapper implements RowMapper<Map<String, Object>> {
 	 * 检索指定列的JDBC对象值。
 	 * <p>默认实现使用{@code getObject}方法。
 	 * 此外，此实现包含一个"技巧"来绕过Oracle为其TIMESTAMP数据类型返回非标准对象的问题。
-	 * @param rs the ResultSet holding the data
-	 * @param index the column index
-	 * @return the Object returned
+	 * @param rs 保存数据的 ResultSet
+	 * @param index 列索引
+	 * @return 返回的 Object
 	 * @see org.springframework.jdbc.support.JdbcUtils#getResultSetValue
 	 */
 	@Nullable

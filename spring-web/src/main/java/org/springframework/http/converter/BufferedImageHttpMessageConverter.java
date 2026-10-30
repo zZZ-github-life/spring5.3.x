@@ -97,7 +97,7 @@ public class BufferedImageHttpMessageConverter implements HttpMessageConverter<B
 
 	/**
 	 * 设置用于写入的默认 {@code Content-Type}。
-	 * @throws IllegalArgumentException if the given content type is not supported by the Java Image I/O API
+	 * @throws IllegalArgumentException 如果给定的内容类型不受 Java Image I/O API 支持
 	 */
 	public void setDefaultContentType(@Nullable MediaType defaultContentType) {
 		if (defaultContentType != null) {

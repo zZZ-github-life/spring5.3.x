@@ -61,7 +61,7 @@ public class RouterFunctionMapping extends AbstractHandlerMapping implements Ini
 	/**
 	 * 使用给定的 {@link RouterFunction} 创建 {@code RouterFunctionMapping}。
 	 * <p>如果使用此构造函数，则不会执行应用上下文检测。
-	 * @param routerFunction the router function to use for mapping
+	 * @param routerFunction 用于映射的路由函数
 	 */
 	public RouterFunctionMapping(RouterFunction<?> routerFunction) {
 		this.routerFunction = routerFunction;
@@ -71,7 +71,7 @@ public class RouterFunctionMapping extends AbstractHandlerMapping implements Ini
 	/**
 	 * 返回配置的 {@link RouterFunction}。
 	 * <p><strong>注意：</strong>当从 ApplicationContext 检测路由函数时，如果在 {@link #afterPropertiesSet()} 之前调用，此方法可能返回 {@code null}。
-	 * @return the router function or {@code null}
+	 * @return 路由函数，或 {@code null}
 	 */
 	@Nullable
 	public RouterFunction<?> getRouterFunction() {

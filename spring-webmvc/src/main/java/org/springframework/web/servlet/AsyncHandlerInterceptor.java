@@ -61,11 +61,11 @@ public interface AsyncHandlerInterceptor extends HandlerInterceptor {
 	 * {@code afterCompletion}。
 	 * <p>实现可以使用所提供的请求和响应，但应避免以与处理器并发执行
 	 * 相冲突的方式修改它们。此方法的典型用途是清理线程局部变量。
-	 * @param request the current request
-	 * @param response the current response
-	 * @param handler the handler (or {@link HandlerMethod}) that started async
-	 * execution, for type and/or instance examination
-	 * @throws Exception in case of errors
+	 * @param request 当前请求
+	 * @param response 当前响应
+	 * @param handler 启动了异步执行的处理器（或 {@link HandlerMethod}），
+	 * 用于检查类型和/或实例
+	 * @throws Exception 如果发生错误
 	 */
 	default void afterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response,
 			Object handler) throws Exception {

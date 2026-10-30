@@ -99,9 +99,9 @@ public class PathPatternParser {
 	 * 并在每个阶段验证结构。生成一个可用于快速匹配路径的 PathPattern
 	 * 对象。每次调用此方法都会委托给一个新的
 	 * {@link InternalPathPatternParser} 实例，因为该类不是线程安全的。
-	 * @param pathPattern the input path pattern, e.g. /project/{name}
-	 * @return a PathPattern for quickly matching paths against request paths
-	 * @throws PatternParseException in case of parse errors
+	 * @param pathPattern 输入的路径模式，例如 /project/{name}
+	 * @return 用于快速将路径与请求路径进行匹配的 PathPattern
+	 * @throws PatternParseException 在出现解析错误时
 	 */
 	public PathPattern parse(String pathPattern) throws PatternParseException {
 		return new InternalPathPatternParser(this).parse(pathPattern);

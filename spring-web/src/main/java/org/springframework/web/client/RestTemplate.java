@@ -201,7 +201,7 @@ public class RestTemplate extends InterceptingHttpAccessor implements RestOperat
 
 	/**
 	 * 基于给定的 {@link ClientHttpRequestFactory} 创建一个新的 {@link RestTemplate} 实例。
-	 * @param requestFactory the HTTP request factory to use
+	 * @param requestFactory 要使用的 HTTP 请求工厂
 	 * @see org.springframework.http.client.SimpleClientHttpRequestFactory
 	 * @see org.springframework.http.client.HttpComponentsClientHttpRequestFactory
 	 */
@@ -212,7 +212,7 @@ public class RestTemplate extends InterceptingHttpAccessor implements RestOperat
 
 	/**
 	 * 使用给定的 {@link HttpMessageConverter} 列表创建一个新的 {@link RestTemplate} 实例。
-	 * @param messageConverters the list of {@link HttpMessageConverter} to use
+	 * @param messageConverters 要使用的 {@link HttpMessageConverter} 列表
 	 * @since 3.2.7
 	 */
 	public RestTemplate(List<HttpMessageConverter<?>> messageConverters) {
@@ -280,7 +280,7 @@ public class RestTemplate extends InterceptingHttpAccessor implements RestOperat
 	 * RestTemplate restTemplate = new RestTemplate();
 	 * restTemplate.setUriTemplateHandler(handler);
 	 * </pre>
-	 * @param uriVars the default URI variable values
+	 * @param uriVars 默认 URI 变量值
 	 * @since 4.3
 	 */
 	@SuppressWarnings("deprecation")
@@ -309,7 +309,7 @@ public class RestTemplate extends InterceptingHttpAccessor implements RestOperat
 	 * DefaultUriTemplateHandler}（在 4.3 中已弃用）切换为
 	 * {@link DefaultUriBuilderFactory}，这为 {@code parsePath} 属性
 	 * 引入了不同的默认值（从 false 切换为 true）。
-	 * @param handler the URI template handler to use
+	 * @param handler 要使用的 URI 模板处理器
 	 */
 	public void setUriTemplateHandler(UriTemplateHandler handler) {
 		Assert.notNull(handler, "UriTemplateHandler must not be null");
@@ -756,11 +756,11 @@ public class RestTemplate extends InterceptingHttpAccessor implements RestOperat
 	 * 在给定的 URI 上执行指定的方法。
 	 * <p>{@link ClientHttpRequest} 使用 {@link RequestCallback} 进行处理；
 	 * 响应则使用 {@link ResponseExtractor} 进行处理。
-	 * @param url the fully-expanded URL to connect to
-	 * @param method the HTTP method to execute (GET, POST, etc.)
-	 * @param requestCallback object that prepares the request (can be {@code null})
-	 * @param responseExtractor object that extracts the return value from the response (can be {@code null})
-	 * @return an arbitrary object, as returned by the {@link ResponseExtractor}
+	 * @param url 要连接的完整展开后的 URL
+	 * @param method 要执行的 HTTP 方法（GET、POST 等）
+	 * @param requestCallback 准备请求的对象（可以为 {@code null}）
+	 * @param responseExtractor 从响应中提取返回值的对象（可以为 {@code null}）
+	 * @return 任意对象，由 {@link ResponseExtractor} 返回
 	 */
 	@Nullable
 	protected <T> T doExecute(URI url, @Nullable HttpMethod method, @Nullable RequestCallback requestCallback,
@@ -796,10 +796,10 @@ public class RestTemplate extends InterceptingHttpAccessor implements RestOperat
 	 * 处理给定的响应，执行适当的日志记录，并在必要时调用
 	 * {@link ResponseErrorHandler}。
 	 * <p>可以在子类中重写。
-	 * @param url the fully-expanded URL to connect to
-	 * @param method the HTTP method to execute (GET, POST, etc.)
-	 * @param response the resulting {@link ClientHttpResponse}
-	 * @throws IOException if propagated from {@link ResponseErrorHandler}
+	 * @param url 要连接的完整展开后的 URL
+	 * @param method 要执行的 HTTP 方法（GET、POST 等）
+	 * @param response 得到的 {@link ClientHttpResponse}
+	 * @throws IOException 如果由 {@link ResponseErrorHandler} 传播而来
 	 * @since 4.1.6
 	 * @see #setErrorHandler
 	 */

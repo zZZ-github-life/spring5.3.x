@@ -54,7 +54,7 @@ public class EncodedResource implements InputStreamSource {
 	/**
 	 * 为给定的 {@code Resource} 创建一个新的 {@code EncodedResource}，不指定显式编码或 {@code Charset}。
 	 *
-	 * @param resource the {@code Resource} to hold (never {@code null})
+	 * @param resource 要持有的 {@code Resource}（永不为 {@code null}）
 	 */
 	public EncodedResource(Resource resource) {
 		this(resource, null, null);
@@ -62,8 +62,8 @@ public class EncodedResource implements InputStreamSource {
 
 	/**
 	 * 为给定的 {@code Resource} 创建一个新的 {@code EncodedResource}，使用指定的 {@code encoding}。
-	 * @param resource the {@code Resource} to hold (never {@code null})
-	 * @param encoding the encoding to use for reading from the resource
+	 * @param resource 要持有的 {@code Resource}（永不为 {@code null}）
+	 * @param encoding 从资源读取时使用的编码
 	 */
 	public EncodedResource(Resource resource, @Nullable String encoding) {
 		this(resource, encoding, null);
@@ -71,8 +71,8 @@ public class EncodedResource implements InputStreamSource {
 
 	/**
 	 * 为给定的 {@code Resource} 创建一个新的 {@code EncodedResource}，使用指定的 {@code Charset}。
-	 * @param resource the {@code Resource} to hold (never {@code null})
-	 * @param charset the {@code Charset} to use for reading from the resource
+	 * @param resource 要持有的 {@code Resource}（永不为 {@code null}）
+	 * @param charset 从资源读取时使用的 {@code Charset}
 	 */
 	public EncodedResource(Resource resource, @Nullable Charset charset) {
 		this(resource, null, charset);
@@ -124,7 +124,7 @@ public class EncodedResource implements InputStreamSource {
 	/**
 	 * 为指定的资源打开一个 {@code java.io.Reader}，使用指定的 {@link #getCharset() Charset} 或
 	 * {@linkplain #getEncoding() encoding}（如果有）。
-	 * @throws IOException if opening the Reader failed
+	 * @throws IOException 如果打开 Reader 失败
 	 * @see #requiresReader()
 	 * @see #getInputStream()
 	 */
@@ -143,7 +143,7 @@ public class EncodedResource implements InputStreamSource {
 	/**
 	 * 为指定的资源打开一个 {@code InputStream}，忽略任何指定的 {@link #getCharset() Charset} 或
 	 * {@linkplain #getEncoding() encoding}。
-	 * @throws IOException if opening the InputStream failed
+	 * @throws IOException 如果打开 InputStream 失败
 	 * @see #requiresReader()
 	 * @see #getReader()
 	 */

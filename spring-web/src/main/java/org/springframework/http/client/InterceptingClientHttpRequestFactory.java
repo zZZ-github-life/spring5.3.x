@@ -39,8 +39,8 @@ public class InterceptingClientHttpRequestFactory extends AbstractClientHttpRequ
 
 	/**
 	 * 使用给定参数创建 {@code InterceptingClientHttpRequestFactory} 的新实例。
-	 * @param requestFactory the request factory to wrap
-	 * @param interceptors the interceptors that are to be applied (can be {@code null})
+	 * @param requestFactory 要包装的请求工厂
+	 * @param interceptors 要应用的拦截器（可以为 {@code null}）
 	 */
 	public InterceptingClientHttpRequestFactory(ClientHttpRequestFactory requestFactory,
 			@Nullable List<ClientHttpRequestInterceptor> interceptors) {

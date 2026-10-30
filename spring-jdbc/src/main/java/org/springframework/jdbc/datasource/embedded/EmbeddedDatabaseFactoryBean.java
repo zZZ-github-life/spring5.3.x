@@ -50,7 +50,7 @@ public class EmbeddedDatabaseFactoryBean extends EmbeddedDatabaseFactory
 	/**
 	 * 设置要在 Bean 销毁回调中运行的脚本执行器，
 	 * 用于清理数据库并为其他使用者留下已知状态。
-	 * @param databaseCleaner the database script executor to run on destroy
+	 * @param databaseCleaner 销毁时要运行的数据库脚本执行器
 	 * @see #setDatabasePopulator
 	 * @see org.springframework.jdbc.datasource.init.DataSourceInitializer#setDatabaseCleaner
 	 */

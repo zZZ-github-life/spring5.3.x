@@ -52,7 +52,7 @@ public class JamonPerformanceMonitorInterceptor extends AbstractMonitoringInterc
 
 	/**
 	 * 根据给定标志，使用动态或静态日志器创建一个新的 JamonPerformanceMonitorInterceptor。
-	 * @param useDynamicLogger whether to use a dynamic logger or a static logger
+	 * @param useDynamicLogger 使用动态 logger 还是静态 logger
 	 * @see #setUseDynamicLogger
 	 */
 	public JamonPerformanceMonitorInterceptor(boolean useDynamicLogger) {
@@ -61,9 +61,8 @@ public class JamonPerformanceMonitorInterceptor extends AbstractMonitoringInterc
 
 	/**
 	 * 根据给定标志，使用动态或静态日志器创建一个新的 JamonPerformanceMonitorInterceptor。
-	 * @param useDynamicLogger whether to use a dynamic logger or a static logger
-	 * @param trackAllInvocations whether to track all invocations that go through
-	 * this interceptor, or just invocations with trace logging enabled
+	 * @param useDynamicLogger 使用动态 logger 还是静态 logger
+	 * @param trackAllInvocations 是跟踪经过该拦截器的所有调用，还是仅跟踪启用了跟踪日志的调用
 	 * @see #setUseDynamicLogger
 	 */
 	public JamonPerformanceMonitorInterceptor(boolean useDynamicLogger, boolean trackAllInvocations) {

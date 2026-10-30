@@ -69,7 +69,7 @@ public class ContentCachingRequestWrapper extends HttpServletRequestWrapper {
 
 	/**
 	 * 为给定的 Servlet 请求创建一个新的 ContentCachingRequestWrapper。
-	 * @param request the original servlet request
+	 * @param request 原始 Servlet 请求
 	 */
 	public ContentCachingRequestWrapper(HttpServletRequest request) {
 		super(request);
@@ -80,8 +80,8 @@ public class ContentCachingRequestWrapper extends HttpServletRequestWrapper {
 
 	/**
 	 * 为给定 servlet 请求创建一个新的 ContentCachingRequestWrapper。
-	 * @param request the original servlet request
-	 * @param contentCacheLimit the maximum number of bytes to cache per request
+	 * @param request 原始 Servlet 请求
+	 * @param contentCacheLimit 每个请求要缓存的最大字节数
 	 * @since 4.3.6
 	 * @see #handleContentOverflow(int)
 	 */
@@ -198,8 +198,7 @@ public class ContentCachingRequestWrapper extends HttpServletRequestWrapper {
 	 * 用于处理内容溢出的模板方法：具体而言，即读取的请求体超出
 	 * 指定的内容缓存限制。
 	 * <p>默认实现为空。子类可以重写此方法以抛出载荷过大异常等。
-	 * @param contentCacheLimit the maximum number of bytes to cache per request
-	 * which has just been exceeded
+	 * @param contentCacheLimit 每个请求要缓存的最大字节数，该限制刚刚被超出
 	 * @since 4.3.6
 	 * @see #ContentCachingRequestWrapper(HttpServletRequest, int)
 	 */

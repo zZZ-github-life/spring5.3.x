@@ -67,10 +67,10 @@ public class AsyncAnnotationAdvisor extends AbstractPointcutAdvisor implements B
 
 	/**
 	 * 为给定的任务执行器创建一个新的 {@code AsyncAnnotationAdvisor}。
-	 * @param executor the task executor to use for asynchronous methods
-	 * (can be {@code null} to trigger default executor resolution)
-	 * @param exceptionHandler the {@link AsyncUncaughtExceptionHandler} to use to
-	 * handle unexpected exception thrown by asynchronous method executions
+	 * @param executor 用于异步方法的任务执行器（可为 {@code null}，
+	 * 以触发默认执行器的解析）
+	 * @param exceptionHandler 用于处理异步方法执行所抛出的意外异常的
+	 * {@link AsyncUncaughtExceptionHandler}
 	 * @see AnnotationAsyncExecutionInterceptor#getDefaultExecutor(BeanFactory)
 	 */
 	public AsyncAnnotationAdvisor(
@@ -81,10 +81,10 @@ public class AsyncAnnotationAdvisor extends AbstractPointcutAdvisor implements B
 
 	/**
 	 * 为给定的任务执行器创建一个新的 {@code AsyncAnnotationAdvisor}。
-	 * @param executor the task executor to use for asynchronous methods
-	 * (can be {@code null} to trigger default executor resolution)
-	 * @param exceptionHandler the {@link AsyncUncaughtExceptionHandler} to use to
-	 * handle unexpected exception thrown by asynchronous method executions
+	 * @param executor 用于异步方法的任务执行器（可为 {@code null}，
+	 * 以触发默认执行器的解析）
+	 * @param exceptionHandler 用于处理异步方法执行所抛出的意外异常的
+	 * {@link AsyncUncaughtExceptionHandler}
 	 * @since 5.1
 	 * @see AnnotationAsyncExecutionInterceptor#getDefaultExecutor(BeanFactory)
 	 */
@@ -112,7 +112,7 @@ public class AsyncAnnotationAdvisor extends AbstractPointcutAdvisor implements B
 	 * （如果存在）。
 	 * <p>提供此 setter 属性是为了让开发者可以提供自己的（非 Spring 专有的）注解类型，用于表示某个方法
 	 * 应异步执行。
-	 * @param asyncAnnotationType the desired annotation type
+	 * @param asyncAnnotationType 所需的注解类型
 	 */
 	public void setAsyncAnnotationType(Class<? extends Annotation> asyncAnnotationType) {
 		Assert.notNull(asyncAnnotationType, "'asyncAnnotationType' must not be null");
@@ -153,8 +153,8 @@ public class AsyncAnnotationAdvisor extends AbstractPointcutAdvisor implements B
 
 	/**
 	 * 为给定的异步注解类型（如果有）计算切点。
-	 * @param asyncAnnotationTypes the async annotation types to introspect
-	 * @return the applicable Pointcut object, or {@code null} if none
+	 * @param asyncAnnotationTypes 要内省的异步注解类型
+	 * @return 适用的 Pointcut 对象，如果没有则为 {@code null}
 	 */
 	protected Pointcut buildPointcut(Set<Class<? extends Annotation>> asyncAnnotationTypes) {
 		ComposablePointcut result = null;

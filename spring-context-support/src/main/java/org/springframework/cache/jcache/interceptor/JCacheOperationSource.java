@@ -33,10 +33,9 @@ public interface JCacheOperationSource {
 	/**
 	 * 返回此方法的缓存操作，如果方法不包含 <em>JSR-107</em> 相关元数据，
 	 * 则返回 {@code null}。
-	 * @param method the method to introspect
-	 * @param targetClass the target class (may be {@code null}, in which case
-	 * the declaring class of the method must be used)
-	 * @return the cache operation for this method, or {@code null} if none found
+	 * @param method 要内省的方法
+	 * @param targetClass 目标类（可以为 {@code null}，此时必须使用该方法的声明类）
+	 * @return 此方法的缓存操作；如果未找到，则为 {@code null}
 	 */
 	@Nullable
 	JCacheOperation<?> getCacheOperation(Method method, @Nullable Class<?> targetClass);

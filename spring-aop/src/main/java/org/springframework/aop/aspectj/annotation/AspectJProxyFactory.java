@@ -61,7 +61,7 @@ public class AspectJProxyFactory extends ProxyCreatorSupport {
 
 	/**
 	 * 创建一个新的 AspectJProxyFactory。<p>将代理给定目标实现的所有接口。
-	 * @param target the target object to be proxied
+	 * @param target 要被代理的目标对象
 	 */
 	public AspectJProxyFactory(Object target) {
 		Assert.notNull(target, "Target object must not be null");
@@ -80,7 +80,7 @@ public class AspectJProxyFactory extends ProxyCreatorSupport {
 	/**
 	 * 将提供的切面实例添加到链中。所提供的切面实例的类型必须是单例切面。使用此方法时不会遵循真正的单例
 	 * 生命周期——调用方负责管理以这种方式添加的任何切面的生命周期。
-	 * @param aspectInstance the AspectJ aspect instance
+	 * @param aspectInstance AspectJ 切面实例
 	 */
 	public void addAspect(Object aspectInstance) {
 		Class<?> aspectClass = aspectInstance.getClass();
@@ -96,7 +96,7 @@ public class AspectJProxyFactory extends ProxyCreatorSupport {
 
 	/**
 	 * 将所提供类型的切面添加到通知链的末尾。
-	 * @param aspectClass the AspectJ aspect class
+	 * @param aspectClass AspectJ 切面类
 	 */
 	public void addAspect(Class<?> aspectClass) {
 		String aspectName = aspectClass.getName();
@@ -165,7 +165,7 @@ public class AspectJProxyFactory extends ProxyCreatorSupport {
 	/**
 	 * 根据本工厂中的设置创建一个新代理。<p>可以重复调用。如果添加或移除了接口，效果会有所不同。可以添
 	 * 加和移除拦截器。<p>使用默认类加载器：通常是线程上下文类加载器（如果代理创建需要的话）。
-	 * @return the new proxy
+	 * @return 新的代理
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T getProxy() {
@@ -175,8 +175,8 @@ public class AspectJProxyFactory extends ProxyCreatorSupport {
 	/**
 	 * 根据本工厂中的设置创建一个新代理。<p>可以重复调用。如果添加或移除了接口，效果会有所不同。可以添
 	 * 加和移除拦截器。<p>使用给定的类加载器（如果代理创建需要的话）。
-	 * @param classLoader the class loader to create the proxy with
-	 * @return the new proxy
+	 * @param classLoader 用于创建代理的类加载器
+	 * @return 新的代理
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T getProxy(ClassLoader classLoader) {

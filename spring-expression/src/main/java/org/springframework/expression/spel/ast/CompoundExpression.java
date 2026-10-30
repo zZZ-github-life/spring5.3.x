@@ -82,8 +82,8 @@ public class CompoundExpression extends SpelNodeImpl {
 
 	/**
 	 * 对复合表达式求值。这涉及依次对每个部分求值，每个部分的返回值即为下一部分的活动上下文对象。
-	 * @param state the state in which the expression is being evaluated
-	 * @return the final value from the last piece of the compound expression
+	 * @param state 对表达式进行求值所在的状态
+	 * @return 复合表达式最后一部分得到的最终值
 	 */
 	@Override
 	public TypedValue getValueInternal(ExpressionState state) throws EvaluationException {

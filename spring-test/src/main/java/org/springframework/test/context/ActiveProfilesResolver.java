@@ -37,10 +37,9 @@ public interface ActiveProfilesResolver {
 	/**
 	 * 解析为给定 {@linkplain Class 测试类}加载
 	 * {@code ApplicationContext} 时要使用的<em>Bean 定义配置</em>。
-	 * @param testClass the test class for which the profiles should be resolved;
-	 * never {@code null}
-	 * @return the list of bean definition profiles to use when loading the
-	 * {@code ApplicationContext}; never {@code null}
+	 * @param testClass 应为其解析 profile 的测试类；永不为 {@code null}
+	 * @return 加载 {@code ApplicationContext} 时要使用的
+	 * Bean 定义 profile 列表；永不为 {@code null}
 	 * @see ActiveProfiles#resolver
 	 * @see ActiveProfiles#inheritProfiles
 	 */

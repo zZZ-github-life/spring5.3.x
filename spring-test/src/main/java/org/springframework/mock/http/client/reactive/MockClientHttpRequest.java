@@ -78,8 +78,8 @@ public class MockClientHttpRequest extends AbstractClientHttpRequest {
 	 *
 	 * <p>默认写入处理器会消费并缓存请求体，以便后续访问，
 	 * 例如在测试断言中。当请求体是无限流时，可使用此属性。
-	 * @param writeHandler the write handler to use returning {@code Mono<Void>}
-	 * when the body has been "written" (i.e. consumed).
+	 * @param writeHandler 要使用的写处理器，在正文被“写入”（即被消费）后
+	 * 返回 {@code Mono<Void>}。
 	 */
 	public void setWriteHandler(Function<Flux<DataBuffer>, Mono<Void>> writeHandler) {
 		Assert.notNull(writeHandler, "'writeHandler' is required");

@@ -46,8 +46,7 @@ public abstract class FieldVisitor {
   /**
    * 构造一个新的 {@link FieldVisitor}。
    *
-   * @param api the ASM API version implemented by this visitor. Must be one of the {@code
-   *     ASM}<i>x</i> values in {@link Opcodes}.
+   * @param api 此访问器实现的 ASM API 版本。必须是 {@link Opcodes} 中的 {@code ASM}<i>x</i> 值之一。
    */
   protected FieldVisitor(final int api) {
     this(api, null);
@@ -56,10 +55,8 @@ public abstract class FieldVisitor {
   /**
    * 构造一个新的 {@link FieldVisitor}。
    *
-   * @param api the ASM API version implemented by this visitor. Must be one of the {@code
-   *     ASM}<i>x</i> values in {@link Opcodes}.
-   * @param fieldVisitor the field visitor to which this visitor must delegate method calls. May be
-   *     null.
+   * @param api 此访问器实现的 ASM API 版本。必须是 {@link Opcodes} 中的 {@code ASM}<i>x</i> 值之一。
+   * @param fieldVisitor 此访问器必须将方法调用委托给的字段访问器。可以为 null。
    */
   protected FieldVisitor(final int api, final FieldVisitor fieldVisitor) {
     if (api != Opcodes.ASM9
@@ -79,7 +76,7 @@ public abstract class FieldVisitor {
   /**
    * 此访问器必须将方法调用委托给该字段访问器。可能为 {@literal null}。
    *
-   * @return the field visitor to which this visitor must delegate method calls, or {@literal null}.
+   * @return 此访问器必须将方法调用委托给的字段访问器，或 {@literal null}。
    */
   public FieldVisitor getDelegate() {
     return fv;
@@ -88,10 +85,9 @@ public abstract class FieldVisitor {
   /**
    * 访问字段的一个注解。
    *
-   * @param descriptor the class descriptor of the annotation class.
-   * @param visible {@literal true} if the annotation is visible at runtime.
-   * @return a visitor to visit the annotation values, or {@literal null} if this visitor is not
-   *     interested in visiting this annotation.
+   * @param descriptor 注解类的类描述符。
+   * @param visible 如果注解在运行时可见，则为 {@literal true}。
+   * @return 用于访问注解值的访问器；如果此访问器不关心访问该注解，则为 {@literal null}。
    */
   public AnnotationVisitor visitAnnotation(final String descriptor, final boolean visible) {
     if (fv != null) {
@@ -103,15 +99,12 @@ public abstract class FieldVisitor {
   /**
    * 访问字段类型上的一个注解。
    *
-   * @param typeRef a reference to the annotated type. The sort of this type reference must be
-   *     {@link TypeReference#FIELD}. See {@link TypeReference}.
-   * @param typePath the path to the annotated type argument, wildcard bound, array element type, or
-   *     static inner type within 'typeRef'. May be {@literal null} if the annotation targets
-   *     'typeRef' as a whole.
-   * @param descriptor the class descriptor of the annotation class.
-   * @param visible {@literal true} if the annotation is visible at runtime.
-   * @return a visitor to visit the annotation values, or {@literal null} if this visitor is not
-   *     interested in visiting this annotation.
+   * @param typeRef 对被注解类型的引用。该类型引用的种类必须是 {@link TypeReference#FIELD}。参见 {@link TypeReference}。
+   * @param typePath 指向 'typeRef' 中被注解的类型实参、通配符绑定、数组元素类型或
+   * 静态内部类型的路径。如果注解作用于整个 'typeRef'，则可以为 {@literal null}。
+   * @param descriptor 注解类的类描述符。
+   * @param visible 如果注解在运行时可见，则为 {@literal true}。
+   * @return 用于访问注解值的访问器；如果此访问器不关心访问该注解，则为 {@literal null}。
    */
   public AnnotationVisitor visitTypeAnnotation(
       final int typeRef, final TypePath typePath, final String descriptor, final boolean visible) {
@@ -127,7 +120,7 @@ public abstract class FieldVisitor {
   /**
    * 访问字段的一个非标准属性。
    *
-   * @param attribute an attribute.
+   * @param attribute 一个属性。
    */
   public void visitAttribute(final Attribute attribute) {
     if (fv != null) {

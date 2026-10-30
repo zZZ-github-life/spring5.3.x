@@ -87,8 +87,8 @@ final class SimpleBufferingClientHttpRequest extends AbstractBufferingClientHttp
 
 	/**
 	 * 将给定头部添加到给定的 HTTP 连接。
-	 * @param connection the connection to add the headers to
-	 * @param headers the headers to add
+	 * @param connection 要添加头信息的连接
+	 * @param headers 要添加的头信息
 	 */
 	static void addHeaders(HttpURLConnection connection, HttpHeaders headers) {
 		String method = connection.getRequestMethod();

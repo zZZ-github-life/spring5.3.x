@@ -61,7 +61,7 @@ public final class MediaTypeFactory {
 	 * # 这会将 file.txt 和 file.text 映射到<br>
 	 * # MIME 类型 "text/plain"<br>
 	 * </code>
-	 * @return a multi-value map, mapping media types to file extensions.
+	 * @return 多值映射，将媒体类型映射到文件扩展名。
 	 */
 	private static MultiValueMap<String, MediaType> parseMimeTypes() {
 		InputStream is = MediaTypeFactory.class.getResourceAsStream(MIME_TYPES_FILE_NAME);
@@ -89,8 +89,8 @@ public final class MediaTypeFactory {
 
 	/**
 	 * 如果可能，确定为给定资源确定的媒体类型。
-	 * @param resource the resource to introspect
-	 * @return the corresponding media type, or {@code null} if none found
+	 * @param resource 要检查的资源
+	 * @return 对应的媒体类型，如果未找到则为 {@code null}
 	 */
 	public static Optional<MediaType> getMediaType(@Nullable Resource resource) {
 		return Optional.ofNullable(resource)
@@ -100,8 +100,8 @@ public final class MediaTypeFactory {
 
 	/**
 	 * 如果可能，确定为给定文件名确定的媒体类型。
-	 * @param filename the file name plus extension
-	 * @return the corresponding media type, or {@code null} if none found
+	 * @param filename 文件名加扩展名
+	 * @return 对应的媒体类型，如果未找到则为 {@code null}
 	 */
 	public static Optional<MediaType> getMediaType(@Nullable String filename) {
 		return getMediaTypes(filename).stream().findFirst();
@@ -109,8 +109,8 @@ public final class MediaTypeFactory {
 
 	/**
 	 * 如果可能，确定为给定文件名确定的媒体类型列表。
-	 * @param filename the file name plus extension
-	 * @return the corresponding media types, or an empty list if none found
+	 * @param filename 文件名加扩展名
+	 * @return 对应的媒体类型，如果未找到则为空列表
 	 */
 	public static List<MediaType> getMediaTypes(@Nullable String filename) {
 		List<MediaType> mediaTypes = null;

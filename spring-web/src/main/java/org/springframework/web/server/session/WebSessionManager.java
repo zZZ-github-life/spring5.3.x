@@ -35,8 +35,8 @@ public interface WebSessionManager {
 	 * 返回给定 exchange 对应的 {@link WebSession}。始终保证返回一个实例：
 	 * 要么与客户端请求的会话 ID 匹配，要么是新建的会话（因为客户端未指定
 	 * 会话 ID，或底层会话已过期）。
-	 * @param exchange the current exchange
-	 * @return promise for the WebSession
+	 * @param exchange 当前交换
+	 * @return WebSession 的 promise
 	 */
 	Mono<WebSession> getSession(ServerWebExchange exchange);
 

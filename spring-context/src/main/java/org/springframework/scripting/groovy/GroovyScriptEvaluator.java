@@ -55,7 +55,7 @@ public class GroovyScriptEvaluator implements ScriptEvaluator, BeanClassLoaderAw
 
 	/**
 	 * 构造一个新的 GroovyScriptEvaluator。
-	 * @param classLoader the ClassLoader to use as a parent for the {@link GroovyShell}
+	 * @param classLoader 作为 {@link GroovyShell} 父级的 ClassLoader
 	 */
 	public GroovyScriptEvaluator(@Nullable ClassLoader classLoader) {
 		this.classLoader = classLoader;

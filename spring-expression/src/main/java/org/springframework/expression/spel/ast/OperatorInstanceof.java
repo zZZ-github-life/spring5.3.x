@@ -48,10 +48,10 @@ public class OperatorInstanceof extends Operator {
 
 	/**
 	 * 比较左操作数，以查看它是否为右操作数所指定类型的实例。右操作数必须是一个类。
-	 * @param state the expression state
-	 * @return {@code true} if the left operand is an instanceof of the right operand,
-	 * otherwise {@code false}
-	 * @throws EvaluationException if there is a problem evaluating the expression
+	 * @param state 表达式状态
+	 * @return 如果左操作数是右操作数的 instanceof 则返回 {@code true}，
+	 * 否则返回 {@code false}
+	 * @throws EvaluationException 如果对表达式求值时出现问题
 	 */
 	@Override
 	public BooleanTypedValue getValueInternal(ExpressionState state) throws EvaluationException {

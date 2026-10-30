@@ -264,7 +264,7 @@ public class TilesConfigurer implements ServletContextAware, InitializingBean, D
 	/**
 	 * 为此 Web 应用创建并暴露一个 TilesContainer，
 	 * 并委托给 TilesInitializer。
-	 * @throws TilesException in case of setup failure
+	 * @throws TilesException 如果设置失败
 	 */
 	@Override
 	public void afterPropertiesSet() throws TilesException {
@@ -278,7 +278,7 @@ public class TilesConfigurer implements ServletContextAware, InitializingBean, D
 
 	/**
 	 * 从此 Web 应用中移除 TilesContainer。
-	 * @throws TilesException in case of cleanup failure
+	 * @throws TilesException 如果清理失败
 	 */
 	@Override
 	public void destroy() throws TilesException {

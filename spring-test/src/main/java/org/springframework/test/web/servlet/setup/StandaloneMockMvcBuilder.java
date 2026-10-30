@@ -229,7 +229,7 @@ public class StandaloneMockMvcBuilder extends AbstractMockMvcBuilder<StandaloneM
 	/**
 	 * 指定异步执行的超时值。在 Spring MVC Test 中，该值用于确定
 	 * 等待异步执行完成的时间，以便测试可以同步验证结果。
-	 * @param timeout the timeout value in milliseconds
+	 * @param timeout 超时值，单位为毫秒
 	 */
 	public StandaloneMockMvcBuilder setAsyncRequestTimeout(long timeout) {
 		this.asyncRequestTimeout = timeout;
@@ -310,7 +310,7 @@ public class StandaloneMockMvcBuilder extends AbstractMockMvcBuilder<StandaloneM
 	 * {@link org.springframework.web.util.pattern.PathPattern PathPatterns}
 	 * 进行 URL 路径匹配，而不是使用
 	 * {@link org.springframework.util.PathMatcher} 进行字符串模式匹配。
-	 * @param parser the parser to use
+	 * @param parser 要使用的解析器
 	 * @since 5.3
 	 */
 	public void setPatternParser(PathPatternParser parser) {
@@ -363,7 +363,7 @@ public class StandaloneMockMvcBuilder extends AbstractMockMvcBuilder<StandaloneM
 
 	/**
 	 * 配置工厂以创建自定义 {@link RequestMappingHandlerMapping}。
-	 * @param factory the factory
+	 * @param factory 该工厂
 	 * @since 5.0
 	 */
 	public StandaloneMockMvcBuilder setCustomHandlerMapping(Supplier<RequestMappingHandlerMapping> factory) {
@@ -442,8 +442,8 @@ public class StandaloneMockMvcBuilder extends AbstractMockMvcBuilder<StandaloneM
 	/**
 	 * 此方法可以在子类中使用，以注册额外的 Spring MVC 基础设施，
 	 * 例如额外的 {@code HandlerMapping}、{@code HandlerAdapter} 等。
-	 * @param servletContext the ServletContext
-	 * @return a map with additional MVC infrastructure object instances
+	 * @param servletContext 该 ServletContext
+	 * @return 包含附加 MVC 基础设施对象实例的 Map
 	 * @since 5.1.4
 	 */
 	protected Map<String, Object> extendMvcSingletons(@Nullable ServletContext servletContext) {

@@ -28,7 +28,7 @@ public class FatalBeanException extends BeansException {
 
 	/**
 	 * 使用指定消息创建一个新的 FatalBeanException。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public FatalBeanException(String msg) {
 		super(msg);
@@ -36,8 +36,8 @@ public class FatalBeanException extends BeansException {
 
 	/**
 	 * 使用指定消息和根本原因创建一个新的 FatalBeanException。
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param msg 详细消息
+	 * @param cause 根本原因
 	 */
 	public FatalBeanException(String msg, @Nullable Throwable cause) {
 		super(msg, cause);

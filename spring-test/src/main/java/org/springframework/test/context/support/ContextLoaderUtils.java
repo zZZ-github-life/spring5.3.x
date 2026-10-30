@@ -61,16 +61,14 @@ abstract class ContextLoaderUtils {
 	 * 为所提供的 {@linkplain Class 测试类}及其父类和外围类解析{@linkplain ContextConfigurationAttributes 上下文配置属性}的列表的列表，同时考虑通过 {@link ContextHierarchy @ContextHierarchy} 和 {@link ContextConfiguration @ContextConfiguration} 声明的上下文层次结构。
 	 * <p>外层列表表示上下文配置属性的自顶向下顺序，其中列表中的每个元素表示在类层次结构或外围类层次结构中的给定测试类上声明的上下文配置。每个嵌套列表包含通过该特定类上的单个 {@code @ContextConfiguration} 实例声明的上下文配置属性，或通过该特定类上的单个 {@code @ContextHierarchy} 实例中声明的多个 {@code @ContextConfiguration} 实例声明的上下文配置属性。此外，每个嵌套列表保持 {@code @ContextConfiguration} 实例的声明顺序。
 	 * <p>请注意，将<strong>不</strong>考虑 {@link ContextConfiguration @ContextConfiguration} 的 {@link ContextConfiguration#inheritLocations inheritLocations} 和 {@link ContextConfiguration#inheritInitializers() inheritInitializers} 标志。如果需要遵循这些标志，则必须在遍历此方法返回的嵌套列表时手动处理。
-	 * @param testClass the class for which to resolve the context hierarchy attributes
-	 * (must not be {@code null})
-	 * @return the list of lists of configuration attributes for the specified class;
-	 * never {@code null}
-	 * @throws IllegalArgumentException if the supplied class is {@code null}; or if
-	 * neither {@code @ContextConfiguration} nor {@code @ContextHierarchy} is
-	 * <em>present</em> on the supplied class
-	 * @throws IllegalStateException if a test class or composed annotation
-	 * in the class hierarchy declares both {@code @ContextConfiguration} and
-	 * {@code @ContextHierarchy} as top-level annotations.
+	 * @param testClass 要为其解析上下文层次结构属性的类（不能为 {@code null}）
+	 * @return 指定类的配置属性列表的列表；从不为 {@code null}
+	 * @throws IllegalArgumentException 如果所提供的类为 {@code null}；
+	 * 或者如果所提供的类上<em>没有</em> {@code @ContextConfiguration}
+	 * 也没有 {@code @ContextHierarchy}
+	 * @throws IllegalStateException 如果类层次结构中的某个测试类或组合注解
+	 * 将 {@code @ContextConfiguration} 和 {@code @ContextHierarchy}
+	 * 同时声明为顶层注解
 	 * @since 3.2.2
 	 * @see #buildContextHierarchyMap(Class)
 	 * @see #resolveContextConfigurationAttributes(Class)
@@ -140,13 +138,11 @@ abstract class ContextLoaderUtils {
 	 * 为所提供的 {@linkplain Class 测试类}及其父类和外围类构建<em>上下文层次结构映射</em>，同时考虑通过 {@link ContextHierarchy @ContextHierarchy} 和 {@link ContextConfiguration @ContextConfiguration} 声明的上下文层次结构。
 	 * <p>映射中的每个值表示上下文层次结构中给定层级的{@linkplain ContextConfigurationAttributes 上下文配置属性}的合并列表（可能跨测试类层次结构和外围类层次结构），以该上下文层次结构层级的 {@link ContextConfiguration#name() 名称}为键。
 	 * <p>如果上下文层次结构中的给定层级没有显式名称（即通过 {@link ContextConfiguration#name} 配置），则将通过在该层级的{@link #GENERATED_CONTEXT_HIERARCHY_LEVEL_PREFIX}后追加数字层级来为该层次结构层级生成名称。
-	 * @param testClass the class for which to resolve the context hierarchy map
-	 * (must not be {@code null})
-	 * @return a map of context configuration attributes for the context hierarchy,
-	 * keyed by context hierarchy level name; never {@code null}
-	 * @throws IllegalArgumentException if the lists of context configuration
-	 * attributes for each level in the {@code @ContextHierarchy} do not define
-	 * unique context configuration within the overall hierarchy.
+	 * @param testClass 要为其解析上下文层次结构映射的类（不能为 {@code null}）
+	 * @return 上下文层次结构的上下文配置属性映射，以上下文层次结构级别名称为键；
+	 * 从不为 {@code null}
+	 * @throws IllegalArgumentException 如果 {@code @ContextHierarchy} 中每一级的上下文配置属性列表
+	 * 在整体层次结构中未定义唯一的上下文配置
 	 * @since 3.2.2
 	 * @see #resolveContextHierarchyAttributes(Class)
 	 */
@@ -189,13 +185,12 @@ abstract class ContextLoaderUtils {
 	/**
 	 * 为所提供的 {@linkplain Class 测试类}及其父类和外围类解析{@linkplain ContextConfigurationAttributes 上下文配置属性}列表。
 	 * <p>请注意，将<strong>不</strong>考虑 {@link ContextConfiguration @ContextConfiguration} 的 {@link ContextConfiguration#inheritLocations inheritLocations} 和 {@link ContextConfiguration#inheritInitializers() inheritInitializers} 标志。如果需要遵循这些标志，则必须在遍历此方法返回的列表时手动处理。
-	 * @param testClass the class for which to resolve the configuration attributes
-	 * (must not be {@code null})
-	 * @return the list of configuration attributes for the specified class, ordered
-	 * <em>bottom-up</em> (i.e., as if we were traversing up the class hierarchy
-	 * and enclosing class hierarchy); never {@code null}
-	 * @throws IllegalArgumentException if the supplied class is {@code null} or if
-	 * {@code @ContextConfiguration} is not <em>present</em> on the supplied class
+	 * @param testClass 要为其解析配置属性的类（不能为 {@code null}）
+	 * @return 指定类的配置属性列表，按<em>自下而上</em>顺序排列
+	 * （即，如同向上遍历类层次结构和外围类层次结构）；
+	 * 从不为 {@code null}
+	 * @throws IllegalArgumentException 如果所提供的类为 {@code null}，
+	 * 或者如果所提供的类上<em>不存在</em> {@code @ContextConfiguration}
 	 */
 	static List<ContextConfigurationAttributes> resolveContextConfigurationAttributes(Class<?> testClass) {
 		Assert.notNull(testClass, "Class must not be null");

@@ -36,8 +36,8 @@ public class MissingRequestCookieException extends MissingRequestValueException 
 
 	/**
 	 * MissingRequestCookieException 的构造函数。
-	 * @param cookieName the name of the missing request cookie
-	 * @param parameter the method parameter
+	 * @param cookieName 缺失的请求 Cookie 名称
+	 * @param parameter 方法参数
 	 */
 	public MissingRequestCookieException(String cookieName, MethodParameter parameter) {
 		this(cookieName, parameter, false);
@@ -45,9 +45,9 @@ public class MissingRequestCookieException extends MissingRequestValueException 
 
 	/**
 	 * 当值存在但被转换为 {@code null} 时使用的构造函数。
-	 * @param cookieName the name of the missing request cookie
-	 * @param parameter the method parameter
-	 * @param missingAfterConversion whether the value became null after conversion
+	 * @param cookieName 缺失的请求 Cookie 名称
+	 * @param parameter 方法参数
+	 * @param missingAfterConversion 转换后值是否变为 null
 	 * @since 5.3.6
 	 */
 	public MissingRequestCookieException(

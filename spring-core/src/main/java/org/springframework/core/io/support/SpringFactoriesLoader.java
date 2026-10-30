@@ -85,10 +85,11 @@ public final class SpringFactoriesLoader {
 	 * <p>从 Spring Framework 5.3 开始，如果为给定工厂类型
 	 * 发现重复的实现类名，则只会实例化
 	 * 重复实现类型的一个实例。
-	 * @param factoryType the interface or abstract class representing the factory
-	 * @param classLoader the ClassLoader to use for loading (can be {@code null} to use the default)
-	 * @throws IllegalArgumentException if any factory implementation class cannot
-	 * be loaded or if an error occurs while instantiating any factory
+	 * @param factoryType 表示工厂的接口或抽象类
+	 * @param classLoader 用于加载的 ClassLoader
+	 * （可以为 {@code null} 以使用默认值）
+	 * @throws IllegalArgumentException 如果任何工厂实现类无法加载，
+	 * 或者在实例化任何工厂时发生错误
 	 * @see #loadFactoryNames
 	 */
 	public static <T> List<T> loadFactories(Class<T> factoryType, @Nullable ClassLoader classLoader) {
@@ -115,10 +116,10 @@ public final class SpringFactoriesLoader {
 	 * <p>从 Spring Framework 5.3 开始，如果为给定工厂类型多次
 	 * 发现某个特定的实现类名，
 	 * 则会忽略重复项。
-	 * @param factoryType the interface or abstract class representing the factory
-	 * @param classLoader the ClassLoader to use for loading resources; can be
-	 * {@code null} to use the default
-	 * @throws IllegalArgumentException if an error occurs while loading factory names
+	 * @param factoryType 表示工厂的接口或抽象类
+	 * @param classLoader 用于加载资源的 ClassLoader；
+	 * 可以为 {@code null} 以使用默认值
+	 * @throws IllegalArgumentException 如果加载工厂名称时发生错误
 	 * @see #loadFactories
 	 */
 	public static List<String> loadFactoryNames(Class<?> factoryType, @Nullable ClassLoader classLoader) {

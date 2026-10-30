@@ -63,7 +63,7 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 	 * <p>处理器的实际 URL 确定工作由具体的
 	 * {@link #determineUrlsForHandler(String)} 实现负责。对于
 	 * 无法确定此类 URL 的 bean，根本不会被视为处理器。
-	 * @throws org.springframework.beans.BeansException if the handler couldn't be registered
+	 * @throws org.springframework.beans.BeansException 如果无法注册该处理器
 	 * @see #determineUrlsForHandler(String)
 	 */
 	protected void detectHandlers() throws BeansException {
@@ -92,8 +92,8 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 
 	/**
 	 * 确定给定处理器 bean 的 URL。
-	 * @param beanName the name of the candidate bean
-	 * @return the URLs determined for the bean, or an empty array if none
+	 * @param beanName 候选 Bean 的名称
+	 * @return 为该 Bean 确定的 URL；如果没有，则为空数组
 	 */
 	protected abstract String[] determineUrlsForHandler(String beanName);
 

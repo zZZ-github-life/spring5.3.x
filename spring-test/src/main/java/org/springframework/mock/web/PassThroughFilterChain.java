@@ -55,8 +55,8 @@ public class PassThroughFilterChain implements FilterChain {
 	/**
 	 * 创建一个新的 PassThroughFilterChain，它委托给给定的 Filter，
 	 * 并使用给定的 FilterChain 调用它。
-	 * @param filter the Filter to delegate to
-	 * @param nextFilterChain the FilterChain to use for that next Filter
+	 * @param filter 要委托给的 Filter
+	 * @param nextFilterChain 用于该下一个 Filter 的 FilterChain
 	 */
 	public PassThroughFilterChain(Filter filter, FilterChain nextFilterChain) {
 		Assert.notNull(filter, "Filter must not be null");
@@ -67,7 +67,7 @@ public class PassThroughFilterChain implements FilterChain {
 
 	/**
 	 * 创建一个新的 PassThroughFilterChain，它委托给给定的 Servlet。
-	 * @param servlet the Servlet to delegate to
+	 * @param servlet 要委托给的 Servlet
 	 */
 	public PassThroughFilterChain(Servlet servlet) {
 		Assert.notNull(servlet, "Servlet must not be null");

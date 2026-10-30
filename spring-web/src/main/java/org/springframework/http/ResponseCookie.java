@@ -176,9 +176,9 @@ public final class ResponseCookie extends HttpCookie {
 
 	/**
 	 * 工厂方法，用于获取服务器端定义的 Cookie 的构建器；该 Cookie 以名称-值对开始，也可以包含属性。
-	 * @param name the cookie name
-	 * @param value the cookie value
-	 * @return a builder to create the cookie with
+	 * @param name Cookie 名称
+	 * @param value Cookie 值
+	 * @return 用于创建 Cookie 的构建器
 	 */
 	public static ResponseCookieBuilder from(final String name, final String value) {
 		return from(name, value, false);
@@ -186,9 +186,9 @@ public final class ResponseCookie extends HttpCookie {
 
 	/**
 	 * 工厂方法，用于获取服务器端定义的 Cookie 的构建器。与 {@link #from(String, String)} 不同，此选项假定输入来自远程服务器，因此可以更宽松地处理，例如忽略用双引号表示的空白域名。
-	 * @param name the cookie name
-	 * @param value the cookie value
-	 * @return a builder to create the cookie with
+	 * @param name Cookie 名称
+	 * @param value Cookie 值
+	 * @return 用于创建 Cookie 的构建器
 	 * @since 5.2.5
 	 */
 	public static ResponseCookieBuilder fromClientResponse(final String name, final String value) {

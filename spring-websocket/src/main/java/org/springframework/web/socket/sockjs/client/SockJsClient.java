@@ -101,7 +101,7 @@ public class SockJsClient implements WebSocketClient, Lifecycle {
 	 * {@link InfoReceiver} 的实现），则该实例用于初始化
 	 * {@link #setInfoReceiver(InfoReceiver) infoReceiver} 属性，否则
 	 * 默认为 {@link RestTemplateXhrTransport}。
-	 * @param transports the (non-empty) list of transports to use
+	 * @param transports 要使用的传输方式列表（非空）
 	 */
 	public SockJsClient(List<Transport> transports) {
 		Assert.notEmpty(transports, "No transports provided");
@@ -129,7 +129,7 @@ public class SockJsClient implements WebSocketClient, Lifecycle {
 	 * <p>默认情况下，如果未设置此属性，所有握手头也会
 	 * 用于其他 HTTP 请求。如果你希望只有一部分握手头
 	 * （例如认证头）用于其他 HTTP 请求，请设置此属性。
-	 * @param httpHeaderNames the HTTP header names
+	 * @param httpHeaderNames HTTP 头名称
 	 */
 	public void setHttpHeaderNames(@Nullable String... httpHeaderNames) {
 		this.httpHeaderNames = httpHeaderNames;
@@ -150,7 +150,7 @@ public class SockJsClient implements WebSocketClient, Lifecycle {
 	 * {@link XhrTransport} 或 {@link InfoReceiver} 的实现，则该
 	 * 实例将用于初始化此属性，否则默认为
 	 * {@link RestTemplateXhrTransport}。
-	 * @param infoReceiver the transport to use for the SockJS "Info" request
+	 * @param infoReceiver 用于 SockJS "Info" 请求的传输方式
 	 */
 	public void setInfoReceiver(InfoReceiver infoReceiver) {
 		Assert.notNull(infoReceiver, "InfoReceiver is required");
@@ -188,7 +188,7 @@ public class SockJsClient implements WebSocketClient, Lifecycle {
 	 * 其中超时值基于初始 SockJS "Info" 请求的持续时间计算。
 	 * 连接超时任务可确保更及时地进行回退，但除此之外完全是可选的。
 	 * <p>默认情况下不配置此项，在这种情况下回退可能需要更长时间。
-	 * @param connectTimeoutScheduler the task scheduler to use
+	 * @param connectTimeoutScheduler 要使用的任务调度器
 	 */
 	public void setConnectTimeoutScheduler(TaskScheduler connectTimeoutScheduler) {
 		this.connectTimeoutScheduler = connectTimeoutScheduler;
@@ -332,7 +332,7 @@ public class SockJsClient implements WebSocketClient, Lifecycle {
 	 * 返回要与 SockJS 会话关联并通过
 	 * {@link org.springframework.web.socket.WebSocketSession#getPrincipal()} 提供的用户。
 	 * <p>默认情况下，此方法返回 {@code null}。
-	 * @return the user to associate with the session (possibly {@code null})
+	 * @return 要与会话关联的用户（可能为 {@code null}）
 	 */
 	@Nullable
 	protected Principal getUser() {

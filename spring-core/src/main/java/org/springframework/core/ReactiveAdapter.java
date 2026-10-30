@@ -44,9 +44,9 @@ public class ReactiveAdapter {
 	/**
 	 * 用于创建适配器的构造方法，提供将目标响应式或异步类型与 Reactive Streams Publisher 相互转换的函数。
 	 *
-	 * @param descriptor the reactive type descriptor
-	 * @param toPublisherFunction adapter to a Publisher
-	 * @param fromPublisherFunction adapter from a Publisher
+	 * @param descriptor 响应式类型描述符
+	 * @param toPublisherFunction 到 Publisher 的适配器
+	 * @param fromPublisherFunction 从 Publisher 的适配器
 	 */
 	public ReactiveAdapter(ReactiveTypeDescriptor descriptor,
 			Function<Object, Publisher<?>> toPublisherFunction,
@@ -100,9 +100,9 @@ public class ReactiveAdapter {
 
 	/**
 	 * 将给定实例适配为 Reactive Streams {@code Publisher}。
-	 * @param source the source object to adapt from; if the given object is
-	 * {@code null}, {@link ReactiveTypeDescriptor#getEmptyValue()} is used.
-	 * @return the Publisher representing the adaptation
+	 * @param source 要从中适配的源对象；如果给定对象为 {@code null}，
+	 * 则使用 {@link ReactiveTypeDescriptor#getEmptyValue()}。
+	 * @return 表示该适配的 Publisher
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> Publisher<T> toPublisher(@Nullable Object source) {
@@ -114,8 +114,8 @@ public class ReactiveAdapter {
 
 	/**
 	 * 从给定的 Reactive Streams Publisher 进行适配。
-	 * @param publisher the publisher to adapt from
-	 * @return the reactive type instance representing the adapted publisher
+	 * @param publisher 要从中适配的 publisher
+	 * @return 表示适配后 publisher 的响应式类型实例
 	 */
 	public Object fromPublisher(Publisher<?> publisher) {
 		return this.fromPublisherFunction.apply(publisher);

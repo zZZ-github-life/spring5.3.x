@@ -86,8 +86,8 @@ public class ViewResolutionResultHandler extends HandlerResultHandlerSupport imp
 
 	/**
 	 * 使用默认 {@link ReactiveAdapterRegistry} 的基本构造函数。
-	 * @param viewResolvers the resolver to use
-	 * @param contentTypeResolver to determine the requested content type
+	 * @param viewResolvers 要使用的解析器
+	 * @param contentTypeResolver 用于确定请求的内容类型
 	 */
 	public ViewResolutionResultHandler(List<ViewResolver> viewResolvers,
 			RequestedContentTypeResolver contentTypeResolver) {
@@ -97,9 +97,9 @@ public class ViewResolutionResultHandler extends HandlerResultHandlerSupport imp
 
 	/**
 	 * 使用 {@link ReactiveAdapterRegistry} 实例的构造函数。
-	 * @param viewResolvers the view resolver to use
-	 * @param contentTypeResolver to determine the requested content type
-	 * @param registry for adaptation to reactive types
+	 * @param viewResolvers 要使用的视图解析器
+	 * @param contentTypeResolver 用于确定请求的内容类型
+	 * @param registry 用于适配响应式类型
 	 */
 	public ViewResolutionResultHandler(List<ViewResolver> viewResolvers,
 			RequestedContentTypeResolver contentTypeResolver, ReactiveAdapterRegistry registry) {

@@ -124,8 +124,8 @@ public class SessionLocaleResolver extends AbstractLocaleContextResolver {
 
 	/**
 	 * 确定给定请求的默认区域设置，在未找到 {@link Locale} 会话属性时调用。<p>默认实现返回已配置的{@linkplain #setDefaultLocale(Locale) 默认区域设置}（如果有），否则回退到请求的 {@code Accept-Language} 头区域设置或服务器默认区域设置。
-	 * @param request the request to resolve the locale for
-	 * @return the default locale (never {@code null})
+	 * @param request 要为其解析 Locale 的请求
+	 * @return 默认 Locale（永不为 {@code null}）
 	 * @see #setDefaultLocale
 	 * @see javax.servlet.http.HttpServletRequest#getLocale()
 	 */
@@ -139,8 +139,8 @@ public class SessionLocaleResolver extends AbstractLocaleContextResolver {
 
 	/**
 	 * 确定给定请求的默认时区，在未找到 {@link TimeZone} 会话属性时调用。<p>默认实现返回已配置的默认时区（如果有），否则返回 {@code null}。
-	 * @param request the request to resolve the time zone for
-	 * @return the default time zone (or {@code null} if none defined)
+	 * @param request 要为其解析时区的请求
+	 * @return 默认时区（若未定义则为 {@code null}）
 	 * @see #setDefaultTimeZone
 	 */
 	@Nullable

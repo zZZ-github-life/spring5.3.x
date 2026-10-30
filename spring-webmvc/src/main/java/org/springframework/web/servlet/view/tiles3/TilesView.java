@@ -149,9 +149,9 @@ public class TilesView extends AbstractUrlBasedView {
 	/**
 	 * 创建一个 Tiles {@link Request}。
 	 * <p>此实现创建一个 {@link ServletRequest}。
-	 * @param request the current request
-	 * @param response the current response
-	 * @return the Tiles request
+	 * @param request 当前请求
+	 * @param response 当前响应
+	 * @return Tiles 请求
 	 */
 	protected Request createTilesRequest(final HttpServletRequest request, HttpServletResponse response) {
 		return new ServletRequest(this.applicationContext, request, response) {

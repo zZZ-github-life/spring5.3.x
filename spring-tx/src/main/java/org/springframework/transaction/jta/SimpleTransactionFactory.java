@@ -43,7 +43,7 @@ public class SimpleTransactionFactory implements TransactionFactory {
 
 	/**
 	 * 为给定的TransactionManager创建一个新的SimpleTransactionFactory。
-	 * @param transactionManager the JTA TransactionManager to wrap
+	 * @param transactionManager 要包装的 JTA TransactionManager
 	 */
 	public SimpleTransactionFactory(TransactionManager transactionManager) {
 		Assert.notNull(transactionManager, "TransactionManager must not be null");

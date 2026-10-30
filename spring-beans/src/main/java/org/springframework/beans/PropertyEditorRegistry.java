@@ -38,8 +38,8 @@ public interface PropertyEditorRegistry {
 
 	/**
 	 * 为给定类型的所有属性注册给定的自定义属性编辑器。
-	 * @param requiredType the type of the property
-	 * @param propertyEditor the editor to register
+	 * @param requiredType 属性的类型
+	 * @param propertyEditor 要注册的编辑器
 	 */
 	void registerCustomEditor(Class<?> requiredType, PropertyEditor propertyEditor);
 
@@ -52,24 +52,27 @@ public interface PropertyEditorRegistry {
 	 * 集合/数组的编辑器又注册每个元素的编辑器。
 	 * <p>例如，如果你想为“items[n].quantity”（针对所有 n 值）注册编辑器，则应将“items.quantity”作为此
 	 * 方法 'propertyPath' 参数的值。
-	 * @param requiredType the type of the property. This may be {@code null}
-	 * if a property is given but should be specified in any case, in particular in
-	 * case of a Collection - making clear whether the editor is supposed to apply
-	 * to the entire Collection itself or to each of its entries. So as a general rule:
-	 * <b>Do not specify {@code null} here in case of a Collection/array!</b>
-	 * @param propertyPath the path of the property (name or nested path), or
-	 * {@code null} if registering an editor for all properties of the given type
-	 * @param propertyEditor editor to register
+	 * @param requiredType 属性的类型。
+	 * 如果给出了属性，则可以为 {@code null}，
+	 * 但无论如何都应指定，
+	 * 尤其是在 Collection 的情况下——
+	 * 以明确该编辑器是应用于整个 Collection 本身，还是应用于其每个元素。
+	 * 因此一般规则是：
+	 * <b>在 Collection/数组的情况下，不要在此指定 {@code null}！</b>
+	 * @param propertyPath 属性的路径（名称或嵌套路径），
+	 * 如果要为给定类型的所有属性注册编辑器则为 {@code null}
+	 * @param propertyEditor 要注册的编辑器
 	 */
 	void registerCustomEditor(@Nullable Class<?> requiredType, @Nullable String propertyPath, PropertyEditor propertyEditor);
 
 	/**
 	 * 为给定的类型和属性查找自定义属性编辑器。
-	 * @param requiredType the type of the property (can be {@code null} if a property
-	 * is given but should be specified in any case for consistency checking)
-	 * @param propertyPath the path of the property (name or nested path), or
-	 * {@code null} if looking for an editor for all properties of the given type
-	 * @return the registered editor, or {@code null} if none
+	 * @param requiredType 属性的类型
+	 * （如果给出了属性则可以为 {@code null}，
+	 * 但无论如何都应指定，以便进行一致性检查）
+	 * @param propertyPath 属性的路径（名称或嵌套路径），
+	 * 如果要查找给定类型所有属性的编辑器则为 {@code null}
+	 * @return 已注册的编辑器，如果没有则为 {@code null}
 	 */
 	@Nullable
 	PropertyEditor findCustomEditor(@Nullable Class<?> requiredType, @Nullable String propertyPath);

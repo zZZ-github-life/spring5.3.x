@@ -111,14 +111,14 @@ abstract class AnnotationReadingVisitorUtils {
 	 *
 	 * <p>在注解层次结构中位于 <em>较低</em> 位置的注解属性值（即更接近声明类）将覆盖在注解层次结构中位
 	 * 于 <em>较高</em> 位置定义的值。
-	 * @param attributesMap the map of annotation attribute lists, keyed by
-	 * annotation type name
-	 * @param metaAnnotationMap the map of meta annotation relationships,
-	 * keyed by annotation type name
-	 * @param annotationName the fully qualified class name of the annotation
-	 * type to look for
-	 * @return the merged annotation attributes, or {@code null} if no
-	 * matching annotation is present in the {@code attributesMap}
+	 * @param attributesMap 注解属性列表的 Map，
+	 * 以注解类型名称为键
+	 * @param metaAnnotationMap 元注解关系的 Map，
+	 * 以注解类型名称为键
+	 * @param annotationName 要查找的注解类型的
+	 * 全限定类名
+	 * @return 合并后的注解属性；
+	 * 如果 {@code attributesMap} 中没有匹配的注解，则为 {@code null}
 	 * @since 4.0.3
 	 */
 	@Nullable

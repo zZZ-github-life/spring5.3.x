@@ -36,11 +36,10 @@ public interface AdvisorAdapterRegistry {
 	 * {@link org.springframework.aop.MethodBeforeAdvice}、
 	 * {@link org.springframework.aop.AfterReturningAdvice}、
 	 * {@link org.springframework.aop.ThrowsAdvice}。
-	 * @param advice an object that should be an advice
-	 * @return an Advisor wrapping the given advice (never {@code null};
-	 * if the advice parameter is an Advisor, it is to be returned as-is)
-	 * @throws UnknownAdviceTypeException if no registered advisor adapter
-	 * can wrap the supposed advice
+	 * @param advice 应为通知的对象
+	 * @return 包装给定通知的 Advisor（永不为 {@code null}；
+	 * 如果 advice 参数是 Advisor，则原样返回）
+	 * @throws UnknownAdviceTypeException 如果没有已注册的通知器适配器能包装该假定的通知
 	 */
 	Advisor wrap(Object advice) throws UnknownAdviceTypeException;
 
@@ -48,17 +47,16 @@ public interface AdvisorAdapterRegistry {
 	 * 返回 AOP Alliance MethodInterceptor 数组，以便在基于拦截的框架中使用给定的 Advisor。
 	 * <p>如果 {@link Advisor} 是 {@link org.springframework.aop.PointcutAdvisor}，不必担心与之关联的切
 	 * 点：只需返回一个拦截器。
-	 * @param advisor the Advisor to find an interceptor for
-	 * @return an array of MethodInterceptors to expose this Advisor's behavior
-	 * @throws UnknownAdviceTypeException if the Advisor type is
-	 * not understood by any registered AdvisorAdapter
+	 * @param advisor 要为其查找拦截器的 Advisor
+	 * @return 用于暴露此 Advisor 行为的 MethodInterceptor 数组
+	 * @throws UnknownAdviceTypeException 如果没有任何已注册的 AdvisorAdapter 能理解该 Advisor 类型
 	 */
 	MethodInterceptor[] getInterceptors(Advisor advisor) throws UnknownAdviceTypeException;
 
 	/**
 	 * 注册给定的 {@link AdvisorAdapter}。请注意，无需为 AOP Alliance Interceptor 或 Spring Advice 注册
 	 * 适配器：它们必须由 {@code AdvisorAdapterRegistry} 实现自动识别。
-	 * @param adapter an AdvisorAdapter that understands particular Advisor or Advice types
+	 * @param adapter 理解特定 Advisor 或 Advice 类型的 AdvisorAdapter
 	 */
 	void registerAdvisorAdapter(AdvisorAdapter adapter);
 

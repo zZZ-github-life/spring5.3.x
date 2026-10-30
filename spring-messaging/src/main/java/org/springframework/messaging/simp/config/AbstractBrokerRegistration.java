@@ -44,9 +44,9 @@ public abstract class AbstractBrokerRegistration {
 
 	/**
 	 * 创建一个新的消息代理注册。
-	 * @param clientInboundChannel the inbound channel
-	 * @param clientOutboundChannel the outbound channel
-	 * @param destinationPrefixes the destination prefixes
+	 * @param clientInboundChannel 入站通道
+	 * @param clientOutboundChannel 出站通道
+	 * @param destinationPrefixes 目标地址前缀
 	 */
 	public AbstractBrokerRegistration(SubscribableChannel clientInboundChannel,
 			MessageChannel clientOutboundChannel, @Nullable String[] destinationPrefixes) {

@@ -52,9 +52,8 @@ public interface LastModified {
 	 * <p>返回值将作为 Last-Modified 头发送给 HTTP 客户端，
 	 * 并与客户端回传的 If-Modified-Since 头进行比较。
 	 * 只有当内容发生修改时才会重新生成。
-	 * @param request current HTTP request
-	 * @return the time the underlying resource was last modified, or -1
-	 * meaning that the content must always be regenerated
+	 * @param request 当前 HTTP 请求
+	 * @return 底层资源最后修改的时间，或 -1 表示内容必须始终重新生成
 	 * @see org.springframework.web.servlet.HandlerAdapter#getLastModified
 	 * @see javax.servlet.http.HttpServlet#getLastModified
 	 */

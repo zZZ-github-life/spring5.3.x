@@ -30,7 +30,7 @@ import org.springframework.util.Assert;
  *
  * @author Chris Beams
  * @since 3.1
- * @param <A> annotation containing {@linkplain #getAdviceModeAttributeName() AdviceMode attribute}
+ * @param <A> 包含 {@linkplain #getAdviceModeAttributeName() AdviceMode 属性}的注解
  */
 public abstract class AdviceModeImportSelector<A extends Annotation> implements ImportSelector {
 
@@ -54,9 +54,8 @@ public abstract class AdviceModeImportSelector<A extends Annotation> implements 
 	 * {@linkplain #getAdviceModeAttributeName() 通知模式属性}。
 	 *
 	 * <p>随后会调用 {@link #selectImports(AdviceMode)} 方法，允许具体实现以安全便捷的方式选择导入。
-	 * @throws IllegalArgumentException if expected annotation {@code A} is not present
-	 * on the importing {@code @Configuration} class or if {@link #selectImports(AdviceMode)}
-	 * returns {@code null}
+	 * @throws IllegalArgumentException 如果导入的 {@code @Configuration} 类上不存在预期的注解 {@code A}，
+	 * 或者 {@link #selectImports(AdviceMode)} 返回 {@code null}
 	 */
 	@Override
 	public final String[] selectImports(AnnotationMetadata importingClassMetadata) {
@@ -83,10 +82,10 @@ public abstract class AdviceModeImportSelector<A extends Annotation> implements 
 	 *
 	 * <p>从此方法返回 {@code null} 表示无法处理该 {@code AdviceMode} 或其未知，并且应抛出
 	 * {@code IllegalArgumentException}。
-	 * @param adviceMode the value of the {@linkplain #getAdviceModeAttributeName()
-	 * advice mode attribute} for the annotation specified via generics.
-	 * @return array containing classes to import (empty array if none;
-	 * {@code null} if the given {@code AdviceMode} is unknown)
+	 * @param adviceMode 通过泛型指定的注解的
+	 * {@linkplain #getAdviceModeAttributeName() 通知模式属性}值。
+	 * @return 包含要导入的类的数组（如果没有则为空数组；
+	 * 如果给定的 {@code AdviceMode} 未知，则为 {@code null}）
 	 */
 	@Nullable
 	protected abstract String[] selectImports(AdviceMode adviceMode);

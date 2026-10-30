@@ -100,7 +100,7 @@ public interface ResultActions {
 
 	/**
 	 * 返回已执行请求的结果，以便直接访问结果。
-	 * @return the result of the request
+	 * @return 请求的结果
 	 */
 	MvcResult andReturn();
 

@@ -44,8 +44,8 @@ public interface SchedulingTaskExecutor extends AsyncTaskExecutor {
 	 * 务。
 	 * <p>这应被视为一种提示。当然，{@code TaskExecutor} 客户端可以自由地忽略此标志，从而也忽略整个
 	 * {@code SchedulingTaskExecutor} 接口。不过，线程池通常会表示偏好短期任务，从而支持更细粒度的调度。
-	 * @return {@code true} if this executor prefers short-lived tasks (the default),
-	 * {@code false} otherwise (for treatment like a regular {@code TaskExecutor})
+	 * @return 如果此执行器偏好短生命周期任务（默认）则返回 {@code true}，
+	 * 否则返回 {@code false}（按常规 {@code TaskExecutor} 对待）
 	 */
 	default boolean prefersShortLivedTasks() {
 		return true;

@@ -112,7 +112,7 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 	 * 此外，抽象子类应覆盖此方法以添加任何额外的默认属性，
 	 * 但<strong>必须</strong>记得调用 {@code super} 方法。
 	 * <p>具体子类在希望渲染默认属性时应调用此方法。
-	 * @param tagWriter the {@link TagWriter} to which any attributes are to be written
+	 * @param tagWriter 用于写入任何属性的 {@link TagWriter}
 	 */
 	protected void writeDefaultAttributes(TagWriter tagWriter) throws JspException {
 		writeOptionalAttribute(tagWriter, "id", resolveId());
@@ -153,7 +153,7 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 	 * 大多数情况下这是可取的，因为它与服务器端对数据绑定的
 	 * 期望相一致。但是，某些子类可能希望在不更改绑定路径的情况下
 	 * 更改 '{@code name}' 属性的值。
-	 * @return the value for the HTML '{@code name}' attribute
+	 * @return HTML '{@code name}' 属性的值
 	 */
 	@Nullable
 	protected String getName() throws JspException {

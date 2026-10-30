@@ -36,7 +36,7 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 
 	/**
 	 * 使用给定设置创建一个 {@code AbstractValueAdaptingCache}。
-	 * @param allowNullValues whether to allow for {@code null} values
+	 * @param allowNullValues 是否允许 {@code null} 值
 	 */
 	protected AbstractValueAdaptingCache(boolean allowNullValues) {
 		this.allowNullValues = allowNullValues;
@@ -70,8 +70,8 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 
 	/**
 	 * 在底层存储中执行实际的查找。
-	 * @param key the key whose associated value is to be returned
-	 * @return the raw store value for the key, or {@code null} if none
+	 * @param key 要返回其关联值的键
+	 * @return 该键的原始存储值；如果没有，则为 {@code null}
 	 */
 	@Nullable
 	protected abstract Object lookup(Object key);
@@ -79,8 +79,8 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 
 	/**
 	 * 将给定值从内部存储转换为从 get 方法返回的用户值（适配 {@code null}）。
-	 * @param storeValue the store value
-	 * @return the value to return to the user
+	 * @param storeValue 存储值
+	 * @return 要返回给用户的值
 	 */
 	@Nullable
 	protected Object fromStoreValue(@Nullable Object storeValue) {
@@ -92,8 +92,8 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 
 	/**
 	 * 将传入 put 方法的给定用户值转换为内部存储中的值（适配 {@code null}）。
-	 * @param userValue the given user value
-	 * @return the value to store
+	 * @param userValue 给定的用户值
+	 * @return 要存储的值
 	 */
 	protected Object toStoreValue(@Nullable Object userValue) {
 		if (userValue == null) {
@@ -109,8 +109,8 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 	/**
 	 * 用 {@link SimpleValueWrapper} 包装给定的存储值，同时也会经过 {@link #fromStoreValue} 转换。适用
 	 * 于 {@link #get(Object)} 和 {@link #putIfAbsent(Object, Object)} 实现。
-	 * @param storeValue the original value
-	 * @return the wrapped value
+	 * @param storeValue 原始值
+	 * @return 包装后的值
 	 */
 	@Nullable
 	protected Cache.ValueWrapper toValueWrapper(@Nullable Object storeValue) {

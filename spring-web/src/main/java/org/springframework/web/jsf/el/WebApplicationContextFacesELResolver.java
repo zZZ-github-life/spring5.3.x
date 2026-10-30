@@ -172,8 +172,8 @@ public class WebApplicationContextFacesELResolver extends ELResolver {
 	 * 获取要暴露的 {@link WebApplicationContext} 引用。
 	 * <p>默认实现委托给 {@link FacesContextUtils}，
 	 * 如果未找到 {@code WebApplicationContext} 则返回 {@code null}。
-	 * @param elContext the current JSF ELContext
-	 * @return the Spring web application context
+	 * @param elContext 当前的 JSF ELContext
+	 * @return Spring Web 应用上下文
 	 * @see org.springframework.web.jsf.FacesContextUtils#getWebApplicationContext
 	 */
 	@Nullable

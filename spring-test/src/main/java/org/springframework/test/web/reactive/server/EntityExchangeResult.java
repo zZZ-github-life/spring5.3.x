@@ -23,7 +23,7 @@ import org.springframework.lang.Nullable;
  * {@code ExchangeResult} 子类。
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <T> the response body type
+ * @param <T> 响应体类型
  * @see FluxExchangeResult
  */
 public class EntityExchangeResult<T> extends ExchangeResult {

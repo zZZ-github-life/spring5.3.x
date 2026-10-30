@@ -37,11 +37,11 @@ public class DynamicDestinationResolver implements DestinationResolver {
 
 	/**
 	 * 将指定的目的地名称解析为动态目的地。
-	 * @param session the current JMS Session
-	 * @param destinationName the name of the destination
-	 * @param pubSubDomain {@code true} if the domain is pub-sub, {@code false} if P2P
-	 * @return the JMS destination (either a topic or a queue)
-	 * @throws javax.jms.JMSException if resolution failed
+	 * @param session 当前的 JMS Session
+	 * @param destinationName 目标的名称
+	 * @param pubSubDomain 如果域为发布-订阅，则为 {@code true}；如果为点对点（P2P），则为 {@code false}
+	 * @return JMS 目标（主题或队列）
+	 * @throws javax.jms.JMSException 解析失败时
 	 * @see #resolveTopic(javax.jms.Session, String)
 	 * @see #resolveQueue(javax.jms.Session, String)
 	 */
@@ -62,10 +62,10 @@ public class DynamicDestinationResolver implements DestinationResolver {
 
 	/**
 	 * 将给定的目的地名称解析为 {@link Topic}。
-	 * @param session the current JMS Session
-	 * @param topicName the name of the desired {@link Topic}
-	 * @return the JMS {@link Topic}
-	 * @throws javax.jms.JMSException if resolution failed
+	 * @param session 当前的 JMS Session
+	 * @param topicName 所需 {@link Topic} 的名称
+	 * @return 该 JMS {@link Topic}
+	 * @throws javax.jms.JMSException 解析失败时
 	 * @see Session#createTopic(String)
 	 */
 	protected Topic resolveTopic(Session session, String topicName) throws JMSException {
@@ -74,10 +74,10 @@ public class DynamicDestinationResolver implements DestinationResolver {
 
 	/**
 	 * 将给定的目的地名称解析为 {@link Queue}。
-	 * @param session the current JMS Session
-	 * @param queueName the name of the desired {@link Queue}
-	 * @return the JMS {@link Queue}
-	 * @throws javax.jms.JMSException if resolution failed
+	 * @param session 当前的 JMS Session
+	 * @param queueName 所需 {@link Queue} 的名称
+	 * @return 该 JMS {@link Queue}
+	 * @throws javax.jms.JMSException 解析失败时
 	 * @see Session#createQueue(String)
 	 */
 	protected Queue resolveQueue(Session session, String queueName) throws JMSException {

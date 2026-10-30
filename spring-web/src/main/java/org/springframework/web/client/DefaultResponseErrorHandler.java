@@ -65,8 +65,8 @@ public class DefaultResponseErrorHandler implements ResponseErrorHandler {
 	 * 由 {@link #hasError(ClientHttpResponse)} 调用的模板方法。
 	 * <p>默认实现检查 {@link HttpStatus#isError()}。
 	 * 可以在子类中覆盖。
-	 * @param statusCode the HTTP status code as enum value
-	 * @return {@code true} if the response indicates an error; {@code false} otherwise
+	 * @param statusCode 作为枚举值的 HTTP 状态码
+	 * @return 如果响应表示错误则返回 {@code true}，否则返回 {@code false}
 	 * @see HttpStatus#isError()
 	 */
 	protected boolean hasError(HttpStatus statusCode) {
@@ -79,8 +79,8 @@ public class DefaultResponseErrorHandler implements ResponseErrorHandler {
 	 * {@link org.springframework.http.HttpStatus.Series#CLIENT_ERROR CLIENT_ERROR} 或
 	 * {@link org.springframework.http.HttpStatus.Series#SERVER_ERROR SERVER_ERROR}。
 	 * 可以在子类中覆盖。
-	 * @param unknownStatusCode the HTTP status code as raw value
-	 * @return {@code true} if the response indicates an error; {@code false} otherwise
+	 * @param unknownStatusCode 作为原始值的 HTTP 状态码
+	 * @return 如果响应表示错误则返回 {@code true}，否则返回 {@code false}
 	 * @since 4.3.21
 	 * @see org.springframework.http.HttpStatus.Series#CLIENT_ERROR
 	 * @see org.springframework.http.HttpStatus.Series#SERVER_ERROR
@@ -101,7 +101,7 @@ public class DefaultResponseErrorHandler implements ResponseErrorHandler {
 	 * <li>{@link UnknownHttpStatusCodeException}（对于不在 {@link HttpStatus}
 	 * 枚举范围内的错误状态码）。
 	 * </ul>
-	 * @throws UnknownHttpStatusCodeException in case of an unresolvable status code
+	 * @throws UnknownHttpStatusCodeException 状态码无法解析时
 	 * @see #handleError(ClientHttpResponse, HttpStatus)
 	 */
 	@Override
@@ -171,11 +171,10 @@ public class DefaultResponseErrorHandler implements ResponseErrorHandler {
 
 	/**
 	 * 确定给定响应的 HTTP 状态。
-	 * @param response the response to inspect
-	 * @return the associated HTTP status
-	 * @throws IOException in case of I/O errors
-	 * @throws UnknownHttpStatusCodeException in case of an unknown status code
-	 * that cannot be represented with the {@link HttpStatus} enum
+	 * @param response 要检查的响应
+	 * @return 关联的 HTTP 状态
+	 * @throws IOException 发生 I/O 错误时
+	 * @throws UnknownHttpStatusCodeException 状态码未知且无法用 {@link HttpStatus} 枚举表示时
 	 * @since 4.3.8
 	 * @deprecated as of 5.0, in favor of {@link #handleError(ClientHttpResponse, HttpStatus)}
 	 */
@@ -191,9 +190,8 @@ public class DefaultResponseErrorHandler implements ResponseErrorHandler {
 
 	/**
 	 * 读取给定响应的响应体（用于包含在状态异常中）。
-	 * @param response the response to inspect
-	 * @return the response body as a byte array,
-	 * or an empty byte array if the body could not be read
+	 * @param response 要检查的响应
+	 * @return 响应正文的字节数组；如果无法读取正文则为空字节数组
 	 * @since 4.3.8
 	 */
 	protected byte[] getResponseBody(ClientHttpResponse response) {
@@ -208,8 +206,8 @@ public class DefaultResponseErrorHandler implements ResponseErrorHandler {
 
 	/**
 	 * 确定响应的字符集（用于包含在状态异常中）。
-	 * @param response the response to inspect
-	 * @return the associated charset, or {@code null} if none
+	 * @param response 要检查的响应
+	 * @return 关联的字符集，如果没有则为 {@code null}
 	 * @since 4.3.8
 	 */
 	@Nullable

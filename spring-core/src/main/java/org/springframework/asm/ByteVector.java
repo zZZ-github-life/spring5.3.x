@@ -49,7 +49,7 @@ public class ByteVector {
   /**
    * 使用给定的初始容量构造一个新的 {@link ByteVector}。
    *
-   * @param initialCapacity the initial capacity of the byte vector to be constructed.
+   * @param initialCapacity 要构造的 byte vector 的初始容量。
    */
   public ByteVector(final int initialCapacity) {
     data = new byte[initialCapacity];
@@ -58,7 +58,7 @@ public class ByteVector {
   /**
    * 根据给定的初始数据构造一个新的 {@link ByteVector}。
    *
-   * @param data the initial data of the new byte vector.
+   * @param data 新 byte vector 的初始数据。
    */
   ByteVector(final byte[] data) {
     this.data = data;
@@ -68,7 +68,7 @@ public class ByteVector {
   /**
    * 返回此向量中实际的字节数。
    *
-   * @return the actual number of bytes in this vector.
+   * @return 此向量中实际的字节数。
    */
   public int size() {
     return length;
@@ -77,8 +77,8 @@ public class ByteVector {
   /**
    * 将一个字节放入此字节向量。必要时会自动扩展该字节向量。
    *
-   * @param byteValue a byte.
-   * @return this byte vector.
+   * @param byteValue 一个 byte。
+   * @return 此 byte vector。
    */
   public ByteVector putByte(final int byteValue) {
     int currentLength = length;
@@ -93,9 +93,9 @@ public class ByteVector {
   /**
    * 将两个字节放入此字节向量。必要时会自动扩展该字节向量。
    *
-   * @param byteValue1 a byte.
-   * @param byteValue2 another byte.
-   * @return this byte vector.
+   * @param byteValue1 一个 byte。
+   * @param byteValue2 另一个 byte。
+   * @return 此 byte vector。
    */
   final ByteVector put11(final int byteValue1, final int byteValue2) {
     int currentLength = length;
@@ -112,8 +112,8 @@ public class ByteVector {
   /**
    * 将一个 short 放入此字节向量。必要时会自动扩展该字节向量。
    *
-   * @param shortValue a short.
-   * @return this byte vector.
+   * @param shortValue 一个 short。
+   * @return 此 byte vector。
    */
   public ByteVector putShort(final int shortValue) {
     int currentLength = length;
@@ -130,9 +130,9 @@ public class ByteVector {
   /**
    * 将一个字节和一个 short 放入此字节向量。必要时会自动扩展该字节向量。
    *
-   * @param byteValue a byte.
-   * @param shortValue a short.
-   * @return this byte vector.
+   * @param byteValue 一个 byte。
+   * @param shortValue 一个 short。
+   * @return 此 byte vector。
    */
   final ByteVector put12(final int byteValue, final int shortValue) {
     int currentLength = length;
@@ -150,10 +150,10 @@ public class ByteVector {
   /**
    * 将两个字节和一个 short 放入此字节向量。必要时会自动扩展该字节向量。
    *
-   * @param byteValue1 a byte.
-   * @param byteValue2 another byte.
-   * @param shortValue a short.
-   * @return this byte vector.
+   * @param byteValue1 一个 byte。
+   * @param byteValue2 另一个 byte。
+   * @param shortValue 一个 short。
+   * @return 此 byte vector。
    */
   final ByteVector put112(final int byteValue1, final int byteValue2, final int shortValue) {
     int currentLength = length;
@@ -172,8 +172,8 @@ public class ByteVector {
   /**
    * 将一个 int 放入此字节向量。必要时会自动扩展该字节向量。
    *
-   * @param intValue an int.
-   * @return this byte vector.
+   * @param intValue 一个 int。
+   * @return 此 byte vector。
    */
   public ByteVector putInt(final int intValue) {
     int currentLength = length;
@@ -192,10 +192,10 @@ public class ByteVector {
   /**
    * 将一个字节和两个 short 放入此字节向量。必要时会自动扩展该字节向量。
    *
-   * @param byteValue a byte.
-   * @param shortValue1 a short.
-   * @param shortValue2 another short.
-   * @return this byte vector.
+   * @param byteValue 一个 byte。
+   * @param shortValue1 一个 short。
+   * @param shortValue2 另一个 short。
+   * @return 此 byte vector。
    */
   final ByteVector put122(final int byteValue, final int shortValue1, final int shortValue2) {
     int currentLength = length;
@@ -215,8 +215,8 @@ public class ByteVector {
   /**
    * 将一个 long 放入此字节向量。必要时会自动扩展该字节向量。
    *
-   * @param longValue a long.
-   * @return this byte vector.
+   * @param longValue 一个 long。
+   * @return 此 byte vector。
    */
   public ByteVector putLong(final long longValue) {
     int currentLength = length;
@@ -241,8 +241,8 @@ public class ByteVector {
   /**
    * 将一个 UTF8 字符串放入此字节向量。必要时会自动扩展该字节向量。
    *
-   * @param stringValue a String whose UTF8 encoded length must be less than 65536.
-   * @return this byte vector.
+   * @param stringValue 一个 String，其 UTF8 编码长度必须小于 65536。
+   * @return 此 byte vector。
    */
   // DontCheck(AbbreviationAsWordInName): can't be renamed (for backward binary compatibility).
   public ByteVector putUTF8(final String stringValue) {
@@ -278,12 +278,10 @@ public class ByteVector {
    * 将一个 UTF8 字符串放入此字节向量。必要时会自动扩展该字节向量。如果有空间（即 this.length -
    * offset - 2 &gt;= 0），字符串长度会在编码后的字符之前用两个字节进行编码。
    *
-   * @param stringValue the String to encode.
-   * @param offset the index of the first character to encode. The previous characters are supposed
-   *     to have already been encoded, using only one byte per character.
-   * @param maxByteLength the maximum byte length of the encoded string, including the already
-   *     encoded characters.
-   * @return this byte vector.
+   * @param stringValue 要编码的 String。
+   * @param offset 要编码的第一个字符的索引。假定之前的字符已编码，且每个字符仅使用一个字节。
+   * @param maxByteLength 编码后字符串的最大字节长度，包括已编码的字符。
+   * @return 此 byte vector。
    */
   final ByteVector encodeUtf8(final String stringValue, final int offset, final int maxByteLength) {
     int charLength = stringValue.length();
@@ -331,11 +329,11 @@ public class ByteVector {
   /**
    * 将一个字节数组放入此字节向量。必要时会自动扩展该字节向量。
    *
-   * @param byteArrayValue an array of bytes. May be {@literal null} to put {@code byteLength} null
-   *     bytes into this byte vector.
-   * @param byteOffset index of the first byte of byteArrayValue that must be copied.
-   * @param byteLength number of bytes of byteArrayValue that must be copied.
-   * @return this byte vector.
+   * @param byteArrayValue 一个字节数组。可以为 {@literal null}，以将 {@code byteLength} 个 null 字节放入
+   * 此 byte vector。
+   * @param byteOffset 必须复制的 byteArrayValue 第一个字节的索引。
+   * @param byteLength 必须复制的 byteArrayValue 字节数。
+   * @return 此 byte vector。
    */
   public ByteVector putByteArray(
       final byte[] byteArrayValue, final int byteOffset, final int byteLength) {
@@ -352,7 +350,7 @@ public class ByteVector {
   /**
    * 扩展此字节向量，使其能够再接收 'size' 个字节。
    *
-   * @param size number of additional bytes that this byte vector should be able to receive.
+   * @param size 此 byte vector 应能额外接收的字节数。
    */
   private void enlarge(final int size) {
     if (length > data.length) {

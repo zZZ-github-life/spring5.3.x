@@ -31,8 +31,8 @@ import org.springframework.util.comparator.Comparators;
  *
  * @author Phillip Webb
  * @since 3.2
- * @param <S> the source type
- * @param <T> the target type
+ * @param <S> 源类型
+ * @param <T> 目标类型
  */
 public class ConvertingComparator<S, T> implements Comparator<S> {
 
@@ -43,7 +43,7 @@ public class ConvertingComparator<S, T> implements Comparator<S> {
 
 	/**
 	 * 创建一个新的 {@link ConvertingComparator} 实例。
-	 * @param converter the converter
+	 * @param converter 转换器
 	 */
 	public ConvertingComparator(Converter<S, T> converter) {
 		this(Comparators.comparable(), converter);
@@ -51,8 +51,8 @@ public class ConvertingComparator<S, T> implements Comparator<S> {
 
 	/**
 	 * 创建一个新的 {@link ConvertingComparator} 实例。
-	 * @param comparator the underlying comparator used to compare the converted values
-	 * @param converter the converter
+	 * @param comparator 用于比较转换后值的底层比较器
+	 * @param converter 转换器
 	 */
 	public ConvertingComparator(Comparator<T> comparator, Converter<S, T> converter) {
 		Assert.notNull(comparator, "Comparator must not be null");
@@ -63,9 +63,9 @@ public class ConvertingComparator<S, T> implements Comparator<S> {
 
 	/**
 	 * 创建一个新的 {@code ConvertingComparator} 实例。
-	 * @param comparator the underlying comparator
-	 * @param conversionService the conversion service
-	 * @param targetType the target type
+	 * @param comparator 底层比较器
+	 * @param conversionService 转换服务
+	 * @param targetType 目标类型
 	 */
 	public ConvertingComparator(
 			Comparator<T> comparator, ConversionService conversionService, Class<? extends T> targetType) {
@@ -84,8 +84,8 @@ public class ConvertingComparator<S, T> implements Comparator<S> {
 	/**
 	 * 创建一个新的 {@link ConvertingComparator}，它根据 {@linkplain java.util.Map.Entry map entries}
 	 * 的 {@linkplain java.util.Map.Entry#getKey() keys} 进行比较。
-	 * @param comparator the underlying comparator used to compare keys
-	 * @return a new {@link ConvertingComparator} instance
+	 * @param comparator 用于比较键的底层比较器
+	 * @return 一个新的 {@link ConvertingComparator} 实例
 	 */
 	public static <K, V> ConvertingComparator<Map.Entry<K, V>, K> mapEntryKeys(Comparator<K> comparator) {
 		return new ConvertingComparator<>(comparator, Map.Entry::getKey);
@@ -94,8 +94,8 @@ public class ConvertingComparator<S, T> implements Comparator<S> {
 	/**
 	 * 创建一个新的 {@link ConvertingComparator}，它根据 {@linkplain java.util.Map.Entry map entries}
 	 * 的 {@linkplain java.util.Map.Entry#getValue() values} 进行比较。
-	 * @param comparator the underlying comparator used to compare values
-	 * @return a new {@link ConvertingComparator} instance
+	 * @param comparator 用于比较值的底层比较器
+	 * @return 一个新的 {@link ConvertingComparator} 实例
 	 */
 	public static <K, V> ConvertingComparator<Map.Entry<K, V>, V> mapEntryValues(Comparator<V> comparator) {
 		return new ConvertingComparator<>(comparator, Map.Entry::getValue);

@@ -29,7 +29,7 @@ public interface Invocation extends Joinpoint {
 
 	/**
 	 * 以数组对象的形式获取参数。可以修改此数组中的元素值来更改参数。
-	 * @return the argument of the invocation
+	 * @return 该调用的参数
 	 */
 	@Nonnull
 	Object[] getArguments();

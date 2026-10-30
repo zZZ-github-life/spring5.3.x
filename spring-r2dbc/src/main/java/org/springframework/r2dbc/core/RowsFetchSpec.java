@@ -24,26 +24,28 @@ import reactor.core.publisher.Mono;
  *
  * @author Mark Paluch
  * @since 5.3
- * @param <T> the row result type
+ * @param <T> 行结果类型
  */
 public interface RowsFetchSpec<T> {
 
 	/**
 	 * 获取恰好零个或一个结果。
-	 * @return a Mono emitting one element, or {@link Mono#empty()} if no match found.
-	 * Completes with {@code IncorrectResultSizeDataAccessException} if more than one match found
+	 * @return 发出一个元素的 Mono；如果没有匹配项，
+	 * 则为 {@link Mono#empty()}。
+	 * 如果匹配项多于一个，则以 {@code IncorrectResultSizeDataAccessException} 完成
 	 */
 	Mono<T> one();
 
 	/**
 	 * 获取第一个结果，或者不返回结果。
-	 * @return a Mono emitting the first element, or {@link Mono#empty()} if no match found
+	 * @return 发出第一个元素的 Mono；
+	 * 如果没有匹配项，则为 {@link Mono#empty()}
 	 */
 	Mono<T> first();
 
 	/**
 	 * 获取所有匹配的元素。
-	 * @return a Flux emitting all results
+	 * @return 发出所有结果的 Flux
 	 */
 	Flux<T> all();
 

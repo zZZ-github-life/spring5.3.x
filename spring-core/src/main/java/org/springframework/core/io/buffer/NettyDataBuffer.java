@@ -49,7 +49,7 @@ public class NettyDataBuffer implements PooledDataBuffer {
 
 	/**
 	 * 基于给定的 {@code ByteBuff} 创建一个新的 {@code NettyDataBuffer}。
-	 * @param byteBuf the buffer to base this buffer on
+	 * @param byteBuf 此缓冲区所基于的缓冲区
 	 */
 	NettyDataBuffer(ByteBuf byteBuf, NettyDataBufferFactory dataBufferFactory) {
 		Assert.notNull(byteBuf, "ByteBuf must not be null");
@@ -61,7 +61,7 @@ public class NettyDataBuffer implements PooledDataBuffer {
 
 	/**
 	 * 直接暴露此缓冲区所基于的原生 {@code ByteBuf}。
-	 * @return the wrapped byte buffer
+	 * @return 包装后的字节缓冲区
 	 */
 	public ByteBuf getNativeBuffer() {
 		return this.byteBuf;
@@ -227,8 +227,8 @@ public class NettyDataBuffer implements PooledDataBuffer {
 
 	/**
 	 * 将一个或多个 Netty {@link ByteBuf ByteBufs} 写入此缓冲区，从当前写入位置开始。
-	 * @param byteBufs the buffers to write into this buffer
-	 * @return this buffer
+	 * @param byteBufs 要写入此缓冲区的缓冲区
+	 * @return 此缓冲区
 	 */
 	public NettyDataBuffer write(ByteBuf... byteBufs) {
 		if (!ObjectUtils.isEmpty(byteBufs)) {

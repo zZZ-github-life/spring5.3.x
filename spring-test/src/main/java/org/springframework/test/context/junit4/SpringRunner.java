@@ -34,7 +34,7 @@ public final class SpringRunner extends SpringJUnit4ClassRunner {
 
 	/**
 	 * 构造一个新的 {@code SpringRunner}，并初始化一个 {@link org.springframework.test.context.TestContextManager TestContextManager}，以为标准 JUnit 4 测试提供 Spring 测试功能。
-	 * @param clazz the test class to be run
+	 * @param clazz 要运行的测试类
 	 * @see #createTestContextManager(Class)
 	 */
 	public SpringRunner(Class<?> clazz) throws InitializationError {

@@ -39,11 +39,10 @@ public class CannotLoadBeanClassException extends FatalBeanException {
 
 	/**
 	 * 创建一个新的 CannotLoadBeanClassException。
-	 * @param resourceDescription description of the resource
-	 * that the bean definition came from
-	 * @param beanName the name of the bean requested
-	 * @param beanClassName the name of the bean class
-	 * @param cause the root cause
+	 * @param resourceDescription Bean 定义来源资源的描述
+	 * @param beanName 所请求的 Bean 名称
+	 * @param beanClassName Bean 类的名称
+	 * @param cause 根本原因
 	 */
 	public CannotLoadBeanClassException(@Nullable String resourceDescription, String beanName,
 			@Nullable String beanClassName, ClassNotFoundException cause) {
@@ -57,11 +56,10 @@ public class CannotLoadBeanClassException extends FatalBeanException {
 
 	/**
 	 * 创建一个新的 CannotLoadBeanClassException。
-	 * @param resourceDescription description of the resource
-	 * that the bean definition came from
-	 * @param beanName the name of the bean requested
-	 * @param beanClassName the name of the bean class
-	 * @param cause the root cause
+	 * @param resourceDescription Bean 定义来源资源的描述
+	 * @param beanName 所请求的 Bean 名称
+	 * @param beanClassName Bean 类的名称
+	 * @param cause 根本原因
 	 */
 	public CannotLoadBeanClassException(@Nullable String resourceDescription, String beanName,
 			@Nullable String beanClassName, LinkageError cause) {

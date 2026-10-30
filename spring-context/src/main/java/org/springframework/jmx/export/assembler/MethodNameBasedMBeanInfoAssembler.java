@@ -66,7 +66,7 @@ public class MethodNameBasedMBeanInfoAssembler extends AbstractConfigurableMBean
 	/**
 	 * 设置用于创建管理信息的方法名数组。如果在 {@code methodMappings} 属性中找不到与该 Bean 对应的条目，
 	 * 则这些方法名将用于该 Bean。
-	 * @param methodNames an array of method names indicating the methods to use
+	 * @param methodNames 指示要使用的方法的方法名数组
 	 * @see #setMethodMappings
 	 */
 	public void setManagedMethods(String... methodNames) {
@@ -76,7 +76,7 @@ public class MethodNameBasedMBeanInfoAssembler extends AbstractConfigurableMBean
 	/**
 	 * 设置 Bean 键到逗号分隔的方法名列表的映射。属性键应与 Bean 键匹配，属性值应与方法名列表匹配。在为
 	 * Bean 搜索方法名时，Spring 将首先检查这些映射。
-	 * @param mappings the mappings of bean keys to method names
+	 * @param mappings Bean 键到方法名称的映射
 	 */
 	public void setMethodMappings(Properties mappings) {
 		this.methodMappings = new HashMap<>();

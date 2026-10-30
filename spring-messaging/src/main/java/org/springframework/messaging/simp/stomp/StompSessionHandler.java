@@ -35,19 +35,19 @@ public interface StompSessionHandler extends StompFrameHandler {
 	/**
 	 * 会话准备好使用时调用，即底层传输（TCP、WebSocket）已连接，
 	 * 并从代理收到 STOMP CONNECTED 帧之后。
-	 * @param session the client STOMP session
-	 * @param connectedHeaders the STOMP CONNECTED frame headers
+	 * @param session 客户端的 STOMP 会话
+	 * @param connectedHeaders STOMP CONNECTED 帧的消息头
 	 */
 	void afterConnected(StompSession session, StompHeaders connectedHeaders);
 
 	/**
 	 * 处理处理 STOMP 帧时产生的任何异常，例如载荷转换失败，
 	 * 或应用程序 {@code StompFrameHandler} 中未处理的异常。
-	 * @param session the client STOMP session
-	 * @param command the STOMP command of the frame
-	 * @param headers the headers
-	 * @param payload the raw payload
-	 * @param exception the exception
+	 * @param session 客户端的 STOMP 会话
+	 * @param command 帧的 STOMP 命令
+	 * @param headers 消息头
+	 * @param payload 原始负载
+	 * @param exception 异常
 	 */
 	void handleException(StompSession session, @Nullable StompCommand command,
 			StompHeaders headers, byte[] payload, Throwable exception);
@@ -58,8 +58,8 @@ public interface StompSessionHandler extends StompFrameHandler {
 	 * {@link StompSession#disconnect()} 正常关闭时，
 	 * {@link org.springframework.messaging.simp.stomp.ConnectionLostException
 	 * ConnectionLostException} 会传入此方法。
-	 * @param session the client STOMP session
-	 * @param exception the exception that occurred
+	 * @param session 客户端的 STOMP 会话
+	 * @param exception 发生的异常
 	 */
 	void handleTransportError(StompSession session, Throwable exception);
 

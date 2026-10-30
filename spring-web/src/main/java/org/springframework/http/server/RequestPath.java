@@ -51,16 +51,16 @@ public interface RequestPath extends PathContainer {
 	/**
 	 * 返回修改了上下文路径的新 {@code RequestPath} 实例。
 	 * 新的上下文路径必须匹配开头处 0 个或多个路径段。
-	 * @param contextPath the new context path
-	 * @return a new {@code RequestPath} instance
+	 * @param contextPath 新的上下文路径
+	 * @return 新的 {@code RequestPath} 实例
 	 */
 	RequestPath modifyContextPath(String contextPath);
 
 
 	/**
 	 * 将请求的 URI 解析为 {@code RequestPath}。
-	 * @param uri the URI of the request
-	 * @param contextPath the contextPath portion of the URI path
+	 * @param uri 请求的 URI
+	 * @param contextPath URI 路径中属于 contextPath 的部分
 	 */
 	static RequestPath parse(URI uri, @Nullable String contextPath) {
 		return parse(uri.getRawPath(), contextPath);
@@ -69,8 +69,8 @@ public interface RequestPath extends PathContainer {
 	/**
 	 * {@link #parse(URI, String)} 的变体，使用编码后的
 	 * {@link URI#getRawPath() 原始路径}。
-	 * @param rawPath the path
-	 * @param contextPath the contextPath portion of the URI path
+	 * @param rawPath 该路径
+	 * @param contextPath URI 路径中属于 contextPath 的部分
 	 * @since 5.3
 	 */
 	static RequestPath parse(String rawPath, @Nullable String contextPath) {

@@ -85,7 +85,7 @@ public class JettyWebSocketSession extends AbstractWebSocketSession<Session> {
 
 	/**
 	 * 创建一个新的 {@link JettyWebSocketSession} 实例。
-	 * @param attributes the attributes from the HTTP handshake to associate with the WebSocket session
+	 * @param attributes 要与 WebSocket 会话关联的、来自 HTTP 握手的属性
 	 */
 	public JettyWebSocketSession(Map<String, Object> attributes) {
 		this(attributes, null);
@@ -93,10 +93,11 @@ public class JettyWebSocketSession extends AbstractWebSocketSession<Session> {
 
 	/**
 	 * 创建一个与给定用户关联的新 {@link JettyWebSocketSession} 实例。
-	 * @param attributes the attributes from the HTTP handshake to associate with the WebSocket
-	 * session; the provided attributes are copied, the original map is not used.
-	 * @param user the user associated with the session; if {@code null} we'll fall back on the
-	 * user available via {@link org.eclipse.jetty.websocket.api.Session#getUpgradeRequest()}
+	 * @param attributes 要与 WebSocket 会话关联的、来自 HTTP 握手的属性；
+	 * 提供的属性会被复制，不使用原始 Map。
+	 * @param user 与会话关联的用户；如果为 {@code null}，
+	 * 则回退到通过 {@link org.eclipse.jetty.websocket.api.Session#getUpgradeRequest()}
+	 * 获取的用户
 	 */
 	public JettyWebSocketSession(Map<String, Object> attributes, @Nullable Principal user) {
 		super(attributes);

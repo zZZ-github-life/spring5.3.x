@@ -119,11 +119,11 @@ public abstract class AbstractSockJsSession implements SockJsSession {
 
 	/**
 	 * 创建一个新实例。
-	 * @param id the session ID
-	 * @param config the SockJS service configuration options
-	 * @param handler the recipient of SockJS messages
-	 * @param attributes the attributes from the HTTP handshake to associate with the WebSocket
-	 * session; the provided attributes are copied, the original map is not used.
+	 * @param id 会话 ID
+	 * @param config SockJS 服务配置选项
+	 * @param handler SockJS 消息的接收者
+	 * @param attributes 要与 WebSocket 会话关联的、来自 HTTP 握手的属性；
+	 * 提供的属性会被复制，不使用原始 Map。
 	 */
 	public AbstractSockJsSession(String id, SockJsServiceConfig config, WebSocketHandler handler,
 			@Nullable Map<String, Object> attributes) {

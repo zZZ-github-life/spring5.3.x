@@ -39,13 +39,11 @@ public interface TransactionFactory {
 
 	/**
 	 * 基于给定的名称和超时时间创建一个活动的Transaction对象。
-	 * @param name the transaction name (may be {@code null})
-	 * @param timeout the transaction timeout (may be -1 for the default timeout)
-	 * @return the active Transaction object (never {@code null})
-	 * @throws NotSupportedException if the transaction manager does not support
-	 * a transaction of the specified type
-	 * @throws SystemException if the transaction manager failed to create the
-	 * transaction
+	 * @param name 事务名称（可能为 {@code null}）
+	 * @param timeout 事务超时时间（默认超时时间可用 -1）
+	 * @return 活动的 Transaction 对象（永不为 {@code null}）
+	 * @throws NotSupportedException 如果事务管理器不支持指定类型的事务
+	 * @throws SystemException 如果事务管理器创建事务失败
 	 */
 	Transaction createTransaction(@Nullable String name, int timeout) throws NotSupportedException, SystemException;
 

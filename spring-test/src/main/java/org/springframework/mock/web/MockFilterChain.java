@@ -74,7 +74,7 @@ public class MockFilterChain implements FilterChain {
 
 	/**
 	 * 使用 Servlet 创建一个 FilterChain。
-	 * @param servlet the Servlet to invoke
+	 * @param servlet 要调用的 Servlet
 	 * @since 3.2
 	 */
 	public MockFilterChain(Servlet servlet) {
@@ -83,8 +83,8 @@ public class MockFilterChain implements FilterChain {
 
 	/**
 	 * 使用 Filter 和 Servlet 创建一个 {@code FilterChain}。
-	 * @param servlet the {@link Servlet} to invoke in this {@link FilterChain}
-	 * @param filters the {@link Filter}'s to invoke in this {@link FilterChain}
+	 * @param servlet 要在此 {@link FilterChain} 中调用的 {@link Servlet}
+	 * @param filters 要在此 {@link FilterChain} 中调用的 {@link Filter}
 	 * @since 3.2
 	 */
 	public MockFilterChain(Servlet servlet, Filter... filters) {

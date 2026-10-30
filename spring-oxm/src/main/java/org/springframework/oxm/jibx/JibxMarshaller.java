@@ -455,8 +455,8 @@ public class JibxMarshaller extends AbstractMarshaller implements InitializingBe
 
 	/**
 	 * 创建一个新的 {@code IMarshallingContext}，并按正确的缩进进行配置。
-	 * @return the created marshalling context
-	 * @throws JiBXException in case of errors
+	 * @return 创建的编组上下文
+	 * @throws JiBXException 如果发生错误
 	 */
 	protected IMarshallingContext createMarshallingContext() throws JiBXException {
 		Assert.state(this.bindingFactory != null, "JibxMarshaller not initialized");
@@ -467,8 +467,8 @@ public class JibxMarshaller extends AbstractMarshaller implements InitializingBe
 
 	/**
 	 * 创建一个新的 {@code IUnmarshallingContext}。
-	 * @return the created unmarshalling context
-	 * @throws JiBXException in case of errors
+	 * @return 创建的解组上下文
+	 * @throws JiBXException 如果发生错误
 	 */
 	protected IUnmarshallingContext createUnmarshallingContext() throws JiBXException {
 		Assert.state(this.bindingFactory != null, "JibxMarshaller not initialized");
@@ -480,10 +480,10 @@ public class JibxMarshaller extends AbstractMarshaller implements InitializingBe
 	 * 异常层次结构中相应的异常。
 	 * <p>由于 JiBX 自身的异常层次结构并不区分 marshalling 与 unmarshalling，
 	 * 因此使用一个布尔标志来指示该异常是发生在 marshalling 还是 unmarshalling 期间。
-	 * @param ex {@code JiBXException} that occurred
-	 * @param marshalling indicates whether the exception occurs during marshalling ({@code true}),
-	 * or unmarshalling ({@code false})
-	 * @return the corresponding {@code XmlMappingException}
+	 * @param ex 发生的 {@code JiBXException}
+	 * @param marshalling 指示异常是在编组期间发生（{@code true}），
+	 * 还是在解组期间发生（{@code false}）
+	 * @return 对应的 {@code XmlMappingException}
 	 */
 	public XmlMappingException convertJibxException(JiBXException ex, boolean marshalling) {
 		if (ex instanceof ValidationException) {

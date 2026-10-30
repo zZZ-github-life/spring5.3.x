@@ -31,7 +31,7 @@ public class QualifierEntry implements ParseState.Entry {
 
 	/**
 	 * 创建一个新的 {@code QualifierEntry} 实例。
-	 * @param typeName the name of the qualifier type
+	 * @param typeName 限定符类型的名称
 	 */
 	public QualifierEntry(String typeName) {
 		if (!StringUtils.hasText(typeName)) {

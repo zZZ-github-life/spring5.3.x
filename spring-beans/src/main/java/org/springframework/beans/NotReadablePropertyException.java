@@ -27,8 +27,8 @@ public class NotReadablePropertyException extends InvalidPropertyException {
 
 	/**
 	 * 创建一个新的 NotReadablePropertyException。
-	 * @param beanClass the offending bean class
-	 * @param propertyName the offending property
+	 * @param beanClass 出错的 Bean 类
+	 * @param propertyName 出错的属性
 	 */
 	public NotReadablePropertyException(Class<?> beanClass, String propertyName) {
 		super(beanClass, propertyName,
@@ -38,9 +38,9 @@ public class NotReadablePropertyException extends InvalidPropertyException {
 
 	/**
 	 * 创建一个新的 NotReadablePropertyException。
-	 * @param beanClass the offending bean class
-	 * @param propertyName the offending property
-	 * @param msg the detail message
+	 * @param beanClass 出错的 Bean 类
+	 * @param propertyName 出错的属性
+	 * @param msg 详细消息
 	 */
 	public NotReadablePropertyException(Class<?> beanClass, String propertyName, String msg) {
 		super(beanClass, propertyName, msg);
@@ -48,10 +48,10 @@ public class NotReadablePropertyException extends InvalidPropertyException {
 
 	/**
 	 * 创建一个新的 NotReadablePropertyException。
-	 * @param beanClass the offending bean class
-	 * @param propertyName the offending property
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param beanClass 出错的 Bean 类
+	 * @param propertyName 出错的属性
+	 * @param msg 详细消息
+	 * @param cause 根本原因
 	 * @since 4.0.9
 	 */
 	public NotReadablePropertyException(Class<?> beanClass, String propertyName, String msg, Throwable cause) {

@@ -34,7 +34,7 @@ public class AssignableTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 
 	/**
 	 * 为给定类型创建一个新的 AssignableTypeFilter。
-	 * @param targetType the type to match
+	 * @param targetType 要匹配的类型
 	 */
 	public AssignableTypeFilter(Class<?> targetType) {
 		super(true, true);

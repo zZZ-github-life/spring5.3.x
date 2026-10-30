@@ -49,7 +49,7 @@ public class ResizableByteArrayOutputStream extends ByteArrayOutputStream {
 
 	/**
 	 * 创建一个新的 <code>ResizableByteArrayOutputStream</code>，具有指定的初始容量。
-	 * @param initialCapacity the initial buffer size in bytes
+	 * @param initialCapacity 初始缓冲区大小（以字节为单位）
 	 */
 	public ResizableByteArrayOutputStream(int initialCapacity) {
 		super(initialCapacity);
@@ -58,9 +58,9 @@ public class ResizableByteArrayOutputStream extends ByteArrayOutputStream {
 
 	/**
 	 * 将内部缓冲区大小调整为指定的容量。
-	 * @param targetCapacity the desired size of the buffer
-	 * @throws IllegalArgumentException if the given capacity is smaller than
-	 * the actual size of the content stored in the buffer already
+	 * @param targetCapacity 缓冲区的期望大小
+	 * @throws IllegalArgumentException 如果给定容量小于
+	 * 缓冲区中已存储内容的实际大小
 	 * @see ResizableByteArrayOutputStream#size()
 	 */
 	public synchronized void resize(int targetCapacity) {
@@ -72,7 +72,7 @@ public class ResizableByteArrayOutputStream extends ByteArrayOutputStream {
 
 	/**
 	 * 增大内部缓冲区大小。
-	 * @param additionalCapacity the number of bytes to add to the current buffer size
+	 * @param additionalCapacity 要在当前缓冲区大小上增加的字节数
 	 * @see ResizableByteArrayOutputStream#size()
 	 */
 	public synchronized void grow(int additionalCapacity) {

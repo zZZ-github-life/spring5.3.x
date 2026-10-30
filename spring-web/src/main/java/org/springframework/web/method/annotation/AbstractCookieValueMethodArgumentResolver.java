@@ -43,9 +43,9 @@ public abstract class AbstractCookieValueMethodArgumentResolver extends Abstract
 
 	/**
 	 * 创建一个新的 {@link AbstractCookieValueMethodArgumentResolver} 实例。
-	 * @param beanFactory a bean factory to use for resolving  ${...}
-	 * placeholder and #{...} SpEL expressions in default values;
-	 * or {@code null} if default values are not expected to contain expressions
+	 * @param beanFactory 用于解析默认值中的 ${...} 占位符
+	 * 和 #{...} SpEL 表达式的 Bean 工厂；
+	 * 如果默认值预计不包含表达式，则为 {@code null}
 	 */
 	public AbstractCookieValueMethodArgumentResolver(@Nullable ConfigurableBeanFactory beanFactory) {
 		super(beanFactory);

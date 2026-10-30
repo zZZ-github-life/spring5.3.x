@@ -46,8 +46,8 @@ public class ResultSetWrappingSqlRowSetMetaData implements SqlRowSetMetaData {
 	/**
 	 * 为给定 ResultSetMetaData 实例创建一个新的
 	 * ResultSetWrappingSqlRowSetMetaData 对象。
-	 * @param resultSetMetaData a disconnected ResultSetMetaData instance
-	 * to wrap (usually a {@code javax.sql.RowSetMetaData} instance)
+	 * @param resultSetMetaData 要包装的已断开连接的 ResultSetMetaData 实例
+	 * （通常是 {@code javax.sql.RowSetMetaData} 实例）
 	 * @see java.sql.ResultSet#getMetaData
 	 * @see javax.sql.RowSetMetaData
 	 * @see ResultSetWrappingSqlRowSet#getMetaData

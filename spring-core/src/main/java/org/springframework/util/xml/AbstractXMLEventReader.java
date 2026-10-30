@@ -53,7 +53,7 @@ abstract class AbstractXMLEventReader implements XMLEventReader {
 
 	/**
 	 * 此实现对任何属性都会抛出 {@code IllegalArgumentException}。
-	 * @throws IllegalArgumentException when called
+	 * @throws IllegalArgumentException 在被调用时
 	 */
 	@Override
 	public Object getProperty(String name) throws IllegalArgumentException {
@@ -67,7 +67,7 @@ abstract class AbstractXMLEventReader implements XMLEventReader {
 
 	/**
 	 * 检查读取器是否已关闭，若已关闭则抛出 {@code XMLStreamException}。
-	 * @throws XMLStreamException if the reader is closed
+	 * @throws XMLStreamException 如果读取器已关闭
 	 * @see #close()
 	 */
 	protected void checkIfClosed() throws XMLStreamException {

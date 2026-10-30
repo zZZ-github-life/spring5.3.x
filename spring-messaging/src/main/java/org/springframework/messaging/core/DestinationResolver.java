@@ -21,17 +21,16 @@ package org.springframework.messaging.core;
  *
  * @author Mark Fisher
  * @since 4.0
- * @param <D> the destination type
+ * @param <D> 目标类型
  */
 @FunctionalInterface
 public interface DestinationResolver<D> {
 
 	/**
 	 * 解析给定的目标名称。
-	 * @param name the destination name to resolve
-	 * @return the resolved destination (never {@code null})
-	 * @throws DestinationResolutionException if the specified destination
-	 * wasn't found or wasn't resolvable for any other reason
+	 * @param name 要解析的目的地名
+	 * @return 解析得到的目的地（永远不会为 {@code null}）
+	 * @throws DestinationResolutionException 如果找不到指定的目的地，或因其他原因无法解析
 	 */
 	D resolveDestination(String name) throws DestinationResolutionException;
 

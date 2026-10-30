@@ -62,7 +62,7 @@ public class URIEditor extends PropertyEditorSupport {
 
 	/**
 	 * 创建一个新的 URIEditor，将 "classpath:" 位置转换为标准 URI（不尝试将其解析为物理资源）。
-	 * @param encode indicates whether Strings will be encoded or not
+	 * @param encode 指示是否对 String 进行编码
 	 * @since 3.0
 	 */
 	public URIEditor(boolean encode) {
@@ -72,8 +72,8 @@ public class URIEditor extends PropertyEditorSupport {
 
 	/**
 	 * 创建一个新的 URIEditor，使用给定的 ClassLoader 将 "classpath:" 位置解析为物理资源 URL。
-	 * @param classLoader the ClassLoader to use for resolving "classpath:" locations
-	 * (may be {@code null} to indicate the default ClassLoader)
+	 * @param classLoader 用于解析 "classpath:" 位置的 ClassLoader
+	 * （可以为 {@code null}，表示使用默认 ClassLoader）
 	 */
 	public URIEditor(@Nullable ClassLoader classLoader) {
 		this(classLoader, true);
@@ -81,9 +81,9 @@ public class URIEditor extends PropertyEditorSupport {
 
 	/**
 	 * 创建一个新的 URIEditor，使用给定的 ClassLoader 将 "classpath:" 位置解析为物理资源 URL。
-	 * @param classLoader the ClassLoader to use for resolving "classpath:" locations
-	 * (may be {@code null} to indicate the default ClassLoader)
-	 * @param encode indicates whether Strings will be encoded or not
+	 * @param classLoader 用于解析 "classpath:" 位置的 ClassLoader
+	 * （可以为 {@code null}，表示使用默认 ClassLoader）
+	 * @param encode 指示是否对 String 进行编码
 	 * @since 3.0
 	 */
 	public URIEditor(@Nullable ClassLoader classLoader, boolean encode) {
@@ -123,9 +123,9 @@ public class URIEditor extends PropertyEditorSupport {
 	/**
 	 * 为给定的用户指定 String 值创建一个 URI 实例。
 	 * <p>默认实现将该值编码为符合 RFC-2396 的 URI。
-	 * @param value the value to convert into a URI instance
-	 * @return the URI instance
-	 * @throws java.net.URISyntaxException if URI conversion failed
+	 * @param value 要转换为 URI 实例的值
+	 * @return URI 实例
+	 * @throws java.net.URISyntaxException 如果 URI 转换失败
 	 */
 	protected URI createURI(String value) throws URISyntaxException {
 		int colonIndex = value.indexOf(':');

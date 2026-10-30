@@ -142,8 +142,8 @@ public class FreeMarkerView extends AbstractTemplateView {
 
 	/**
 	 * 获取实际使用的 FreeMarker 配置。
-	 * @return the FreeMarker configuration (never {@code null})
-	 * @throws IllegalStateException in case of no Configuration object set
+	 * @return FreeMarker 配置（永不为 {@code null}）
+	 * @throws IllegalStateException 如果未设置 Configuration 对象
 	 * @since 5.0
 	 */
 	protected Configuration obtainConfiguration() {
@@ -183,8 +183,8 @@ public class FreeMarkerView extends AbstractTemplateView {
 
 	/**
 	 * 通过 ApplicationContext 自动检测 {@link FreeMarkerConfig} 对象。
-	 * @return the Configuration instance to use for FreeMarkerViews
-	 * @throws BeansException if no Configuration instance could be found
+	 * @return 用于 FreeMarkerViews 的 Configuration 实例
+	 * @throws BeansException 如果未找到 Configuration 实例
 	 * @see #getApplicationContext
 	 * @see #setConfiguration
 	 */
@@ -258,9 +258,9 @@ public class FreeMarkerView extends AbstractTemplateView {
 	 * 以免不同的渲染操作相互覆盖对方的格式等设置。
 	 * <p>由 {@code renderMergedTemplateModel} 调用。默认实现为空。
 	 * 可以重写此方法以向 model 添加自定义辅助对象。
-	 * @param model the model that will be passed to the template at merge time
-	 * @param request current HTTP request
-	 * @throws Exception if there's a fatal error while we're adding information to the context
+	 * @param model 在合并时传递给模板的模型
+	 * @param request 当前 HTTP 请求
+	 * @throws Exception 如果在向上下文添加信息时发生致命错误
 	 * @see #renderMergedTemplateModel
 	 */
 	protected void exposeHelpers(Map<String, Object> model, HttpServletRequest request) throws Exception {
@@ -274,11 +274,11 @@ public class FreeMarkerView extends AbstractTemplateView {
 	 * <p>向 model 中添加标准的 FreeMarker hash model：请求参数、
 	 * request、session 和 application（ServletContext），以及 JSP 标签库 hash model。
 	 * <p>可以重写此方法以自定义行为，例如将多个模板渲染到单个视图中。
-	 * @param model the model to use for rendering
-	 * @param request current HTTP request
-	 * @param response current servlet response
-	 * @throws IOException if the template file could not be retrieved
-	 * @throws Exception if rendering failed
+	 * @param model 用于渲染的模型
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 Servlet 响应
+	 * @throws IOException 如果无法获取模板文件
+	 * @throws Exception 如果渲染失败
 	 * @see #setUrl
 	 * @see org.springframework.web.servlet.support.RequestContextUtils#getLocale
 	 * @see #getTemplate(java.util.Locale)
@@ -301,10 +301,10 @@ public class FreeMarkerView extends AbstractTemplateView {
 	/**
 	 * 为给定的 model Map 构建 FreeMarker 模板 model。
 	 * <p>默认实现构建一个 {@link AllHttpScopesHashModel}。
-	 * @param model the model to use for rendering
-	 * @param request current HTTP request
-	 * @param response current servlet response
-	 * @return the FreeMarker template model, as a {@link SimpleHash} or subclass thereof
+	 * @param model 用于渲染的模型
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 Servlet 响应
+	 * @return FreeMarker 模板模型，形式为 {@link SimpleHash} 或其子类
 	 */
 	protected SimpleHash buildTemplateModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -322,9 +322,9 @@ public class FreeMarkerView extends AbstractTemplateView {
 	/**
 	 * 为给定请求构建 FreeMarker {@link HttpSessionHashModel}，
 	 * 同时检测 session 是否已存在并据此做出相应处理。
-	 * @param request current HTTP request
-	 * @param response current servlet response
-	 * @return the FreeMarker HttpSessionHashModel
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 Servlet 响应
+	 * @return FreeMarker 的 HttpSessionHashModel
 	 */
 	private HttpSessionHashModel buildSessionModel(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession(false);
@@ -339,9 +339,9 @@ public class FreeMarkerView extends AbstractTemplateView {
 	/**
 	 * 获取适用于给定 locale、供此视图渲染的 FreeMarker 模板。
 	 * <p>默认会获取由 "url" bean 属性指定的模板。
-	 * @param locale the current locale
-	 * @return the FreeMarker template to render
-	 * @throws IOException if the template file could not be retrieved
+	 * @param locale 当前的 Locale
+	 * @return 要渲染的 FreeMarker 模板
+	 * @throws IOException 如果无法获取模板文件
 	 * @see #setUrl
 	 * @see #getTemplate(String, java.util.Locale)
 	 */
@@ -356,10 +356,10 @@ public class FreeMarkerView extends AbstractTemplateView {
 	 * 并使用由 "encoding" bean 属性指定的编码。
 	 * <p>子类可以调用此方法来获取特定模板，
 	 * 例如将多个模板渲染到单个视图中。
-	 * @param name the file name of the desired template
-	 * @param locale the current locale
-	 * @return the FreeMarker template
-	 * @throws IOException if the template file could not be retrieved
+	 * @param name 所需模板的文件名
+	 * @param locale 当前的 Locale
+	 * @return FreeMarker 模板
+	 * @throws IOException 如果无法获取模板文件
 	 */
 	protected Template getTemplate(String name, Locale locale) throws IOException {
 		return (getEncoding() != null ?
@@ -370,11 +370,11 @@ public class FreeMarkerView extends AbstractTemplateView {
 	/**
 	 * 处理 FreeMarker 模板并将结果写入 servlet response。
 	 * <p>可以重写此方法以自定义行为。
-	 * @param template the template to process
-	 * @param model the model for the template
-	 * @param response servlet response (use this to get the OutputStream or Writer)
-	 * @throws IOException if the template file could not be retrieved
-	 * @throws TemplateException if thrown by FreeMarker
+	 * @param template 要处理的模板
+	 * @param model 模板的模型
+	 * @param response Servlet 响应（使用它来获取 OutputStream 或 Writer）
+	 * @throws IOException 如果无法获取模板文件
+	 * @throws TemplateException 如果由 FreeMarker 抛出
 	 * @see freemarker.template.Template#process(Object, java.io.Writer)
 	 */
 	protected void processTemplate(Template template, SimpleHash model, HttpServletResponse response)

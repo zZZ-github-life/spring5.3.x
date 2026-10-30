@@ -104,9 +104,9 @@ public class ConcurrentTaskScheduler extends ConcurrentTaskExecutor implements T
 	 * {@link java.util.concurrent.ScheduledExecutorService} 作为共享委托。
 	 * <p>自动检测 JSR-236 的 {@link javax.enterprise.concurrent.ManagedScheduledExecutorService}，以便
 	 * 在可能时将其用于基于触发器的调度，而不是使用 Spring 的本地触发器管理。
-	 * @param scheduledExecutor the {@link java.util.concurrent.ScheduledExecutorService}
-	 * to delegate to for {@link org.springframework.scheduling.SchedulingTaskExecutor}
-	 * as well as {@link TaskScheduler} invocations
+	 * @param scheduledExecutor 要委托给的 {@link java.util.concurrent.ScheduledExecutorService}，
+	 * 用于 {@link org.springframework.scheduling.SchedulingTaskExecutor}
+	 * 以及 {@link TaskScheduler} 调用
 	 */
 	public ConcurrentTaskScheduler(ScheduledExecutorService scheduledExecutor) {
 		super(scheduledExecutor);
@@ -118,10 +118,10 @@ public class ConcurrentTaskScheduler extends ConcurrentTaskExecutor implements T
 	 * {@link java.util.concurrent.ScheduledExecutorService} 作为委托。
 	 * <p>自动检测 JSR-236 的 {@link javax.enterprise.concurrent.ManagedScheduledExecutorService}，以便
 	 * 在可能时将其用于基于触发器的调度，而不是使用 Spring 的本地触发器管理。
-	 * @param concurrentExecutor the {@link java.util.concurrent.Executor} to delegate to
-	 * for {@link org.springframework.scheduling.SchedulingTaskExecutor} invocations
-	 * @param scheduledExecutor the {@link java.util.concurrent.ScheduledExecutorService}
-	 * to delegate to for {@link TaskScheduler} invocations
+	 * @param concurrentExecutor 要委托给的 {@link java.util.concurrent.Executor}，
+	 * 用于 {@link org.springframework.scheduling.SchedulingTaskExecutor} 调用
+	 * @param scheduledExecutor 要委托给的 {@link java.util.concurrent.ScheduledExecutorService}，
+	 * 用于 {@link TaskScheduler} 调用
 	 */
 	public ConcurrentTaskScheduler(Executor concurrentExecutor, ScheduledExecutorService scheduledExecutor) {
 		super(concurrentExecutor);

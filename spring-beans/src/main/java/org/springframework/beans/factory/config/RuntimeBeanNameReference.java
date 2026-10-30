@@ -38,7 +38,7 @@ public class RuntimeBeanNameReference implements BeanReference {
 
 	/**
 	 * 为给定 Bean 名称创建一个新的 RuntimeBeanNameReference。
-	 * @param beanName name of the target bean
+	 * @param beanName 目标 Bean 的名称
 	 */
 	public RuntimeBeanNameReference(String beanName) {
 		Assert.hasText(beanName, "'beanName' must not be empty");

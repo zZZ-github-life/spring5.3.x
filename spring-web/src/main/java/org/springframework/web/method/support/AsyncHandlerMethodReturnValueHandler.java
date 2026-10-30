@@ -36,9 +36,9 @@ public interface AsyncHandlerMethodReturnValueHandler extends HandlerMethodRetur
 
 	/**
 	 * 给定返回值是否表示异步计算。
-	 * @param returnValue the value returned from the handler method
-	 * @param returnType the return type
-	 * @return {@code true} if the return value type represents an async value
+	 * @param returnValue 处理器方法返回的值
+	 * @param returnType 返回类型
+	 * @return 如果返回值类型表示异步值则返回 {@code true}
 	 */
 	boolean isAsyncReturnValue(@Nullable Object returnValue, MethodParameter returnType);
 

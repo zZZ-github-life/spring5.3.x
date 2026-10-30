@@ -42,9 +42,9 @@ public class InvalidResultSetAccessException extends InvalidDataAccessResourceUs
 
 	/**
 	 * 创建InvalidResultSetAccessException实例。
-	 * @param task name of current task
-	 * @param sql the offending SQL statement
-	 * @param ex the root cause
+	 * @param task 当前任务的名称
+	 * @param sql 出错的 SQL 语句
+	 * @param ex 根本原因
 	 */
 	public InvalidResultSetAccessException(String task, String sql, SQLException ex) {
 		super(task + "; invalid ResultSet access for SQL [" + sql + "]", ex);
@@ -53,7 +53,7 @@ public class InvalidResultSetAccessException extends InvalidDataAccessResourceUs
 
 	/**
 	 * 创建InvalidResultSetAccessException实例。
-	 * @param ex the root cause
+	 * @param ex 根本原因
 	 */
 	public InvalidResultSetAccessException(SQLException ex) {
 		super(ex.getMessage(), ex);
@@ -70,7 +70,7 @@ public class InvalidResultSetAccessException extends InvalidDataAccessResourceUs
 
 	/**
 	 * 返回导致问题的SQL语句。
-	 * @return the offending SQL, if known
+	 * @return 出错的 SQL（如果已知）
 	 */
 	@Nullable
 	public String getSql() {

@@ -44,7 +44,7 @@ import org.springframework.lang.Nullable;
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @author Jean-Pierre Pawlak
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see StoredProcedure
  */
 public class SqlFunction<T> extends MappingSqlQuery<T> {
@@ -67,8 +67,8 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 	/**
 	 * 使用 SQL 创建新的 SqlFunction 对象，但不含参数。
 	 * 必须添加参数，或者接受没有参数的情况。
-	 * @param ds the DataSource to obtain connections from
-	 * @param sql the SQL to execute
+	 * @param ds 从中获取连接的 DataSource
+	 * @param sql 要执行的 SQL
 	 */
 	public SqlFunction(DataSource ds, String sql) {
 		setRowsExpected(1);
@@ -78,10 +78,10 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 
 	/**
 	 * 使用 SQL 和参数创建新的 SqlFunction 对象。
-	 * @param ds the DataSource to obtain connections from
-	 * @param sql the SQL to execute
-	 * @param types the SQL types of the parameters, as defined in the
-	 * {@code java.sql.Types} class
+	 * @param ds 从中获取连接的 DataSource
+	 * @param sql 要执行的 SQL
+	 * @param types 参数的 SQL 类型，定义于
+	 * {@code java.sql.Types} 类中
 	 * @see java.sql.Types
 	 */
 	public SqlFunction(DataSource ds, String sql, int[] types) {
@@ -93,11 +93,11 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 
 	/**
 	 * 使用 SQL、参数和结果类型创建新的 SqlFunction 对象。
-	 * @param ds the DataSource to obtain connections from
-	 * @param sql the SQL to execute
-	 * @param types the SQL types of the parameters, as defined in the
-	 * {@code java.sql.Types} class
-	 * @param resultType the type that the result object is required to match
+	 * @param ds 从中获取连接的 DataSource
+	 * @param sql 要执行的 SQL
+	 * @param types 参数的 SQL 类型，定义于
+	 * {@code java.sql.Types} 类中
+	 * @param resultType 结果对象必须匹配的类型
 	 * @see #setResultType(Class)
 	 * @see java.sql.Types
 	 */
@@ -132,7 +132,7 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 
 	/**
 	 * 无参数运行该函数的便捷方法。
-	 * @return the value of the function
+	 * @return 函数的值
 	 */
 	public int run() {
 		return run(new Object[0]);
@@ -140,8 +140,8 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 
 	/**
 	 * 使用单个 int 参数运行该函数的便捷方法。
-	 * @param parameter single int parameter
-	 * @return the value of the function
+	 * @param parameter 单个 int 参数
+	 * @return 函数的值
 	 */
 	public int run(int parameter) {
 		return run(new Object[] {parameter});
@@ -150,9 +150,8 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 	/**
 	 * 类似于 SqlQuery.execute([]) 方法。这是一个执行查询的通用方法，
 	 * 接收若干参数。
-	 * @param parameters array of parameters. These will be objects or
-	 * object wrapper types for primitives.
-	 * @return the value of the function
+	 * @param parameters 参数数组。它们将是对象或基本类型的对象包装类型。
+	 * @return 函数的值
 	 */
 	public int run(Object... parameters) {
 		Object obj = super.findObject(parameters);
@@ -164,7 +163,7 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 
 	/**
 	 * 无参数运行该函数的便捷方法，将值作为对象返回。
-	 * @return the value of the function
+	 * @return 函数的值
 	 */
 	@Nullable
 	public Object runGeneric() {
@@ -173,8 +172,8 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 
 	/**
 	 * 使用单个 int 参数运行该函数的便捷方法。
-	 * @param parameter single int parameter
-	 * @return the value of the function as an Object
+	 * @param parameter 单个 int 参数
+	 * @return 以 Object 形式返回的函数值
 	 */
 	@Nullable
 	public Object runGeneric(int parameter) {
@@ -184,9 +183,8 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 	/**
 	 * 类似于 {@code SqlQuery.findObject(Object[])} 方法。
 	 * 这是一个执行查询的通用方法，接收若干参数。
-	 * @param parameters array of parameters. These will be objects or
-	 * object wrapper types for primitives.
-	 * @return the value of the function, as an Object
+	 * @param parameters 参数数组。它们将是对象或基本类型的对象包装类型。
+	 * @return 以 Object 形式返回的函数值
 	 * @see #execute(Object[])
 	 */
 	@Nullable

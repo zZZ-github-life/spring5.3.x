@@ -106,12 +106,12 @@ final class FieldWriter extends FieldVisitor {
   /**
    * 构造一个新的 {@link FieldWriter}。
    *
-   * @param symbolTable where the constants used in this FieldWriter must be stored.
-   * @param access the field's access flags (see {@link Opcodes}).
-   * @param name the field's name.
-   * @param descriptor the field's descriptor (see {@link Type}).
-   * @param signature the field's signature. May be {@literal null}.
-   * @param constantValue the field's constant value. May be {@literal null}.
+   * @param symbolTable 用于存储此 FieldWriter 中所用常量的位置。
+   * @param access 字段的访问标志（参见 {@link Opcodes}）。
+   * @param name 字段的名称。
+   * @param descriptor 字段的描述符（参见 {@link Type}）。
+   * @param signature 字段的签名。可以为 {@literal null}。
+   * @param constantValue 字段的常量值。可以为 {@literal null}。
    */
   FieldWriter(
       final SymbolTable symbolTable,
@@ -182,7 +182,7 @@ final class FieldWriter extends FieldVisitor {
    * 返回此 FieldWriter 生成的 field_info JVMS 结构的大小。同时还会将该字段各属性的名称添加到常量池中
    * 。
    *
-   * @return the size in bytes of the field_info JVMS structure.
+   * @return field_info JVMS 结构的字节大小。
    */
   int computeFieldInfoSize() {
     // The access_flags, name_index, descriptor_index and attributes_count fields use 8 bytes.
@@ -209,7 +209,7 @@ final class FieldWriter extends FieldVisitor {
   /**
    * 将此 FieldWriter 生成的 field_info JVMS 结构的内容放入给定的 ByteVector 中。
    *
-   * @param output where the field_info structure must be put.
+   * @param output 放置 field_info 结构的位置。
    */
   void putFieldInfo(final ByteVector output) {
     boolean useSyntheticAttribute = symbolTable.getMajorVersion() < Opcodes.V1_5;
@@ -271,7 +271,7 @@ final class FieldWriter extends FieldVisitor {
   /**
    * 将此字段的属性收集到给定的属性原型集合中。
    *
-   * @param attributePrototypes a set of attribute prototypes.
+   * @param attributePrototypes 一组属性原型。
    */
   final void collectAttributePrototypes(final Attribute.Set attributePrototypes) {
     attributePrototypes.addAttributes(firstAttribute);

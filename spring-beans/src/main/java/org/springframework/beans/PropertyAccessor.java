@@ -68,77 +68,72 @@ public interface PropertyAccessor {
 	/**
 	 * 确定指定的属性是否可读。
 	 * <p>如果属性不存在，则返回 {@code false}。
-	 * @param propertyName the property to check
-	 * (may be a nested path and/or an indexed/mapped property)
-	 * @return whether the property is readable
+	 * @param propertyName 要检查的属性
+	 * （可以是嵌套路径和/或索引/映射属性）
+	 * @return 该属性是否可读
 	 */
 	boolean isReadableProperty(String propertyName);
 
 	/**
 	 * 确定指定的属性是否可写。
 	 * <p>如果属性不存在，则返回 {@code false}。
-	 * @param propertyName the property to check
-	 * (may be a nested path and/or an indexed/mapped property)
-	 * @return whether the property is writable
+	 * @param propertyName 要检查的属性
+	 * （可以是嵌套路径和/或索引/映射属性）
+	 * @return 该属性是否可写
 	 */
 	boolean isWritableProperty(String propertyName);
 
 	/**
 	 * 确定指定属性的属性类型，既可以检查属性描述符，也可以在索引或映射元素的情况下检查值。
-	 * @param propertyName the property to check
-	 * (may be a nested path and/or an indexed/mapped property)
-	 * @return the property type for the particular property,
-	 * or {@code null} if not determinable
-	 * @throws PropertyAccessException if the property was valid but the
-	 * accessor method failed
+	 * @param propertyName 要检查的属性
+	 * （可以是嵌套路径和/或索引/映射属性）
+	 * @return 特定属性的属性类型，如果无法确定则为 {@code null}
+	 * @throws PropertyAccessException 如果属性有效但访问器方法失败
 	 */
 	@Nullable
 	Class<?> getPropertyType(String propertyName) throws BeansException;
 
 	/**
 	 * 返回指定属性的类型描述符：优先来自读取方法，回退到写入方法。
-	 * @param propertyName the property to check
-	 * (may be a nested path and/or an indexed/mapped property)
-	 * @return the property type for the particular property,
-	 * or {@code null} if not determinable
-	 * @throws PropertyAccessException if the property was valid but the
-	 * accessor method failed
+	 * @param propertyName 要检查的属性
+	 * （可以是嵌套路径和/或索引/映射属性）
+	 * @return 特定属性的属性类型，如果无法确定则为 {@code null}
+	 * @throws PropertyAccessException 如果属性有效但访问器方法失败
 	 */
 	@Nullable
 	TypeDescriptor getPropertyTypeDescriptor(String propertyName) throws BeansException;
 
 	/**
 	 * 获取指定属性的当前值。
-	 * @param propertyName the name of the property to get the value of
-	 * (may be a nested path and/or an indexed/mapped property)
-	 * @return the value of the property
-	 * @throws InvalidPropertyException if there is no such property or
-	 * if the property isn't readable
-	 * @throws PropertyAccessException if the property was valid but the
-	 * accessor method failed
+	 * @param propertyName 要获取其值的属性名称
+	 * （可以是嵌套路径和/或索引/映射属性）
+	 * @return 该属性的值
+	 * @throws InvalidPropertyException 如果不存在这样的属性，
+	 * 或者该属性不可读
+	 * @throws PropertyAccessException 如果属性有效但访问器方法失败
 	 */
 	@Nullable
 	Object getPropertyValue(String propertyName) throws BeansException;
 
 	/**
 	 * 将指定值设置为当前属性值。
-	 * @param propertyName the name of the property to set the value of
-	 * (may be a nested path and/or an indexed/mapped property)
-	 * @param value the new value
-	 * @throws InvalidPropertyException if there is no such property or
-	 * if the property isn't writable
-	 * @throws PropertyAccessException if the property was valid but the
-	 * accessor method failed or a type mismatch occurred
+	 * @param propertyName 要设置其值的属性名称
+	 * （可以是嵌套路径和/或索引/映射属性）
+	 * @param value 新值
+	 * @throws InvalidPropertyException 如果不存在这样的属性，
+	 * 或者该属性不可写
+	 * @throws PropertyAccessException 如果属性有效但访问器方法失败
+	 * 或发生了类型不匹配
 	 */
 	void setPropertyValue(String propertyName, @Nullable Object value) throws BeansException;
 
 	/**
 	 * 将指定值设置为当前属性值。
-	 * @param pv an object containing the new property value
-	 * @throws InvalidPropertyException if there is no such property or
-	 * if the property isn't writable
-	 * @throws PropertyAccessException if the property was valid but the
-	 * accessor method failed or a type mismatch occurred
+	 * @param pv 包含新属性值的对象
+	 * @throws InvalidPropertyException 如果不存在这样的属性，
+	 * 或者该属性不可写
+	 * @throws PropertyAccessException 如果属性有效但访问器方法失败
+	 * 或发生了类型不匹配
 	 */
 	void setPropertyValue(PropertyValue pv) throws BeansException;
 
@@ -146,14 +141,13 @@ public interface PropertyAccessor {
 	 * 从 Map 执行批量更新。
 	 * <p>从 PropertyValues 进行批量更新更强大：此方法仅为方便而提供。其行为与
 	 * {@link #setPropertyValues(PropertyValues)} 方法完全相同。
-	 * @param map a Map to take properties from. Contains property value objects,
-	 * keyed by property name
-	 * @throws InvalidPropertyException if there is no such property or
-	 * if the property isn't writable
-	 * @throws PropertyBatchUpdateException if one or more PropertyAccessExceptions
-	 * occurred for specific properties during the batch update. This exception bundles
-	 * all individual PropertyAccessExceptions. All other properties will have been
-	 * successfully updated.
+	 * @param map 从中获取属性的 Map。
+	 * 包含以属性名为键的属性值对象
+	 * @throws InvalidPropertyException 如果不存在这样的属性，
+	 * 或者该属性不可写
+	 * @throws PropertyBatchUpdateException 如果在批量更新期间特定属性发生了一个或多个 PropertyAccessException。
+	 * 该异常会捆绑所有单独的 PropertyAccessException。
+	 * 所有其他属性都将已成功更新。
 	 */
 	void setPropertyValues(Map<?, ?> map) throws BeansException;
 
@@ -164,13 +158,12 @@ public interface PropertyAccessor {
 	 * {@link PropertyBatchUpdateException}。之后可以检查此异常以查看所有绑定错误。已成功更新的属性保持
 	 * 更改。
 	 * <p>不允许未知字段或无效字段。
-	 * @param pvs a PropertyValues to set on the target object
-	 * @throws InvalidPropertyException if there is no such property or
-	 * if the property isn't writable
-	 * @throws PropertyBatchUpdateException if one or more PropertyAccessExceptions
-	 * occurred for specific properties during the batch update. This exception bundles
-	 * all individual PropertyAccessExceptions. All other properties will have been
-	 * successfully updated.
+	 * @param pvs 要在目标对象上设置的 PropertyValues
+	 * @throws InvalidPropertyException 如果不存在这样的属性，
+	 * 或者该属性不可写
+	 * @throws PropertyBatchUpdateException 如果在批量更新期间特定属性发生了一个或多个 PropertyAccessException。
+	 * 该异常会捆绑所有单独的 PropertyAccessException。
+	 * 所有其他属性都将已成功更新。
 	 * @see #setPropertyValues(PropertyValues, boolean, boolean)
 	 */
 	void setPropertyValues(PropertyValues pvs) throws BeansException;
@@ -181,14 +174,13 @@ public interface PropertyAccessor {
 	 * 不</b>包括无效的字段名之类），此类的实现会继续更新属性，并抛出包含所有单个错误的
 	 * {@link PropertyBatchUpdateException}。之后可以检查此异常以查看所有绑定错误。已成功更新的属性保持
 	 * 更改。
-	 * @param pvs a PropertyValues to set on the target object
-	 * @param ignoreUnknown should we ignore unknown properties (not found in the bean)
-	 * @throws InvalidPropertyException if there is no such property or
-	 * if the property isn't writable
-	 * @throws PropertyBatchUpdateException if one or more PropertyAccessExceptions
-	 * occurred for specific properties during the batch update. This exception bundles
-	 * all individual PropertyAccessExceptions. All other properties will have been
-	 * successfully updated.
+	 * @param pvs 要在目标对象上设置的 PropertyValues
+	 * @param ignoreUnknown 是否忽略未知属性（在 Bean 中未找到的属性）
+	 * @throws InvalidPropertyException 如果不存在这样的属性，
+	 * 或者该属性不可写
+	 * @throws PropertyBatchUpdateException 如果在批量更新期间特定属性发生了一个或多个 PropertyAccessException。
+	 * 该异常会捆绑所有单独的 PropertyAccessException。
+	 * 所有其他属性都将已成功更新。
 	 * @see #setPropertyValues(PropertyValues, boolean, boolean)
 	 */
 	void setPropertyValues(PropertyValues pvs, boolean ignoreUnknown)
@@ -200,15 +192,14 @@ public interface PropertyAccessor {
 	 * 不</b>包括无效的字段名之类），此类的实现会继续更新属性，并抛出包含所有单个错误的
 	 * {@link PropertyBatchUpdateException}。之后可以检查此异常以查看所有绑定错误。已成功更新的属性保持
 	 * 更改。
-	 * @param pvs a PropertyValues to set on the target object
-	 * @param ignoreUnknown should we ignore unknown properties (not found in the bean)
-	 * @param ignoreInvalid should we ignore invalid properties (found but not accessible)
-	 * @throws InvalidPropertyException if there is no such property or
-	 * if the property isn't writable
-	 * @throws PropertyBatchUpdateException if one or more PropertyAccessExceptions
-	 * occurred for specific properties during the batch update. This exception bundles
-	 * all individual PropertyAccessExceptions. All other properties will have been
-	 * successfully updated.
+	 * @param pvs 要在目标对象上设置的 PropertyValues
+	 * @param ignoreUnknown 是否忽略未知属性（在 Bean 中未找到的属性）
+	 * @param ignoreInvalid 是否忽略无效属性（已找到但无法访问的属性）
+	 * @throws InvalidPropertyException 如果不存在这样的属性，
+	 * 或者该属性不可写
+	 * @throws PropertyBatchUpdateException 如果在批量更新期间特定属性发生了一个或多个 PropertyAccessException。
+	 * 该异常会捆绑所有单独的 PropertyAccessException。
+	 * 所有其他属性都将已成功更新。
 	 */
 	void setPropertyValues(PropertyValues pvs, boolean ignoreUnknown, boolean ignoreInvalid)
 			throws BeansException;

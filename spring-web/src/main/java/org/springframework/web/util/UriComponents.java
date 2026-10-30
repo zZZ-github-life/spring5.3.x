@@ -134,15 +134,15 @@ public abstract class UriComponents implements Serializable {
 
 	/**
 	 * 使用非 "UTF-8" 字符集的 {@link #encode()} 变体。
-	 * @param charset the charset to use for encoding
+	 * @param charset 用于编码的字符集
 	 * @see UriComponentsBuilder#encode(Charset)
 	 */
 	public abstract UriComponents encode(Charset charset);
 
 	/**
 	 * 用给定 Map 中的值替换所有 URI 模板变量。<p>给定 Map 的键表示变量名；对应的值表示变量值。变量的顺序无关紧要。
-	 * @param uriVariables the map of URI variables
-	 * @return the expanded URI components
+	 * @param uriVariables URI 变量映射
+	 * @return 展开后的 URI 组件
 	 */
 	public final UriComponents expand(Map<String, ?> uriVariables) {
 		Assert.notNull(uriVariables, "'uriVariables' must not be null");
@@ -151,8 +151,8 @@ public abstract class UriComponents implements Serializable {
 
 	/**
 	 * 用给定数组中的值替换所有 URI 模板变量。<p>给定数组表示变量值。变量的顺序很重要。
-	 * @param uriVariableValues the URI variable values
-	 * @return the expanded URI components
+	 * @param uriVariableValues URI 变量值
+	 * @return 展开后的 URI 组件
 	 */
 	public final UriComponents expand(Object... uriVariableValues) {
 		Assert.notNull(uriVariableValues, "'uriVariableValues' must not be null");
@@ -161,8 +161,8 @@ public abstract class UriComponents implements Serializable {
 
 	/**
 	 * 用给定 {@link UriTemplateVariables} 中的值替换所有 URI 模板变量。
-	 * @param uriVariables the URI template values
-	 * @return the expanded URI components
+	 * @param uriVariables URI 模板值
+	 * @return 展开后的 URI 组件
 	 */
 	public final UriComponents expand(UriTemplateVariables uriVariables) {
 		Assert.notNull(uriVariables, "'uriVariables' must not be null");
@@ -171,8 +171,8 @@ public abstract class UriComponents implements Serializable {
 
 	/**
 	 * 用给定 {@link UriTemplateVariables} 中的值替换所有 URI 模板变量。
-	 * @param uriVariables the URI template values
-	 * @return the expanded URI components
+	 * @param uriVariables URI 模板值
+	 * @return 展开后的 URI 组件
 	 */
 	abstract UriComponents expandInternal(UriTemplateVariables uriVariables);
 
@@ -290,8 +290,8 @@ public abstract class UriComponents implements Serializable {
 
 		/**
 		 * 获取给定 URI 变量名的值。如果值为 {@code null}，则扩展为空 String。如果值为 {@link #SKIP_VALUE}，则不扩展该 URI 变量。
-		 * @param name the variable name
-		 * @return the variable value, possibly {@code null} or {@link #SKIP_VALUE}
+		 * @param name 变量名称
+		 * @return 变量值，可能为 {@code null} 或 {@link #SKIP_VALUE}
 		 */
 		@Nullable
 		Object getValue(@Nullable String name);

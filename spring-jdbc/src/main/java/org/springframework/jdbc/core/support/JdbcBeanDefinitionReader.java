@@ -94,12 +94,12 @@ public class JdbcBeanDefinitionReader {
 
 	/**
 	 * 通过给定的 SQL 字符串从数据库加载 bean 定义。
-	 * @param sql the SQL query to use for loading bean definitions.
-	 * The first three columns must be bean name, property name and value.
-	 * Any join and any other columns are permitted: e.g.
+	 * @param sql 用于加载 Bean 定义的 SQL 查询。
+	 * 前三列必须是 Bean 名称、属性名称和值。
+	 * 允许使用任意连接和任意其他列，例如：
 	 * {@code SELECT BEAN_NAME, PROPERTY, VALUE FROM CONFIG WHERE CONFIG.APP_ID = 1}
-	 * It's also possible to perform a join. Column names are not significant --
-	 * only the ordering of these first three columns.
+	 * 也可以执行连接操作。列名不重要 ——
+	 * 只有前三列的顺序重要。
 	 */
 	public void loadBeanDefinitions(String sql) {
 		Assert.notNull(this.jdbcTemplate, "Not fully configured - specify DataSource or JdbcTemplate");

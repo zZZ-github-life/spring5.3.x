@@ -280,8 +280,8 @@ final class PartGenerator extends BaseSubscriber<MultipartParser.Token> {
 
 		/**
 		 * 当该部件的所有 token 都已接收时调用。
-		 * @param finalPart {@code true} if this was the last part (and
-		 * {@link #emitComplete()} should be called; {@code false} otherwise
+		 * @param finalPart 如果这是最后一个部分（并且应调用 {@link #emitComplete()}）则返回 {@code true}；
+		 * 否则返回 {@code false}
 		 */
 		void partComplete(boolean finalPart);
 

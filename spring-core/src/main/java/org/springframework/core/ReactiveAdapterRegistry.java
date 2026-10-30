@@ -147,7 +147,7 @@ public class ReactiveAdapterRegistry {
 
 	/**
 	 * 获取给定响应式类型的适配器。
-	 * @return the corresponding adapter, or {@code null} if none available
+	 * @return 对应的适配器，如果没有可用的则为 {@code null}
 	 */
 	@Nullable
 	public ReactiveAdapter getAdapter(Class<?> reactiveType) {
@@ -156,11 +156,9 @@ public class ReactiveAdapterRegistry {
 
 	/**
 	 * 获取给定响应式类型的适配器。或者，如果提供了“源”对象，则改用其实际类型。
-	 * @param reactiveType the reactive type
-	 * (may be {@code null} if a concrete source object is given)
-	 * @param source an instance of the reactive type
-	 * (i.e. to adapt from; may be {@code null} if the reactive type is specified)
-	 * @return the corresponding adapter, or {@code null} if none available
+	 * @param reactiveType 响应式类型（如果给出了具体的源对象则可以为 {@code null}）
+	 * @param source 响应式类型的实例（即要从中适配；如果指定了响应式类型则可以为 {@code null}）
+	 * @return 对应的适配器，如果没有可用的则为 {@code null}
 	 */
 	@Nullable
 	public ReactiveAdapter getAdapter(@Nullable Class<?> reactiveType, @Nullable Object source) {
@@ -191,7 +189,7 @@ public class ReactiveAdapterRegistry {
 	 * 返回一个共享的默认 {@code ReactiveAdapterRegistry} 实例，在需要时延迟构建。<p><b>注意：</b>为了
 	 * 自定义目的，我们强烈建议传入一个长期存在且预先配置好的 {@code ReactiveAdapterRegistry} 实例。此
 	 * 访问器仅作为回退方案，供那些希望在未提供实例时回退到默认实例的代码路径使用。
-	 * @return the shared {@code ReactiveAdapterRegistry} instance
+	 * @return 共享的 {@code ReactiveAdapterRegistry} 实例
 	 * @since 5.0.2
 	 */
 	public static ReactiveAdapterRegistry getSharedInstance() {

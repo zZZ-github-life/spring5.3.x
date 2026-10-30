@@ -41,9 +41,8 @@ public final class ClassTooLargeException extends IndexOutOfBoundsException {
   /**
    * 构造一个新的 {@link ClassTooLargeException}。
    *
-   * @param className the internal name of the class (see {@link
-   *     org.objectweb.asm.Type#getInternalName()}).
-   * @param constantPoolCount the number of constant pool items of the class.
+   * @param className 类的内部名（参见 {@link org.objectweb.asm.Type#getInternalName()}）。
+   * @param constantPoolCount 类的常量池条目数量。
    */
   public ClassTooLargeException(final String className, final int constantPoolCount) {
     super("Class too large: " + className);
@@ -54,7 +53,7 @@ public final class ClassTooLargeException extends IndexOutOfBoundsException {
   /**
    * 返回类的内部名称（参见 {@link org.objectweb.asm.Type#getInternalName()}）。
    *
-   * @return the internal name of the class.
+   * @return 类的内部名。
    */
   public String getClassName() {
     return className;
@@ -63,7 +62,7 @@ public final class ClassTooLargeException extends IndexOutOfBoundsException {
   /**
    * 返回类的常量池条目数。
    *
-   * @return the number of constant pool items of the class.
+   * @return 类的常量池条目数量。
    */
   public int getConstantPoolCount() {
     return constantPoolCount;

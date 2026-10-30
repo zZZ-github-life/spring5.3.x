@@ -43,7 +43,7 @@ public abstract class LogFactory {
 
 	/**
 	 * 便捷方法：返回指定名称的日志记录器。
-	 * @param clazz containing Class from which a log name will be derived
+	 * @param clazz 包含用于派生日志名称的 Class
 	 */
 	public static Log getLog(Class<?> clazz) {
 		return getLog(clazz.getName());
@@ -51,7 +51,7 @@ public abstract class LogFactory {
 
 	/**
 	 * 便捷方法：返回指定名称的日志记录器。
-	 * @param name logical name of the <code>Log</code> instance to be returned
+	 * @param name 要返回的 <code>Log</code> 实例的逻辑名称
 	 */
 	public static Log getLog(String name) {
 		return LogAdapter.createLog(name);
@@ -72,7 +72,7 @@ public abstract class LogFactory {
 
 	/**
 	 * 便捷方法：返回指定名称的日志记录器。<p>此变体直接分派给 {@link #getLog(Class)}。
-	 * @param clazz containing Class from which a log name will be derived
+	 * @param clazz 包含用于派生日志名称的 Class
 	 * @deprecated in favor of {@link #getLog(Class)}
 	 */
 	@Deprecated
@@ -82,7 +82,7 @@ public abstract class LogFactory {
 
 	/**
 	 * 便捷方法：返回指定名称的日志记录器。<p>此变体直接分派给 {@link #getLog(String)}。
-	 * @param name logical name of the <code>Log</code> instance to be returned
+	 * @param name 要返回的 <code>Log</code> 实例的逻辑名称
 	 * @deprecated in favor of {@link #getLog(String)}
 	 */
 	@Deprecated

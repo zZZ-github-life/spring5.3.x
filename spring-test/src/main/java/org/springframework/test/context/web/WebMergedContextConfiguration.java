@@ -51,7 +51,7 @@ public class WebMergedContextConfiguration extends MergedContextConfiguration {
 	/**
 	 * 通过复制所提供的 {@code MergedContextConfiguration} 中的所有属性，创建一个新的 {@code WebMergedContextConfiguration} 实例。
 	 * <p>如果为 {@code resourceBasePath} 提供了<em>空</em>值，则将使用空字符串。
-	 * @param resourceBasePath the resource path to the root directory of the web application
+	 * @param resourceBasePath Web 应用根目录的资源路径
 	 * @since 4.1
 	 */
 	public WebMergedContextConfiguration(MergedContextConfiguration mergedConfig, String resourceBasePath) {
@@ -62,18 +62,17 @@ public class WebMergedContextConfiguration extends MergedContextConfiguration {
 	/**
 	 * 为所提供的参数创建一个新的 {@code WebMergedContextConfiguration} 实例。
 	 * <p>如果为 {@code locations}、{@code classes}、{@code activeProfiles}、{@code propertySourceLocations} 或 {@code propertySourceProperties} 提供了 {@code null} 值，则将改为存储空数组。如果为 {@code contextInitializerClasses} 提供了 {@code null} 值，则将改为存储空集合。如果为 {@code resourceBasePath} 提供了<em>空</em>值，则将使用空字符串。此外，活动配置文件将被排序，重复的配置文件将被移除。
-	 * @param testClass the test class for which the configuration was merged
-	 * @param locations the merged resource locations
-	 * @param classes the merged annotated classes
-	 * @param contextInitializerClasses the merged context initializer classes
-	 * @param activeProfiles the merged active bean definition profiles
-	 * @param propertySourceLocations the merged {@code PropertySource} locations
-	 * @param propertySourceProperties the merged {@code PropertySource} properties
-	 * @param resourceBasePath the resource path to the root directory of the web application
-	 * @param contextLoader the resolved {@code ContextLoader}
-	 * @param cacheAwareContextLoaderDelegate a cache-aware context loader
-	 * delegate with which to retrieve the parent context
-	 * @param parent the parent configuration or {@code null} if there is no parent
+	 * @param testClass 合并配置所针对的测试类
+	 * @param locations 合并后的资源位置
+	 * @param classes 合并后的注解类
+	 * @param contextInitializerClasses 合并后的上下文初始化器类
+	 * @param activeProfiles 合并后的活动 Bean 定义 profile
+	 * @param propertySourceLocations 合并后的 {@code PropertySource} 位置
+	 * @param propertySourceProperties 合并后的 {@code PropertySource} 属性
+	 * @param resourceBasePath Web 应用根目录的资源路径
+	 * @param contextLoader 解析出的 {@code ContextLoader}
+	 * @param cacheAwareContextLoaderDelegate 一个缓存感知的上下文加载器委托，用于检索父上下文
+	 * @param parent 父配置；如果没有父配置，则为 {@code null}
 	 * @since 4.1
 	 */
 	public WebMergedContextConfiguration(Class<?> testClass, @Nullable String[] locations, @Nullable Class<?>[] classes,
@@ -89,19 +88,18 @@ public class WebMergedContextConfiguration extends MergedContextConfiguration {
 	/**
 	 * 为所提供的参数创建一个新的 {@code WebMergedContextConfiguration} 实例。
 	 * <p>如果为 {@code locations}、{@code classes}、{@code activeProfiles}、{@code propertySourceLocations} 或 {@code propertySourceProperties} 提供了 {@code null} 值，则将改为存储空数组。如果为 {@code contextInitializerClasses} 或 {@code contextCustomizers} 提供了 {@code null} 值，则将改为存储空集合。如果为 {@code resourceBasePath} 提供了<em>空</em>值，则将使用空字符串。此外，活动配置文件将被排序，重复的配置文件将被移除。
-	 * @param testClass the test class for which the configuration was merged
-	 * @param locations the merged context resource locations
-	 * @param classes the merged annotated classes
-	 * @param contextInitializerClasses the merged context initializer classes
-	 * @param activeProfiles the merged active bean definition profiles
-	 * @param propertySourceLocations the merged {@code PropertySource} locations
-	 * @param propertySourceProperties the merged {@code PropertySource} properties
-	 * @param contextCustomizers the context customizers
-	 * @param resourceBasePath the resource path to the root directory of the web application
-	 * @param contextLoader the resolved {@code ContextLoader}
-	 * @param cacheAwareContextLoaderDelegate a cache-aware context loader
-	 * delegate with which to retrieve the parent context
-	 * @param parent the parent configuration or {@code null} if there is no parent
+	 * @param testClass 合并配置所针对的测试类
+	 * @param locations 合并后的上下文资源位置
+	 * @param classes 合并后的注解类
+	 * @param contextInitializerClasses 合并后的上下文初始化器类
+	 * @param activeProfiles 合并后的活动 Bean 定义 profile
+	 * @param propertySourceLocations 合并后的 {@code PropertySource} 位置
+	 * @param propertySourceProperties 合并后的 {@code PropertySource} 属性
+	 * @param contextCustomizers 上下文定制器
+	 * @param resourceBasePath Web 应用根目录的资源路径
+	 * @param contextLoader 解析出的 {@code ContextLoader}
+	 * @param cacheAwareContextLoaderDelegate 一个缓存感知的上下文加载器委托，用于检索父上下文
+	 * @param parent 父配置；如果没有父配置，则为 {@code null}
 	 * @since 4.3
 	 */
 	public WebMergedContextConfiguration(Class<?> testClass, @Nullable String[] locations, @Nullable Class<?>[] classes,

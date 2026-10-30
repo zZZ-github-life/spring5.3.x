@@ -86,11 +86,11 @@ public abstract class AbstractFallbackSQLExceptionTranslator implements SQLExcep
 	 * 用于实际转换给定异常的模板方法。
 	 * <p>传入的参数已经过预检查。此外，此方法允许返回 {@code null}，
 	 * 表示未找到匹配的异常，应启用回退转换。
-	 * @param task readable text describing the task being attempted
-	 * @param sql the SQL query or update that caused the problem (if known)
-	 * @param ex the offending {@code SQLException}
-	 * @return the DataAccessException, wrapping the {@code SQLException};
-	 * or {@code null} if no exception match found
+	 * @param task 描述所尝试任务的可读文本
+	 * @param sql 导致问题的 SQL 查询或更新（如果已知）
+	 * @param ex 导致问题的 {@code SQLException}
+	 * @return 包装 {@code SQLException} 的 DataAccessException；
+	 * 如果未找到匹配的异常，则为 {@code null}
 	 */
 	@Nullable
 	protected abstract DataAccessException doTranslate(String task, @Nullable String sql, SQLException ex);
@@ -100,10 +100,10 @@ public abstract class AbstractFallbackSQLExceptionTranslator implements SQLExcep
 	 * 为给定的 {@link java.sql.SQLException} 构建消息 {@code String}。
 	 * <p>由转换器子类在创建通用 {@link org.springframework.dao.DataAccessException}
 	 * 类的实例时调用。
-	 * @param task readable text describing the task being attempted
-	 * @param sql the SQL statement that caused the problem
-	 * @param ex the offending {@code SQLException}
-	 * @return the message {@code String} to use
+	 * @param task 描述所尝试任务的可读文本
+	 * @param sql 导致问题的 SQL 语句
+	 * @param ex 导致问题的 {@code SQLException}
+	 * @return 要使用的消息 {@code String}
 	 */
 	protected String buildMessage(String task, @Nullable String sql, SQLException ex) {
 		return task + "; " + (sql != null ? ("SQL [" + sql + "]; ") : "") + ex.getMessage();

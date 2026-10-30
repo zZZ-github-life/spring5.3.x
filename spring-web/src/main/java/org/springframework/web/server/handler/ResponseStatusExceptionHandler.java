@@ -113,8 +113,8 @@ public class ResponseStatusExceptionHandler implements WebExceptionHandler {
 	 * 确定给定异常的 HTTP 状态。
 	 * <p>自 5.3 起，此方法始终返回 {@code null}，此时会改用
 	 * {@link #determineRawStatusCode(Throwable)}。
-	 * @param ex the exception to check
-	 * @return the associated HTTP status, if any
+	 * @param ex 要检查的异常
+	 * @return 关联的 HTTP 状态（如果有）
 	 * @deprecated as of 5.3 in favor of {@link #determineRawStatusCode(Throwable)}.
 	 */
 	@Nullable
@@ -125,8 +125,8 @@ public class ResponseStatusExceptionHandler implements WebExceptionHandler {
 
 	/**
 	 * 确定给定异常的原始状态码。
-	 * @param ex the exception to check
-	 * @return the associated HTTP status code, or -1 if it can't be derived.
+	 * @param ex 要检查的异常
+	 * @return 关联的 HTTP 状态码；如果无法推导则为 -1。
 	 * @since 5.3
 	 */
 	protected int determineRawStatusCode(Throwable ex) {

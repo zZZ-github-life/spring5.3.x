@@ -237,8 +237,8 @@ public class HibernateJpaDialect extends DefaultJpaDialect {
 	/**
 	 * 将给定的 HibernateException 转换为
 	 * {@code org.springframework.dao} 层次结构中相应的异常。
-	 * @param ex the HibernateException that occurred
-	 * @return the corresponding DataAccessException instance
+	 * @param ex 发生的 HibernateException
+	 * @return 对应的 DataAccessException 实例
 	 */
 	protected DataAccessException convertHibernateAccessException(HibernateException ex) {
 		if (this.jdbcExceptionTranslator != null && ex instanceof JDBCException) {

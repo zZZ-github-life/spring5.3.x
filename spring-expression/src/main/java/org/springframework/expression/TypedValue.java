@@ -45,7 +45,7 @@ public class TypedValue {
 
 	/**
 	 * 为简单对象创建 {@link TypedValue}。{@link TypeDescriptor} 从该对象推断而来，因此不会保留泛型声明。
-	 * @param value the object value
+	 * @param value 对象值
 	 */
 	public TypedValue(@Nullable Object value) {
 		this.value = value;
@@ -55,8 +55,8 @@ public class TypedValue {
 	/**
 	 * 为特定值创建带有特定 {@link TypeDescriptor} 的 {@link TypedValue}，该描述符可以包含额外的泛型声
 	 * 明。
-	 * @param value the object value
-	 * @param typeDescriptor a type descriptor describing the type of the value
+	 * @param value 对象值
+	 * @param typeDescriptor 描述该值类型的类型描述符
 	 */
 	public TypedValue(@Nullable Object value, @Nullable TypeDescriptor typeDescriptor) {
 		this.value = value;

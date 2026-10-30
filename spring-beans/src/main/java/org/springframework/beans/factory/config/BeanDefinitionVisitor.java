@@ -52,7 +52,7 @@ public class BeanDefinitionVisitor {
 
 	/**
 	 * 创建一个新的 BeanDefinitionVisitor，对所有 Bean 元数据值应用指定的值解析器。
-	 * @param valueResolver the StringValueResolver to apply
+	 * @param valueResolver 要应用的 StringValueResolver
 	 */
 	public BeanDefinitionVisitor(StringValueResolver valueResolver) {
 		Assert.notNull(valueResolver, "StringValueResolver must not be null");
@@ -69,7 +69,7 @@ public class BeanDefinitionVisitor {
 	/**
 	 * 遍历给定的 BeanDefinition 对象以及其中包含的 MutablePropertyValues 和 ConstructorArgumentValues。
 	 *
-	 * @param beanDefinition the BeanDefinition object to traverse
+	 * @param beanDefinition 要遍历的 BeanDefinition 对象
 	 * @see #resolveStringValue(String)
 	 */
 	public void visitBeanDefinition(BeanDefinition beanDefinition) {
@@ -281,8 +281,8 @@ public class BeanDefinitionVisitor {
 
 	/**
 	 * 解析给定的 String 值，例如解析占位符。
-	 * @param strVal the original String value
-	 * @return the resolved String value
+	 * @param strVal 原始 String 值
+	 * @return 解析后的 String 值
 	 */
 	@Nullable
 	protected String resolveStringValue(String strVal) {

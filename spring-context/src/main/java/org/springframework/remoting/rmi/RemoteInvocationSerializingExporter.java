@@ -118,9 +118,9 @@ public abstract class RemoteInvocationSerializingExporter extends RemoteInvocati
 	/**
 	 * 为给定的 InputStream 创建一个 ObjectInputStream。
 	 * <p>默认实现会创建一个 Spring 的 {@link CodebaseAwareObjectInputStream}。
-	 * @param is the InputStream to read from
-	 * @return the new ObjectInputStream instance to use
-	 * @throws java.io.IOException if creation of the ObjectInputStream failed
+	 * @param is 要从中读取的 InputStream
+	 * @return 要使用的新 ObjectInputStream 实例
+	 * @throws java.io.IOException 如果创建 ObjectInputStream 失败
 	 */
 	protected ObjectInputStream createObjectInputStream(InputStream is) throws IOException {
 		return new CodebaseAwareObjectInputStream(is, getBeanClassLoader(), isAcceptProxyClasses());
@@ -130,11 +130,10 @@ public abstract class RemoteInvocationSerializingExporter extends RemoteInvocati
 	 * 从给定的 ObjectInputStream 中实际读取调用结果对象。
 	 * <p>默认实现只是调用 {@link java.io.ObjectInputStream#readObject()}。可以重写该方法，以便反序列化
 	 * 自定义的包装对象而不是单纯的调用对象，例如支持加密的持有者对象。
-	 * @param ois the ObjectInputStream to read from
-	 * @return the RemoteInvocationResult object
-	 * @throws java.io.IOException in case of I/O failure
-	 * @throws ClassNotFoundException if case of a transferred class not
-	 * being found in the local ClassLoader
+	 * @param ois 要从中读取的 ObjectInputStream
+	 * @return RemoteInvocationResult 对象
+	 * @throws java.io.IOException 在 I/O 失败时
+	 * @throws ClassNotFoundException 如果在本地 ClassLoader 中找不到传输过来的类
 	 */
 	protected RemoteInvocation doReadRemoteInvocation(ObjectInputStream ois)
 			throws IOException, ClassNotFoundException {
@@ -150,9 +149,9 @@ public abstract class RemoteInvocationSerializingExporter extends RemoteInvocati
 	/**
 	 * 为给定的 OutputStream 创建一个 ObjectOutputStream。
 	 * <p>默认实现会创建一个普通的 {@link java.io.ObjectOutputStream}。
-	 * @param os the OutputStream to write to
-	 * @return the new ObjectOutputStream instance to use
-	 * @throws java.io.IOException if creation of the ObjectOutputStream failed
+	 * @param os 要写入的 OutputStream
+	 * @return 要使用的新 ObjectOutputStream 实例
+	 * @throws java.io.IOException 如果创建 ObjectOutputStream 失败
 	 */
 	protected ObjectOutputStream createObjectOutputStream(OutputStream os) throws IOException {
 		return new ObjectOutputStream(os);
@@ -162,9 +161,9 @@ public abstract class RemoteInvocationSerializingExporter extends RemoteInvocati
 	 * 将给定的调用结果对象实际写入给定的 ObjectOutputStream。
 	 * <p>默认实现只是调用 {@link java.io.ObjectOutputStream#writeObject}。可以重写该方法，以便序列化自
 	 * 定义的包装对象而不是单纯的调用对象，例如支持加密的持有者对象。
-	 * @param result the RemoteInvocationResult object
-	 * @param oos the ObjectOutputStream to write to
-	 * @throws java.io.IOException if thrown by I/O methods
+	 * @param result RemoteInvocationResult 对象
+	 * @param oos 要写入的 ObjectOutputStream
+	 * @throws java.io.IOException 如果由 I/O 方法抛出
 	 */
 	protected void doWriteRemoteInvocationResult(RemoteInvocationResult result, ObjectOutputStream oos)
 			throws IOException {

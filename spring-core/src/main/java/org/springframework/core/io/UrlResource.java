@@ -60,7 +60,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 
 	/**
 	 * 基于给定 URL 对象创建一个新的 {@code UrlResource}。
-	 * @param url a URL
+	 * @param url 一个 URL
 	 * @see #UrlResource(URI)
 	 * @see #UrlResource(String)
 	 */
@@ -72,8 +72,8 @@ public class UrlResource extends AbstractFileResolvingResource {
 
 	/**
 	 * 基于给定 URI 对象创建一个新的 {@code UrlResource}。
-	 * @param uri a URI
-	 * @throws MalformedURLException if the given URL path is not valid
+	 * @param uri 一个 URI
+	 * @throws MalformedURLException 如果给定的 URL 路径无效
 	 * @since 2.5
 	 */
 	public UrlResource(URI uri) throws MalformedURLException {
@@ -85,8 +85,8 @@ public class UrlResource extends AbstractFileResolvingResource {
 	/**
 	 * 基于 URL 路径创建一个新的 {@code UrlResource}。
 	 * <p>注意：如有必要，给定路径需要预先编码。
-	 * @param path a URL path
-	 * @throws MalformedURLException if the given URL path is not valid
+	 * @param path URL 路径
+	 * @throws MalformedURLException 如果给定的 URL 路径无效
 	 * @see java.net.URL#URL(String)
 	 */
 	public UrlResource(String path) throws MalformedURLException {
@@ -99,11 +99,11 @@ public class UrlResource extends AbstractFileResolvingResource {
 	/**
 	 * 基于 URI 规范创建一个新的 {@code UrlResource}。
 	 * <p>如有必要，给定各部分将自动进行编码。
-	 * @param protocol the URL protocol to use (e.g. "jar" or "file" - without colon);
-	 * also known as "scheme"
-	 * @param location the location (e.g. the file path within that protocol);
-	 * also known as "scheme-specific part"
-	 * @throws MalformedURLException if the given URL specification is not valid
+	 * @param protocol 要使用的 URL 协议（例如 "jar" 或 "file"，不含冒号）；
+	 * 也称为 "scheme"
+	 * @param location 位置（例如该协议内的文件路径）；
+	 * 也称为 "scheme-specific part"
+	 * @throws MalformedURLException 如果给定的 URL 规范无效
 	 * @see java.net.URI#URI(String, String, String)
 	 */
 	public UrlResource(String protocol, String location) throws MalformedURLException  {
@@ -113,13 +113,13 @@ public class UrlResource extends AbstractFileResolvingResource {
 	/**
 	 * 基于 URI 规范创建一个新的 {@code UrlResource}。
 	 * <p>如有必要，给定各部分将自动进行编码。
-	 * @param protocol the URL protocol to use (e.g. "jar" or "file" - without colon);
-	 * also known as "scheme"
-	 * @param location the location (e.g. the file path within that protocol);
-	 * also known as "scheme-specific part"
-	 * @param fragment the fragment within that location (e.g. anchor on an HTML page,
-	 * as following after a "#" separator)
-	 * @throws MalformedURLException if the given URL specification is not valid
+	 * @param protocol 要使用的 URL 协议（例如 "jar" 或 "file"，不含冒号）；
+	 * 也称为 "scheme"
+	 * @param location 位置（例如该协议内的文件路径）；
+	 * 也称为 "scheme-specific part"
+	 * @param fragment 该位置内的片段（例如 HTML 页面中的锚点，
+	 * 位于 "#" 分隔符之后）
+	 * @throws MalformedURLException 如果给定的 URL 规范无效
 	 * @see java.net.URI#URI(String, String, String)
 	 */
 	public UrlResource(String protocol, String location, @Nullable String fragment) throws MalformedURLException  {
@@ -137,9 +137,9 @@ public class UrlResource extends AbstractFileResolvingResource {
 
 	/**
 	 * 为给定的原始 URL 确定清理后的 URL。
-	 * @param originalUrl the original URL
-	 * @param originalPath the original URL path
-	 * @return the cleaned URL (possibly the original URL as-is)
+	 * @param originalUrl 原始 URL
+	 * @param originalPath 原始 URL 路径
+	 * @return 清理后的 URL（可能为原样返回的原始 URL）
 	 * @see org.springframework.util.StringUtils#cleanPath
 	 */
 	private static URL getCleanedUrl(URL originalUrl, String originalPath) {

@@ -52,9 +52,8 @@ public class ServletModelAttributeMethodProcessor extends ModelAttributeMethodPr
 
 	/**
 	 * 类构造函数。
-	 * @param annotationNotRequired if "true", non-simple method arguments and
-	 * return values are considered model attributes with or without a
-	 * {@code @ModelAttribute} annotation
+	 * @param annotationNotRequired 如果为 “true”，则无论是否带有 {@code @ModelAttribute} 注解，
+	 * 非简单方法参数和返回值都被视为模型属性。
 	 */
 	public ServletModelAttributeMethodProcessor(boolean annotationNotRequired) {
 		super(annotationNotRequired);
@@ -88,9 +87,9 @@ public class ServletModelAttributeMethodProcessor extends ModelAttributeMethodPr
 	 * 来实例化模型属性的值。
 	 * <p>默认实现首先查找与 URI 变量匹配的属性名称，
 	 * 然后查找请求参数。
-	 * @param attributeName the model attribute name
-	 * @param request the current request
-	 * @return the request value to try to convert, or {@code null} if none
+	 * @param attributeName 模型属性名称
+	 * @param request 当前请求
+	 * @return 要尝试转换的请求值；如果没有，则为 {@code null}
 	 */
 	@Nullable
 	protected String getRequestValueForAttribute(String attributeName, NativeWebRequest request) {
@@ -118,13 +117,12 @@ public class ServletModelAttributeMethodProcessor extends ModelAttributeMethodPr
 	 * 变量、请求参数）创建模型属性。
 	 * <p>仅当存在可执行转换的已注册 {@link Converter} 时，
 	 * 默认实现才会进行转换。
-	 * @param sourceValue the source value to create the model attribute from
-	 * @param attributeName the name of the attribute (never {@code null})
-	 * @param parameter the method parameter
-	 * @param binderFactory for creating WebDataBinder instance
-	 * @param request the current request
-	 * @return the created model attribute, or {@code null} if no suitable
-	 * conversion found
+	 * @param sourceValue 用于创建模型属性的源值
+	 * @param attributeName 属性名称（永不为 {@code null}）
+	 * @param parameter 方法参数
+	 * @param binderFactory 用于创建 WebDataBinder 实例
+	 * @param request 当前请求
+	 * @return 创建的模型属性；如果未找到合适的转换，则为 {@code null}
 	 */
 	@Nullable
 	protected Object createAttributeFromRequestValue(String sourceValue, String attributeName,

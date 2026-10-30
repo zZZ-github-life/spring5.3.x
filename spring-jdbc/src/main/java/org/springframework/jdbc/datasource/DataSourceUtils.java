@@ -68,10 +68,9 @@ public abstract class DataSourceUtils {
 	 * {@link DataSourceTransactionManager} 时。如果事务同步处于活动状态
 	 * （例如在 {@link org.springframework.transaction.jta.JtaTransactionManager JTA}
 	 * 事务中运行时），会将 Connection 绑定到线程。
-	 * @param dataSource the DataSource to obtain Connections from
-	 * @return a JDBC Connection from the given DataSource
-	 * @throws org.springframework.jdbc.CannotGetJdbcConnectionException
-	 * if the attempt to get a Connection failed
+	 * @param dataSource 用于获取 Connection 的 DataSource
+	 * @return 来自给定 DataSource 的 JDBC Connection
+	 * @throws org.springframework.jdbc.CannotGetJdbcConnectionException 如果尝试获取 Connection 失败
 	 * @see #releaseConnection(Connection, DataSource)
 	 * @see #isConnectionTransactional(Connection, DataSource)
 	 */
@@ -94,9 +93,9 @@ public abstract class DataSourceUtils {
 	 * {@link DataSourceTransactionManager} 时。如果事务同步处于活动状态
 	 * （例如在 JTA 事务中），会将 Connection 绑定到线程。
 	 * <p>由 {@link TransactionAwareDataSourceProxy} 直接访问。
-	 * @param dataSource the DataSource to obtain Connections from
-	 * @return a JDBC Connection from the given DataSource
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param dataSource 用于获取 Connection 的 DataSource
+	 * @return 来自给定 DataSource 的 JDBC Connection
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see #doReleaseConnection
 	 */
 	public static Connection doGetConnection(DataSource dataSource) throws SQLException {
@@ -149,10 +148,10 @@ public abstract class DataSourceUtils {
 	 * 实际从给定的 {@link DataSource} 获取一个 {@link Connection}，
 	 * 并将 {@link DataSource#getConnection()} 意外返回的 {@code null}
 	 * 防御性地转换为 {@link IllegalStateException}。
-	 * @param dataSource the DataSource to obtain Connections from
-	 * @return a JDBC Connection from the given DataSource (never {@code null})
-	 * @throws SQLException if thrown by JDBC methods
-	 * @throws IllegalStateException if the DataSource returned a null value
+	 * @param dataSource 用于获取 Connection 的 DataSource
+	 * @return 来自给定 DataSource 的 JDBC Connection（永不为 {@code null}）
+	 * @throws SQLException 如果由 JDBC 方法抛出
+	 * @throws IllegalStateException 如果 DataSource 返回了 null 值
 	 * @see DataSource#getConnection()
 	 */
 	private static Connection fetchConnection(DataSource dataSource) throws SQLException {
@@ -165,10 +164,10 @@ public abstract class DataSourceUtils {
 
 	/**
 	 * 使用给定的事务语义准备给定的 Connection。
-	 * @param con the Connection to prepare
-	 * @param definition the transaction definition to apply
-	 * @return the previous isolation level, if any
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param con 要准备的 Connection
+	 * @param definition 要应用的事务定义
+	 * @return 之前的隔离级别（如果有）
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see #resetConnectionAfterTransaction
 	 * @see Connection#setTransactionIsolation
 	 * @see Connection#setReadOnly
@@ -222,9 +221,9 @@ public abstract class DataSourceUtils {
 	/**
 	 * 在事务结束后重置给定的 Connection，
 	 * 包括只读标志和隔离级别。
-	 * @param con the Connection to reset
-	 * @param previousIsolationLevel the isolation level to restore, if any
-	 * @param resetReadOnly whether to reset the connection's read-only flag
+	 * @param con 要重置的 Connection
+	 * @param previousIsolationLevel 要恢复的隔离级别（如果有）
+	 * @param resetReadOnly 是否重置连接的只读标志
 	 * @since 5.2.1
 	 * @see #prepareConnectionForTransaction
 	 * @see Connection#setTransactionIsolation
@@ -261,8 +260,8 @@ public abstract class DataSourceUtils {
 	/**
 	 * 在事务结束后重置给定的 Connection，
 	 * 包括只读标志和隔离级别。
-	 * @param con the Connection to reset
-	 * @param previousIsolationLevel the isolation level to restore, if any
+	 * @param con 要重置的 Connection
+	 * @param previousIsolationLevel 要恢复的隔离级别（如果有）
 	 * @deprecated as of 5.1.11, in favor of
 	 * {@link #resetConnectionAfterTransaction(Connection, Integer, boolean)}
 	 */
@@ -295,10 +294,9 @@ public abstract class DataSourceUtils {
 	/**
 	 * 判断给定的 JDBC Connection 是否为事务性的，即是否
 	 * 由 Spring 的事务设施绑定到当前线程。
-	 * @param con the Connection to check
-	 * @param dataSource the DataSource that the Connection was obtained from
-	 * (may be {@code null})
-	 * @return whether the Connection is transactional
+	 * @param con 要检查的 Connection
+	 * @param dataSource 获取该 Connection 的 DataSource（可能为 {@code null}）
+	 * @return 该 Connection 是否为事务性的
 	 * @see #getConnection(DataSource)
 	 */
 	public static boolean isConnectionTransactional(Connection con, @Nullable DataSource dataSource) {
@@ -311,9 +309,9 @@ public abstract class DataSourceUtils {
 
 	/**
 	 * 将当前事务超时（如果有）应用到给定的 JDBC Statement 对象。
-	 * @param stmt the JDBC Statement object
-	 * @param dataSource the DataSource that the Connection was obtained from
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param stmt JDBC Statement 对象
+	 * @param dataSource 获取该 Connection 的 DataSource
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.Statement#setQueryTimeout
 	 */
 	public static void applyTransactionTimeout(Statement stmt, @Nullable DataSource dataSource) throws SQLException {
@@ -323,10 +321,10 @@ public abstract class DataSourceUtils {
 	/**
 	 * 将指定的超时（如果存在当前事务超时，则由其覆盖）
 	 * 应用到给定的 JDBC Statement 对象。
-	 * @param stmt the JDBC Statement object
-	 * @param dataSource the DataSource that the Connection was obtained from
-	 * @param timeout the timeout to apply (or 0 for no timeout outside of a transaction)
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param stmt JDBC Statement 对象
+	 * @param dataSource 获取该 Connection 的 DataSource
+	 * @param timeout 要应用的超时时间（在事务之外为 0 表示无超时）
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.Statement#setQueryTimeout
 	 */
 	public static void applyTimeout(Statement stmt, @Nullable DataSource dataSource, int timeout) throws SQLException {
@@ -348,10 +346,8 @@ public abstract class DataSourceUtils {
 	/**
 	 * 关闭从给定 DataSource 获取的给定 Connection，
 	 * 前提是它不由外部管理（即未绑定到线程）。
-	 * @param con the Connection to close if necessary
-	 * (if this is {@code null}, the call will be ignored)
-	 * @param dataSource the DataSource that the Connection was obtained from
-	 * (may be {@code null})
+	 * @param con 必要时关闭的 Connection（如果为 {@code null}，则忽略该调用）
+	 * @param dataSource 获取该 Connection 的 DataSource（可能为 {@code null}）
 	 * @see #getConnection
 	 */
 	public static void releaseConnection(@Nullable Connection con, @Nullable DataSource dataSource) {
@@ -370,11 +366,9 @@ public abstract class DataSourceUtils {
 	 * 实际关闭从给定 DataSource 获取的给定 Connection。
 	 * 与 {@link #releaseConnection} 相同，但会抛出原始的 SQLException。
 	 * <p>由 {@link TransactionAwareDataSourceProxy} 直接访问。
-	 * @param con the Connection to close if necessary
-	 * (if this is {@code null}, the call will be ignored)
-	 * @param dataSource the DataSource that the Connection was obtained from
-	 * (may be {@code null})
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param con 必要时关闭的 Connection（如果为 {@code null}，则忽略该调用）
+	 * @param dataSource 获取该 Connection 的 DataSource（可能为 {@code null}）
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see #doGetConnection
 	 */
 	public static void doReleaseConnection(@Nullable Connection con, @Nullable DataSource dataSource) throws SQLException {
@@ -394,9 +388,9 @@ public abstract class DataSourceUtils {
 
 	/**
 	 * 关闭 Connection，除非 {@link SmartDataSource} 不希望我们关闭。
-	 * @param con the Connection to close if necessary
-	 * @param dataSource the DataSource that the Connection was obtained from
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param con 必要时关闭的 Connection
+	 * @param dataSource 获取该 Connection 的 DataSource
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see Connection#close()
 	 * @see SmartDataSource#shouldClose(Connection)
 	 */
@@ -410,10 +404,9 @@ public abstract class DataSourceUtils {
 	 * 判断给定的两个 Connection 是否相等，如果是代理则询问目标
 	 * Connection。用于在用户传入原始目标 Connection 而持有的是代理时
 	 * 也能检测出相等性。
-	 * @param conHolder the ConnectionHolder for the held Connection (potentially a proxy)
-	 * @param passedInCon the Connection passed-in by the user
-	 * (potentially a target Connection without proxy)
-	 * @return whether the given Connections are equal
+	 * @param conHolder 所持有 Connection 的 ConnectionHolder（可能是一个代理）
+	 * @param passedInCon 用户传入的 Connection（可能是不带代理的目标 Connection）
+	 * @return 给定的 Connection 是否相等
 	 * @see #getTargetConnection
 	 */
 	private static boolean connectionEquals(ConnectionHolder conHolder, Connection passedInCon) {
@@ -431,8 +424,8 @@ public abstract class DataSourceUtils {
 	 * 返回给定 Connection 最内层的目标 Connection。如果给定的
 	 * Connection 是代理，则会不断解包，直到找到非代理的 Connection。
 	 * 否则，将原样返回传入的 Connection。
-	 * @param con the Connection proxy to unwrap
-	 * @return the innermost target Connection, or the passed-in one if no proxy
+	 * @param con 要解包的 Connection 代理
+	 * @return 最内层的目标 Connection；如果没有代理，则为传入的那个
 	 * @see ConnectionProxy#getTargetConnection()
 	 */
 	public static Connection getTargetConnection(Connection con) {
@@ -447,8 +440,8 @@ public abstract class DataSourceUtils {
 	 * 确定要用于给定 DataSource 的连接同步顺序。
 	 * DataSource 每嵌套一层（通过 DelegatingDataSource 的嵌套层级检查），
 	 * 该顺序值就递减一次。
-	 * @param dataSource the DataSource to check
-	 * @return the connection synchronization order to use
+	 * @param dataSource 要检查的 DataSource
+	 * @return 要使用的连接同步顺序
 	 * @see #CONNECTION_SYNCHRONIZATION_ORDER
 	 */
 	private static int getConnectionSynchronizationOrder(DataSource dataSource) {

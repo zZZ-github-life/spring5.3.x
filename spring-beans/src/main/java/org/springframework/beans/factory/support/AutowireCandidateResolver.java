@@ -33,9 +33,9 @@ public interface AutowireCandidateResolver {
 	/**
 	 * 确定给定 Bean 定义是否符合给定依赖的自动装配候选条件。<p>默认实现检查
 	 * {@link org.springframework.beans.factory.config.BeanDefinition#isAutowireCandidate()}。
-	 * @param bdHolder the bean definition including bean name and aliases
-	 * @param descriptor the descriptor for the target method parameter or field
-	 * @return whether the bean definition qualifies as autowire candidate
+	 * @param bdHolder 包含 Bean 名称和别名的 Bean 定义
+	 * @param descriptor 目标方法参数或字段的描述符
+	 * @return 该 Bean 定义是否符合自动装配候选条件
 	 * @see org.springframework.beans.factory.config.BeanDefinition#isAutowireCandidate()
 	 */
 	default boolean isAutowireCandidate(BeanDefinitionHolder bdHolder, DependencyDescriptor descriptor) {
@@ -44,9 +44,9 @@ public interface AutowireCandidateResolver {
 
 	/**
 	 * 确定给定描述符是否实际上是必需的。<p>默认实现检查 {@link DependencyDescriptor#isRequired()}。
-	 * @param descriptor the descriptor for the target method parameter or field
-	 * @return whether the descriptor is marked as required or possibly indicating
-	 * non-required status some other way (e.g. through a parameter annotation)
+	 * @param descriptor 目标方法参数或字段的描述符
+	 * @return 该描述符是否标记为必需，
+	 * 或以其他方式表示非必需状态（例如通过参数注解）
 	 * @since 5.0
 	 * @see DependencyDescriptor#isRequired()
 	 */
@@ -57,9 +57,9 @@ public interface AutowireCandidateResolver {
 	/**
 	 * 确定给定描述符是否声明了类型之外的限定符（通常——但不一定——是特定类型的注解）。<p>默认实现返回
 	 * {@code false}。
-	 * @param descriptor the descriptor for the target method parameter or field
-	 * @return whether the descriptor declares a qualifier, narrowing the candidate
-	 * status beyond the type match
+	 * @param descriptor 目标方法参数或字段的描述符
+	 * @return 该描述符是否声明了限定符，
+	 * 从而在类型匹配之外进一步收窄候选状态
 	 * @since 5.1
 	 * @see org.springframework.beans.factory.annotation.QualifierAnnotationAutowireCandidateResolver#hasQualifier
 	 */
@@ -69,9 +69,9 @@ public interface AutowireCandidateResolver {
 
 	/**
 	 * 确定是否为给定依赖建议了默认值。<p>默认实现直接返回 {@code null}。
-	 * @param descriptor the descriptor for the target method parameter or field
-	 * @return the value suggested (typically an expression String),
-	 * or {@code null} if none found
+	 * @param descriptor 目标方法参数或字段的描述符
+	 * @return 建议的值（通常是表达式 String），
+	 * 若没有则为 {@code null}
 	 * @since 3.0
 	 */
 	@Nullable
@@ -81,10 +81,10 @@ public interface AutowireCandidateResolver {
 
 	/**
 	 * 如果注入点要求，构建用于延迟解析实际依赖目标的代理。<p>默认实现直接返回 {@code null}。
-	 * @param descriptor the descriptor for the target method parameter or field
-	 * @param beanName the name of the bean that contains the injection point
-	 * @return the lazy resolution proxy for the actual dependency target,
-	 * or {@code null} if straight resolution is to be performed
+	 * @param descriptor 目标方法参数或字段的描述符
+	 * @param beanName 包含该注入点的 Bean 的名称
+	 * @return 实际依赖目标的延迟解析代理；
+	 * 如果要执行直接解析则为 {@code null}
 	 * @since 4.0
 	 */
 	@Nullable

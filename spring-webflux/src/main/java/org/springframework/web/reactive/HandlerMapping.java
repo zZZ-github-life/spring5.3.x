@@ -66,9 +66,9 @@ public interface HandlerMapping {
 	/**
 	 * 返回用于此请求的处理器。
 	 * <p>在返回处理器之前，实现方法应检查与该处理器关联的 CORS 配置，基于该配置执行校验检查，并相应地更新响应。对于预检请求，应基于与预期实际请求相匹配的处理器执行同样的操作。
-	 * @param exchange current server exchange
-	 * @return a {@link Mono} that emits one value or none in case the request
-	 * cannot be resolved to a handler
+	 * @param exchange 当前的服务器交换
+	 * @return {@link Mono}，发出一个值；在请求无法解析为处理器时
+	 * 则不发出任何值
 	 */
 	Mono<Object> getHandler(ServerWebExchange exchange);
 

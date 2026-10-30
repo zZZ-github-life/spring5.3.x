@@ -33,9 +33,9 @@ public interface MessageHandlerMethodFactory {
 
 	/**
 	 * 创建能够处理指定方法端点的 {@link InvocableHandlerMethod}。
-	 * @param bean the bean instance
-	 * @param method the method to invoke
-	 * @return an {@link InvocableHandlerMethod} suitable for that method
+	 * @param bean Bean 实例
+	 * @param method 要调用的方法
+	 * @return 适用于该方法的 {@link InvocableHandlerMethod}
 	 */
 	InvocableHandlerMethod createInvocableHandlerMethod(Object bean, Method method);
 

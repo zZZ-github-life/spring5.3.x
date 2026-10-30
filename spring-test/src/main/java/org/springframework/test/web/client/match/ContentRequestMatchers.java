@@ -194,7 +194,7 @@ public class ContentRequestMatchers {
 	 * </ul>
 	 * <p><strong>注意：</strong>此方法使用 Apache Commons FileUpload
 	 * 库解析 multipart 数据，该库必须在测试类路径上。
-	 * @param expectedMap the expected multipart values
+	 * @param expectedMap 期望的 multipart 值
 	 * @since 5.3
 	 */
 	public RequestMatcher multipartData(MultiValueMap<String, ?> expectedMap) {
@@ -204,7 +204,7 @@ public class ContentRequestMatchers {
 	/**
 	 * 对 {@link #multipartData(MultiValueMap)} 的变体，功能相同，
 	 * 但仅针对实际值的一个子集。
-	 * @param expectedMap the expected multipart values
+	 * @param expectedMap 期望的 multipart 值
 	 * @since 5.3
 	 */
 	public RequestMatcher multipartDataContains(Map<String, ?> expectedMap) {
@@ -254,7 +254,7 @@ public class ContentRequestMatchers {
 	 * 与顺序无关。
 	 * <p>使用此匹配器假定
 	 * <a href="https://www.xmlunit.org/">XMLUnit</a> 库可用。
-	 * @param expectedXmlContent the expected XML content
+	 * @param expectedXmlContent 期望的 XML 内容
 	 */
 	public RequestMatcher xml(String expectedXmlContent) {
 		return new AbstractXmlRequestMatcher() {
@@ -295,7 +295,7 @@ public class ContentRequestMatchers {
 	 * 与格式无关，并进行宽松检查（可扩展，且数组顺序不严格）。
 	 * <p>使用此匹配器需要 <a
 	 * href="https://jsonassert.skyscreamer.org/">JSONassert</a> 库。
-	 * @param expectedJsonContent the expected JSON content
+	 * @param expectedJsonContent 期望的 JSON 内容
 	 * @since 5.0.5
 	 */
 	public RequestMatcher json(String expectedJsonContent) {
@@ -312,8 +312,8 @@ public class ContentRequestMatchers {
 	 * </ul>
 	 * <p>使用此匹配器需要 <a
 	 * href="https://jsonassert.skyscreamer.org/">JSONassert</a> 库。
-	 * @param expectedJsonContent the expected JSON content
-	 * @param strict enables strict checking
+	 * @param expectedJsonContent 期望的 JSON 内容
+	 * @param strict 启用严格检查
 	 * @since 5.0.5
 	 */
 	public RequestMatcher json(String expectedJsonContent, boolean strict) {

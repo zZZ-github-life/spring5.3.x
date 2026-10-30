@@ -128,9 +128,8 @@ public class SQLStateSQLExceptionTranslator extends AbstractFallbackSQLException
 	 * 从提供的 {@link SQLException exception} 中获取 SQL 状态码。
 	 * <p>某些 JDBC 驱动会将批量更新产生的实际异常嵌套起来，因此我们可能需要
 	 * 深入嵌套异常中获取。
-	 * @param ex the exception from which the {@link SQLException#getSQLState() SQL state}
-	 * is to be extracted
-	 * @return the SQL state code
+	 * @param ex 要从中提取 {@link SQLException#getSQLState() SQL 状态} 的异常
+	 * @return SQL 状态码
 	 */
 	@Nullable
 	private String getSqlState(SQLException ex) {

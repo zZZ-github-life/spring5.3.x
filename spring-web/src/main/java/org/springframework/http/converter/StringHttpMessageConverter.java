@@ -130,7 +130,7 @@ public class StringHttpMessageConverter extends AbstractHttpMessageConverter<Str
 	 * 返回受支持的 {@link Charset Charset} 列表。
 	 * <p>默认返回 {@link Charset#availableCharsets()}。
 	 * 可在子类中重写。
-	 * @return the list of accepted charsets
+	 * @return 可接受的字符集列表
 	 */
 	protected List<Charset> getAcceptedCharsets() {
 		List<Charset> charsets = this.availableCharsets;

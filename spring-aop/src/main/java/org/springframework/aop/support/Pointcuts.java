@@ -42,10 +42,9 @@ public abstract class Pointcuts {
 
 	/**
 	 * 匹配给定的切点中<b>任一</b>（或两者）匹配的所有方法。
-	 * @param pc1 the first Pointcut
-	 * @param pc2 the second Pointcut
-	 * @return a distinct Pointcut that matches all methods that either
-	 * of the given Pointcuts matches
+	 * @param pc1 第一个 Pointcut
+	 * @param pc2 第二个 Pointcut
+	 * @return 一个独立的 Pointcut，匹配给定 Pointcut 中任一者所匹配的所有方法
 	 */
 	public static Pointcut union(Pointcut pc1, Pointcut pc2) {
 		return new ComposablePointcut(pc1).union(pc2);
@@ -53,10 +52,9 @@ public abstract class Pointcuts {
 
 	/**
 	 * 匹配给定的两个切点<b>都</b>匹配的所有方法。
-	 * @param pc1 the first Pointcut
-	 * @param pc2 the second Pointcut
-	 * @return a distinct Pointcut that matches all methods that both
-	 * of the given Pointcuts match
+	 * @param pc1 第一个 Pointcut
+	 * @param pc2 第二个 Pointcut
+	 * @return 一个独立的 Pointcut，匹配给定 Pointcut 共同匹配的所有方法
 	 */
 	public static Pointcut intersection(Pointcut pc1, Pointcut pc2) {
 		return new ComposablePointcut(pc1).intersection(pc2);
@@ -64,11 +62,11 @@ public abstract class Pointcuts {
 
 	/**
 	 * 执行开销最小的切点匹配检查。
-	 * @param pointcut the pointcut to match
-	 * @param method the candidate method
-	 * @param targetClass the target class
-	 * @param args arguments to the method
-	 * @return whether there's a runtime match
+	 * @param pointcut 要匹配的切点
+	 * @param method 候选方法
+	 * @param targetClass 目标类
+	 * @param args 方法参数
+	 * @return 是否存在运行时匹配
 	 */
 	public static boolean matches(Pointcut pointcut, Method method, Class<?> targetClass, Object... args) {
 		Assert.notNull(pointcut, "Pointcut must not be null");

@@ -54,8 +54,8 @@ public class DelegatingEntityResolver implements EntityResolver {
 	 * 创建一个新的 DelegatingEntityResolver，它委托给默认的 {@link BeansDtdResolver} 和默认的
 	 * {@link PluggableSchemaResolver}。<p>使用所提供的 {@link ClassLoader} 配置
 	 * {@link PluggableSchemaResolver}。
-	 * @param classLoader the ClassLoader to use for loading
-	 * (can be {@code null} to use the default ClassLoader)
+	 * @param classLoader 用于加载的 ClassLoader
+	 * （可以为 {@code null} 以使用默认 ClassLoader）
 	 */
 	public DelegatingEntityResolver(@Nullable ClassLoader classLoader) {
 		this.dtdResolver = new BeansDtdResolver();
@@ -64,8 +64,8 @@ public class DelegatingEntityResolver implements EntityResolver {
 
 	/**
 	 * 创建一个新的 DelegatingEntityResolver，它委托给给定的 {@link EntityResolver EntityResolvers}。
-	 * @param dtdResolver the EntityResolver to resolve DTDs with
-	 * @param schemaResolver the EntityResolver to resolve XML schemas with
+	 * @param dtdResolver 用于解析 DTD 的 EntityResolver
+	 * @param schemaResolver 用于解析 XML schema 的 EntityResolver
 	 */
 	public DelegatingEntityResolver(EntityResolver dtdResolver, EntityResolver schemaResolver) {
 		Assert.notNull(dtdResolver, "'dtdResolver' is required");

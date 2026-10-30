@@ -114,7 +114,7 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 
 	/**
 	 * 返回已配置的 TimerManager（如果有）。
-	 * @return the TimerManager, or {@code null} if not available
+	 * @return TimerManager；如果不可用，则为 {@code null}
 	 */
 	@Nullable
 	protected final TimerManager getTimerManager() {
@@ -123,8 +123,8 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 
 	/**
 	 * 获取实际使用的 TimerManager。
-	 * @return the TimerManager (never {@code null})
-	 * @throws IllegalStateException in case of no TimerManager set
+	 * @return TimerManager（永不为 {@code null}）
+	 * @throws IllegalStateException 未设置 TimerManager 时
 	 * @since 5.0
 	 */
 	protected TimerManager obtainTimerManager() {

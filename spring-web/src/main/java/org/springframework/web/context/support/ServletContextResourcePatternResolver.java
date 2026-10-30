@@ -50,7 +50,7 @@ public class ServletContextResourcePatternResolver extends PathMatchingResourceP
 
 	/**
 	 * 创建一个新的 ServletContextResourcePatternResolver。
-	 * @param servletContext the ServletContext to load resources with
+	 * @param servletContext 用于加载资源的 ServletContext
 	 * @see ServletContextResourceLoader#ServletContextResourceLoader(javax.servlet.ServletContext)
 	 */
 	public ServletContextResourcePatternResolver(ServletContext servletContext) {
@@ -59,8 +59,7 @@ public class ServletContextResourcePatternResolver extends PathMatchingResourceP
 
 	/**
 	 * 创建一个新的 ServletContextResourcePatternResolver。
-	 * @param resourceLoader the ResourceLoader to load root directories and
-	 * actual resources with
+	 * @param resourceLoader 用于加载根目录和实际资源的 ResourceLoader
 	 */
 	public ServletContextResourcePatternResolver(ResourceLoader resourceLoader) {
 		super(resourceLoader);
@@ -93,12 +92,11 @@ public class ServletContextResourcePatternResolver extends PathMatchingResourceP
 
 	/**
 	 * 递归获取与给定模式匹配的 ServletContextResource，并将它们添加到给定的结果集中。
-	 * @param servletContext the ServletContext to work on
-	 * @param fullPattern the pattern to match against,
-	 * with prepended root directory path
-	 * @param dir the current directory
-	 * @param result the Set of matching Resources to add to
-	 * @throws IOException if directory contents could not be retrieved
+	 * @param servletContext 要操作的 ServletContext
+	 * @param fullPattern 要匹配的模式，前面已附加根目录路径
+	 * @param dir 当前目录
+	 * @param result 要添加到的匹配 Resource 的 Set
+	 * @throws IOException 如果无法获取目录内容
 	 * @see ServletContextResource
 	 * @see javax.servlet.ServletContext#getResourcePaths
 	 */
@@ -147,9 +145,9 @@ public class ServletContextResourcePatternResolver extends PathMatchingResourceP
 
 	/**
 	 * 按模式从给定 jar 中提取条目。
-	 * @param jarFilePath the path to the jar file
-	 * @param entryPattern the pattern for jar entries to match
-	 * @param result the Set of matching Resources to add to
+	 * @param jarFilePath jar 文件的路径
+	 * @param entryPattern 要匹配的 jar 条目模式
+	 * @param result 要添加到的匹配 Resource 的 Set
 	 */
 	private void doRetrieveMatchingJarEntries(String jarFilePath, String entryPattern, Set<Resource> result) {
 		if (logger.isDebugEnabled()) {

@@ -55,121 +55,121 @@ public interface Log {
 	/**
 	 * 当前是否启用了 fatal 级别日志？<p>当日志级别高于 fatal 时，可调用此方法以避免执行昂贵的操作（例
 	 * 如 <code>String</code> 拼接）。
-	 * @return true if fatal is enabled in the underlying logger.
+	 * @return 如果底层日志记录器启用了 fatal 级别，则返回 true。
 	 */
 	boolean isFatalEnabled();
 
 	/**
 	 * 当前是否启用了 error 级别日志？<p>当日志级别高于 error 时，可调用此方法以避免执行昂贵的操作（例
 	 * 如 <code>String</code> 拼接）。
-	 * @return true if error is enabled in the underlying logger.
+	 * @return 如果底层日志记录器启用了 error 级别，则返回 true。
 	 */
 	boolean isErrorEnabled();
 
 	/**
 	 * 当前是否启用了 warn 级别日志？<p>当日志级别高于 warn 时，可调用此方法以避免执行昂贵的操作（例如
 	 * <code>String</code> 拼接）。
-	 * @return true if warn is enabled in the underlying logger.
+	 * @return 如果底层日志记录器启用了 warn 级别，则返回 true。
 	 */
 	boolean isWarnEnabled();
 
 	/**
 	 * 当前是否启用了 info 级别日志？<p>当日志级别高于 info 时，可调用此方法以避免执行昂贵的操作（例如
 	 * <code>String</code> 拼接）。
-	 * @return true if info is enabled in the underlying logger.
+	 * @return 如果底层日志记录器启用了 info 级别，则返回 true。
 	 */
 	boolean isInfoEnabled();
 
 	/**
 	 * 当前是否启用了 debug 级别日志？<p>当日志级别高于 debug 时，可调用此方法以避免执行昂贵的操作（例
 	 * 如 <code>String</code> 拼接）。
-	 * @return true if debug is enabled in the underlying logger.
+	 * @return 如果底层日志记录器启用了 debug 级别，则返回 true。
 	 */
 	boolean isDebugEnabled();
 
 	/**
 	 * 当前是否启用了 trace 级别日志？<p>当日志级别高于 trace 时，可调用此方法以避免执行昂贵的操作（例
 	 * 如 <code>String</code> 拼接）。
-	 * @return true if trace is enabled in the underlying logger.
+	 * @return 如果底层日志记录器启用了 trace 级别，则返回 true。
 	 */
 	boolean isTraceEnabled();
 
 
 	/**
 	 * 以 fatal 日志级别记录一条消息。
-	 * @param message log this message
+	 * @param message 记录此消息
 	 */
 	void fatal(Object message);
 
 	/**
 	 * 以 fatal 日志级别记录一个错误。
-	 * @param message log this message
-	 * @param t log this cause
+	 * @param message 记录此消息
+	 * @param t 记录该异常
 	 */
 	void fatal(Object message, Throwable t);
 
 	/**
 	 * 以 error 日志级别记录一条消息。
-	 * @param message log this message
+	 * @param message 记录此消息
 	 */
 	void error(Object message);
 
 	/**
 	 * 以 error 日志级别记录一个错误。
-	 * @param message log this message
-	 * @param t log this cause
+	 * @param message 记录此消息
+	 * @param t 记录该异常
 	 */
 	void error(Object message, Throwable t);
 
 	/**
 	 * 以 warn 日志级别记录一条消息。
-	 * @param message log this message
+	 * @param message 记录此消息
 	 */
 	void warn(Object message);
 
 	/**
 	 * 以 warn 日志级别记录一个错误。
-	 * @param message log this message
-	 * @param t log this cause
+	 * @param message 记录此消息
+	 * @param t 记录该异常
 	 */
 	void warn(Object message, Throwable t);
 
 	/**
 	 * 以 info 日志级别记录一条消息。
-	 * @param message log this message
+	 * @param message 记录此消息
 	 */
 	void info(Object message);
 
 	/**
 	 * 以 info 日志级别记录一个错误。
-	 * @param message log this message
-	 * @param t log this cause
+	 * @param message 记录此消息
+	 * @param t 记录该异常
 	 */
 	void info(Object message, Throwable t);
 
 	/**
 	 * 以 debug 日志级别记录一条消息。
-	 * @param message log this message
+	 * @param message 记录此消息
 	 */
 	void debug(Object message);
 
 	/**
 	 * 以 debug 日志级别记录一个错误。
-	 * @param message log this message
-	 * @param t log this cause
+	 * @param message 记录此消息
+	 * @param t 记录该异常
 	 */
 	void debug(Object message, Throwable t);
 
 	/**
 	 * 以 trace 日志级别记录一条消息。
-	 * @param message log this message
+	 * @param message 记录此消息
 	 */
 	void trace(Object message);
 
 	/**
 	 * 以 trace 日志级别记录一个错误。
-	 * @param message log this message
-	 * @param t log this cause
+	 * @param message 记录此消息
+	 * @param t 记录该异常
 	 */
 	void trace(Object message, Throwable t);
 

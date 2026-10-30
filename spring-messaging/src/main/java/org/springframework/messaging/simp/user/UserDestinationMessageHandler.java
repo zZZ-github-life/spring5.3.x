@@ -74,9 +74,9 @@ public class UserDestinationMessageHandler implements MessageHandler, SmartLifec
 	/**
 	 * 使用给定的客户端通道和代理通道创建实例，订阅并处理来自各通道的消息，
 	 * 然后将任何已解析的消息发送到代理通道。
-	 * @param clientInboundChannel messages received from clients.
-	 * @param brokerChannel messages sent to the broker.
-	 * @param resolver the resolver for "user" destinations.
+	 * @param clientInboundChannel 从客户端接收的消息。
+	 * @param brokerChannel 发送到 Broker 的消息。
+	 * @param resolver "用户"目标地址的解析器。
 	 */
 	public UserDestinationMessageHandler(SubscribableChannel clientInboundChannel,
 			SubscribableChannel brokerChannel, UserDestinationResolver resolver) {
@@ -103,7 +103,7 @@ public class UserDestinationMessageHandler implements MessageHandler, SmartLifec
 	 * 设置一个目标，用于广播因用户未连接而仍未解析的消息。在多应用服务器场景中，
 	 * 这为其他应用服务器提供了尝试处理的机会。
 	 * <p>默认不设置。
-	 * @param destination the target destination.
+	 * @param destination 目标地址。
 	 */
 	public void setBroadcastDestination(@Nullable String destination) {
 		this.broadcastHandler = (StringUtils.hasText(destination) ?

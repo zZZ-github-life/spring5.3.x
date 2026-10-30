@@ -34,9 +34,9 @@ public abstract class NestedExceptionUtils {
 
 	/**
 	 * 为给定的基础消息和根因构建一条消息。
-	 * @param message the base message
-	 * @param cause the root cause
-	 * @return the full exception message
+	 * @param message 基础消息
+	 * @param cause 根本原因
+	 * @return 完整的异常消息
 	 */
 	@Nullable
 	public static String buildMessage(@Nullable String message, @Nullable Throwable cause) {
@@ -53,8 +53,8 @@ public abstract class NestedExceptionUtils {
 
 	/**
 	 * 获取给定异常的最内层原因（如果有）。
-	 * @param original the original exception to introspect
-	 * @return the innermost exception, or {@code null} if none
+	 * @param original 要内省的原始异常
+	 * @return 最内层异常，如果没有则为 {@code null}
 	 * @since 4.3.9
 	 */
 	@Nullable
@@ -75,8 +75,8 @@ public abstract class NestedExceptionUtils {
 	 * 获取给定异常最具体的原因，即最内层原因（根因）或该异常本身。
 	 *
 	 * <p>与 {@link #getRootCause} 的不同之处在于：如果没有根因，则回退到原始异常。
-	 * @param original the original exception to introspect
-	 * @return the most specific cause (never {@code null})
+	 * @param original 要内省的原始异常
+	 * @return 最具体的根本原因（永不为 {@code null}）
 	 * @since 4.3.9
 	 */
 	public static Throwable getMostSpecificCause(Throwable original) {

@@ -43,15 +43,15 @@ public interface ExchangeFunction {
 	 * 将给定请求交换为 {@link ClientResponse} 的 promise。
 	 *
 	 * <p><strong>注意：</strong>当从以某种方式处理响应的 {@link ExchangeFilterFunction} 中调用此方法时，必须格外小心，始终消费其内容，或以其他方式将其向下游传播以供进一步处理（例如由 {@link WebClient} 处理）。详情请参阅参考文档。
-	 * @param request the request to exchange
-	 * @return the delayed response
+	 * @param request 要交换的请求
+	 * @return 延迟的响应
 	 */
 	Mono<ClientResponse> exchange(ClientRequest request);
 
 	/**
 	 * 使用给定的 {@code ExchangeFilterFunction} 过滤交换函数，生成过滤后的 {@code ExchangeFunction}。
-	 * @param filter the filter to apply to this exchange
-	 * @return the filtered exchange
+	 * @param filter 要应用于此交换的过滤器
+	 * @return 过滤后的交换
 	 * @see ExchangeFilterFunction#apply(ExchangeFunction)
 	 */
 	default ExchangeFunction filter(ExchangeFilterFunction filter) {

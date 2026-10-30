@@ -56,7 +56,7 @@ public class CustomizableThreadCreator implements Serializable {
 
 	/**
 	 * 使用给定的线程名称前缀创建一个新的 CustomizableThreadCreator。
-	 * @param threadNamePrefix the prefix to use for the names of newly created threads
+	 * @param threadNamePrefix 用于新创建线程名称的前缀
 	 */
 	public CustomizableThreadCreator(@Nullable String threadNamePrefix) {
 		this.threadNamePrefix = (threadNamePrefix != null ? threadNamePrefix : getDefaultThreadNamePrefix());
@@ -140,7 +140,7 @@ public class CustomizableThreadCreator implements Serializable {
 	 * 用于创建新 {@link Thread} 的模板方法。
 	 *
 	 * <p>默认实现为给定的 {@link Runnable} 创建一个新 Thread，并应用适当的线程名称。
-	 * @param runnable the Runnable to execute
+	 * @param runnable 要执行的 Runnable
 	 * @see #nextThreadName()
 	 */
 	public Thread createThread(Runnable runnable) {
@@ -162,7 +162,7 @@ public class CustomizableThreadCreator implements Serializable {
 
 	/**
 	 * 为此工厂构建默认的线程名称前缀。
-	 * @return the default thread name prefix (never {@code null})
+	 * @return 默认的线程名前缀（永不为 {@code null}）
 	 */
 	protected String getDefaultThreadNamePrefix() {
 		return ClassUtils.getShortName(getClass()) + "-";

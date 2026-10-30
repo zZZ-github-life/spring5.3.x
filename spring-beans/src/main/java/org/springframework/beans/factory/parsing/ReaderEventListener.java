@@ -30,27 +30,27 @@ public interface ReaderEventListener extends EventListener {
 
 	/**
 	 * 通知：给定的默认值已注册。
-	 * @param defaultsDefinition a descriptor for the defaults
+	 * @param defaultsDefinition 默认值的描述符
 	 * @see org.springframework.beans.factory.xml.DocumentDefaultsDefinition
 	 */
 	void defaultsRegistered(DefaultsDefinition defaultsDefinition);
 
 	/**
 	 * 通知：给定的组件已注册。
-	 * @param componentDefinition a descriptor for the new component
+	 * @param componentDefinition 新组件的描述符
 	 * @see BeanComponentDefinition
 	 */
 	void componentRegistered(ComponentDefinition componentDefinition);
 
 	/**
 	 * 通知：给定的别名已注册。
-	 * @param aliasDefinition a descriptor for the new alias
+	 * @param aliasDefinition 新别名的描述符
 	 */
 	void aliasRegistered(AliasDefinition aliasDefinition);
 
 	/**
 	 * 通知：给定的导入已处理。
-	 * @param importDefinition a descriptor for the import
+	 * @param importDefinition 导入的描述符
 	 */
 	void importProcessed(ImportDefinition importDefinition);
 

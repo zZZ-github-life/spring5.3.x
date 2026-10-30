@@ -54,7 +54,7 @@ public class InputSourceEditor extends PropertyEditorSupport {
 
 	/**
 	 * 创建一个新的 InputSourceEditor，底层使用给定的 ResourceEditor。
-	 * @param resourceEditor the ResourceEditor to use
+	 * @param resourceEditor 要使用的 ResourceEditor
 	 */
 	public InputSourceEditor(ResourceEditor resourceEditor) {
 		Assert.notNull(resourceEditor, "ResourceEditor must not be null");

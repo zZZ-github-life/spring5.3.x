@@ -33,8 +33,8 @@ public class SessionConnectedEvent extends AbstractSubProtocolEvent {
 
 	/**
 	 * 创建一个新的 SessionConnectedEvent。
-	 * @param source the component that published the event (never {@code null})
-	 * @param message the connected message (never {@code null})
+	 * @param source 发布该事件的组件（永不为 {@code null}）
+	 * @param message 已连接的消息（永不为 {@code null}）
 	 */
 	public SessionConnectedEvent(Object source, Message<byte[]> message) {
 		super(source, message);

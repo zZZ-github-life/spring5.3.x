@@ -34,22 +34,20 @@ public interface ScriptEvaluator {
 
 	/**
 	 * 评估给定的脚本。
-	 * @param script the ScriptSource for the script to evaluate
-	 * @return the return value of the script, if any
-	 * @throws ScriptCompilationException if the evaluator failed to read,
-	 * compile or evaluate the script
+	 * @param script 要评估脚本的 ScriptSource
+	 * @return 脚本的返回值（如果有）
+	 * @throws ScriptCompilationException 如果评估器读取、编译或评估脚本失败
 	 */
 	@Nullable
 	Object evaluate(ScriptSource script) throws ScriptCompilationException;
 
 	/**
 	 * 使用给定的参数评估给定的脚本。
-	 * @param script the ScriptSource for the script to evaluate
-	 * @param arguments the key-value pairs to expose to the script,
-	 * typically as script variables (may be {@code null} or empty)
-	 * @return the return value of the script, if any
-	 * @throws ScriptCompilationException if the evaluator failed to read,
-	 * compile or evaluate the script
+	 * @param script 要评估脚本的 ScriptSource
+	 * @param arguments 要暴露给脚本的键值对，通常作为脚本变量
+	 * （可为 {@code null} 或为空）
+	 * @return 脚本的返回值（如果有）
+	 * @throws ScriptCompilationException 如果评估器读取、编译或评估脚本失败
 	 */
 	@Nullable
 	Object evaluate(ScriptSource script, @Nullable Map<String, Object> arguments) throws ScriptCompilationException;

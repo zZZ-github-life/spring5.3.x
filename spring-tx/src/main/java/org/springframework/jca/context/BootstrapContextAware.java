@@ -37,7 +37,7 @@ public interface BootstrapContextAware extends Aware {
 	 * <p>在常规 bean 属性填充之后调用，但在初始化回调（如 InitializingBean 的
 	 * {@code afterPropertiesSet} 或自定义 init 方法）之前调用。
 	 * 在 ApplicationContextAware 的 {@code setApplicationContext} 之后调用。
-	 * @param bootstrapContext the BootstrapContext object to be used by this object
+	 * @param bootstrapContext 此对象要使用的 BootstrapContext 对象
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
 	 * @see org.springframework.context.ApplicationContextAware#setApplicationContext
 	 */

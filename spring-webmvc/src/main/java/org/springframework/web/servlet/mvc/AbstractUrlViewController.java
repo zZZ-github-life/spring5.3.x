@@ -105,8 +105,8 @@ public abstract class AbstractUrlViewController extends AbstractController {
 	/**
 	 * 返回要为此请求渲染的视图名称，依据给定的查找路径。
 	 * 由 {@link #handleRequestInternal} 调用。
-	 * @param request current HTTP request
-	 * @return a view name for this request (never {@code null})
+	 * @param request 当前 HTTP 请求
+	 * @return 该请求的视图名称（永不为 {@code null}）
 	 * @see #handleRequestInternal
 	 * @see #setAlwaysUseFullPath
 	 * @see #setUrlDecode

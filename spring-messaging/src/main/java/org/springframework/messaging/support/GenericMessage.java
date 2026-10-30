@@ -30,7 +30,7 @@ import org.springframework.util.ObjectUtils;
  *
  * @author Mark Fisher
  * @since 4.0
- * @param <T> the payload type
+ * @param <T> 负载类型
  * @see MessageBuilder
  */
 public class GenericMessage<T> implements Message<T>, Serializable {
@@ -45,7 +45,7 @@ public class GenericMessage<T> implements Message<T>, Serializable {
 
 	/**
 	 * 使用给定负载创建新的消息。
-	 * @param payload the message payload (never {@code null})
+	 * @param payload 消息负载（永不为 {@code null}）
 	 */
 	public GenericMessage(T payload) {
 		this(payload, new MessageHeaders(null));
@@ -53,8 +53,8 @@ public class GenericMessage<T> implements Message<T>, Serializable {
 
 	/**
 	 * 使用给定负载和头部创建新的消息。将复制给定头部映射的内容。
-	 * @param payload the message payload (never {@code null})
-	 * @param headers message headers to use for initialization
+	 * @param payload 消息负载（永不为 {@code null}）
+	 * @param headers 用于初始化的消息头
 	 */
 	public GenericMessage(T payload, Map<String, Object> headers) {
 		this(payload, new MessageHeaders(headers));
@@ -64,8 +64,8 @@ public class GenericMessage<T> implements Message<T>, Serializable {
 	 * 使用给定的 {@link MessageHeaders} 实例构造。
 	 * <p><strong>注意：</strong>给定的 {@code MessageHeaders} 实例会直接用于
 	 * 新消息中，即不会被复制。
-	 * @param payload the message payload (never {@code null})
-	 * @param headers message headers
+	 * @param payload 消息负载（永不为 {@code null}）
+	 * @param headers 消息头
 	 */
 	public GenericMessage(T payload, MessageHeaders headers) {
 		Assert.notNull(payload, "Payload must not be null");

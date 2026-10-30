@@ -47,7 +47,7 @@ public class HandlerMethodReturnValueHandlerComposite implements AsyncHandlerMet
 
 	/**
 	 * 设置替代日志记录器，以代替基于类名的日志记录器。
-	 * @param logger the logger to use
+	 * @param logger 要使用的日志记录器
 	 * @since 5.1
 	 */
 	public void setLogger(Log logger) {

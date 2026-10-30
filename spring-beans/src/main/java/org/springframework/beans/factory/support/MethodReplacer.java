@@ -30,10 +30,10 @@ public interface MethodReplacer {
 
 	/**
 	 * 重新实现给定方法。
-	 * @param obj the instance we're reimplementing the method for
-	 * @param method the method to reimplement
-	 * @param args arguments to the method
-	 * @return return value for the method
+	 * @param obj 我们正为其重新实现方法的实例
+	 * @param method 要重新实现的方法
+	 * @param args 方法参数
+	 * @return 方法的返回值
 	 */
 	Object reimplement(Object obj, Method method, Object[] args) throws Throwable;
 

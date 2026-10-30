@@ -34,8 +34,8 @@ public class NotWritablePropertyException extends InvalidPropertyException {
 
 	/**
 	 * 创建一个新的 NotWritablePropertyException。
-	 * @param beanClass the offending bean class
-	 * @param propertyName the offending property name
+	 * @param beanClass 出错的 Bean 类
+	 * @param propertyName 出错的属性名称
 	 */
 	public NotWritablePropertyException(Class<?> beanClass, String propertyName) {
 		super(beanClass, propertyName,
@@ -46,9 +46,9 @@ public class NotWritablePropertyException extends InvalidPropertyException {
 
 	/**
 	 * 创建一个新的 NotWritablePropertyException。
-	 * @param beanClass the offending bean class
-	 * @param propertyName the offending property name
-	 * @param msg the detail message
+	 * @param beanClass 出错的 Bean 类
+	 * @param propertyName 出错的属性名称
+	 * @param msg 详细消息
 	 */
 	public NotWritablePropertyException(Class<?> beanClass, String propertyName, String msg) {
 		super(beanClass, propertyName, msg);
@@ -57,10 +57,10 @@ public class NotWritablePropertyException extends InvalidPropertyException {
 
 	/**
 	 * 创建一个新的 NotWritablePropertyException。
-	 * @param beanClass the offending bean class
-	 * @param propertyName the offending property name
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param beanClass 出错的 Bean 类
+	 * @param propertyName 出错的属性名称
+	 * @param msg 详细消息
+	 * @param cause 根本原因
 	 */
 	public NotWritablePropertyException(Class<?> beanClass, String propertyName, String msg, Throwable cause) {
 		super(beanClass, propertyName, msg, cause);
@@ -69,11 +69,10 @@ public class NotWritablePropertyException extends InvalidPropertyException {
 
 	/**
 	 * 创建一个新的 NotWritablePropertyException。
-	 * @param beanClass the offending bean class
-	 * @param propertyName the offending property name
-	 * @param msg the detail message
-	 * @param possibleMatches suggestions for actual bean property names
-	 * that closely match the invalid property name
+	 * @param beanClass 出错的 Bean 类
+	 * @param propertyName 出错的属性名称
+	 * @param msg 详细消息
+	 * @param possibleMatches 与无效属性名称非常接近的实际 Bean 属性名称建议
 	 */
 	public NotWritablePropertyException(Class<?> beanClass, String propertyName, String msg, String[] possibleMatches) {
 		super(beanClass, propertyName, msg);

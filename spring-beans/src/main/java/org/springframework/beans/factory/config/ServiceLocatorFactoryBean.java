@@ -218,8 +218,8 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 	 * 接作为 Bean 名称处理。
 	 * <p>空字符串作为服务 id 键时，定义了 {@code null} 和空字符串的映射，以及无参数工厂方法的映射。如
 	 * 果未定义，则将从 Bean 工厂中检索单个匹配的 Bean。
-	 * @param serviceMappings mappings between service ids and bean names,
-	 * with service ids as keys as bean names as values
+	 * @param serviceMappings 服务 ID 与 Bean 名称之间的映射，
+	 * 以服务 ID 为键、Bean 名称为值
 	 */
 	public void setServiceMappings(Properties serviceMappings) {
 		this.serviceMappings = serviceMappings;
@@ -252,8 +252,8 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 	 * 确定用于给定服务定位器异常类的构造器。仅在自定义服务定位器异常的情况下调用。
 	 * <p>默认实现会查找具有以下参数类型之一的构造器：{@code (String, Throwable)} 或
 	 * {@code (Throwable)} 或 {@code (String)}。
-	 * @param exceptionClass the exception class
-	 * @return the constructor to use
+	 * @param exceptionClass 异常类
+	 * @return 要使用的构造方法
 	 * @see #setServiceLocatorExceptionClass
 	 */
 	@SuppressWarnings("unchecked")
@@ -281,9 +281,9 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 	/**
 	 * 为给定原因创建服务定位器异常。仅在自定义服务定位器异常的情况下调用。
 	 * <p>默认实现可以处理消息和异常参数的所有变体。
-	 * @param exceptionConstructor the constructor to use
-	 * @param cause the cause of the service lookup failure
-	 * @return the service locator exception to throw
+	 * @param exceptionConstructor 要使用的构造方法
+	 * @param cause 服务查找失败的原因
+	 * @return 要抛出的服务定位器异常
 	 * @see #setServiceLocatorExceptionClass
 	 */
 	protected Exception createServiceLocatorException(Constructor<Exception> exceptionConstructor, BeansException cause) {

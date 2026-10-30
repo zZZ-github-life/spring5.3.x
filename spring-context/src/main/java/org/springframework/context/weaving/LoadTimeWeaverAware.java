@@ -41,7 +41,7 @@ public interface LoadTimeWeaverAware extends Aware {
 	 * 之后调用。
 	 * <p><b>NOTE:</b> 只有在应用上下文中确实存在可用的 {@code LoadTimeWeaver} 时才会调用此方法。如果不
 	 * 存在，则根本不会调用该方法，此时假定实现对象能够相应地激活其织入依赖。
-	 * @param loadTimeWeaver the {@code LoadTimeWeaver} instance (never {@code null})
+	 * @param loadTimeWeaver {@code LoadTimeWeaver} 实例（永不为 {@code null}）
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
 	 * @see org.springframework.context.ApplicationContextAware#setApplicationContext
 	 */

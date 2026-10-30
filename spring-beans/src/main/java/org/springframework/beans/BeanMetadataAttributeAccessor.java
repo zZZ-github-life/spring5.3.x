@@ -49,7 +49,7 @@ public class BeanMetadataAttributeAccessor extends AttributeAccessorSupport impl
 
 	/**
 	 * 将给定的 BeanMetadataAttribute 添加到此访问器的属性集合中。
-	 * @param attribute the BeanMetadataAttribute object to register
+	 * @param attribute 要注册的 BeanMetadataAttribute 对象
 	 */
 	public void addMetadataAttribute(BeanMetadataAttribute attribute) {
 		super.setAttribute(attribute.getName(), attribute);
@@ -57,9 +57,9 @@ public class BeanMetadataAttributeAccessor extends AttributeAccessorSupport impl
 
 	/**
 	 * 在此访问器的属性集合中查找给定的 BeanMetadataAttribute。
-	 * @param name the name of the attribute
-	 * @return the corresponding BeanMetadataAttribute object,
-	 * or {@code null} if no such attribute defined
+	 * @param name 属性的名称
+	 * @return 对应的 BeanMetadataAttribute 对象，
+	 * 如果未定义该属性则为 {@code null}
 	 */
 	@Nullable
 	public BeanMetadataAttribute getMetadataAttribute(String name) {

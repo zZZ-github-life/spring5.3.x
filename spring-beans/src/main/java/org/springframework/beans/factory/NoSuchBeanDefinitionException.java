@@ -43,7 +43,7 @@ public class NoSuchBeanDefinitionException extends BeansException {
 
 	/**
 	 * 创建一个新的 {@code NoSuchBeanDefinitionException}。
-	 * @param name the name of the missing bean
+	 * @param name 缺失的 Bean 名称
 	 */
 	public NoSuchBeanDefinitionException(String name) {
 		super("No bean named '" + name + "' available");
@@ -53,8 +53,8 @@ public class NoSuchBeanDefinitionException extends BeansException {
 
 	/**
 	 * 创建一个新的 {@code NoSuchBeanDefinitionException}。
-	 * @param name the name of the missing bean
-	 * @param message detailed message describing the problem
+	 * @param name 缺失的 Bean 名称
+	 * @param message 描述该问题的详细消息
 	 */
 	public NoSuchBeanDefinitionException(String name, String message) {
 		super("No bean named '" + name + "' available: " + message);
@@ -64,7 +64,7 @@ public class NoSuchBeanDefinitionException extends BeansException {
 
 	/**
 	 * 创建一个新的 {@code NoSuchBeanDefinitionException}。
-	 * @param type required type of the missing bean
+	 * @param type 缺失的 Bean 的所需类型
 	 */
 	public NoSuchBeanDefinitionException(Class<?> type) {
 		this(ResolvableType.forClass(type));
@@ -72,8 +72,8 @@ public class NoSuchBeanDefinitionException extends BeansException {
 
 	/**
 	 * 创建一个新的 {@code NoSuchBeanDefinitionException}。
-	 * @param type required type of the missing bean
-	 * @param message detailed message describing the problem
+	 * @param type 缺失的 Bean 的所需类型
+	 * @param message 描述该问题的详细消息
 	 */
 	public NoSuchBeanDefinitionException(Class<?> type, String message) {
 		this(ResolvableType.forClass(type), message);
@@ -81,7 +81,7 @@ public class NoSuchBeanDefinitionException extends BeansException {
 
 	/**
 	 * 创建一个新的 {@code NoSuchBeanDefinitionException}。
-	 * @param type full type declaration of the missing bean
+	 * @param type 缺失的 Bean 的完整类型声明
 	 * @since 4.3.4
 	 */
 	public NoSuchBeanDefinitionException(ResolvableType type) {
@@ -92,8 +92,8 @@ public class NoSuchBeanDefinitionException extends BeansException {
 
 	/**
 	 * 创建一个新的 {@code NoSuchBeanDefinitionException}。
-	 * @param type full type declaration of the missing bean
-	 * @param message detailed message describing the problem
+	 * @param type 缺失的 Bean 的完整类型声明
+	 * @param message 描述该问题的详细消息
 	 * @since 4.3.4
 	 */
 	public NoSuchBeanDefinitionException(ResolvableType type, String message) {

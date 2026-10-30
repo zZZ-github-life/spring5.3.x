@@ -31,13 +31,13 @@ public interface Theme {
 
 	/**
 	 * 返回主题的名称。
-	 * @return the name of the theme (never {@code null})
+	 * @return 主题的名称（永不为 {@code null}）
 	 */
 	String getName();
 
 	/**
 	 * 返回针对此主题解析消息的特定 MessageSource。
-	 * @return the theme-specific MessageSource (never {@code null})
+	 * @return 特定于该主题的 MessageSource（永不为 {@code null}）
 	 */
 	MessageSource getMessageSource();
 

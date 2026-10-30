@@ -71,8 +71,8 @@ public class XmlExpectationsHelper {
 	/**
 	 * 将期望内容字符串和实际内容字符串解析为 XML，并断言两者“相似” -- 即无论顺序如何，它们都包含相同的元素和属性。
 	 * <p>使用此方法假定 <a href="https://github.com/xmlunit/xmlunit">XMLUnit</a> 库可用。
-	 * @param expected the expected XML content
-	 * @param actual the actual XML content
+	 * @param expected 期望的 XML 内容
+	 * @param actual 实际的 XML 内容
 	 * @see org.springframework.test.web.servlet.result.MockMvcResultMatchers#xpath(String, Object...)
 	 * @see org.springframework.test.web.servlet.result.MockMvcResultMatchers#xpath(String, Map, Object...)
 	 */

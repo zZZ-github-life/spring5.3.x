@@ -52,32 +52,32 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
 
 	/**
 	 * 返回此应用上下文的唯一 id。
-	 * @return the unique id of the context, or {@code null} if none
+	 * @return 上下文的唯一 id；如果没有，则为 {@code null}
 	 */
 	@Nullable
 	String getId();
 
 	/**
 	 * 返回此上下文所属的已部署应用的名称。
-	 * @return a name for the deployed application, or the empty String by default
+	 * @return 所部署应用程序的名称；默认为空 String
 	 */
 	String getApplicationName();
 
 	/**
 	 * 返回此上下文的友好名称。
-	 * @return a display name for this context (never {@code null})
+	 * @return 此上下文的显示名称（永不为 {@code null}）
 	 */
 	String getDisplayName();
 
 	/**
 	 * 返回此上下文首次加载时的时间戳。
-	 * @return the timestamp (ms) when this context was first loaded
+	 * @return 此上下文首次加载时的时间戳（毫秒）
 	 */
 	long getStartupDate();
 
 	/**
 	 * 返回父上下文；如果没有父上下文且此上下文是上下文层次结构的根，则返回 {@code null}。
-	 * @return the parent context, or {@code null} if there is no parent
+	 * @return 父上下文；如果没有父上下文，则为 {@code null}
 	 */
 	@Nullable
 	ApplicationContext getParent();
@@ -95,11 +95,10 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
 	 * <p><b>注意：从 4.2 起，在应用上下文关闭后，此方法将始终抛出 IllegalStateException。</b> 在当前
 	 * Spring Framework 版本中，只有可刷新的应用上下文才会有此行为；从 4.2 起，所有应用上下文实现都将被
 	 * 要求遵循此约定。
-	 * @return the AutowireCapableBeanFactory for this context
-	 * @throws IllegalStateException if the context does not support the
-	 * {@link AutowireCapableBeanFactory} interface, or does not hold an
-	 * autowire-capable bean factory yet (e.g. if {@code refresh()} has
-	 * never been called), or if the context has been closed already
+	 * @return 此上下文的 AutowireCapableBeanFactory
+	 * @throws IllegalStateException 如果上下文不支持 {@link AutowireCapableBeanFactory} 接口，
+	 * 或尚未持有支持自动装配的 Bean 工厂（例如从未调用过 {@code refresh()}），
+	 * 或上下文已经关闭
 	 * @see ConfigurableApplicationContext#refresh()
 	 * @see ConfigurableApplicationContext#getBeanFactory()
 	 */

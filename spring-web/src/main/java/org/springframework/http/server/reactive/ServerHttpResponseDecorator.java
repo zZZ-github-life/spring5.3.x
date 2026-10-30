@@ -124,9 +124,9 @@ public class ServerHttpResponseDecorator implements ServerHttpResponse {
 	/**
 	 * 返回底层服务器 API 的原生响应（如果可能），
 	 * 必要时还会解包 {@link ServerHttpResponseDecorator}。
-	 * @param response the response to check
-	 * @param <T> the expected native response type
-	 * @throws IllegalArgumentException if the native response can't be obtained
+	 * @param response 要检查的响应
+	 * @param <T> 期望的原生响应类型
+	 * @throws IllegalArgumentException 如果无法获取原生响应则抛出
 	 * @since 5.3.3
 	 */
 	public static <T> T getNativeResponse(ServerHttpResponse response) {

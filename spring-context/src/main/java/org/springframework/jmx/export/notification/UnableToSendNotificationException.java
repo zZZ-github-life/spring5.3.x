@@ -32,7 +32,7 @@ public class UnableToSendNotificationException extends JmxException {
 
 	/**
 	 * 使用指定的错误消息创建 {@link UnableToSendNotificationException} 类的新实例。
-	 * @param msg the detail message
+	 * @param msg 详细信息
 	 */
 	public UnableToSendNotificationException(String msg) {
 		super(msg);
@@ -40,8 +40,8 @@ public class UnableToSendNotificationException extends JmxException {
 
 	/**
 	 * 使用指定的错误消息和根本原因创建 {@link UnableToSendNotificationException} 的新实例。
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param msg 详细信息
+	 * @param cause 根本原因
 	 */
 	public UnableToSendNotificationException(String msg, Throwable cause) {
 		super(msg, cause);

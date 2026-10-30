@@ -74,9 +74,8 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 	 * 则它同时用于编组和解组。否则将抛出异常。
 	 * <p>请注意，Spring 中的所有 {@link Marshaller} 实现也都实现了
 	 * {@link Unmarshaller} 接口，因此可以安全地使用此构造函数。
-	 * @param marshaller object used as marshaller and unmarshaller
-	 * @throws IllegalArgumentException when {@code marshaller} does not implement the
-	 * {@link Unmarshaller} interface as well
+	 * @param marshaller 同时用作编组器和解组器的对象
+	 * @throws IllegalArgumentException 当 {@code marshaller} 未同时实现 {@link Unmarshaller} 接口时
 	 */
 	public MarshallingMessageConverter(Marshaller marshaller) {
 		Assert.notNull(marshaller, "Marshaller must not be null");
@@ -95,8 +94,8 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 	/**
 	 * 使用给定的 Marshaller 和 Unmarshaller 构造一个新的
 	 * {@code MarshallingMessageConverter}。
-	 * @param marshaller the Marshaller to use
-	 * @param unmarshaller the Unmarshaller to use
+	 * @param marshaller 要使用的 Marshaller
+	 * @param unmarshaller 要使用的 Unmarshaller
 	 */
 	public MarshallingMessageConverter(Marshaller marshaller, Unmarshaller unmarshaller) {
 		Assert.notNull(marshaller, "Marshaller must not be null");
@@ -200,13 +199,13 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 
 	/**
 	 * 将给定对象编组为 {@link TextMessage}。
-	 * @param object the object to be marshalled
-	 * @param session current JMS session
-	 * @param marshaller the marshaller to use
-	 * @return the resulting message
-	 * @throws JMSException if thrown by JMS methods
-	 * @throws IOException in case of I/O errors
-	 * @throws XmlMappingException in case of OXM mapping errors
+	 * @param object 要编组的对象
+	 * @param session 当前的 JMS Session
+	 * @param marshaller 要使用的编组器
+	 * @return 生成的消息
+	 * @throws JMSException 如果由 JMS 方法抛出
+	 * @throws IOException 发生 I/O 错误时
+	 * @throws XmlMappingException 发生 OXM 映射错误时
 	 * @see Session#createTextMessage
 	 * @see Marshaller#marshal(Object, Result)
 	 */
@@ -221,13 +220,13 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 
 	/**
 	 * 将给定对象编组为 {@link BytesMessage}。
-	 * @param object the object to be marshalled
-	 * @param session current JMS session
-	 * @param marshaller the marshaller to use
-	 * @return the resulting message
-	 * @throws JMSException if thrown by JMS methods
-	 * @throws IOException in case of I/O errors
-	 * @throws XmlMappingException in case of OXM mapping errors
+	 * @param object 要编组的对象
+	 * @param session 当前的 JMS Session
+	 * @param marshaller 要使用的编组器
+	 * @return 生成的消息
+	 * @throws JMSException 如果由 JMS 方法抛出
+	 * @throws IOException 发生 I/O 错误时
+	 * @throws XmlMappingException 发生 OXM 映射错误时
 	 * @see Session#createBytesMessage
 	 * @see Marshaller#marshal(Object, Result)
 	 */
@@ -247,14 +246,14 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 	 * 当 {@link #setTargetType} 不是 {@link MessageType#TEXT} 或
 	 * {@link MessageType#BYTES} 时调用。
 	 * <p>默认实现抛出 {@link IllegalArgumentException}。
-	 * @param object the object to marshal
-	 * @param session the JMS session
-	 * @param marshaller the marshaller to use
-	 * @param targetType the target message type (other than TEXT or BYTES)
-	 * @return the resulting message
-	 * @throws JMSException if thrown by JMS methods
-	 * @throws IOException in case of I/O errors
-	 * @throws XmlMappingException in case of OXM mapping errors
+	 * @param object 要编组的对象
+	 * @param session 该 JMS Session
+	 * @param marshaller 要使用的编组器
+	 * @param targetType 目标消息类型（TEXT 或 BYTES 之外）
+	 * @return 生成的消息
+	 * @throws JMSException 如果由 JMS 方法抛出
+	 * @throws IOException 发生 I/O 错误时
+	 * @throws XmlMappingException 发生 OXM 映射错误时
 	 */
 	protected Message marshalToMessage(Object object, Session session, Marshaller marshaller, MessageType targetType)
 			throws JMSException, IOException, XmlMappingException {
@@ -266,12 +265,12 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 
 	/**
 	 * 将给定的 {@link TextMessage} 解组为对象。
-	 * @param message the message
-	 * @param unmarshaller the unmarshaller to use
-	 * @return the unmarshalled object
-	 * @throws JMSException if thrown by JMS methods
-	 * @throws IOException in case of I/O errors
-	 * @throws XmlMappingException in case of OXM mapping errors
+	 * @param message 该消息
+	 * @param unmarshaller 要使用的解组器
+	 * @return 解组后的对象
+	 * @throws JMSException 如果由 JMS 方法抛出
+	 * @throws IOException 发生 I/O 错误时
+	 * @throws XmlMappingException 发生 OXM 映射错误时
 	 * @see Unmarshaller#unmarshal(Source)
 	 */
 	protected Object unmarshalFromTextMessage(TextMessage message, Unmarshaller unmarshaller)
@@ -283,12 +282,12 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 
 	/**
 	 * 将给定的 {@link BytesMessage} 解组为对象。
-	 * @param message the message
-	 * @param unmarshaller the unmarshaller to use
-	 * @return the unmarshalled object
-	 * @throws JMSException if thrown by JMS methods
-	 * @throws IOException in case of I/O errors
-	 * @throws XmlMappingException in case of OXM mapping errors
+	 * @param message 该消息
+	 * @param unmarshaller 要使用的解组器
+	 * @return 解组后的对象
+	 * @throws JMSException 如果由 JMS 方法抛出
+	 * @throws IOException 发生 I/O 错误时
+	 * @throws XmlMappingException 发生 OXM 映射错误时
 	 * @see Unmarshaller#unmarshal(Source)
 	 */
 	protected Object unmarshalFromBytesMessage(BytesMessage message, Unmarshaller unmarshaller)
@@ -306,12 +305,12 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 	 * 当调用 {@link #fromMessage(Message)} 时传入的消息
 	 * 不是 {@link TextMessage} 或 {@link BytesMessage} 的情况下调用。
 	 * <p>默认实现抛出 {@link IllegalArgumentException}。
-	 * @param message the message
-	 * @param unmarshaller the unmarshaller to use
-	 * @return the unmarshalled object
-	 * @throws JMSException if thrown by JMS methods
-	 * @throws IOException in case of I/O errors
-	 * @throws XmlMappingException in case of OXM mapping errors
+	 * @param message 该消息
+	 * @param unmarshaller 要使用的解组器
+	 * @return 解组后的对象
+	 * @throws JMSException 如果由 JMS 方法抛出
+	 * @throws IOException 发生 I/O 错误时
+	 * @throws XmlMappingException 发生 OXM 映射错误时
 	 */
 	protected Object unmarshalFromMessage(Message message, Unmarshaller unmarshaller)
 			throws JMSException, IOException, XmlMappingException {

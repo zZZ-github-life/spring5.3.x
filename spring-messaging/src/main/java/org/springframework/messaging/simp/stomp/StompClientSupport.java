@@ -57,7 +57,7 @@ public abstract class StompClientSupport {
 	 * 在传入和传出消息的载荷与 {@code byte[]} 之间进行转换的
 	 * {@link MessageConverter}。
 	 * <p>默认配置 {@link SimpleMessageConverter}。
-	 * @param messageConverter the message converter to use
+	 * @param messageConverter 要使用的消息转换器
 	 */
 	public void setMessageConverter(MessageConverter messageConverter) {
 		Assert.notNull(messageConverter, "MessageConverter must not be null");
@@ -100,7 +100,7 @@ public abstract class StompClientSupport {
 	 * {@link org.springframework.messaging.simp.config.StompBrokerRelayRegistration}
 	 * 配置 `TaskScheduler`，以确保即使只发送具有非代理目标的消息，
 	 * 也会向代理转发心跳。
-	 * @param heartbeat the value for the CONNECT "heart-beat" header
+	 * @param heartbeat CONNECT "heart-beat" 消息头的值
 	 * @see <a href="https://stomp.github.io/stomp-specification-1.2.html#Heart-beating">
 	 * https://stomp.github.io/stomp-specification-1.2.html#Heart-beating</a>
 	 */
@@ -147,9 +147,9 @@ public abstract class StompClientSupport {
 
 	/**
 	 * 用于创建并配置新会话的工厂方法。
-	 * @param connectHeaders headers for the STOMP CONNECT frame
-	 * @param handler the handler for the STOMP session
-	 * @return the created session
+	 * @param connectHeaders STOMP CONNECT 帧的消息头
+	 * @param handler STOMP 会话的处理器
+	 * @return 创建的会话
 	 */
 	protected ConnectionHandlingStompSession createSession(
 			@Nullable StompHeaders connectHeaders, StompSessionHandler handler) {
@@ -164,8 +164,8 @@ public abstract class StompClientSupport {
 
 	/**
 	 * 进一步初始化 StompHeaders，例如在必要时设置 heart-beat 头。
-	 * @param connectHeaders the headers to modify
-	 * @return the modified headers
+	 * @param connectHeaders 要修改的消息头
+	 * @return 修改后的消息头
 	 */
 	protected StompHeaders processConnectHeaders(@Nullable StompHeaders connectHeaders) {
 		connectHeaders = (connectHeaders != null ? connectHeaders : new StompHeaders());

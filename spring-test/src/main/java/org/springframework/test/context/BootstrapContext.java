@@ -29,14 +29,14 @@ public interface BootstrapContext {
 
 	/**
 	 * 获取此引导上下文的 {@linkplain Class 测试类}。
-	 * @return the test class (never {@code null})
+	 * @return 测试类（永不为 {@code null}）
 	 */
 	Class<?> getTestClass();
 
 	/**
 	 * 获取用于与 {@code ContextCache} 透明
 	 * 交互的 {@link CacheAwareContextLoaderDelegate}。
-	 * @return the context loader delegate (never {@code null})
+	 * @return 上下文加载器委托（永不为 {@code null}）
 	 */
 	CacheAwareContextLoaderDelegate getCacheAwareContextLoaderDelegate();
 

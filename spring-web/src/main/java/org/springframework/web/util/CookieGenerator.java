@@ -169,8 +169,8 @@ public class CookieGenerator {
 	/**
 	 * 使用此生成器的 Cookie 描述符设置，将具有给定值的 Cookie 添加到响应。
 	 * <p>Cookie 的创建委托给 {@link #createCookie}。
-	 * @param response the HTTP response to add the cookie to
-	 * @param cookieValue the value of the cookie to add
+	 * @param response 要向其添加 Cookie 的 HTTP 响应
+	 * @param cookieValue 要添加的 Cookie 值
 	 * @see #setCookieName
 	 * @see #setCookieDomain
 	 * @see #setCookiePath
@@ -199,7 +199,7 @@ public class CookieGenerator {
 	 * 从响应中移除此生成器所描述的 Cookie。
 	 * 将生成一个值为空、最大存活时间为 0 的 Cookie。
 	 * <p>Cookie 的创建委托给 {@link #createCookie}。
-	 * @param response the HTTP response to remove the cookie from
+	 * @param response 要从中移除 Cookie 的 HTTP 响应
 	 * @see #setCookieName
 	 * @see #setCookieDomain
 	 * @see #setCookiePath
@@ -223,8 +223,8 @@ public class CookieGenerator {
 	/**
 	 * 使用此生成器的 Cookie 描述符设置（"cookieMaxAge" 除外），
 	 * 创建具有给定值的 Cookie。
-	 * @param cookieValue the value of the cookie to crate
-	 * @return the cookie
+	 * @param cookieValue 要创建的 Cookie 值
+	 * @return 该 Cookie
 	 * @see #setCookieName
 	 * @see #setCookieDomain
 	 * @see #setCookiePath

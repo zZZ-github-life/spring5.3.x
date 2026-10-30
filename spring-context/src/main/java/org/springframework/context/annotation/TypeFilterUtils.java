@@ -52,13 +52,12 @@ public abstract class TypeFilterUtils {
 	 * <p>每个 {@link TypeFilter} 都将使用适当的构造函数实例化，如果该类型过滤器实现了
 	 * {@code BeanClassLoaderAware}、{@code BeanFactoryAware}、{@code EnvironmentAware} 和
 	 * {@code ResourceLoaderAware} 契约，则会调用这些契约。
-	 * @param filterAttributes {@code AnnotationAttributes} for a
-	 * {@link ComponentScan.Filter @Filter} declaration
-	 * @param environment the {@code Environment} to make available to filters
-	 * @param resourceLoader the {@code ResourceLoader} to make available to filters
-	 * @param registry the {@code BeanDefinitionRegistry} to make available to filters
-	 * as a {@link org.springframework.beans.factory.BeanFactory} if applicable
-	 * @return a list of instantiated and configured type filters
+	 * @param filterAttributes {@link ComponentScan.Filter @Filter} 声明的 {@code AnnotationAttributes}
+	 * @param environment 提供给过滤器使用的 {@code Environment}
+	 * @param resourceLoader 提供给过滤器使用的 {@code ResourceLoader}
+	 * @param registry 提供给过滤器使用的 {@code BeanDefinitionRegistry}，
+	 * 在适用时以 {@link org.springframework.beans.factory.BeanFactory} 形式提供
+	 * @return 已实例化并配置的类型过滤器列表
 	 * @see TypeFilter
 	 * @see AnnotationTypeFilter
 	 * @see AssignableTypeFilter

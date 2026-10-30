@@ -529,9 +529,9 @@ public enum HttpStatus {
 
 	/**
 	 * 返回具有指定数值的 {@code HttpStatus} 枚举常量。
-	 * @param statusCode the numeric value of the enum to be returned
-	 * @return the enum constant with the specified numeric value
-	 * @throws IllegalArgumentException if this enum has no constant for the specified numeric value
+	 * @param statusCode 要返回的枚举的数值
+	 * @return 具有指定数值的枚举常量
+	 * @throws IllegalArgumentException 如果此枚举没有对应指定数值的常量
 	 */
 	public static HttpStatus valueOf(int statusCode) {
 		HttpStatus status = resolve(statusCode);
@@ -543,8 +543,8 @@ public enum HttpStatus {
 
 	/**
 	 * 如果可能，将给定的状态码解析为 {@code HttpStatus}。
-	 * @param statusCode the HTTP status code (potentially non-standard)
-	 * @return the corresponding {@code HttpStatus}, or {@code null} if not found
+	 * @param statusCode HTTP 状态码（可能是非标准的）
+	 * @return 对应的 {@code HttpStatus}，如果未找到则为 {@code null}
 	 * @since 5.0
 	 */
 	@Nullable
@@ -586,8 +586,8 @@ public enum HttpStatus {
 
 		/**
 		 * 返回所提供 {@code HttpStatus} 对应的 {@code Series} 枚举常量。
-		 * @param status a standard HTTP status enum constant
-		 * @return the {@code Series} enum constant for the supplied {@code HttpStatus}
+		 * @param status 标准 HTTP 状态枚举常量
+		 * @return 对应给定 {@code HttpStatus} 的 {@code Series} 枚举常量
 		 * @deprecated as of 5.3, in favor of invoking {@link HttpStatus#series()} directly
 		 */
 		@Deprecated
@@ -597,9 +597,9 @@ public enum HttpStatus {
 
 		/**
 		 * 返回所提供状态码对应的 {@code Series} 枚举常量。
-		 * @param statusCode the HTTP status code (potentially non-standard)
-		 * @return the {@code Series} enum constant for the supplied status code
-		 * @throws IllegalArgumentException if this enum has no corresponding constant
+		 * @param statusCode HTTP 状态码（可能是非标准的）
+		 * @return 对应给定状态码的 {@code Series} 枚举常量
+		 * @throws IllegalArgumentException 如果此枚举没有对应的常量
 		 */
 		public static Series valueOf(int statusCode) {
 			Series series = resolve(statusCode);
@@ -611,8 +611,8 @@ public enum HttpStatus {
 
 		/**
 		 * 如果可能，将给定的状态码解析为 {@code HttpStatus.Series}。
-		 * @param statusCode the HTTP status code (potentially non-standard)
-		 * @return the corresponding {@code Series}, or {@code null} if not found
+		 * @param statusCode HTTP 状态码（可能是非标准的）
+		 * @return 对应的 {@code Series}，如果未找到则为 {@code null}
 		 * @since 5.1.3
 		 */
 		@Nullable

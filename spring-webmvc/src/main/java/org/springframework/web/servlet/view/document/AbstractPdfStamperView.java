@@ -77,8 +77,8 @@ public abstract class AbstractPdfStamperView extends AbstractUrlBasedView {
 	/**
 	 * 将原始 PDF 资源读取为一个 iText PdfReader。
 	 * <p>默认实现会将指定的 "url" 属性解析为 ApplicationContext 资源。
-	 * @return the PdfReader instance
-	 * @throws IOException if resource access failed
+	 * @return PdfReader 实例
+	 * @throws IOException 如果资源访问失败
 	 * @see #setUrl
 	 */
 	protected PdfReader readPdfResource() throws IOException {
@@ -102,13 +102,12 @@ public abstract class AbstractPdfStamperView extends AbstractUrlBasedView {
 	 * response.setHeader("Content-disposition", "attachment; FILENAME=someName.pdf");</pre>
 	 * <p>注意，传入的 HTTP response 仅应用于设置 cookie 或其他 HTTP 头。
 	 * 构建好的 PDF 文档本身将在该方法返回后自动写入 response。
-	 * @param model the model Map
-	 * @param stamper the PdfStamper instance that will contain the AcroFields.
-	 * You may also customize this PdfStamper instance according to your needs,
-	 * e.g. setting the "formFlattening" property.
-	 * @param request in case we need locale etc. Shouldn't look at attributes.
-	 * @param response in case we need to set cookies. Shouldn't write to it.
-	 * @throws Exception any exception that occurred during document building
+	 * @param model 模型 Map
+	 * @param stamper 将包含 AcroFields 的 PdfStamper 实例。你还可以根据需要自定义该 PdfStamper 实例，
+	 * 例如设置 "formFlattening" 属性。
+	 * @param request 在需要 Locale 等情况下使用。不应查看属性。
+	 * @param response 在需要设置 Cookie 的情况下使用。不应向其写入。
+	 * @throws Exception 文档构建期间发生的任何异常
      */
 	protected abstract void mergePdfDocument(Map<String, Object> model, PdfStamper stamper,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;

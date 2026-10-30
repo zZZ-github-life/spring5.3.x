@@ -42,9 +42,9 @@ public class SimpleBrokerRegistration extends AbstractBrokerRegistration {
 
 	/**
 	 * 创建一个新的 {@code SimpleBrokerRegistration}。
-	 * @param clientInboundChannel the inbound channel
-	 * @param clientOutboundChannel the outbound channel
-	 * @param destinationPrefixes the destination prefixes
+	 * @param clientInboundChannel 入站通道
+	 * @param clientOutboundChannel 出站通道
+	 * @param destinationPrefixes 目标地址前缀
 	 */
 	public SimpleBrokerRegistration(SubscribableChannel clientInboundChannel,
 			MessageChannel clientOutboundChannel, String[] destinationPrefixes) {
@@ -85,7 +85,7 @@ public class SimpleBrokerRegistration extends AbstractBrokerRegistration {
 	 * </pre>
 	 * <p>默认情况下此项设置为 "selector"。可以将其设置为其他名称，
 	 * 或设置为 {@code null} 以关闭对选择器头部的支持。
-	 * @param selectorHeaderName the name to use for a selector header
+	 * @param selectorHeaderName 用于选择器消息头的名称
 	 * @since 4.3.17
 	 */
 	public void setSelectorHeaderName(@Nullable String selectorHeaderName) {

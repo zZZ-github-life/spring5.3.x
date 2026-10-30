@@ -106,8 +106,8 @@ public abstract class AbstractAdvisingBeanPostProcessor extends ProxyProcessorSu
 	 * 地 {@link Advisor} 添加到现有代理的 {@link Advisor} 链中。对于后者，会直接调用
 	 * {@link #isEligible(Class)}，并传入现有代理背后的实际目标类（由
 	 * {@link AopUtils#getTargetClass(Object)} 确定）。
-	 * @param bean the bean instance
-	 * @param beanName the name of the bean
+	 * @param bean Bean 实例
+	 * @param beanName Bean 的名称
 	 * @see #isEligible(Class)
 	 */
 	protected boolean isEligible(Object bean, String beanName) {
@@ -117,7 +117,7 @@ public abstract class AbstractAdvisingBeanPostProcessor extends ProxyProcessorSu
 	/**
 	 * 检查给定的类是否有资格被此后处理器的 {@link Advisor} 通知。
 	 * <p>按 Bean 目标类缓存 {@code canApply} 的结果。
-	 * @param targetClass the class to check against
+	 * @param targetClass 要检查的类
 	 * @see AopUtils#canApply(Advisor, Class)
 	 */
 	protected boolean isEligible(Class<?> targetClass) {
@@ -138,10 +138,10 @@ public abstract class AbstractAdvisingBeanPostProcessor extends ProxyProcessorSu
 	 * <p>子类可以自定义目标实例的处理方式，特别是目标类的暴露方式。随后会应用默认的非目标类代理接口内
 	 * 省以及已配置的 advisor；{@link #customizeProxyFactory} 允许在创建代理之前立即对这些部分进行后期
 	 * 定制。
-	 * @param bean the bean instance to create a proxy for
-	 * @param beanName the corresponding bean name
-	 * @return the ProxyFactory, initialized with this processor's
-	 * {@link ProxyConfig} settings and the specified bean
+	 * @param bean 要为其创建代理的 Bean 实例
+	 * @param beanName 对应的 Bean 名称
+	 * @return ProxyFactory，已使用此处理器的 {@link ProxyConfig} 设置
+	 * 和指定的 Bean 初始化
 	 * @since 4.2.3
 	 * @see #customizeProxyFactory
 	 */
@@ -155,9 +155,8 @@ public abstract class AbstractAdvisingBeanPostProcessor extends ProxyProcessorSu
 	/**
 	 * 子类可以选择实现此方法：例如，更改所暴露的接口。
 	 * <p>默认实现为空。
-	 * @param proxyFactory the ProxyFactory that is already configured with
-	 * target, advisor and interfaces and will be used to create the proxy
-	 * immediately after this method returns
+	 * @param proxyFactory 已配置好目标、通知器和接口的 ProxyFactory，
+	 * 它将在该方法返回后立即用于创建代理
 	 * @since 4.2.3
 	 * @see #prepareProxyFactory
 	 */

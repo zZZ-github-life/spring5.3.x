@@ -41,7 +41,7 @@ public class AutowireCandidateQualifier extends BeanMetadataAttributeAccessor {
 
 	/**
 	 * 构造一个限定符，用于与给定类型的注解进行匹配。
-	 * @param type the annotation type
+	 * @param type 注解类型
 	 */
 	public AutowireCandidateQualifier(Class<?> type) {
 		this(type.getName());
@@ -50,7 +50,7 @@ public class AutowireCandidateQualifier extends BeanMetadataAttributeAccessor {
 	/**
 	 * 构造一个限定符，用于与给定类型名称的注解进行匹配。<p>类型名称可以匹配注解的全限定类名或短类名
 	 * （不含包名）。
-	 * @param typeName the name of the annotation type
+	 * @param typeName 注解类型的名称
 	 */
 	public AutowireCandidateQualifier(String typeName) {
 		Assert.notNull(typeName, "Type name must not be null");
@@ -59,8 +59,8 @@ public class AutowireCandidateQualifier extends BeanMetadataAttributeAccessor {
 
 	/**
 	 * 构造一个限定符，用于与给定类型的注解进行匹配，且该注解的 {@code value} 属性也与指定的值匹配。
-	 * @param type the annotation type
-	 * @param value the annotation value to match
+	 * @param type 注解类型
+	 * @param value 要匹配的注解值
 	 */
 	public AutowireCandidateQualifier(Class<?> type, Object value) {
 		this(type.getName(), value);
@@ -69,8 +69,8 @@ public class AutowireCandidateQualifier extends BeanMetadataAttributeAccessor {
 	/**
 	 * 构造一个限定符，用于与给定类型名称的注解进行匹配，且该注解的 {@code value} 属性也与指定的值匹配。
 	 * <p>类型名称可以匹配注解的全限定类名或短类名（不含包名）。
-	 * @param typeName the name of the annotation type
-	 * @param value the annotation value to match
+	 * @param typeName 注解类型的名称
+	 * @param value 要匹配的注解值
 	 */
 	public AutowireCandidateQualifier(String typeName, Object value) {
 		Assert.notNull(typeName, "Type name must not be null");

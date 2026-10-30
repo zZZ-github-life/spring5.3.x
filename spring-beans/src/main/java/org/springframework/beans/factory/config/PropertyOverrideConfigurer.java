@@ -154,8 +154,8 @@ public class PropertyOverrideConfigurer extends PropertyResourceConfigurer {
 
 	/**
 	 * 此 Bean 是否有覆盖值？仅在至少执行过一次处理之后才有效。
-	 * @param beanName name of the bean to query status for
-	 * @return whether there were property overrides for the named bean
+	 * @param beanName 要查询状态的 Bean 名称
+	 * @return 指定名称的 Bean 是否有属性覆盖
 	 */
 	public boolean hasPropertyOverridesFor(String beanName) {
 		return this.beanNames.contains(beanName);

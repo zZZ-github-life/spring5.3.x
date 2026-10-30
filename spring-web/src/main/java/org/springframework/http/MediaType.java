@@ -438,8 +438,8 @@ public class MediaType extends MimeType implements Serializable {
 	/**
 	 * 为给定的主类型创建一个新的 {@code MediaType}。
 	 * <p>{@linkplain #getSubtype() subtype} 设置为 "&#42;"，参数为空。
-	 * @param type the primary type
-	 * @throws IllegalArgumentException if any of the parameters contain illegal characters
+	 * @param type 主类型
+	 * @throws IllegalArgumentException 如果任何参数包含非法字符
 	 */
 	public MediaType(String type) {
 		super(type);
@@ -448,9 +448,9 @@ public class MediaType extends MimeType implements Serializable {
 	/**
 	 * 为给定的主类型和子类型创建一个新的 {@code MediaType}。
 	 * <p>参数为空。
-	 * @param type the primary type
-	 * @param subtype the subtype
-	 * @throws IllegalArgumentException if any of the parameters contain illegal characters
+	 * @param type 主类型
+	 * @param subtype 子类型
+	 * @throws IllegalArgumentException 如果任何参数包含非法字符
 	 */
 	public MediaType(String type, String subtype) {
 		super(type, subtype, Collections.emptyMap());
@@ -458,10 +458,10 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * 为给定的类型、子类型和字符集创建一个新的 {@code MediaType}。
-	 * @param type the primary type
-	 * @param subtype the subtype
-	 * @param charset the character set
-	 * @throws IllegalArgumentException if any of the parameters contain illegal characters
+	 * @param type 主类型
+	 * @param subtype 子类型
+	 * @param charset 字符集
+	 * @throws IllegalArgumentException 如果任何参数包含非法字符
 	 */
 	public MediaType(String type, String subtype, Charset charset) {
 		super(type, subtype, charset);
@@ -469,10 +469,10 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * 为给定的类型、子类型和质量值创建一个新的 {@code MediaType}。
-	 * @param type the primary type
-	 * @param subtype the subtype
-	 * @param qualityValue the quality value
-	 * @throws IllegalArgumentException if any of the parameters contain illegal characters
+	 * @param type 主类型
+	 * @param subtype 子类型
+	 * @param qualityValue 质量值
+	 * @throws IllegalArgumentException 如果任何参数包含非法字符
 	 */
 	public MediaType(String type, String subtype, double qualityValue) {
 		this(type, subtype, Collections.singletonMap(PARAM_QUALITY_FACTOR, Double.toString(qualityValue)));
@@ -480,9 +480,9 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * 复制构造函数，复制给定 {@code MediaType} 的类型、子类型和参数，并允许设置指定的字符集。
-	 * @param other the other media type
-	 * @param charset the character set
-	 * @throws IllegalArgumentException if any of the parameters contain illegal characters
+	 * @param other 另一个媒体类型
+	 * @param charset 字符集
+	 * @throws IllegalArgumentException 如果任何参数包含非法字符
 	 * @since 4.3
 	 */
 	public MediaType(MediaType other, Charset charset) {
@@ -491,9 +491,9 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * 复制构造函数，复制给定 {@code MediaType} 的类型和子类型，并允许使用不同的参数。
-	 * @param other the other media type
-	 * @param parameters the parameters, may be {@code null}
-	 * @throws IllegalArgumentException if any of the parameters contain illegal characters
+	 * @param other 另一个媒体类型
+	 * @param parameters 参数，可能为 {@code null}
+	 * @throws IllegalArgumentException 如果任何参数包含非法字符
 	 */
 	public MediaType(MediaType other, @Nullable Map<String, String> parameters) {
 		super(other.getType(), other.getSubtype(), parameters);
@@ -501,10 +501,10 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * 为给定的类型、子类型和参数创建一个新的 {@code MediaType}。
-	 * @param type the primary type
-	 * @param subtype the subtype
-	 * @param parameters the parameters, may be {@code null}
-	 * @throws IllegalArgumentException if any of the parameters contain illegal characters
+	 * @param type 主类型
+	 * @param subtype 子类型
+	 * @param parameters 参数，可能为 {@code null}
+	 * @throws IllegalArgumentException 如果任何参数包含非法字符
 	 */
 	public MediaType(String type, String subtype, @Nullable Map<String, String> parameters) {
 		super(type, subtype, parameters);
@@ -512,8 +512,8 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * 为给定的 {@link MimeType} 创建一个新的 {@code MediaType}。类型、子类型和参数信息会被复制，并执行 {@code MediaType} 特有的参数检查。
-	 * @param mimeType the MIME type
-	 * @throws IllegalArgumentException if any of the parameters contain illegal characters
+	 * @param mimeType MIME 类型
+	 * @throws IllegalArgumentException 如果任何参数包含非法字符
 	 * @since 5.3
 	 */
 	public MediaType(MimeType mimeType) {
@@ -535,7 +535,7 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * 返回质量因子（由 {@code q} 参数表示，如果有）。默认为 {@code 1.0}。
-	 * @return the quality factor as double value
+	 * @return 以 double 值表示的质量因子
 	 */
 	public double getQualityValue() {
 		String qualityFactor = getParameter(PARAM_QUALITY_FACTOR);
@@ -546,9 +546,8 @@ public class MediaType extends MimeType implements Serializable {
 	 * 指示此 {@code MediaType} 是否包含给定的媒体类型。
 	 * <p>例如，{@code text/*} 包含 {@code text/plain} 和 {@code text/html}，{@code application/*+xml} 包含 {@code application/soap+xml} 等。此方法<b>不</b>对称。
 	 * <p>此方法仅调用 {@link MimeType#includes(MimeType)}，但为了二进制向后兼容而声明为 {@code MediaType} 参数。
-	 * @param other the reference media type with which to compare
-	 * @return {@code true} if this media type includes the given media type;
-	 * {@code false} otherwise
+	 * @param other 用于比较的参考媒体类型
+	 * @return 如果此媒体类型包含给定媒体类型，则返回 {@code true}；否则返回 {@code false}
 	 */
 	public boolean includes(@Nullable MediaType other) {
 		return super.includes(other);
@@ -558,9 +557,8 @@ public class MediaType extends MimeType implements Serializable {
 	 * 指示此 {@code MediaType} 是否与给定的媒体类型兼容。
 	 * <p>例如，{@code text/*} 与 {@code text/plain}、{@code text/html} 兼容，反之亦然。实际上，此方法类似于 {@link #includes}，区别在于它<b>是</b>对称的。
 	 * <p>此方法仅调用 {@link MimeType#isCompatibleWith(MimeType)}，但为了二进制向后兼容而声明为 {@code MediaType} 参数。
-	 * @param other the reference media type with which to compare
-	 * @return {@code true} if this media type is compatible with the given media type;
-	 * {@code false} otherwise
+	 * @param other 用于比较的参考媒体类型
+	 * @return 如果此媒体类型与给定媒体类型兼容，则返回 {@code true}；否则返回 {@code false}
 	 */
 	public boolean isCompatibleWith(@Nullable MediaType other) {
 		return super.isCompatibleWith(other);
@@ -568,8 +566,7 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * 返回此实例的副本，其中质量值取自给定的 {@code MediaType}。
-	 * @return the same instance if the given MediaType doesn't have a quality value,
-	 * or a new one otherwise
+	 * @return 如果给定 MediaType 没有质量值，则返回同一实例，否则返回新实例
 	 */
 	public MediaType copyQualityValue(MediaType mediaType) {
 		if (!mediaType.getParameters().containsKey(PARAM_QUALITY_FACTOR)) {
@@ -582,8 +579,7 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * 返回移除了质量值的此实例副本。
-	 * @return the same instance if the media type doesn't contain a quality value,
-	 * or a new one otherwise
+	 * @return 如果媒体类型不包含质量值，则返回同一实例，否则返回新实例
 	 */
 	public MediaType removeQualityValue() {
 		if (!getParameters().containsKey(PARAM_QUALITY_FACTOR)) {
@@ -597,8 +593,8 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * 将给定的字符串值解析为 {@code MediaType} 对象，方法名遵循 'valueOf' 命名约定（受 {@link org.springframework.core.convert.ConversionService} 支持）。
-	 * @param value the string to parse
-	 * @throws InvalidMediaTypeException if the media type value cannot be parsed
+	 * @param value 要解析的字符串
+	 * @throws InvalidMediaTypeException 如果媒体类型值无法解析
 	 * @see #parseMediaType(String)
 	 */
 	public static MediaType valueOf(String value) {
@@ -607,9 +603,9 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * 将给定字符串解析为单个 {@code MediaType}。
-	 * @param mediaType the string to parse
-	 * @return the media type
-	 * @throws InvalidMediaTypeException if the media type value cannot be parsed
+	 * @param mediaType 要解析的字符串
+	 * @return 该媒体类型
+	 * @throws InvalidMediaTypeException 如果媒体类型值无法解析
 	 */
 	public static MediaType parseMediaType(String mediaType) {
 		MimeType type;
@@ -630,9 +626,9 @@ public class MediaType extends MimeType implements Serializable {
 	/**
 	 * 将逗号分隔的字符串解析为 {@code MediaType} 对象列表。
 	 * <p>此方法可用于解析 Accept 或 Content-Type 头。
-	 * @param mediaTypes the string to parse
-	 * @return the list of media types
-	 * @throws InvalidMediaTypeException if the media type value cannot be parsed
+	 * @param mediaTypes 要解析的字符串
+	 * @return 媒体类型列表
+	 * @throws InvalidMediaTypeException 如果媒体类型值无法解析
 	 */
 	public static List<MediaType> parseMediaTypes(@Nullable String mediaTypes) {
 		if (!StringUtils.hasLength(mediaTypes)) {
@@ -652,9 +648,9 @@ public class MediaType extends MimeType implements Serializable {
 	/**
 	 * 将给定的（可能以逗号分隔的）字符串列表解析为 {@code MediaType} 对象列表。
 	 * <p>此方法可用于解析 Accept 或 Content-Type 头。
-	 * @param mediaTypes the string to parse
-	 * @return the list of media types
-	 * @throws InvalidMediaTypeException if the media type value cannot be parsed
+	 * @param mediaTypes 要解析的字符串
+	 * @return 媒体类型列表
+	 * @throws InvalidMediaTypeException 如果媒体类型值无法解析
 	 * @since 4.3.2
 	 */
 	public static List<MediaType> parseMediaTypes(@Nullable List<String> mediaTypes) {
@@ -699,8 +695,8 @@ public class MediaType extends MimeType implements Serializable {
 	/**
 	 * 返回给定 {@code MediaType} 对象列表的字符串表示形式。
 	 * <p>此方法可用于生成 {@code Accept} 或 {@code Content-Type} 头。
-	 * @param mediaTypes the media types to create a string representation for
-	 * @return the string representation
+	 * @param mediaTypes 要为其创建字符串表示的媒体类型
+	 * @return 字符串表示
 	 */
 	public static String toString(Collection<MediaType> mediaTypes) {
 		return MimeTypeUtils.toString(mediaTypes);
@@ -723,7 +719,7 @@ public class MediaType extends MimeType implements Serializable {
 	 * <blockquote>audio/basic;level=1 &lt; audio/basic</blockquote>
 	 * <blockquote>audio/basic == text/html</blockquote>
 	 * <blockquote>audio/basic == audio/wave</blockquote>
-	 * @param mediaTypes the list of media types to be sorted
+	 * @param mediaTypes 要排序的媒体类型列表
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-5.3.2">HTTP 1.1: Semantics
 	 * and Content, section 5.3.2</a>
 	 */
@@ -745,7 +741,7 @@ public class MediaType extends MimeType implements Serializable {
 	 * <li>如果两个媒体类型具有不同的 {@linkplain #getSubtype() subtypes}，则认为它们相等，并保持当前顺序。</li>
 	 * <li>如果两个媒体类型具有不同数量的 {@linkplain #getParameter(String) parameters}，则参数最多的媒体类型排在另一个之前。</li>
 	 * </ol>
-	 * @param mediaTypes the list of media types to be sorted
+	 * @param mediaTypes 要排序的媒体类型列表
 	 * @see #getQualityValue()
 	 */
 	public static void sortByQualityValue(List<MediaType> mediaTypes) {

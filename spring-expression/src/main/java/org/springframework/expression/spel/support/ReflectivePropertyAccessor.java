@@ -98,7 +98,7 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 
 	/**
 	 * 创建一个新的属性访问器，用于读取，也可能用于写入。
-	 * @param allowWrite whether to allow write operations on a target instance
+	 * @param allowWrite 是否允许对目标实例进行写操作
 	 * @since 4.3.15
 	 * @see #canWrite
 	 */
@@ -444,8 +444,8 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 	/**
 	 * 判断给定的 {@code Method} 是否为在给定目标类实例上进行属性访问的候选方法。<p>默认实现将任何方法
 	 * 都视为候选方法，即使是 {@link Object} 基类上非用户声明的属性。
-	 * @param method the Method to evaluate
-	 * @param targetClass the concrete target class that is being introspected
+	 * @param method 要评估的 Method
+	 * @param targetClass 正在被内省的具体目标类
 	 * @since 4.3.15
 	 */
 	protected boolean isCandidateForProperty(Method method, Class<?> targetClass) {

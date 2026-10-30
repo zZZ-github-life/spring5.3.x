@@ -36,12 +36,12 @@ public interface HandshakeInterceptor {
 
 	/**
 	 * 在处理握手之前调用。
-	 * @param request the current request
-	 * @param response the current response
-	 * @param wsHandler the target WebSocket handler
-	 * @param attributes the attributes from the HTTP handshake to associate with the WebSocket
-	 * session; the provided attributes are copied, the original map is not used.
-	 * @return whether to proceed with the handshake ({@code true}) or abort ({@code false})
+	 * @param request 当前请求
+	 * @param response 当前响应
+	 * @param wsHandler 目标 WebSocket 处理器
+	 * @param attributes 要与 WebSocket 会话关联的、来自 HTTP 握手的属性；
+	 * 提供的属性会被复制，不使用原始 Map。
+	 * @return 是继续握手（{@code true}），还是中止（{@code false}）
 	 */
 	boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response,
 			WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception;
@@ -49,10 +49,10 @@ public interface HandshakeInterceptor {
 	/**
 	 * 在握手完成之后调用。响应状态和头表示握手的结果，
 	 * 即握手是否成功。
-	 * @param request the current request
-	 * @param response the current response
-	 * @param wsHandler the target WebSocket handler
-	 * @param exception an exception raised during the handshake, or {@code null} if none
+	 * @param request 当前请求
+	 * @param response 当前响应
+	 * @param wsHandler 目标 WebSocket 处理器
+	 * @param exception 握手期间抛出的异常；如果没有则为 {@code null}
 	 */
 	void afterHandshake(ServerHttpRequest request, ServerHttpResponse response,
 			WebSocketHandler wsHandler, @Nullable Exception exception);

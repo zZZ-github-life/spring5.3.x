@@ -133,8 +133,8 @@ public final class WebHttpHandlerBuilder {
 
 	/**
 	 * 创建新构建器实例的静态工厂方法。
-	 * @param webHandler the target handler for the request
-	 * @return the prepared builder
+	 * @param webHandler 请求的目标处理器
+	 * @return 准备好的构建器
 	 */
 	public static WebHttpHandlerBuilder webHandler(WebHandler webHandler) {
 		return new WebHttpHandlerBuilder(webHandler, null);
@@ -157,8 +157,8 @@ public final class WebHttpHandlerBuilder {
 	 * <li>{@link LocaleContextResolver} [0..1] -- 通过名称
 	 * {@link #LOCALE_CONTEXT_RESOLVER_BEAN_NAME} 查找。
 	 * </ul>
-	 * @param context the application context to use for the lookup
-	 * @return the prepared builder
+	 * @param context 用于查找的应用上下文
+	 * @return 准备好的构建器
 	 */
 	public static WebHttpHandlerBuilder applicationContext(ApplicationContext context) {
 
@@ -219,7 +219,7 @@ public final class WebHttpHandlerBuilder {
 
 	/**
 	 * 添加给定的过滤器。
-	 * @param filters the filter(s) to add that's
+	 * @param filters 要添加的过滤器
 	 */
 	public WebHttpHandlerBuilder filter(WebFilter... filters) {
 		if (!ObjectUtils.isEmpty(filters)) {
@@ -231,7 +231,7 @@ public final class WebHttpHandlerBuilder {
 
 	/**
 	 * 操作当前已配置过滤器的"实时"列表。
-	 * @param consumer the consumer to use
+	 * @param consumer 要使用的消费者
 	 */
 	public WebHttpHandlerBuilder filters(Consumer<List<WebFilter>> consumer) {
 		consumer.accept(this.filters);
@@ -259,7 +259,7 @@ public final class WebHttpHandlerBuilder {
 
 	/**
 	 * 添加给定的异常处理器。
-	 * @param handlers the exception handler(s)
+	 * @param handlers 异常处理器
 	 */
 	public WebHttpHandlerBuilder exceptionHandler(WebExceptionHandler... handlers) {
 		if (!ObjectUtils.isEmpty(handlers)) {
@@ -270,7 +270,7 @@ public final class WebHttpHandlerBuilder {
 
 	/**
 	 * 操作当前已配置异常处理器的"实时"列表。
-	 * @param consumer the consumer to use
+	 * @param consumer 要使用的消费者
 	 */
 	public WebHttpHandlerBuilder exceptionHandlers(Consumer<List<WebExceptionHandler>> consumer) {
 		consumer.accept(this.exceptionHandlers);
@@ -281,7 +281,7 @@ public final class WebHttpHandlerBuilder {
 	 * 配置要设置到 {@link ServerWebExchange WebServerExchange} 上的
 	 * {@link WebSessionManager}。
 	 * <p>默认使用 {@link DefaultWebSessionManager}。
-	 * @param manager the session manager
+	 * @param manager 会话管理器
 	 * @see HttpWebHandlerAdapter#setSessionManager(WebSessionManager)
 	 */
 	public WebHttpHandlerBuilder sessionManager(WebSessionManager manager) {
@@ -300,7 +300,7 @@ public final class WebHttpHandlerBuilder {
 
 	/**
 	 * 配置要设置到 {@code WebServerExchange} 上的 {@link ServerCodecConfigurer}。
-	 * @param codecConfigurer the codec configurer
+	 * @param codecConfigurer 编解码器配置器
 	 */
 	public WebHttpHandlerBuilder codecConfigurer(ServerCodecConfigurer codecConfigurer) {
 		this.codecConfigurer = codecConfigurer;
@@ -320,7 +320,7 @@ public final class WebHttpHandlerBuilder {
 	/**
 	 * 配置要设置到 {@link ServerWebExchange WebServerExchange} 上的
 	 * {@link LocaleContextResolver}。
-	 * @param localeContextResolver the locale context resolver
+	 * @param localeContextResolver 区域上下文解析器
 	 */
 	public WebHttpHandlerBuilder localeContextResolver(LocaleContextResolver localeContextResolver) {
 		this.localeContextResolver = localeContextResolver;
@@ -338,7 +338,7 @@ public final class WebHttpHandlerBuilder {
 
 	/**
 	 * 配置用于提取和/或移除转发头部的 {@link ForwardedHeaderTransformer}。
-	 * @param transformer the transformer
+	 * @param transformer 转换器
 	 * @since 5.1
 	 */
 	public WebHttpHandlerBuilder forwardedHeaderTransformer(ForwardedHeaderTransformer transformer) {
@@ -362,7 +362,7 @@ public final class WebHttpHandlerBuilder {
 	 * {@link WebExceptionHandler} - {@link WebFilter} - {@link WebHandler}
 	 * 处理链。这样就可以在整个处理链之前访问请求和响应，
 	 * 同样也可以观察整个处理链的结果。
-	 * @param handlerDecorator the decorator to apply
+	 * @param handlerDecorator 要应用的装饰器
 	 * @since 5.3
 	 */
 	public WebHttpHandlerBuilder httpHandlerDecorator(Function<HttpHandler, HttpHandler> handlerDecorator) {
@@ -410,7 +410,7 @@ public final class WebHttpHandlerBuilder {
 
 	/**
 	 * 克隆此 {@link WebHttpHandlerBuilder}。
-	 * @return the cloned builder instance
+	 * @return 克隆的构建器实例
 	 */
 	@Override
 	public WebHttpHandlerBuilder clone() {

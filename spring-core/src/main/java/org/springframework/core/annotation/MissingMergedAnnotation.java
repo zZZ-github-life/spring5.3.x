@@ -33,7 +33,7 @@ import org.springframework.lang.Nullable;
  * @author Phillip Webb
  * @author Juergen Hoeller
  * @since 5.2
- * @param <A> the annotation type
+ * @param <A> 注解类型
  */
 final class MissingMergedAnnotation<A extends Annotation> extends AbstractMergedAnnotation<A> {
 

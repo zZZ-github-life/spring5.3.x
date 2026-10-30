@@ -38,10 +38,10 @@ public class RunPrepareTestInstanceCallbacks extends Statement {
 
 	/**
 	 * 构造一个新的 {@code RunPrepareTestInstanceCallbacks} 语句。
-	 * @param next the next {@code Statement} in the execution chain; never {@code null}
-	 * @param testInstance the current test instance; never {@code null}
-	 * @param testContextManager the {@code TestContextManager} upon which to call
-	 * {@code prepareTestInstance()}; never {@code null}
+	 * @param next 执行链中的下一个 {@code Statement}；从不为 {@code null}
+	 * @param testInstance 当前的测试实例；从不为 {@code null}
+	 * @param testContextManager 要在其上调用 {@code prepareTestInstance()} 的 {@code TestContextManager}；
+	 * 从不为 {@code null}
 	 */
 	public RunPrepareTestInstanceCallbacks(Statement next, Object testInstance, TestContextManager testContextManager) {
 		this.next = next;

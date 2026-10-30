@@ -49,7 +49,7 @@ public class NotificationListenerBean extends NotificationListenerHolder impleme
 
 	/**
 	 * 创建 {@link NotificationListenerBean} 类的新实例。
-	 * @param notificationListener the encapsulated listener
+	 * @param notificationListener 被封装的监听器
 	 */
 	public NotificationListenerBean(NotificationListener notificationListener) {
 		Assert.notNull(notificationListener, "NotificationListener must not be null");

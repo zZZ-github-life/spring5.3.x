@@ -90,15 +90,13 @@ final class AnnotationWriter extends AnnotationVisitor {
   /**
    * 构造一个新的 {@link AnnotationWriter}。
    *
-   * @param symbolTable where the constants used in this AnnotationWriter must be stored.
-   * @param useNamedValues whether values are named or not. AnnotationDefault and annotation arrays
-   *     use unnamed values.
-   * @param annotation where the 'annotation' or 'type_annotation' JVMS structure corresponding to
-   *     the visited content must be stored. This ByteVector must already contain all the fields of
-   *     the structure except the last one (the element_value_pairs array).
-   * @param previousAnnotation the previously visited annotation of the
-   *     Runtime[In]Visible[Type]Annotations attribute to which this annotation belongs, or
-   *     {@literal null} in other cases (e.g. nested or array annotations).
+   * @param symbolTable 用于存储此 AnnotationWriter 中所用常量的位置。
+   * @param useNamedValues 值是否带有名称。AnnotationDefault 和注解数组使用不带名称的值。
+   * @param annotation 用于存储与所访问内容对应的 'annotation' 或 'type_annotation' JVMS 结构的位置。
+   * 该 ByteVector 必须已包含该结构除最后一个字段（element_value_pairs 数组）之外的
+   * 所有字段。
+   * @param previousAnnotation 此注解所属的 Runtime[In]Visible[Type]Annotations 属性中先前访问的注解；
+   * 在其他情况下（例如嵌套注解或数组注解）为 {@literal null}。
    */
   AnnotationWriter(
       final SymbolTable symbolTable,
@@ -120,12 +118,11 @@ final class AnnotationWriter extends AnnotationVisitor {
   /**
    * 使用带名称的值创建一个新的 {@link AnnotationWriter}。
    *
-   * @param symbolTable where the constants used in this AnnotationWriter must be stored.
-   * @param descriptor the class descriptor of the annotation class.
-   * @param previousAnnotation the previously visited annotation of the
-   *     Runtime[In]Visible[Type]Annotations attribute to which this annotation belongs, or
-   *     {@literal null} in other cases (e.g. nested or array annotations).
-   * @return a new {@link AnnotationWriter} for the given annotation descriptor.
+   * @param symbolTable 用于存储此 AnnotationWriter 中所用常量的位置。
+   * @param descriptor 注解类的类描述符。
+   * @param previousAnnotation 此注解所属的 Runtime[In]Visible[Type]Annotations 属性中先前访问的注解；
+   * 在其他情况下（例如嵌套注解或数组注解）为 {@literal null}。
+   * @return 针对给定注解描述符的新 {@link AnnotationWriter}。
    */
   static AnnotationWriter create(
       final SymbolTable symbolTable,
@@ -143,19 +140,17 @@ final class AnnotationWriter extends AnnotationVisitor {
   /**
    * 使用带名称的值创建一个新的 {@link AnnotationWriter}。
    *
-   * @param symbolTable where the constants used in this AnnotationWriter must be stored.
-   * @param typeRef a reference to the annotated type. The sort of this type reference must be
-   *     {@link TypeReference#CLASS_TYPE_PARAMETER}, {@link
-   *     TypeReference#CLASS_TYPE_PARAMETER_BOUND} or {@link TypeReference#CLASS_EXTENDS}. See
-   *     {@link TypeReference}.
-   * @param typePath the path to the annotated type argument, wildcard bound, array element type, or
-   *     static inner type within 'typeRef'. May be {@literal null} if the annotation targets
-   *     'typeRef' as a whole.
-   * @param descriptor the class descriptor of the annotation class.
-   * @param previousAnnotation the previously visited annotation of the
-   *     Runtime[In]Visible[Type]Annotations attribute to which this annotation belongs, or
-   *     {@literal null} in other cases (e.g. nested or array annotations).
-   * @return a new {@link AnnotationWriter} for the given type annotation reference and descriptor.
+   * @param symbolTable 用于存储此 AnnotationWriter 中所用常量的位置。
+   * @param typeRef 对被注解类型的引用。此类型引用的种类必须是
+   * {@link TypeReference#CLASS_TYPE_PARAMETER}、
+   * {@link TypeReference#CLASS_TYPE_PARAMETER_BOUND} 或 {@link TypeReference#CLASS_EXTENDS}。
+   * 参见 {@link TypeReference}。
+   * @param typePath 指向 'typeRef' 中被注解的类型参数、通配符边界、数组元素类型或静态内部类型的路径。
+   * 如果注解以整个 'typeRef' 为目标，则可以为 {@literal null}。
+   * @param descriptor 注解类的类描述符。
+   * @param previousAnnotation 此注解所属的 Runtime[In]Visible[Type]Annotations 属性中先前访问的注解；
+   * 在其他情况下（例如嵌套注解或数组注解）为 {@literal null}。
+   * @return 针对给定类型注解引用与描述符的新 {@link AnnotationWriter}。
    */
   static AnnotationWriter create(
       final SymbolTable symbolTable,
@@ -316,10 +311,9 @@ final class AnnotationWriter extends AnnotationVisitor {
    * 返回包含此注解及其所有<i>前驱</i>（参见 {@link #previousAnnotation}）的
    * Runtime[In]Visible[Type]Annotations 属性的大小。还会将属性名添加到类的常量池中（若不为 null）。
    *
-   * @param attributeName one of "Runtime[In]Visible[Type]Annotations", or {@literal null}.
-   * @return the size in bytes of a Runtime[In]Visible[Type]Annotations attribute containing this
-   *     annotation and all its predecessors. This includes the size of the attribute_name_index and
-   *     attribute_length fields.
+   * @param attributeName “Runtime[In]Visible[Type]Annotations”之一，或 {@literal null}。
+   * @return 包含此注解及其所有前驱的 Runtime[In]Visible[Type]Annotations 属性的字节大小。
+   * 其中包括 attribute_name_index 和 attribute_length 字段的大小。
    */
   int computeAnnotationsSize(final String attributeName) {
     if (attributeName != null) {
@@ -340,21 +334,16 @@ final class AnnotationWriter extends AnnotationVisitor {
    * Runtime[In]Visible[Type]Annotations 属性的大小。还会将这些属性名添加到类的常量池中（如果不为
    * null）。
    *
-   * @param lastRuntimeVisibleAnnotation The last runtime visible annotation of a field, method or
-   *     class. The previous ones can be accessed with the {@link #previousAnnotation} field. May be
-   *     {@literal null}.
-   * @param lastRuntimeInvisibleAnnotation The last runtime invisible annotation of this a field,
-   *     method or class. The previous ones can be accessed with the {@link #previousAnnotation}
-   *     field. May be {@literal null}.
-   * @param lastRuntimeVisibleTypeAnnotation The last runtime visible type annotation of this a
-   *     field, method or class. The previous ones can be accessed with the {@link
-   *     #previousAnnotation} field. May be {@literal null}.
-   * @param lastRuntimeInvisibleTypeAnnotation The last runtime invisible type annotation of a
-   *     field, method or class field. The previous ones can be accessed with the {@link
-   *     #previousAnnotation} field. May be {@literal null}.
-   * @return the size in bytes of a Runtime[In]Visible[Type]Annotations attribute containing the
-   *     given annotations and all their predecessors. This includes the size of the
-   *     attribute_name_index and attribute_length fields.
+   * @param lastRuntimeVisibleAnnotation 字段、方法或类的最后一个运行时可见注解。先前的注解可通过
+   * {@link #previousAnnotation} 字段访问。可以为 {@literal null}。
+   * @param lastRuntimeInvisibleAnnotation 字段、方法或类的最后一个运行时不可见注解。先前的注解可通过
+   * {@link #previousAnnotation} 字段访问。可以为 {@literal null}。
+   * @param lastRuntimeVisibleTypeAnnotation 字段、方法或类的最后一个运行时可见类型注解。先前的注解可通过
+   * {@link #previousAnnotation} 字段访问。可以为 {@literal null}。
+   * @param lastRuntimeInvisibleTypeAnnotation 字段、方法或类的最后一个运行时不可见类型注解。先前的注解可通过
+   * {@link #previousAnnotation} 字段访问。可以为 {@literal null}。
+   * @return 包含给定注解及其所有前驱的 Runtime[In]Visible[Type]Annotations 属性的字节大小。
+   * 其中包括 attribute_name_index 和 attribute_length 字段的大小。
    */
   static int computeAnnotationsSize(
       final AnnotationWriter lastRuntimeVisibleAnnotation,
@@ -389,9 +378,8 @@ final class AnnotationWriter extends AnnotationVisitor {
    * 将包含此注解及其所有<i>前驱</i>（参见 {@link #previousAnnotation}）的
    * Runtime[In]Visible[Type]Annotations 属性放入给定的 ByteVector。注解按照它们被访问的顺序放入。
    *
-   * @param attributeNameIndex the constant pool index of the attribute name (one of
-   *     "Runtime[In]Visible[Type]Annotations").
-   * @param output where the attribute must be put.
+   * @param attributeNameIndex 属性名称的常量池索引（“Runtime[In]Visible[Type]Annotations”之一）。
+   * @param output 放置该属性的位置。
    */
   void putAnnotations(final int attributeNameIndex, final ByteVector output) {
     int attributeLength = 2; // For num_annotations.
@@ -420,20 +408,16 @@ final class AnnotationWriter extends AnnotationVisitor {
    * 将包含给定注解及其所有<i>前驱</i>（参见 {@link #previousAnnotation}）的
    * Runtime[In]Visible[Type]Annotations 属性放入给定的 ByteVector。注解按照它们被访问的顺序放入。
    *
-   * @param symbolTable where the constants used in the AnnotationWriter instances are stored.
-   * @param lastRuntimeVisibleAnnotation The last runtime visible annotation of a field, method or
-   *     class. The previous ones can be accessed with the {@link #previousAnnotation} field. May be
-   *     {@literal null}.
-   * @param lastRuntimeInvisibleAnnotation The last runtime invisible annotation of this a field,
-   *     method or class. The previous ones can be accessed with the {@link #previousAnnotation}
-   *     field. May be {@literal null}.
-   * @param lastRuntimeVisibleTypeAnnotation The last runtime visible type annotation of this a
-   *     field, method or class. The previous ones can be accessed with the {@link
-   *     #previousAnnotation} field. May be {@literal null}.
-   * @param lastRuntimeInvisibleTypeAnnotation The last runtime invisible type annotation of a
-   *     field, method or class field. The previous ones can be accessed with the {@link
-   *     #previousAnnotation} field. May be {@literal null}.
-   * @param output where the attributes must be put.
+   * @param symbolTable 存储 AnnotationWriter 实例中所用常量的位置。
+   * @param lastRuntimeVisibleAnnotation 字段、方法或类的最后一个运行时可见注解。先前的注解可通过
+   * {@link #previousAnnotation} 字段访问。可以为 {@literal null}。
+   * @param lastRuntimeInvisibleAnnotation 字段、方法或类的最后一个运行时不可见注解。先前的注解可通过
+   * {@link #previousAnnotation} 字段访问。可以为 {@literal null}。
+   * @param lastRuntimeVisibleTypeAnnotation 字段、方法或类的最后一个运行时可见类型注解。先前的注解可通过
+   * {@link #previousAnnotation} 字段访问。可以为 {@literal null}。
+   * @param lastRuntimeInvisibleTypeAnnotation 字段、方法或类的最后一个运行时不可见类型注解。先前的注解可通过
+   * {@link #previousAnnotation} 字段访问。可以为 {@literal null}。
+   * @param output 放置这些属性的位置。
    */
   static void putAnnotations(
       final SymbolTable symbolTable,
@@ -464,14 +448,11 @@ final class AnnotationWriter extends AnnotationVisitor {
    * 返回包含给定 AnnotationWriter 子数组中所有注解列表的 Runtime[In]VisibleParameterAnnotations 属性
    * 的大小。还会将该属性名添加到类的常量池中。
    *
-   * @param attributeName one of "Runtime[In]VisibleParameterAnnotations".
-   * @param annotationWriters an array of AnnotationWriter lists (designated by their <i>last</i>
-   *     element).
-   * @param annotableParameterCount the number of elements in annotationWriters to take into account
-   *     (elements [0..annotableParameterCount[ are taken into account).
-   * @return the size in bytes of a Runtime[In]VisibleParameterAnnotations attribute corresponding
-   *     to the given sub-array of AnnotationWriter lists. This includes the size of the
-   *     attribute_name_index and attribute_length fields.
+   * @param attributeName “Runtime[In]VisibleParameterAnnotations”之一。
+   * @param annotationWriters AnnotationWriter 列表组成的数组（以其<i>最后</i>一个元素标识）。
+   * @param annotableParameterCount annotationWriters 中要考虑的元素个数（考虑元素 [0..annotableParameterCount[）。
+   * @return 与给定 AnnotationWriter 列表子数组对应的 Runtime[In]VisibleParameterAnnotations
+   * 属性的字节大小。其中包括 attribute_name_index 和 attribute_length 字段的大小。
    */
   static int computeParameterAnnotationsSize(
       final String attributeName,
@@ -495,13 +476,10 @@ final class AnnotationWriter extends AnnotationVisitor {
    * 将包含给定 AnnotationWriter 子数组中所有注解列表的 Runtime[In]VisibleParameterAnnotations 属性放
    * 入给定的 ByteVector。
    *
-   * @param attributeNameIndex constant pool index of the attribute name (one of
-   *     Runtime[In]VisibleParameterAnnotations).
-   * @param annotationWriters an array of AnnotationWriter lists (designated by their <i>last</i>
-   *     element).
-   * @param annotableParameterCount the number of elements in annotationWriters to put (elements
-   *     [0..annotableParameterCount[ are put).
-   * @param output where the attribute must be put.
+   * @param attributeNameIndex 属性名称的常量池索引（Runtime[In]VisibleParameterAnnotations 之一）。
+   * @param annotationWriters AnnotationWriter 列表组成的数组（以其<i>最后</i>一个元素标识）。
+   * @param annotableParameterCount annotationWriters 中要写入的元素个数（写入元素 [0..annotableParameterCount[）。
+   * @param output 放置该属性的位置。
    */
   static void putParameterAnnotations(
       final int attributeNameIndex,

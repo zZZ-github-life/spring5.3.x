@@ -44,7 +44,7 @@ public class AspectJPointcutAdvisor implements PointcutAdvisor, Ordered {
 
 	/**
 	 * 为给定通知创建一个新的 AspectJPointcutAdvisor。
-	 * @param advice the AbstractAspectJAdvice to wrap
+	 * @param advice 要包装的 AbstractAspectJAdvice
 	 */
 	public AspectJPointcutAdvisor(AbstractAspectJAdvice advice) {
 		Assert.notNull(advice, "Advice must not be null");

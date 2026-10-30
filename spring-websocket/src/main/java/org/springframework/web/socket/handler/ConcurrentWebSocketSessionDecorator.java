@@ -76,9 +76,9 @@ public class ConcurrentWebSocketSessionDecorator extends WebSocketSessionDecorat
 
 	/**
 	 * 基本构造函数。
-	 * @param delegate the {@code WebSocketSession} to delegate to
-	 * @param sendTimeLimit the send-time limit (milliseconds)
-	 * @param bufferSizeLimit the buffer-size limit (number of bytes)
+	 * @param delegate 要委托的 {@code WebSocketSession}
+	 * @param sendTimeLimit 发送时间限制（毫秒）
+	 * @param bufferSizeLimit 缓冲区大小限制（字节数）
 	 */
 	public ConcurrentWebSocketSessionDecorator(WebSocketSession delegate, int sendTimeLimit, int bufferSizeLimit) {
 		this(delegate, sendTimeLimit, bufferSizeLimit, OverflowStrategy.TERMINATE);
@@ -86,11 +86,11 @@ public class ConcurrentWebSocketSessionDecorator extends WebSocketSessionDecorat
 
 	/**
 	 * 同时指定要使用的溢出策略的构造函数。
-	 * @param delegate the {@code WebSocketSession} to delegate to
-	 * @param sendTimeLimit the send-time limit (milliseconds)
-	 * @param bufferSizeLimit the buffer-size limit (number of bytes)
-	 * @param overflowStrategy the overflow strategy to use; by default the
-	 * session is terminated.
+	 * @param delegate 要委托的 {@code WebSocketSession}
+	 * @param sendTimeLimit 发送时间限制（毫秒）
+	 * @param bufferSizeLimit 缓冲区大小限制（字节数）
+	 * @param overflowStrategy 要使用的溢出策略；默认情况下
+	 * 会话会被终止。
 	 * @since 5.1
 	 */
 	public ConcurrentWebSocketSessionDecorator(
@@ -137,7 +137,7 @@ public class ConcurrentWebSocketSessionDecorator extends WebSocketSessionDecorat
 
 	/**
 	 * 设置一个回调，在消息被添加到发送缓冲区后调用。
-	 * @param callback the callback to invoke
+	 * @param callback 要调用的回调
 	 * @since 5.3
 	 */
 	public void setMessageCallback(Consumer<WebSocketMessage<?>> callback) {

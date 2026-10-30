@@ -101,7 +101,7 @@ public abstract class RequestMappingInfoHandlerMapping extends AbstractHandlerMe
 	 * 检查给定的 RequestMappingInfo 是否匹配当前请求，并
 	 * 返回一个（可能是新的）实例，其条件与当前请求匹配
 	 * ——例如包含 URL 模式的子集。
-	 * @return an info in case of a match; or {@code null} otherwise.
+	 * @return 匹配时的 info；否则为 {@code null}。
 	 */
 	@Override
 	protected RequestMappingInfo getMatchingMapping(RequestMappingInfo info, HttpServletRequest request) {
@@ -231,10 +231,8 @@ public abstract class RequestMappingInfoHandlerMapping extends AbstractHandlerMe
 	/**
 	 * 再次遍历所有 RequestMappingInfo，检查是否至少有按 URL 匹配的项，
 	 * 并根据不匹配的内容抛出异常。
-	 * @throws HttpRequestMethodNotSupportedException if there are matches by URL
-	 * but not by HTTP method
-	 * @throws HttpMediaTypeNotAcceptableException if there are matches by URL
-	 * but not by consumable/producible media types
+	 * @throws HttpRequestMethodNotSupportedException 如果存在按 URL 匹配但未按 HTTP 方法匹配的情况
+	 * @throws HttpMediaTypeNotAcceptableException 如果存在按 URL 匹配但未按可消费/可生成的媒体类型匹配的情况
 	 */
 	@Override
 	protected HandlerMethod handleNoMatch(
@@ -453,8 +451,8 @@ public abstract class RequestMappingInfoHandlerMapping extends AbstractHandlerMe
 
 			/**
 			 * 创建一个新的 {@link PartialMatch} 实例。
-			 * @param info the RequestMappingInfo that matches the URL path.
-			 * @param request the current request
+			 * @param info 与 URL 路径匹配的 RequestMappingInfo。
+			 * @param request 当前请求
 			 */
 			public PartialMatch(RequestMappingInfo info, HttpServletRequest request) {
 				this.info = info;

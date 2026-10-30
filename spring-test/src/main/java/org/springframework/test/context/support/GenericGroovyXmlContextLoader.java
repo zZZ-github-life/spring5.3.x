@@ -35,8 +35,8 @@ public class GenericGroovyXmlContextLoader extends GenericXmlContextLoader {
 
 	/**
 	 * 使用 {@link GroovyBeanDefinitionReader}，从所提供的 {@code MergedContextConfiguration} 中的位置将 Bean 定义加载到所提供的 {@link GenericApplicationContext context} 中。
-	 * @param context the context into which the bean definitions should be loaded
-	 * @param mergedConfig the merged context configuration
+	 * @param context 应将 Bean 定义加载到的上下文
+	 * @param mergedConfig 合并后的上下文配置
 	 * @see org.springframework.test.context.support.AbstractGenericContextLoader#loadBeanDefinitions
 	 */
 	@Override
@@ -54,7 +54,7 @@ public class GenericGroovyXmlContextLoader extends GenericXmlContextLoader {
 
 	/**
 	 * {@code GenericGroovyXmlContextLoader} 同时支持 Groovy 和 XML 资源类型来检测默认值。因此，不支持此方法。
-	 * @throws UnsupportedOperationException in this implementation
+	 * @throws UnsupportedOperationException 在此实现中
 	 * @see #getResourceSuffixes()
 	 */
 	@Override

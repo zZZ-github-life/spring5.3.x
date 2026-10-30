@@ -274,7 +274,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	 * 设置 JAXB {@code Marshaller} 属性。
 	 * <p>这些属性将被设置到底层的 JAXB {@code Marshaller} 上，
 	 * 可用于缩进等功能。
-	 * @param properties the properties
+	 * @param properties 属性
 	 * @see javax.xml.bind.Marshaller#setProperty(String, Object)
 	 * @see javax.xml.bind.Marshaller#JAXB_ENCODING
 	 * @see javax.xml.bind.Marshaller#JAXB_FORMATTED_OUTPUT
@@ -288,7 +288,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	/**
 	 * 设置 JAXB {@code Unmarshaller} 属性。
 	 * <p>这些属性将被设置到底层的 JAXB {@code Unmarshaller} 上。
-	 * @param properties the properties
+	 * @param properties 属性
 	 * @see javax.xml.bind.Unmarshaller#setProperty(String, Object)
 	 */
 	public void setUnmarshallerProperties(Map<String, ?> properties) {
@@ -928,8 +928,8 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	/**
 	 * 将给定的 {@code JAXBException} 转换为 {@code org.springframework.oxm}
 	 * 异常层次结构中相应的异常。
-	 * @param ex {@code JAXBException} that occurred
-	 * @return the corresponding {@code XmlMappingException}
+	 * @param ex 发生的 {@code JAXBException}
+	 * @return 对应的 {@code XmlMappingException}
 	 */
 	protected XmlMappingException convertJaxbException(JAXBException ex) {
 		if (ex instanceof ValidationException) {

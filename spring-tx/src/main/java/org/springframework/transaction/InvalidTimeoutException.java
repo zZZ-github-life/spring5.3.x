@@ -31,8 +31,8 @@ public class InvalidTimeoutException extends TransactionUsageException {
 
 	/**
 	 * InvalidTimeoutException 的构造函数。
-	 * @param msg the detail message
-	 * @param timeout the invalid timeout value
+	 * @param msg 详细信息
+	 * @param timeout 无效的超时值
 	 */
 	public InvalidTimeoutException(String msg, int timeout) {
 		super(msg);

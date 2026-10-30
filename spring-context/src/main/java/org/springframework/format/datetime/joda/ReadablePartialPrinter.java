@@ -38,7 +38,7 @@ public final class ReadablePartialPrinter implements Printer<ReadablePartial> {
 
 	/**
 	 * 创建一个新的 ReadableInstantPrinter。
-	 * @param formatter the Joda DateTimeFormatter instance
+	 * @param formatter Joda DateTimeFormatter 实例
 	 */
 	public ReadablePartialPrinter(DateTimeFormatter formatter) {
 		this.formatter = formatter;

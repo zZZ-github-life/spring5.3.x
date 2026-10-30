@@ -36,7 +36,7 @@ public class ArgumentResolverConfigurer {
 
 	/**
 	 * 为自定义处理器方法参数配置解析器。
-	 * @param resolver the resolvers to add
+	 * @param resolver 要添加的解析器
 	 */
 	public void addCustomResolver(HandlerMethodArgumentResolver... resolver) {
 		Assert.notNull(resolver, "'resolvers' must not be null");

@@ -34,7 +34,7 @@ public interface LocaleContext {
 
 	/**
 	 * 返回当前 Locale，它可以是固定的，也可以根据实现策略动态确定。
-	 * @return the current Locale, or {@code null} if no specific Locale associated
+	 * @return 当前 Locale；如果未关联特定 Locale，则为 {@code null}
 	 */
 	@Nullable
 	Locale getLocale();

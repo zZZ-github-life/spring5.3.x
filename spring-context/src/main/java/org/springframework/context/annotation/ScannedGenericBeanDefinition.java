@@ -50,7 +50,7 @@ public class ScannedGenericBeanDefinition extends GenericBeanDefinition implemen
 
 	/**
 	 * 为给定 MetadataReader 所描述的类创建一个新的 ScannedGenericBeanDefinition。
-	 * @param metadataReader the MetadataReader for the scanned target class
+	 * @param metadataReader 用于扫描的目标类的 MetadataReader
 	 */
 	public ScannedGenericBeanDefinition(MetadataReader metadataReader) {
 		Assert.notNull(metadataReader, "MetadataReader must not be null");

@@ -142,8 +142,8 @@ public class SpringBeanFacesELResolver extends ELResolver {
 	/**
 	 * 获取用于委托 Bean 名称解析的 Web 应用上下文。
 	 * <p>默认实现委托给 FacesContextUtils。
-	 * @param elContext the current JSF ELContext
-	 * @return the Spring web application context (never {@code null})
+	 * @param elContext 当前的 JSF ELContext
+	 * @return Spring Web 应用上下文（永不为 {@code null}）
 	 * @see org.springframework.web.jsf.FacesContextUtils#getRequiredWebApplicationContext
 	 */
 	protected WebApplicationContext getWebApplicationContext(ELContext elContext) {

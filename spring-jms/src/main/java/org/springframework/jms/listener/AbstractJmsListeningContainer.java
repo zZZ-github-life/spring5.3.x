@@ -181,7 +181,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * <p>创建一个 JMS Connection，启动 {@link javax.jms.Connection}
 	 * （如果 {@link #setAutoStartup(boolean) "autoStartup"} 未被关闭），
 	 * 并调用 {@link #doInitialize()}。
-	 * @throws org.springframework.jms.JmsException if startup failed
+	 * @throws org.springframework.jms.JmsException 如果启动失败
 	 */
 	public void initialize() throws JmsException {
 		try {
@@ -203,7 +203,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	/**
 	 * 停止共享 Connection，调用 {@link #doShutdown()}，
 	 * 并关闭此容器。
-	 * @throws JmsException if shutdown failed
+	 * @throws JmsException 如果关闭失败
 	 */
 	public void shutdown() throws JmsException {
 		logger.debug("Shutting down JMS listener container");
@@ -254,7 +254,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 
 	/**
 	 * 启动此容器。
-	 * @throws JmsException if starting failed
+	 * @throws JmsException 如果启动失败
 	 * @see #doStart
 	 */
 	@Override
@@ -269,7 +269,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 
 	/**
 	 * 启动共享 Connection（如果有），并通知所有调用者任务。
-	 * @throws JMSException if thrown by JMS API methods
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 * @see #startSharedConnection
 	 */
 	protected void doStart() throws JMSException {
@@ -293,7 +293,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 
 	/**
 	 * 停止此容器。
-	 * @throws JmsException if stopping failed
+	 * @throws JmsException 如果停止失败
 	 * @see #doStop
 	 */
 	@Override
@@ -308,7 +308,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 
 	/**
 	 * 通知所有调用者任务，并停止共享 Connection（如果有）。
-	 * @throws JMSException if thrown by JMS API methods
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 * @see #stopSharedConnection
 	 */
 	protected void doStop() throws JMSException {
@@ -355,7 +355,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * <p>默认实现委托给 {@link #createSharedConnection()}，它只尝试一次，
 	 * 如果失败则抛出异常。可以通过重写来加入恢复流程，持续重试
 	 * 直到成功建立 Connection。
-	 * @throws JMSException if thrown by JMS API methods
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 */
 	protected void establishSharedConnection() throws JMSException {
 		synchronized (this.sharedConnectionMonitor) {
@@ -369,7 +369,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	/**
 	 * 刷新此容器持有的共享 Connection。
 	 * <p>在启动时以及在调用者设置和/或执行期间发生基础设施异常后调用。
-	 * @throws JMSException if thrown by JMS API methods
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 */
 	protected final void refreshSharedConnection() throws JMSException {
 		synchronized (this.sharedConnectionMonitor) {
@@ -386,8 +386,8 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	/**
 	 * 为此容器创建一个共享 Connection。
 	 * <p>默认实现创建一个标准 Connection，并通过 {@link #prepareSharedConnection} 进行准备。
-	 * @return the prepared Connection
-	 * @throws JMSException if the creation failed
+	 * @return 准备好的 Connection
+	 * @throws JMSException 如果创建失败
 	 */
 	protected Connection createSharedConnection() throws JMSException {
 		Connection con = createConnection();
@@ -405,8 +405,8 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * 准备给定的 Connection，它将作为此容器的共享 Connection 被注册。
 	 * <p>默认实现会设置指定的客户端 ID（如果有）。
 	 * 子类可以重写此方法以应用更多设置。
-	 * @param connection the Connection to prepare
-	 * @throws JMSException if the preparation efforts failed
+	 * @param connection 要准备的 Connection
+	 * @throws JMSException 如果准备工作失败
 	 * @see #getClientId()
 	 */
 	protected void prepareSharedConnection(Connection connection) throws JMSException {
@@ -418,7 +418,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 
 	/**
 	 * 启动共享 Connection。
-	 * @throws JMSException if thrown by JMS API methods
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 * @see javax.jms.Connection#start()
 	 */
 	protected void startSharedConnection() throws JMSException {
@@ -437,7 +437,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 
 	/**
 	 * 停止共享 Connection。
-	 * @throws JMSException if thrown by JMS API methods
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 * @see javax.jms.Connection#start()
 	 */
 	protected void stopSharedConnection() throws JMSException {
@@ -456,9 +456,9 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 
 	/**
 	 * 返回此容器维护的共享 JMS Connection。初始化之后可用。
-	 * @return the shared Connection (never {@code null})
-	 * @throws IllegalStateException if this container does not maintain a
-	 * shared Connection, or if the Connection hasn't been initialized yet
+	 * @return 共享的 Connection（永不为 {@code null}）
+	 * @throws IllegalStateException 如果此容器未维护共享 Connection，
+	 * 或该 Connection 尚未初始化
 	 * @see #sharedConnectionEnabled()
 	 */
 	protected final Connection getSharedConnection() {
@@ -484,9 +484,9 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * 接收给定的任务对象并重新调度它：如果此容器当前正在运行，则立即调度；
 	 * 否则等到此容器重新启动后再调度。
 	 * <p>如果此容器已经关闭，则该任务根本不会被重新调度。
-	 * @param task the task object to reschedule
-	 * @return whether the task has been rescheduled
-	 * (either immediately or for a restart of this container)
+	 * @param task 要重新调度的任务对象
+	 * @return 任务是否已重新调度
+	 * （立即调度或为此容器的重启而调度）
 	 * @see #doRescheduleTask
 	 */
 	protected final boolean rescheduleTaskIfNecessary(Object task) {
@@ -547,7 +547,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * 立即重新调度给定的任务对象。
 	 * <p>如果子类调用了 {@code rescheduleTaskIfNecessary}，则需要实现此方法。
 	 * 此实现会抛出 UnsupportedOperationException。
-	 * @param task the task object to reschedule
+	 * @param task 要重新调度的任务对象
 	 * @see #rescheduleTaskIfNecessary
 	 */
 	protected void doRescheduleTask(Object task) {
@@ -558,8 +558,8 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	/**
 	 * 记录被 {@link #doRescheduleTask} 拒绝的任务。
 	 * <p>默认实现只是以 warn 级别记录一条相应消息。
-	 * @param task the rejected task object
-	 * @param ex the exception thrown from {@link #doRescheduleTask}
+	 * @param task 被拒绝的任务对象
+	 * @param ex 从 {@link #doRescheduleTask} 抛出的异常
 	 */
 	protected void logRejectedTask(Object task, RuntimeException ex) {
 		if (logger.isWarnEnabled()) {
@@ -582,7 +582,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * 在此容器内注册所有调用者。
 	 * <p>子类需要针对其特定的调用者管理流程实现此方法。
 	 * <p>共享的 JMS Connection（如果有）此时已经启动。
-	 * @throws JMSException if registration failed
+	 * @throws JMSException 如果注册失败
 	 * @see #getSharedConnection()
 	 */
 	protected abstract void doInitialize() throws JMSException;
@@ -591,7 +591,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * 关闭已注册的调用者。
 	 * <p>子类需要针对其特定的调用者管理流程实现此方法。
 	 * <p>共享的 JMS Connection（如果有）将在此<i>之后</i>自动关闭。
-	 * @throws JMSException if shutdown failed
+	 * @throws JMSException 如果关闭失败
 	 * @see #shutdown()
 	 */
 	protected abstract void doShutdown() throws JMSException;
@@ -606,7 +606,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 
 		/**
 		 * 创建一个新的 SharedConnectionNotInitializedException。
-		 * @param msg the detail message
+		 * @param msg 详细消息
 		 */
 		protected SharedConnectionNotInitializedException(String msg) {
 			super(msg);

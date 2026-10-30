@@ -124,7 +124,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 
 	/**
 	 * 根据给定的 ConnectionFactory 创建一个新的 JmsTemplate。
-	 * @param connectionFactory the ConnectionFactory to obtain Connections from
+	 * @param connectionFactory 用于获取 Connection 的 ConnectionFactory
 	 */
 	public JmsTemplate(ConnectionFactory connectionFactory) {
 		this();
@@ -336,8 +336,8 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	/**
 	 * 如果为 "true"，发送消息时将使用 deliveryMode、priority 和 timeToLive 的值。
 	 * 否则，将使用可能通过管理方式设置的默认值。
-	 * @return true if overriding default values of QOS parameters
-	 * (deliveryMode, priority, and timeToLive)
+	 * @return 如果覆盖 QOS 参数的默认值（deliveryMode、priority 和 timeToLive），
+	 * 则返回 {@code true}。
 	 * @see #setDeliveryMode
 	 * @see #setPriority
 	 * @see #setTimeToLive
@@ -348,7 +348,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 
 	/**
 	 * 设置发送消息时要使用的 {@link QosSettings}。
-	 * @param settings the deliveryMode, priority, and timeToLive settings to use
+	 * @param settings 要使用的 deliveryMode、priority 和 timeToLive 设置
 	 * @since 5.0
 	 * @see #setExplicitQosEnabled(boolean)
 	 * @see #setDeliveryMode(int)
@@ -380,7 +380,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	 * 默认为 JMS Message 的默认值："PERSISTENT"。
 	 * <p>由于默认值可能通过管理方式定义，
 	 * 因此仅当 "isExplicitQosEnabled" 等于 "true" 时才会使用此设置。
-	 * @param deliveryMode the delivery mode to use
+	 * @param deliveryMode 要使用的投递模式
 	 * @see #isExplicitQosEnabled
 	 * @see javax.jms.DeliveryMode#PERSISTENT
 	 * @see javax.jms.DeliveryMode#NON_PERSISTENT
@@ -421,7 +421,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	 * 设置发送时消息的生存时间。
 	 * <p>由于默认值可能通过管理方式定义，
 	 * 因此仅当 "isExplicitQosEnabled" 等于 "true" 时才会使用此设置。
-	 * @param timeToLive the message's lifetime (in milliseconds)
+	 * @param timeToLive 消息的生存期（以毫秒为单位）
 	 * @see #isExplicitQosEnabled
 	 * @see javax.jms.Message#DEFAULT_TIME_TO_LIVE
 	 * @see javax.jms.MessageProducer#send(javax.jms.Message, int, int, long)
@@ -454,10 +454,10 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	 * <p>对于一般情况，请使用 {@code execute(SessionCallback)}。
 	 * 仅在接收消息时才需要启动 JMS Connection，这最好通过 {@code receive}
 	 * 方法实现。
-	 * @param action callback object that exposes the Session
-	 * @param startConnection whether to start the Connection
-	 * @return the result object from working with the Session
-	 * @throws JmsException if there is any problem
+	 * @param action 暴露 Session 的回调对象
+	 * @param startConnection 是否启动该 Connection
+	 * @return 使用 Session 得到的结果对象
+	 * @throws JmsException 如果出现任何问题
 	 * @see #execute(SessionCallback)
 	 * @see #receive
 	 */
@@ -569,10 +569,10 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 
 	/**
 	 * 发送给定的 JMS 消息。
-	 * @param session the JMS Session to operate on
-	 * @param destination the JMS Destination to send to
-	 * @param messageCreator callback to create a JMS Message
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param session 要操作的 JMS Session
+	 * @param destination 要发送到的 JMS Destination
+	 * @param messageCreator 用于创建 JMS Message 的回调
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 */
 	protected void doSend(Session session, Destination destination, MessageCreator messageCreator)
 			throws JMSException {
@@ -598,9 +598,9 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 
 	/**
 	 * 实际发送给定的 JMS 消息。
-	 * @param producer the JMS MessageProducer to send with
-	 * @param message the JMS Message to send
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param producer 用于发送的 JMS MessageProducer
+	 * @param message 要发送的 JMS Message
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 */
 	protected void doSend(MessageProducer producer, Message message) throws JMSException {
 		if (this.deliveryDelay >= 0) {
@@ -731,11 +731,11 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 
 	/**
 	 * 接收 JMS 消息。
-	 * @param session the JMS Session to operate on
-	 * @param destination the JMS Destination to receive from
-	 * @param messageSelector the message selector for this consumer (can be {@code null})
-	 * @return the JMS Message received, or {@code null} if none
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param session 要操作的 JMS Session
+	 * @param destination 要从中接收的 JMS Destination
+	 * @param messageSelector 此消费者的消息选择器（可为 {@code null}）
+	 * @return 接收到的 JMS Message；如果没有，则为 {@code null}
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 */
 	@Nullable
 	protected Message doReceive(Session session, Destination destination, @Nullable String messageSelector)
@@ -746,10 +746,10 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 
 	/**
 	 * 实际接收 JMS 消息。
-	 * @param session the JMS Session to operate on
-	 * @param consumer the JMS MessageConsumer to receive with
-	 * @return the JMS Message received, or {@code null} if none
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param session 要操作的 JMS Session
+	 * @param consumer 用于接收的 JMS MessageConsumer
+	 * @return 接收到的 JMS Message；如果没有，则为 {@code null}
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 */
 	@Nullable
 	protected Message doReceive(Session session, MessageConsumer consumer) throws JMSException {
@@ -828,8 +828,8 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 
 	/**
 	 * 从给定的 JMS 消息中提取内容。
-	 * @param message the JMS Message to convert (can be {@code null})
-	 * @return the content of the message, or {@code null} if none
+	 * @param message 要转换的 JMS Message（可为 {@code null}）
+	 * @return 消息的内容；如果没有，则为 {@code null}
 	 */
 	@Nullable
 	protected Object doConvertFromMessage(@Nullable Message message) {
@@ -880,7 +880,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	 * 向给定的 {@link Destination} 发送请求消息，并阻塞等待在即时创建的
 	 * 临时队列上收到回复。
 	 * <p>返回响应消息；如果没有任何消息，则返回 {@code null}。
-	 * @throws JMSException if thrown by JMS API methods
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 */
 	@Nullable
 	protected Message doSendAndReceive(Session session, Destination destination, MessageCreator messageCreator)
@@ -1021,9 +1021,8 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	/**
 	 * 从给定的 JmsResourceHolder 中获取合适的 Connection。
 	 * <p>此实现接受任何 JMS 1.1 Connection。
-	 * @param holder the JmsResourceHolder
-	 * @return an appropriate Connection fetched from the holder,
-	 * or {@code null} if none found
+	 * @param holder 该 JmsResourceHolder
+	 * @return 从持有者中获取的相应 Connection；如果未找到，则为 {@code null}
 	 */
 	@Nullable
 	protected Connection getConnection(JmsResourceHolder holder) {
@@ -1033,9 +1032,8 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	/**
 	 * 从给定的 JmsResourceHolder 中获取合适的 Session。
 	 * <p>此实现接受任何 JMS 1.1 Session。
-	 * @param holder the JmsResourceHolder
-	 * @return an appropriate Session fetched from the holder,
-	 * or {@code null} if none found
+	 * @param holder 该 JmsResourceHolder
+	 * @return 从持有者中获取的相应 Session；如果未找到，则为 {@code null}
 	 */
 	@Nullable
 	protected Session getSession(JmsResourceHolder holder) {
@@ -1047,8 +1045,8 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	 * Session 处理逻辑管理，而不是由外部事务协调器管理。
 	 * <p>注意：Session 自身的 transacted 标志此前已检查过。
 	 * 此方法用于确定 Session 的事务是本地事务还是外部协调的。
-	 * @param session the Session to check
-	 * @return whether the given Session is locally transacted
+	 * @param session 要检查的 Session
+	 * @return 给定 Session 是否为本地事务性的
 	 * @see #isSessionTransacted()
 	 * @see org.springframework.jms.connection.ConnectionFactoryUtils#isSessionTransactional
 	 */
@@ -1061,10 +1059,10 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	 * 为给定的 Session 和 Destination 创建 JMS MessageProducer，
 	 * 必要时将其配置为禁用消息 ID 和/或时间戳。
 	 * <p>委托给 {@link #doCreateProducer} 创建原始的 JMS MessageProducer。
-	 * @param session the JMS Session to create a MessageProducer for
-	 * @param destination the JMS Destination to create a MessageProducer for
-	 * @return the new JMS MessageProducer
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param session 要为其创建 MessageProducer 的 JMS Session
+	 * @param destination 要为其创建 MessageProducer 的 JMS Destination
+	 * @return 新的 JMS MessageProducer
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 * @see #setMessageIdEnabled
 	 * @see #setMessageTimestampEnabled
 	 */
@@ -1082,10 +1080,10 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	/**
 	 * 为给定的 Session 和 Destination 创建原始的 JMS MessageProducer。
 	 * <p>此实现使用 JMS 1.1 API。
-	 * @param session the JMS Session to create a MessageProducer for
-	 * @param destination the JMS Destination to create a MessageProducer for
-	 * @return the new JMS MessageProducer
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param session 要为其创建 MessageProducer 的 JMS Session
+	 * @param destination 要为其创建 MessageProducer 的 JMS Destination
+	 * @return 新的 JMS MessageProducer
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 */
 	protected MessageProducer doCreateProducer(Session session, @Nullable Destination destination) throws JMSException {
 		return session.createProducer(destination);
@@ -1094,11 +1092,11 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	/**
 	 * 为给定的 Session 和 Destination 创建 JMS MessageConsumer。
 	 * <p>此实现使用 JMS 1.1 API。
-	 * @param session the JMS Session to create a MessageConsumer for
-	 * @param destination the JMS Destination to create a MessageConsumer for
-	 * @param messageSelector the message selector for this consumer (can be {@code null})
-	 * @return the new JMS MessageConsumer
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param session 要为其创建 MessageConsumer 的 JMS Session
+	 * @param destination 要为其创建 MessageConsumer 的 JMS Destination
+	 * @param messageSelector 此消费者的消息选择器（可为 {@code null}）
+	 * @return 新的 JMS MessageConsumer
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 */
 	protected MessageConsumer createConsumer(Session session, Destination destination, @Nullable String messageSelector)
 			throws JMSException {
@@ -1116,11 +1114,11 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 
 	/**
 	 * 为给定的 Session 和 Queue 创建 JMS QueueBrowser。
-	 * @param session the JMS Session to create a QueueBrowser for
-	 * @param queue the JMS Queue to create a QueueBrowser for
-	 * @param messageSelector the message selector for this consumer (can be {@code null})
-	 * @return the new JMS QueueBrowser
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param session 要为其创建 QueueBrowser 的 JMS Session
+	 * @param queue 要为其创建 QueueBrowser 的 JMS Queue
+	 * @param messageSelector 此消费者的消息选择器（可为 {@code null}）
+	 * @return 新的 JMS QueueBrowser
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 * @see #setMessageIdEnabled
 	 * @see #setMessageTimestampEnabled
 	 */

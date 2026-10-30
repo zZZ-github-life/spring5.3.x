@@ -191,8 +191,8 @@ public class PathPattern implements Comparable<PathPattern> {
 
 	/**
 	 * 此模式是否匹配给定路径。
-	 * @param pathContainer the candidate path to attempt to match against
-	 * @return {@code true} if the path matches this pattern
+	 * @param pathContainer 要尝试匹配的候选路径
+	 * @return 如果该路径与此模式匹配则返回 {@code true}
 	 */
 	public boolean matches(PathContainer pathContainer) {
 		if (this.head == null) {
@@ -214,8 +214,8 @@ public class PathPattern implements Comparable<PathPattern> {
 	/**
 	 * 将此模式与给定的 URI 路径匹配，并返回提取的 URI 模板变量
 	 * 以及路径参数（矩阵变量）。
-	 * @param pathContainer the candidate path to attempt to match against
-	 * @return info object with the extracted variables, or {@code null} for no match
+	 * @param pathContainer 要尝试匹配的候选路径
+	 * @return 包含提取出的变量的信息对象；不匹配时为 {@code null}
 	 */
 	@Nullable
 	public PathMatchInfo matchAndExtract(PathContainer pathContainer) {
@@ -239,8 +239,8 @@ public class PathPattern implements Comparable<PathPattern> {
 	/**
 	 * 匹配给定路径的开头，并返回此模式未覆盖的剩余部分。
 	 * 这对于匹配嵌套路由很有用，因为路径会在每一层级逐步匹配。
-	 * @param pathContainer the candidate path to attempt to match against
-	 * @return info object with the match result or {@code null} for no match
+	 * @param pathContainer 要尝试匹配的候选路径
+	 * @return 包含匹配结果的信息对象；不匹配时为 {@code null}
 	 */
 	@Nullable
 	public PathRemainingMatchInfo matchStartOfPath(PathContainer pathContainer) {
@@ -287,9 +287,9 @@ public class PathPattern implements Comparable<PathPattern> {
 	 * <li>返回结果中重复出现的分隔符会被移除
 	 * <li>返回结果中开头和末尾的分隔符会被移除
 	 * </ul>
-	 * @param path a path that matches this pattern
-	 * @return the subset of the path that is matched by pattern or "" if none
-	 * of it is matched by pattern elements
+	 * @param path 与此模式匹配的路径
+	 * @return 被模式匹配的路径子集；如果没有被任何模式元素匹配，
+	 * 则为 ""
 	 */
 	public PathContainer extractPathWithinPattern(PathContainer path) {
 		List<Element> pathElements = path.elements();
@@ -482,7 +482,7 @@ public class PathPattern implements Comparable<PathPattern> {
 
 	/**
 	 * 返回通过遍历路径元素链构建的模式字符串形式。
-	 * @return the string form of the pattern
+	 * @return 模式的字符串形式
 	 */
 	String computePatternString() {
 		StringBuilder sb = new StringBuilder();
@@ -503,9 +503,9 @@ public class PathPattern implements Comparable<PathPattern> {
 	 * 将两个路径连接在一起，必要时包含分隔符。
 	 * 多余的分隔符会被移除（如果第一个路径以分隔符结尾
 	 * 且第二个路径以分隔符开头）。
-	 * @param path1 first path
-	 * @param path2 second path
-	 * @return joined path that may include separator if necessary
+	 * @param path1 第一个路径
+	 * @param path2 第二个路径
+	 * @return 拼接后的路径，必要时可能包含分隔符
 	 */
 	private String concat(String path1, String path2) {
 		boolean path1EndsWithSeparator = (path1.charAt(path1.length() - 1) == getSeparator());
@@ -523,8 +523,8 @@ public class PathPattern implements Comparable<PathPattern> {
 
 	/**
 	 * 返回容器是否非 null 且元素数大于零。
-	 * @param container a path container
-	 * @return {@code true} has more than zero elements
+	 * @param container 一个路径容器
+	 * @return 如果元素数大于零则返回 {@code true}
 	 */
 	private boolean hasLength(@Nullable PathContainer container) {
 		return container != null && container.elements().size() > 0;
@@ -704,8 +704,8 @@ public class PathPattern implements Comparable<PathPattern> {
 
 		/**
 		 * 返回指定索引处的元素是否为分隔符。
-		 * @param pathIndex possible index of a separator
-		 * @return {@code true} if element is a separator
+		 * @param pathIndex 可能是分隔符的索引
+		 * @return 如果该元素是分隔符则返回 {@code true}
 		 */
 		boolean isSeparator(int pathIndex) {
 			return this.pathElements.get(pathIndex) instanceof Separator;
@@ -713,8 +713,8 @@ public class PathPattern implements Comparable<PathPattern> {
 
 		/**
 		 * 返回指定元素的解码值。
-		 * @param pathIndex path element index
-		 * @return the decoded value
+		 * @param pathIndex 路径元素索引
+		 * @return 解码后的值
 		 */
 		String pathElementValue(int pathIndex) {
 			Element element = (pathIndex < this.pathLength) ? this.pathElements.get(pathIndex) : null;

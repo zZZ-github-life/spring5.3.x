@@ -29,7 +29,7 @@ public abstract class ConversionException extends NestedRuntimeException {
 
 	/**
 	 * 构造一个新的转换异常。
-	 * @param message the exception message
+	 * @param message 异常消息
 	 */
 	public ConversionException(String message) {
 		super(message);
@@ -37,8 +37,8 @@ public abstract class ConversionException extends NestedRuntimeException {
 
 	/**
 	 * 构造一个新的转换异常。
-	 * @param message the exception message
-	 * @param cause the cause
+	 * @param message 异常消息
+	 * @param cause 原因
 	 */
 	public ConversionException(String message, Throwable cause) {
 		super(message, cause);

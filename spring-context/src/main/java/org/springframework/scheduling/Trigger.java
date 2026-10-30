@@ -32,10 +32,9 @@ public interface Trigger {
 
 	/**
 	 * 根据给定的触发器上下文确定下一次执行时间。
-	 * @param triggerContext context object encapsulating last execution times
-	 * and last completion time
-	 * @return the next execution time as defined by the trigger,
-	 * or {@code null} if the trigger won't fire anymore
+	 * @param triggerContext 封装上次执行时间和上次完成时间的上下文对象
+	 * @return 由该触发器定义的下次执行时间；
+	 * 如果该触发器不再触发，则为 {@code null}
 	 */
 	@Nullable
 	Date nextExecutionTime(TriggerContext triggerContext);

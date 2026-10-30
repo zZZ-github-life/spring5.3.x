@@ -307,9 +307,9 @@ public class BeanDefinitionParserDelegate {
 	 * 用默认的 lazy-init、autowire、dependency check 设置以及 init-method、destroy-method 和 merge 设
 	 * 置填充给定的 DocumentDefaultsDefinition 实例。通过回退到 {@code parentDefaults} 来支持嵌套的
 	 * 'beans' 元素用例，以防本地没有显式设置这些默认值。
-	 * @param defaults the defaults to populate
-	 * @param parentDefaults the parent BeanDefinitionParserDelegate (if any) defaults to fall back to
-	 * @param root the root element of the current bean definition document (or nested beans element)
+	 * @param defaults 要填充的默认值
+	 * @param parentDefaults 要回退到的父 BeanDefinitionParserDelegate 的默认值（如果有）
+	 * @param root 当前 Bean 定义文档（或嵌套的 beans 元素）的根元素
 	 */
 	protected void populateDefaults(DocumentDefaultsDefinition defaults, @Nullable DocumentDefaultsDefinition parentDefaults, Element root) {
 		String lazyInit = root.getAttribute(DEFAULT_LAZY_INIT_ATTRIBUTE);
@@ -536,10 +536,10 @@ public class BeanDefinitionParserDelegate {
 
 	/**
 	 * 将给定 bean 元素的属性应用到给定的 Bean 定义。
-	 * @param ele bean declaration element
-	 * @param beanName bean name
-	 * @param containingBean containing bean definition
-	 * @return a bean definition initialized according to the bean element attributes
+	 * @param ele Bean 声明元素
+	 * @param beanName Bean 名称
+	 * @param containingBean 包含 Bean 定义
+	 * @return 根据 Bean 元素属性初始化的 Bean 定义
 	 */
 	public AbstractBeanDefinition parseBeanDefinitionAttributes(Element ele, String beanName,
 			@Nullable BeanDefinition containingBean, AbstractBeanDefinition bd) {
@@ -619,10 +619,10 @@ public class BeanDefinitionParserDelegate {
 
 	/**
 	 * 为给定的类名和父名称创建 Bean 定义。
-	 * @param className the name of the bean class
-	 * @param parentName the name of the bean's parent bean
-	 * @return the newly created bean definition
-	 * @throws ClassNotFoundException if bean class resolution was attempted but failed
+	 * @param className Bean 类的名称
+	 * @param parentName 该 Bean 的父 Bean 的名称
+	 * @return 新创建的 Bean 定义
+	 * @throws ClassNotFoundException 如果尝试了 Bean 类解析但失败
 	 */
 	protected AbstractBeanDefinition createBeanDefinition(@Nullable String className, @Nullable String parentName)
 			throws ClassNotFoundException {
@@ -948,8 +948,8 @@ public class BeanDefinitionParserDelegate {
 
 	/**
 	 * 解析 property 或 constructor-arg 元素的 value、ref 或 collection 子元素。
-	 * @param ele subelement of property element; we don't know which yet
-	 * @param bd the current bean definition (if any)
+	 * @param ele property 元素的子元素；目前尚不确定是哪一个
+	 * @param bd 当前 Bean 定义（如果有）
 	 */
 	@Nullable
 	public Object parsePropertySubElement(Element ele, @Nullable BeanDefinition bd) {
@@ -958,10 +958,9 @@ public class BeanDefinitionParserDelegate {
 
 	/**
 	 * 解析 property 或 constructor-arg 元素的 value、ref 或 collection 子元素。
-	 * @param ele subelement of property element; we don't know which yet
-	 * @param bd the current bean definition (if any)
-	 * @param defaultValueType the default type (class name) for any
-	 * {@code <value>} tag that might be created
+	 * @param ele property 元素的子元素；目前尚不确定是哪一个
+	 * @param bd 当前 Bean 定义（如果有）
+	 * @param defaultValueType 可能创建的任何 {@code <value>} 标签的默认类型（类名）
 	 */
 	@Nullable
 	public Object parsePropertySubElement(Element ele, @Nullable BeanDefinition bd, @Nullable String defaultValueType) {
@@ -1347,8 +1346,8 @@ public class BeanDefinitionParserDelegate {
 
 	/**
 	 * 解析自定义元素（位于默认命名空间之外）。
-	 * @param ele the element to parse
-	 * @return the resulting bean definition
+	 * @param ele 要解析的元素
+	 * @return 得到的 Bean 定义
 	 */
 	@Nullable
 	public BeanDefinition parseCustomElement(Element ele) {
@@ -1357,9 +1356,9 @@ public class BeanDefinitionParserDelegate {
 
 	/**
 	 * 解析自定义元素（位于默认命名空间之外）。
-	 * @param ele the element to parse
-	 * @param containingBd the containing bean definition (if any)
-	 * @return the resulting bean definition
+	 * @param ele 要解析的元素
+	 * @param containingBd 包含的 Bean 定义（如果有）
+	 * @return 得到的 Bean 定义
 	 */
 	@Nullable
 	public BeanDefinition parseCustomElement(Element ele, @Nullable BeanDefinition containingBd) {
@@ -1377,9 +1376,9 @@ public class BeanDefinitionParserDelegate {
 
 	/**
 	 * 如果适用，通过命名空间处理器装饰给定的 Bean 定义。
-	 * @param ele the current element
-	 * @param originalDef the current bean definition
-	 * @return the decorated bean definition
+	 * @param ele 当前元素
+	 * @param originalDef 当前 Bean 定义
+	 * @return 装饰后的 Bean 定义
 	 */
 	public BeanDefinitionHolder decorateBeanDefinitionIfRequired(Element ele, BeanDefinitionHolder originalDef) {
 		return decorateBeanDefinitionIfRequired(ele, originalDef, null);
@@ -1387,10 +1386,10 @@ public class BeanDefinitionParserDelegate {
 
 	/**
 	 * 如果适用，通过命名空间处理器装饰给定的 Bean 定义。
-	 * @param ele the current element
-	 * @param originalDef the current bean definition
-	 * @param containingBd the containing bean definition (if any)
-	 * @return the decorated bean definition
+	 * @param ele 当前元素
+	 * @param originalDef 当前 Bean 定义
+	 * @param containingBd 包含的 Bean 定义（如果有）
+	 * @return 装饰后的 Bean 定义
 	 */
 	public BeanDefinitionHolder decorateBeanDefinitionIfRequired(
 			Element ele, BeanDefinitionHolder originalDef, @Nullable BeanDefinition containingBd) {
@@ -1417,10 +1416,10 @@ public class BeanDefinitionParserDelegate {
 
 	/**
 	 * 如果适用，通过命名空间处理器装饰给定的 Bean 定义。
-	 * @param node the current child node
-	 * @param originalDef the current bean definition
-	 * @param containingBd the containing bean definition (if any)
-	 * @return the decorated bean definition
+	 * @param node 当前子节点
+	 * @param originalDef 当前 Bean 定义
+	 * @param containingBd 包含该定义的 Bean 定义（如果有）
+	 * @return 装饰后的 Bean 定义
 	 */
 	public BeanDefinitionHolder decorateIfRequired(
 			Node node, BeanDefinitionHolder originalDef, @Nullable BeanDefinition containingBd) {
@@ -1469,7 +1468,7 @@ public class BeanDefinitionParserDelegate {
 	/**
 	 * 获取所提供节点的命名空间 URI。<p>默认实现使用 {@link Node#getNamespaceURI}。子类可以覆盖默认实现，
 	 * 以提供不同的命名空间识别机制。
-	 * @param node the node
+	 * @param node 该节点
 	 */
 	@Nullable
 	public String getNamespaceURI(Node node) {
@@ -1479,7 +1478,7 @@ public class BeanDefinitionParserDelegate {
 	/**
 	 * 获取所提供 {@link Node} 的本地名称。<p>默认实现调用 {@link Node#getLocalName}。子类可以覆盖默认
 	 * 实现，以提供获取本地名称的不同机制。
-	 * @param node the {@code Node}
+	 * @param node 该 {@code Node}
 	 */
 	public String getLocalName(Node node) {
 		return node.getLocalName();
@@ -1489,8 +1488,8 @@ public class BeanDefinitionParserDelegate {
 	 * 确定所提供节点的名称是否等于所提供的名称。<p>默认实现会将所提供的期望名称同时与
 	 * {@link Node#getNodeName()} 和 {@link Node#getLocalName()} 进行比对。<p>子类可以覆盖默认实现，以
 	 * 提供比较节点名称的不同机制。
-	 * @param node the node to compare
-	 * @param desiredName the name to check for
+	 * @param node 要比较的节点
+	 * @param desiredName 要检查的名称
 	 */
 	public boolean nodeNameEquals(Node node, String desiredName) {
 		return desiredName.equals(node.getNodeName()) || desiredName.equals(getLocalName(node));

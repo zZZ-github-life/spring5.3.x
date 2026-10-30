@@ -127,7 +127,7 @@ public class ProtobufHttpMessageConverter extends AbstractHttpMessageConverter<M
 	/**
 	 * 构造一个新的 {@code ProtobufHttpMessageConverter}，
 	 * 并提供一个允许注册消息扩展的初始化器。
-	 * @param registryInitializer an initializer for message extensions
+	 * @param registryInitializer 消息扩展的初始化器
 	 * @deprecated as of Spring Framework 5.1, use {@link #ProtobufHttpMessageConverter(ExtensionRegistry)} instead
 	 */
 	@Deprecated
@@ -141,7 +141,7 @@ public class ProtobufHttpMessageConverter extends AbstractHttpMessageConverter<M
 	/**
 	 * 构造一个新的 {@code ProtobufHttpMessageConverter}，
 	 * 并提供一个指定 Protocol Message 扩展的注册表。
-	 * @param extensionRegistry the registry to populate
+	 * @param extensionRegistry 要填充的注册表
 	 */
 	public ProtobufHttpMessageConverter(ExtensionRegistry extensionRegistry) {
 		this(null, extensionRegistry);

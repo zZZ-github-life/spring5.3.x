@@ -116,8 +116,8 @@ abstract class AbstractStaxXMLReader extends AbstractXMLReader {
 	/**
 	 * 将 {@code QName} 转换为 DOM 和 SAX 所使用的限定名。如果设置了前缀，返回的字符串格式为
 	 * {@code prefix:localName}；否则仅为 {@code localName}。
-	 * @param qName the {@code QName}
-	 * @return the qualified name
+	 * @param qName 该 {@code QName}
+	 * @return 限定名
 	 */
 	protected String toQualifiedName(QName qName) {
 		String prefix = qName.getPrefix();
@@ -133,8 +133,8 @@ abstract class AbstractStaxXMLReader extends AbstractXMLReader {
 	/**
 	 * 解析构造时传入的 StAX XML 读取器。
 	 * <p><b>NOTE:</b> 给定的 {@code InputSource} 不会被读取，而是被忽略。
-	 * @param ignored is ignored
-	 * @throws SAXException a SAX exception, possibly wrapping a {@code XMLStreamException}
+	 * @param ignored 被忽略
+	 * @throws SAXException SAX 异常，可能包装了一个 {@code XMLStreamException}
 	 */
 	@Override
 	public final void parse(InputSource ignored) throws SAXException {
@@ -144,8 +144,8 @@ abstract class AbstractStaxXMLReader extends AbstractXMLReader {
 	/**
 	 * 解析构造时传入的 StAX XML 读取器。
 	 * <p><b>NOTE:</b> 给定的系统标识符不会被读取，而是被忽略。
-	 * @param ignored is ignored
-	 * @throws SAXException a SAX exception, possibly wrapping a {@code XMLStreamException}
+	 * @param ignored 被忽略
+	 * @throws SAXException SAX 异常，可能包装了一个 {@code XMLStreamException}
 	 */
 	@Override
 	public final void parse(String ignored) throws SAXException {

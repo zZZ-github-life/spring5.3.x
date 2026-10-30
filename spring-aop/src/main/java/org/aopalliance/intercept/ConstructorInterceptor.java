@@ -44,12 +44,10 @@ public interface ConstructorInterceptor extends Interceptor  {
 
 	/**
 	 * 实现此方法以在新对象构造前后执行额外的处理。有礼貌的实现通常会调用 {@link Joinpoint#proceed()}。
-	 * @param invocation the construction joinpoint
-	 * @return the newly created object, which is also the result of
-	 * the call to {@link Joinpoint#proceed()}; might be replaced by
-	 * the interceptor
-	 * @throws Throwable if the interceptors or the target object
-	 * throws an exception
+	 * @param invocation 构造连接点
+	 * @return 新创建的对象，同时也是调用 {@link Joinpoint#proceed()} 的结果；
+	 * 可能被拦截器替换
+	 * @throws Throwable 如果拦截器或目标对象抛出异常
 	 */
 	@Nonnull
 	Object construct(ConstructorInvocation invocation) throws Throwable;

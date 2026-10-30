@@ -140,9 +140,9 @@ public final class MockServerHttpRequest extends AbstractServerHttpRequest {
 	 * 使用给定的 URI 模板创建一个 HTTP GET 构建器。给定的 URI 可以
 	 * 包含查询参数，也可以稍后通过
 	 * {@link BaseBuilder#queryParam queryParam} 构建器方法添加。
-	 * @param urlTemplate a URL template; the resulting URL will be encoded
-	 * @param uriVars zero or more URI variables
-	 * @return the created builder
+	 * @param urlTemplate URL 模板；生成的 URL 将被编码
+	 * @param uriVars 零个或多个 URI 变量
+	 * @return 所创建的构建器
 	 */
 	public static BaseBuilder<?> get(String urlTemplate, Object... uriVars) {
 		return method(HttpMethod.GET, urlTemplate, uriVars);
@@ -150,9 +150,9 @@ public final class MockServerHttpRequest extends AbstractServerHttpRequest {
 
 	/**
 	 * HTTP HEAD 变体。一般信息请参见 {@link #get(String, Object...)}。
-	 * @param urlTemplate a URL template; the resulting URL will be encoded
-	 * @param uriVars zero or more URI variables
-	 * @return the created builder
+	 * @param urlTemplate URL 模板；生成的 URL 将被编码
+	 * @param uriVars 零个或多个 URI 变量
+	 * @return 所创建的构建器
 	 */
 	public static BaseBuilder<?> head(String urlTemplate, Object... uriVars) {
 		return method(HttpMethod.HEAD, urlTemplate, uriVars);
@@ -160,9 +160,9 @@ public final class MockServerHttpRequest extends AbstractServerHttpRequest {
 
 	/**
 	 * HTTP POST 变体。一般信息请参见 {@link #get(String, Object...)}。
-	 * @param urlTemplate a URL template; the resulting URL will be encoded
-	 * @param uriVars zero or more URI variables
-	 * @return the created builder
+	 * @param urlTemplate URL 模板；生成的 URL 将被编码
+	 * @param uriVars 零个或多个 URI 变量
+	 * @return 所创建的构建器
 	 */
 	public static BodyBuilder post(String urlTemplate, Object... uriVars) {
 		return method(HttpMethod.POST, urlTemplate, uriVars);
@@ -171,9 +171,9 @@ public final class MockServerHttpRequest extends AbstractServerHttpRequest {
 	/**
 	 * HTTP PUT 变体。一般信息请参见 {@link #get(String, Object...)}。
 	 * {@link BaseBuilder#queryParam queryParam} 构建器方法。
-	 * @param urlTemplate a URL template; the resulting URL will be encoded
-	 * @param uriVars zero or more URI variables
-	 * @return the created builder
+	 * @param urlTemplate URL 模板；生成的 URL 将被编码
+	 * @param uriVars 零个或多个 URI 变量
+	 * @return 所创建的构建器
 	 */
 	public static BodyBuilder put(String urlTemplate, Object... uriVars) {
 		return method(HttpMethod.PUT, urlTemplate, uriVars);
@@ -181,9 +181,9 @@ public final class MockServerHttpRequest extends AbstractServerHttpRequest {
 
 	/**
 	 * HTTP PATCH 变体。一般信息请参见 {@link #get(String, Object...)}。
-	 * @param urlTemplate a URL template; the resulting URL will be encoded
-	 * @param uriVars zero or more URI variables
-	 * @return the created builder
+	 * @param urlTemplate URL 模板；生成的 URL 将被编码
+	 * @param uriVars 零个或多个 URI 变量
+	 * @return 所创建的构建器
 	 */
 	public static BodyBuilder patch(String urlTemplate, Object... uriVars) {
 		return method(HttpMethod.PATCH, urlTemplate, uriVars);
@@ -191,9 +191,9 @@ public final class MockServerHttpRequest extends AbstractServerHttpRequest {
 
 	/**
 	 * HTTP DELETE 变体。一般信息请参见 {@link #get(String, Object...)}。
-	 * @param urlTemplate a URL template; the resulting URL will be encoded
-	 * @param uriVars zero or more URI variables
-	 * @return the created builder
+	 * @param urlTemplate URL 模板；生成的 URL 将被编码
+	 * @param uriVars 零个或多个 URI 变量
+	 * @return 所创建的构建器
 	 */
 	public static BaseBuilder<?> delete(String urlTemplate, Object... uriVars) {
 		return method(HttpMethod.DELETE, urlTemplate, uriVars);
@@ -201,9 +201,9 @@ public final class MockServerHttpRequest extends AbstractServerHttpRequest {
 
 	/**
 	 * HTTP OPTIONS 变体。一般信息请参见 {@link #get(String, Object...)}。
-	 * @param urlTemplate a URL template; the resulting URL will be encoded
-	 * @param uriVars zero or more URI variables
-	 * @return the created builder
+	 * @param urlTemplate URL 模板；生成的 URL 将被编码
+	 * @param uriVars 零个或多个 URI 变量
+	 * @return 所创建的构建器
 	 */
 	public static BaseBuilder<?> options(String urlTemplate, Object... uriVars) {
 		return method(HttpMethod.OPTIONS, urlTemplate, uriVars);
@@ -211,9 +211,9 @@ public final class MockServerHttpRequest extends AbstractServerHttpRequest {
 
 	/**
 	 * 使用给定的 HTTP 方法和 {@link URI} 创建构建器。
-	 * @param method the HTTP method (GET, POST, etc)
-	 * @param url the URL
-	 * @return the created builder
+	 * @param method HTTP 方法（GET、POST 等）
+	 * @param url 该 URL
+	 * @return 所创建的构建器
 	 */
 	public static BodyBuilder method(HttpMethod method, URI url) {
 		Assert.notNull(method, "HTTP method is required. " +
@@ -225,10 +225,10 @@ public final class MockServerHttpRequest extends AbstractServerHttpRequest {
 	 * {@link #method(HttpMethod, URI)} 的替代方法，接受 URI 模板。
 	 * 给定的 URI 可以包含查询参数，也可以稍后通过
 	 * {@link BaseBuilder#queryParam queryParam} 构建器方法添加。
-	 * @param method the HTTP method (GET, POST, etc)
-	 * @param uri the URI template for the target URL
-	 * @param vars variables to expand into the template
-	 * @return the created builder
+	 * @param method HTTP 方法（GET、POST 等）
+	 * @param uri 目标 URL 的 URI 模板
+	 * @param vars 要展开到模板中的变量
+	 * @return 所创建的构建器
 	 */
 	public static BodyBuilder method(HttpMethod method, String uri, Object... vars) {
 		return method(method, toUri(uri, vars));
@@ -237,10 +237,10 @@ public final class MockServerHttpRequest extends AbstractServerHttpRequest {
 	/**
 	 * 使用超出 {@link HttpMethod} 枚举值范围的
 	 * 原始 HTTP 方法值创建构建器。
-	 * @param httpMethod the HTTP methodValue value
-	 * @param uri the URI template for target the URL
-	 * @param vars variables to expand into the template
-	 * @return the created builder
+	 * @param httpMethod HTTP methodValue 值
+	 * @param uri 目标 URL 的 URI 模板
+	 * @param vars 要展开到模板中的变量
+	 * @return 所创建的构建器
 	 * @since 5.2.7
 	 */
 	public static BodyBuilder method(String httpMethod, String uri, Object... vars) {
@@ -254,7 +254,7 @@ public final class MockServerHttpRequest extends AbstractServerHttpRequest {
 
 	/**
 	 * 请求构建器，暴露与正文无关的属性。
-	 * @param <B> the builder subclass
+	 * @param <B> 构建器子类
 	 */
 	public interface BaseBuilder<B extends BaseBuilder<B>> {
 
@@ -268,17 +268,17 @@ public final class MockServerHttpRequest extends AbstractServerHttpRequest {
 		 * 如果未提供值，生成的 URI 将仅包含查询参数名称
 		 * （即 {@code ?foo} 而不是 {@code ?foo=bar}）。
 		 * <p>提供的查询名称和值将被编码。
-		 * @param name the query parameter name
-		 * @param values the query parameter values
-		 * @return this UriComponentsBuilder
+		 * @param name 查询参数名称
+		 * @param values 查询参数值
+		 * @return 该 UriComponentsBuilder
 		 */
 		B queryParam(String name, Object... values);
 
 		/**
 		 * 添加给定的查询参数及其值。提供的查询名称
 		 * 和对应的值将被编码。
-		 * @param params the params
-		 * @return this UriComponentsBuilder
+		 * @param params 参数
+		 * @return 该 UriComponentsBuilder
 		 */
 		B queryParams(MultiValueMap<String, String> params);
 
@@ -305,76 +305,76 @@ public final class MockServerHttpRequest extends AbstractServerHttpRequest {
 
 		/**
 		 * 添加给定的 Cookie。
-		 * @param cookies the cookies.
+		 * @param cookies 这些 Cookie。
 		 */
 		B cookies(MultiValueMap<String, HttpCookie> cookies);
 
 		/**
 		 * 在给定名称下添加给定的单个头值。
-		 * @param headerName  the header name
-		 * @param headerValues the header value(s)
+		 * @param headerName 头名称
+		 * @param headerValues 头值
 		 * @see HttpHeaders#add(String, String)
 		 */
 		B header(String headerName, String... headerValues);
 
 		/**
 		 * 添加给定的头值。
-		 * @param headers the header values
+		 * @param headers 头值
 		 */
 		B headers(MultiValueMap<String, String> headers);
 
 		/**
 		 * 设置可接受的 {@linkplain MediaType 媒体类型} 列表，
 		 * 由 {@code Accept} 头指定。
-		 * @param acceptableMediaTypes the acceptable media types
+		 * @param acceptableMediaTypes 可接受的媒体类型
 		 */
 		B accept(MediaType... acceptableMediaTypes);
 
 		/**
 		 * 设置可接受的 {@linkplain Charset 字符集} 列表，
 		 * 由 {@code Accept-Charset} 头指定。
-		 * @param acceptableCharsets the acceptable charsets
+		 * @param acceptableCharsets 可接受的字符集
 		 */
 		B acceptCharset(Charset... acceptableCharsets);
 
 		/**
 		 * 设置可接受的 {@linkplain Locale 区域设置} 列表，
 		 * 由 {@code Accept-Languages} 头指定。
-		 * @param acceptableLocales the acceptable locales
+		 * @param acceptableLocales 可接受的语言环境
 		 */
 		B acceptLanguageAsLocales(Locale... acceptableLocales);
 
 		/**
 		 * 设置 {@code If-Modified-Since} 头的值。
 		 * <p>日期应指定为自 1970 年 1 月 1 日 GMT 以来的毫秒数。
-		 * @param ifModifiedSince the new value of the header
+		 * @param ifModifiedSince 头的新值
 		 */
 		B ifModifiedSince(long ifModifiedSince);
 
 		/**
 		 * 设置 {@code If-Unmodified-Since} 头的（新）值。
 		 * <p>日期应指定为自 1970 年 1 月 1 日 GMT 以来的毫秒数。
-		 * @param ifUnmodifiedSince the new value of the header
+		 * @param ifUnmodifiedSince 头的新值
 		 * @see HttpHeaders#setIfUnmodifiedSince(long)
 		 */
 		B ifUnmodifiedSince(long ifUnmodifiedSince);
 
 		/**
 		 * 设置 {@code If-None-Match} 头的值。
-		 * @param ifNoneMatches the new value of the header
+		 * @param ifNoneMatches 头的新值
 		 */
 		B ifNoneMatch(String... ifNoneMatches);
 
 		/**
 		 * 设置 Range 头的（新）值。
-		 * @param ranges the HTTP ranges
+		 * @param ranges HTTP 范围
 		 * @see HttpHeaders#setRange(List)
 		 */
 		B range(HttpRange... ranges);
 
 		/**
 		 * 构建不带正文的请求。
-		 * @return the request
+		 * @return 请求
 		 * @see BodyBuilder#body(Publisher)
 		 * @see BodyBuilder#body(String)
 		 */
@@ -390,8 +390,8 @@ public final class MockServerHttpRequest extends AbstractServerHttpRequest {
 		/**
 		 * 设置正文的长度（以字节为单位），
 		 * 由 {@code Content-Length} 头指定。
-		 * @param contentLength the content length
-		 * @return this builder
+		 * @param contentLength 内容长度
+		 * @return 该构建器
 		 * @see HttpHeaders#setContentLength(long)
 		 */
 		BodyBuilder contentLength(long contentLength);
@@ -399,16 +399,16 @@ public final class MockServerHttpRequest extends AbstractServerHttpRequest {
 		/**
 		 * 设置正文的 {@linkplain MediaType 媒体类型}，
 		 * 由 {@code Content-Type} 头指定。
-		 * @param contentType the content type
-		 * @return this builder
+		 * @param contentType 内容类型
+		 * @return 该构建器
 		 * @see HttpHeaders#setContentType(MediaType)
 		 */
 		BodyBuilder contentType(MediaType contentType);
 
 		/**
 		 * 设置请求的正文并构建请求。
-		 * @param body the body
-		 * @return the built request entity
+		 * @param body 正文
+		 * @return 构建出的请求实体
 		 */
 		MockServerHttpRequest body(Publisher<? extends DataBuffer> body);
 
@@ -416,8 +416,8 @@ public final class MockServerHttpRequest extends AbstractServerHttpRequest {
 		 * 设置请求的正文并构建请求。
 		 * <p>除非请求具有带 charset 属性的 "content-type" 头，
 		 * 否则假定该 String 采用 UTF-8 编码。
-		 * @param body the body as text
-		 * @return the built request entity
+		 * @param body 正文文本
+		 * @return 构建出的请求实体
 		 */
 		MockServerHttpRequest body(String body);
 	}

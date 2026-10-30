@@ -128,8 +128,7 @@ public abstract class YamlProcessor {
 	 * <p>如果未配置支持的类型，则仅支持在 YAML 文档中遇到的 Java 标准类（如
 	 * {@link org.yaml.snakeyaml.constructor.SafeConstructor} 中所定义）。如果遇到不支持的类型，则在处
 	 * 理相应 YAML 节点时将抛出 {@link IllegalStateException}。
-	 * @param supportedTypes the supported types, or an empty array to clear the
-	 * supported types
+	 * @param supportedTypes 受支持的类型；若为空数组则清除受支持的类型
 	 * @since 5.1.16
 	 * @see #createYaml()
 	 */
@@ -149,7 +148,7 @@ public abstract class YamlProcessor {
 	 * {@link #setDocumentMatchers(DocumentMatcher...) matchers} 检查。如果文档匹配，则会连同其
 	 * Properties 表示一起传入回调。取决于 {@link #setResolutionMethod(ResolutionMethod)}，并非所有文档
 	 * 都会被解析。
-	 * @param callback a callback to delegate to once matching documents are found
+	 * @param callback 找到匹配文档后要委托的回调
 	 * @see #createYaml()
 	 */
 	protected void process(MatchCallback callback) {
@@ -286,8 +285,8 @@ public abstract class YamlProcessor {
 	 * 返回给定映射的扁平化版本，递归处理任何嵌套的 Map 或 Collection 值。结果映射中的条目保持与源相同
 	 * 的顺序。当使用来自 {@link MatchCallback} 的 Map 调用时，结果将包含与 {@link MatchCallback}
 	 * Properties 相同的值。
-	 * @param source the source map
-	 * @return a flattened map
+	 * @param source 源映射
+	 * @return 扁平化后的映射
 	 * @since 4.1.3
 	 */
 	protected final Map<String, Object> getFlattenedMap(Map<String, Object> source) {
@@ -345,10 +344,8 @@ public abstract class YamlProcessor {
 
 		/**
 		 * 处理解析结果的给定表示。
-		 * @param properties the properties to process (as a flattened
-		 * representation with indexed keys in case of a collection or map)
-		 * @param map the result map (preserving the original value structure
-		 * in the YAML document)
+		 * @param properties 要处理的属性（扁平化表示，若为集合或映射则使用带索引的键）
+		 * @param map 结果映射（保留 YAML 文档中的原始值结构）
 		 */
 		void process(Properties properties, Map<String, Object> map);
 	}
@@ -362,8 +359,8 @@ public abstract class YamlProcessor {
 
 		/**
 		 * 测试给定属性是否匹配。
-		 * @param properties the properties to test
-		 * @return the status of the match
+		 * @param properties 要测试的属性
+		 * @return 匹配状态
 		 */
 		MatchStatus matches(Properties properties);
 	}

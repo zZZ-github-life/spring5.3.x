@@ -40,9 +40,8 @@ public interface EntityManagerFactoryInfo {
 
 	/**
 	 * 返回创建底层 EntityManagerFactory 所使用的底层 PersistenceProvider。
-	 * @return the PersistenceProvider used to create this EntityManagerFactory,
-	 * or {@code null} if the standard JPA provider autodetection process
-	 * was used to configure the EntityManagerFactory
+	 * @return 用于创建此 EntityManagerFactory 的 PersistenceProvider，
+	 * 或 {@code null}（如果使用标准 JPA 提供者自动检测过程配置了该 EntityManagerFactory）
 	 */
 	@Nullable
 	PersistenceProvider getPersistenceProvider();
@@ -50,9 +49,8 @@ public interface EntityManagerFactoryInfo {
 	/**
 	 * 返回创建此 EntityManagerFactory 所使用的 PersistenceUnitInfo
 	 * （如果使用了容器内 API）。
-	 * @return the PersistenceUnitInfo used to create this EntityManagerFactory,
-	 * or {@code null} if the in-container contract was not used to
-	 * configure the EntityManagerFactory
+	 * @return 用于创建此 EntityManagerFactory 的 PersistenceUnitInfo，
+	 * 或 {@code null}（如果未使用容器内约定配置该 EntityManagerFactory）
 	 */
 	@Nullable
 	PersistenceUnitInfo getPersistenceUnitInfo();
@@ -71,7 +69,7 @@ public interface EntityManagerFactoryInfo {
 
 	/**
 	 * 返回此 EntityManagerFactory 从中获取 JDBC 连接的 JDBC DataSource。
-	 * @return the JDBC DataSource, or {@code null} if not known
+	 * @return JDBC DataSource；如果未知则为 {@code null}
 	 */
 	@Nullable
 	DataSource getDataSource();
@@ -101,7 +99,7 @@ public interface EntityManagerFactoryInfo {
 
 	/**
 	 * 返回原始的底层 EntityManagerFactory。
-	 * @return the unadorned EntityManagerFactory (never {@code null})
+	 * @return 未经修饰的 EntityManagerFactory（永不为 {@code null}）
 	 */
 	EntityManagerFactory getNativeEntityManagerFactory();
 

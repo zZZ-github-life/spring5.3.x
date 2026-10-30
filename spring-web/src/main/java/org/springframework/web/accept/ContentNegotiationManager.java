@@ -55,7 +55,7 @@ public class ContentNegotiationManager implements ContentNegotiationStrategy, Me
 	/**
 	 * 使用给定的 {@code ContentNegotiationStrategy} 策略列表创建实例，
 	 * 其中每个策略也可以是 {@code MediaTypeFileExtensionResolver} 的实例。
-	 * @param strategies the strategies to use
+	 * @param strategies 要使用的策略
 	 */
 	public ContentNegotiationManager(ContentNegotiationStrategy... strategies) {
 		this(Arrays.asList(strategies));
@@ -64,7 +64,7 @@ public class ContentNegotiationManager implements ContentNegotiationStrategy, Me
 	/**
 	 * 基于集合的替代方式，用于替代
 	 * {@link #ContentNegotiationManager(ContentNegotiationStrategy...)}。
-	 * @param strategies the strategies to use
+	 * @param strategies 要使用的策略
 	 * @since 3.2.2
 	 */
 	public ContentNegotiationManager(Collection<ContentNegotiationStrategy> strategies) {
@@ -95,8 +95,8 @@ public class ContentNegotiationManager implements ContentNegotiationStrategy, Me
 
 	/**
 	 * 查找给定类型的 {@code ContentNegotiationStrategy}。
-	 * @param strategyType the strategy type
-	 * @return the first matching strategy, or {@code null} if none
+	 * @param strategyType 策略类型
+	 * @return 第一个匹配的策略，如果没有则为 {@code null}
 	 * @since 4.3
 	 */
 	@SuppressWarnings("unchecked")
@@ -113,7 +113,7 @@ public class ContentNegotiationManager implements ContentNegotiationStrategy, Me
 	/**
 	 * 在构造时检测到的解析器之外，再注册更多
 	 * {@code MediaTypeFileExtensionResolver} 实例。
-	 * @param resolvers the resolvers to add
+	 * @param resolvers 要添加的解析器
 	 */
 	public void addFileExtensionResolvers(MediaTypeFileExtensionResolver... resolvers) {
 		Collections.addAll(this.resolvers, resolvers);

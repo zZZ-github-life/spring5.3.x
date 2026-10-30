@@ -33,18 +33,18 @@ public interface AsyncListenableTaskExecutor extends AsyncTaskExecutor {
 	/**
 	 * 提交一个 {@code Runnable} 任务以供执行，并返回代表该任务的 {@code ListenableFuture}。该 Future
 	 * 在完成时将返回 {@code null} 结果。
-	 * @param task the {@code Runnable} to execute (never {@code null})
-	 * @return a {@code ListenableFuture} representing pending completion of the task
-	 * @throws TaskRejectedException if the given task was not accepted
+	 * @param task 要执行的 {@code Runnable}（永不为 {@code null}）
+	 * @return 表示任务待完成状态的 {@code ListenableFuture}
+	 * @throws TaskRejectedException 如果给定的任务未被接受
 	 */
 	ListenableFuture<?> submitListenable(Runnable task);
 
 	/**
 	 * 提交一个 {@code Callable} 任务以供执行，并返回代表该任务的 {@code ListenableFuture}。该 Future
 	 * 在完成时将返回 Callable 的结果。
-	 * @param task the {@code Callable} to execute (never {@code null})
-	 * @return a {@code ListenableFuture} representing pending completion of the task
-	 * @throws TaskRejectedException if the given task was not accepted
+	 * @param task 要执行的 {@code Callable}（永不为 {@code null}）
+	 * @return 表示任务待完成状态的 {@code ListenableFuture}
+	 * @throws TaskRejectedException 如果给定的任务未被接受
 	 */
 	<T> ListenableFuture<T> submitListenable(Callable<T> task);
 

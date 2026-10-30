@@ -78,10 +78,10 @@ public class ReflectiveLoadTimeWeaver implements LoadTimeWeaver {
 
 	/**
 	 * 为给定的类加载器创建一个新的 SimpleLoadTimeWeaver。
-	 * @param classLoader the {@code ClassLoader} to delegate to for
-	 * weaving (<i>must</i> support the required weaving methods).
-	 * @throws IllegalStateException if the supplied {@code ClassLoader}
-	 * does not support the required weaving methods
+	 * @param classLoader 用于织入时委托的 {@code ClassLoader}
+	 * （<i>必须</i>支持所需的织入方法）。
+	 * @throws IllegalStateException 如果提供的 {@code ClassLoader}
+	 * 不支持所需的织入方法
 	 */
 	public ReflectiveLoadTimeWeaver(@Nullable ClassLoader classLoader) {
 		Assert.notNull(classLoader, "ClassLoader must not be null");

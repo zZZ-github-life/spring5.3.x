@@ -50,7 +50,7 @@ public class OverridingClassLoader extends DecoratingClassLoader {
 
 	/**
 	 * 为给定的 ClassLoader 创建一个新的 OverridingClassLoader。
-	 * @param parent the ClassLoader to build an overriding ClassLoader for
+	 * @param parent 要为其构建覆盖 ClassLoader 的父 ClassLoader
 	 */
 	public OverridingClassLoader(@Nullable ClassLoader parent) {
 		this(parent, null);
@@ -58,8 +58,8 @@ public class OverridingClassLoader extends DecoratingClassLoader {
 
 	/**
 	 * 为给定的 ClassLoader 创建一个新的 OverridingClassLoader。
-	 * @param parent the ClassLoader to build an overriding ClassLoader for
-	 * @param overrideDelegate the ClassLoader to delegate to for overriding
+	 * @param parent 要为其构建覆盖 ClassLoader 的父 ClassLoader
+	 * @param overrideDelegate 用于覆盖时委托的 ClassLoader
 	 * @since 4.3
 	 */
 	public OverridingClassLoader(@Nullable ClassLoader parent, @Nullable ClassLoader overrideDelegate) {
@@ -95,8 +95,8 @@ public class OverridingClassLoader extends DecoratingClassLoader {
 
 	/**
 	 * 判断指定的类是否允许由该类加载器覆盖。
-	 * @param className the class name to check
-	 * @return whether the specified class is eligible
+	 * @param className 要检查的类名
+	 * @return 指定的类是否符合条件
 	 * @see #isExcluded
 	 */
 	protected boolean isEligibleForOverriding(String className) {
@@ -107,9 +107,9 @@ public class OverridingClassLoader extends DecoratingClassLoader {
 	 * 为此 ClassLoader 中的覆盖目的加载指定的类。
 	 *
 	 * <p>默认实现委托给 {@link #findLoadedClass}、{@link #loadBytesForClass} 和 {@link #defineClass}。
-	 * @param name the name of the class
-	 * @return the Class object, or {@code null} if no class defined for that name
-	 * @throws ClassNotFoundException if the class for the given name couldn't be loaded
+	 * @param name 类的名称
+	 * @return Class 对象，如果该名称没有定义类则为 {@code null}
+	 * @throws ClassNotFoundException 如果无法加载给定名称的类
 	 */
 	@Nullable
 	protected Class<?> loadClassForOverriding(String name) throws ClassNotFoundException {
@@ -127,10 +127,9 @@ public class OverridingClassLoader extends DecoratingClassLoader {
 	 * 加载给定类的定义字节，以便通过 {@link #defineClass} 调用转换为 Class 对象。
 	 *
 	 * <p>默认实现委托给 {@link #openStreamForClass} 和 {@link #transformIfNecessary}。
-	 * @param name the name of the class
-	 * @return the byte content (with transformers already applied),
-	 * or {@code null} if no class defined for that name
-	 * @throws ClassNotFoundException if the class for the given name couldn't be loaded
+	 * @param name 类的名称
+	 * @return 字节内容（已应用转换器），如果该名称没有定义类则为 {@code null}
+	 * @throws ClassNotFoundException 如果无法加载给定名称的类
 	 */
 	@Nullable
 	protected byte[] loadBytesForClass(String name) throws ClassNotFoundException {
@@ -153,8 +152,8 @@ public class OverridingClassLoader extends DecoratingClassLoader {
 	 * 为指定的类打开一个 InputStream。
 	 *
 	 * <p>默认实现通过父 ClassLoader 的 {@code getResourceAsStream} 方法加载标准类文件。
-	 * @param name the name of the class
-	 * @return the InputStream containing the byte code for the specified class
+	 * @param name 类的名称
+	 * @return 包含指定类字节码的 InputStream
 	 */
 	@Nullable
 	protected InputStream openStreamForClass(String name) {
@@ -167,10 +166,9 @@ public class OverridingClassLoader extends DecoratingClassLoader {
 	 * 由子类实现的转换钩子。
 	 *
 	 * <p>默认实现只是原样返回给定的字节。
-	 * @param name the fully-qualified name of the class being transformed
-	 * @param bytes the raw bytes of the class
-	 * @return the transformed bytes (never {@code null};
-	 * same as the input bytes if the transformation produced no changes)
+	 * @param name 正在被转换的类的完全限定名
+	 * @param bytes 类的原始字节
+	 * @return 转换后的字节（永不为 {@code null}；如果转换未产生变化，则与输入字节相同）
 	 */
 	protected byte[] transformIfNecessary(String name, byte[] bytes) {
 		return bytes;

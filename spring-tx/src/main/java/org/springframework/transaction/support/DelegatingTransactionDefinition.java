@@ -35,7 +35,7 @@ public abstract class DelegatingTransactionDefinition implements TransactionDefi
 
 	/**
 	 * 为给定目标属性创建一个 DelegatingTransactionAttribute。
-	 * @param targetDefinition the target TransactionAttribute to delegate to
+	 * @param targetDefinition 要委派到的目标 TransactionAttribute
 	 */
 	public DelegatingTransactionDefinition(TransactionDefinition targetDefinition) {
 		Assert.notNull(targetDefinition, "Target definition must not be null");

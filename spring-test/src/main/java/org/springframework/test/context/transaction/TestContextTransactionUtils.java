@@ -71,13 +71,10 @@ public abstract class TestContextTransactionUtils {
 	 * <li>尝试按类型查找<em>主</em> {@code DataSource}。
 	 * <li>尝试按类型和{@linkplain #DEFAULT_DATA_SOURCE_NAME 默认数据源名称}查找 {@code DataSource}。
 	 * </ol>
-	 * @param testContext the test context for which the {@code DataSource}
-	 * should be retrieved; never {@code null}
-	 * @param name the name of the {@code DataSource} to retrieve
-	 * (may be {@code null} or <em>empty</em>)
-	 * @return the {@code DataSource} to use, or {@code null} if not found
-	 * @throws BeansException if an error occurs while retrieving an explicitly
-	 * named {@code DataSource}
+	 * @param testContext 应为其检索 {@code DataSource} 的测试上下文；从不为 {@code null}
+	 * @param name 要检索的 {@code DataSource} 的名称（可以为 {@code null} 或<em>空</em>）
+	 * @return 要使用的 {@code DataSource}；如果未找到，则为 {@code null}
+	 * @throws BeansException 如果检索显式命名的 {@code DataSource} 时发生错误
 	 */
 	@Nullable
 	public static DataSource retrieveDataSource(TestContext testContext, @Nullable String name) {
@@ -135,15 +132,11 @@ public abstract class TestContextTransactionUtils {
 	 * <li>尝试按类型查找<em>主</em>事务管理器。
 	 * <li>尝试按类型和{@linkplain #DEFAULT_TRANSACTION_MANAGER_NAME 默认事务管理器名称}查找事务管理器。
 	 * </ol>
-	 * @param testContext the test context for which the transaction manager
-	 * should be retrieved; never {@code null}
-	 * @param name the name of the transaction manager to retrieve
-	 * (may be {@code null} or <em>empty</em>)
-	 * @return the transaction manager to use, or {@code null} if not found
-	 * @throws BeansException if an error occurs while retrieving an explicitly
-	 * named transaction manager
-	 * @throws IllegalStateException if more than one TransactionManagementConfigurer
-	 * exists in the ApplicationContext
+	 * @param testContext 应为其检索事务管理器的测试上下文；从不为 {@code null}
+	 * @param name 要检索的事务管理器的名称（可以为 {@code null} 或<em>空</em>）
+	 * @return 要使用的事务管理器；如果未找到，则为 {@code null}
+	 * @throws BeansException 如果检索显式命名的事务管理器时发生错误
+	 * @throws IllegalStateException 如果 ApplicationContext 中存在多个 TransactionManagementConfigurer
 	 */
 	@Nullable
 	public static PlatformTransactionManager retrieveTransactionManager(TestContext testContext, @Nullable String name) {
@@ -213,9 +206,9 @@ public abstract class TestContextTransactionUtils {
 
 	/**
 	 * 为所提供的目标 {@link TransactionAttribute} 和 {@link TestContext} 创建一个委托 {@link TransactionAttribute}，并使用测试类和测试方法的名称构建事务名称。
-	 * @param testContext the {@code TestContext} upon which to base the name
-	 * @param targetAttribute the {@code TransactionAttribute} to delegate to
-	 * @return the delegating {@code TransactionAttribute}
+	 * @param testContext 作为名称依据的 {@code TestContext}
+	 * @param targetAttribute 要委托的 {@code TransactionAttribute}
+	 * @return 委托的 {@code TransactionAttribute}
 	 */
 	public static TransactionAttribute createDelegatingTransactionAttribute(
 			TestContext testContext, TransactionAttribute targetAttribute) {

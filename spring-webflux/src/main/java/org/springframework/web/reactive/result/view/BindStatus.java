@@ -80,11 +80,11 @@ public class BindStatus {
 
 	/**
 	 * 创建新的 BindStatus 实例，表示字段或对象状态。
-	 * @param requestContext the current RequestContext
-	 * @param path the bean and property path for which values and errors
-	 * will be resolved (e.g. "customer.address.street")
-	 * @param htmlEscape whether to HTML-escape error messages and string values
-	 * @throws IllegalStateException if no corresponding Errors object found
+	 * @param requestContext 当前 RequestContext
+	 * @param path 要为其解析值和错误的 Bean 与属性路径
+	 * （例如 "customer.address.street"）
+	 * @param htmlEscape 是否对错误消息和字符串值进行 HTML 转义
+	 * @throws IllegalStateException 如果找不到对应的 Errors 对象
 	 */
 	public BindStatus(RequestContext requestContext, String path, boolean htmlEscape) throws IllegalStateException {
 		this.requestContext = requestContext;
@@ -269,8 +269,8 @@ public class BindStatus {
 
 	/**
 	 * 返回错误消息字符串，将所有消息用给定分隔符连接。
-	 * @param delimiter separator string, e.g. ", " or "<br>"
-	 * @return the error message string
+	 * @param delimiter 分隔符字符串，例如 ", " 或 "<br>"
+	 * @return 错误消息字符串
 	 */
 	public String getErrorMessagesAsString(String delimiter) {
 		return StringUtils.arrayToDelimitedString(initErrorMessages(), delimiter);
@@ -297,7 +297,7 @@ public class BindStatus {
 
 	/**
 	 * 返回此绑定状态当前关联的 Errors 实例（通常是 BindingResult）。
-	 * @return the current Errors instance, or {@code null} if none
+	 * @return 当前的 Errors 实例；如果没有则为 {@code null}
 	 * @see org.springframework.validation.BindingResult
 	 */
 	@Nullable
@@ -307,7 +307,7 @@ public class BindStatus {
 
 	/**
 	 * 返回此绑定状态当前所绑定属性的 PropertyEditor。
-	 * @return the current PropertyEditor, or {@code null} if none
+	 * @return 当前的 PropertyEditor；如果没有则为 {@code null}
 	 */
 	@Nullable
 	public PropertyEditor getEditor() {
@@ -316,8 +316,8 @@ public class BindStatus {
 
 	/**
 	 * 为给定值类查找 PropertyEditor，并与此绑定状态当前所绑定的属性关联。
-	 * @param valueClass the value class that an editor is needed for
-	 * @return the associated PropertyEditor, or {@code null} if none
+	 * @param valueClass 需要为其提供编辑器的值类
+	 * @return 关联的 PropertyEditor；如果没有则为 {@code null}
 	 */
 	@Nullable
 	public PropertyEditor findEditor(Class<?> valueClass) {

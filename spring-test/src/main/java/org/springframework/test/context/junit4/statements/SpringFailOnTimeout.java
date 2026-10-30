@@ -41,8 +41,8 @@ public class SpringFailOnTimeout extends Statement {
 
 	/**
 	 * 为所提供的 {@code testMethod} 构造一个新的 {@code SpringFailOnTimeout} 语句，并从所提供方法上的 {@code @Timed} 注解获取配置的超时时间。
-	 * @param next the next {@code Statement} in the execution chain
-	 * @param testMethod the current test method
+	 * @param next 执行链中的下一个 {@code Statement}
+	 * @param testMethod 当前的测试方法
 	 * @see TestAnnotationUtils#getTimeout(Method)
 	 */
 	public SpringFailOnTimeout(Statement next, Method testMethod) {
@@ -52,9 +52,8 @@ public class SpringFailOnTimeout extends Statement {
 	/**
 	 * 为所提供的 {@code timeout} 构造一个新的 {@code SpringFailOnTimeout} 语句。
 	 * <p>如果所提供的 {@code timeout} 为 {@code 0}，则不会对 {@code next} 语句的执行计时。
-	 * @param next the next {@code Statement} in the execution chain; never {@code null}
-	 * @param timeout the configured {@code timeout} for the current test, in milliseconds;
-	 * never negative
+	 * @param next 执行链中的下一个 {@code Statement}；从不为 {@code null}
+	 * @param timeout 为当前测试配置的 {@code timeout}，以毫秒为单位；从不为负数
 	 */
 	public SpringFailOnTimeout(Statement next, long timeout) {
 		Assert.notNull(next, "next statement must not be null");

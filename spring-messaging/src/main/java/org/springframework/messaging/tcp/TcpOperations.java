@@ -23,31 +23,28 @@ import org.springframework.util.concurrent.ListenableFuture;
  *
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <P> the type of payload for in and outbound messages
+ * @param <P> 入站和出站消息的负载类型
  */
 public interface TcpOperations<P> {
 
 	/**
 	 * 打开一个新连接。
-	 * @param connectionHandler a handler to manage the connection
-	 * @return a ListenableFuture that can be used to determine when and if the
-	 * connection is successfully established
+	 * @param connectionHandler 用于管理连接的处理程序
+	 * @return 一个 ListenableFuture，可用于确定连接何时以及是否成功建立
 	 */
 	ListenableFuture<Void> connect(TcpConnectionHandler<P> connectionHandler);
 
 	/**
 	 * 打开一个新连接，并提供连接失败时的重连策略。
-	 * @param connectionHandler a handler to manage the connection
-	 * @param reconnectStrategy a strategy for reconnecting
-	 * @return a ListenableFuture that can be used to determine when and if the
-	 * initial connection is successfully established
+	 * @param connectionHandler 用于管理连接的处理器
+	 * @param reconnectStrategy 用于重连的策略
+	 * @return 一个 ListenableFuture，可用于确定初始连接何时以及是否成功建立
 	 */
 	ListenableFuture<Void> connect(TcpConnectionHandler<P> connectionHandler, ReconnectStrategy reconnectStrategy);
 
 	/**
 	 * 关闭并停止任何已打开的连接。
-	 * @return a ListenableFuture that can be used to determine when and if the
-	 * connection is successfully closed
+	 * @return 一个 ListenableFuture，可用于确定连接何时以及是否成功关闭
 	 */
 	ListenableFuture<Void> shutdown();
 

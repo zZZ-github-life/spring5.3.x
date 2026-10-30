@@ -28,14 +28,14 @@ public interface UriBuilderFactory extends UriTemplateHandler {
 
 	/**
 	 * 使用给定的 URI 模板初始化构建器。
-	 * @param uriTemplate the URI template to use
-	 * @return the builder instance
+	 * @param uriTemplate 要使用的 URI 模板
+	 * @return 构建器实例
 	 */
 	UriBuilder uriString(String uriTemplate);
 
 	/**
 	 * 使用默认设置创建一个 URI 构建器。
-	 * @return the builder instance
+	 * @return 构建器实例
 	 */
 	UriBuilder builder();
 

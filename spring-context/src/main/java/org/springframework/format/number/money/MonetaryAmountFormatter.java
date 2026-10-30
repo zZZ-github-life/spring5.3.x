@@ -48,8 +48,7 @@ public class MonetaryAmountFormatter implements Formatter<MonetaryAmount> {
 
 	/**
 	 * 为给定的格式名称创建一个新的 MonetaryAmountFormatter。
-	 * @param formatName the format name, to be resolved by the JSR-354
-	 * provider at runtime
+	 * @param formatName 格式名称，将在运行时由 JSR-354 提供者解析
 	 */
 	public MonetaryAmountFormatter(String formatName) {
 		this.formatName = formatName;
@@ -80,8 +79,8 @@ public class MonetaryAmountFormatter implements Formatter<MonetaryAmount> {
 	 * 获取给定区域设置的 MonetaryAmountFormat。
 	 * <p>默认实现仅使用所配置的格式名称或给定区域设置调用
 	 * {@link javax.money.format.MonetaryFormats#getAmountFormat}。
-	 * @param locale the current locale
-	 * @return the MonetaryAmountFormat (never {@code null})
+	 * @param locale 当前区域设置
+	 * @return MonetaryAmountFormat（永不为 {@code null}）
 	 * @see #setFormatName
 	 */
 	protected MonetaryAmountFormat getMonetaryAmountFormat(Locale locale) {

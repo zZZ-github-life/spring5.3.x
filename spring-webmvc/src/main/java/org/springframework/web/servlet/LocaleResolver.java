@@ -52,18 +52,18 @@ public interface LocaleResolver {
 	/**
 	 * 通过给定的请求解析当前的区域设置。
 	 * <p>在任何情况下都可以返回默认区域设置作为回退。
-	 * @param request the request to resolve the locale for
-	 * @return the current locale (never {@code null})
+	 * @param request 要为其解析 Locale 的请求
+	 * @return 当前的 Locale（永不为 {@code null}）
 	 */
 	Locale resolveLocale(HttpServletRequest request);
 
 	/**
 	 * 将当前的区域设置设置为给定的区域设置。
-	 * @param request the request to be used for locale modification
-	 * @param response the response to be used for locale modification
-	 * @param locale the new locale, or {@code null} to clear the locale
-	 * @throws UnsupportedOperationException if the LocaleResolver
-	 * implementation does not support dynamic changing of the locale
+	 * @param request 用于修改 Locale 的请求
+	 * @param response 用于修改 Locale 的响应
+	 * @param locale 新的 Locale；为 {@code null} 时清除 Locale
+	 * @throws UnsupportedOperationException 如果 LocaleResolver 实现不支持
+	 * 动态更改 Locale
 	 */
 	void setLocale(HttpServletRequest request, @Nullable HttpServletResponse response, @Nullable Locale locale);
 

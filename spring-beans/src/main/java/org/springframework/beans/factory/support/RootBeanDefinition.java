@@ -140,7 +140,7 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 
 	/**
 	 * 为单例创建一个新的 RootBeanDefinition。
-	 * @param beanClass the class of the bean to instantiate
+	 * @param beanClass 要实例化的 Bean 的类
 	 * @see #setBeanClass
 	 */
 	public RootBeanDefinition(@Nullable Class<?> beanClass) {
@@ -151,9 +151,8 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	/**
 	 * 为单例 Bean 创建一个新的 RootBeanDefinition，通过调用给定的 supplier 构造每个实例（可以是 lambda
 	 * 或方法引用）。
-	 * @param beanClass the class of the bean to instantiate
-	 * @param instanceSupplier the supplier to construct a bean instance,
-	 * as an alternative to a declaratively specified factory method
+	 * @param beanClass 要实例化的 Bean 的类
+	 * @param instanceSupplier 用于构造 Bean 实例的 supplier，作为声明式指定的工厂方法的替代方案
 	 * @since 5.0
 	 * @see #setInstanceSupplier
 	 */
@@ -166,10 +165,9 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	/**
 	 * 为作用域 Bean 创建一个新的 RootBeanDefinition，通过调用给定的 supplier 构造每个实例（可以是
 	 * lambda 或方法引用）。
-	 * @param beanClass the class of the bean to instantiate
-	 * @param scope the name of the corresponding scope
-	 * @param instanceSupplier the supplier to construct a bean instance,
-	 * as an alternative to a declaratively specified factory method
+	 * @param beanClass 要实例化的 Bean 的类
+	 * @param scope 相应作用域的名称
+	 * @param instanceSupplier 用于构造 Bean 实例的 supplier，作为声明式指定的工厂方法的替代方案
 	 * @since 5.0
 	 * @see #setInstanceSupplier
 	 */
@@ -182,10 +180,9 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 
 	/**
 	 * 使用给定的自动装配模式为单例创建一个新的 RootBeanDefinition。
-	 * @param beanClass the class of the bean to instantiate
-	 * @param autowireMode by name or type, using the constants in this interface
-	 * @param dependencyCheck whether to perform a dependency check for objects
-	 * (not applicable to autowiring a constructor, thus ignored there)
+	 * @param beanClass 要实例化的 Bean 的类
+	 * @param autowireMode 按名称或按类型，使用此接口中的常量
+	 * @param dependencyCheck 是否对对象执行依赖检查（不适用于构造器自动装配，因此在该处会被忽略）
 	 */
 	public RootBeanDefinition(@Nullable Class<?> beanClass, int autowireMode, boolean dependencyCheck) {
 		super();
@@ -198,9 +195,9 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 
 	/**
 	 * 为单例创建一个新的 RootBeanDefinition，并提供构造器参数和属性值。
-	 * @param beanClass the class of the bean to instantiate
-	 * @param cargs the constructor argument values to apply
-	 * @param pvs the property values to apply
+	 * @param beanClass 要实例化的 Bean 的类
+	 * @param cargs 要应用的构造器参数值
+	 * @param pvs 要应用的属性值
 	 */
 	public RootBeanDefinition(@Nullable Class<?> beanClass, @Nullable ConstructorArgumentValues cargs,
 			@Nullable MutablePropertyValues pvs) {
@@ -212,7 +209,7 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	/**
 	 * 为单例创建一个新的 RootBeanDefinition，并提供构造器参数和属性值。<p>接收 Bean 类名，以避免急切加
 	 * 载 Bean 类。
-	 * @param beanClassName the name of the class to instantiate
+	 * @param beanClassName 要实例化的类的名称
 	 */
 	public RootBeanDefinition(String beanClassName) {
 		setBeanClassName(beanClassName);
@@ -221,9 +218,9 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	/**
 	 * 为单例创建一个新的 RootBeanDefinition，并提供构造器参数和属性值。<p>接收 Bean 类名，以避免急切加
 	 * 载 Bean 类。
-	 * @param beanClassName the name of the class to instantiate
-	 * @param cargs the constructor argument values to apply
-	 * @param pvs the property values to apply
+	 * @param beanClassName 要实例化的类的名称
+	 * @param cargs 要应用的构造器参数值
+	 * @param pvs 要应用的属性值
 	 */
 	public RootBeanDefinition(String beanClassName, ConstructorArgumentValues cargs, MutablePropertyValues pvs) {
 		super(cargs, pvs);
@@ -232,7 +229,7 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 
 	/**
 	 * 创建给定 Bean 定义的深拷贝，作为新的 RootBeanDefinition。
-	 * @param original the original bean definition to copy from
+	 * @param original 要从中复制的原始 Bean 定义
 	 */
 	public RootBeanDefinition(RootBeanDefinition original) {
 		super(original);
@@ -246,7 +243,7 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 
 	/**
 	 * 创建给定 Bean 定义的深拷贝，作为新的 RootBeanDefinition。
-	 * @param original the original bean definition to copy from
+	 * @param original 要从中复制的原始 Bean 定义
 	 */
 	RootBeanDefinition(BeanDefinition original) {
 		super(original);
@@ -356,8 +353,8 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 
 	/**
 	 * 确定用于默认构造的首选构造器（如果有）。如有必要，构造器参数将被自动装配。
-	 * @return one or more preferred constructors, or {@code null} if none
-	 * (in which case the regular no-arg default constructor will be called)
+	 * @return 一个或多个首选构造器，如果没有则为 {@code null}
+	 * （在这种情况下将调用常规的无参默认构造器）
 	 * @since 5.1
 	 */
 	@Nullable
@@ -393,7 +390,7 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 
 	/**
 	 * 为该 Bean 定义上的工厂方法设置已解析的 Java Method。
-	 * @param method the resolved factory method, or {@code null} to reset it
+	 * @param method 解析后的工厂方法，或 {@code null} 以重置它
 	 * @since 5.2
 	 */
 	public void setResolvedFactoryMethod(@Nullable Method method) {
@@ -402,7 +399,7 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 
 	/**
 	 * 以 Java Method 对象形式返回已解析的工厂方法（如果可用）。
-	 * @return the factory method, or {@code null} if not found or not resolved yet
+	 * @return 工厂方法，如果未找到或尚未解析则为 {@code null}
 	 */
 	@Nullable
 	public Method getResolvedFactoryMethod() {

@@ -120,7 +120,7 @@ public class YamlPropertiesFactoryBean extends YamlProcessor implements FactoryB
 	 * 模板方法，子类可以覆盖以构造此工厂返回的对象。默认实现返回包含所有资源内容的 properties。
 	 * <p>在共享单例的情况下，首次调用 {@link #getObject()} 时延迟调用；否则在每次 {@link #getObject()}
 	 * 调用时调用。
-	 * @return the object returned by this factory
+	 * @return 由该工厂返回的对象
 	 * @see #process(MatchCallback)
 	 */
 	protected Properties createProperties() {

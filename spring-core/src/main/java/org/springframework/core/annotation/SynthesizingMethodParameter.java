@@ -37,10 +37,9 @@ public class SynthesizingMethodParameter extends MethodParameter {
 
 	/**
 	 * 为给定的方法创建一个新的 {@code SynthesizingMethodParameter}，嵌套层级为 1。
-	 * @param method the Method to specify a parameter for
-	 * @param parameterIndex the index of the parameter: -1 for the method
-	 * return type; 0 for the first method parameter; 1 for the second method
-	 * parameter, etc.
+	 * @param method 要指定参数的 Method
+	 * @param parameterIndex 参数索引：-1 表示方法的返回类型；
+	 * 0 表示第一个方法参数；1 表示第二个方法参数，依此类推
 	 */
 	public SynthesizingMethodParameter(Method method, int parameterIndex) {
 		super(method, parameterIndex);
@@ -48,13 +47,11 @@ public class SynthesizingMethodParameter extends MethodParameter {
 
 	/**
 	 * 为给定的方法创建一个新的 {@code SynthesizingMethodParameter}。
-	 * @param method the Method to specify a parameter for
-	 * @param parameterIndex the index of the parameter: -1 for the method
-	 * return type; 0 for the first method parameter; 1 for the second method
-	 * parameter, etc.
-	 * @param nestingLevel the nesting level of the target type
-	 * (typically 1; e.g. in case of a List of Lists, 1 would indicate the
-	 * nested List, whereas 2 would indicate the element of the nested List)
+	 * @param method 要指定参数的 Method
+	 * @param parameterIndex 参数索引：-1 表示方法的返回类型；
+	 * 0 表示第一个方法参数；1 表示第二个方法参数，依此类推
+	 * @param nestingLevel 目标类型的嵌套层级（通常为 1；例如对于 List 的 List，
+	 * 1 表示嵌套的 List，而 2 表示嵌套 List 的元素）
 	 */
 	public SynthesizingMethodParameter(Method method, int parameterIndex, int nestingLevel) {
 		super(method, parameterIndex, nestingLevel);
@@ -62,8 +59,8 @@ public class SynthesizingMethodParameter extends MethodParameter {
 
 	/**
 	 * 为给定的构造函数创建一个新的 {@code SynthesizingMethodParameter}，嵌套层级为 1。
-	 * @param constructor the Constructor to specify a parameter for
-	 * @param parameterIndex the index of the parameter
+	 * @param constructor 要指定参数的 Constructor
+	 * @param parameterIndex 参数的索引
 	 */
 	public SynthesizingMethodParameter(Constructor<?> constructor, int parameterIndex) {
 		super(constructor, parameterIndex);
@@ -71,11 +68,10 @@ public class SynthesizingMethodParameter extends MethodParameter {
 
 	/**
 	 * 为给定的构造函数创建一个新的 {@code SynthesizingMethodParameter}。
-	 * @param constructor the Constructor to specify a parameter for
-	 * @param parameterIndex the index of the parameter
-	 * @param nestingLevel the nesting level of the target type
-	 * (typically 1; e.g. in case of a List of Lists, 1 would indicate the
-	 * nested List, whereas 2 would indicate the element of the nested List)
+	 * @param constructor 要指定参数的 Constructor
+	 * @param parameterIndex 参数的索引
+	 * @param nestingLevel 目标类型的嵌套层级（通常为 1；例如对于 List 的 List，
+	 * 1 表示嵌套的 List，而 2 表示嵌套 List 的元素）
 	 */
 	public SynthesizingMethodParameter(Constructor<?> constructor, int parameterIndex, int nestingLevel) {
 		super(constructor, parameterIndex, nestingLevel);
@@ -84,7 +80,7 @@ public class SynthesizingMethodParameter extends MethodParameter {
 	/**
 	 * 复制构造函数，基于原始对象所处的相同元数据和缓存状态，生成一个独立的
 	 * {@code SynthesizingMethodParameter}。
-	 * @param original the original SynthesizingMethodParameter object to copy from
+	 * @param original 要从中复制的原始 SynthesizingMethodParameter 对象
 	 */
 	protected SynthesizingMethodParameter(SynthesizingMethodParameter original) {
 		super(original);
@@ -110,9 +106,9 @@ public class SynthesizingMethodParameter extends MethodParameter {
 	/**
 	 * 为给定的方法或构造函数创建一个新的 SynthesizingMethodParameter。
 	 * <p>这是一个便捷工厂方法，适用于以通用方式处理 Method 或 Constructor 引用的场景。
-	 * @param executable the Method or Constructor to specify a parameter for
-	 * @param parameterIndex the index of the parameter
-	 * @return the corresponding SynthesizingMethodParameter instance
+	 * @param executable 要指定参数的 Method 或 Constructor
+	 * @param parameterIndex 参数的索引
+	 * @return 对应的 SynthesizingMethodParameter 实例
 	 * @since 5.0
 	 */
 	public static SynthesizingMethodParameter forExecutable(Executable executable, int parameterIndex) {
@@ -130,8 +126,8 @@ public class SynthesizingMethodParameter extends MethodParameter {
 	/**
 	 * 为给定的参数描述符创建一个新的 SynthesizingMethodParameter。
 	 * <p>这是一个便捷工厂方法，适用于已经获得 Java 8 {@link Parameter} 描述符的场景。
-	 * @param parameter the parameter descriptor
-	 * @return the corresponding SynthesizingMethodParameter instance
+	 * @param parameter 参数描述符
+	 * @return 对应的 SynthesizingMethodParameter 实例
 	 * @since 5.0
 	 */
 	public static SynthesizingMethodParameter forParameter(Parameter parameter) {

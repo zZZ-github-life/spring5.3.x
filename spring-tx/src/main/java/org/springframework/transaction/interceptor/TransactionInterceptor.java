@@ -63,8 +63,8 @@ public class TransactionInterceptor extends TransactionAspectSupport implements 
 
 	/**
 	 * 创建一个新的TransactionInterceptor。
-	 * @param ptm the default transaction manager to perform the actual transaction management
-	 * @param tas the attribute source to be used to find transaction attributes
+	 * @param ptm 用于执行实际事务管理的默认事务管理器
+	 * @param tas 用于查找事务属性的属性源
 	 * @since 5.2.5
 	 * @see #setTransactionManager
 	 * @see #setTransactionAttributeSource
@@ -76,8 +76,8 @@ public class TransactionInterceptor extends TransactionAspectSupport implements 
 
 	/**
 	 * 创建一个新的TransactionInterceptor。
-	 * @param ptm the default transaction manager to perform the actual transaction management
-	 * @param tas the attribute source to be used to find transaction attributes
+	 * @param ptm 用于执行实际事务管理的默认事务管理器
+	 * @param tas 用于查找事务属性的属性源
 	 * @see #setTransactionManager
 	 * @see #setTransactionAttributeSource
 	 * @deprecated as of 5.2.5, in favor of
@@ -91,8 +91,8 @@ public class TransactionInterceptor extends TransactionAspectSupport implements 
 
 	/**
 	 * 创建一个新的TransactionInterceptor。
-	 * @param ptm the default transaction manager to perform the actual transaction management
-	 * @param attributes the transaction attributes in properties format
+	 * @param ptm 用于执行实际事务管理的默认事务管理器
+	 * @param attributes properties 格式的事务属性
 	 * @see #setTransactionManager
 	 * @see #setTransactionAttributes(java.util.Properties)
 	 * @deprecated as of 5.2.5, in favor of {@link #setTransactionAttributes(Properties)}

@@ -221,9 +221,8 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 	 * <p>如果开发者能够在运行时修改视图
 	 * （例如 FreeMarker 模板），随后需要清除指定视图的
 	 * 缓存，此功能会很方便。
-	 * @param viewName the view name for which the cached view object
-	 * (if any) needs to be removed
-	 * @param locale the locale for which the view object should be removed
+	 * @param viewName 需要移除其缓存视图对象（如果有）的视图名称
+	 * @param locale 应移除其视图对象的 Locale
 	 */
 	public void removeFromCache(String viewName, Locale locale) {
 		if (!isCache()) {
@@ -262,11 +261,11 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 	 * <p>默认实现委托给 {@link #loadView}。
 	 * 可以重写此方法以特殊方式解析特定的视图名称，
 	 * 然后再委托给子类提供的实际 {@code loadView} 实现。
-	 * @param viewName the name of the view to retrieve
-	 * @param locale the Locale to retrieve the view for
-	 * @return the View instance, or {@code null} if not found
-	 * (optional, to allow for ViewResolver chaining)
-	 * @throws Exception if the view couldn't be resolved
+	 * @param viewName 要获取的视图名称
+	 * @param locale 要为其获取视图的 Locale
+	 * @return View 实例；如果未找到则为 {@code null}
+	 * （可选，以便支持 ViewResolver 链）
+	 * @throws Exception 如果无法解析视图
 	 * @see #loadView
 	 */
 	@Nullable
@@ -280,11 +279,11 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 	 * 进行缓存。
 	 * <p>不强制子类支持国际化：
 	 * 不支持的子类可以简单地忽略 locale 参数。
-	 * @param viewName the name of the view to retrieve
-	 * @param locale the Locale to retrieve the view for
-	 * @return the View instance, or {@code null} if not found
-	 * (optional, to allow for ViewResolver chaining)
-	 * @throws Exception if the view couldn't be resolved
+	 * @param viewName 要获取的视图名称
+	 * @param locale 要为其获取视图的 Locale
+	 * @return View 实例；如果未找到则为 {@code null}
+	 * （可选，以便支持 ViewResolver 链）
+	 * @throws Exception 如果无法解析视图
 	 * @see #resolveViewName
 	 */
 	@Nullable
@@ -304,10 +303,10 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 		/**
 		 * 指示给定的视图是否应被缓存。
 		 * 同时提供用于解析该视图的名称和区域设置。
-		 * @param view the view
-		 * @param viewName the name used to resolve the {@code view}
-		 * @param locale the locale used to resolve the {@code view}
-		 * @return {@code true} if the view should be cached; {@code false} otherwise
+		 * @param view 视图
+		 * @param viewName 用于解析 {@code view} 的名称
+		 * @param locale 用于解析 {@code view} 的 Locale
+		 * @return 如果应缓存该视图则为 {@code true}；否则为 {@code false}
 		 */
 		boolean filter(View view, String viewName, Locale locale);
 	}

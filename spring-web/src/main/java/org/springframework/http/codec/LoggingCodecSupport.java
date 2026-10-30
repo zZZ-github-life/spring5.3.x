@@ -41,7 +41,7 @@ public class LoggingCodecSupport {
 	 * 是否以 DEBUG 级别记录表单数据，以 TRACE 级别记录头。
 	 * 两者都可能包含敏感信息。
 	 * <p>默认设置为 {@code false}，因此不会显示请求详情。
-	 * @param enable whether to enable or not
+	 * @param enable 是否启用
 	 */
 	public void setEnableLoggingRequestDetails(boolean enable) {
 		this.enableLoggingRequestDetails = enable;

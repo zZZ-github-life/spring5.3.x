@@ -47,7 +47,7 @@ public class UserTransactionAdapter implements UserTransaction {
 
 	/**
 	 * 为给定的TransactionManager创建一个新的UserTransactionAdapter。
-	 * @param transactionManager the JTA TransactionManager to wrap
+	 * @param transactionManager 要包装的 JTA TransactionManager
 	 */
 	public UserTransactionAdapter(TransactionManager transactionManager) {
 		Assert.notNull(transactionManager, "TransactionManager must not be null");

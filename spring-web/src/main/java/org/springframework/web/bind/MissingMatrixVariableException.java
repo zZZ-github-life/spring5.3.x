@@ -36,8 +36,8 @@ public class MissingMatrixVariableException extends MissingRequestValueException
 
 	/**
 	 * MissingMatrixVariableException 的构造函数。
-	 * @param variableName the name of the missing matrix variable
-	 * @param parameter the method parameter
+	 * @param variableName 缺失的矩阵变量名称
+	 * @param parameter 方法参数
 	 */
 	public MissingMatrixVariableException(String variableName, MethodParameter parameter) {
 		this(variableName, parameter, false);
@@ -45,9 +45,9 @@ public class MissingMatrixVariableException extends MissingRequestValueException
 
 	/**
 	 * 当值存在但被转换为 {@code null} 时使用的构造函数。
-	 * @param variableName the name of the missing matrix variable
-	 * @param parameter the method parameter
-	 * @param missingAfterConversion whether the value became null after conversion
+	 * @param variableName 缺失的矩阵变量名称
+	 * @param parameter 方法参数
+	 * @param missingAfterConversion 转换后值是否变为 null
 	 * @since 5.3.6
 	 */
 	public MissingMatrixVariableException(

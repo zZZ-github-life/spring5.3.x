@@ -53,7 +53,7 @@ public class DelegatingDataSource implements DataSource, InitializingBean {
 
 	/**
 	 * 创建一个新的 DelegatingDataSource。
-	 * @param targetDataSource the target DataSource
+	 * @param targetDataSource 目标 DataSource
 	 */
 	public DelegatingDataSource(DataSource targetDataSource) {
 		setTargetDataSource(targetDataSource);

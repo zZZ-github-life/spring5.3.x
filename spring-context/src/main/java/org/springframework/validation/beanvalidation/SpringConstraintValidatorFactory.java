@@ -42,7 +42,7 @@ public class SpringConstraintValidatorFactory implements ConstraintValidatorFact
 
 	/**
 	 * 为给定的 BeanFactory 创建一个新的 SpringConstraintValidatorFactory。
-	 * @param beanFactory the target BeanFactory
+	 * @param beanFactory 目标 BeanFactory。
 	 */
 	public SpringConstraintValidatorFactory(AutowireCapableBeanFactory beanFactory) {
 		Assert.notNull(beanFactory, "BeanFactory must not be null");

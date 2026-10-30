@@ -96,7 +96,7 @@ public class XmlWebApplicationContext extends AbstractRefreshableWebApplicationC
 	 * 默认实现为空。
 	 * <p>可以在子类中重写，例如用于关闭 XML 校验
 	 * 或使用不同的 XmlBeanDefinitionParser 实现。
-	 * @param beanDefinitionReader the bean definition reader used by this context
+	 * @param beanDefinitionReader 此上下文使用的 Bean 定义读取器
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader#setValidationMode
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader#setDocumentReaderClass
 	 */
@@ -109,7 +109,7 @@ public class XmlWebApplicationContext extends AbstractRefreshableWebApplicationC
 	 * 因此此方法只负责加载和/或注册 bean 定义。
 	 * <p>委托给 ResourcePatternResolver 将位置模式解析为
 	 * Resource 实例。
-	 * @throws IOException if the required XML document isn't found
+	 * @throws IOException 如果找不到所需的 XML 文档
 	 * @see #refreshBeanFactory
 	 * @see #getConfigLocations
 	 * @see #getResources

@@ -30,7 +30,7 @@ public class ConnectionFactoryLookupFailureException extends NonTransientDataAcc
 
 	/**
 	 * 创建一个新的 {@code ConnectionFactoryLookupFailureException}。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public ConnectionFactoryLookupFailureException(String msg) {
 		super(msg);
@@ -38,8 +38,8 @@ public class ConnectionFactoryLookupFailureException extends NonTransientDataAcc
 
 	/**
 	 * 创建一个新的 {@code ConnectionFactoryLookupFailureException}。
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param msg 详细消息
+	 * @param cause 根本原因
 	 */
 	public ConnectionFactoryLookupFailureException(String msg, Throwable cause) {
 		super(msg, cause);

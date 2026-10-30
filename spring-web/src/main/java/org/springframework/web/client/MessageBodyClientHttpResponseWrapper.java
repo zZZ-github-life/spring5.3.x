@@ -53,8 +53,8 @@ class MessageBodyClientHttpResponseWrapper implements ClientHttpResponse {
 	 * <li>响应状态为 {@code 1XX}、{@code 204} 或 {@code 304}</li>
 	 * <li>{@code Content-Length} 头为 {@code 0}</li>
 	 * </ul>
-	 * @return {@code true} if the response has a message body, {@code false} otherwise
-	 * @throws IOException in case of I/O errors
+	 * @return 如果响应具有消息正文则返回 {@code true}，否则返回 {@code false}
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	public boolean hasMessageBody() throws IOException {
 		HttpStatus status = HttpStatus.resolve(getRawStatusCode());
@@ -75,8 +75,9 @@ class MessageBodyClientHttpResponseWrapper implements ClientHttpResponse {
 	 * <li>如果无可用字节，则消息体为空</li>
 	 * <li>否则消息体不为空，并将流重置到起始位置以便后续读取</li>
 	 * </ul>
-	 * @return {@code true} if the response has a zero-length message body, {@code false} otherwise
-	 * @throws IOException in case of I/O errors
+	 * @return 如果响应具有零长度的消息正文则返回 {@code true}，
+	 * 否则返回 {@code false}
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	@SuppressWarnings("ConstantConditions")
 	public boolean hasEmptyMessageBody() throws IOException {

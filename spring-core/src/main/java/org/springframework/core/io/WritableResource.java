@@ -43,7 +43,7 @@ public interface WritableResource extends Resource {
 
 	/**
 	 * 返回底层资源的 {@link OutputStream}，允许（覆盖）写入其内容。
-	 * @throws IOException if the stream could not be opened
+	 * @throws IOException 如果无法打开流
 	 * @see #getInputStream()
 	 */
 	OutputStream getOutputStream() throws IOException;
@@ -53,9 +53,9 @@ public interface WritableResource extends Resource {
 	 * <p>预期每次调用都会创建一个<i>全新的</i>通道。
 	 * <p>默认实现返回带有 {@link #getOutputStream()} 结果的 {@link Channels#newChannel(OutputStream)}。
 	 *
-	 * @return the byte channel for the underlying resource (must not be {@code null})
-	 * @throws java.io.FileNotFoundException if the underlying resource doesn't exist
-	 * @throws IOException if the content channel could not be opened
+	 * @return 底层资源的字节通道（不得为 {@code null}）
+	 * @throws java.io.FileNotFoundException 如果底层资源不存在
+	 * @throws IOException 如果无法打开内容通道
 	 * @since 5.0
 	 * @see #getOutputStream()
 	 */

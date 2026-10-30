@@ -64,8 +64,8 @@ public class JettyClientHttpConnector implements ClientHttpConnector {
 	/**
 	 * 使用已初始化的 {@link HttpClient} 的构造函数，并使用
 	 * 给定的 {@link JettyResourceFactory} 对其进行配置。
-	 * @param httpClient the {@link HttpClient} to use
-	 * @param resourceFactory the {@link JettyResourceFactory} to use
+	 * @param httpClient 要使用的 {@link HttpClient}
+	 * @param resourceFactory 要使用的 {@link JettyResourceFactory}
 	 * @since 5.2
 	 */
 	public JettyClientHttpConnector(HttpClient httpClient, @Nullable JettyResourceFactory resourceFactory) {
@@ -80,8 +80,8 @@ public class JettyClientHttpConnector implements ClientHttpConnector {
 
 	/**
 	 * 使用将管理共享资源的 {@link JettyResourceFactory} 的构造函数。
-	 * @param resourceFactory the {@link JettyResourceFactory} to use
-	 * @param customizer the lambda used to customize the {@link HttpClient}
+	 * @param resourceFactory 要使用的 {@link JettyResourceFactory}
+	 * @param customizer 用于自定义 {@link HttpClient} 的 lambda
 	 * @deprecated as of 5.2, in favor of
 	 * {@link JettyClientHttpConnector#JettyClientHttpConnector(HttpClient, JettyResourceFactory)}
 	 */

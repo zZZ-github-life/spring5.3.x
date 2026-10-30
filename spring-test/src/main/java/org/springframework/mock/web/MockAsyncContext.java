@@ -163,7 +163,7 @@ public class MockAsyncContext implements AsyncContext {
 	 * {@link org.springframework.web.context.request.async.DeferredResult DeferredResult}
 	 * 或
 	 * {@link org.springframework.web.servlet.mvc.method.annotation.SseEmitter SseEmitter} 覆盖。
-	 * @param timeout the timeout value to use.
+	 * @param timeout 要使用的超时值。
 	 * @see AsyncContext#setTimeout(long)
 	 */
 	@Override

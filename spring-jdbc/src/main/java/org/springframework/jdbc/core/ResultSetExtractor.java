@@ -39,7 +39,7 @@ import org.springframework.lang.Nullable;
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @since April 24, 2003
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see JdbcTemplate
  * @see RowCallbackHandler
  * @see RowMapper
@@ -50,13 +50,13 @@ public interface ResultSetExtractor<T> {
 
 	/**
 	 * 实现必须实现此方法来处理整个ResultSet。
-	 * @param rs the ResultSet to extract data from. Implementations should
-	 * not close this: it will be closed by the calling JdbcTemplate.
-	 * @return an arbitrary result object, or {@code null} if none
-	 * (the extractor will typically be stateful in the latter case).
-	 * @throws SQLException if an SQLException is encountered getting column
-	 * values or navigating (that is, there's no need to catch SQLException)
-	 * @throws DataAccessException in case of custom exceptions
+	 * @param rs 要从中提取数据的 ResultSet。实现不应关闭它：
+	 * 它将由调用方 JdbcTemplate 关闭。
+	 * @return 任意结果对象，如果没有则为 {@code null}
+	 * （在后一种情况下，提取器通常是有状态的）。
+	 * @throws SQLException 如果在获取列值或导航时遇到 SQLException
+	 * （也就是说，无需捕获 SQLException）
+	 * @throws DataAccessException 在出现自定义异常的情况下
 	 */
 	@Nullable
 	T extractData(ResultSet rs) throws SQLException, DataAccessException;

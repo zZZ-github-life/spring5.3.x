@@ -136,8 +136,8 @@ public abstract class TransactionSynchronizationUtils {
 
 	/**
 	 * 在所有当前注册的同步器上触发 {@code afterCompletion} 回调。
-	 * @param completionStatus the completion status according to the
-	 * constants in the TransactionSynchronization interface
+	 * @param completionStatus 根据 TransactionSynchronization 接口中的常量
+	 * 表示的完成状态
 	 * @see TransactionSynchronizationManager#getSynchronizations()
 	 * @see TransactionSynchronization#afterCompletion(int)
 	 * @see TransactionSynchronization#STATUS_COMMITTED
@@ -151,9 +151,9 @@ public abstract class TransactionSynchronizationUtils {
 
 	/**
 	 * 实际调用给定 Spring TransactionSynchronization 对象的 {@code afterCompletion} 方法。
-	 * @param synchronizations a List of TransactionSynchronization objects
-	 * @param completionStatus the completion status according to the
-	 * constants in the TransactionSynchronization interface
+	 * @param synchronizations TransactionSynchronization 对象的 List
+	 * @param completionStatus 根据 TransactionSynchronization 接口中的常量
+	 * 表示的完成状态
 	 * @see TransactionSynchronization#afterCompletion(int)
 	 * @see TransactionSynchronization#STATUS_COMMITTED
 	 * @see TransactionSynchronization#STATUS_ROLLED_BACK

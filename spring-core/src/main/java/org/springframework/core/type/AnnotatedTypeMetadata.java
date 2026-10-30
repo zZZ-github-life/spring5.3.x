@@ -46,7 +46,7 @@ public interface AnnotatedTypeMetadata {
 
 	/**
 	 * 基于底层元素的直接注解返回注解详细信息。
-	 * @return merged annotations based on the direct annotations
+	 * @return 基于直接注解的合并注解
 	 * @since 5.2
 	 */
 	MergedAnnotations getAnnotations();
@@ -54,9 +54,9 @@ public interface AnnotatedTypeMetadata {
 	/**
 	 * 确定底层元素是否定义了给定类型的注解或元注解。
 	 * <p>如果此方法返回 {@code true}，则 {@link #getAnnotationAttributes} 将返回非 null 的 Map。
-	 * @param annotationName the fully qualified class name of the annotation
-	 * type to look for
-	 * @return whether a matching annotation is defined
+	 * @param annotationName 要查找的注解类型的
+	 * 全限定类名
+	 * @return 是否定义了匹配的注解
 	 */
 	default boolean isAnnotated(String annotationName) {
 		return getAnnotations().isPresent(annotationName);
@@ -65,11 +65,11 @@ public interface AnnotatedTypeMetadata {
 	/**
 	 * 检索给定类型的注解的属性（如果有，即在底层元素上定义为直接注解或元注解），同时考虑组合注解上的属
 	 * 性覆盖。
-	 * @param annotationName the fully qualified class name of the annotation
-	 * type to look for
-	 * @return a Map of attributes, with the attribute name as key (e.g. "value")
-	 * and the defined attribute value as Map value. This return value will be
-	 * {@code null} if no matching annotation is defined.
+	 * @param annotationName 要查找的注解类型的
+	 * 全限定类名
+	 * @return 属性 Map，以属性名（例如 "value"）为键，
+	 * 以定义的属性值为值。如果没有定义匹配的注解，
+	 * 此返回值将为 {@code null}。
 	 */
 	@Nullable
 	default Map<String, Object> getAnnotationAttributes(String annotationName) {
@@ -79,15 +79,14 @@ public interface AnnotatedTypeMetadata {
 	/**
 	 * 检索给定类型的注解的属性（如果有，即在底层元素上定义为直接注解或元注解），同时考虑组合注解上的属
 	 * 性覆盖。
-	 * @param annotationName the fully qualified class name of the annotation
-	 * type to look for
-	 *
-	 * @param classValuesAsString whether to convert class references to String
-	 * class names for exposure as values in the returned Map, instead of Class
-	 * references which might potentially have to be loaded first
-	 * @return a Map of attributes, with the attribute name as key (e.g. "value")
-	 * and the defined attribute value as Map value. This return value will be
-	 * {@code null} if no matching annotation is defined.
+	 * @param annotationName 要查找的注解类型的
+	 * 全限定类名
+	 * @param classValuesAsString 是否将类引用转换为 String 类名，
+	 * 以便作为返回 Map 中的值暴露，
+	 * 而不是可能必须先加载的 Class 引用
+	 * @return 属性 Map，以属性名（例如 "value"）为键，
+	 * 以定义的属性值为值。如果没有定义匹配的注解，
+	 * 此返回值将为 {@code null}。
 	 */
 	@Nullable
 	default Map<String, Object> getAnnotationAttributes(String annotationName,
@@ -104,11 +103,11 @@ public interface AnnotatedTypeMetadata {
 	/**
 	 * 检索给定类型所有注解的所有属性（如果有，即在底层元素上定义为直接注解或元注解）。请注意，此变体
 	 * <i>不</i>考虑属性覆盖。
-	 * @param annotationName the fully qualified class name of the annotation
-	 * type to look for
-	 * @return a MultiMap of attributes, with the attribute name as key (e.g. "value")
-	 * and a list of the defined attribute values as Map value. This return value will
-	 * be {@code null} if no matching annotation is defined.
+	 * @param annotationName 要查找的注解类型的
+	 * 全限定类名
+	 * @return 属性 MultiMap，以属性名（例如 "value"）为键，
+	 * 以定义的属性值列表为值。如果没有定义匹配的注解，
+	 * 此返回值将为 {@code null}。
 	 * @see #getAllAnnotationAttributes(String, boolean)
 	 */
 	@Nullable
@@ -119,12 +118,12 @@ public interface AnnotatedTypeMetadata {
 	/**
 	 * 检索给定类型所有注解的所有属性（如果有，即在底层元素上定义为直接注解或元注解）。请注意，此变体
 	 * <i>不</i>考虑属性覆盖。
-	 * @param annotationName the fully qualified class name of the annotation
-	 * type to look for
-	 * @param classValuesAsString  whether to convert class references to String
-	 * @return a MultiMap of attributes, with the attribute name as key (e.g. "value")
-	 * and a list of the defined attribute values as Map value. This return value will
-	 * be {@code null} if no matching annotation is defined.
+	 * @param annotationName 要查找的注解类型的
+	 * 全限定类名
+	 * @param classValuesAsString 是否将类引用转换为 String
+	 * @return 属性 MultiMap，以属性名（例如 "value"）为键，
+	 * 以定义的属性值列表为值。如果没有定义匹配的注解，
+	 * 此返回值将为 {@code null}。
 	 * @see #getAllAnnotationAttributes(String)
 	 */
 	@Nullable

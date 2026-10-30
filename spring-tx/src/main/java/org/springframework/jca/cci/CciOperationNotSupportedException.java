@@ -34,8 +34,8 @@ public class CciOperationNotSupportedException extends InvalidDataAccessResource
 
 	/**
 	 * CciOperationNotSupportedException 的构造器。
-	 * @param msg message
-	 * @param ex the root ResourceException cause
+	 * @param msg 消息
+	 * @param ex 根本的 ResourceException 原因
 	 */
 	public CciOperationNotSupportedException(String msg, ResourceException ex) {
 		super(msg, ex);

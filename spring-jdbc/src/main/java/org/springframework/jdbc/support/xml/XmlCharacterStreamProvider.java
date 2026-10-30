@@ -30,8 +30,8 @@ public interface XmlCharacterStreamProvider {
 
 	/**
 	 * 实现类必须实现此方法，以为 {@code Writer} 提供 XML 内容。
-	 * @param writer the {@code Writer} object being used to provide the XML input
-	 * @throws IOException if an I/O error occurs while providing the XML
+	 * @param writer 用于提供 XML 输入的 {@code Writer} 对象
+	 * @throws IOException 在提供 XML 时发生 I/O 错误
 	 */
 	void provideXml(Writer writer) throws IOException;
 

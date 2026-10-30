@@ -33,7 +33,7 @@ public interface MethodInvocation extends Invocation {
 	/**
 	 * 获取被调用的方法。
 	 * <p>此方法是 {@link Joinpoint#getStaticPart()} 方法的友好实现（结果相同）。
-	 * @return the method being called
+	 * @return 被调用的方法
 	 */
 	@Nonnull
 	Method getMethod();

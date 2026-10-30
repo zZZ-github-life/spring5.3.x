@@ -65,19 +65,17 @@ abstract class AbstractExpressionEvaluatingCondition implements ExecutionConditi
 
 	/**
 	 * 在所提供的 {@link ExtensionContext} 的 {@link AnnotatedElement} 上，评估通过所提供的注解类型配置的表达式。
-	 * @param annotationType the type of annotation to process
-	 * @param expressionExtractor a function that extracts the expression from
-	 * the annotation
-	 * @param reasonExtractor a function that extracts the reason from the
-	 * annotation
-	 * @param loadContextExtractor a function that extracts the {@code loadContext}
-	 * flag from the annotation
-	 * @param enabledOnTrue indicates whether the returned {@code ConditionEvaluationResult}
-	 * should be {@link ConditionEvaluationResult#enabled enabled} if the expression
-	 * evaluates to {@code true}
-	 * @param context the {@code ExtensionContext}
-	 * @return {@link ConditionEvaluationResult#enabled enabled} if the container
-	 * or test should be enabled; otherwise {@link ConditionEvaluationResult#disabled disabled}
+	 * @param annotationType 要处理的注解类型
+	 * @param expressionExtractor 从注解中提取表达式的函数
+	 * @param reasonExtractor 从注解中提取原因的函数
+	 * @param loadContextExtractor 从注解中提取 {@code loadContext} 标志的函数
+	 * @param enabledOnTrue 指示当表达式求值为 {@code true} 时，返回的
+	 * {@code ConditionEvaluationResult} 是否应为
+	 * {@link ConditionEvaluationResult#enabled enabled}
+	 * @param context 该 {@code ExtensionContext}
+	 * @return 如果容器或测试应被启用，则为
+	 * {@link ConditionEvaluationResult#enabled enabled}；
+	 * 否则为 {@link ConditionEvaluationResult#disabled disabled}
 	 */
 	protected <A extends Annotation> ConditionEvaluationResult evaluateAnnotation(Class<A> annotationType,
 			Function<A, String> expressionExtractor, Function<A, String> reasonExtractor,

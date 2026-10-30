@@ -37,8 +37,8 @@ public interface TaskExecutor extends Executor {
 	/**
 	 * 执行给定的 {@code task}。
 	 * <p>如果实现使用异步执行策略，该调用可能立即返回；在同步执行的情况下则可能阻塞。
-	 * @param task the {@code Runnable} to execute (never {@code null})
-	 * @throws TaskRejectedException if the given task was not accepted
+	 * @param task 要执行的 {@code Runnable}（永不为 {@code null}）
+	 * @throws TaskRejectedException 如果给定的任务未被接受
 	 */
 	@Override
 	void execute(Runnable task);

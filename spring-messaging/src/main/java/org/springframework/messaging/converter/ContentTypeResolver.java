@@ -32,10 +32,10 @@ public interface ContentTypeResolver {
 
 	/**
 	 * 根据给定的 MessageHeaders 确定消息的 {@link MimeType}。
-	 * @param headers the headers to use for the resolution
-	 * @return the resolved {@code MimeType}, or {@code null} if none found
-	 * @throws InvalidMimeTypeException if the content type is a String that cannot be parsed
-	 * @throws IllegalArgumentException if there is a content type but its type is unknown
+	 * @param headers 用于解析的消息头
+	 * @return 解析得到的 {@code MimeType}；如果未找到则返回 {@code null}
+	 * @throws InvalidMimeTypeException 如果内容类型是无法解析的 String
+	 * @throws IllegalArgumentException 如果存在内容类型但其类型未知
 	 */
 	@Nullable
 	MimeType resolve(@Nullable MessageHeaders headers) throws InvalidMimeTypeException;

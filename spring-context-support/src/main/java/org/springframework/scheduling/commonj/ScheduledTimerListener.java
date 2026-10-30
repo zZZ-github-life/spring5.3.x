@@ -65,7 +65,7 @@ public class ScheduledTimerListener {
 	/**
 	 * 创建一个新的 ScheduledTimerListener，默认
 	 * 无延迟的一次性执行。
-	 * @param timerListener the TimerListener to schedule
+	 * @param timerListener 要调度的 TimerListener
 	 */
 	public ScheduledTimerListener(TimerListener timerListener) {
 		this.timerListener = timerListener;
@@ -74,8 +74,8 @@ public class ScheduledTimerListener {
 	/**
 	 * 创建一个新的 ScheduledTimerListener，默认
 	 * 带指定延迟的一次性执行。
-	 * @param timerListener the TimerListener to schedule
-	 * @param delay the delay before starting the task for the first time (ms)
+	 * @param timerListener 要调度的 TimerListener
+	 * @param delay 首次启动任务前的延迟（毫秒）
 	 */
 	public ScheduledTimerListener(TimerListener timerListener, long delay) {
 		this.timerListener = timerListener;
@@ -84,10 +84,10 @@ public class ScheduledTimerListener {
 
 	/**
 	 * 创建一个新的 ScheduledTimerListener。
-	 * @param timerListener the TimerListener to schedule
-	 * @param delay the delay before starting the task for the first time (ms)
-	 * @param period the period between repeated task executions (ms)
-	 * @param fixedRate whether to schedule as fixed-rate execution
+	 * @param timerListener 要调度的 TimerListener
+	 * @param delay 首次启动任务前的延迟（毫秒）
+	 * @param period 重复执行任务之间的间隔（毫秒）
+	 * @param fixedRate 是否以固定速率执行方式调度
 	 */
 	public ScheduledTimerListener(TimerListener timerListener, long delay, long period, boolean fixedRate) {
 		this.timerListener = timerListener;
@@ -99,7 +99,7 @@ public class ScheduledTimerListener {
 	/**
 	 * 创建一个新的 ScheduledTimerListener，默认
 	 * 无延迟的一次性执行。
-	 * @param timerTask the Runnable to schedule as TimerListener
+	 * @param timerTask 要作为 TimerListener 调度的 Runnable
 	 */
 	public ScheduledTimerListener(Runnable timerTask) {
 		setRunnable(timerTask);
@@ -108,8 +108,8 @@ public class ScheduledTimerListener {
 	/**
 	 * 创建一个新的 ScheduledTimerListener，默认
 	 * 带指定延迟的一次性执行。
-	 * @param timerTask the Runnable to schedule as TimerListener
-	 * @param delay the delay before starting the task for the first time (ms)
+	 * @param timerTask 要作为 TimerListener 调度的 Runnable
+	 * @param delay 首次启动任务前的延迟（毫秒）
 	 */
 	public ScheduledTimerListener(Runnable timerTask, long delay) {
 		setRunnable(timerTask);
@@ -118,10 +118,10 @@ public class ScheduledTimerListener {
 
 	/**
 	 * 创建一个新的 ScheduledTimerListener。
-	 * @param timerTask the Runnable to schedule as TimerListener
-	 * @param delay the delay before starting the task for the first time (ms)
-	 * @param period the period between repeated task executions (ms)
-	 * @param fixedRate whether to schedule as fixed-rate execution
+	 * @param timerTask 要作为 TimerListener 调度的 Runnable
+	 * @param delay 首次启动任务前的延迟（毫秒）
+	 * @param period 重复执行任务之间的间隔（毫秒）
+	 * @param fixedRate 是否以固定速率执行方式调度
 	 */
 	public ScheduledTimerListener(Runnable timerTask, long delay, long period, boolean fixedRate) {
 		setRunnable(timerTask);
@@ -200,7 +200,7 @@ public class ScheduledTimerListener {
 
 	/**
 	 * 此任务是否只会执行一次？
-	 * @return {@code true} if this task is only ever going to execute once
+	 * @return 如果此任务只会执行一次，则返回 {@code true}
 	 * @see #getPeriod()
 	 */
 	public boolean isOneTimeTask() {

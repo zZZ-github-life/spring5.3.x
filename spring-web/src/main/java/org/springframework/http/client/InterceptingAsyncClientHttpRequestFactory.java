@@ -43,8 +43,8 @@ public class InterceptingAsyncClientHttpRequestFactory implements AsyncClientHtt
 	/**
 	 * 使用委托请求工厂和拦截器列表
 	 * 创建 {@link InterceptingAsyncClientHttpRequestFactory} 的新实例。
-	 * @param delegate the request factory to delegate to
-	 * @param interceptors the list of interceptors to use
+	 * @param delegate 要委托的请求工厂
+	 * @param interceptors 要使用的拦截器列表
 	 */
 	public InterceptingAsyncClientHttpRequestFactory(AsyncClientHttpRequestFactory delegate,
 			@Nullable List<AsyncClientHttpRequestInterceptor> interceptors) {

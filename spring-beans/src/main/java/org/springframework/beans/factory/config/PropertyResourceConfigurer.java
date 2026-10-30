@@ -68,7 +68,7 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 	/**
 	 * 针对给定的 Bean 工厂{@linkplain #mergeProperties Merge}、{@linkplain #convertProperties convert}
 	 * 和 {@linkplain #processProperties process} 属性。
-	 * @throws BeanInitializationException if any properties cannot be loaded
+	 * @throws BeanInitializationException 如果任何属性无法加载则抛出
 	 */
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
@@ -89,7 +89,7 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 	/**
 	 * 转换给定的已合并属性，必要时转换属性值。随后将处理结果。
 	 * <p>默认实现会为每个属性值调用 {@link #convertPropertyValue}，用转换后的值替换原值。
-	 * @param props the Properties to convert
+	 * @param props 要转换的 Properties
 	 * @see #processProperties
 	 */
 	protected void convertProperties(Properties props) {
@@ -107,9 +107,9 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 	/**
 	 * 将属性源中的给定属性转换为应当应用的值。
 	 * <p>默认实现会调用 {@link #convertPropertyValue(String)}。
-	 * @param propertyName the name of the property that the value is defined for
-	 * @param propertyValue the original value from the properties source
-	 * @return the converted value, to be used for processing
+	 * @param propertyName 该值所针对的属性的名称
+	 * @param propertyValue 来自属性源的原始值
+	 * @return 转换后的值，用于处理
 	 * @see #convertPropertyValue(String)
 	 */
 	protected String convertProperty(String propertyName, String propertyValue) {
@@ -119,9 +119,9 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 	/**
 	 * 将属性源中的给定属性值转换为应当应用的值。
 	 * <p>默认实现仅返回原值。可以在子类中覆盖，例如用于检测加密值并相应解密。
-	 * @param originalValue the original value from the properties source
-	 * (properties file or local "properties")
-	 * @return the converted value, to be used for processing
+	 * @param originalValue 来自属性源的原始值
+	 * （属性文件或本地 "properties"）
+	 * @return 转换后的值，用于处理
 	 * @see #setProperties
 	 * @see #setLocations
 	 * @see #setLocation
@@ -134,9 +134,9 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 
 	/**
 	 * 将给定的 Properties 应用到给定的 BeanFactory。
-	 * @param beanFactory the BeanFactory used by the application context
-	 * @param props the Properties to apply
-	 * @throws org.springframework.beans.BeansException in case of errors
+	 * @param beanFactory 应用上下文使用的 BeanFactory
+	 * @param props 要应用的 Properties
+	 * @throws org.springframework.beans.BeansException 如果出错则抛出
 	 */
 	protected abstract void processProperties(ConfigurableListableBeanFactory beanFactory, Properties props)
 			throws BeansException;

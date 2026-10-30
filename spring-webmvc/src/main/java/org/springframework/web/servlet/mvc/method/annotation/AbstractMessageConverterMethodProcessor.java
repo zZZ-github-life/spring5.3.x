@@ -129,8 +129,8 @@ public abstract class AbstractMessageConverterMethodProcessor extends AbstractMe
 
 	/**
 	 * 根据给定的 {@link NativeWebRequest} 创建一个新的 {@link HttpOutputMessage}。
-	 * @param webRequest the web request to create an output message from
-	 * @return the output message
+	 * @param webRequest 要从中创建输出消息的 Web 请求
+	 * @return 输出消息
 	 */
 	protected ServletServerHttpResponse createOutputMessage(NativeWebRequest webRequest) {
 		HttpServletResponse response = webRequest.getNativeResponse(HttpServletResponse.class);
@@ -152,16 +152,14 @@ public abstract class AbstractMessageConverterMethodProcessor extends AbstractMe
 
 	/**
 	 * 将给定返回类型写入给定的输出消息。
-	 * @param value the value to write to the output message
-	 * @param returnType the type of the value
-	 * @param inputMessage the input messages. Used to inspect the {@code Accept} header.
-	 * @param outputMessage the output message to write to
-	 * @throws IOException thrown in case of I/O errors
-	 * @throws HttpMediaTypeNotAcceptableException thrown when the conditions indicated
-	 * by the {@code Accept} header on the request cannot be met by the message converters
-	 * @throws HttpMessageNotWritableException thrown if a given message cannot
-	 * be written by a converter, or if the content-type chosen by the server
-	 * has no compatible converter.
+	 * @param value 要写入输出消息的值
+	 * @param returnType 值的类型
+	 * @param inputMessage 输入消息。用于检查 {@code Accept} 请求头。
+	 * @param outputMessage 要写入的输出消息
+	 * @throws IOException 发生 I/O 错误时抛出
+	 * @throws HttpMediaTypeNotAcceptableException 当请求的 {@code Accept} 头所指示的条件无法由消息转换器满足时抛出
+	 * @throws HttpMessageNotWritableException 如果给定的消息无法由转换器写入，
+	 * 或服务器选择的内容类型没有兼容的转换器，则抛出。
 	 */
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	protected <T> void writeWithMessageConverters(@Nullable T value, MethodParameter returnType,

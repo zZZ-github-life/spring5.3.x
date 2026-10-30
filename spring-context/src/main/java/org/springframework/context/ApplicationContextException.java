@@ -28,7 +28,7 @@ public class ApplicationContextException extends FatalBeanException {
 
 	/**
 	 * 使用指定的详细消息且没有根本原因创建一个新的 {@code ApplicationContextException}。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public ApplicationContextException(String msg) {
 		super(msg);
@@ -36,8 +36,8 @@ public class ApplicationContextException extends FatalBeanException {
 
 	/**
 	 * 使用指定的详细消息和给定的根本原因创建一个新的 {@code ApplicationContextException}。
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param msg 详细消息
+	 * @param cause 根本原因
 	 */
 	public ApplicationContextException(String msg, Throwable cause) {
 		super(msg, cause);

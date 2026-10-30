@@ -42,7 +42,7 @@ public class FailFastProblemReporter implements ProblemReporter {
 	 * 设置用于报告警告的{@link Log 日志记录器}。
 	 *
 	 * <p>如果设置为 {@code null}，则将使用以实例类名命名的默认{@link Log 日志记录器}。
-	 * @param logger the {@link Log logger} that is to be used to report warnings
+	 * @param logger 用于报告警告的 {@link Log logger}
 	 */
 	public void setLogger(@Nullable Log logger) {
 		this.logger = (logger != null ? logger : LogFactory.getLog(getClass()));
@@ -51,7 +51,7 @@ public class FailFastProblemReporter implements ProblemReporter {
 
 	/**
 	 * 抛出详细说明所发生错误的 {@link BeanDefinitionParsingException}。
-	 * @param problem the source of the error
+	 * @param problem 错误来源
 	 */
 	@Override
 	public void fatal(Problem problem) {
@@ -60,7 +60,7 @@ public class FailFastProblemReporter implements ProblemReporter {
 
 	/**
 	 * 抛出详细说明所发生错误的 {@link BeanDefinitionParsingException}。
-	 * @param problem the source of the error
+	 * @param problem 错误来源
 	 */
 	@Override
 	public void error(Problem problem) {
@@ -69,7 +69,7 @@ public class FailFastProblemReporter implements ProblemReporter {
 
 	/**
 	 * 将给定的 {@link Problem} 以 {@code WARN} 级别写入 {@link Log}。
-	 * @param problem the source of the warning
+	 * @param problem 警告来源
 	 */
 	@Override
 	public void warning(Problem problem) {

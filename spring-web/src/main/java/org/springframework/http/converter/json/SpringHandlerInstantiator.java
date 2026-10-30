@@ -61,7 +61,7 @@ public class SpringHandlerInstantiator extends HandlerInstantiator {
 
 	/**
 	 * 为给定的 BeanFactory 创建一个新的 SpringHandlerInstantiator。
-	 * @param beanFactory the target BeanFactory
+	 * @param beanFactory 目标 BeanFactory
 	 */
 	public SpringHandlerInstantiator(AutowireCapableBeanFactory beanFactory) {
 		Assert.notNull(beanFactory, "BeanFactory must not be null");

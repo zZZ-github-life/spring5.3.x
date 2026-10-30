@@ -35,9 +35,9 @@ public class DefaultBootstrapContext implements BootstrapContext {
 
 	/**
 	 * 根据所提供的参数构造新的 {@code DefaultBootstrapContext}。
-	 * @param testClass the test class for this bootstrap context; never {@code null}
-	 * @param cacheAwareContextLoaderDelegate the context loader delegate to use for
-	 * transparent interaction with the {@code ContextCache}; never {@code null}
+	 * @param testClass 此引导上下文的测试类；从不为 {@code null}
+	 * @param cacheAwareContextLoaderDelegate 用于与 {@code ContextCache} 透明交互的上下文加载器委托；
+	 * 从不为 {@code null}
 	 */
 	public DefaultBootstrapContext(Class<?> testClass, CacheAwareContextLoaderDelegate cacheAwareContextLoaderDelegate) {
 		Assert.notNull(testClass, "Test class must not be null");

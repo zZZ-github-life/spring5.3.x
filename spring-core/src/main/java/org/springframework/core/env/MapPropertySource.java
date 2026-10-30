@@ -35,9 +35,9 @@ public class MapPropertySource extends EnumerablePropertySource<Map<String, Obje
 
 	/**
 	 * 使用给定的名称和 {@code Map} 创建一个新的 {@code MapPropertySource}。
-	 * @param name the associated name
-	 * @param source the Map source (without {@code null} values in order to get
-	 * consistent {@link #getProperty} and {@link #containsProperty} behavior)
+	 * @param name 关联的名称
+	 * @param source 该 Map 源（不应包含 {@code null} 值，以便获得一致的
+	 * {@link #getProperty} 与 {@link #containsProperty} 行为）
 	 */
 	public MapPropertySource(String name, Map<String, Object> source) {
 		super(name, source);

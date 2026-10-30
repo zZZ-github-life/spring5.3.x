@@ -554,13 +554,13 @@ final class MethodWriter extends MethodVisitor {
   /**
    * 构造一个新的 {@link MethodWriter}。
    *
-   * @param symbolTable where the constants used in this AnnotationWriter must be stored.
-   * @param access the method's access flags (see {@link Opcodes}).
-   * @param name the method's name.
-   * @param descriptor the method's descriptor (see {@link Type}).
-   * @param signature the method's signature. May be {@literal null}.
-   * @param exceptions the internal names of the method's exceptions. May be {@literal null}.
-   * @param compute indicates what must be computed (see #compute).
+   * @param symbolTable 用于存储此 AnnotationWriter 中所用常量的位置。
+   * @param access 方法的访问标志（参见 {@link Opcodes}）。
+   * @param name 方法的名称。
+   * @param descriptor 方法的描述符（参见 {@link Type}）。
+   * @param signature 方法的签名。可以为 {@literal null}。
+   * @param exceptions 方法异常的内部名称。可以为 {@literal null}。
+   * @param compute 指示必须计算的内容（参见 #compute）。
    */
   MethodWriter(
       final SymbolTable symbolTable,
@@ -1753,8 +1753,8 @@ final class MethodWriter extends MethodVisitor {
   /**
    * 在控制流图中向 {@link #currentBasicBlock} 添加一个后继。
    *
-   * @param info information about the control flow edge to be added.
-   * @param successor the successor block to be added to the current basic block.
+   * @param info 有关要添加的控制流边的信息。
+   * @param successor 要添加到当前基本块的后继块。
    */
   private void addSuccessorToCurrentBasicBlock(final int info, final Label successor) {
     currentBasicBlock.outgoingEdges = new Edge(info, successor, currentBasicBlock.outgoingEdges);
@@ -1787,10 +1787,10 @@ final class MethodWriter extends MethodVisitor {
   /**
    * 开始访问一个新的栈映射帧，它存储在 {@link #currentFrame} 中。
    *
-   * @param offset the bytecode offset of the instruction to which the frame corresponds.
-   * @param numLocal the number of local variables in the frame.
-   * @param numStack the number of stack elements in the frame.
-   * @return the index of the next element to be written in this frame.
+   * @param offset 该帧所对应指令的字节码偏移量。
+   * @param numLocal 帧中局部变量的数量。
+   * @param numStack 帧中栈元素的数量。
+   * @return 此帧中要写入的下一个元素的索引。
    */
   int visitFrameStart(final int offset, final int numLocal, final int numStack) {
     int frameLength = 3 + numLocal + numStack;
@@ -1806,8 +1806,8 @@ final class MethodWriter extends MethodVisitor {
   /**
    * 在 {@link #currentFrame} 中设置一个抽象类型。
    *
-   * @param frameIndex the index of the element to be set in {@link #currentFrame}.
-   * @param abstractType an abstract type.
+   * @param frameIndex 要在 {@link #currentFrame} 中设置的元素的索引。
+   * @param abstractType 一个抽象类型。
    */
   void visitAbstractType(final int frameIndex, final int abstractType) {
     currentFrame[frameIndex] = abstractType;
@@ -1927,8 +1927,8 @@ final class MethodWriter extends MethodVisitor {
    * 将 {@link #currentFrame} 的某些抽象类型放入 {@link #stackMapTableEntries}，使用 StackMapTable 属
    * 性中采用的 JVMS verification_type_info 格式。
    *
-   * @param start index of the first type in {@link #currentFrame} to write.
-   * @param end index of last type in {@link #currentFrame} to write (exclusive).
+   * @param start 要写入的 {@link #currentFrame} 中第一个类型的索引。
+   * @param end 要写入的 {@link #currentFrame} 中最后一个类型的索引（不包含）。
    */
   private void putAbstractTypes(final int start, final int end) {
     for (int i = start; i < end; ++i) {
@@ -1940,11 +1940,11 @@ final class MethodWriter extends MethodVisitor {
    * 将给定的公共 API 帧元素类型放入 {@link #stackMapTableEntries}，使用 StackMapTable 属性中采用的
    * JVMS verification_type_info 格式。
    *
-   * @param type a frame element type described using the same format as in {@link
-   *     MethodVisitor#visitFrame}, i.e. either {@link Opcodes#TOP}, {@link Opcodes#INTEGER}, {@link
-   *     Opcodes#FLOAT}, {@link Opcodes#LONG}, {@link Opcodes#DOUBLE}, {@link Opcodes#NULL}, or
-   *     {@link Opcodes#UNINITIALIZED_THIS}, or the internal name of a class, or a Label designating
-   *     a NEW instruction (for uninitialized types).
+   * @param type 以与 {@link MethodVisitor#visitFrame} 相同的格式描述的帧元素类型，即
+   * {@link Opcodes#TOP}、{@link Opcodes#INTEGER}、{@link Opcodes#FLOAT}、
+   * {@link Opcodes#LONG}、{@link Opcodes#DOUBLE}、{@link Opcodes#NULL} 或
+   * {@link Opcodes#UNINITIALIZED_THIS} 之一，或类的内部名称，
+   * 或指示 NEW 指令的 Label（用于未初始化的类型）。
    */
   private void putFrameType(final Object type) {
     if (type instanceof Integer) {
@@ -1970,20 +1970,16 @@ final class MethodWriter extends MethodVisitor {
    * 属性（至多包括 Signature、Exception、Deprecated 和 Synthetic 属性）与给定方法中相应的属性相同，
    * 则返回 true。
    *
-   * @param source the source ClassReader from which the attributes of this method might be copied.
-   * @param hasSyntheticAttribute whether the method_info JVMS structure from which the attributes
-   *     of this method might be copied contains a Synthetic attribute.
-   * @param hasDeprecatedAttribute whether the method_info JVMS structure from which the attributes
-   *     of this method might be copied contains a Deprecated attribute.
-   * @param descriptorIndex the descriptor_index field of the method_info JVMS structure from which
-   *     the attributes of this method might be copied.
-   * @param signatureIndex the constant pool index contained in the Signature attribute of the
-   *     method_info JVMS structure from which the attributes of this method might be copied, or 0.
-   * @param exceptionsOffset the offset in 'source.b' of the Exceptions attribute of the method_info
-   *     JVMS structure from which the attributes of this method might be copied, or 0.
-   * @return whether the attributes of this method can be copied from the attributes of the
-   *     method_info JVMS structure in 'source.b', between 'methodInfoOffset' and 'methodInfoOffset'
-   *     + 'methodInfoLength'.
+   * @param source 可能从此处复制此方法属性的源 ClassReader。
+   * @param hasSyntheticAttribute 可能从此处复制此方法属性的 method_info JVMS 结构是否包含 Synthetic 属性。
+   * @param hasDeprecatedAttribute 可能从此处复制此方法属性的 method_info JVMS 结构是否包含 Deprecated 属性。
+   * @param descriptorIndex 可能从此处复制此方法属性的 method_info JVMS 结构的 descriptor_index 字段。
+   * @param signatureIndex 可能从此处复制此方法属性的 method_info JVMS 结构的
+   * Signature 属性中包含的常量池索引，或 0。
+   * @param exceptionsOffset 可能从此处复制此方法属性的 method_info JVMS 结构的
+   * Exceptions 属性在 'source.b' 中的偏移量，或 0。
+   * @return 此方法的属性是否可以从 'source.b' 中位于 'methodInfoOffset' 与
+   * 'methodInfoOffset' + 'methodInfoLength' 之间的 method_info JVMS 结构的属性复制而来。
    */
   boolean canCopyMethodAttributes(
       final ClassReader source,
@@ -2027,10 +2023,10 @@ final class MethodWriter extends MethodVisitor {
   /**
    * 设置将从中复制此方法属性的源。
    *
-   * @param methodInfoOffset the offset in 'symbolTable.getSource()' of the method_info JVMS
-   *     structure from which the attributes of this method will be copied.
-   * @param methodInfoLength the length in 'symbolTable.getSource()' of the method_info JVMS
-   *     structure from which the attributes of this method will be copied.
+   * @param methodInfoOffset 'symbolTable.getSource()' 中 method_info JVMS 结构的偏移量，
+   * 将从此结构复制此方法的属性。
+   * @param methodInfoLength 'symbolTable.getSource()' 中 method_info JVMS 结构的长度，
+   * 将从此结构复制此方法的属性。
    */
   void setMethodAttributesSource(final int methodInfoOffset, final int methodInfoLength) {
     // Don't copy the attributes yet, instead store their location in the source class reader so
@@ -2043,7 +2039,7 @@ final class MethodWriter extends MethodVisitor {
   /**
    * 返回此 MethodWriter 生成的 method_info JVMS 结构的大小。同时将方法属性的名称添加到常量池中。
    *
-   * @return the size in bytes of the method_info JVMS structure.
+   * @return method_info JVMS 结构的字节大小。
    */
   int computeMethodInfoSize() {
     // If this method_info must be copied from an existing one, the size computation is trivial.
@@ -2147,7 +2143,7 @@ final class MethodWriter extends MethodVisitor {
   /**
    * 将此 MethodWriter 生成的 method_info JVMS 结构的内容放入给定的 ByteVector 中。
    *
-   * @param output where the method_info structure must be put.
+   * @param output 放置 method_info 结构的位置。
    */
   void putMethodInfo(final ByteVector output) {
     boolean useSyntheticAttribute = symbolTable.getMajorVersion() < Opcodes.V1_5;
@@ -2356,7 +2352,7 @@ final class MethodWriter extends MethodVisitor {
   /**
    * 将此方法的属性收集到给定的属性原型集合中。
    *
-   * @param attributePrototypes a set of attribute prototypes.
+   * @param attributePrototypes 一组属性原型。
    */
   final void collectAttributePrototypes(final Attribute.Set attributePrototypes) {
     attributePrototypes.addAttributes(firstAttribute);

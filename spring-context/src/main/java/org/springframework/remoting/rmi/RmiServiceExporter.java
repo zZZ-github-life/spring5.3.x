@@ -214,7 +214,7 @@ public class RmiServiceExporter extends RmiBasedExporter implements Initializing
 	/**
 	 * 初始化此服务导出器，将服务注册为 RMI 对象。
 	 * <p>如果指定端口上不存在 RMI 注册表，则创建一个。
-	 * @throws RemoteException if service registration failed
+	 * @throws RemoteException 如果服务注册失败
 	 */
 	public void prepare() throws RemoteException {
 		checkService();
@@ -292,13 +292,13 @@ public class RmiServiceExporter extends RmiBasedExporter implements Initializing
 
 	/**
 	 * 为此导出器定位或创建 RMI 注册表。
-	 * @param registryHost the registry host to use (if this is specified,
-	 * no implicit creation of a RMI registry will happen)
-	 * @param registryPort the registry port to use
-	 * @param clientSocketFactory the RMI client socket factory for the registry (if any)
-	 * @param serverSocketFactory the RMI server socket factory for the registry (if any)
-	 * @return the RMI registry
-	 * @throws RemoteException if the registry couldn't be located or created
+	 * @param registryHost 要使用的注册表主机
+	 * （如果指定了此项，则不会隐式创建 RMI 注册表）
+	 * @param registryPort 要使用的注册表端口
+	 * @param clientSocketFactory 用于注册表的 RMI 客户端套接字工厂（如果有）
+	 * @param serverSocketFactory 用于注册表的 RMI 服务器套接字工厂（如果有）
+	 * @return RMI 注册表
+	 * @throws RemoteException 如果无法定位或创建注册表
 	 */
 	protected Registry getRegistry(String registryHost, int registryPort,
 			@Nullable RMIClientSocketFactory clientSocketFactory, @Nullable RMIServerSocketFactory serverSocketFactory)
@@ -321,11 +321,11 @@ public class RmiServiceExporter extends RmiBasedExporter implements Initializing
 
 	/**
 	 * 为此导出器定位或创建 RMI 注册表。
-	 * @param registryPort the registry port to use
-	 * @param clientSocketFactory the RMI client socket factory for the registry (if any)
-	 * @param serverSocketFactory the RMI server socket factory for the registry (if any)
-	 * @return the RMI registry
-	 * @throws RemoteException if the registry couldn't be located or created
+	 * @param registryPort 要使用的注册表端口
+	 * @param clientSocketFactory 用于注册表的 RMI 客户端套接字工厂（如果有）
+	 * @param serverSocketFactory 用于注册表的 RMI 服务器套接字工厂（如果有）
+	 * @return RMI 注册表
+	 * @throws RemoteException 如果无法定位或创建注册表
 	 */
 	protected Registry getRegistry(int registryPort,
 			@Nullable RMIClientSocketFactory clientSocketFactory, @Nullable RMIServerSocketFactory serverSocketFactory)
@@ -362,9 +362,9 @@ public class RmiServiceExporter extends RmiBasedExporter implements Initializing
 
 	/**
 	 * 为此导出器定位或创建 RMI 注册表。
-	 * @param registryPort the registry port to use
-	 * @return the RMI registry
-	 * @throws RemoteException if the registry couldn't be located or created
+	 * @param registryPort 要使用的注册表端口
+	 * @return RMI 注册表
+	 * @throws RemoteException 如果无法定位或创建注册表
 	 */
 	protected Registry getRegistry(int registryPort) throws RemoteException {
 		if (this.alwaysCreateRegistry) {
@@ -393,8 +393,8 @@ public class RmiServiceExporter extends RmiBasedExporter implements Initializing
 	/**
 	 * 测试给定的 RMI 注册表，在其上调用某个操作以检查它是否仍然处于活动状态。
 	 * <p>默认实现调用 {@code Registry.list()}。
-	 * @param registry the RMI registry to test
-	 * @throws RemoteException if thrown by registry methods
+	 * @param registry 要测试的 RMI 注册表
+	 * @throws RemoteException 如果由注册表方法抛出
 	 * @see java.rmi.registry.Registry#list()
 	 */
 	protected void testRegistry(Registry registry) throws RemoteException {

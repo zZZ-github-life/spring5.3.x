@@ -48,7 +48,7 @@ public class GenericApplicationListenerAdapter implements GenericApplicationList
 
 	/**
 	 * 为给定的委托创建一个新的 GenericApplicationListener。
-	 * @param delegate the delegate listener to be invoked
+	 * @param delegate 要调用的委托监听器
 	 */
 	@SuppressWarnings("unchecked")
 	public GenericApplicationListenerAdapter(ApplicationListener<?> delegate) {

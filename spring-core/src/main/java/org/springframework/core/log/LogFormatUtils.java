@@ -47,9 +47,9 @@ public abstract class LogFormatUtils {
 	 * {@link #formatValue(Object, int, boolean)} 的便捷变体，
 	 * 它将日志消息的长度限制为 100 个字符，并且在
 	 * {@code limitLength} 设置为 "true" 时替换换行符和控制字符。
-	 * @param value the value to format
-	 * @param limitLength whether to truncate the value at a length of 100
-	 * @return the formatted value
+	 * @param value 要格式化的值
+	 * @param limitLength 是否将值截断为 100 个字符
+	 * @return 格式化后的值
 	 */
 	public static String formatValue(@Nullable Object value, boolean limitLength) {
 		return formatValue(value, (limitLength ? 100 : -1), limitLength);
@@ -59,11 +59,11 @@ public abstract class LogFormatUtils {
 	 * 通过 {@code toString()} 格式化给定值，如果它是
 	 * {@link CharSequence} 则为其加引号，截断到指定的 {@code maxLength}，
 	 * 并在设置了 {@code replaceNewLines} 时将其压缩为单行。
-	 * @param value the value to be formatted
-	 * @param maxLength the max length, after which to truncate, or -1 for unlimited
-	 * @param replaceNewlinesAndControlCharacters whether to replace newline and
-	 * control characters with placeholders
-	 * @return the formatted value
+	 * @param value 要格式化的值
+	 * @param maxLength 最大长度，超过则截断；-1 表示不限制
+	 * @param replaceNewlinesAndControlCharacters 是否用占位符替换换行符
+	 * 和控制字符
+	 * @return 格式化后的值
 	 */
 	public static String formatValue(
 			@Nullable Object value, int maxLength, boolean replaceNewlinesAndControlCharacters) {
@@ -105,9 +105,9 @@ public abstract class LogFormatUtils {
 	 *   }
 	 * }
 	 * </pre>
-	 * @param logger the logger to use to log the message
-	 * @param messageFactory function that accepts a boolean set to the value
-	 * of {@link Log#isTraceEnabled()}
+	 * @param logger 用于记录消息的日志记录器
+	 * @param messageFactory 一个函数，接收的 boolean 值为
+	 * {@link Log#isTraceEnabled()} 的值
 	 */
 	public static void traceDebug(Log logger, Function<Boolean, String> messageFactory) {
 		if (logger.isDebugEnabled()) {

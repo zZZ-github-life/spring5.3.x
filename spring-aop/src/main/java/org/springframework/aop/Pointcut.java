@@ -34,13 +34,13 @@ public interface Pointcut {
 
 	/**
 	 * 返回此切点的 ClassFilter。
-	 * @return the ClassFilter (never {@code null})
+	 * @return ClassFilter（永不为 {@code null}）
 	 */
 	ClassFilter getClassFilter();
 
 	/**
 	 * 返回此切点的 MethodMatcher。
-	 * @return the MethodMatcher (never {@code null})
+	 * @return MethodMatcher（永不为 {@code null}）
 	 */
 	MethodMatcher getMethodMatcher();
 

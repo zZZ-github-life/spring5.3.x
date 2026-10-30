@@ -47,7 +47,7 @@ public class ByteArrayResource extends AbstractResource {
 
 	/**
 	 * 创建一个新的 {@code ByteArrayResource}。
-	 * @param byteArray the byte array to wrap
+	 * @param byteArray 要包装的字节数组
 	 */
 	public ByteArrayResource(byte[] byteArray) {
 		this(byteArray, "resource loaded from byte array");
@@ -55,8 +55,8 @@ public class ByteArrayResource extends AbstractResource {
 
 	/**
 	 * 创建一个带描述的 {@code ByteArrayResource}。
-	 * @param byteArray the byte array to wrap
-	 * @param description where the byte array comes from
+	 * @param byteArray 要包装的字节数组
+	 * @param description 字节数组的来源
 	 */
 	public ByteArrayResource(byte[] byteArray, @Nullable String description) {
 		Assert.notNull(byteArray, "Byte array must not be null");

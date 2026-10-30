@@ -50,11 +50,11 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 	 * <p>后处理器可以实现扩展的 {@link SmartInstantiationAwareBeanPostProcessor} 接口，以预测它们将在
 	 * 此处返回的 Bean 对象的类型。
 	 * <p>默认实现返回 {@code null}。
-	 * @param beanClass the class of the bean to be instantiated
-	 * @param beanName the name of the bean
-	 * @return the bean object to expose instead of a default instance of the target bean,
-	 * or {@code null} to proceed with default instantiation
-	 * @throws org.springframework.beans.BeansException in case of errors
+	 * @param beanClass 要实例化的 Bean 的类
+	 * @param beanName 该 Bean 的名称
+	 * @return 要暴露以替代目标 Bean 默认实例的 Bean 对象，
+	 * 或 {@code null} 以继续使用默认实例化
+	 * @throws org.springframework.beans.BeansException 如果出错则抛出
 	 * @see #postProcessAfterInstantiation
 	 * @see org.springframework.beans.factory.support.AbstractBeanDefinition#getBeanClass()
 	 * @see org.springframework.beans.factory.support.AbstractBeanDefinition#getFactoryMethodName()
@@ -69,13 +69,13 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 	 * 执行操作。
 	 * <p>这是在给定 Bean 实例上执行自定义字段注入的理想回调，此时正好在 Spring 的自动装配生效之前。
 	 * <p>默认实现返回 {@code true}。
-	 * @param bean the bean instance created, with properties not having been set yet
-	 * @param beanName the name of the bean
-	 * @return {@code true} if properties should be set on the bean; {@code false}
-	 * if property population should be skipped. Normal implementations should return {@code true}.
-	 * Returning {@code false} will also prevent any subsequent InstantiationAwareBeanPostProcessor
-	 * instances being invoked on this bean instance.
-	 * @throws org.springframework.beans.BeansException in case of errors
+	 * @param bean 已创建但尚未设置属性的 Bean 实例
+	 * @param beanName 该 Bean 的名称
+	 * @return 如果应在该 Bean 上设置属性则返回 {@code true}；
+	 * 如果应跳过属性填充则返回 {@code false}。
+	 * 常规实现应返回 {@code true}。返回 {@code false} 还会阻止
+	 * 对该 Bean 实例调用任何后续的 InstantiationAwareBeanPostProcessor 实例。
+	 * @throws org.springframework.beans.BeansException 如果出错则抛出
 	 * @see #postProcessBeforeInstantiation
 	 */
 	default boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
@@ -87,14 +87,14 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 	 * <p>如果实现提供了自定义的 {@link #postProcessPropertyValues} 实现，则应返回 {@code null}（默认值），
 	 * 否则应返回 {@code pvs}。在此接口的未来版本中（移除了 {@link #postProcessPropertyValues}），
 	 * 默认实现将直接原样返回给定的 {@code pvs}。
-	 * @param pvs the property values that the factory is about to apply (never {@code null})
-	 * @param bean the bean instance created, but whose properties have not yet been set
-	 * @param beanName the name of the bean
-	 * @return the actual property values to apply to the given bean (can be the passed-in
-	 * PropertyValues instance), or {@code null} which proceeds with the existing properties
-	 * but specifically continues with a call to {@link #postProcessPropertyValues}
-	 * (requiring initialized {@code PropertyDescriptor}s for the current bean class)
-	 * @throws org.springframework.beans.BeansException in case of errors
+	 * @param pvs 工厂即将应用的属性值（永不为 {@code null}）
+	 * @param bean 已创建但尚未设置属性的 Bean 实例
+	 * @param beanName 该 Bean 的名称
+	 * @return 要应用于给定 Bean 的实际属性值（可以是传入的
+	 * PropertyValues 实例），或 {@code null} 表示继续使用现有属性，
+	 * 但会特别继续调用 {@link #postProcessPropertyValues}
+	 * （需要当前 Bean 类的已初始化 {@code PropertyDescriptor}）
+	 * @throws org.springframework.beans.BeansException 如果出错则抛出
 	 * @since 5.1
 	 * @see #postProcessPropertyValues
 	 */
@@ -111,14 +111,14 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 	 * <p>还允许替换要应用的属性值，通常是通过基于原始 PropertyValues 创建新的 MutablePropertyValues 实
 	 * 例，并添加或删除特定的值。
 	 * <p>默认实现原样返回给定的 {@code pvs}。
-	 * @param pvs the property values that the factory is about to apply (never {@code null})
-	 * @param pds the relevant property descriptors for the target bean (with ignored
-	 * dependency types - which the factory handles specifically - already filtered out)
-	 * @param bean the bean instance created, but whose properties have not yet been set
-	 * @param beanName the name of the bean
-	 * @return the actual property values to apply to the given bean (can be the passed-in
-	 * PropertyValues instance), or {@code null} to skip property population
-	 * @throws org.springframework.beans.BeansException in case of errors
+	 * @param pvs 工厂即将应用的属性值（永不为 {@code null}）
+	 * @param pds 目标 Bean 的相关属性描述符（已过滤掉被忽略的
+	 * 依赖类型——工厂会专门处理这些类型）
+	 * @param bean 已创建但尚未设置属性的 Bean 实例
+	 * @param beanName 该 Bean 的名称
+	 * @return 要应用于给定 Bean 的实际属性值（可以是传入的
+	 * PropertyValues 实例），或 {@code null} 跳过属性填充
+	 * @throws org.springframework.beans.BeansException 如果出错则抛出
 	 * @see #postProcessProperties
 	 * @see org.springframework.beans.MutablePropertyValues
 	 * @deprecated as of 5.1, in favor of {@link #postProcessProperties(PropertyValues, Object, String)}

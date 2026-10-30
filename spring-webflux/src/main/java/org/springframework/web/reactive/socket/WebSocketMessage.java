@@ -55,10 +55,9 @@ public class WebSocketMessage {
 
 	/**
 	 * 用于入站消息并可以访问底层消息的构造函数。
-	 * @param type the type of WebSocket message
-	 * @param payload the message content
-	 * @param nativeMessage the message from the API of the underlying WebSocket
-	 * library, if applicable.
+	 * @param type WebSocket 消息的类型
+	 * @param payload 消息内容
+	 * @param nativeMessage 来自底层 WebSocket 库 API 的消息（如果适用）。
 	 * @since 5.3
 	 */
 	public WebSocketMessage(Type type, DataBuffer payload, @Nullable Object nativeMessage) {
@@ -86,8 +85,8 @@ public class WebSocketMessage {
 	/**
 	 * 返回底层 WebSocket 库 API 中的消息。这仅适用于入站消息，并且当底层消息
 	 * 除内容之外还有其他字段时。目前只有 Reactor Netty 属于这种情况。
-	 * @param <T> the type to cast the underlying message to
-	 * @return the underlying message, or {@code null}
+	 * @param <T> 要将底层消息转换成的类型
+	 * @return 底层消息，或 {@code null}
 	 * @since 5.3
 	 */
 	@Nullable
@@ -107,7 +106,7 @@ public class WebSocketMessage {
 	/**
 	 * 使用给定的字符编码将消息原始内容解码为文本的快捷方式。这对于文本 WebSocket
 	 * 消息很有用，或者在负载预期包含文本的其他情况下也很有用。
-	 * @param charset the character encoding
+	 * @param charset 字符编码
 	 * @since 5.0.5
 	 */
 	public String getPayloadAsText(Charset charset) {

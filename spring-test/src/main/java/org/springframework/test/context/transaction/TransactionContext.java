@@ -91,7 +91,7 @@ class TransactionContext {
 	/**
 	 * 为配置的测试上下文启动一个新事务。
 	 * <p>仅在已调用 {@link #endTransaction} 或之前未启动任何事务时调用此方法。
-	 * @throws TransactionException if starting the transaction fails
+	 * @throws TransactionException 如果启动事务失败
 	 */
 	void startTransaction() {
 		Assert.state(this.transactionStatus == null,

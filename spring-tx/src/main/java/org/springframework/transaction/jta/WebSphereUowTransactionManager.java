@@ -104,7 +104,7 @@ public class WebSphereUowTransactionManager extends JtaTransactionManager
 
 	/**
 	 * 为给定的UOWManager创建一个新的WebSphereUowTransactionManager。
-	 * @param uowManager the WebSphere UOWManager to use as direct reference
+	 * @param uowManager 用作直接引用的 WebSphere UOWManager
 	 */
 	public WebSphereUowTransactionManager(UOWManager uowManager) {
 		this();
@@ -149,9 +149,9 @@ public class WebSphereUowTransactionManager extends JtaTransactionManager
 
 	/**
 	 * 通过配置的名称在JNDI中查找WebSphere UOWManager。
-	 * @param uowManagerName the JNDI name of the UOWManager
-	 * @return the UOWManager object
-	 * @throws TransactionSystemException if the JNDI lookup failed
+	 * @param uowManagerName UOWManager 的 JNDI 名称
+	 * @return UOWManager 对象
+	 * @throws TransactionSystemException 如果 JNDI 查找失败
 	 * @see #setJndiTemplate
 	 * @see #setUowManagerName
 	 */
@@ -170,8 +170,8 @@ public class WebSphereUowTransactionManager extends JtaTransactionManager
 
 	/**
 	 * 从默认JNDI位置"java:comp/websphere/UOWManager"获取WebSphere UOWManager。
-	 * @return the UOWManager object
-	 * @throws TransactionSystemException if the JNDI lookup failed
+	 * @return UOWManager 对象
+	 * @throws TransactionSystemException 如果 JNDI 查找失败
 	 * @see #setJndiTemplate
 	 */
 	protected UOWManager lookupDefaultUowManager() throws TransactionSystemException {

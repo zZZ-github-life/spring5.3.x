@@ -27,7 +27,7 @@ import java.io.OutputStream;
  * @author Mark Fisher
  * @author Juergen Hoeller
  * @since 3.0.5
- * @param <T> the object type
+ * @param <T> 对象类型
  * @see Deserializer
  */
 @FunctionalInterface
@@ -37,17 +37,17 @@ public interface Serializer<T> {
 	 * 将类型为 T 的对象写入给定的 OutputStream。
 	 * <p>注意：实现不应关闭给定的 OutputStream（或该 OutputStream 的任何装饰器），而应将此留给调用者处
 	 * 理。
-	 * @param object the object to serialize
-	 * @param outputStream the output stream
-	 * @throws IOException in case of errors writing to the stream
+	 * @param object 要序列化的对象
+	 * @param outputStream 输出流
+	 * @throws IOException 如果向流中写入时发生错误
 	 */
 	void serialize(T object, OutputStream outputStream) throws IOException;
 
 	/**
 	 * 将类型为 T 的对象转换为序列化的字节数组。
-	 * @param object the object to serialize
-	 * @return the resulting byte array
-	 * @throws IOException in case of serialization failure
+	 * @param object 要序列化的对象
+	 * @return 生成的字节数组
+	 * @throws IOException 如果序列化失败
 	 * @since 5.2.7
 	 */
 	default byte[] serializeToByteArray(T object) throws IOException {

@@ -129,7 +129,7 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 
 	/**
 	 * 为给定的委托对象创建一个新的 {@link MessageListenerAdapter}。
-	 * @param delegate the delegate object
+	 * @param delegate 委托对象
 	 */
 	public MessageListenerAdapter(Object delegate) {
 		Assert.notNull(delegate, "Delegate must not be null");
@@ -177,9 +177,9 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 	 * Spring {@link SessionAwareMessageListener} 入口点。
 	 * <p>将消息委托给目标监听器方法，并对消息参数进行适当的转换。
 	 * 如果目标方法返回非 null 对象，则将其包装为 JMS 消息并发送回去。
-	 * @param message the incoming JMS message
-	 * @param session the JMS session to operate on
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param message 传入的 JMS 消息
+	 * @param session 要操作的 JMS Session
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -228,11 +228,10 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 	/**
 	 * 确定应处理给定消息的监听器方法的名称。
 	 * <p>默认实现只是返回已配置的默认监听器方法（如果有）。
-	 * @param originalMessage the JMS request message
-	 * @param extractedMessage the converted JMS request message,
-	 * to be passed into the listener method as argument
-	 * @return the name of the listener method (never {@code null})
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param originalMessage JMS 请求消息
+	 * @param extractedMessage 转换后的 JMS 请求消息，将作为参数传入监听器方法
+	 * @return 监听器方法的名称（永不为 {@code null}）
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 * @see #setDefaultListenerMethod
 	 */
 	protected String getListenerMethodName(Message originalMessage, Object extractedMessage) throws JMSException {
@@ -247,10 +246,9 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 	 * 即使它是数组也是如此，目标方法需声明一个与该数组类型对应的单一参数。
 	 * <p>可以覆盖此方法以区别对待数组等特殊消息内容，
 	 * 例如将消息数组的每个元素作为独立的方法参数传入。
-	 * @param extractedMessage the content of the message
-	 * @return the array of arguments to be passed into the
-	 * listener method (each element of the array corresponding
-	 * to a distinct method argument)
+	 * @param extractedMessage 消息的内容
+	 * @return 要传入监听器方法的参数数组
+	 * （数组的每个元素对应一个不同的方法参数）
 	 */
 	protected Object[] buildListenerArguments(Object extractedMessage) {
 		return new Object[] {extractedMessage};
@@ -258,10 +256,10 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 
 	/**
 	 * 调用指定的监听器方法。
-	 * @param methodName the name of the listener method
-	 * @param arguments the message arguments to be passed in
-	 * @return the result returned from the listener method
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param methodName 监听器方法的名称
+	 * @param arguments 要传入的消息参数
+	 * @return 监听器方法返回的结果
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 * @see #getListenerMethodName
 	 * @see #buildListenerArguments
 	 */

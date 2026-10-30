@@ -26,7 +26,7 @@ import org.springframework.transaction.support.TransactionSynchronization;
  *
  * @author Juergen Hoeller
  * @since 5.3
- * @param <E> the specific {@code ApplicationEvent} subclass to listen to
+ * @param <E> 要监听的具体 {@code ApplicationEvent} 子类
  */
 class TransactionalApplicationListenerSynchronization<E extends ApplicationEvent>
 		implements TransactionSynchronization {

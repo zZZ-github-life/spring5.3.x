@@ -51,7 +51,7 @@ public class HandlerExecutionChain {
 
 	/**
 	 * 创建一个新的 HandlerExecutionChain。
-	 * @param handler the handler object to execute
+	 * @param handler 要执行的处理器对象
 	 */
 	public HandlerExecutionChain(Object handler) {
 		this(handler, (HandlerInterceptor[]) null);
@@ -59,9 +59,9 @@ public class HandlerExecutionChain {
 
 	/**
 	 * 创建一个新的 HandlerExecutionChain。
-	 * @param handler the handler object to execute
-	 * @param interceptors the array of interceptors to apply
-	 * (in the given order) before the handler itself executes
+	 * @param handler 要执行的处理器对象
+	 * @param interceptors 要在处理器本身执行之前应用的拦截器数组
+	 * （按给定顺序）
 	 */
 	public HandlerExecutionChain(Object handler, @Nullable HandlerInterceptor... interceptors) {
 		this(handler, (interceptors != null ? Arrays.asList(interceptors) : Collections.emptyList()));
@@ -69,9 +69,9 @@ public class HandlerExecutionChain {
 
 	/**
 	 * 创建一个新的 HandlerExecutionChain。
-	 * @param handler the handler object to execute
-	 * @param interceptorList the list of interceptors to apply
-	 * (in the given order) before the handler itself executes
+	 * @param handler 要执行的处理器对象
+	 * @param interceptorList 要在处理器本身执行之前应用的拦截器列表
+	 * （按给定顺序）
 	 * @since 5.3
 	 */
 	public HandlerExecutionChain(Object handler, List<HandlerInterceptor> interceptorList) {
@@ -118,7 +118,7 @@ public class HandlerExecutionChain {
 
 	/**
 	 * 返回要应用的拦截器数组（按给定顺序）。
-	 * @return the array of HandlerInterceptors instances (may be {@code null})
+	 * @return HandlerInterceptor 实例数组（可能为 {@code null}）
 	 */
 	@Nullable
 	public HandlerInterceptor[] getInterceptors() {
@@ -127,7 +127,7 @@ public class HandlerExecutionChain {
 
 	/**
 	 * 返回要应用的拦截器列表（按给定顺序）。
-	 * @return the list of HandlerInterceptors instances (potentially empty)
+	 * @return HandlerInterceptor 实例列表（可能为空）
 	 * @since 5.3
 	 */
 	public List<HandlerInterceptor> getInterceptorList() {
@@ -138,9 +138,9 @@ public class HandlerExecutionChain {
 
 	/**
 	 * 调用已注册拦截器的 preHandle 方法。
-	 * @return {@code true} if the execution chain should proceed with the
-	 * next interceptor or the handler itself. Else, DispatcherServlet assumes
-	 * that this interceptor has already dealt with the response itself.
+	 * @return 如果执行链应继续下一个拦截器或处理器本身，则返回 {@code true}。
+	 * 否则，DispatcherServlet 假定
+	 * 该拦截器已自行处理了响应。
 	 */
 	boolean applyPreHandle(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		for (int i = 0; i < this.interceptorList.size(); i++) {

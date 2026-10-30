@@ -29,7 +29,7 @@ public class JmxException extends NestedRuntimeException {
 
 	/**
 	 * JmxException 的构造函数。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public JmxException(String msg) {
 		super(msg);
@@ -37,8 +37,8 @@ public class JmxException extends NestedRuntimeException {
 
 	/**
 	 * JmxException 的构造函数。
-	 * @param msg the detail message
-	 * @param cause the root cause (usually a raw JMX API exception)
+	 * @param msg 详细消息
+	 * @param cause 根本原因（通常是原始的 JMX API 异常）
 	 */
 	public JmxException(String msg, Throwable cause) {
 		super(msg, cause);

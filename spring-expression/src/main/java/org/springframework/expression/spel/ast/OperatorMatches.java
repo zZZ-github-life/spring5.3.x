@@ -72,11 +72,11 @@ public class OperatorMatches extends Operator {
 
 	/**
 	 * 检查第一个操作数是否与作为第二个操作数指定的正则表达式匹配。
-	 * @param state the expression state
-	 * @return {@code true} if the first operand matches the regex specified as the
-	 * second operand, otherwise {@code false}
-	 * @throws EvaluationException if there is a problem evaluating the expression
-	 * (e.g. the regex is invalid)
+	 * @param state 表达式状态
+	 * @return 如果第一个操作数匹配作为第二个操作数指定的正则表达式，
+	 * 则返回 {@code true}，否则返回 {@code false}
+	 * @throws EvaluationException 如果对表达式求值时出现问题
+	 * （例如正则表达式无效）
 	 */
 	@Override
 	public BooleanTypedValue getValueInternal(ExpressionState state) throws EvaluationException {

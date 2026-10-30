@@ -52,8 +52,8 @@ public class SimpleUrlHandlerMapping extends AbstractUrlHandlerMapping {
 
 	/**
 	 * 使用提供的 URL 映射创建 {@code SimpleUrlHandlerMapping}。
-	 * @param urlMap map with URL paths as keys and handler beans (or handler
-	 * bean names) as values
+	 * @param urlMap 以 URL 路径为键、以处理器 Bean（或处理器 Bean 名称）
+	 * 为值的 Map
 	 * @since 5.2
 	 * @see #setUrlMap(Map)
 	 */
@@ -63,9 +63,9 @@ public class SimpleUrlHandlerMapping extends AbstractUrlHandlerMapping {
 
 	/**
 	 * 使用提供的 URL 映射和顺序创建 {@code SimpleUrlHandlerMapping}。
-	 * @param urlMap map with URL paths as keys and handler beans (or handler
-	 * bean names) as values
-	 * @param order the order value for this {@code SimpleUrlHandlerMapping}
+	 * @param urlMap 以 URL 路径为键、以处理器 Bean（或处理器 Bean 名称）
+	 * 为值的 Map
+	 * @param order 此 {@code SimpleUrlHandlerMapping} 的顺序值
 	 * @since 5.2
 	 * @see #setUrlMap(Map)
 	 * @see #setOrder(int)
@@ -79,7 +79,7 @@ public class SimpleUrlHandlerMapping extends AbstractUrlHandlerMapping {
 	/**
 	 * 将 URL 路径映射到处理器 bean 名称。这是配置此 HandlerMapping 的典型方式。
 	 * <p>支持直接 URL 匹配和 Ant 风格模式匹配。语法详情请参见 {@link org.springframework.web.util.pattern.PathPattern} 的 javadoc。
-	 * @param mappings properties with URLs as keys and bean names as values
+	 * @param mappings 以 URL 为键、以 Bean 名称为值的属性
 	 * @see #setUrlMap
 	 */
 	public void setMappings(Properties mappings) {
@@ -89,7 +89,7 @@ public class SimpleUrlHandlerMapping extends AbstractUrlHandlerMapping {
 	/**
 	 * 设置以 URL 路径为键、以处理器 bean（或处理器 bean 名称）为值的 Map。便于使用 bean 引用填充。
 	 * <p>支持直接 URL 匹配和 Ant 风格模式匹配。语法详情请参见 {@link org.springframework.web.util.pattern.PathPattern} 的 javadoc。
-	 * @param urlMap map with URLs as keys and beans as values
+	 * @param urlMap 以 URL 为键、以 Bean 为值的 Map
 	 * @see #setMappings
 	 */
 	public void setUrlMap(Map<String, ?> urlMap) {
@@ -116,9 +116,9 @@ public class SimpleUrlHandlerMapping extends AbstractUrlHandlerMapping {
 
 	/**
 	 * 为相应路径注册 URL 映射中指定的所有处理器。
-	 * @param urlMap a Map with URL paths as keys and handler beans or bean names as values
-	 * @throws BeansException if a handler couldn't be registered
-	 * @throws IllegalStateException if there is a conflicting handler registered
+	 * @param urlMap 以 URL 路径为键、以处理器 Bean 或 Bean 名称为值的 Map
+	 * @throws BeansException 如果无法注册某个处理器
+	 * @throws IllegalStateException 如果存在冲突的已注册处理器
 	 */
 	protected void registerHandlers(Map<String, Object> urlMap) throws BeansException {
 		if (urlMap.isEmpty()) {

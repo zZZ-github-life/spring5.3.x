@@ -63,8 +63,8 @@ public interface ServerRequest {
 
 	/**
 	 * 获取 HTTP 方法。
-	 * @return the HTTP method as an HttpMethod enum value, or {@code null}
-	 * if not resolvable (e.g. in case of a non-standard HTTP method)
+	 * @return HTTP 方法，以 HttpMethod 枚举值表示；
+	 * 如果无法解析（例如非标准 HTTP 方法），则为 {@code null}
 	 */
 	@Nullable
 	default HttpMethod method() {
@@ -73,7 +73,7 @@ public interface ServerRequest {
 
 	/**
 	 * 获取 HTTP 方法的名称。
-	 * @return the HTTP method as a String
+	 * @return 以 String 表示的 HTTP 方法
 	 */
 	String methodName();
 
@@ -85,7 +85,7 @@ public interface ServerRequest {
 	/**
 	 * 从此 {@code ServerRequest} 关联的 URI 获取
 	 * {@code UriBuilderComponents}。
-	 * @return a URI builder
+	 * @return URI 构建器
 	 */
 	UriBuilder uriBuilder();
 
@@ -135,24 +135,24 @@ public interface ServerRequest {
 
 	/**
 	 * 将请求体提取为给定类型的对象。
-	 * @param bodyType the type of return value
-	 * @param <T> the body type
-	 * @return the body
+	 * @param bodyType 返回值的类型
+	 * @param <T> 消息体类型
+	 * @return 消息体
 	 */
 	<T> T body(Class<T> bodyType) throws ServletException, IOException;
 
 	/**
 	 * 将请求体提取为给定类型的对象。
-	 * @param bodyType the type of return value
-	 * @param <T> the body type
-	 * @return the body
+	 * @param bodyType 返回值的类型
+	 * @param <T> 消息体类型
+	 * @return 消息体
 	 */
 	<T> T body(ParameterizedTypeReference<T> bodyType) throws ServletException, IOException;
 
 	/**
 	 * 获取请求属性值（如果存在）。
-	 * @param name the attribute name
-	 * @return the attribute value
+	 * @param name 属性名称
+	 * @return 属性值
 	 */
 	default Optional<Object> attribute(String name) {
 		Map<String, Object> attributes = attributes();
@@ -166,15 +166,15 @@ public interface ServerRequest {
 
 	/**
 	 * 获取请求属性的可变映射。
-	 * @return the request attributes
+	 * @return 请求属性
 	 */
 	Map<String, Object> attributes();
 
 	/**
 	 * 获取具有给定名称的第一个参数（如果存在）。Servlet
 	 * 参数包含在查询字符串或提交的表单数据中。
-	 * @param name the parameter name
-	 * @return the parameter value
+	 * @param name 参数名称
+	 * @return 参数值
 	 * @see HttpServletRequest#getParameter(String)
 	 */
 	default Optional<String> param(String name) {
@@ -201,9 +201,9 @@ public interface ServerRequest {
 	/**
 	 * 获取多部分请求的各部分，前提是 Content-Type 为
 	 * {@code "multipart/form-data"}，否则抛出异常。
-	 * @return the multipart data, mapping from name to part(s)
-	 * @throws IOException           if an I/O error occurred during the retrieval
-	 * @throws ServletException      if this request is not of type {@code "multipart/form-data"}
+	 * @return multipart 数据，从名称到部件（一个或多个）的映射
+	 * @throws IOException 如果在检索过程中发生 I/O 错误
+	 * @throws ServletException 如果此请求的类型不是 {@code "multipart/form-data"}
 	 * @since 5.3
 	 * @see HttpServletRequest#getParts()
 	 */
@@ -211,9 +211,9 @@ public interface ServerRequest {
 
 	/**
 	 * 获取具有给定名称的路径变量（如果存在）。
-	 * @param name the variable name
-	 * @return the variable value
-	 * @throws IllegalArgumentException if there is no path variable with the given name
+	 * @param name 变量名称
+	 * @return 变量值
+	 * @throws IllegalArgumentException 如果不存在具有给定名称的路径变量
 	 */
 	default String pathVariable(String name) {
 		Map<String, String> pathVariables = pathVariables();
@@ -271,10 +271,9 @@ public interface ServerRequest {
 	 * 强实体标签和 Last-Modified 值，
 	 * 如 HTTP 规范所建议的，
 	 * 则应使用 {@link #checkNotModified(Instant, String)}。
-	 * @param lastModified the last-modified timestamp that the
-	 * application determined for the underlying resource
-	 * @return a corresponding response if the request qualifies as not
-	 * modified, or an empty result otherwise.
+	 * @param lastModified 应用程序为底层资源确定的最后修改时间戳
+	 * @return 如果请求可判定为未修改，则返回相应的响应；
+	 * 否则返回空结果。
 	 * @since 5.2.5
 	 */
 	default Optional<ServerResponse> checkNotModified(Instant lastModified) {
@@ -305,11 +304,10 @@ public interface ServerRequest {
 	 * 强实体标签和 Last-Modified 值，
 	 * 如 HTTP 规范所建议的，
 	 * 则应使用 {@link #checkNotModified(Instant, String)}。
-	 * @param etag the entity tag that the application determined
-	 * for the underlying resource. This parameter will be padded
-	 * with quotes (") if necessary.
-	 * @return a corresponding response if the request qualifies as not
-	 * modified, or an empty result otherwise.
+	 * @param etag 应用程序为底层资源确定的实体标签。
+	 * 如有必要，此参数将用引号（"）填充。
+	 * @return 如果请求可判定为未修改，则返回相应的响应；
+	 * 否则返回空结果。
 	 * @since 5.2.5
 	 */
 	default Optional<ServerResponse> checkNotModified(String etag) {
@@ -335,13 +333,11 @@ public interface ServerRequest {
 	 * }</pre>
 	 * <p>此方法适用于条件 GET/HEAD 请求，也
 	 * 适用于条件 POST/PUT/DELETE 请求。
-	 * @param lastModified the last-modified timestamp that the
-	 * application determined for the underlying resource
-	 * @param etag the entity tag that the application determined
-	 * for the underlying resource. This parameter will be padded
-	 * with quotes (") if necessary.
-	 * @return a corresponding response if the request qualifies as not
-	 * modified, or an empty result otherwise.
+	 * @param lastModified 应用程序为底层资源确定的最后修改时间戳
+	 * @param etag 应用程序为底层资源确定的实体标签。
+	 * 如有必要，此参数将用引号（"）填充。
+	 * @return 如果请求可判定为未修改，则返回相应的响应；
+	 * 否则返回空结果。
 	 * @since 5.2.5
 	 */
 	default Optional<ServerResponse> checkNotModified(Instant lastModified, String etag) {
@@ -356,9 +352,9 @@ public interface ServerRequest {
 	/**
 	 * 基于给定的 {@code HttpServletRequest} 和
 	 * 消息转换器创建新的 {@code ServerRequest}。
-	 * @param servletRequest the request
-	 * @param messageReaders the message readers
-	 * @return the created {@code ServerRequest}
+	 * @param servletRequest 请求
+	 * @param messageReaders 消息读取器
+	 * @return 所创建的 {@code ServerRequest}
 	 */
 	static ServerRequest create(HttpServletRequest servletRequest, List<HttpMessageConverter<?>> messageReaders) {
 		return new DefaultServerRequest(servletRequest, messageReaders);
@@ -366,8 +362,8 @@ public interface ServerRequest {
 
 	/**
 	 * 创建带有给定请求的状态、响应头和 Cookie 的构建器。
-	 * @param other the response to copy the status, headers, and cookies from
-	 * @return the created builder
+	 * @param other 要从中复制状态、头和 Cookie 的响应
+	 * @return 所创建的构建器
 	 */
 	static Builder from(ServerRequest other) {
 		return new DefaultServerRequestBuilder(other);
@@ -430,14 +426,14 @@ public interface ServerRequest {
 		/**
 		 * 获取给定名称的请求头的值（可能多个，如果有）。
 		 * <p>如果未找到任何请求头值，则返回空列表。
-		 * @param headerName the header name
+		 * @param headerName 头名称
 		 */
 		List<String> header(String headerName);
 
 		/**
 		 * 获取给定名称的请求头的第一个值（如果有）。
 		 * <p>如果未找到任何请求头值，则返回 {@code null}。
-		 * @param headerName the header name
+		 * @param headerName 头名称
 		 * @since 5.2.5
 		 */
 		@Nullable
@@ -460,23 +456,23 @@ public interface ServerRequest {
 
 		/**
 		 * 设置请求的方法。
-		 * @param method the new method
-		 * @return this builder
+		 * @param method 新的方法
+		 * @return 此构建器
 		 */
 		Builder method(HttpMethod method);
 
 		/**
 		 * 设置请求的 URI。
-		 * @param uri the new URI
-		 * @return this builder
+		 * @param uri 新的 URI
+		 * @return 此构建器
 		 */
 		Builder uri(URI uri);
 
 		/**
 		 * 在给定名称下添加给定的请求头值。
-		 * @param headerName  the header name
-		 * @param headerValues the header value(s)
-		 * @return this builder
+		 * @param headerName 头名称
+		 * @param headerValues 头值
+		 * @return 此构建器
 		 * @see HttpHeaders#add(String, String)
 		 */
 		Builder header(String headerName, String... headerValues);
@@ -487,16 +483,16 @@ public interface ServerRequest {
 		 * {@linkplain HttpHeaders#set(String, String) 覆盖}现有请求头值、
 		 * {@linkplain HttpHeaders#remove(Object) 移除}值，或使用任何其他
 		 * {@link HttpHeaders} 方法。
-		 * @param headersConsumer a function that consumes the {@code HttpHeaders}
-		 * @return this builder
+		 * @param headersConsumer 消费 {@code HttpHeaders} 的函数
+		 * @return 此构建器
 		 */
 		Builder headers(Consumer<HttpHeaders> headersConsumer);
 
 		/**
 		 * 添加具有给定名称和值的 Cookie。
-		 * @param name the cookie name
-		 * @param values the cookie value(s)
-		 * @return this builder
+		 * @param name Cookie 名称
+		 * @param values Cookie 值
+		 * @return 此构建器
 		 */
 		Builder cookie(String name, String... values);
 
@@ -506,8 +502,8 @@ public interface ServerRequest {
 		 * {@linkplain MultiValueMap#set(Object, Object) 覆盖}现有 Cookie、
 		 * {@linkplain MultiValueMap#remove(Object) 移除} Cookie，或使用任何其他
 		 * {@link MultiValueMap} 方法。
-		 * @param cookiesConsumer a function that consumes the cookies map
-		 * @return this builder
+		 * @param cookiesConsumer 消费 Cookie 映射的函数
+		 * @return 此构建器
 		 */
 		Builder cookies(Consumer<MultiValueMap<String, Cookie>> cookiesConsumer);
 
@@ -516,8 +512,8 @@ public interface ServerRequest {
 		 * <p>调用此方法会
 		 * {@linkplain org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer) 释放}
 		 * 构建器现有的请求体。
-		 * @param body the new body
-		 * @return this builder
+		 * @param body 新的消息体
+		 * @return 此构建器
 		 */
 		Builder body(byte[] body);
 
@@ -526,16 +522,16 @@ public interface ServerRequest {
 		 * <p>调用此方法会
 		 * {@linkplain org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer) 释放}
 		 * 构建器现有的请求体。
-		 * @param body the new body
-		 * @return this builder
+		 * @param body 新的消息体
+		 * @return 此构建器
 		 */
 		Builder body(String body);
 
 		/**
 		 * 添加具有给定名称和值的属性。
-		 * @param name  the attribute name
-		 * @param value the attribute value
-		 * @return this builder
+		 * @param name 属性名称
+		 * @param value 属性值
+		 * @return 此构建器
 		 */
 		Builder attribute(String name, Object value);
 
@@ -545,16 +541,16 @@ public interface ServerRequest {
 		 * {@linkplain Map#put(Object, Object) 覆盖}现有属性、
 		 * {@linkplain Map#remove(Object) 移除}属性，或使用任何其他
 		 * {@link Map} 方法。
-		 * @param attributesConsumer a function that consumes the attributes map
-		 * @return this builder
+		 * @param attributesConsumer 消费属性映射的函数
+		 * @return 此构建器
 		 */
 		Builder attributes(Consumer<Map<String, Object>> attributesConsumer);
 
 		/**
 		 * 添加具有给定名称和值的参数。
-		 * @param name the parameter name
-		 * @param values the parameter value(s)
-		 * @return this builder
+		 * @param name 参数名称
+		 * @param values 参数值
+		 * @return 此构建器
 		 */
 		Builder param(String name, String... values);
 
@@ -564,21 +560,21 @@ public interface ServerRequest {
 		 * {@linkplain MultiValueMap#set(Object, Object) 覆盖}现有 Cookie、
 		 * {@linkplain MultiValueMap#remove(Object) 移除} Cookie，或使用任何其他
 		 * {@link MultiValueMap} 方法。
-		 * @param paramsConsumer a function that consumes the parameters map
-		 * @return this builder
+		 * @param paramsConsumer 消费参数映射的函数
+		 * @return 此构建器
 		 */
 		Builder params(Consumer<MultiValueMap<String, String>> paramsConsumer);
 
 		/**
 		 * 设置请求的远程地址。
-		 * @param remoteAddress the remote address
-		 * @return this builder
+		 * @param remoteAddress 远程地址
+		 * @return 此构建器
 		 */
 		Builder remoteAddress(InetSocketAddress remoteAddress);
 
 		/**
 		 * 构建请求。
-		 * @return the built request
+		 * @return 所构建的请求
 		 */
 		ServerRequest build();
 	}

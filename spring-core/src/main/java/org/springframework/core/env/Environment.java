@@ -92,8 +92,8 @@ public interface Environment extends PropertyResolver {
 	 * 则逻辑反转，即如果给定 profile <em>不</em>处于活动状态，该方法将返回 {@code true}。
 	 * 例如，如果 profile 'p1' 处于活动状态或 'p2' 不处于活动状态，
 	 * {@code env.acceptsProfiles("p1", "!p2")} 将返回 {@code true}。
-	 * @throws IllegalArgumentException if called with zero arguments
-	 * or if any profile is {@code null}, empty, or whitespace only
+	 * @throws IllegalArgumentException 如果以零个参数调用，或任一 profile 为 {@code null}、
+	 * 为空或仅包含空白字符
 	 * @see #getActiveProfiles
 	 * @see #getDefaultProfiles
 	 * @see #acceptsProfiles(Profiles)

@@ -56,7 +56,7 @@ public class BindingContext {
 
 	/**
 	 * 使用给定的初始化器创建一个新的 {@code BindingContext}。
-	 * @param initializer the binding initializer to apply (may be {@code null})
+	 * @param initializer 要应用的绑定初始化器（可以为 {@code null}）
 	 */
 	public BindingContext(@Nullable WebBindingInitializer initializer) {
 		this.initializer = initializer;
@@ -73,11 +73,11 @@ public class BindingContext {
 
 	/**
 	 * 创建 {@link WebExchangeDataBinder}，用于对目标命令对象应用数据绑定和校验。
-	 * @param exchange the current exchange
-	 * @param target the object to create a data binder for
-	 * @param name the name of the target object
-	 * @return the created data binder
-	 * @throws ServerErrorException if {@code @InitBinder} method invocation fails
+	 * @param exchange 当前的交换
+	 * @param target 要为其创建数据绑定器的对象
+	 * @param name 目标对象的名称
+	 * @return 创建的数据绑定器
+	 * @throws ServerErrorException 如果 {@code @InitBinder} 方法调用失败
 	 */
 	public WebExchangeDataBinder createDataBinder(ServerWebExchange exchange, @Nullable Object target, String name) {
 		WebExchangeDataBinder dataBinder = new ExtendedWebExchangeDataBinder(target, name);
@@ -89,7 +89,7 @@ public class BindingContext {
 
 	/**
 	 * 为给定的 exchange 初始化数据绑定器实例。
-	 * @throws ServerErrorException if {@code @InitBinder} method invocation fails
+	 * @throws ServerErrorException 如果 {@code @InitBinder} 方法调用失败
 	 */
 	protected WebExchangeDataBinder initDataBinder(WebExchangeDataBinder binder, ServerWebExchange exchange) {
 		return binder;
@@ -97,10 +97,10 @@ public class BindingContext {
 
 	/**
 	 * 创建一个不带目标对象的 {@link WebExchangeDataBinder}，用于将请求值转换为简单类型。
-	 * @param exchange the current exchange
-	 * @param name the name of the target object
-	 * @return the created data binder
-	 * @throws ServerErrorException if {@code @InitBinder} method invocation fails
+	 * @param exchange 当前的交换
+	 * @param name 目标对象的名称
+	 * @return 创建的数据绑定器
+	 * @throws ServerErrorException 如果 {@code @InitBinder} 方法调用失败
 	 */
 	public WebExchangeDataBinder createDataBinder(ServerWebExchange exchange, String name) {
 		return createDataBinder(exchange, null, name);

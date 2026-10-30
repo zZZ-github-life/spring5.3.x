@@ -80,7 +80,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 
 	/**
 	 * 使用给定的 DefaultListableBeanFactory 创建一个新的 AnnotationConfigApplicationContext。
-	 * @param beanFactory the DefaultListableBeanFactory instance to use for this context
+	 * @param beanFactory 此上下文要使用的 DefaultListableBeanFactory 实例
 	 */
 	public AnnotationConfigApplicationContext(DefaultListableBeanFactory beanFactory) {
 		super(beanFactory);
@@ -103,7 +103,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	/**
 	 * 创建一个新的 AnnotationConfigApplicationContext，在给定包中扫描组件，为这些组件注册 Bean 定义，
 	 * 并自动刷新上下文。
-	 * @param basePackages the packages to scan for component classes
+	 * @param basePackages 要扫描组件类的包
 	 */
 	public AnnotationConfigApplicationContext(String... basePackages) {
 		this();
@@ -165,8 +165,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * 注册一个或多个要处理的组件类。
 	 *
 	 * <p>请注意，为了使上下文完全处理新类，必须调用 {@link #refresh()}。
-	 * @param componentClasses one or more component classes &mdash; for example,
-	 * {@link Configuration @Configuration} classes
+	 * @param componentClasses 一个或多个组件类，例如 {@link Configuration @Configuration} 类
 	 * @see #scan(String...)
 	 * @see #refresh()
 	 */
@@ -183,7 +182,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * 在指定的基础包中执行扫描。
 	 *
 	 * <p>请注意，为了使上下文完全处理新类，必须调用 {@link #refresh()}。
-	 * @param basePackages the packages to scan for component classes
+	 * @param basePackages 要扫描组件类的包
 	 * @see #register(Class...)
 	 * @see #refresh()
 	 */

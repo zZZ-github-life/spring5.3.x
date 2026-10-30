@@ -86,10 +86,10 @@ public class HttpInvokerServiceExporter extends org.springframework.remoting.rmi
 	 * 从给定的 HTTP 请求中读取 RemoteInvocation。
 	 * <p>使用 {@link HttpServletRequest#getInputStream() servlet 请求的输入流}
 	 * 委托给 {@link #readRemoteInvocation(HttpServletRequest, InputStream)}。
-	 * @param request current HTTP request
-	 * @return the RemoteInvocation object
-	 * @throws IOException in case of I/O failure
-	 * @throws ClassNotFoundException if thrown by deserialization
+	 * @param request 当前 HTTP 请求
+	 * @return RemoteInvocation 对象
+	 * @throws IOException 发生 I/O 失败时抛出
+	 * @throws ClassNotFoundException 如果由反序列化抛出则传播
 	 */
 	protected RemoteInvocation readRemoteInvocation(HttpServletRequest request)
 			throws IOException, ClassNotFoundException {
@@ -104,11 +104,11 @@ public class HttpInvokerServiceExporter extends org.springframework.remoting.rmi
 	 * {@link org.springframework.remoting.rmi.CodebaseAwareObjectInputStream}，
 	 * 并调用 {@link #doReadRemoteInvocation} 实际读取对象。
 	 * <p>可重写以自定义调用的序列化方式。
-	 * @param request current HTTP request
-	 * @param is the InputStream to read from
-	 * @return the RemoteInvocation object
-	 * @throws IOException in case of I/O failure
-	 * @throws ClassNotFoundException if thrown during deserialization
+	 * @param request 当前 HTTP 请求
+	 * @param is 要读取的 InputStream
+	 * @return RemoteInvocation 对象
+	 * @throws IOException 发生 I/O 失败时抛出
+	 * @throws ClassNotFoundException 如果在反序列化期间抛出则传播
 	 */
 	protected RemoteInvocation readRemoteInvocation(HttpServletRequest request, InputStream is)
 			throws IOException, ClassNotFoundException {
@@ -123,10 +123,10 @@ public class HttpInvokerServiceExporter extends org.springframework.remoting.rmi
 	 * 可能会装饰给定的原始 InputStream。
 	 * <p>默认实现按原样返回给定的流。
 	 * 可重写，例如用于自定义加密或压缩。
-	 * @param request current HTTP request
-	 * @param is the original InputStream
-	 * @return the potentially decorated InputStream
-	 * @throws IOException in case of I/O failure
+	 * @param request 当前 HTTP 请求
+	 * @param is 原始 InputStream
+	 * @return 可能已被装饰的 InputStream
+	 * @throws IOException 发生 I/O 失败时抛出
 	 */
 	protected InputStream decorateInputStream(HttpServletRequest request, InputStream is) throws IOException {
 		return is;
@@ -134,10 +134,10 @@ public class HttpInvokerServiceExporter extends org.springframework.remoting.rmi
 
 	/**
 	 * 将给定的 RemoteInvocationResult 写入给定的 HTTP 响应。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param result the RemoteInvocationResult object
-	 * @throws IOException in case of I/O failure
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param result RemoteInvocationResult 对象
+	 * @throws IOException 发生 I/O 失败时抛出
 	 */
 	protected void writeRemoteInvocationResult(
 			HttpServletRequest request, HttpServletResponse response, RemoteInvocationResult result)
@@ -154,11 +154,11 @@ public class HttpInvokerServiceExporter extends org.springframework.remoting.rmi
 	 * 为最终的流创建 {@link java.io.ObjectOutputStream}，并调用
 	 * {@link #doWriteRemoteInvocationResult} 实际写入对象。
 	 * <p>可重写以自定义调用的序列化方式。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param result the RemoteInvocationResult object
-	 * @param os the OutputStream to write to
-	 * @throws IOException in case of I/O failure
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param result RemoteInvocationResult 对象
+	 * @param os 要写入的 OutputStream
+	 * @throws IOException 发生 I/O 失败时抛出
 	 * @see #decorateOutputStream
 	 * @see #doWriteRemoteInvocationResult
 	 */
@@ -177,11 +177,11 @@ public class HttpInvokerServiceExporter extends org.springframework.remoting.rmi
 	 * 可能会装饰给定的原始 OutputStream。
 	 * <p>默认实现按原样返回给定的流。
 	 * 可重写，例如用于自定义加密或压缩。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param os the original OutputStream
-	 * @return the potentially decorated OutputStream
-	 * @throws IOException in case of I/O failure
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param os 原始 OutputStream
+	 * @return 可能已被装饰的 OutputStream
+	 * @throws IOException 发生 I/O 失败时抛出
 	 */
 	protected OutputStream decorateOutputStream(
 			HttpServletRequest request, HttpServletResponse response, OutputStream os) throws IOException {

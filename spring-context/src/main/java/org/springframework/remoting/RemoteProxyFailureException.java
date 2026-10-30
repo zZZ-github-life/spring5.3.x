@@ -29,8 +29,8 @@ public class RemoteProxyFailureException extends RemoteAccessException {
 
 	/**
 	 * RemoteProxyFailureException 的构造器。
-	 * @param msg the detail message
-	 * @param cause the root cause from the remoting API in use
+	 * @param msg 详细信息
+	 * @param cause 来自所用远程调用 API 的根本原因
 	 */
 	public RemoteProxyFailureException(String msg, Throwable cause) {
 		super(msg, cause);

@@ -38,9 +38,8 @@ public interface ParameterNameDiscoverer {
 	 *
 	 * <p>如果参数名仅对给定方法的部分参数可用而对其他参数不可用，则数组中的各个条目可以为 {@code null}
 	 * 。不过，建议在可行的情况下改用占位参数名。
-	 * @param method the method to find parameter names for
-	 * @return an array of parameter names if the names can be resolved,
-	 * or {@code null} if they cannot
+	 * @param method 要为其查找参数名称的方法
+	 * @return 如果可以解析则返回参数名称数组，否则返回 {@code null}
 	 */
 	@Nullable
 	String[] getParameterNames(Method method);
@@ -50,9 +49,8 @@ public interface ParameterNameDiscoverer {
 	 *
 	 * <p>如果参数名仅对给定构造函数的部分参数可用而对其他参数不可用，则数组中的各个条目可以为
 	 * {@code null}。不过，建议在可行的情况下改用占位参数名。
-	 * @param ctor the constructor to find parameter names for
-	 * @return an array of parameter names if the names can be resolved,
-	 * or {@code null} if they cannot
+	 * @param ctor 要为其查找参数名称的构造器
+	 * @return 如果可以解析则返回参数名称数组，否则返回 {@code null}
 	 */
 	@Nullable
 	String[] getParameterNames(Constructor<?> ctor);

@@ -54,8 +54,8 @@ abstract class PathElement {
 
 	/**
 	 * 创建一个新的路径元素。
-	 * @param pos the position where this path element starts in the pattern data
-	 * @param separator the separator in use in the path pattern
+	 * @param pos 此路径元素在模式数据中的起始位置
+	 * @param separator 路径模式中使用的分隔符
 	 */
 	PathElement(int pos, char separator) {
 		this.pos = pos;
@@ -65,15 +65,15 @@ abstract class PathElement {
 
 	/**
 	 * 尝试匹配此路径元素。
-	 * @param candidatePos the current position within the candidate path
-	 * @param matchingContext encapsulates context for the match including the candidate
-	 * @return {@code true} if it matches, otherwise {@code false}
+	 * @param candidatePos 候选路径中的当前位置
+	 * @param matchingContext 封装匹配的上下文，包括候选路径
+	 * @return 如果匹配则返回 {@code true}，否则返回 {@code false}
 	 */
 	public abstract boolean matches(int candidatePos, MatchingContext matchingContext);
 
 	/**
 	 * 返回路径元素的长度，其中捕获部分按一个字符计算。
-	 * @return the normalized length
+	 * @return 规范化后的长度
 	 */
 	public abstract int getNormalizedLength();
 
@@ -110,7 +110,7 @@ abstract class PathElement {
 
 	/**
 	 * 返回模式中是否已没有更多 PathElement。
-	 * @return {@code true} if the there are no more elements
+	 * @return 如果没有更多元素则返回 {@code true}
 	 */
 	protected final boolean isNoMorePattern() {
 		return this.next == null;

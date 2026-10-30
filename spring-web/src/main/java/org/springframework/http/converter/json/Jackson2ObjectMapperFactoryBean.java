@@ -252,9 +252,8 @@ public class Jackson2ObjectMapperFactoryBean implements FactoryBean<ObjectMapper
 
 	/**
 	 * 添加用于增强指定类或接口的混入注解。
-	 * @param mixIns a Map of entries with target classes (or interface) whose annotations
-	 * to effectively override as key and mix-in classes (or interface) whose
-	 * annotations are to be "added" to target's annotations as value.
+	 * @param mixIns 一个 Map，键为其注解将被有效覆盖的目标类（或接口），
+	 * 值为其注解将被“添加”到目标类注解上的混入类（或接口）。
 	 * @since 4.1.2
 	 * @see com.fasterxml.jackson.databind.ObjectMapper#addMixInAnnotations(Class, Class)
 	 */

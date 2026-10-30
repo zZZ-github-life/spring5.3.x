@@ -36,31 +36,28 @@ import org.springframework.util.MimeType;
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <T> the type of elements in the input stream
+ * @param <T> 输入流中元素的类型
  */
 public interface Encoder<T> {
 
 	/**
 	 * 此编码器是否支持给定的源元素类型以及输出流的 MIME 类型。
-	 * @param elementType the type of elements in the source stream
-	 * @param mimeType the MIME type for the output stream
-	 * (can be {@code null} if not specified)
-	 * @return {@code true} if supported, {@code false} otherwise
+	 * @param elementType 源流中元素的类型
+	 * @param mimeType 输出流的 MIME 类型（如果未指定，可为 {@code null}）
+	 * @return 如果支持则返回 {@code true}，否则返回 {@code false}
 	 */
 	boolean canEncode(ResolvableType elementType, @Nullable MimeType mimeType);
 
 	/**
 	 * 将 {@code T} 类型的对象流编码为 {@link DataBuffer} 输出流。
-	 * @param inputStream the input stream of Objects to encode. If the input should be
-	 * encoded as a single value rather than as a stream of elements, an instance of
-	 * {@link Mono} should be used.
-	 * @param bufferFactory for creating output stream {@code DataBuffer}'s
-	 * @param elementType the expected type of elements in the input stream;
-	 * this type must have been previously passed to the {@link #canEncode}
-	 * method and it must have returned {@code true}.
-	 * @param mimeType the MIME type for the output content (optional)
-	 * @param hints additional information about how to encode
-	 * @return the output stream
+	 * @param inputStream 要编码的对象输入流。如果输入应作为单个值
+	 * 而非元素流进行编码，则应使用 {@link Mono} 实例。
+	 * @param bufferFactory 用于创建输出流 {@code DataBuffer}
+	 * @param elementType 输入流中元素的预期类型；此前必须已将该类型
+	 * 传递给 {@link #canEncode} 方法且该方法返回了 {@code true}。
+	 * @param mimeType 输出内容的 MIME 类型（可选）
+	 * @param hints 关于如何编码的附加信息
+	 * @return 输出流
 	 */
 	Flux<DataBuffer> encode(Publisher<? extends T> inputStream, DataBufferFactory bufferFactory,
 			ResolvableType elementType, @Nullable MimeType mimeType, @Nullable Map<String, Object> hints);
@@ -70,12 +67,12 @@ public interface Encoder<T> {
 	 * 理的场景。
 	 * <p>默认情况下，此方法会抛出 {@link UnsupportedOperationException}，因为某些编码器无法生成单个缓
 	 * 冲区，或者无法同步地完成（例如编码 {@code Resource}）。
-	 * @param value the value to be encoded
-	 * @param bufferFactory for creating the output {@code DataBuffer}
-	 * @param valueType the type for the value being encoded
-	 * @param mimeType the MIME type for the output content (optional)
-	 * @param hints additional information about how to encode
-	 * @return the encoded content
+	 * @param value 要编码的值
+	 * @param bufferFactory 用于创建输出 {@code DataBuffer}
+	 * @param valueType 要编码的值的类型
+	 * @param mimeType 输出内容的 MIME 类型（可选）
+	 * @param hints 关于如何编码的附加信息
+	 * @return 编码后的内容
 	 * @since 5.2
 	 */
 	default DataBuffer encodeValue(T value, DataBufferFactory bufferFactory,
@@ -90,15 +87,15 @@ public interface Encoder<T> {
 	 * 常应通过 {@link #canEncode(ResolvableType, MimeType) canEncode(elementType, null)} 加以防护。该
 	 * 列表也可能不包含仅对特定元素类型提供支持的 MIME 类型。或者，可使用
 	 * {@link #getEncodableMimeTypes(ResolvableType)} 获取更精确的列表。
-	 * @return the list of supported MIME types
+	 * @return 支持的 MIME 类型列表
 	 */
 	List<MimeType> getEncodableMimeTypes();
 
 	/**
 	 * 返回此 Encoder 针对给定元素类型支持的 MIME 类型列表。如果 Encoder 不支持该元素类型，或者仅对部分
 	 * MIME 类型提供支持，则该列表可能与 {@link #getEncodableMimeTypes()} 不同。
-	 * @param elementType the type of element to check for encoding
-	 * @return the list of MIME types supported for the given element type
+	 * @param elementType 要检查是否可编码的元素类型
+	 * @return 给定元素类型支持的 MIME 类型列表
 	 * @since 5.3.4
 	 */
 	default List<MimeType> getEncodableMimeTypes(ResolvableType elementType) {

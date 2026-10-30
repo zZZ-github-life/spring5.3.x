@@ -92,13 +92,12 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 	/**
 	 * 解析所提供 {@link BeanDefinition} 的 ID。<p>使用{@link #shouldGenerateId 生成}时，会自动生成名称。
 	 * 否则，ID 从“id”属性中提取，可能通过{@link #shouldGenerateIdAsFallback() 回退}到生成的 id。
-	 * @param element the element that the bean definition has been built from
-	 * @param definition the bean definition to be registered
-	 * @param parserContext the object encapsulating the current state of the parsing process;
-	 * provides access to a {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
-	 * @return the resolved id
-	 * @throws BeanDefinitionStoreException if no unique name could be generated
-	 * for the given bean definition
+	 * @param element 构建该 Bean 定义所依据的元素
+	 * @param definition 要注册的 Bean 定义
+	 * @param parserContext 封装解析过程当前状态的对象；
+	 * 提供对 {@link org.springframework.beans.factory.support.BeanDefinitionRegistry} 的访问
+	 * @return 解析后的 id
+	 * @throws BeanDefinitionStoreException 如果无法为给定的 Bean 定义生成唯一名称
 	 */
 	protected String resolveId(Element element, AbstractBeanDefinition definition, ParserContext parserContext)
 			throws BeanDefinitionStoreException {
@@ -121,8 +120,8 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 	 * Bean。<p>默认实现仅在 {@code isNested} 参数为 {@code false} 时，才将提供的
 	 * {@link BeanDefinitionHolder bean} 注册到提供的 {@link BeanDefinitionRegistry registry}，因为通常
 	 * 不希望将内部 Bean 注册为顶级 Bean。
-	 * @param definition the bean definition to be registered
-	 * @param registry the registry that the bean is to be registered with
+	 * @param definition 要注册的 Bean 定义
+	 * @param registry 要将该 Bean 注册到的注册表
 	 * @see BeanDefinitionReaderUtils#registerBeanDefinition(BeanDefinitionHolder, BeanDefinitionRegistry)
 	 */
 	protected void registerBeanDefinition(BeanDefinitionHolder definition, BeanDefinitionRegistry registry) {
@@ -133,10 +132,10 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 	/**
 	 * 核心模板方法，用于将提供的 {@link Element} 实际解析为一个或多个
 	 * {@link BeanDefinition BeanDefinitions}。
-	 * @param element the element that is to be parsed into one or more {@link BeanDefinition BeanDefinitions}
-	 * @param parserContext the object encapsulating the current state of the parsing process;
-	 * provides access to a {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
-	 * @return the primary {@link BeanDefinition} resulting from the parsing of the supplied {@link Element}
+	 * @param element 要解析为一个或多个 {@link BeanDefinition BeanDefinitions} 的元素
+	 * @param parserContext 封装解析过程当前状态的对象；
+	 * 提供对 {@link org.springframework.beans.factory.support.BeanDefinitionRegistry} 的访问
+	 * @return 解析所提供的 {@link Element} 得到的主要 {@link BeanDefinition}
 	 * @see #parse(org.w3c.dom.Element, ParserContext)
 	 * @see #postProcessComponentDefinition(org.springframework.beans.factory.parsing.BeanComponentDefinition)
 	 */
@@ -146,7 +145,7 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 	/**
 	 * 是否应生成 ID，而不是从传入的 {@link Element} 中读取？<p>默认禁用；子类可以覆盖此方法以启用 ID
 	 * 生成。请注意，此标志表示<i>始终</i>生成 ID；在这种情况下，解析器甚至不会检查“id”属性。
-	 * @return whether the parser should always generate an id
+	 * @return 解析器是否应始终生成 id
 	 */
 	protected boolean shouldGenerateId() {
 		return false;
@@ -156,7 +155,7 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 	 * 如果传入的 {@link Element} 未显式指定“id”属性，是否应改为生成 ID？<p>默认禁用；子类可以覆盖此方
 	 * 法以启用作为回退的 ID 生成：在这种情况下，解析器会先检查“id”属性，仅当未指定值时才会回退到生成的
 	 * ID。
-	 * @return whether the parser should generate an id if no id was specified
+	 * @return 解析器在未指定 id 时是否应生成 id
 	 */
 	protected boolean shouldGenerateIdAsFallback() {
 		return false;
@@ -165,7 +164,7 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 	/**
 	 * 确定是否应将元素的“name”属性解析为 Bean 定义别名，即备用的 Bean 定义名称。<p>默认实现返回
 	 * {@code true}。
-	 * @return whether the parser should evaluate the "name" attribute as aliases
+	 * @return 解析器是否应将 "name" 属性解析为别名
 	 * @since 4.1.5
 	 */
 	protected boolean shouldParseNameAsAliases() {
@@ -177,8 +176,8 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 	 * {@link org.springframework.beans.factory.parsing.BeanComponentDefinition} 事件。<p>此实现默认返
 	 * 回 {@code true}；也就是说，当 Bean 定义完全解析后会触发事件。覆盖此方法并返回 {@code false} 可抑
 	 * 制该事件。
-	 * @return {@code true} in order to fire a component registration event
-	 * after parsing the bean definition; {@code false} to suppress the event
+	 * @return {@code true} 表示在解析 Bean 定义后触发组件注册事件；
+	 * {@code false} 表示抑制该事件
 	 * @see #postProcessComponentDefinition
 	 * @see org.springframework.beans.factory.parsing.ReaderContext#fireComponentRegistered
 	 */
@@ -191,7 +190,7 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 	 * {@link BeanComponentDefinition} 注册到
 	 * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry} 之前调用。<p>派生类可以
 	 * 覆盖此方法，以提供在所有解析完成后要执行的任何自定义逻辑。<p>默认实现为空操作。
-	 * @param componentDefinition the {@link BeanComponentDefinition} that is to be processed
+	 * @param componentDefinition 要处理的 {@link BeanComponentDefinition}
 	 */
 	protected void postProcessComponentDefinition(BeanComponentDefinition componentDefinition) {
 	}

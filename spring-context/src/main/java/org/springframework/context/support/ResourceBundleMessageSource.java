@@ -171,10 +171,9 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 
 	/**
 	 * 返回给定基名和 Locale 的 ResourceBundle，并从缓存中获取已生成的 ResourceBundle。
-	 * @param basename the basename of the ResourceBundle
-	 * @param locale the Locale to find the ResourceBundle for
-	 * @return the resulting ResourceBundle, or {@code null} if none
-	 * found for the given basename and Locale
+	 * @param basename ResourceBundle 的基名
+	 * @param locale 要为其查找 ResourceBundle 的 Locale
+	 * @return 得到的 ResourceBundle；如果对给定的基名和 Locale 未找到，则为 {@code null}
 	 */
 	@Nullable
 	protected ResourceBundle getResourceBundle(String basename, Locale locale) {
@@ -213,10 +212,10 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 
 	/**
 	 * 获取给定基名和 Locale 的资源包。
-	 * @param basename the basename to look for
-	 * @param locale the Locale to look for
-	 * @return the corresponding ResourceBundle
-	 * @throws MissingResourceException if no matching bundle could be found
+	 * @param basename 要查找的基名
+	 * @param locale 要查找的 Locale
+	 * @return 相应的 ResourceBundle
+	 * @throws MissingResourceException 如果找不到匹配的资源包
 	 * @see java.util.ResourceBundle#getBundle(String, Locale, ClassLoader)
 	 * @see #getBundleClassLoader()
 	 */
@@ -254,9 +253,9 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 	 * {@code ResourceBundle.Control} 时被调用：在 JDK 9+ 模块路径上运行且不支持此类 control 句柄时，自
 	 * 定义子类中的任何覆盖实际上都会被忽略。
 	 * <p>默认实现返回一个 {@link PropertyResourceBundle}。
-	 * @param reader the reader for the target resource
-	 * @return the fully loaded bundle
-	 * @throws IOException in case of I/O failure
+	 * @param reader 目标资源的读取器
+	 * @return 完全加载的资源包
+	 * @throws IOException 如果发生 I/O 失败
 	 * @since 4.2
 	 * @see #loadBundle(InputStream)
 	 * @see PropertyResourceBundle#PropertyResourceBundle(Reader)
@@ -273,9 +272,9 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 	 * {@code ResourceBundle.Control} 时被调用：在 JDK 9+ 模块路径上运行且不支持此类 control 句柄时，自
 	 * 定义子类中的任何覆盖实际上都会被忽略。
 	 * <p>默认实现返回一个 {@link PropertyResourceBundle}。
-	 * @param inputStream the input stream for the target resource
-	 * @return the fully loaded bundle
-	 * @throws IOException in case of I/O failure
+	 * @param inputStream 目标资源的输入流
+	 * @return 完全加载的资源包
+	 * @throws IOException 如果发生 I/O 失败
 	 * @since 5.1
 	 * @see #loadBundle(Reader)
 	 * @see PropertyResourceBundle#PropertyResourceBundle(InputStream)
@@ -286,12 +285,11 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 
 	/**
 	 * 返回给定资源包和代码的 MessageFormat，并从缓存中获取已生成的 MessageFormat。
-	 * @param bundle the ResourceBundle to work on
-	 * @param code the message code to retrieve
-	 * @param locale the Locale to use to build the MessageFormat
-	 * @return the resulting MessageFormat, or {@code null} if no message
-	 * defined for the given code
-	 * @throws MissingResourceException if thrown by the ResourceBundle
+	 * @param bundle 要操作的 ResourceBundle
+	 * @param code 要获取的消息代码
+	 * @param locale 用于构建 MessageFormat 的 Locale
+	 * @return 得到的 MessageFormat；如果给定代码未定义消息，则为 {@code null}
+	 * @throws MissingResourceException 如果由 ResourceBundle 抛出
 	 */
 	@Nullable
 	protected MessageFormat getMessageFormat(ResourceBundle bundle, String code, Locale locale)
@@ -330,9 +328,9 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 	 * <p>从 4.2 起，默认实现会先检查 {@code containsKey}，然后再尝试调用 {@code getString}（否则在键不
 	 * 存在时需要捕获 {@code MissingResourceException}）。
 	 * <p>可在子类中覆盖。
-	 * @param bundle the ResourceBundle to perform the lookup in
-	 * @param key the key to look up
-	 * @return the associated value, or {@code null} if none
+	 * @param bundle 要在其中执行查找的 ResourceBundle
+	 * @param key 要查找的键
+	 * @return 关联的值；如果没有则为 {@code null}
 	 * @since 4.2
 	 * @see ResourceBundle#getString(String)
 	 * @see ResourceBundle#containsKey(String)

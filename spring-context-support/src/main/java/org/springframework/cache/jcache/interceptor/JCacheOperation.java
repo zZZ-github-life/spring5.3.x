@@ -31,7 +31,7 @@ import org.springframework.cache.interceptor.CacheResolver;
  *
  * @author Stephane Nicoll
  * @since 4.1
- * @param <A> the type of the JSR-107 annotation
+ * @param <A> JSR-107 注解的类型
  */
 public interface JCacheOperation<A extends Annotation> extends BasicOperation, CacheMethodDetails<A> {
 
@@ -43,7 +43,7 @@ public interface JCacheOperation<A extends Annotation> extends BasicOperation, C
 	/**
 	 * 基于指定的方法参数返回 {@link CacheInvocationParameter} 实例。
 	 * <p>方法参数必须匹配相关方法调用的签名
-	 * @param values the parameters value for a particular invocation
+	 * @param values 特定调用的参数值
 	 */
 	CacheInvocationParameter[] getAllParameters(Object... values);
 

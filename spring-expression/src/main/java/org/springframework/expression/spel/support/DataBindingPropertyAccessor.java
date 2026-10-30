@@ -40,7 +40,7 @@ public final class DataBindingPropertyAccessor extends ReflectivePropertyAccesso
 
 	/**
 	 * 创建一个新的属性访问器，用于读取，也可能用于写入。
-	 * @param allowWrite whether to also allow for write operations
+	 * @param allowWrite 是否还允许写操作
 	 * @see #canWrite
 	 */
 	private DataBindingPropertyAccessor(boolean allowWrite) {

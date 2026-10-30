@@ -49,8 +49,8 @@ public class ClassArrayEditor extends PropertyEditorSupport {
 
 	/**
 	 * 使用给定的 {@code ClassLoader} 创建默认的 {@code ClassArrayEditor}。
-	 * @param classLoader the {@code ClassLoader} to use
-	 * (or pass {@code null} for the thread context {@code ClassLoader})
+	 * @param classLoader 要使用的 {@code ClassLoader}
+	 * （或传入 {@code null} 以使用线程上下文 {@code ClassLoader}）
 	 */
 	public ClassArrayEditor(@Nullable ClassLoader classLoader) {
 		this.classLoader = (classLoader != null ? classLoader : ClassUtils.getDefaultClassLoader());

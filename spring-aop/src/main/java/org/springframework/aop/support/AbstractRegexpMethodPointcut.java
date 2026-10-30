@@ -132,8 +132,8 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 
 	/**
 	 * 将指定的候选对象与已配置的模式进行匹配。
-	 * @param signatureString "java.lang.Object.hashCode" style signature
-	 * @return whether the candidate matches at least one of the specified patterns
+	 * @param signatureString "java.lang.Object.hashCode" 风格的签名
+	 * @return 候选方法是否至少匹配一个指定的模式
 	 */
 	protected boolean matchesPattern(String signatureString) {
 		for (int i = 0; i < this.patterns.length; i++) {
@@ -155,32 +155,32 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 	/**
 	 * 子类必须实现此方法以初始化正则表达式切点。可被多次调用。
 	 * <p>此方法将从 {@link #setPatterns} 方法中调用，也会在反序列化时调用。
-	 * @param patterns the patterns to initialize
-	 * @throws IllegalArgumentException in case of an invalid pattern
+	 * @param patterns 要初始化的模式
+	 * @throws IllegalArgumentException 如果模式无效
 	 */
 	protected abstract void initPatternRepresentation(String[] patterns) throws IllegalArgumentException;
 
 	/**
 	 * 子类必须实现此方法以初始化正则表达式切点。可被多次调用。
 	 * <p>此方法将从 {@link #setExcludedPatterns} 方法中调用，也会在反序列化时调用。
-	 * @param patterns the patterns to initialize
-	 * @throws IllegalArgumentException in case of an invalid pattern
+	 * @param patterns 要初始化的模式
+	 * @throws IllegalArgumentException 如果模式无效
 	 */
 	protected abstract void initExcludedPatternRepresentation(String[] patterns) throws IllegalArgumentException;
 
 	/**
 	 * 给定索引处的模式是否匹配给定的 String？
-	 * @param pattern the {@code String} pattern to match
-	 * @param patternIndex index of pattern (starting from 0)
-	 * @return {@code true} if there is a match, {@code false} otherwise
+	 * @param pattern 要匹配的 {@code String} 模式
+	 * @param patternIndex 模式索引（从 0 开始）
+	 * @return 如果匹配则返回 {@code true}，否则返回 {@code false}
 	 */
 	protected abstract boolean matches(String pattern, int patternIndex);
 
 	/**
 	 * 给定索引处的排除模式是否匹配给定的 String？
-	 * @param pattern the {@code String} pattern to match
-	 * @param patternIndex index of pattern (starting from 0)
-	 * @return {@code true} if there is a match, {@code false} otherwise
+	 * @param pattern 要匹配的 {@code String} 模式
+	 * @param patternIndex 模式索引（从 0 开始）
+	 * @return 如果匹配则返回 {@code true}，否则返回 {@code false}
 	 */
 	protected abstract boolean matchesExclusion(String pattern, int patternIndex);
 

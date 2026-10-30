@@ -49,7 +49,7 @@ public class WebSocketHandlerMapping extends SimpleUrlHandlerMapping implements 
 	 * 握手，即带有 {@code "Upgrade:websocket"} 头的 HTTP GET 请求，
 	 * 否则取消匹配并返回 {@code null}，允许另一个
 	 * {@link org.springframework.web.servlet.HandlerMapping} 匹配同一 URL 路径。
-	 * @param match whether to enable matching on {@code "Upgrade: websocket"}
+	 * @param match 是否启用对 {@code "Upgrade: websocket"} 的匹配
 	 * @since 5.3.5
 	 */
 	public void setWebSocketUpgradeMatch(boolean match) {

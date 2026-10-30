@@ -133,7 +133,7 @@ public class MultipartFilter extends OncePerRequestFilter {
 	 * 查找此过滤器应使用的 MultipartResolver，
 	 * 以当前 HTTP 请求作为参数。
 	 * <p>默认实现委托给不带参数的 {@code lookupMultipartResolver}。
-	 * @return the MultipartResolver to use
+	 * @return 要使用的 MultipartResolver
 	 * @see #lookupMultipartResolver()
 	 */
 	protected MultipartResolver lookupMultipartResolver(HttpServletRequest request) {
@@ -146,7 +146,7 @@ public class MultipartFilter extends OncePerRequestFilter {
 	 * 默认 Bean 名称为 "filterMultipartResolver"。
 	 * <p>可以重写此方法以使用自定义的 MultipartResolver 实例，
 	 * 例如在未使用 Spring Web 应用上下文的情况下。
-	 * @return the MultipartResolver instance
+	 * @return MultipartResolver 实例
 	 */
 	protected MultipartResolver lookupMultipartResolver() {
 		WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(getServletContext());

@@ -65,9 +65,9 @@ public interface JpaVendorAdapter {
 	 * 才会调用此变体。在通过 {@link javax.persistence.Persistence}
 	 * 进行简单 Java SE 风格引导的场景（即 {@link LocalEntityManagerFactoryBean}）中，
 	 * 将直接调用无参数的 {@link #getJpaPropertyMap()} 变体。
-	 * @param pui the PersistenceUnitInfo for the current persistence unit
-	 * @return a Map of JPA properties, as accepted by the standard JPA bootstrap
-	 * facilities, or an empty Map if there are no properties to expose
+	 * @param pui 当前持久化单元的 PersistenceUnitInfo
+	 * @return JPA 属性的 Map，采用标准 JPA 引导设施所接受的形式；
+	 * 如果没有要暴露的属性，则为空 Map
 	 * @since 4.3.13
 	 * @see PersistenceUnitInfo#getTransactionType()
 	 * @see javax.persistence.spi.PersistenceProvider#createContainerEntityManagerFactory(PersistenceUnitInfo, Map)
@@ -81,8 +81,8 @@ public interface JpaVendorAdapter {
 	 * 通常基于此 JpaVendorAdapter 实例中的设置。
 	 * <p>请注意，EntityManagerFactory bean 上可能还定义了其他 JPA 属性，
 	 * 这些属性可能会覆盖此处指定的个别 JPA 属性值。
-	 * @return a Map of JPA properties, as accepted by the standard JPA bootstrap
-	 * facilities, or an empty Map if there are no properties to expose
+	 * @return JPA 属性的 Map，采用标准 JPA 引导设施所接受的形式；
+	 * 如果没有要暴露的属性，则为空 Map
 	 * @see javax.persistence.Persistence#createEntityManagerFactory(String, Map)
 	 */
 	default Map<String, ?> getJpaPropertyMap() {

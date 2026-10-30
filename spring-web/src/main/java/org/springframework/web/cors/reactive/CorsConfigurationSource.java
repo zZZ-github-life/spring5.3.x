@@ -31,7 +31,7 @@ public interface CorsConfigurationSource {
 
 	/**
 	 * 返回基于传入请求的 {@link CorsConfiguration}。
-	 * @return the associated {@link CorsConfiguration}, or {@code null} if none
+	 * @return 关联的 {@link CorsConfiguration}，如果没有则为 {@code null}
 	 */
 	@Nullable
 	CorsConfiguration getCorsConfiguration(ServerWebExchange exchange);

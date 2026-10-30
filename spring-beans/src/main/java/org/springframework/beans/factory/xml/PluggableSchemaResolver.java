@@ -73,8 +73,8 @@ public class PluggableSchemaResolver implements EntityResolver {
 
 	/**
 	 * 使用默认映射文件模式 “META-INF/spring.schemas” 加载 schema URL &rarr; schema 文件位置的映射。
-	 * @param classLoader the ClassLoader to use for loading
-	 * (can be {@code null} to use the default ClassLoader)
+	 * @param classLoader 用于加载的 ClassLoader
+	 * （可以为 {@code null} 以使用默认 ClassLoader）
 	 * @see PropertiesLoaderUtils#loadAllProperties(String, ClassLoader)
 	 */
 	public PluggableSchemaResolver(@Nullable ClassLoader classLoader) {
@@ -84,10 +84,10 @@ public class PluggableSchemaResolver implements EntityResolver {
 
 	/**
 	 * 使用给定的映射文件模式加载 schema URL &rarr; schema 文件位置的映射。
-	 * @param classLoader the ClassLoader to use for loading
-	 * (can be {@code null} to use the default ClassLoader)
-	 * @param schemaMappingsLocation the location of the file that defines schema mappings
-	 * (must not be empty)
+	 * @param classLoader 用于加载的 ClassLoader
+	 * （可以为 {@code null} 以使用默认 ClassLoader）
+	 * @param schemaMappingsLocation 定义 schema 映射的文件位置
+	 * （不能为空）
 	 * @see PropertiesLoaderUtils#loadAllProperties(String, ClassLoader)
 	 */
 	public PluggableSchemaResolver(@Nullable ClassLoader classLoader, String schemaMappingsLocation) {

@@ -33,25 +33,25 @@ public interface MBeanExportOperations {
 	/**
 	 * 向 JMX 注册所提供的资源。如果该资源尚不是有效的 MBean，Spring 将为其生成管理接口。生成的确切接口
 	 * 取决于实现及其配置。此调用还会为受管资源生成一个 {@link ObjectName} 并将其返回给调用方。
-	 * @param managedResource the resource to expose via JMX
-	 * @return the {@link ObjectName} under which the resource was exposed
-	 * @throws MBeanExportException if Spring is unable to generate an {@link ObjectName}
-	 * or register the MBean
+	 * @param managedResource 要通过 JMX 公开的资源
+	 * @return 资源公开时使用的 {@link ObjectName}
+	 * @throws MBeanExportException 如果 Spring 无法生成 {@link ObjectName}
+	 * 或注册该 MBean
 	 */
 	ObjectName registerManagedResource(Object managedResource) throws MBeanExportException;
 
 	/**
 	 * 向 JMX 注册所提供的资源。如果该资源尚不是有效的 MBean，Spring 将为其生成管理接口。生成的确切接口
 	 * 取决于实现及其配置。
-	 * @param managedResource the resource to expose via JMX
-	 * @param objectName the {@link ObjectName} under which to expose the resource
-	 * @throws MBeanExportException if Spring is unable to register the MBean
+	 * @param managedResource 要通过 JMX 公开的资源
+	 * @param objectName 公开资源时使用的 {@link ObjectName}
+	 * @throws MBeanExportException 如果 Spring 无法注册该 MBean
 	 */
 	void registerManagedResource(Object managedResource, ObjectName objectName) throws MBeanExportException;
 
 	/**
 	 * 从底层 MBeanServer 注册表中移除指定的 MBean。
-	 * @param objectName the {@link ObjectName} of the resource to remove
+	 * @param objectName 要移除的资源的 {@link ObjectName}
 	 */
 	void unregisterManagedResource(ObjectName objectName);
 

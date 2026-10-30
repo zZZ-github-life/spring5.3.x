@@ -85,8 +85,7 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 	/**
 	 * 为给定的脚本源创建一个新的 GroovyScriptFactory。
 	 * <p>此处无需指定脚本接口，因为 Groovy 脚本会自行定义其 Java 接口。
-	 * @param scriptSourceLocator a locator that points to the source of the script.
-	 * Interpreted by the post-processor that actually creates the script.
+	 * @param scriptSourceLocator 指向脚本源的定位符。由实际创建脚本的后处理器进行解释。
 	 */
 	public GroovyScriptFactory(String scriptSourceLocator) {
 		Assert.hasText(scriptSourceLocator, "'scriptSourceLocator' must not be empty");
@@ -96,11 +95,9 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 	/**
 	 * 为给定的脚本源创建一个新的 GroovyScriptFactory，并指定一个策略接口，该接口可创建自定义 MetaClass
 	 * 以提供缺失的方法，并在其他方面改变对象的行为。
-	 * @param scriptSourceLocator a locator that points to the source of the script.
-	 * Interpreted by the post-processor that actually creates the script.
-	 * @param groovyObjectCustomizer a customizer that can set a custom metaclass
-	 * or make other changes to the GroovyObject created by this factory
-	 * (may be {@code null})
+	 * @param scriptSourceLocator 指向脚本源的定位符。由实际创建脚本的后处理器进行解释。
+	 * @param groovyObjectCustomizer 可设置自定义元类或对此工厂创建的 GroovyObject
+	 * 进行其他更改的定制器（可为 {@code null}）
 	 * @see GroovyObjectCustomizer#customize
 	 */
 	public GroovyScriptFactory(String scriptSourceLocator, @Nullable GroovyObjectCustomizer groovyObjectCustomizer) {
@@ -111,10 +108,9 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 	/**
 	 * 为给定的脚本源创建一个新的 GroovyScriptFactory，并指定一个策略接口，该接口可创建自定义 MetaClass
 	 * 以提供缺失的方法，并在其他方面改变对象的行为。
-	 * @param scriptSourceLocator a locator that points to the source of the script.
-	 * Interpreted by the post-processor that actually creates the script.
-	 * @param compilerConfiguration a custom compiler configuration to be applied
-	 * to the GroovyClassLoader (may be {@code null})
+	 * @param scriptSourceLocator 指向脚本源的定位符。由实际创建脚本的后处理器进行解释。
+	 * @param compilerConfiguration 要应用到 GroovyClassLoader 的自定义编译器配置
+	 * （可为 {@code null}）
 	 * @since 4.3.3
 	 * @see GroovyClassLoader#GroovyClassLoader(ClassLoader, CompilerConfiguration)
 	 */
@@ -126,10 +122,8 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 	/**
 	 * 为给定的脚本源创建一个新的 GroovyScriptFactory，并指定一个策略接口，用于在底层 GroovyClassLoader
 	 * 中自定义 Groovy 的编译过程。
-	 * @param scriptSourceLocator a locator that points to the source of the script.
-	 * Interpreted by the post-processor that actually creates the script.
-	 * @param compilationCustomizers one or more customizers to be applied to the
-	 * GroovyClassLoader compiler configuration
+	 * @param scriptSourceLocator 指向脚本源的定位符。由实际创建脚本的后处理器进行解释。
+	 * @param compilationCustomizers 要应用到 GroovyClassLoader 编译器配置的一个或多个定制器
 	 * @since 4.3.3
 	 * @see CompilerConfiguration#addCompilationCustomizers
 	 * @see org.codehaus.groovy.control.customizers.ImportCustomizer
@@ -176,7 +170,7 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 
 	/**
 	 * 为给定的 {@code ClassLoader} 构建一个 {@link GroovyClassLoader}。
-	 * @param classLoader the ClassLoader to build a GroovyClassLoader for
+	 * @param classLoader 用于构建 GroovyClassLoader 的 ClassLoader
 	 * @since 4.3.3
 	 */
 	protected GroovyClassLoader buildGroovyClassLoader(@Nullable ClassLoader classLoader) {
@@ -192,7 +186,7 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 
 	/**
 	 * Groovy 脚本会自行确定其接口，因此我们无需在此显式暴露接口。
-	 * @return {@code null} always
+	 * @return 始终为 {@code null}
 	 */
 	@Override
 	@Nullable
@@ -301,11 +295,10 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 
 	/**
 	 * 实例化给定的 Groovy 脚本类，并在必要时运行它。
-	 * @param scriptSource the source for the underlying script
-	 * @param scriptClass the Groovy script class
-	 * @return the result object (either an instance of the script class
-	 * or the result of running the script instance)
-	 * @throws ScriptCompilationException in case of instantiation failure
+	 * @param scriptSource 底层脚本的源
+	 * @param scriptClass Groovy 脚本类
+	 * @return 结果对象（脚本类的实例，或运行脚本实例后的结果）
+	 * @throws ScriptCompilationException 在实例化失败的情况下
 	 */
 	@Nullable
 	protected Object executeScript(ScriptSource scriptSource, Class<?> scriptClass) throws ScriptCompilationException {

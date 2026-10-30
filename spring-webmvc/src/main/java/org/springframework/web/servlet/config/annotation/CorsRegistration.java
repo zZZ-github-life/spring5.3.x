@@ -134,7 +134,7 @@ public class CorsRegistration {
 	 * 通过 {@link CorsConfiguration#combine(CorsConfiguration)} 将给定的
 	 * {@code CorsConfiguration} 应用到当前正在配置的配置上，而后者已通过
 	 * {@link CorsConfiguration#applyPermitDefaultValues()} 初始化。
-	 * @param other the configuration to apply
+	 * @param other 要应用的配置
 	 * @since 5.3
 	 */
 	public CorsRegistration combine(CorsConfiguration other) {

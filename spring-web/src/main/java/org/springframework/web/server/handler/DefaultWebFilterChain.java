@@ -57,8 +57,8 @@ public class DefaultWebFilterChain implements WebFilterChain {
 
 	/**
 	 * 带有过滤器列表和要使用的目标处理器的公共构造函数。
-	 * @param handler the target handler
-	 * @param filters the filters ahead of the handler
+	 * @param handler 目标处理器
+	 * @param filters 处理器之前的过滤器
 	 * @since 5.1
 	 */
 	public DefaultWebFilterChain(WebHandler handler, List<WebFilter> filters) {
@@ -93,8 +93,8 @@ public class DefaultWebFilterChain implements WebFilterChain {
 
 	/**
 	 * 带有过滤器列表和要使用的目标处理器的公共构造函数。
-	 * @param handler the target handler
-	 * @param filters the filters ahead of the handler
+	 * @param handler 目标处理器
+	 * @param filters 处理器之前的过滤器
 	 * @deprecated as of 5.1 this constructor is deprecated in favor of
 	 * {@link #DefaultWebFilterChain(WebHandler, List)}.
 	 */

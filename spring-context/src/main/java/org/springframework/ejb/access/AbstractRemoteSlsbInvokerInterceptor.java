@@ -110,8 +110,8 @@ public abstract class AbstractRemoteSlsbInvokerInterceptor extends AbstractSlsbI
 	/**
 	 * 判断给定的 RMI 异常是否表明连接失败。
 	 * <p>默认实现委托给 RmiClientInterceptorUtils。
-	 * @param ex the RMI exception to check
-	 * @return whether the exception should be treated as connect failure
+	 * @param ex 要检查的 RMI 异常
+	 * @return 该异常是否应视为连接失败
 	 * @see org.springframework.remoting.rmi.RmiClientInterceptorUtils#isConnectFailure
 	 */
 	@SuppressWarnings("deprecation")
@@ -137,9 +137,9 @@ public abstract class AbstractRemoteSlsbInvokerInterceptor extends AbstractSlsbI
 
 	/**
 	 * 刷新 EJB home 对象并重试给定调用。由 invoke 在连接失败时调用。
-	 * @param invocation the AOP method invocation
-	 * @return the invocation result, if any
-	 * @throws Throwable in case of invocation failure
+	 * @param invocation AOP 方法调用
+	 * @return 调用结果（如果有）
+	 * @throws Throwable 如果调用失败
 	 * @see #invoke
 	 */
 	@Nullable
@@ -156,9 +156,9 @@ public abstract class AbstractRemoteSlsbInvokerInterceptor extends AbstractSlsbI
 
 	/**
 	 * 在当前 EJB home 上执行给定调用。由子类实现的模板方法。
-	 * @param invocation the AOP method invocation
-	 * @return the invocation result, if any
-	 * @throws Throwable in case of invocation failure
+	 * @param invocation AOP 方法调用
+	 * @return 调用结果（如果有）
+	 * @throws Throwable 如果调用失败
 	 * @see #getHome
 	 * @see #newSessionBeanInstance
 	 */
@@ -169,8 +169,8 @@ public abstract class AbstractRemoteSlsbInvokerInterceptor extends AbstractSlsbI
 	/**
 	 * 返回无状态会话 Bean 的新实例。由具体的远程 SLSB 调用器子类调用。
 	 * <p>可以覆盖以改变算法。
-	 * @throws NamingException if thrown by JNDI
-	 * @throws InvocationTargetException if thrown by the create method
+	 * @throws NamingException 如果由 JNDI 抛出
+	 * @throws InvocationTargetException 如果由 create 方法抛出
 	 * @see #create
 	 */
 	protected Object newSessionBeanInstance() throws NamingException, InvocationTargetException {
@@ -186,7 +186,7 @@ public abstract class AbstractRemoteSlsbInvokerInterceptor extends AbstractSlsbI
 
 	/**
 	 * 移除给定的 EJB 实例。由具体的远程 SLSB 调用器子类调用。
-	 * @param ejb the EJB instance to remove
+	 * @param ejb 要移除的 EJB 实例
 	 * @see javax.ejb.EJBObject#remove
 	 */
 	protected void removeSessionBeanInstance(@Nullable EJBObject ejb) {

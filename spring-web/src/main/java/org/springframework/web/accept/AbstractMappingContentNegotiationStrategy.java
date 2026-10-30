@@ -126,7 +126,7 @@ public abstract class AbstractMappingContentNegotiationStrategy extends MappingM
 
 	/**
 	 * 从请求中提取一个键，用于查找媒体类型。
-	 * @return the lookup key, or {@code null} if none
+	 * @return 查找键，如果没有则为 {@code null}
 	 */
 	@Nullable
 	protected abstract String getMediaTypeKey(NativeWebRequest request);

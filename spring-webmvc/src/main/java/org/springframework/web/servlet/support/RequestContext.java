@@ -125,7 +125,7 @@ public class RequestContext {
 	 * 为给定请求创建一个新的 RequestContext，使用请求属性来获取 Errors。
 	 * <p>这仅适用于 InternalResourceViews，因为 Errors 实例是模型的一部分，通常不会作为请求属性暴露。它通常会在 JSP 或自定义标签中使用。
 	 * <p><b>仅在 DispatcherServlet 请求中有效。</b>传入 ServletContext 以便能够回退到根 WebApplicationContext。
-	 * @param request current HTTP request
+	 * @param request 当前 HTTP 请求
 	 * @see org.springframework.web.servlet.DispatcherServlet
 	 * @see #RequestContext(javax.servlet.http.HttpServletRequest, javax.servlet.ServletContext)
 	 */
@@ -137,8 +137,8 @@ public class RequestContext {
 	 * 为给定请求创建一个新的 RequestContext，使用请求属性来获取 Errors。
 	 * <p>这仅适用于 InternalResourceViews，因为 Errors 实例是模型的一部分，通常不会作为请求属性暴露。它通常会在 JSP 或自定义标签中使用。
 	 * <p><b>仅在 DispatcherServlet 请求中有效。</b>传入 ServletContext 以便能够回退到根 WebApplicationContext。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
 	 * @see org.springframework.web.servlet.DispatcherServlet
 	 * @see #RequestContext(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, javax.servlet.ServletContext, Map)
 	 */
@@ -150,9 +150,9 @@ public class RequestContext {
 	 * 为给定请求创建一个新的 RequestContext，使用请求属性来获取 Errors。
 	 * <p>这仅适用于 InternalResourceViews，因为 Errors 实例是模型的一部分，通常不会作为请求属性暴露。它通常会在 JSP 或自定义标签中使用。
 	 * <p>如果指定了 ServletContext，RequestContext 还可以在根 WebApplicationContext 中工作（在 DispatcherServlet 之外）。
-	 * @param request current HTTP request
-	 * @param servletContext the servlet context of the web application (can be {@code null};
-	 * necessary for fallback to root WebApplicationContext)
+	 * @param request 当前 HTTP 请求
+	 * @param servletContext Web 应用的 servlet 上下文（可以为 {@code null}；
+	 * 回退到根 WebApplicationContext 时需要）
 	 * @see org.springframework.web.context.WebApplicationContext
 	 * @see org.springframework.web.servlet.DispatcherServlet
 	 */
@@ -164,9 +164,9 @@ public class RequestContext {
 	 * 为给定请求创建一个新的 RequestContext，使用给定的模型属性来获取 Errors。
 	 * <p>这适用于所有 View 实现。通常由 View 实现使用。
 	 * <p><b>仅在 DispatcherServlet 请求中有效。</b>传入 ServletContext 以便能够回退到根 WebApplicationContext。
-	 * @param request current HTTP request
-	 * @param model the model attributes for the current view (can be {@code null},
-	 * using the request attributes for Errors retrieval)
+	 * @param request 当前 HTTP 请求
+	 * @param model 当前视图的模型属性（可以为 {@code null}，
+	 * 此时使用请求属性来获取 Errors）
 	 * @see org.springframework.web.servlet.DispatcherServlet
 	 * @see #RequestContext(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, javax.servlet.ServletContext, Map)
 	 */
@@ -178,12 +178,12 @@ public class RequestContext {
 	 * 为给定请求创建一个新的 RequestContext，使用给定的模型属性来获取 Errors。
 	 * <p>这适用于所有 View 实现。通常由 View 实现使用。
 	 * <p>如果指定了 ServletContext，RequestContext 还可以在根 WebApplicationContext 中工作（在 DispatcherServlet 之外）。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param servletContext the servlet context of the web application (can be {@code null}; necessary for
-	 * fallback to root WebApplicationContext)
-	 * @param model the model attributes for the current view (can be {@code null}, using the request attributes
-	 * for Errors retrieval)
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param servletContext Web 应用的 servlet 上下文（可以为 {@code null}；
+	 * 回退到根 WebApplicationContext 时需要）
+	 * @param model 当前视图的模型属性（可以为 {@code null}，
+	 * 此时使用请求属性来获取 Errors）
 	 * @see org.springframework.web.context.WebApplicationContext
 	 * @see org.springframework.web.servlet.DispatcherServlet
 	 */
@@ -275,7 +275,7 @@ public class RequestContext {
 
 	/**
 	 * 返回此 RequestContext 所封装的模型 Map（如果有）。
-	 * @return the populated model Map, or {@code null} if none available
+	 * @return 已填充的模型 Map；如果不可用，则为 {@code null}
 	 */
 	@Nullable
 	public final Map<String, Object> getModel() {
@@ -304,7 +304,7 @@ public class RequestContext {
 	/**
 	 * 确定此上下文的回退区域设置。
 	 * <p>默认实现会检查请求、会话或应用作用域中的 JSTL 区域设置属性；如果未找到，则返回 {@code HttpServletRequest.getLocale()}。
-	 * @return the fallback locale (never {@code null})
+	 * @return 回退的语言环境（永不为 {@code null}）
 	 * @see javax.servlet.http.HttpServletRequest#getLocale()
 	 */
 	protected Locale getFallbackLocale() {
@@ -320,7 +320,7 @@ public class RequestContext {
 	/**
 	 * 确定此上下文的回退时区。
 	 * <p>默认实现会检查请求、会话或应用作用域中的 JSTL 时区属性；如果未找到则返回 {@code null}。
-	 * @return the fallback time zone (or {@code null} if none derivable from the request)
+	 * @return 回退的时区（如果无法从请求中推导出，则为 {@code null}）
 	 */
 	@Nullable
 	protected TimeZone getFallbackTimeZone() {
@@ -335,7 +335,7 @@ public class RequestContext {
 
 	/**
 	 * 将当前区域设置更改为指定的区域设置，并通过所配置的 {@link LocaleResolver} 存储新的区域设置。
-	 * @param locale the new locale
+	 * @param locale 新的语言环境
 	 * @see LocaleResolver#setLocale
 	 * @see #changeLocale(java.util.Locale, java.util.TimeZone)
 	 */
@@ -350,8 +350,8 @@ public class RequestContext {
 
 	/**
 	 * 将当前区域设置更改为指定的区域设置和时区上下文，并通过所配置的 {@link LocaleResolver} 存储新的区域设置上下文。
-	 * @param locale the new locale
-	 * @param timeZone the new time zone
+	 * @param locale 新的语言环境
+	 * @param timeZone 新的时区
 	 * @see LocaleContextResolver#setLocaleContext
 	 * @see org.springframework.context.i18n.SimpleTimeZoneAwareLocaleContext
 	 */
@@ -385,7 +385,7 @@ public class RequestContext {
 	/**
 	 * 确定此上下文的回退主题。
 	 * <p>默认实现返回默认主题（名称为 "theme"）。
-	 * @return the fallback theme (never {@code null})
+	 * @return 回退的主题（永不为 {@code null}）
 	 */
 	protected Theme getFallbackTheme() {
 		ThemeSource themeSource = RequestContextUtils.getThemeSource(getRequest());
@@ -401,7 +401,7 @@ public class RequestContext {
 
 	/**
 	 * 将当前主题更改为指定的主题，并通过所配置的 {@link ThemeResolver} 存储新的主题名称。
-	 * @param theme the new theme
+	 * @param theme 新的主题
 	 * @see ThemeResolver#setThemeName
 	 */
 	public void changeTheme(@Nullable Theme theme) {
@@ -415,7 +415,7 @@ public class RequestContext {
 
 	/**
 	 * 按名称将当前主题更改为指定的主题，并通过所配置的 {@link ThemeResolver} 存储新的主题名称。
-	 * @param themeName the name of the new theme
+	 * @param themeName 新主题的名称
 	 * @see ThemeResolver#setThemeName
 	 */
 	public void changeTheme(String themeName) {
@@ -446,7 +446,7 @@ public class RequestContext {
 
 	/**
 	 * 返回默认的 HTML 转义设置，并区分未指定默认值与显式值。
-	 * @return whether default HTML escaping is enabled (null = no explicit default)
+	 * @return 是否启用默认的 HTML 转义（null 表示没有显式默认值）
 	 */
 	@Nullable
 	public Boolean getDefaultHtmlEscape() {
@@ -464,7 +464,7 @@ public class RequestContext {
 
 	/**
 	 * 返回关于 HTML 转义是否使用响应编码的默认设置，并区分未指定默认值与显式值。
-	 * @return whether default use of response encoding HTML escaping is enabled (null = no explicit default)
+	 * @return 是否启用默认使用响应编码的 HTML 转义（null 表示没有显式默认值）
 	 * @since 4.1.2
 	 */
 	@Nullable
@@ -510,8 +510,8 @@ public class RequestContext {
 
 	/**
 	 * 为给定的相对 URL 返回一个感知上下文的 URL。
-	 * @param relativeUrl the relative URL part
-	 * @return a URL that points back to the server with an absolute path (also URL-encoded accordingly)
+	 * @param relativeUrl 相对 URL 部分
+	 * @return 指向服务器且带绝对路径的 URL（也相应进行 URL 编码）
 	 */
 	public String getContextUrl(String relativeUrl) {
 		String url = getContextPath() + relativeUrl;
@@ -523,9 +523,9 @@ public class RequestContext {
 
 	/**
 	 * 为带占位符（花括号 {@code {}} 中的命名键）的给定相对 URL 返回一个感知上下文的 URL。例如，传入相对 URL {@code foo/{bar}?spam={spam}} 和参数映射 {@code {bar=baz,spam=nuts}}，结果将是 {@code [contextpath]/foo/baz?spam=nuts}。
-	 * @param relativeUrl the relative URL part
-	 * @param params a map of parameters to insert as placeholders in the url
-	 * @return a URL that points back to the server with an absolute path (also URL-encoded accordingly)
+	 * @param relativeUrl 相对 URL 部分
+	 * @param params 要作为占位符插入 URL 的参数映射
+	 * @return 指向服务器且带绝对路径的 URL（也相应进行 URL 编码）
 	 */
 	public String getContextUrl(String relativeUrl, Map<String, ?> params) {
 		String url = getContextPath() + relativeUrl;
@@ -572,9 +572,9 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置获取给定代码对应的消息。
-	 * @param code the code of the message
-	 * @param defaultMessage the String to return if the lookup fails
-	 * @return the message
+	 * @param code 消息的代码
+	 * @param defaultMessage 查找失败时返回的 String
+	 * @return 消息
 	 */
 	public String getMessage(String code, String defaultMessage) {
 		return getMessage(code, null, defaultMessage, isDefaultHtmlEscape());
@@ -582,10 +582,10 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置获取给定代码对应的消息。
-	 * @param code the code of the message
-	 * @param args arguments for the message, or {@code null} if none
-	 * @param defaultMessage the String to return if the lookup fails
-	 * @return the message
+	 * @param code 消息的代码
+	 * @param args 消息的参数；如果没有，则为 {@code null}
+	 * @param defaultMessage 查找失败时返回的 String
+	 * @return 消息
 	 */
 	public String getMessage(String code, @Nullable Object[] args, String defaultMessage) {
 		return getMessage(code, args, defaultMessage, isDefaultHtmlEscape());
@@ -593,10 +593,10 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置获取给定代码对应的消息。
-	 * @param code the code of the message
-	 * @param args arguments for the message as a List, or {@code null} if none
-	 * @param defaultMessage the String to return if the lookup fails
-	 * @return the message
+	 * @param code 消息的代码
+	 * @param args 以 List 形式提供的消息参数；如果没有，则为 {@code null}
+	 * @param defaultMessage 查找失败时返回的 String
+	 * @return 消息
 	 */
 	public String getMessage(String code, @Nullable List<?> args, String defaultMessage) {
 		return getMessage(code, (args != null ? args.toArray() : null), defaultMessage, isDefaultHtmlEscape());
@@ -604,11 +604,11 @@ public class RequestContext {
 
 	/**
 	 * 获取给定代码对应的消息。
-	 * @param code the code of the message
-	 * @param args arguments for the message, or {@code null} if none
-	 * @param defaultMessage the String to return if the lookup fails
-	 * @param htmlEscape if the message should be HTML-escaped
-	 * @return the message
+	 * @param code 消息的代码
+	 * @param args 消息的参数；如果没有，则为 {@code null}
+	 * @param defaultMessage 查找失败时返回的 String
+	 * @param htmlEscape 如果消息应进行 HTML 转义
+	 * @return 消息
 	 */
 	public String getMessage(String code, @Nullable Object[] args, String defaultMessage, boolean htmlEscape) {
 		String msg = this.webApplicationContext.getMessage(code, args, defaultMessage, getLocale());
@@ -620,9 +620,9 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置获取给定代码对应的消息。
-	 * @param code the code of the message
-	 * @return the message
-	 * @throws org.springframework.context.NoSuchMessageException if not found
+	 * @param code 消息的代码
+	 * @return 消息
+	 * @throws org.springframework.context.NoSuchMessageException 如果未找到
 	 */
 	public String getMessage(String code) throws NoSuchMessageException {
 		return getMessage(code, null, isDefaultHtmlEscape());
@@ -630,10 +630,10 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置获取给定代码对应的消息。
-	 * @param code the code of the message
-	 * @param args arguments for the message, or {@code null} if none
-	 * @return the message
-	 * @throws org.springframework.context.NoSuchMessageException if not found
+	 * @param code 消息的代码
+	 * @param args 消息的参数；如果没有，则为 {@code null}
+	 * @return 消息
+	 * @throws org.springframework.context.NoSuchMessageException 如果未找到
 	 */
 	public String getMessage(String code, @Nullable Object[] args) throws NoSuchMessageException {
 		return getMessage(code, args, isDefaultHtmlEscape());
@@ -641,10 +641,10 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置获取给定代码对应的消息。
-	 * @param code the code of the message
-	 * @param args arguments for the message as a List, or {@code null} if none
-	 * @return the message
-	 * @throws org.springframework.context.NoSuchMessageException if not found
+	 * @param code 消息的代码
+	 * @param args 以 List 形式提供的消息参数；如果没有，则为 {@code null}
+	 * @return 消息
+	 * @throws org.springframework.context.NoSuchMessageException 如果未找到
 	 */
 	public String getMessage(String code, @Nullable List<?> args) throws NoSuchMessageException {
 		return getMessage(code, (args != null ? args.toArray() : null), isDefaultHtmlEscape());
@@ -652,11 +652,11 @@ public class RequestContext {
 
 	/**
 	 * 获取给定代码对应的消息。
-	 * @param code the code of the message
-	 * @param args arguments for the message, or {@code null} if none
-	 * @param htmlEscape if the message should be HTML-escaped
-	 * @return the message
-	 * @throws org.springframework.context.NoSuchMessageException if not found
+	 * @param code 消息的代码
+	 * @param args 消息的参数；如果没有，则为 {@code null}
+	 * @param htmlEscape 如果消息应进行 HTML 转义
+	 * @return 消息
+	 * @throws org.springframework.context.NoSuchMessageException 如果未找到
 	 */
 	public String getMessage(String code, @Nullable Object[] args, boolean htmlEscape) throws NoSuchMessageException {
 		String msg = this.webApplicationContext.getMessage(code, args, getLocale());
@@ -665,9 +665,9 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置获取给定的 MessageSourceResolvable（例如 ObjectError 实例）。
-	 * @param resolvable the MessageSourceResolvable
-	 * @return the message
-	 * @throws org.springframework.context.NoSuchMessageException if not found
+	 * @param resolvable MessageSourceResolvable 对象
+	 * @return 消息
+	 * @throws org.springframework.context.NoSuchMessageException 如果未找到
 	 */
 	public String getMessage(MessageSourceResolvable resolvable) throws NoSuchMessageException {
 		return getMessage(resolvable, isDefaultHtmlEscape());
@@ -675,10 +675,10 @@ public class RequestContext {
 
 	/**
 	 * 获取给定的 MessageSourceResolvable（例如 ObjectError 实例）。
-	 * @param resolvable the MessageSourceResolvable
-	 * @param htmlEscape if the message should be HTML-escaped
-	 * @return the message
-	 * @throws org.springframework.context.NoSuchMessageException if not found
+	 * @param resolvable MessageSourceResolvable 对象
+	 * @param htmlEscape 如果消息应进行 HTML 转义
+	 * @return 消息
+	 * @throws org.springframework.context.NoSuchMessageException 如果未找到
 	 */
 	public String getMessage(MessageSourceResolvable resolvable, boolean htmlEscape) throws NoSuchMessageException {
 		String msg = this.webApplicationContext.getMessage(resolvable, getLocale());
@@ -688,9 +688,9 @@ public class RequestContext {
 	/**
 	 * 获取给定代码对应的主题消息。
 	 * <p>请注意，主题消息从不进行 HTML 转义，因为它们通常表示主题特定的资源路径，而不是客户端可见的消息。
-	 * @param code the code of the message
-	 * @param defaultMessage the String to return if the lookup fails
-	 * @return the message
+	 * @param code 消息的代码
+	 * @param defaultMessage 查找失败时返回的 String
+	 * @return 消息
 	 */
 	public String getThemeMessage(String code, String defaultMessage) {
 		String msg = getTheme().getMessageSource().getMessage(code, null, defaultMessage, getLocale());
@@ -700,10 +700,10 @@ public class RequestContext {
 	/**
 	 * 获取给定代码对应的主题消息。
 	 * <p>请注意，主题消息从不进行 HTML 转义，因为它们通常表示主题特定的资源路径，而不是客户端可见的消息。
-	 * @param code the code of the message
-	 * @param args arguments for the message, or {@code null} if none
-	 * @param defaultMessage the String to return if the lookup fails
-	 * @return the message
+	 * @param code 消息的代码
+	 * @param args 消息的参数；如果没有，则为 {@code null}
+	 * @param defaultMessage 查找失败时返回的 String
+	 * @return 消息
 	 */
 	public String getThemeMessage(String code, @Nullable Object[] args, String defaultMessage) {
 		String msg = getTheme().getMessageSource().getMessage(code, args, defaultMessage, getLocale());
@@ -713,10 +713,10 @@ public class RequestContext {
 	/**
 	 * 获取给定代码对应的主题消息。
 	 * <p>请注意，主题消息从不进行 HTML 转义，因为它们通常表示主题特定的资源路径，而不是客户端可见的消息。
-	 * @param code the code of the message
-	 * @param args arguments for the message as a List, or {@code null} if none
-	 * @param defaultMessage the String to return if the lookup fails
-	 * @return the message
+	 * @param code 消息的代码
+	 * @param args 以 List 形式提供的消息参数；如果没有，则为 {@code null}
+	 * @param defaultMessage 查找失败时返回的 String
+	 * @return 消息
 	 */
 	public String getThemeMessage(String code, @Nullable List<?> args, String defaultMessage) {
 		String msg = getTheme().getMessageSource().getMessage(code, (args != null ? args.toArray() : null),
@@ -727,9 +727,9 @@ public class RequestContext {
 	/**
 	 * 获取给定代码对应的主题消息。
 	 * <p>请注意，主题消息从不进行 HTML 转义，因为它们通常表示主题特定的资源路径，而不是客户端可见的消息。
-	 * @param code the code of the message
-	 * @return the message
-	 * @throws org.springframework.context.NoSuchMessageException if not found
+	 * @param code 消息的代码
+	 * @return 消息
+	 * @throws org.springframework.context.NoSuchMessageException 如果未找到
 	 */
 	public String getThemeMessage(String code) throws NoSuchMessageException {
 		return getTheme().getMessageSource().getMessage(code, null, getLocale());
@@ -738,10 +738,10 @@ public class RequestContext {
 	/**
 	 * 获取给定代码对应的主题消息。
 	 * <p>请注意，主题消息从不进行 HTML 转义，因为它们通常表示主题特定的资源路径，而不是客户端可见的消息。
-	 * @param code the code of the message
-	 * @param args arguments for the message, or {@code null} if none
-	 * @return the message
-	 * @throws org.springframework.context.NoSuchMessageException if not found
+	 * @param code 消息的代码
+	 * @param args 消息的参数；如果没有，则为 {@code null}
+	 * @return 消息
+	 * @throws org.springframework.context.NoSuchMessageException 如果未找到
 	 */
 	public String getThemeMessage(String code, @Nullable Object[] args) throws NoSuchMessageException {
 		return getTheme().getMessageSource().getMessage(code, args, getLocale());
@@ -750,10 +750,10 @@ public class RequestContext {
 	/**
 	 * 获取给定代码对应的主题消息。
 	 * <p>请注意，主题消息从不进行 HTML 转义，因为它们通常表示主题特定的资源路径，而不是客户端可见的消息。
-	 * @param code the code of the message
-	 * @param args arguments for the message as a List, or {@code null} if none
-	 * @return the message
-	 * @throws org.springframework.context.NoSuchMessageException if not found
+	 * @param code 消息的代码
+	 * @param args 以 List 形式提供的消息参数；如果没有，则为 {@code null}
+	 * @return 消息
+	 * @throws org.springframework.context.NoSuchMessageException 如果未找到
 	 */
 	public String getThemeMessage(String code, @Nullable List<?> args) throws NoSuchMessageException {
 		return getTheme().getMessageSource().getMessage(code, (args != null ? args.toArray() : null), getLocale());
@@ -762,9 +762,9 @@ public class RequestContext {
 	/**
 	 * 在当前主题中获取给定的 MessageSourceResolvable。
 	 * <p>请注意，主题消息从不进行 HTML 转义，因为它们通常表示主题特定的资源路径，而不是客户端可见的消息。
-	 * @param resolvable the MessageSourceResolvable
-	 * @return the message
-	 * @throws org.springframework.context.NoSuchMessageException if not found
+	 * @param resolvable 该 MessageSourceResolvable
+	 * @return 消息
+	 * @throws org.springframework.context.NoSuchMessageException 如果未找到
 	 */
 	public String getThemeMessage(MessageSourceResolvable resolvable) throws NoSuchMessageException {
 		return getTheme().getMessageSource().getMessage(resolvable, getLocale());
@@ -772,8 +772,8 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置获取给定绑定对象的 Errors 实例。
-	 * @param name the name of the bind object
-	 * @return the Errors instance, or {@code null} if not found
+	 * @param name 绑定对象的名称
+	 * @return Errors 实例，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public Errors getErrors(String name) {
@@ -782,9 +782,9 @@ public class RequestContext {
 
 	/**
 	 * 获取给定绑定对象的 Errors 实例。
-	 * @param name the name of the bind object
-	 * @param htmlEscape create an Errors instance with automatic HTML escaping?
-	 * @return the Errors instance, or {@code null} if not found
+	 * @param name 绑定对象的名称
+	 * @param htmlEscape 是否创建带有自动 HTML 转义的 Errors 实例？
+	 * @return Errors 实例，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public Errors getErrors(String name, boolean htmlEscape) {
@@ -820,8 +820,8 @@ public class RequestContext {
 
 	/**
 	 * 为给定的模型名称获取模型对象，可以从模型中获取，也可以从请求属性中获取。
-	 * @param modelName the name of the model object
-	 * @return the model object
+	 * @param modelName 模型对象的名称
+	 * @return 模型对象
 	 */
 	@Nullable
 	protected Object getModelObject(String modelName) {
@@ -835,9 +835,9 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置为给定的绑定对象创建 BindStatus。
-	 * @param path the bean and property path for which values and errors will be resolved (e.g. "person.age")
-	 * @return the new BindStatus instance
-	 * @throws IllegalStateException if no corresponding Errors object found
+	 * @param path 将为其解析值和错误的 Bean 与属性路径（例如 "person.age"）
+	 * @return 新的 BindStatus 实例
+	 * @throws IllegalStateException 如果未找到对应的 Errors 对象
 	 */
 	public BindStatus getBindStatus(String path) throws IllegalStateException {
 		return new BindStatus(this, path, isDefaultHtmlEscape());
@@ -845,10 +845,10 @@ public class RequestContext {
 
 	/**
 	 * 使用 "defaultHtmlEscape" 设置为给定的绑定对象创建 BindStatus。
-	 * @param path the bean and property path for which values and errors will be resolved (e.g. "person.age")
-	 * @param htmlEscape create a BindStatus with automatic HTML escaping?
-	 * @return the new BindStatus instance
-	 * @throws IllegalStateException if no corresponding Errors object found
+	 * @param path 将为其解析值和错误的 Bean 与属性路径（例如 "person.age"）
+	 * @param htmlEscape 是否创建带有自动 HTML 转义的 BindStatus？
+	 * @return 新的 BindStatus 实例
+	 * @throws IllegalStateException 如果未找到对应的 Errors 对象
 	 */
 	public BindStatus getBindStatus(String path, boolean htmlEscape) throws IllegalStateException {
 		return new BindStatus(this, path, htmlEscape);

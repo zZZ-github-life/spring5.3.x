@@ -57,7 +57,7 @@ class SimpleCommandLineArgsParser {
 	/**
 	 * 根据 {@linkplain SimpleCommandLineArgsParser 上文}描述的规则解析给定的 {@code String} 数组，
 	 * 并返回一个完整填充的 {@link CommandLineArgs} 对象。
-	 * @param args command line arguments, typically from a {@code main()} method
+	 * @param args 命令行参数，通常来自 {@code main()} 方法
 	 */
 	public CommandLineArgs parse(String... args) {
 		CommandLineArgs commandLineArgs = new CommandLineArgs();

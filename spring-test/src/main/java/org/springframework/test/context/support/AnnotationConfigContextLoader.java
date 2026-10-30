@@ -51,7 +51,7 @@ public class AnnotationConfigContextLoader extends AbstractGenericContextLoader 
 	/**
 	 * 处理所提供的 {@link ContextConfigurationAttributes} 中的<em>组件类</em>。
 	 * <p>如果<em>组件类</em>为 {@code null} 或空，且 {@link #isGenerateDefaultLocations()} 返回 {@code true}，则此 {@code SmartContextLoader} 将尝试{@link #detectDefaultConfigurationClasses 检测默认配置类}。如果检测到默认值，它们将被{@link ContextConfigurationAttributes#setClasses(Class[]) 设置}到所提供的配置属性中。否则，所提供的配置属性中的属性将不会被修改。
-	 * @param configAttributes the context configuration attributes to process
+	 * @param configAttributes 要处理的上下文配置属性
 	 * @see org.springframework.test.context.SmartContextLoader#processContextConfiguration(ContextConfigurationAttributes)
 	 * @see #isGenerateDefaultLocations()
 	 * @see #detectDefaultConfigurationClasses(Class)
@@ -69,9 +69,8 @@ public class AnnotationConfigContextLoader extends AbstractGenericContextLoader 
 	/**
 	 * 为所提供的测试类检测默认配置类。
 	 * <p>默认实现简单地委托给 {@link AnnotationConfigContextLoaderUtils#detectDefaultConfigurationClasses(Class)}。
-	 * @param declaringClass the test class that declared {@code @ContextConfiguration}
-	 * @return an array of default configuration classes, potentially empty but
-	 * never {@code null}
+	 * @param declaringClass 声明了 {@code @ContextConfiguration} 的测试类
+	 * @return 默认配置类的数组，可能为空，但从不为 {@code null}
 	 * @see AnnotationConfigContextLoaderUtils
 	 */
 	protected Class<?>[] detectDefaultConfigurationClasses(Class<?> declaringClass) {
@@ -83,7 +82,7 @@ public class AnnotationConfigContextLoader extends AbstractGenericContextLoader 
 
 	/**
 	 * {@code AnnotationConfigContextLoader} 应作为 {@link org.springframework.test.context.SmartContextLoader SmartContextLoader} 使用，而不是作为旧版 {@link org.springframework.test.context.ContextLoader ContextLoader} 使用。因此，不支持此方法。
-	 * @throws UnsupportedOperationException in this implementation
+	 * @throws UnsupportedOperationException 在此实现中
 	 * @see AbstractContextLoader#modifyLocations
 	 */
 	@Override
@@ -94,7 +93,7 @@ public class AnnotationConfigContextLoader extends AbstractGenericContextLoader 
 
 	/**
 	 * {@code AnnotationConfigContextLoader} 应作为 {@link org.springframework.test.context.SmartContextLoader SmartContextLoader} 使用，而不是作为旧版 {@link org.springframework.test.context.ContextLoader ContextLoader} 使用。因此，不支持此方法。
-	 * @throws UnsupportedOperationException in this implementation
+	 * @throws UnsupportedOperationException 在此实现中
 	 * @see AbstractContextLoader#generateDefaultLocations
 	 */
 	@Override
@@ -105,7 +104,7 @@ public class AnnotationConfigContextLoader extends AbstractGenericContextLoader 
 
 	/**
 	 * {@code AnnotationConfigContextLoader} 应作为 {@link org.springframework.test.context.SmartContextLoader SmartContextLoader} 使用，而不是作为旧版 {@link org.springframework.test.context.ContextLoader ContextLoader} 使用。因此，不支持此方法。
-	 * @throws UnsupportedOperationException in this implementation
+	 * @throws UnsupportedOperationException 在此实现中
 	 * @see AbstractContextLoader#getResourceSuffix
 	 */
 	@Override
@@ -138,8 +137,8 @@ public class AnnotationConfigContextLoader extends AbstractGenericContextLoader 
 	 * 从所提供的 {@link MergedContextConfiguration} 中的类，将类注册到所提供的 {@link GenericApplicationContext context} 中。
 	 * <p>每个类都必须表示一个<em>组件类</em>。使用 {@link AnnotatedBeanDefinitionReader} 注册相应的 Bean 定义。
 	 * <p>请注意，此方法不调用 {@link #createBeanDefinitionReader}，因为 {@code AnnotatedBeanDefinitionReader} 不是 {@link BeanDefinitionReader} 的实例。
-	 * @param context the context in which the component classes should be registered
-	 * @param mergedConfig the merged configuration from which the classes should be retrieved
+	 * @param context 应在其上注册组件类的上下文
+	 * @param mergedConfig 应从中检索类的合并配置
 	 * @see AbstractGenericContextLoader#loadBeanDefinitions
 	 */
 	@Override
@@ -153,7 +152,7 @@ public class AnnotationConfigContextLoader extends AbstractGenericContextLoader 
 
 	/**
 	 * {@code AnnotationConfigContextLoader} 应作为 {@link org.springframework.test.context.SmartContextLoader SmartContextLoader} 使用，而不是作为旧版 {@link org.springframework.test.context.ContextLoader ContextLoader} 使用。因此，不支持此方法。
-	 * @throws UnsupportedOperationException in this implementation
+	 * @throws UnsupportedOperationException 在此实现中
 	 * @see #loadBeanDefinitions
 	 * @see AbstractGenericContextLoader#createBeanDefinitionReader
 	 */

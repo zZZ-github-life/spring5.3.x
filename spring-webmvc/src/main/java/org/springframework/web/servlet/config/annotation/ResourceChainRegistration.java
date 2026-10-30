@@ -75,8 +75,8 @@ public class ResourceChainRegistration {
 
 	/**
 	 * 向链中添加资源解析器。
-	 * @param resolver the resolver to add
-	 * @return the current instance for chained method invocation
+	 * @param resolver 要添加的解析器
+	 * @return 用于链式方法调用的当前实例
 	 */
 	public ResourceChainRegistration addResolver(ResourceResolver resolver) {
 		Assert.notNull(resolver, "The provided ResourceResolver should not be null");
@@ -95,8 +95,8 @@ public class ResourceChainRegistration {
 
 	/**
 	 * 向链中添加资源转换器。
-	 * @param transformer the transformer to add
-	 * @return the current instance for chained method invocation
+	 * @param transformer 要添加的转换器
+	 * @return 用于链式方法调用的当前实例
 	 */
 	public ResourceChainRegistration addTransformer(ResourceTransformer transformer) {
 		Assert.notNull(transformer, "The provided ResourceTransformer should not be null");

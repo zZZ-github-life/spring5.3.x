@@ -53,7 +53,7 @@ public class SqlParameter {
 
 	/**
 	 * 创建新的匿名SqlParameter，提供SQL类型。
-	 * @param sqlType the SQL type of the parameter according to {@code java.sql.Types}
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
 	 */
 	public SqlParameter(int sqlType) {
 		this.sqlType = sqlType;
@@ -61,8 +61,8 @@ public class SqlParameter {
 
 	/**
 	 * 创建新的匿名SqlParameter，提供SQL类型。
-	 * @param sqlType the SQL type of the parameter according to {@code java.sql.Types}
-	 * @param typeName the type name of the parameter (optional)
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param typeName 参数的类型名称（可选）
 	 */
 	public SqlParameter(int sqlType, @Nullable String typeName) {
 		this.sqlType = sqlType;
@@ -71,9 +71,8 @@ public class SqlParameter {
 
 	/**
 	 * 创建新的匿名SqlParameter，提供SQL类型。
-	 * @param sqlType the SQL type of the parameter according to {@code java.sql.Types}
-	 * @param scale the number of digits after the decimal point
-	 * (for DECIMAL and NUMERIC types)
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param scale 小数点后的位数（用于 DECIMAL 和 NUMERIC 类型）
 	 */
 	public SqlParameter(int sqlType, int scale) {
 		this.sqlType = sqlType;
@@ -82,8 +81,8 @@ public class SqlParameter {
 
 	/**
 	 * 创建新的SqlParameter，提供名称和SQL类型。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param sqlType the SQL type of the parameter according to {@code java.sql.Types}
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
 	 */
 	public SqlParameter(String name, int sqlType) {
 		this.name = name;
@@ -92,9 +91,9 @@ public class SqlParameter {
 
 	/**
 	 * 创建新的SqlParameter，提供名称和SQL类型。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param sqlType the SQL type of the parameter according to {@code java.sql.Types}
-	 * @param typeName the type name of the parameter (optional)
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param typeName 参数的类型名称（可选）
 	 */
 	public SqlParameter(String name, int sqlType, @Nullable String typeName) {
 		this.name = name;
@@ -104,10 +103,9 @@ public class SqlParameter {
 
 	/**
 	 * 创建新的SqlParameter，提供名称和SQL类型。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param sqlType the SQL type of the parameter according to {@code java.sql.Types}
-	 * @param scale the number of digits after the decimal point
-	 * (for DECIMAL and NUMERIC types)
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param scale 小数点后的位数（用于 DECIMAL 和 NUMERIC 类型）
 	 */
 	public SqlParameter(String name, int sqlType, int scale) {
 		this.name = name;
@@ -117,7 +115,7 @@ public class SqlParameter {
 
 	/**
 	 * 拷贝构造函数。
-	 * @param otherParam the SqlParameter object to copy from
+	 * @param otherParam 要从中复制的 SqlParameter 对象
 	 */
 	public SqlParameter(SqlParameter otherParam) {
 		Assert.notNull(otherParam, "SqlParameter object must not be null");

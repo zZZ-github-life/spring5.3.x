@@ -43,8 +43,8 @@ public class SqlParameterValue extends SqlParameter {
 
 	/**
 	 * 创建新的SqlParameterValue，提供SQL类型。
-	 * @param sqlType the SQL type of the parameter according to {@code java.sql.Types}
-	 * @param value the value object
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param value 值对象
 	 */
 	public SqlParameterValue(int sqlType, @Nullable Object value) {
 		super(sqlType);
@@ -53,9 +53,9 @@ public class SqlParameterValue extends SqlParameter {
 
 	/**
 	 * 创建新的SqlParameterValue，提供SQL类型。
-	 * @param sqlType the SQL type of the parameter according to {@code java.sql.Types}
-	 * @param typeName the type name of the parameter (optional)
-	 * @param value the value object
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param typeName 参数的类型名称（可选）
+	 * @param value 值对象
 	 */
 	public SqlParameterValue(int sqlType, @Nullable String typeName, @Nullable Object value) {
 		super(sqlType, typeName);
@@ -64,10 +64,9 @@ public class SqlParameterValue extends SqlParameter {
 
 	/**
 	 * 创建新的SqlParameterValue，提供SQL类型。
-	 * @param sqlType the SQL type of the parameter according to {@code java.sql.Types}
-	 * @param scale the number of digits after the decimal point
-	 * (for DECIMAL and NUMERIC types)
-	 * @param value the value object
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param scale 小数点后的位数（用于 DECIMAL 和 NUMERIC 类型）
+	 * @param value 值对象
 	 */
 	public SqlParameterValue(int sqlType, int scale, @Nullable Object value) {
 		super(sqlType, scale);
@@ -76,8 +75,8 @@ public class SqlParameterValue extends SqlParameter {
 
 	/**
 	 * 根据给定的SqlParameter声明创建新的SqlParameterValue。
-	 * @param declaredParam the declared SqlParameter to define a value for
-	 * @param value the value object
+	 * @param declaredParam 要为其定义值的已声明 SqlParameter
+	 * @param value 值对象
 	 */
 	public SqlParameterValue(SqlParameter declaredParam, @Nullable Object value) {
 		super(declaredParam);

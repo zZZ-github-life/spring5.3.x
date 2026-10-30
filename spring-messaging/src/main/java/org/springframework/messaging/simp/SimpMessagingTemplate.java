@@ -58,7 +58,7 @@ public class SimpMessagingTemplate extends AbstractMessageSendingTemplate<String
 
 	/**
 	 * 创建新的 {@link SimpMessagingTemplate} 实例。
-	 * @param messageChannel the message channel (never {@code null})
+	 * @param messageChannel 消息通道（永不为 {@code null}）
 	 */
 	public SimpMessagingTemplate(MessageChannel messageChannel) {
 		Assert.notNull(messageChannel, "MessageChannel must not be null");
@@ -130,7 +130,7 @@ public class SimpMessagingTemplate extends AbstractMessageSendingTemplate<String
 	 * <p>如果目标头尚不存在，则将消息发送到已配置的
 	 * {@link #setDefaultDestination(Object) defaultDestination}；
 	 * 如果未配置该目标，则抛出 {@code IllegalStateException}。
-	 * @param message the message to send (never {@code null})
+	 * @param message 要发送的消息（永不为 {@code null}）
 	 */
 	@Override
 	public void send(Message<?> message) {

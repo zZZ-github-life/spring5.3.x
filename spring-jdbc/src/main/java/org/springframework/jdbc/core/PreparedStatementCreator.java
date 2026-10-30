@@ -43,11 +43,10 @@ public interface PreparedStatementCreator {
 	/**
 	 * 在此连接中创建语句。允许实现使用PreparedStatement。
 	 * JdbcTemplate将关闭创建的语句。
-	 * @param con the connection used to create statement
-	 * @return a prepared statement
-	 * @throws SQLException there is no need to catch SQLExceptions
-	 * that may be thrown in the implementation of this method.
-	 * The JdbcTemplate class will handle them.
+	 * @param con 用于创建语句的连接
+	 * @return 预编译语句
+	 * @throws SQLException 无需捕获本方法实现中可能抛出的 SQLException。
+	 * JdbcTemplate 类会处理它们。
 	 */
 	PreparedStatement createPreparedStatement(Connection con) throws SQLException;
 

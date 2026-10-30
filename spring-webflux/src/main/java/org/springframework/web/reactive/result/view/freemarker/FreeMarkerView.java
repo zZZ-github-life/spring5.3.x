@@ -109,8 +109,8 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 
 	/**
 	 * 获取用于实际使用的 FreeMarker {@link Configuration}。
-	 * @return the FreeMarker configuration (never {@code null})
-	 * @throws IllegalStateException in case of no {@code Configuration} object set
+	 * @return FreeMarker 配置（永不为 {@code null}）
+	 * @throws IllegalStateException 在未设置 {@code Configuration} 对象的情况下
 	 * @see #getConfiguration()
 	 */
 	protected Configuration obtainConfiguration() {
@@ -162,8 +162,8 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 
 	/**
 	 * 自动检测 {@code ApplicationContext} 中的 {@link FreeMarkerConfig} 对象。
-	 * @return the {@code FreeMarkerConfig} instance to use for this view
-	 * @throws BeansException if no {@code FreeMarkerConfig} instance could be found
+	 * @return 此视图要使用的 {@code FreeMarkerConfig} 实例
+	 * @throws BeansException 如果找不到 {@code FreeMarkerConfig} 实例
 	 * @see #setConfiguration
 	 */
 	protected FreeMarkerConfig autodetectConfiguration() throws BeansException {
@@ -273,9 +273,9 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 	/**
 	 * 为给定的模型 Map 构建 FreeMarker 模板模型。
 	 * <p>默认实现构建一个 {@link SimpleHash}。
-	 * @param model the model to use for rendering
-	 * @param exchange current exchange
-	 * @return the FreeMarker template model, as a {@link SimpleHash} or subclass thereof
+	 * @param model 要用于渲染的模型
+	 * @param exchange 当前交换
+	 * @return FreeMarker 模板模型，为 {@link SimpleHash} 或其子类
 	 */
 	protected SimpleHash getTemplateModel(Map<String, Object> model, ServerWebExchange exchange) {
 		SimpleHash fmModel = new SimpleHash(getObjectWrapper());
@@ -297,8 +297,8 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 	/**
 	 * 获取给定区域设置下、由此视图渲染的 FreeMarker 模板。
 	 * <p>默认情况下，将获取由 "url" bean 属性指定的模板。
-	 * @param locale the current locale
-	 * @return the FreeMarker template to render
+	 * @param locale 当前 Locale
+	 * @return 要渲染的 FreeMarker 模板
 	 */
 	protected Template getTemplate(Locale locale) throws IOException {
 		return (getEncoding() != null ?

@@ -60,8 +60,8 @@ public abstract class MockRestRequestMatchers {
 
 	/**
 	 * 断言请求的 {@link HttpMethod}。
-	 * @param method the HTTP method
-	 * @return the request matcher
+	 * @param method HTTP 方法
+	 * @return 请求匹配器
 	 */
 	public static RequestMatcher method(HttpMethod method) {
 		Assert.notNull(method, "'method' must not be null");
@@ -70,8 +70,8 @@ public abstract class MockRestRequestMatchers {
 
 	/**
 	 * 使用给定的 Hamcrest 匹配器断言请求 URI 字符串。
-	 * @param matcher the String matcher for the expected URI
-	 * @return the request matcher
+	 * @param matcher 用于期望 URI 的 String 匹配器
+	 * @return 请求匹配器
 	 */
 	public static RequestMatcher requestTo(Matcher<? super String> matcher) {
 		Assert.notNull(matcher, "'matcher' must not be null");
@@ -80,8 +80,8 @@ public abstract class MockRestRequestMatchers {
 
 	/**
 	 * 断言请求 URI 与给定字符串匹配。
-	 * @param expectedUri the expected URI
-	 * @return the request matcher
+	 * @param expectedUri 期望的 URI
+	 * @return 请求匹配器
 	 */
 	public static RequestMatcher requestTo(String expectedUri) {
 		Assert.notNull(expectedUri, "'uri' must not be null");
@@ -91,9 +91,9 @@ public abstract class MockRestRequestMatchers {
 	/**
 	 * 对 {@link #requestTo(URI)} 的变体，通过 {@link UriComponentsBuilder}
 	 * 从 URI 模板及可选变量准备 URI，包括编码。
-	 * @param expectedUri the expected URI template
-	 * @param uriVars zero or more URI variables to populate the expected URI
-	 * @return the request matcher
+	 * @param expectedUri 期望的 URI 模板
+	 * @param uriVars 用于填充期望 URI 的零个或多个 URI 变量
+	 * @return 请求匹配器
 	 */
 	public static RequestMatcher requestToUriTemplate(String expectedUri, Object... uriVars) {
 		Assert.notNull(expectedUri, "'uri' must not be null");
@@ -103,8 +103,8 @@ public abstract class MockRestRequestMatchers {
 
 	/**
 	 * 预期对给定 URI 的请求。
-	 * @param uri the expected URI
-	 * @return the request matcher
+	 * @param uri 期望的 URI
+	 * @return 请求匹配器
 	 */
 	public static RequestMatcher requestTo(URI uri) {
 		Assert.notNull(uri, "'uri' must not be null");
@@ -119,9 +119,9 @@ public abstract class MockRestRequestMatchers {
 	 * 都匹配通用条件（如 {@link org.hamcrest.Matchers#everyItem(Matcher)}），
 	 * 列表中的每个值是否都匹配相应的专用条件
 	 * （如 {@link org.hamcrest.Matchers#contains(Matcher[])}）等。
-	 * @param name the name of the query parameter whose value(s) will be asserted
-	 * @param matcher the Hamcrest matcher to apply to the entire list of values
-	 * for the given query parameter
+	 * @param name 将对其值做出断言的查询参数名称
+	 * @param matcher 应用于给定查询参数的整个值列表的
+	 * Hamcrest 匹配器
 	 * @since 5.3.27
 	 * @see #queryParam(String, Matcher...)
 	 * @see #queryParam(String, String...)
@@ -145,10 +145,9 @@ public abstract class MockRestRequestMatchers {
 	 * 将抛出 {@link AssertionError} 以表示不匹配。
 	 * <p>有关接受适用于整个值列表（而不是仅适用于单个值）的
 	 * {@code Matcher} 的变体，请参见 {@link #queryParamList(String, Matcher)}。
-	 * @param name the name of the query parameter whose value(s) will be asserted
-	 * @param matchers the Hamcrest matchers to apply to individual query parameter
-	 * values; the n<sup>th</sup> matcher is applied to the n<sup>th</sup> query
-	 * parameter value
+	 * @param name 将对其值做出断言的查询参数名称
+	 * @param matchers 应用于各个查询参数值的 Hamcrest 匹配器；
+	 * 第 n<sup>th</sup> 个匹配器应用于第 n<sup>th</sup> 个查询参数值
 	 * @see #queryParamList(String, Matcher)
 	 * @see #queryParam(String, String...)
 	 */
@@ -171,10 +170,9 @@ public abstract class MockRestRequestMatchers {
 	 * 将抛出 {@link AssertionError} 以表示不匹配。
 	 * <p>有关接受适用于整个值列表（而不是仅断言单个值）的
 	 * Hamcrest {@code Matcher} 的变体，请参见 {@link #queryParamList(String, Matcher)}。
-	 * @param name the name of the query parameter whose value(s) will be asserted
-	 * @param expectedValues the expected values of individual query parameter values;
-	 * the n<sup>th</sup> expected value is compared to the n<sup>th</sup> query
-	 * parameter value
+	 * @param name 将对其值做出断言的查询参数名称
+	 * @param expectedValues 各个查询参数值的期望值；
+	 * 第 n<sup>th</sup> 个期望值与第 n<sup>th</sup> 个查询参数值比较
 	 * @see #queryParamList(String, Matcher)
 	 * @see #queryParam(String, Matcher...)
 	 */
@@ -200,9 +198,9 @@ public abstract class MockRestRequestMatchers {
 	 * 都匹配通用条件（如 {@link org.hamcrest.Matchers#everyItem(Matcher)}），
 	 * 列表中的每个值是否都匹配相应的专用条件
 	 * （如 {@link org.hamcrest.Matchers#contains(Matcher[])}）等。
-	 * @param name the name of the header whose value(s) will be asserted
-	 * @param matcher the Hamcrest matcher to apply to the entire list of values
-	 * for the given header
+	 * @param name 将对其值做出断言的请求头名称
+	 * @param matcher 应用于给定请求头的整个值列表的
+	 * Hamcrest 匹配器
 	 * @since 5.3.27
 	 * @see #header(String, Matcher...)
 	 * @see #header(String, String...)
@@ -225,9 +223,9 @@ public abstract class MockRestRequestMatchers {
 	 * 将抛出 {@link AssertionError} 以表示不匹配。
 	 * <p>有关接受适用于整个值列表（而不是仅适用于单个值）的
 	 * Hamcrest {@code Matcher} 的变体，请参见 {@link #headerList(String, Matcher)}。
-	 * @param name the name of the header whose value(s) will be asserted
-	 * @param matchers the Hamcrest matchers to apply to individual header values;
-	 * the n<sup>th</sup> matcher is applied to the n<sup>th</sup> header value
+	 * @param name 将对其值做出断言的请求头名称
+	 * @param matchers 应用于各个请求头值的 Hamcrest 匹配器；
+	 * 第 n<sup>th</sup> 个匹配器应用于第 n<sup>th</sup> 个请求头值
 	 * @see #headerList(String, Matcher)
 	 * @see #header(String, String...)
 	 */
@@ -252,9 +250,9 @@ public abstract class MockRestRequestMatchers {
 	 * 不匹配。
 	 * <p>有关接受适用于整个值列表（而不是仅适用于单个值）的
 	 * Hamcrest {@code Matcher} 的变体，请参见 {@link #headerList(String, Matcher)}。
-	 * @param name the name of the header whose value(s) will be asserted
-	 * @param expectedValues the expected values of individual header values; the
-	 * n<sup>th</sup> expected value is compared to the n<sup>th</sup> header value
+	 * @param name 将对其值做出断言的请求头名称
+	 * @param expectedValues 各个请求头值的期望值；
+	 * 第 n<sup>th</sup> 个期望值与第 n<sup>th</sup> 个请求头值比较
 	 * @see #headerList(String, Matcher)
 	 * @see #header(String, Matcher...)
 	 */
@@ -295,8 +293,8 @@ public abstract class MockRestRequestMatchers {
 	 * 访问请求体匹配器，以检查请求体的特定子集。JSON 路径表达式可以是
 	 * 使用 {@link String#format(String, Object...)} 中定义的格式说明符的
 	 * 参数化字符串。
-	 * @param expression the JSON path optionally parameterized with arguments
-	 * @param args arguments to parameterize the JSON path expression with
+	 * @param expression JSON 路径，可选择用参数进行参数化
+	 * @param args 用于参数化 JSON 路径表达式的参数
 	 */
 	public static JsonPathRequestMatchers jsonPath(String expression, Object... args) {
 		return new JsonPathRequestMatchers(expression, args);
@@ -306,8 +304,8 @@ public abstract class MockRestRequestMatchers {
 	 * 使用 <a href="https://github.com/jayway/JsonPath">JsonPath</a> 表达式
 	 * 和 Hamcrest 匹配器访问请求体匹配器，以检查请求体的特定子集
 	 * 并断言在 JSON 路径处找到的值。
-	 * @param expression the JSON path expression
-	 * @param matcher a matcher for the value expected at the JSON path
+	 * @param expression JSON 路径表达式
+	 * @param matcher 针对 JSON 路径处期望值的匹配器
 	 */
 	public static <T> RequestMatcher jsonPath(String expression, Matcher<? super T> matcher) {
 		return new JsonPathRequestMatchers(expression).value(matcher);
@@ -318,8 +316,8 @@ public abstract class MockRestRequestMatchers {
 	 * 子集。XPath 表达式可以是使用
 	 * {@link String#format(String, Object...)} 中定义的格式说明符的
 	 * 参数化字符串。
-	 * @param expression the XPath optionally parameterized with arguments
-	 * @param args arguments to parameterize the XPath expression with
+	 * @param expression XPath，可选择用参数进行参数化
+	 * @param args 用于参数化 XPath 表达式的参数
 	 */
 	public static XpathRequestMatchers xpath(String expression, Object... args) throws XPathExpressionException {
 		return new XpathRequestMatchers(expression, null, args);
@@ -330,9 +328,9 @@ public abstract class MockRestRequestMatchers {
 	 * 子集。XPath 表达式可以是使用
 	 * {@link String#format(String, Object...)} 中定义的格式说明符的
 	 * 参数化字符串。
-	 * @param expression the XPath optionally parameterized with arguments
-	 * @param namespaces the namespaces referenced in the XPath expression
-	 * @param args arguments to parameterize the XPath expression with
+	 * @param expression XPath，可选择用参数进行参数化
+	 * @param namespaces XPath 表达式中引用的命名空间
+	 * @param args 用于参数化 XPath 表达式的参数
 	 */
 	public static XpathRequestMatchers xpath(String expression, Map<String, String> namespaces, Object... args)
 			throws XPathExpressionException {

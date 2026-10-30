@@ -60,7 +60,7 @@ public class RequestedContentTypeResolverBuilder {
 
 	/**
 	 * 添加返回固定媒体类型集合的解析器。
-	 * @param mediaTypes the media types to use
+	 * @param mediaTypes 要使用的媒体类型
 	 */
 	public void fixedResolver(MediaType... mediaTypes) {
 		this.candidates.add(() -> new FixedContentTypeResolver(Arrays.asList(mediaTypes)));
@@ -68,7 +68,7 @@ public class RequestedContentTypeResolverBuilder {
 
 	/**
 	 * 添加自定义解析器。
-	 * @param resolver the resolver to add
+	 * @param resolver 要添加的解析器
 	 */
 	public void resolver(RequestedContentTypeResolver resolver) {
 		this.candidates.add(() -> resolver);
@@ -112,8 +112,8 @@ public class RequestedContentTypeResolverBuilder {
 
 		/**
 		 * 配置查找键（从查询参数值中提取）与对应 {@code MediaType} 之间的映射。
-		 * @param key the lookup key
-		 * @param mediaType the MediaType for that key
+		 * @param key 查找键
+		 * @param mediaType 该键对应的 MediaType
 		 */
 		public ParameterResolverConfigurer mediaType(String key, MediaType mediaType) {
 			this.mediaTypes.put(key, mediaType);
@@ -122,7 +122,7 @@ public class RequestedContentTypeResolverBuilder {
 
 		/**
 		 * {@link #mediaType(String, MediaType)} 的基于 Map 的变体。
-		 * @param mediaTypes the mappings to copy
+		 * @param mediaTypes 要复制的映射
 		 */
 		public ParameterResolverConfigurer mediaType(Map<String, MediaType> mediaTypes) {
 			this.mediaTypes.putAll(mediaTypes);

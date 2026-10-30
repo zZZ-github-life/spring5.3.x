@@ -437,7 +437,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 
 	/**
 	 * 构造一个 XStream 实例，可以使用标准构造函数之一，或创建自定义子类。
-	 * @return the {@code XStream} instance
+	 * @return {@code XStream} 实例
 	 */
 	protected XStream constructXStream() {
 		return new XStream(this.reflectionProvider, getDefaultDriver(), new ClassLoaderReference(this.beanClassLoader),
@@ -474,7 +474,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 
 	/**
 	 * 使用此 marshaller 的 bean 属性配置 XStream 实例。
-	 * @param xstream the {@code XStream} instance
+	 * @param xstream {@code XStream} 实例
 	 */
 	protected void configureXStream(XStream xstream) {
 		if (this.converters != null) {
@@ -625,7 +625,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	/**
 	 * 用于自定义给定 {@link XStream} 的模板。
 	 * <p>默认实现为空。
-	 * @param xstream the {@code XStream} instance
+	 * @param xstream {@code XStream} 实例
 	 */
 	protected void customizeXStream(XStream xstream) {
 	}
@@ -862,10 +862,10 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	 * 相应的异常。
 	 * <p>由于 XStream 自身的异常层次结构并不区分 marshalling 与 unmarshalling，
 	 * 因此使用一个布尔标志来指示该异常是发生在 marshalling 还是 unmarshalling 期间。
-	 * @param ex the XStream exception that occurred
-	 * @param marshalling indicates whether the exception occurs during marshalling ({@code true}),
-	 * or unmarshalling ({@code false})
-	 * @return the corresponding {@code XmlMappingException}
+	 * @param ex 发生的 XStream 异常
+	 * @param marshalling 指示异常是在编组期间发生（{@code true}），
+	 * 还是在解组期间发生（{@code false}）
+	 * @return 对应的 {@code XmlMappingException}
 	 */
 	protected XmlMappingException convertXStreamException(Exception ex, boolean marshalling) {
 		if (ex instanceof StreamException || ex instanceof CannotResolveClassException ||

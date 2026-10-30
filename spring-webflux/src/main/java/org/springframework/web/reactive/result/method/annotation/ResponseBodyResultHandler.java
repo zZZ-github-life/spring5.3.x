@@ -44,8 +44,8 @@ public class ResponseBodyResultHandler extends AbstractMessageWriterResultHandle
 
 	/**
 	 * 使用默认 {@link ReactiveAdapterRegistry} 的基本构造函数。
-	 * @param writers the writers for serializing to the response body
-	 * @param resolver to determine the requested content type
+	 * @param writers 用于序列化到响应正文的写入器
+	 * @param resolver 用于确定请求的内容类型
 	 */
 	public ResponseBodyResultHandler(List<HttpMessageWriter<?>> writers, RequestedContentTypeResolver resolver) {
 		this(writers, resolver, ReactiveAdapterRegistry.getSharedInstance());
@@ -53,9 +53,9 @@ public class ResponseBodyResultHandler extends AbstractMessageWriterResultHandle
 
 	/**
 	 * 使用 {@link ReactiveAdapterRegistry} 实例的构造函数。
-	 * @param writers the writers for serializing to the response body
-	 * @param resolver to determine the requested content type
-	 * @param registry for adaptation to reactive types
+	 * @param writers 用于序列化到响应正文的写入器
+	 * @param resolver 用于确定请求的内容类型
+	 * @param registry 用于适配响应式类型
 	 */
 	public ResponseBodyResultHandler(List<HttpMessageWriter<?>> writers,
 			RequestedContentTypeResolver resolver, ReactiveAdapterRegistry registry) {

@@ -47,8 +47,8 @@ public interface ExecuteFunction {
 
 	/**
 	 * 对 {@link Result} 对象流执行给定的 {@link Statement}。
-	 * @param statement the request to execute
-	 * @return the delayed result stream
+	 * @param statement 要执行的请求
+	 * @return 延迟的结果流
 	 */
 	Publisher<? extends Result> execute(Statement statement);
 

@@ -172,8 +172,8 @@ public class ConcurrentMapCacheManager implements CacheManager, BeanClassLoaderA
 
 	/**
 	 * 为指定缓存名称创建一个新的 ConcurrentMapCache 实例。
-	 * @param name the name of the cache
-	 * @return the ConcurrentMapCache (or a decorator thereof)
+	 * @param name 缓存的名称
+	 * @return ConcurrentMapCache（或其装饰器）
 	 */
 	protected Cache createConcurrentMapCache(String name) {
 		SerializationDelegate actualSerialization = (isStoreByValue() ? this.serialization : null);

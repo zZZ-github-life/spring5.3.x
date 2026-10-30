@@ -21,7 +21,7 @@ package org.springframework.web.servlet.function;
  *
  * @author Arjen Poutsma
  * @since 5.2
- * @param <T> the type of the response of the function
+ * @param <T> 函数响应的类型
  * @see RouterFunction
  */
 @FunctionalInterface
@@ -29,8 +29,8 @@ public interface HandlerFunction<T extends ServerResponse> {
 
 	/**
 	 * 处理给定的请求。
-	 * @param request the request to handle
-	 * @return the response
+	 * @param request 要处理的请求
+	 * @return 响应
 	 */
 	T handle(ServerRequest request) throws Exception;
 

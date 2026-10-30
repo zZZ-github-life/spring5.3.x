@@ -69,7 +69,7 @@ public class GenericMessagingTemplate extends AbstractDestinationResolvingMessag
 
 	/**
 	 * 配置发送操作使用的默认超时值。可以针对单个消息覆盖。
-	 * @param sendTimeout the send timeout in milliseconds
+	 * @param sendTimeout 以毫秒为单位的发送超时时间
 	 * @see #setSendTimeoutHeader(String)
 	 */
 	public void setSendTimeout(long sendTimeout) {
@@ -86,7 +86,7 @@ public class GenericMessagingTemplate extends AbstractDestinationResolvingMessag
 	/**
 	 * 配置接收操作使用的默认超时值。在使用 sendAndReceive 操作时，
 	 * 可以针对单个消息覆盖。
-	 * @param receiveTimeout the receive timeout in milliseconds
+	 * @param receiveTimeout 以毫秒为单位的接收超时时间
 	 * @see #setReceiveTimeoutHeader(String)
 	 */
 	public void setReceiveTimeout(long receiveTimeout) {
@@ -143,7 +143,7 @@ public class GenericMessagingTemplate extends AbstractDestinationResolvingMessag
 	 * 发送应答的线程是否应抛出异常。
 	 * <p>默认值为 {@code false}，此时仅记录一条 WARN 消息。
 	 * 如果设置为 {@code true}，则除了记录日志外还会抛出 {@link MessageDeliveryException}。
-	 * @param throwExceptionOnLateReply whether to throw an exception or not
+	 * @param throwExceptionOnLateReply 是否抛出异常
 	 */
 	public void setThrowExceptionOnLateReply(boolean throwExceptionOnLateReply) {
 		this.throwExceptionOnLateReply = throwExceptionOnLateReply;

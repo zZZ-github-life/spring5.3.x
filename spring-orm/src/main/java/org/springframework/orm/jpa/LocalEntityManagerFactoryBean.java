@@ -69,7 +69,7 @@ public class LocalEntityManagerFactoryBean extends AbstractEntityManagerFactoryB
 
 	/**
 	 * 为给定的配置初始化 EntityManagerFactory。
-	 * @throws javax.persistence.PersistenceException in case of JPA initialization errors
+	 * @throws javax.persistence.PersistenceException 如果发生 JPA 初始化错误
 	 */
 	@Override
 	protected EntityManagerFactory createNativeEntityManagerFactory() throws PersistenceException {

@@ -63,11 +63,11 @@ public abstract class NumberUtils {
 
 	/**
 	 * 将给定的数字转换为给定目标类的实例。
-	 * @param number the number to convert
-	 * @param targetClass the target class to convert to
-	 * @return the converted number
-	 * @throws IllegalArgumentException if the target class is not supported
-	 * (i.e. not a standard Number subclass as included in the JDK)
+	 * @param number 要转换的数字
+	 * @param targetClass 要转换到的目标类
+	 * @return 转换后的数字
+	 * @throws IllegalArgumentException 如果目标类不受支持
+	 * （即不是 JDK 中包含的标准 Number 子类）
 	 * @see java.lang.Byte
 	 * @see java.lang.Short
 	 * @see java.lang.Integer
@@ -141,10 +141,10 @@ public abstract class NumberUtils {
 
 	/**
 	 * 在以 long 值返回给定数字之前，检查 {@code BigInteger}/{@code BigDecimal} 的 long 溢出。
-	 * @param number the number to convert
-	 * @param targetClass the target class to convert to
-	 * @return the long value, if convertible without overflow
-	 * @throws IllegalArgumentException if there is an overflow
+	 * @param number 要转换的数字
+	 * @param targetClass 要转换到的目标类
+	 * @return long 值（如果可以转换且不会溢出）
+	 * @throws IllegalArgumentException 如果发生溢出
 	 * @see #raiseOverflowException
 	 */
 	private static long checkedLongValue(Number number, Class<? extends Number> targetClass) {
@@ -164,9 +164,9 @@ public abstract class NumberUtils {
 
 	/**
 	 * 针对给定数字和目标类抛出<em>溢出</em>异常。
-	 * @param number the number we tried to convert
-	 * @param targetClass the target class we tried to convert to
-	 * @throws IllegalArgumentException if there is an overflow
+	 * @param number 我们尝试转换的数字
+	 * @param targetClass 我们尝试转换到的目标类
+	 * @throws IllegalArgumentException 如果发生溢出
 	 */
 	private static void raiseOverflowException(Number number, Class<?> targetClass) {
 		throw new IllegalArgumentException("Could not convert number [" + number + "] of type [" +
@@ -178,11 +178,11 @@ public abstract class NumberUtils {
 	 * {@code valueOf} 方法。
 	 * <p>在尝试解析数字之前，去除输入 {@code String} 中的所有空白（前导、尾随以及字符之间的空白）。
 	 * <p>也支持十六进制格式的数字（带有前导 "0x"、"0X" 或 "#"）。
-	 * @param text the text to convert
-	 * @param targetClass the target class to parse into
-	 * @return the parsed number
-	 * @throws IllegalArgumentException if the target class is not supported
-	 * (i.e. not a standard Number subclass as included in the JDK)
+	 * @param text 要转换的文本
+	 * @param targetClass 要解析成的目标类
+	 * @return 解析后的数字
+	 * @throws IllegalArgumentException 如果目标类不受支持
+	 * （即不是 JDK 中包含的标准 Number 子类）
 	 * @see Byte#decode
 	 * @see Short#decode
 	 * @see Integer#decode
@@ -231,13 +231,13 @@ public abstract class NumberUtils {
 	/**
 	 * 将给定的 {@code text} 解析为给定目标类的 {@link Number} 实例，使用提供的 {@link NumberFormat}。
 	 * <p>在尝试解析数字之前，去除输入 {@code String} 的空白。
-	 * @param text the text to convert
-	 * @param targetClass the target class to parse into
-	 * @param numberFormat the {@code NumberFormat} to use for parsing (if
-	 * {@code null}, this method falls back to {@link #parseNumber(String, Class)})
-	 * @return the parsed number
-	 * @throws IllegalArgumentException if the target class is not supported
-	 * (i.e. not a standard Number subclass as included in the JDK)
+	 * @param text 要转换的文本
+	 * @param targetClass 要解析成的目标类
+	 * @param numberFormat 用于解析的 {@code NumberFormat}（如果为 {@code null}，
+	 * 此方法将回退到 {@link #parseNumber(String, Class)}）
+	 * @return 解析后的数字
+	 * @throws IllegalArgumentException 如果目标类不受支持
+	 * （即不是 JDK 中包含的标准 Number 子类）
 	 * @see java.text.NumberFormat#parse
 	 * @see #convertNumberToTargetClass
 	 * @see #parseNumber(String, Class)

@@ -77,9 +77,9 @@ public class FormattingConversionServiceFactoryBean
 
 	/**
 	 * 配置应添加的自定义转换器对象集合。
-	 * @param converters instances of any of the following:
-	 * {@link org.springframework.core.convert.converter.Converter},
-	 * {@link org.springframework.core.convert.converter.ConverterFactory},
+	 * @param converters 以下任意类型的实例：
+	 * {@link org.springframework.core.convert.converter.Converter}、
+	 * {@link org.springframework.core.convert.converter.ConverterFactory}、
 	 * {@link org.springframework.core.convert.converter.GenericConverter}
 	 */
 	public void setConverters(Set<?> converters) {
@@ -88,7 +88,7 @@ public class FormattingConversionServiceFactoryBean
 
 	/**
 	 * 配置应添加的自定义格式化器对象集合。
-	 * @param formatters instances of {@link Formatter} or {@link AnnotationFormatterFactory}
+	 * @param formatters {@link Formatter} 或 {@link AnnotationFormatterFactory} 的实例
 	 */
 	public void setFormatters(Set<?> formatters) {
 		this.formatters = formatters;

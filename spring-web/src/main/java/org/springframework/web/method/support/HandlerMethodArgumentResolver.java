@@ -33,9 +33,9 @@ public interface HandlerMethodArgumentResolver {
 
 	/**
 	 * 此解析器是否支持给定的{@linkplain MethodParameter 方法参数}。
-	 * @param parameter the method parameter to check
-	 * @return {@code true} if this resolver supports the supplied parameter;
-	 * {@code false} otherwise
+	 * @param parameter 要检查的方法参数
+	 * @return 如果此解析器支持提供的参数则返回 {@code true}；
+	 * 否则返回 {@code false}
 	 */
 	boolean supportsParameter(MethodParameter parameter);
 
@@ -44,14 +44,13 @@ public interface HandlerMethodArgumentResolver {
 	 * {@link ModelAndViewContainer} 提供对请求模型的访问。
 	 * {@link WebDataBinderFactory} 提供在需要数据绑定和类型转换时创建
 	 * {@link WebDataBinder} 实例的方式。
-	 * @param parameter the method parameter to resolve. This parameter must
-	 * have previously been passed to {@link #supportsParameter} which must
-	 * have returned {@code true}.
-	 * @param mavContainer the ModelAndViewContainer for the current request
-	 * @param webRequest the current request
-	 * @param binderFactory a factory for creating {@link WebDataBinder} instances
-	 * @return the resolved argument value, or {@code null} if not resolvable
-	 * @throws Exception in case of errors with the preparation of argument values
+	 * @param parameter 要解析的方法参数。该参数之前必须已传递给
+	 * {@link #supportsParameter}，且其必须返回 {@code true}。
+	 * @param mavContainer 当前请求的 ModelAndViewContainer
+	 * @param webRequest 当前请求
+	 * @param binderFactory 用于创建 {@link WebDataBinder} 实例的工厂
+	 * @return 解析后的参数值，如果无法解析则为 {@code null}
+	 * @throws Exception 如果准备参数值时出错
 	 */
 	@Nullable
 	Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,

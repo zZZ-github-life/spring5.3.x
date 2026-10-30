@@ -125,7 +125,7 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 	 * </pre>
 	 * <p>默认设置为 "selector"。可以将其设置为其他名称，或设置为 {@code null}
 	 * 以关闭对选择器头的支持。
-	 * @param selectorHeaderName the name to use for a selector header
+	 * @param selectorHeaderName 用于选择器消息头的名称
 	 * @since 4.2
 	 */
 	public void setSelectorHeaderName(@Nullable String selectorHeaderName) {

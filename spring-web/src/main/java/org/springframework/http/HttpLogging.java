@@ -38,8 +38,8 @@ public abstract class HttpLogging {
 
 	/**
 	 * 为给定类创建主日志记录器，并用组合日志记录器包装它；如果主日志记录器未启用，则委托给该日志记录器或后备日志记录器 "org.springframework.web.HttpLogging"。
-	 * @param primaryLoggerClass the class for the name of the primary logger
-	 * @return the resulting composite logger
+	 * @param primaryLoggerClass 主日志记录器名称所对应的类
+	 * @return 生成的复合日志记录器
 	 */
 	public static Log forLogName(Class<?> primaryLoggerClass) {
 		Log primaryLogger = LogFactory.getLog(primaryLoggerClass);
@@ -48,8 +48,8 @@ public abstract class HttpLogging {
 
 	/**
 	 * 用组合日志记录器包装给定的主日志记录器；如果主日志记录器未启用，则委托给该日志记录器或后备日志记录器 "org.springframework.web.HttpLogging"。
-	 * @param primaryLogger the primary logger to use
-	 * @return the resulting composite logger
+	 * @param primaryLogger 要使用的主日志记录器
+	 * @return 生成的复合日志记录器
 	 */
 	public static Log forLog(Log primaryLogger) {
 		return LogDelegateFactory.getCompositeLog(primaryLogger, fallbackLogger);

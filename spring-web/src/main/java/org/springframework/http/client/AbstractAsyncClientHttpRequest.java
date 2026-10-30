@@ -60,7 +60,7 @@ abstract class AbstractAsyncClientHttpRequest implements AsyncClientHttpRequest 
 
 	/**
 	 * 断言此请求尚未被 {@linkplain #executeAsync() 执行}。
-	 * @throws IllegalStateException if this request has been executed
+	 * @throws IllegalStateException 如果此请求已被执行
 	 */
 	protected void assertNotExecuted() {
 		Assert.state(!this.executed, "ClientHttpRequest already executed");
@@ -69,15 +69,15 @@ abstract class AbstractAsyncClientHttpRequest implements AsyncClientHttpRequest 
 
 	/**
 	 * 返回正文的抽象模板方法。
-	 * @param headers the HTTP headers
-	 * @return the body output stream
+	 * @param headers HTTP 标头
+	 * @return 请求体输出流
 	 */
 	protected abstract OutputStream getBodyInternal(HttpHeaders headers) throws IOException;
 
 	/**
 	 * 将给定头部和内容写入 HTTP 请求的抽象模板方法。
-	 * @param headers the HTTP headers
-	 * @return the response object for the executed request
+	 * @param headers HTTP 头
+	 * @return 所执行请求的响应对象
 	 */
 	protected abstract ListenableFuture<ClientHttpResponse> executeInternal(HttpHeaders headers)
 			throws IOException;

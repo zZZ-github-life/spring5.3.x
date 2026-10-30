@@ -46,11 +46,10 @@ public abstract class ReflectionHelper {
 	/**
 	 * 比较参数数组，并返回它们是否匹配的信息。所提供的类型转换器和 conversionAllowed 标志使匹配过程能
 	 * 够考虑类型可能被转换器转换为另一种类型的情况。
-	 * @param expectedArgTypes the types the method/constructor is expecting
-	 * @param suppliedArgTypes the types that are being supplied at the point of invocation
-	 * @param typeConverter a registered type converter
-	 * @return a MatchInfo object indicating what kind of match it was,
-	 * or {@code null} if it was not a match
+	 * @param expectedArgTypes 方法/构造函数所期望的类型
+	 * @param suppliedArgTypes 在调用位置所提供的类型
+	 * @param typeConverter 已注册的类型转换器
+	 * @return 表示匹配种类的 MatchInfo 对象，如果不匹配则为 {@code null}
 	 */
 	@Nullable
 	static ArgumentsMatchInfo compareArguments(
@@ -132,11 +131,10 @@ public abstract class ReflectionHelper {
 	/**
 	 * 比较参数数组，并返回它们是否匹配的信息。所提供的类型转换器和 conversionAllowed 标志使匹配过程能
 	 * 够考虑类型可能被转换器转换为另一种类型的情况。compareArguments 的这个变体还支持可变参数匹配。
-	 * @param expectedArgTypes the types the method/constructor is expecting
-	 * @param suppliedArgTypes the types that are being supplied at the point of invocation
-	 * @param typeConverter a registered type converter
-	 * @return a MatchInfo object indicating what kind of match it was,
-	 * or {@code null} if it was not a match
+	 * @param expectedArgTypes 方法/构造函数所期望的类型
+	 * @param suppliedArgTypes 在调用位置所提供的类型
+	 * @param typeConverter 已注册的类型转换器
+	 * @return 表示匹配种类的 MatchInfo 对象，如果不匹配则为 {@code null}
 	 */
 	@Nullable
 	static ArgumentsMatchInfo compareArgumentsVarargs(
@@ -234,11 +232,11 @@ public abstract class ReflectionHelper {
 	 * 为 {Integer, String[]}，输入参数为 {Integer, boolean, float}，则 boolean 和 float 都必须转换为字
 	 * 符串。）此方法*不会*将参数重新打包为适合可变参数调用的形式——后续对
 	 * setupArgumentsForVarargsInvocation 的调用负责处理这一点。
-	 * @param converter the converter to use for type conversions
-	 * @param arguments the arguments to convert to the requested parameter types
-	 * @param method the target Method
-	 * @return true if some kind of conversion occurred on the argument
-	 * @throws SpelEvaluationException if there is a problem with conversion
+	 * @param converter 用于类型转换的转换器
+	 * @param arguments 要转换为所请求参数类型的参数
+	 * @param method 目标 Method
+	 * @return 如果对参数进行了某种转换则返回 true。
+	 * @throws SpelEvaluationException 如果转换时出现问题
 	 */
 	public static boolean convertAllArguments(TypeConverter converter, Object[] arguments, Method method)
 			throws SpelEvaluationException {
@@ -249,13 +247,12 @@ public abstract class ReflectionHelper {
 
 	/**
 	 * 接收一组输入参数值，并将其转换为所需参数类型所指定的类型。参数会在输入数组中就地转换。
-	 * @param converter the type converter to use for attempting conversions
-	 * @param arguments the actual arguments that need conversion
-	 * @param executable the target Method or Constructor
-	 * @param varargsPosition the known position of the varargs argument, if any
-	 * ({@code null} if not varargs)
-	 * @return {@code true} if some kind of conversion occurred on an argument
-	 * @throws EvaluationException if a problem occurs during conversion
+	 * @param converter 用于尝试转换的类型转换器
+	 * @param arguments 需要转换的实际参数
+	 * @param executable 目标 Method 或 Constructor
+	 * @param varargsPosition 可变参数实参的已知位置（如果有）；如果不是可变参数则为 {@code null}
+	 * @return 如果对某个参数进行了某种转换则返回 {@code true}。
+	 * @throws EvaluationException 如果转换过程中出现问题
 	 */
 	static boolean convertArguments(TypeConverter converter, Object[] arguments, Executable executable,
 			@Nullable Integer varargsPosition) throws EvaluationException {
@@ -326,9 +323,9 @@ public abstract class ReflectionHelper {
 
 	/**
 	 * 检查所提供的值是否为 possibleArray 值所表示数组中的第一个元素。
-	 * @param value the value to check for in the array
-	 * @param possibleArray an array object that may have the supplied value as the first element
-	 * @return true if the supplied value is the first entry in the array
+	 * @param value 要在数组中检查的值
+	 * @param possibleArray 可能将所提供的值作为第一个元素的数组对象
+	 * @return 如果所提供的值是数组中的第一个元素则返回 true。
 	 */
 	private static boolean isFirstEntryInArray(Object value, @Nullable Object possibleArray) {
 		if (possibleArray == null) {
@@ -347,9 +344,9 @@ public abstract class ReflectionHelper {
 	 * 打包参数，使其正确匹配 requiredParameterTypes 中的预期形式。<p>例如，如果 requiredParameterTypes
 	 * 为 {@code (int, String[])}，因为第二个参数声明为 {@code String...}，而 arguments 为
 	 * {@code [1,"a","b"]}，则必须重新打包为 {@code [1,new String[]{"a","b"}]} 才能匹配预期类型。
-	 * @param requiredParameterTypes the types of the parameters for the invocation
-	 * @param args the arguments to be setup ready for the invocation
-	 * @return a repackaged array of arguments where any varargs setup has been done
+	 * @param requiredParameterTypes 调用所需的参数类型
+	 * @param args 要为调用准备就绪的参数
+	 * @return 已完成可变参数设置后重新打包的参数数组
 	 */
 	public static Object[] setupArgumentsForVarargsInvocation(Class<?>[] requiredParameterTypes, Object... args) {
 		// Check if array already built for final argument

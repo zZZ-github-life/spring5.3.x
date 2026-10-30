@@ -58,7 +58,7 @@ public class ResourceScriptSource implements ScriptSource {
 
 	/**
 	 * 为给定的资源创建一个新的 ResourceScriptSource。
-	 * @param resource the EncodedResource to load the script from
+	 * @param resource 用于加载脚本的 EncodedResource
 	 */
 	public ResourceScriptSource(EncodedResource resource) {
 		Assert.notNull(resource, "Resource must not be null");
@@ -67,7 +67,7 @@ public class ResourceScriptSource implements ScriptSource {
 
 	/**
 	 * 为给定的资源创建一个新的 ResourceScriptSource。
-	 * @param resource the Resource to load the script from (using UTF-8 encoding)
+	 * @param resource 用于加载脚本的 Resource（使用 UTF-8 编码）
 	 */
 	public ResourceScriptSource(Resource resource) {
 		Assert.notNull(resource, "Resource must not be null");
@@ -110,7 +110,7 @@ public class ResourceScriptSource implements ScriptSource {
 
 	/**
 	 * 获取底层资源当前的最后修改时间戳。
-	 * @return the current timestamp, or 0 if not determinable
+	 * @return 当前时间戳，如果无法确定则为 0
 	 */
 	protected long retrieveLastModifiedTime() {
 		try {

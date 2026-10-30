@@ -69,9 +69,9 @@ public interface ResourcePatternResolver extends ResourceLoader {
 	 * <p>应尽可能避免指向同一物理资源的
 	 * 重叠资源条目。结果应
 	 * 具有集合语义。
-	 * @param locationPattern the location pattern to resolve
-	 * @return the corresponding {@code Resource} objects
-	 * @throws IOException in case of I/O errors
+	 * @param locationPattern 要解析的位置模式
+	 * @return 对应的 {@code Resource} 对象
+	 * @throws IOException 如果发生 I/O 错误
 	 */
 	Resource[] getResources(String locationPattern) throws IOException;
 

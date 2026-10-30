@@ -133,19 +133,19 @@ public abstract class AbstractJsonHttpMessageConverter extends AbstractGenericHt
 
 	/**
 	 * 模板方法，从给定的 {@link Reader} 读取绑定到 JSON 的对象。
-	 * @param resolvedType the resolved generic type
-	 * @param reader the {@code} Reader to use
-	 * @return the JSON-bound object
-	 * @throws Exception in case of read/parse failures
+	 * @param resolvedType 解析后的泛型类型
+	 * @param reader 要使用的 {@code} Reader
+	 * @return 与 JSON 绑定的对象
+	 * @throws Exception 发生读取/解析失败时抛出
 	 */
 	protected abstract Object readInternal(Type resolvedType, Reader reader) throws Exception;
 
 	/**
 	 * 模板方法，将绑定到 JSON 的对象写入给定的 {@link Writer}。
-	 * @param object the object to write to the output message
-	 * @param type the type of object to write (may be {@code null})
-	 * @param writer the {@code} Writer to use
-	 * @throws Exception in case of write failures
+	 * @param object 要写入输出消息的对象
+	 * @param type 要写入的对象的类型（可以为 {@code null}）
+	 * @param writer 要使用的 {@code} Writer
+	 * @throws Exception 发生写入失败时抛出
 	 */
 	protected abstract void writeInternal(Object object, @Nullable Type type, Writer writer) throws Exception;
 

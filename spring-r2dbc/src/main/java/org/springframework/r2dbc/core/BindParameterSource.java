@@ -35,26 +35,25 @@ interface BindParameterSource {
 
 	/**
 	 * 判断指定的命名参数是否有值。
-	 * @param paramName the name of the parameter
-	 * @return {@code true} if there is a value defined; {@code false} otherwise
+	 * @param paramName 参数名称
+	 * @return 如果定义了值则返回 {@code true}，否则返回 {@code false}
 	 */
 	boolean hasValue(String paramName);
 
 	/**
 	 * 返回所请求的命名参数的参数值。
-	 * @param paramName the name of the parameter
-	 * @return the value of the specified parameter (can be {@code null})
-	 * @throws IllegalArgumentException if there is no value
-	 * for the requested parameter
+	 * @param paramName 参数名称
+	 * @return 指定参数的值（可以为 {@code null}）
+	 * @throws IllegalArgumentException 如果请求的参数没有值
 	 */
 	@Nullable
 	Object getValue(String paramName) throws IllegalArgumentException;
 
 	/**
 	 * 确定指定的命名参数的类型。
-	 * @param paramName the name of the parameter
-	 * @return the type of the specified parameter, or
-	 * {@link Object#getClass()} if not known.
+	 * @param paramName 参数名称
+	 * @return 指定参数的类型，如果未知则为
+	 * {@link Object#getClass()}。
 	 */
 	default Class<?> getType(String paramName) {
 		return Object.class;
@@ -62,7 +61,7 @@ interface BindParameterSource {
 
 	/**
 	 * 返回底层参数源的参数名称。
-	 * @return an iterator over the parameter names
+	 * @return 参数名称的迭代器
 	 */
 	Iterable<String> getParameterNames();
 

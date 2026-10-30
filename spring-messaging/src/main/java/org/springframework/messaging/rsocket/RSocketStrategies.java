@@ -50,11 +50,11 @@ public interface RSocketStrategies {
 
 	/**
 	 * 查找与给定元素类型兼容的 Encoder。
-	 * @param elementType the element type to match
-	 * @param mimeType the MimeType to match
-	 * @param <T> for casting the Encoder to the expected element type
-	 * @return the matching Encoder
-	 * @throws IllegalArgumentException if no matching Encoder is found
+	 * @param elementType 要匹配的元素类型
+	 * @param mimeType 要匹配的 MimeType
+	 * @param <T> 用于将 Encoder 转换为预期的元素类型
+	 * @return 匹配的 Encoder
+	 * @throws IllegalArgumentException 如果找不到匹配的 Encoder
 	 */
 	@SuppressWarnings("unchecked")
 	default <T> Encoder<T> encoder(ResolvableType elementType, @Nullable MimeType mimeType) {
@@ -74,11 +74,11 @@ public interface RSocketStrategies {
 
 	/**
 	 * 查找与给定元素类型兼容的 Decoder。
-	 * @param elementType the element type to match
-	 * @param mimeType the MimeType to match
-	 * @param <T> for casting the Decoder to the expected element type
-	 * @return the matching Decoder
-	 * @throws IllegalArgumentException if no matching Decoder is found
+	 * @param elementType 要匹配的元素类型
+	 * @param mimeType 要匹配的 MimeType
+	 * @param <T> 用于将 Decoder 转换为预期的元素类型
+	 * @return 匹配的 Decoder
+	 * @throws IllegalArgumentException 如果找不到匹配的 Decoder
 	 */
 	@SuppressWarnings("unchecked")
 	default <T> Decoder<T> decoder(ResolvableType elementType, @Nullable MimeType mimeType) {

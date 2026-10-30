@@ -43,9 +43,9 @@ abstract class DefaultParts {
 
 	/**
 	 * 使用给定参数创建新的 {@link FormFieldPart}。
-	 * @param headers the part headers
-	 * @param value the form field value
-	 * @return the created part
+	 * @param headers 部分头
+	 * @param value 表单字段值
+	 * @return 所创建的部分
 	 */
 	public static FormFieldPart formFieldPart(HttpHeaders headers, String value) {
 		Assert.notNull(headers, "Headers must not be null");
@@ -58,9 +58,9 @@ abstract class DefaultParts {
 	 * 基于数据缓冲区的 Flux 创建新的 {@link Part} 或 {@link FilePart}。
 	 * 如果给定头的 {@code Content-Disposition} 包含文件名，则返回
 	 * {@link FilePart}，否则返回"普通"的 {@link Part}。
-	 * @param headers the part headers
-	 * @param dataBuffers the content of the part
-	 * @return {@link Part} or {@link FilePart}, depending on {@link HttpHeaders#getContentDisposition()}
+	 * @param headers 部分头
+	 * @param dataBuffers 部分的内容
+	 * @return {@link Part} 或 {@link FilePart}，取决于 {@link HttpHeaders#getContentDisposition()}
 	 */
 	public static Part part(HttpHeaders headers, Flux<DataBuffer> dataBuffers) {
 		Assert.notNull(headers, "Headers must not be null");
@@ -73,10 +73,10 @@ abstract class DefaultParts {
 	 * 基于给定文件创建新的 {@link Part} 或 {@link FilePart}。
 	 * 如果给定头的 {@code Content-Disposition} 包含文件名，则返回
 	 * {@link FilePart}，否则返回"普通"的 {@link Part}
-	 * @param headers the part headers
-	 * @param file  the file
-	 * @param scheduler the scheduler used for reading the file
-	 * @return {@link Part} or {@link FilePart}, depending on {@link HttpHeaders#getContentDisposition()}
+	 * @param headers 部分头
+	 * @param file 文件
+	 * @param scheduler 用于读取文件的调度器
+	 * @return {@link Part} 或 {@link FilePart}，取决于 {@link HttpHeaders#getContentDisposition()}
 	 */
 	public static Part part(HttpHeaders headers, Path file, Scheduler scheduler) {
 		Assert.notNull(headers, "Headers must not be null");

@@ -60,7 +60,7 @@ public class ServerRequestWrapper implements ServerRequest {
 
 	/**
 	 * 创建包装给定请求的新 {@code ServerRequestWrapper}。
-	 * @param delegate the request to wrap
+	 * @param delegate 要包装的请求
 	 */
 	public ServerRequestWrapper(ServerRequest delegate) {
 		Assert.notNull(delegate, "Delegate must not be null");
@@ -230,7 +230,7 @@ public class ServerRequestWrapper implements ServerRequest {
 
 		/**
 		 * 创建包装给定请求的新 {@code HeadersWrapper}。
-		 * @param headers the headers to wrap
+		 * @param headers 要包装的标头
 		 */
 		public HeadersWrapper(Headers headers) {
 			Assert.notNull(headers, "Headers must not be null");

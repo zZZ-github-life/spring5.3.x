@@ -88,7 +88,7 @@ class ExtendedBeanInfo implements BeanInfo {
 	 * {@link SimpleIndexedPropertyDescriptor 索引} 或 {@link SimplePropertyDescriptor 非索引}
 	 * {@code PropertyDescriptor} 变体，从而绕过 JDK 默认的弱引用/软引用管理；然后遍历其方法描述符，查
 	 * 找所有返回非 void 的写入方法，并为找到的每个方法更新或创建对应的 {@link PropertyDescriptor}。
-	 * @param delegate the wrapped {@code BeanInfo}, which is never modified
+	 * @param delegate 所包装的 {@code BeanInfo}，它永远不会被修改
 	 * @see #getPropertyDescriptors()
 	 */
 	public ExtendedBeanInfo(BeanInfo delegate) {

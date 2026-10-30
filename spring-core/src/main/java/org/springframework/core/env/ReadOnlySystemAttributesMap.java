@@ -45,8 +45,8 @@ abstract class ReadOnlySystemAttributesMap implements Map<String, String> {
 
 	/**
 	 * 返回指定键所映射到的值，如果此 map 不包含该键的映射则返回 {@code null}。
-	 * @param key the name of the system attribute to retrieve
-	 * @throws IllegalArgumentException if given key is non-String
+	 * @param key 要获取的系统属性的名称
+	 * @throws IllegalArgumentException 如果给定的键不是 String 类型
 	 */
 	@Override
 	@Nullable

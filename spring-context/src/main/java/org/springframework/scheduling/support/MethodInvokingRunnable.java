@@ -78,7 +78,7 @@ public class MethodInvokingRunnable extends ArgumentConvertingMethodInvoker
 
 	/**
 	 * 为调用失败异常构建消息。
-	 * @return the error message, including the target method name etc
+	 * @return 错误消息，包含目标方法名等
 	 */
 	protected String getInvocationFailureMessage() {
 		return "Invocation of method '" + getTargetMethod() +

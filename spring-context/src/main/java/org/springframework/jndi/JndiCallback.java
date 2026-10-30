@@ -28,7 +28,7 @@ import org.springframework.lang.Nullable;
  * <p>请注意，几乎不需要实现此回调接口，因为 JndiTemplate 通过便捷方法提供了所有常见的 JNDI 操作。
  *
  * @author Rod Johnson
- * @param <T> the resulting object type
+ * @param <T> 结果对象类型
  * @see JndiTemplate
  * @see org.springframework.jdbc.core.JdbcTemplate
  */
@@ -38,9 +38,9 @@ public interface JndiCallback<T> {
 	/**
 	 * 对给定的 JNDI 上下文执行某些操作。
 	 * <p>实现无需担心错误处理或清理，JndiTemplate 类会处理这些。
-	 * @param ctx the current JNDI context
-	 * @return a result object, or {@code null}
-	 * @throws NamingException if thrown by JNDI methods
+	 * @param ctx 当前 JNDI 上下文
+	 * @return 结果对象，或 {@code null}
+	 * @throws NamingException 如果由 JNDI 方法抛出
 	 */
 	@Nullable
 	T doInContext(Context ctx) throws NamingException;

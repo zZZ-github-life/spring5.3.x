@@ -48,11 +48,10 @@ public interface Cache {
 	 *
 	 * <p>如果缓存中没有此键的映射，则返回 {@code null}；否则，缓存的值（其本身可能为 {@code null}）将
 	 * 以 {@link ValueWrapper} 形式返回。
-	 * @param key the key whose associated value is to be returned
-	 * @return the value to which this cache maps the specified key,
-	 * contained within a {@link ValueWrapper} which may also hold
-	 * a cached {@code null} value. A straight {@code null} being
-	 * returned means that the cache contains no mapping for this key.
+	 * @param key 要返回其关联值的键
+	 * @return 此缓存将指定键映射到的值，包含在 {@link ValueWrapper} 中，
+	 * 该包装器也可能持有缓存的 {@code null} 值。
+	 * 直接返回 {@code null} 表示此缓存对该键不包含映射。
 	 * @see #get(Object, Class)
 	 * @see #get(Object, Callable)
 	 */
@@ -64,15 +63,12 @@ public interface Cache {
 	 *
 	 * <p>注意：{@code get} 的这种变体无法区分缓存的 {@code null} 值与根本未找到缓存条目。请改用标准的
 	 * {@link #get(Object)} 变体来实现此目的。
-	 * @param key the key whose associated value is to be returned
-	 * @param type the required type of the returned value (may be
-	 * {@code null} to bypass a type check; in case of a {@code null}
-	 * value found in the cache, the specified type is irrelevant)
-	 * @return the value to which this cache maps the specified key
-	 * (which may be {@code null} itself), or also {@code null} if
-	 * the cache contains no mapping for this key
-	 * @throws IllegalStateException if a cache entry has been found
-	 * but failed to match the specified type
+	 * @param key 要返回其关联值的键
+	 * @param type 返回值的必需类型（可以为 {@code null} 以绕过类型检查；
+	 * 如果缓存中找到的值为 {@code null}，则指定的类型无关紧要）
+	 * @return 此缓存将指定键映射到的值（本身可能为 {@code null}），
+	 * 如果此缓存对该键不包含映射，则同样返回 {@code null}
+	 * @throws IllegalStateException 如果找到了缓存条目但未能匹配指定的类型
 	 * @since 4.0
 	 * @see #get(Object)
 	 */
@@ -87,9 +83,9 @@ public interface Cache {
 	 * {@code valueLoader} 只被调用一次。
 	 *
 	 * <p>如果 {@code valueLoader} 抛出异常，则该异常会被包装在 {@link ValueRetrievalException} 中。
-	 * @param key the key whose associated value is to be returned
-	 * @return the value to which this cache maps the specified key
-	 * @throws ValueRetrievalException if the {@code valueLoader} throws an exception
+	 * @param key 要返回其关联值的键
+	 * @return 此缓存将指定键映射到的值
+	 * @throws ValueRetrievalException 如果 {@code valueLoader} 抛出异常
 	 * @since 4.3
 	 * @see #get(Object)
 	 */
@@ -103,8 +99,8 @@ public interface Cache {
 	 *
 	 * <p>实际的注册可能以异步或延迟方式执行，后续查找可能还看不到该条目。事务性缓存装饰器就可能出现这
 	 * 种情况。如需保证立即注册，请使用 {@link #putIfAbsent}。
-	 * @param key the key with which the specified value is to be associated
-	 * @param value the value to be associated with the specified key
+	 * @param key 要与指定值关联的键
+	 * @param value 要与指定键关联的值
 	 * @see #putIfAbsent(Object, Object)
 	 */
 	void put(Object key, @Nullable Object value);
@@ -125,12 +121,11 @@ public interface Cache {
 	 * 查阅你所使用的原生缓存实现的文档。
 	 *
 	 * <p>默认实现按照上面的代码片段委托给 {@link #get(Object)} 和 {@link #put(Object, Object)}。
-	 * @param key the key with which the specified value is to be associated
-	 * @param value the value to be associated with the specified key
-	 * @return the value to which this cache maps the specified key (which may be
-	 * {@code null} itself), or also {@code null} if the cache did not contain any
-	 * mapping for that key prior to this call. Returning {@code null} is therefore
-	 * an indicator that the given {@code value} has been associated with the key.
+	 * @param key 要与指定值关联的键
+	 * @param value 要与指定键关联的值
+	 * @return 此缓存将指定键映射到的值（本身可能为 {@code null}），
+	 * 如果在此调用之前缓存对该键不包含任何映射，则同样返回 {@code null}。
+	 * 因此，返回 {@code null} 表示给定的 {@code value} 已与该键关联。
 	 * @since 4.1
 	 * @see #put(Object, Object)
 	 */
@@ -148,7 +143,7 @@ public interface Cache {
 	 *
 	 * <p>实际的逐出可能以异步或延迟方式执行，后续查找可能仍会看到该条目。事务性缓存装饰器就可能出现这
 	 * 种情况。如需保证立即移除，请使用 {@link #evictIfPresent}。
-	 * @param key the key whose mapping is to be removed from the cache
+	 * @param key 要从缓存中移除其映射的键
 	 * @see #evictIfPresent(Object)
 	 */
 	void evict(Object key);
@@ -159,10 +154,9 @@ public interface Cache {
 	 * <p>默认实现委托给 {@link #evict(Object)}，对于无法确定键先前是否存在的情况返回 {@code false}。鼓
 	 * 励缓存提供者尤其是缓存装饰器尽可能执行立即逐出（例如在事务中通常延迟执行的缓存操作的情况下），并
 	 * 可靠地确定给定键先前是否存在。
-	 * @param key the key whose mapping is to be removed from the cache
-	 * @return {@code true} if the cache was known to have a mapping for
-	 * this key before, {@code false} if it did not (or if prior presence
-	 * could not be determined)
+	 * @param key 要从缓存中移除其映射的键
+	 * @return 如果已知缓存此前对该键有映射，则返回 {@code true}；
+	 * 如果没有（或无法确定此前是否存在），则返回 {@code false}
 	 * @since 5.2
 	 * @see #evict(Object)
 	 */
@@ -182,9 +176,8 @@ public interface Cache {
 
 	/**
 	 * 通过移除所有映射使缓存失效，并期望所有条目对后续查找立即不可见。
-	 * @return {@code true} if the cache was known to have mappings before,
-	 * {@code false} if it did not (or if prior presence of entries could
-	 * not be determined)
+	 * @return 如果已知缓存此前有映射，则返回 {@code true}；
+	 * 如果没有（或无法确定条目此前是否存在），则返回 {@code false}
 	 * @since 5.2
 	 * @see #clear()
 	 */

@@ -64,7 +64,7 @@ class TypeConverterDelegate {
 
 	/**
 	 * 为给定的编辑器注册表创建新的 TypeConverterDelegate。
-	 * @param propertyEditorRegistry the editor registry to use
+	 * @param propertyEditorRegistry 要使用的编辑器注册表
 	 */
 	public TypeConverterDelegate(PropertyEditorRegistrySupport propertyEditorRegistry) {
 		this(propertyEditorRegistry, null);
@@ -72,8 +72,8 @@ class TypeConverterDelegate {
 
 	/**
 	 * 为给定的编辑器注册表和 Bean 实例创建新的 TypeConverterDelegate。
-	 * @param propertyEditorRegistry the editor registry to use
-	 * @param targetObject the target object to work on (as context that can be passed to editors)
+	 * @param propertyEditorRegistry 要使用的编辑器注册表
+	 * @param targetObject 要处理的目标对象（作为可传递给编辑器的上下文）
 	 */
 	public TypeConverterDelegate(PropertyEditorRegistrySupport propertyEditorRegistry, @Nullable Object targetObject) {
 		this.propertyEditorRegistry = propertyEditorRegistry;
@@ -83,13 +83,12 @@ class TypeConverterDelegate {
 
 	/**
 	 * 将值转换为指定属性所需的类型。
-	 * @param propertyName name of the property
-	 * @param oldValue the previous value, if available (may be {@code null})
-	 * @param newValue the proposed new value
-	 * @param requiredType the type we must convert to
-	 * (or {@code null} if not known, for example in case of a collection element)
-	 * @return the new value, possibly the result of type conversion
-	 * @throws IllegalArgumentException if type conversion failed
+	 * @param propertyName 属性的名称
+	 * @param oldValue 之前的值（如果可用，可能为 {@code null}）
+	 * @param newValue 提议的新值
+	 * @param requiredType 要转换成的类型（若未知则为 {@code null}，如集合元素的情形）
+	 * @return 新值，可能是类型转换的结果
+	 * @throws IllegalArgumentException 如果类型转换失败
 	 */
 	@Nullable
 	public <T> T convertIfNecessary(@Nullable String propertyName, @Nullable Object oldValue,
@@ -100,14 +99,13 @@ class TypeConverterDelegate {
 
 	/**
 	 * 将值转换为指定属性所需的类型（如有必要，从 String 转换）。
-	 * @param propertyName name of the property
-	 * @param oldValue the previous value, if available (may be {@code null})
-	 * @param newValue the proposed new value
-	 * @param requiredType the type we must convert to
-	 * (or {@code null} if not known, for example in case of a collection element)
-	 * @param typeDescriptor the descriptor for the target property or field
-	 * @return the new value, possibly the result of type conversion
-	 * @throws IllegalArgumentException if type conversion failed
+	 * @param propertyName 属性的名称
+	 * @param oldValue 之前的值（如果可用，可能为 {@code null}）
+	 * @param newValue 提议的新值
+	 * @param requiredType 要转换成的类型（若未知则为 {@code null}，如集合元素的情形）
+	 * @param typeDescriptor 目标属性或字段的描述符
+	 * @return 新值，可能是类型转换的结果
+	 * @throws IllegalArgumentException 如果类型转换失败
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable
@@ -322,8 +320,8 @@ class TypeConverterDelegate {
 	}
 	/**
 	 * 为给定类型查找默认编辑器。
-	 * @param requiredType the type to find an editor for
-	 * @return the corresponding editor, or {@code null} if none
+	 * @param requiredType 要为其查找编辑器的类型
+	 * @return 对应的编辑器；若没有则为 {@code null}
 	 */
 	@Nullable
 	private PropertyEditor findDefaultEditor(@Nullable Class<?> requiredType) {
@@ -341,13 +339,12 @@ class TypeConverterDelegate {
 
 	/**
 	 * 使用给定的属性编辑器将值转换为所需的类型（如有必要，从 String 转换）。
-	 * @param oldValue the previous value, if available (may be {@code null})
-	 * @param newValue the proposed new value
-	 * @param requiredType the type we must convert to
-	 * (or {@code null} if not known, for example in case of a collection element)
-	 * @param editor the PropertyEditor to use
-	 * @return the new value, possibly the result of type conversion
-	 * @throws IllegalArgumentException if type conversion failed
+	 * @param oldValue 之前的值（如果可用，可能为 {@code null}）
+	 * @param newValue 提议的新值
+	 * @param requiredType 要转换成的类型（若未知则为 {@code null}，如集合元素的情形）
+	 * @param editor 要使用的 PropertyEditor
+	 * @return 新值，可能是类型转换的结果
+	 * @throws IllegalArgumentException 如果类型转换失败
 	 */
 	@Nullable
 	private Object doConvertValue(@Nullable Object oldValue, @Nullable Object newValue,
@@ -409,10 +406,10 @@ class TypeConverterDelegate {
 
 	/**
 	 * 使用给定的属性编辑器转换给定的文本值。
-	 * @param oldValue the previous value, if available (may be {@code null})
-	 * @param newTextValue the proposed text value
-	 * @param editor the PropertyEditor to use
-	 * @return the converted value
+	 * @param oldValue 之前的值（如果可用，可能为 {@code null}）
+	 * @param newTextValue 提议的文本值
+	 * @param editor 要使用的 PropertyEditor
+	 * @return 转换后的值
 	 */
 	private Object doConvertTextValue(@Nullable Object oldValue, String newTextValue, PropertyEditor editor) {
 		try {

@@ -210,9 +210,9 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 	/**
 	 * 针对给定的 {@link Locale}，从 {@code ResourceBundle} 初始化视图 {@link BeanFactory}。
 	 * <p>由于会被并行线程访问，因此使用同步。
-	 * @param locale the target {@code Locale}
-	 * @return the View factory for the given Locale
-	 * @throws BeansException in case of initialization errors
+	 * @param locale 目标 {@code Locale}
+	 * @return 给定 Locale 的 View 工厂
+	 * @throws BeansException 如果发生初始化错误
 	 */
 	protected synchronized BeanFactory initFactory(Locale locale) throws BeansException {
 		// Try to find cached factory for Locale:
@@ -266,10 +266,10 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 
 	/**
 	 * 获取给定基名和 {@link Locale} 对应的资源 bundle。
-	 * @param basename the basename to look for
-	 * @param locale the {@code Locale} to look for
-	 * @return the corresponding {@code ResourceBundle}
-	 * @throws MissingResourceException if no matching bundle could be found
+	 * @param basename 要查找的基名
+	 * @param locale 要查找的 {@code Locale}
+	 * @return 相应的 {@code ResourceBundle}
+	 * @throws MissingResourceException 如果未找到匹配的资源包
 	 * @see ResourceBundle#getBundle(String, Locale, ClassLoader)
 	 */
 	protected ResourceBundle getBundle(String basename, Locale locale) throws MissingResourceException {

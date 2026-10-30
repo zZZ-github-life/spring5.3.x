@@ -35,8 +35,8 @@ public class ManagedArray extends ManagedList<Object> {
 
 	/**
 	 * 创建一个新的受管数组占位符。
-	 * @param elementTypeName the target element type as a class name
-	 * @param size the size of the array
+	 * @param elementTypeName 目标元素类型的类名
+	 * @param size 数组的大小
 	 */
 	public ManagedArray(String elementTypeName, int size) {
 		super(size);

@@ -76,8 +76,8 @@ public class CronSequenceGenerator {
 
 	/**
 	 * 使用默认的 {@link TimeZone}，根据提供的模式构造一个 {@code CronSequenceGenerator}。
-	 * @param expression a space-separated list of time fields
-	 * @throws IllegalArgumentException if the pattern cannot be parsed
+	 * @param expression 以空格分隔的时间字段列表
+	 * @throws IllegalArgumentException 如果无法解析该模式
 	 * @see java.util.TimeZone#getDefault()
 	 * @deprecated as of 5.3, in favor of {@link CronExpression#parse(String)}
 	 */
@@ -88,9 +88,9 @@ public class CronSequenceGenerator {
 
 	/**
 	 * 使用指定的 {@link TimeZone}，根据提供的模式构造一个 {@code CronSequenceGenerator}。
-	 * @param expression a space-separated list of time fields
-	 * @param timeZone the TimeZone to use for generated trigger times
-	 * @throws IllegalArgumentException if the pattern cannot be parsed
+	 * @param expression 以空格分隔的时间字段列表
+	 * @param timeZone 用于生成触发时间的 TimeZone
+	 * @throws IllegalArgumentException 如果无法解析该模式
 	 * @deprecated as of 5.3, in favor of {@link CronExpression#parse(String)}
 	 */
 	@Deprecated
@@ -118,8 +118,8 @@ public class CronSequenceGenerator {
 	/**
 	 * 获取序列中在给定值之后、与 Cron 模式匹配的下一个 {@link Date}。返回值的秒数为整数，并且位于输入
 	 * 值之后。
-	 * @param date a seed value
-	 * @return the next value matching the pattern
+	 * @param date 种子值
+	 * @return 与模式匹配的下一个值
 	 */
 	public Date next(Date date) {
 		/*
@@ -228,14 +228,14 @@ public class CronSequenceGenerator {
 
 	/**
 	 * 在所提供的位中搜索给定值之后的下一个置位，并重置日历。
-	 * @param bits a {@link BitSet} representing the allowed values of the field
-	 * @param value the current value of the field
-	 * @param calendar the calendar to increment as we move through the bits
-	 * @param field the field to increment in the calendar (@see
-	 * {@link Calendar} for the static constants defining valid fields)
-	 * @param lowerOrders the Calendar field ids that should be reset (i.e. the
-	 * ones of lower significance than the field of interest)
-	 * @return the value of the calendar field that is next in the sequence
+	 * @param bits 表示该字段允许值的 {@link BitSet}
+	 * @param value 字段的当前值
+	 * @param calendar 在遍历位时递增的 calendar
+	 * @param field 在 calendar 中要递增的字段
+	 * （有效字段的静态常量请参阅 {@link Calendar}）
+	 * @param lowerOrders 应重置的 Calendar 字段 id（即重要性低于
+	 * 所关注字段的字段 id）
+	 * @return 序列中下一个 calendar 字段的值
 	 */
 	private int findNext(BitSet bits, int value, Calendar calendar, int field, int nextField, List<Integer> lowerOrders) {
 		int nextValue = bits.nextSetBit(value);
@@ -293,7 +293,7 @@ public class CronSequenceGenerator {
 
 	/**
 	 * 将逗号分隔列表中的值（不区分大小写）替换为其在列表中的索引。
-	 * @return a new String with the values from the list replaced
+	 * @return 将列表中的值替换后的新 String
 	 */
 	private String replaceOrdinals(String value, String commaSeparatedList) {
 		String[] list = StringUtils.commaDelimitedListToStringArray(commaSeparatedList);
@@ -400,8 +400,8 @@ public class CronSequenceGenerator {
 
 	/**
 	 * 判断指定的表达式是否表示有效的 cron 模式。
-	 * @param expression the expression to evaluate
-	 * @return {@code true} if the given expression is a valid cron expression
+	 * @param expression 要评估的表达式
+	 * @return 如果给定表达式是有效的 cron 表达式，则返回 {@code true}
 	 * @since 4.3
 	 */
 	public static boolean isValidExpression(@Nullable String expression) {

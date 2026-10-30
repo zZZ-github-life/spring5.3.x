@@ -49,9 +49,9 @@ public class LookupOverride extends MethodOverride {
 
 	/**
 	 * 构造一个新的 LookupOverride。
-	 * @param methodName the name of the method to override
-	 * @param beanName the name of the bean in the current {@code BeanFactory} that the
-	 * overridden method should return (may be {@code null} for type-based bean retrieval)
+	 * @param methodName 要覆盖的方法的名称
+	 * @param beanName 当前 {@code BeanFactory} 中应由此被覆盖方法返回的 Bean 的名称
+	 * （如果基于类型获取 Bean，则可以为 {@code null}）
 	 */
 	public LookupOverride(String methodName, @Nullable String beanName) {
 		super(methodName);
@@ -60,9 +60,9 @@ public class LookupOverride extends MethodOverride {
 
 	/**
 	 * 构造一个新的 LookupOverride。
-	 * @param method the method declaration to override
-	 * @param beanName the name of the bean in the current {@code BeanFactory} that the
-	 * overridden method should return (may be {@code null} for type-based bean retrieval)
+	 * @param method 要覆盖的方法声明
+	 * @param beanName 当前 {@code BeanFactory} 中应由此被覆盖方法返回的 Bean 的名称
+	 * （如果基于类型获取 Bean，则可以为 {@code null}）
 	 */
 	public LookupOverride(Method method, @Nullable String beanName) {
 		super(method.getName());

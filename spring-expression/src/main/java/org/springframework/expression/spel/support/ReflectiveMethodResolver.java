@@ -70,8 +70,7 @@ public class ReflectiveMethodResolver implements MethodResolver {
 	 * 此构造器允许对 ReflectiveMethodResolver 进行配置，使其使用距离计算来检查两个接近的匹配中哪个更合
 	 * 适（当存在多个匹配时）。使用距离计算旨在确保匹配结果更接近 Java 编译器在考虑装箱/拆箱以及方法候
 	 * 选是否声明为处理所传入（参数）类型的超类型时的行为。
-	 * @param useDistance {@code true} if distance computation should be used when
-	 * calculating matches; {@code false} otherwise
+	 * @param useDistance 如果计算匹配时应使用距离计算则为 {@code true}，否则为 {@code false}。
 	 */
 	public ReflectiveMethodResolver(boolean useDistance) {
 		this.useDistance = useDistance;
@@ -80,9 +79,8 @@ public class ReflectiveMethodResolver implements MethodResolver {
 
 	/**
 	 * 为给定类型上的方法注册过滤器。
-	 * @param type the type to filter on
-	 * @param filter the corresponding method filter,
-	 * or {@code null} to clear any filter for the given type
+	 * @param type 要过滤的类型
+	 * @param filter 对应的方法过滤器；若要清除给定类型的过滤器则为 {@code null}
 	 */
 	public void registerMethodFilter(Class<?> type, @Nullable MethodFilter filter) {
 		if (this.filters == null) {
@@ -263,7 +261,7 @@ public class ReflectiveMethodResolver implements MethodResolver {
 	/**
 	 * 返回此类型的方法集合。默认实现返回给定 {@code type} 的 {@link Class#getMethods()} 结果，但子类可
 	 * 以重写以改变结果，例如指定在其他位置声明的静态方法。
-	 * @param type the class for which to return the methods
+	 * @param type 要返回其方法的类
 	 * @since 3.1.1
 	 */
 	protected Method[] getMethods(Class<?> type) {
@@ -273,8 +271,8 @@ public class ReflectiveMethodResolver implements MethodResolver {
 	/**
 	 * 判断给定的 {@code Method} 是否为在给定目标类实例上进行方法解析的候选方法。<p>默认实现将任何方法
 	 * 都视为候选方法，即使是静态方法以及 {@link Object} 基类上非用户声明的方法。
-	 * @param method the Method to evaluate
-	 * @param targetClass the concrete target class that is being introspected
+	 * @param method 要评估的 Method
+	 * @param targetClass 正在被内省的具体目标类
 	 * @since 4.3.15
 	 */
 	protected boolean isCandidateForInvocation(Method method, Class<?> targetClass) {

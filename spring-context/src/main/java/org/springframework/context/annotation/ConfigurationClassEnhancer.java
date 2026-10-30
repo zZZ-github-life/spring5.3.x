@@ -89,7 +89,7 @@ class ConfigurationClassEnhancer {
 	/**
 	 * 加载指定的类，并为其生成一个配备容器感知回调的 CGLIB 子类，这些回调能够遵循作用域及其他 Bean 语
 	 * 义。
-	 * @return the enhanced subclass
+	 * @return 增强后的子类
 	 */
 	public Class<?> enhance(Class<?> configClass, @Nullable ClassLoader classLoader) {
 		if (EnhancedConfiguration.class.isAssignableFrom(configClass)) {
@@ -266,8 +266,8 @@ class ConfigurationClassEnhancer {
 
 		/**
 		 * 增强 {@link Bean @Bean} 方法，以检查所提供的 BeanFactory 中是否存在此 Bean 对象。
-		 * @throws Throwable as a catch-all for any exception that may be thrown when invoking the
-		 * super implementation of the proxied method i.e., the actual {@code @Bean} method
+		 * @throws Throwable 作为调用代理方法的 super 实现（即实际的 {@code @Bean} 方法）时
+		 * 可能抛出的任何异常的兜底
 		 */
 
 		/*
@@ -425,8 +425,8 @@ class ConfigurationClassEnhancer {
 		 * 实际上尚不存在，而现在我们的工作就是通过执行相应工厂方法中的逻辑来首次创建它。
 		 * <p>换句话说，此检查重新利用了 {@link ConfigurableBeanFactory#isCurrentlyInCreation(String)}，以
 		 * 判断是容器在调用此方法还是用户在调用此方法。
-		 * @param beanName name of bean to check for
-		 * @return whether <var>beanName</var> already exists in the factory
+		 * @param beanName 要检查的 Bean 名称
+		 * @return <var>beanName</var> 是否已存在于该工厂中
 		 */
 		private boolean factoryContainsBean(ConfigurableBeanFactory beanFactory, String beanName) {
 			return (beanFactory.containsBean(beanName) && !beanFactory.isCurrentlyInCreation(beanName));

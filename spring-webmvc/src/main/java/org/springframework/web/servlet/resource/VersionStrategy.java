@@ -30,8 +30,8 @@ public interface VersionStrategy extends VersionPathStrategy {
 
 	/**
 	 * 确定给定资源的版本。
-	 * @param resource the resource to check
-	 * @return the version (never {@code null})
+	 * @param resource 要检查的资源
+	 * @return 版本（永不为 {@code null}）
 	 */
 	String getResourceVersion(Resource resource);
 

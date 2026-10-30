@@ -80,7 +80,7 @@ public abstract class CommonsFileUploadSupport {
 	/**
 	 * 返回底层的 {@code org.apache.commons.fileupload.disk.DiskFileItemFactory}
 	 * 实例。几乎不需要访问该方法。
-	 * @return the underlying DiskFileItemFactory instance
+	 * @return 底层的 DiskFileItemFactory 实例
 	 */
 	public DiskFileItemFactory getFileItemFactory() {
 		return this.fileItemFactory;
@@ -89,7 +89,7 @@ public abstract class CommonsFileUploadSupport {
 	/**
 	 * 返回底层的 {@code org.apache.commons.fileupload.FileUpload}
 	 * 实例。几乎不需要访问该方法。
-	 * @return the underlying FileUpload instance
+	 * @return 底层的 FileUpload 实例
 	 */
 	public FileUpload getFileUpload() {
 		return this.fileUpload;
@@ -98,7 +98,7 @@ public abstract class CommonsFileUploadSupport {
 	/**
 	 * 设置上传被拒绝之前允许的最大大小（以字节为单位）。
 	 * -1 表示不限制（默认值）。
-	 * @param maxUploadSize the maximum upload size allowed
+	 * @param maxUploadSize 允许的最大上传大小
 	 * @see org.apache.commons.fileupload.FileUploadBase#setSizeMax
 	 */
 	public void setMaxUploadSize(long maxUploadSize) {
@@ -108,7 +108,7 @@ public abstract class CommonsFileUploadSupport {
 	/**
 	 * 设置上传被拒绝之前每个单独文件允许的最大大小（以字节为单位）。
 	 * -1 表示不限制（默认值）。
-	 * @param maxUploadSizePerFile the maximum upload size per file
+	 * @param maxUploadSizePerFile 每个文件的最大上传大小
 	 * @since 4.2
 	 * @see org.apache.commons.fileupload.FileUploadBase#setFileSizeMax
 	 */
@@ -120,7 +120,7 @@ public abstract class CommonsFileUploadSupport {
 	 * 设置上传内容写入磁盘之前允许的最大大小（以字节为单位）。
 	 * 超过该大小的上传文件仍会被接收，但不会再存储在内存中。
 	 * 根据 Commons FileUpload 的约定，默认值为 10240。
-	 * @param maxInMemorySize the maximum in memory size allowed
+	 * @param maxInMemorySize 允许的最大内存大小
 	 * @see org.apache.commons.fileupload.disk.DiskFileItemFactory#setSizeThreshold
 	 */
 	public void setMaxInMemorySize(int maxInMemorySize) {
@@ -133,7 +133,7 @@ public abstract class CommonsFileUploadSupport {
 	 * <p>如果请求自身指定了字符编码，则请求的编码将覆盖此设置。
 	 * 这也允许在调用 {@code ServletRequest.setCharacterEncoding} 方法的过滤器中
 	 * 统一覆盖字符编码。
-	 * @param defaultEncoding the character encoding to use
+	 * @param defaultEncoding 要使用的字符编码
 	 * @see javax.servlet.ServletRequest#getCharacterEncoding
 	 * @see javax.servlet.ServletRequest#setCharacterEncoding
 	 * @see WebUtils#DEFAULT_CHARACTER_ENCODING
@@ -194,7 +194,7 @@ public abstract class CommonsFileUploadSupport {
 	 * Commons DiskFileItemFactory 实例的工厂方法。
 	 * <p>默认实现返回标准的 DiskFileItemFactory。
 	 * 可以重写以使用自定义子类，例如用于测试目的。
-	 * @return the new DiskFileItemFactory instance
+	 * @return 新的 DiskFileItemFactory 实例
 	 */
 	protected DiskFileItemFactory newFileItemFactory() {
 		return new DiskFileItemFactory();
@@ -203,8 +203,8 @@ public abstract class CommonsFileUploadSupport {
 	/**
 	 * Commons FileUpload 实例的工厂方法。
 	 * <p><b>需由子类实现。</b>
-	 * @param fileItemFactory the Commons FileItemFactory to build upon
-	 * @return the Commons FileUpload instance
+	 * @param fileItemFactory 要基于其构建的 Commons FileItemFactory
+	 * @return Commons FileUpload 实例
 	 */
 	protected abstract FileUpload newFileUpload(FileItemFactory fileItemFactory);
 
@@ -213,8 +213,8 @@ public abstract class CommonsFileUploadSupport {
 	 * 为给定编码确定合适的 FileUpload 实例。
 	 * <p>默认实现会在编码匹配时返回共享的 FileUpload 实例，
 	 * 否则创建一个除所需编码外其余配置相同的新 FileUpload 实例。
-	 * @param encoding the character encoding to use
-	 * @return an appropriate FileUpload instance.
+	 * @param encoding 要使用的字符编码
+	 * @return 适当的 FileUpload 实例。
 	 */
 	protected FileUpload prepareFileUpload(@Nullable String encoding) {
 		FileUpload fileUpload = getFileUpload();
@@ -235,9 +235,9 @@ public abstract class CommonsFileUploadSupport {
 	/**
 	 * 将给定的 Commons FileItem 列表解析为 Spring 的 MultipartParsingResult，
 	 * 其中包含 Spring MultipartFile 实例以及 multipart 参数的 Map。
-	 * @param fileItems the Commons FileItems to parse
-	 * @param encoding the encoding to use for form fields
-	 * @return the Spring MultipartParsingResult
+	 * @param fileItems 要解析的 Commons FileItem
+	 * @param encoding 用于表单字段的编码
+	 * @return Spring 的 MultipartParsingResult
 	 * @see CommonsMultipartFile#CommonsMultipartFile(org.apache.commons.fileupload.FileItem)
 	 */
 	protected MultipartParsingResult parseFileItems(List<FileItem> fileItems, String encoding) {
@@ -288,8 +288,8 @@ public abstract class CommonsFileUploadSupport {
 
 	/**
 	 * 为给定的 Commons {@link FileItem} 创建一个 {@link CommonsMultipartFile} 包装器。
-	 * @param fileItem the Commons FileItem to wrap
-	 * @return the corresponding CommonsMultipartFile (potentially a custom subclass)
+	 * @param fileItem 要包装的 Commons FileItem
+	 * @return 对应的 CommonsMultipartFile（可能是自定义子类）
 	 * @since 4.3.5
 	 * @see #setPreserveFilename(boolean)
 	 * @see CommonsMultipartFile#setPreserveFilename(boolean)
@@ -304,7 +304,7 @@ public abstract class CommonsFileUploadSupport {
 	 * 清理 multipart 解析期间创建的 Spring MultipartFile，
 	 * 这些文件可能持有磁盘上的临时数据。
 	 * <p>删除底层的 Commons FileItem 实例。
-	 * @param multipartFiles a Collection of MultipartFile instances
+	 * @param multipartFiles MultipartFile 实例的 Collection
 	 * @see org.apache.commons.fileupload.FileItem#delete()
 	 */
 	protected void cleanupFileItems(MultiValueMap<String, MultipartFile> multipartFiles) {

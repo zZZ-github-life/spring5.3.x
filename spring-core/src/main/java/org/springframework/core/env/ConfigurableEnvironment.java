@@ -69,7 +69,7 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 	 * Bean 定义注册到容器中。
 	 * <p>任何现有的活动 profile 都将被给定参数替换；使用零个参数调用可清除当前活动 profile 集合。使用
 	 * {@link #addActiveProfile} 可在保留现有集合的同时添加 profile。
-	 * @throws IllegalArgumentException if any profile is null, empty or whitespace-only
+	 * @throws IllegalArgumentException 如果任一 profile 为 null、为空或仅包含空白字符
 	 * @see #addActiveProfile
 	 * @see #setDefaultProfiles
 	 * @see org.springframework.context.annotation.Profile
@@ -79,14 +79,14 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 
 	/**
 	 * 向当前活动 profile 集合中添加一个 profile。
-	 * @throws IllegalArgumentException if the profile is null, empty or whitespace-only
+	 * @throws IllegalArgumentException 如果 profile 为 null、为空或仅包含空白字符
 	 * @see #setActiveProfiles
 	 */
 	void addActiveProfile(String profile);
 
 	/**
 	 * 指定在没有通过 {@link #setActiveProfiles} 显式激活其他 profile 时默认激活的 profile 集合。
-	 * @throws IllegalArgumentException if any profile is null, empty or whitespace-only
+	 * @throws IllegalArgumentException 如果任一 profile 为 null、为空或仅包含空白字符
 	 * @see AbstractEnvironment#DEFAULT_PROFILES_PROPERTY_NAME
 	 */
 	void setDefaultProfiles(String... profiles);
@@ -132,7 +132,7 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 	 * <p>活动 profile 和默认 profile 名称也会进行去重过滤，以避免混淆和冗余存储。
 	 * <p>在任何情况下，父环境都保持不变。请注意，在调用 {@code merge} 之后对父环境所做的任何更改都不会
 	 * 反映到子环境中。因此，在调用 {@code merge} 之前应谨慎配置父属性源和 profile 信息。
-	 * @param parent the environment to merge with
+	 * @param parent 要合并的环境
 	 * @since 3.1.2
 	 * @see org.springframework.context.support.AbstractApplicationContext#setParent
 	 */

@@ -128,7 +128,7 @@ public abstract class AbstractHttpSockJsSession extends AbstractSockJsSession {
 	/**
 	 * 与 WebSocket 中子协议协商是初始握手的一部分不同，在 HTTP 传输中
 	 * 必须模拟相同的协商，并通过此 setter 设置选定的协议。
-	 * @param protocol the sub-protocol to set
+	 * @param protocol 要设置的子协议
 	 */
 	public void setAcceptedProtocol(@Nullable String protocol) {
 		this.acceptedProtocol = protocol;
@@ -192,9 +192,9 @@ public abstract class AbstractHttpSockJsSession extends AbstractSockJsSession {
 	 * "eventsource" 和 "htmlfile"）会让响应保持打开更长时间以进一步
 	 * 流式传输消息帧，但最终也会在发送一定量的数据后
 	 * 关闭它。
-	 * @param request the current request
-	 * @param response the current response
-	 * @param frameFormat the transport-specific SocksJS frame format to use
+	 * @param request 当前请求
+	 * @param response 当前响应
+	 * @param frameFormat 要使用的、特定于传输方式的 SocksJS 帧格式
 	 */
 	public void handleInitialRequest(ServerHttpRequest request, ServerHttpResponse response,
 			SockJsFrameFormat frameFormat) throws SockJsException {
@@ -244,9 +244,9 @@ public abstract class AbstractHttpSockJsSession extends AbstractSockJsSession {
 	 * "eventsource" 和 "htmlfile"）会让响应保持打开更长时间以进一步
 	 * 流式传输消息帧，但最终也会在发送一定量的数据后
 	 * 关闭它。
-	 * @param request the current request
-	 * @param response the current response
-	 * @param frameFormat the transport-specific SocksJS frame format to use
+	 * @param request 当前请求
+	 * @param response 当前响应
+	 * @param frameFormat 要使用的、特定于传输方式的 SocksJS 帧格式
 	 */
 	public void handleSuccessiveRequest(ServerHttpRequest request, ServerHttpResponse response,
 			SockJsFrameFormat frameFormat) throws SockJsException {
@@ -283,9 +283,9 @@ public abstract class AbstractHttpSockJsSession extends AbstractSockJsSession {
 
 	/**
 	 * 收到 SockJS 传输请求时调用。
-	 * @param request the current request
-	 * @param response the current response
-	 * @param initialRequest whether it is the first request for the session
+	 * @param request 当前请求
+	 * @param response 当前响应
+	 * @param initialRequest 它是否为该会话的第一个请求
 	 */
 	protected abstract void handleRequestInternal(ServerHttpRequest request, ServerHttpResponse response,
 			boolean initialRequest) throws IOException;

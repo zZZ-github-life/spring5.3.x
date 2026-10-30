@@ -39,7 +39,7 @@ public interface ApplicationEventPublisher {
 	 *
 	 * <p>这种事件发布步骤实际上是将事件移交给广播器，并不意味着同步/异步执行，甚至根本不意味着立即执行。
 	 * 鼓励事件监听器尽可能高效，对于运行时间较长且可能阻塞的操作，应各自采用异步执行。
-	 * @param event the event to publish
+	 * @param event 要发布的事件
 	 * @see #publishEvent(Object)
 	 * @see org.springframework.context.event.ContextRefreshedEvent
 	 * @see org.springframework.context.event.ContextClosedEvent
@@ -56,7 +56,7 @@ public interface ApplicationEventPublisher {
 	 *
 	 * <p>这种事件发布步骤实际上是将事件移交给广播器，并不意味着同步/异步执行，甚至根本不意味着立即执行。
 	 * 鼓励事件监听器尽可能高效，对于运行时间较长且可能阻塞的操作，应各自采用异步执行。
-	 * @param event the event to publish
+	 * @param event 要发布的事件
 	 * @since 4.2
 	 * @see #publishEvent(ApplicationEvent)
 	 * @see PayloadApplicationEvent

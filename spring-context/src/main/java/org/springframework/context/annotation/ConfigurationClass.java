@@ -69,8 +69,8 @@ final class ConfigurationClass {
 
 	/**
 	 * 使用给定名称创建一个新的 {@link ConfigurationClass}。
-	 * @param metadataReader reader used to parse the underlying {@link Class}
-	 * @param beanName must not be {@code null}
+	 * @param metadataReader 用于解析底层 {@link Class} 的读取器
+	 * @param beanName 不能为 {@code null}
 	 * @see ConfigurationClass#ConfigurationClass(Class, ConfigurationClass)
 	 */
 	ConfigurationClass(MetadataReader metadataReader, String beanName) {
@@ -83,8 +83,8 @@ final class ConfigurationClass {
 	/**
 	 * 创建一个新的 {@link ConfigurationClass}，表示使用 {@link Import} 注解导入的类，或作为嵌套配置类
 	 * 自动处理的类（如果 importedBy 不为 {@code null}）。
-	 * @param metadataReader reader used to parse the underlying {@link Class}
-	 * @param importedBy the configuration class importing this one or {@code null}
+	 * @param metadataReader 用于解析底层 {@link Class} 的读取器
+	 * @param importedBy 导入此配置类的配置类，或 {@code null}
 	 * @since 3.1.1
 	 */
 	ConfigurationClass(MetadataReader metadataReader, @Nullable ConfigurationClass importedBy) {
@@ -95,8 +95,8 @@ final class ConfigurationClass {
 
 	/**
 	 * 使用给定名称创建一个新的 {@link ConfigurationClass}。
-	 * @param clazz the underlying {@link Class} to represent
-	 * @param beanName name of the {@code @Configuration} class bean
+	 * @param clazz 要表示的底层 {@link Class}
+	 * @param beanName {@code @Configuration} 类 Bean 的名称
 	 * @see ConfigurationClass#ConfigurationClass(Class, ConfigurationClass)
 	 */
 	ConfigurationClass(Class<?> clazz, String beanName) {
@@ -109,8 +109,8 @@ final class ConfigurationClass {
 	/**
 	 * 创建一个新的 {@link ConfigurationClass}，表示使用 {@link Import} 注解导入的类，或作为嵌套配置类
 	 * 自动处理的类（如果 imported 为 {@code true}）。
-	 * @param clazz the underlying {@link Class} to represent
-	 * @param importedBy the configuration class importing this one (or {@code null})
+	 * @param clazz 要表示的底层 {@link Class}
+	 * @param importedBy 导入此配置类的配置类（或 {@code null}）
 	 * @since 3.1.1
 	 */
 	ConfigurationClass(Class<?> clazz, @Nullable ConfigurationClass importedBy) {
@@ -121,8 +121,8 @@ final class ConfigurationClass {
 
 	/**
 	 * 使用给定名称创建一个新的 {@link ConfigurationClass}。
-	 * @param metadata the metadata for the underlying class to represent
-	 * @param beanName name of the {@code @Configuration} class bean
+	 * @param metadata 要表示的底层类的元数据
+	 * @param beanName {@code @Configuration} 类 Bean 的名称
 	 * @see ConfigurationClass#ConfigurationClass(Class, ConfigurationClass)
 	 */
 	ConfigurationClass(AnnotationMetadata metadata, String beanName) {

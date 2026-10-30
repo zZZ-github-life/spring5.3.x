@@ -43,7 +43,7 @@ public class SimpleTraceInterceptor extends AbstractTraceInterceptor {
 
 	/**
 	 * 根据给定标志，使用动态或静态日志器创建一个新的 SimpleTraceInterceptor。
-	 * @param useDynamicLogger whether to use a dynamic logger or a static logger
+	 * @param useDynamicLogger 使用动态 logger 还是静态 logger
 	 * @see #setUseDynamicLogger
 	 */
 	public SimpleTraceInterceptor(boolean useDynamicLogger) {
@@ -68,8 +68,8 @@ public class SimpleTraceInterceptor extends AbstractTraceInterceptor {
 
 	/**
 	 * 返回给定方法调用的描述。
-	 * @param invocation the invocation to describe
-	 * @return the description
+	 * @param invocation 要描述的调用
+	 * @return 该描述
 	 */
 	protected String getInvocationDescription(MethodInvocation invocation) {
 		Object target = invocation.getThis();

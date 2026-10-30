@@ -54,8 +54,8 @@ public class SimpAttributes {
 
 	/**
 	 * 包装给定会话属性映射的构造函数。
-	 * @param sessionId the id of the associated session
-	 * @param attributes the attributes
+	 * @param sessionId 关联会话的 id
+	 * @param attributes 属性
 	 */
 	public SimpAttributes(String sessionId, Map<String, Object> attributes) {
 		Assert.notNull(sessionId, "'sessionId' is required");
@@ -67,8 +67,8 @@ public class SimpAttributes {
 
 	/**
 	 * 返回给定名称属性的值（如果有）。
-	 * @param name the name of the attribute
-	 * @return the current attribute value, or {@code null} if not found
+	 * @param name 属性的名称
+	 * @return 当前属性值，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public Object getAttribute(String name) {
@@ -77,8 +77,8 @@ public class SimpAttributes {
 
 	/**
 	 * 设置给定名称的值，并替换现有值（如果有）。
-	 * @param name the name of the attribute
-	 * @param value the value for the attribute
+	 * @param name 属性的名称
+	 * @param value 属性的值
 	 */
 	public void setAttribute(String name, Object value) {
 		this.attributes.put(name, value);
@@ -88,7 +88,7 @@ public class SimpAttributes {
 	 * 移除给定名称的属性（如果存在）。
 	 * <p>还会移除为指定属性注册的销毁回调（如果有）。但它<i>不会</i>执行该回调。
 	 * 这里假定被移除的对象仍将继续使用，并在适当的时候独立销毁。
-	 * @param name the name of the attribute
+	 * @param name 属性的名称
 	 */
 	public void removeAttribute(String name) {
 		this.attributes.remove(name);
@@ -97,7 +97,7 @@ public class SimpAttributes {
 
 	/**
 	 * 获取所有属性的名称。
-	 * @return the attribute names as String array, never {@code null}
+	 * @return 属性名称的 String 数组，永不为 {@code null}
 	 */
 	public String[] getAttributeNames() {
 		return StringUtils.toStringArray(this.attributes.keySet());
@@ -105,8 +105,8 @@ public class SimpAttributes {
 
 	/**
 	 * 注册在指定属性销毁时执行的回调。会话关闭时会执行该回调。
-	 * @param name the name of the attribute to register the callback for
-	 * @param callback the destruction callback to be executed
+	 * @param name 要为其注册回调的属性名称
+	 * @param callback 要执行的销毁回调
 	 */
 	public void registerDestructionCallback(String name, Runnable callback) {
 		synchronized (getSessionMutex()) {
@@ -125,7 +125,7 @@ public class SimpAttributes {
 
 	/**
 	 * 返回关联会话的 ID。
-	 * @return the session id as String (never {@code null})
+	 * @return 会话 id 的 String 形式（永不为 {@code null}）
 	 */
 	public String getSessionId() {
 		return this.sessionId;
@@ -133,7 +133,7 @@ public class SimpAttributes {
 
 	/**
 	 * 公开用于底层会话同步的对象。
-	 * @return the session mutex to use (never {@code null})
+	 * @return 要使用的会话互斥体（永不为 {@code null}）
 	 */
 	public Object getSessionMutex() {
 		Object mutex = this.attributes.get(SESSION_MUTEX_NAME);
@@ -178,7 +178,7 @@ public class SimpAttributes {
 
 	/**
 	 * 从给定消息中提取 SiMP 会话属性，并将其包装在 {@link SimpAttributes} 实例中。
-	 * @param message the message to extract session attributes from
+	 * @param message 要从中提取会话属性的消息
 	 */
 	public static SimpAttributes fromMessage(Message<?> message) {
 		Assert.notNull(message, "Message must not be null");

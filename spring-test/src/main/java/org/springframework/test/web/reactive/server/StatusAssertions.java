@@ -198,7 +198,7 @@ public class StatusAssertions {
 
 	/**
 	 * 使用 Hamcrest 匹配器匹配响应状态值。
-	 * @param matcher the matcher to use
+	 * @param matcher 要使用的匹配器
 	 * @since 5.1
 	 */
 	public WebTestClient.ResponseSpec value(Matcher<? super Integer> matcher) {
@@ -209,7 +209,7 @@ public class StatusAssertions {
 
 	/**
 	 * 以整数形式消费响应状态值。
-	 * @param consumer the consumer to use
+	 * @param consumer 要使用的消费者
 	 * @since 5.1
 	 */
 	public WebTestClient.ResponseSpec value(Consumer<Integer> consumer) {

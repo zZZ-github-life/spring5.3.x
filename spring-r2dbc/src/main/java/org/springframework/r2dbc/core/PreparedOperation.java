@@ -28,20 +28,20 @@ import org.springframework.r2dbc.core.binding.BindTarget;
  *
  * @author Mark Paluch
  * @since 5.3
- * @param <T> underlying operation source.
+ * @param <T> 底层操作源。
  * @see org.springframework.r2dbc.core.DatabaseClient#sql(Supplier)
  */
 public interface PreparedOperation<T> extends QueryOperation {
 
 	/**
 	 * 返回底层的查询源。
-	 * @return the query source, such as a statement/criteria object
+	 * @return 查询源，例如语句/条件对象
 	 */
 	T getSource();
 
 	/**
 	 * 将绑定应用到 {@link BindTarget}。
-	 * @param target the target to apply bindings to
+	 * @param target 要应用绑定的目标
 	 */
 	void bindTo(BindTarget target);
 

@@ -76,8 +76,8 @@ public abstract class JdbcAccessor implements InitializingBean {
 
 	/**
 	 * 获取供实际使用的 DataSource。
-	 * @return the DataSource (never {@code null})
-	 * @throws IllegalStateException in case of no DataSource set
+	 * @return DataSource（永不为 {@code null}）
+	 * @throws IllegalStateException 如果未设置 DataSource
 	 * @since 5.0
 	 */
 	protected DataSource obtainDataSource() {
@@ -90,7 +90,7 @@ public abstract class JdbcAccessor implements InitializingBean {
 	 * 为此访问器所使用的 DataSource 指定数据库产品名称。
 	 * 这样可以在不从 DataSource 获取 Connection 以读取元数据的情况下
 	 * 初始化 SQLErrorCodeSQLExceptionTranslator。
-	 * @param dbName the database product name that identifies the error codes entry
+	 * @param dbName 标识错误码条目的数据库产品名称
 	 * @see SQLErrorCodeSQLExceptionTranslator#setDatabaseProductName
 	 * @see java.sql.DatabaseMetaData#getDatabaseProductName()
 	 */

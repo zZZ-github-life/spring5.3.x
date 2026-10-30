@@ -33,33 +33,33 @@ public interface MvcResult {
 
 	/**
 	 * 返回已执行的请求。
-	 * @return the request, never {@code null}
+	 * @return 请求，永不为 {@code null}
 	 */
 	MockHttpServletRequest getRequest();
 
 	/**
 	 * 返回结果响应。
-	 * @return the response, never {@code null}
+	 * @return 响应，永不为 {@code null}
 	 */
 	MockHttpServletResponse getResponse();
 
 	/**
 	 * 返回已执行的处理器。
-	 * @return the handler, possibly {@code null} if none were executed
+	 * @return 处理器，如果没有执行任何处理器则可能为 {@code null}
 	 */
 	@Nullable
 	Object getHandler();
 
 	/**
 	 * 返回处理器周围的拦截器。
-	 * @return interceptors, or {@code null} if none were selected
+	 * @return 拦截器，如果没有选择任何拦截器则为 {@code null}
 	 */
 	@Nullable
 	HandlerInterceptor[] getInterceptors();
 
 	/**
 	 * 返回由处理器准备的 {@code ModelAndView}。
-	 * @return a {@code ModelAndView}, or {@code null} if none
+	 * @return 一个 {@code ModelAndView}，如果没有则为 {@code null}
 	 */
 	@Nullable
 	ModelAndView getModelAndView();
@@ -67,14 +67,14 @@ public interface MvcResult {
 	/**
 	 * 返回处理器抛出并已通过 {@link HandlerExceptionResolver}
 	 * 成功解析的任何异常。
-	 * @return an exception, or {@code null} if none
+	 * @return 一个异常，如果没有则为 {@code null}
 	 */
 	@Nullable
 	Exception getResolvedException();
 
 	/**
 	 * 返回请求处理期间保存的“输出”Flash 属性。
-	 * @return the {@code FlashMap}, possibly empty
+	 * @return {@code FlashMap}，可能为空
 	 */
 	FlashMap getFlashMap();
 
@@ -84,18 +84,17 @@ public interface MvcResult {
 	 * {@link org.springframework.mock.web.MockAsyncContext#setTimeout
 	 * MockAsyncContext#setTimeout}。或者，使用
 	 * {@link #getAsyncResult(long)} 指定等待时间。
-	 * @throws IllegalStateException if the async result was not set
+	 * @throws IllegalStateException 如果未设置异步结果
 	 */
 	Object getAsyncResult();
 
 	/**
 	 * 获取异步执行的结果，并在必要时等待。
-	 * @param timeToWait how long to wait for the async result to be set, in
-	 * 	milliseconds; if -1, then fall back on the timeout value associated with
-	 * 	the async request, see
-	 * 	{@link org.springframework.mock.web.MockAsyncContext#setTimeout
-	 * 	MockAsyncContext#setTimeout} for more details.
-	 * @throws IllegalStateException if the async result was not set
+	 * @param timeToWait 等待异步结果被设置的时间，单位为毫秒；
+	 * 如果为 -1，则回退到与异步请求关联的超时值，
+	 * 详见 {@link org.springframework.mock.web.MockAsyncContext#setTimeout
+	 * MockAsyncContext#setTimeout}。
+	 * @throws IllegalStateException 如果未设置异步结果
 	 */
 	Object getAsyncResult(long timeToWait);
 

@@ -44,7 +44,7 @@ public @interface Component {
 
 	/**
 	 * 该值可以表示逻辑组件名称的建议，以便在自动检测到组件时将其转换为 Spring Bean。
-	 * @return the suggested component name, if any (or empty String otherwise)
+	 * @return 建议的组件名称（如果有），否则为空 String
 	 */
 	String value() default "";
 

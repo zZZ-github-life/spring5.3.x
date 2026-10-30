@@ -50,8 +50,8 @@ public interface RenderingResponse extends ServerResponse {
 
 	/**
 	 * 使用给定响应的模板名称、状态码、标头和模型创建构建器。
-	 * @param other the response to copy the values from
-	 * @return the created builder
+	 * @param other 要从中复制值的响应
+	 * @return 创建的构建器
 	 */
 	static Builder from(RenderingResponse other) {
 		return new DefaultRenderingResponseBuilder(other);
@@ -59,8 +59,8 @@ public interface RenderingResponse extends ServerResponse {
 
 	/**
 	 * 使用给定模板名称创建构建器。
-	 * @param name the name of the template to render
-	 * @return the created builder
+	 * @param name 要渲染的模板名称
+	 * @return 创建的构建器
 	 */
 	static Builder create(String name) {
 		return new DefaultRenderingResponseBuilder(name);
@@ -79,14 +79,14 @@ public interface RenderingResponse extends ServerResponse {
 		 * <p><em>注意：使用此方法时，空的 {@link Collection Collections}
 		 * 不会被添加到模型中，因为无法正确确定真正的约定名称。
 		 * 视图代码应检查 {@code null}，而不是空集合。</em>
-		 * @param attribute the model attribute value (never {@code null})
+		 * @param attribute 模型属性值（永不为 {@code null}）
 		 */
 		Builder modelAttribute(Object attribute);
 
 		/**
 		 * 在提供的名称下添加提供的属性值。
-		 * @param name the name of the model attribute (never {@code null})
-		 * @param value the model attribute value (can be {@code null})
+		 * @param name 模型属性的名称（永不为 {@code null}）
+		 * @param value 模型属性值（可以为 {@code null}）
 		 */
 		Builder modelAttribute(String name, @Nullable Object value);
 
@@ -110,9 +110,9 @@ public interface RenderingResponse extends ServerResponse {
 
 		/**
 		 * 在给定名称下添加给定的标头值。
-		 * @param headerName the header name
-		 * @param headerValues the header value(s)
-		 * @return this builder
+		 * @param headerName 头名称
+		 * @param headerValues 头值
+		 * @return 此构建器
 		 * @see HttpHeaders#add(String, String)
 		 */
 		Builder header(String headerName, String... headerValues);
@@ -122,29 +122,29 @@ public interface RenderingResponse extends ServerResponse {
 		 * 因此消费者可以用它来{@linkplain HttpHeaders#set(String, String) 覆盖}现有标头值、
 		 * {@linkplain HttpHeaders#remove(Object) 移除}值，或使用任何其他
 		 * {@link HttpHeaders} 方法。
-		 * @param headersConsumer a function that consumes the {@code HttpHeaders}
-		 * @return this builder
+		 * @param headersConsumer 消费 {@code HttpHeaders} 的函数
+		 * @return 此构建器
 		 */
 		Builder headers(Consumer<HttpHeaders> headersConsumer);
 
 		/**
 		 * 设置 HTTP 状态。
-		 * @param status the response status
-		 * @return this builder
+		 * @param status 响应状态
+		 * @return 此构建器
 		 */
 		Builder status(HttpStatus status);
 
 		/**
 		 * 设置 HTTP 状态。
-		 * @param status the response status
-		 * @return this builder
+		 * @param status 响应状态
+		 * @return 此构建器
 		 */
 		Builder status(int status);
 
 		/**
 		 * 将给定 cookie 添加到响应中。
-		 * @param cookie the cookie to add
-		 * @return this builder
+		 * @param cookie 要添加的 Cookie
+		 * @return 此构建器
 		 */
 		Builder cookie(Cookie cookie);
 
@@ -153,14 +153,14 @@ public interface RenderingResponse extends ServerResponse {
 		 * 因此消费者可以用它来{@linkplain MultiValueMap#set(Object, Object) 覆盖}现有 cookie、
 		 * {@linkplain MultiValueMap#remove(Object) 移除}cookie，或使用任何其他
 		 * {@link MultiValueMap} 方法。
-		 * @param cookiesConsumer a function that consumes the cookies
-		 * @return this builder
+		 * @param cookiesConsumer 消费 Cookie 的函数
+		 * @return 此构建器
 		 */
 		Builder cookies(Consumer<MultiValueMap<String, Cookie>> cookiesConsumer);
 
 		/**
 		 * 构建响应。
-		 * @return the built response
+		 * @return 构建好的响应
 		 */
 		RenderingResponse build();
 	}

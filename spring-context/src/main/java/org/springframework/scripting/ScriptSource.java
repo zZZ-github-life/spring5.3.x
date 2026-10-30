@@ -31,21 +31,21 @@ public interface ScriptSource {
 
 	/**
 	 * 检索当前的脚本源文本，以 String 形式返回。
-	 * @return the script text
-	 * @throws IOException if script retrieval failed
+	 * @return 脚本文本
+	 * @throws IOException 如果脚本获取失败
 	 */
 	String getScriptAsString() throws IOException;
 
 	/**
 	 * 指示自上次调用 {@link #getScriptAsString()} 以来底层脚本数据是否已被修改。如果尚未读取脚本，则返
 	 * 回 {@code true}。
-	 * @return whether the script data has been modified
+	 * @return 脚本数据是否已修改
 	 */
 	boolean isModified();
 
 	/**
 	 * 确定底层脚本的类名。
-	 * @return the suggested class name, or {@code null} if none available
+	 * @return 建议的类名，如果不可用则为 {@code null}
 	 */
 	@Nullable
 	String suggestedClassName();

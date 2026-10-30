@@ -57,17 +57,17 @@ public interface ContextCache {
 
 	/**
 	 * 确定给定键是否存在已缓存的上下文。
-	 * @param key the context key (never {@code null})
-	 * @return {@code true} if the cache contains a context with the given key
+	 * @param key 上下文键（从不为 {@code null}）
+	 * @return 如果缓存中包含具有给定键的上下文，则返回 {@code true}
 	 */
 	boolean contains(MergedContextConfiguration key);
 
 	/**
 	 * 获取给定键对应的已缓存 {@code ApplicationContext}。
 	 * <p>必须相应地更新{@linkplain #getHitCount() 命中}和{@linkplain #getMissCount() 未命中}计数。
-	 * @param key the context key (never {@code null})
-	 * @return the corresponding {@code ApplicationContext} instance, or {@code null}
-	 * if not found in the cache
+	 * @param key 上下文键（从不为 {@code null}）
+	 * @return 对应的 {@code ApplicationContext} 实例；
+	 * 如果在缓存中未找到，则为 {@code null}
 	 * @see #remove
 	 */
 	@Nullable
@@ -75,8 +75,8 @@ public interface ContextCache {
 
 	/**
 	 * 显式将 {@code ApplicationContext} 实例添加到缓存中的给定键下，可以选择遵循自定义驱逐策略。
-	 * @param key the context key (never {@code null})
-	 * @param context the {@code ApplicationContext} instance (never {@code null})
+	 * @param key 上下文键（从不为 {@code null}）
+	 * @param context 该 {@code ApplicationContext} 实例（从不为 {@code null}）
 	 */
 	void put(MergedContextConfiguration key, ApplicationContext context);
 
@@ -84,9 +84,9 @@ public interface ContextCache {
 	 * 从缓存中移除具有给定键的上下文，如果它是 {@code ConfigurableApplicationContext} 的实例，则显式{@linkplain org.springframework.context.ConfigurableApplicationContext#close() 关闭}它。
 	 * <p>一般而言，应调用此方法以从缓存中正确驱逐上下文（例如由于自定义驱逐策略），或者单例 bean 的状态已被修改并可能影响与该上下文的后续交互时调用此方法。
 	 * <p>此外，必须遵循所提供的 {@code HierarchyMode} 的语义。有关详情，请参见 {@link HierarchyMode} 的 Javadoc。
-	 * @param key the context key; never {@code null}
-	 * @param hierarchyMode the hierarchy mode; may be {@code null} if the context
-	 * is not part of a hierarchy
+	 * @param key 上下文键；从不为 {@code null}
+	 * @param hierarchyMode 层次结构模式；如果该上下文不属于某个层次结构，
+	 * 则可以为 {@code null}
 	 */
 	void remove(MergedContextConfiguration key, @Nullable HierarchyMode hierarchyMode);
 

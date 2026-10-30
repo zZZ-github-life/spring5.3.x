@@ -259,8 +259,8 @@ public class Label {
    * 返回与此标签对应的字节码偏移量。该偏移量从方法字节码的起始位置算起。<i>此方法面向
    * {@link Attribute} 的子类，类生成器或适配器通常不需要使用它。</i>
    *
-   * @return the bytecode offset corresponding to this label.
-   * @throws IllegalStateException if this label is not resolved yet.
+   * @return 与此标签对应的字节码偏移量。
+   * @throws IllegalStateException 如果此标签尚未解析。
    */
   public int getOffset() {
     if ((flags & FLAG_RESOLVED) == 0) {
@@ -276,9 +276,9 @@ public class Label {
    *
    * <p><i>仅当使用 {@link MethodWriter#COMPUTE_ALL_FRAMES} 选项时才应使用此方法。</i>
    *
-   * @return the label itself if {@link #frame} is null, otherwise the Label's frame owner. This
-   *     corresponds to the "canonical" label instance described above thanks to the way the label
-   *     frame is set in {@link MethodWriter#visitLabel}.
+   * @return 如果 {@link #frame} 为 null，则为标签本身，否则为 Label 的帧所有者。
+   * 由于标签帧在 {@link MethodWriter#visitLabel} 中的设置方式，
+   * 这对应于上文所述的“规范”标签实例。
    */
   final Label getCanonicalInstance() {
     return frame == null ? this : frame.owner;
@@ -291,7 +291,7 @@ public class Label {
   /**
    * 添加与此标签对应的源代码行号。
    *
-   * @param lineNumber a source line number (which should be strictly positive).
+   * @param lineNumber 源码行号（应为严格正数）。
    */
   final void addLineNumber(final int lineNumber) {
     if (this.lineNumber == 0) {
@@ -313,8 +313,8 @@ public class Label {
   /**
    * 让给定的访问者访问此标签及其源代码行号（如果适用）。
    *
-   * @param methodVisitor a method visitor.
-   * @param visitLineNumbers whether to visit of the label's source line numbers, if any.
+   * @param methodVisitor 一个方法访问器。
+   * @param visitLineNumbers 是否访问该标签的源码行号（如果有）。
    */
   final void accept(final MethodVisitor methodVisitor, final boolean visitLineNumbers) {
     methodVisitor.visitLabel(this);
@@ -336,10 +336,9 @@ public class Label {
    * 在方法的字节码中放入对此标签的引用。如果已知该标签的字节码偏移量，则计算标签与引用它的指令之间的
    * 相对字节码偏移量并直接写入。否则，写入一个 null 相对偏移量，并为该标签声明一个新的前向引用。
    *
-   * @param code the bytecode of the method. This is where the reference is appended.
-   * @param sourceInsnBytecodeOffset the bytecode offset of the instruction that contains the
-   *     reference to be appended.
-   * @param wideReference whether the reference must be stored in 4 bytes (instead of 2 bytes).
+   * @param code 方法的字节码。引用将追加到此处。
+   * @param sourceInsnBytecodeOffset 包含待追加引用的指令的字节码偏移量。
+   * @param wideReference 引用是否必须以 4 字节（而非 2 字节）存储。
    */
   final void put(
       final ByteVector code, final int sourceInsnBytecodeOffset, final boolean wideReference) {
@@ -364,12 +363,9 @@ public class Label {
    * 添加指向此标签的前向引用。仅当是真正的前向引用时（即仅当此标签尚未解析时）才能调用此方法。对于后
    * 向引用，可以并且必须直接计算并存储该引用的相对字节码偏移量。
    *
-   * @param sourceInsnBytecodeOffset the bytecode offset of the instruction that contains the
-   *     reference stored at referenceHandle.
-   * @param referenceType either {@link #FORWARD_REFERENCE_TYPE_SHORT} or {@link
-   *     #FORWARD_REFERENCE_TYPE_WIDE}.
-   * @param referenceHandle the offset in the bytecode where the forward reference value must be
-   *     stored.
+   * @param sourceInsnBytecodeOffset 包含存储在 referenceHandle 处的引用的指令的字节码偏移量。
+   * @param referenceType {@link #FORWARD_REFERENCE_TYPE_SHORT} 或 {@link #FORWARD_REFERENCE_TYPE_WIDE}。
+   * @param referenceHandle 字节码中存储前向引用值的位置的偏移量。
    */
   private void addForwardReference(
       final int sourceInsnBytecodeOffset, final int referenceType, final int referenceHandle) {
@@ -392,13 +388,12 @@ public class Label {
    * 字节码中（即其字节码偏移量变为已知）时必须调用此方法。此方法会填补先前添加到该标签的每个前向引用
    * 在字节码中留下的空白。
    *
-   * @param code the bytecode of the method.
-   * @param bytecodeOffset the bytecode offset of this label.
-   * @return {@literal true} if a blank that was left for this label was too small to store the
-   *     offset. In such a case the corresponding jump instruction is replaced with an equivalent
-   *     ASM specific instruction using an unsigned two bytes offset. These ASM specific
-   *     instructions are later replaced with standard bytecode instructions with wider offsets (4
-   *     bytes instead of 2), in ClassReader.
+   * @param code 方法的字节码。
+   * @param bytecodeOffset 此标签的字节码偏移量。
+   * @return 如果为某标签预留的空隙太小而无法存储偏移量，则为 {@literal true}。
+   * 在这种情况下，相应的跳转指令会被替换为使用无符号两字节偏移量的等效 ASM 专用指令。
+   * 这些 ASM 专用指令随后会在 ClassReader 中被替换为使用更宽偏移量
+   * （4 字节而非 2 字节）的标准字节码指令。
    */
   final boolean resolve(final byte[] code, final int bytecodeOffset) {
     this.flags |= FLAG_RESOLVED;
@@ -450,8 +445,7 @@ public class Label {
    *
    * <p>注意：此方法的前置条件和后置条件是所有标签的 {@link #nextListElement} 都必须为 null。
    *
-   * @param subroutineId the id of the subroutine starting with the basic block corresponding to
-   *     this label.
+   * @param subroutineId 以此标签对应基本块开始的子例程 ID。
    */
   final void markSubroutine(final short subroutineId) {
     // Data flow algorithm: put this basic block in a list of blocks to process (which are blocks
@@ -482,8 +476,8 @@ public class Label {
    *
    * <p>注意：此方法的前置条件和后置条件是所有标签的 {@link #nextListElement} 都必须为 null。
    *
-   * @param subroutineCaller a basic block that ends with a jsr to the basic block corresponding to
-   *     this label. This label is supposed to correspond to the start of a subroutine.
+   * @param subroutineCaller 以 jsr 跳转到此标签对应基本块结尾的基本块。
+   * 此标签应对应于子例程的开始。
    */
   final void addSubroutineRetSuccessors(final Label subroutineCaller) {
     // Data flow algorithm: put this basic block in a list blocks to process (which are blocks
@@ -534,9 +528,8 @@ public class Label {
    * 将此标签在方法的控制流图中的后继（除去对应于 jsr 目标的后继，以及已经在某个标签列表中的后继）添
    * 加到给定的待处理块列表中，并返回新列表。
    *
-   * @param listOfLabelsToProcess a list of basic blocks to process, linked together with their
-   *     {@link #nextListElement} field.
-   * @return the new list of blocks to process.
+   * @param listOfLabelsToProcess 待处理的基本块列表，通过各自的 {@link #nextListElement} 字段链接在一起。
+   * @return 新的待处理块列表。
    */
   private Label pushSuccessors(final Label listOfLabelsToProcess) {
     Label newListOfLabelsToProcess = listOfLabelsToProcess;
@@ -564,7 +557,7 @@ public class Label {
   /**
    * 返回此标签的字符串表示。
    *
-   * @return a string representation of this label.
+   * @return 此标签的字符串表示。
    */
   @Override
   public String toString() {

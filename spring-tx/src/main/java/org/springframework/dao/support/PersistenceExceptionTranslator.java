@@ -41,10 +41,10 @@ public interface PersistenceExceptionTranslator {
 	 * <p>其中特别重要的是正确翻译为 DataIntegrityViolationException，
 	 * 例如在约束违反时。实现可以使用 Spring JDBC 的高级异常翻译功能，
 	 * 在 SQLException 作为根原因时提供更多信息。
-	 * @param ex a RuntimeException to translate
-	 * @return the corresponding DataAccessException (or {@code null} if the
-	 * exception could not be translated, as in this case it may result from
-	 * user code rather than from an actual persistence problem)
+	 * @param ex 要转换的 RuntimeException
+	 * @return 对应的 DataAccessException；如果该异常无法转换，
+	 * 则为 {@code null}，因为这种情况下它可能来自用户代码，
+	 * 而不是实际的持久化问题
 	 * @see org.springframework.dao.DataIntegrityViolationException
 	 * @see org.springframework.jdbc.support.SQLExceptionTranslator
 	 */

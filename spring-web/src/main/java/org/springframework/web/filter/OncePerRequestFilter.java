@@ -130,7 +130,7 @@ public abstract class OncePerRequestFilter extends GenericFilterBean {
 	 * Servlet 3.0 引入的派发器类型 {@code javax.servlet.DispatcherType.ASYNC}
 	 * 意味着在单个请求过程中，过滤器可以在多个线程中被调用。如果过滤器当前正在
 	 * 异步派发中执行，此方法返回 {@code true}。
-	 * @param request the current request
+	 * @param request 当前请求
 	 * @since 3.2
 	 * @see WebAsyncManager#hasConcurrentResult()
 	 */
@@ -140,7 +140,7 @@ public abstract class OncePerRequestFilter extends GenericFilterBean {
 
 	/**
 	 * 请求处理是否处于异步模式，这意味着当前线程退出后响应不会被提交。
-	 * @param request the current request
+	 * @param request 当前请求
 	 * @since 3.2
 	 * @see WebAsyncManager#isConcurrentHandlingStarted()
 	 */
@@ -166,9 +166,9 @@ public abstract class OncePerRequestFilter extends GenericFilterBean {
 	/**
 	 * 子类可以重写此方法以进行自定义过滤控制，返回 {@code true} 可跳过对给定请求的过滤。
 	 * <p>默认实现始终返回 {@code false}。
-	 * @param request current HTTP request
-	 * @return whether the given request should <i>not</i> be filtered
-	 * @throws ServletException in case of errors
+	 * @param request 当前的 HTTP 请求
+	 * @return 给定请求是否<i>不应</i>被过滤
+	 * @throws ServletException 如果出错
 	 */
 	protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
 		return false;

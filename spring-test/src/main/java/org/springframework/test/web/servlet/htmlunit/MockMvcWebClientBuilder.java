@@ -61,8 +61,8 @@ public class MockMvcWebClientBuilder extends MockMvcWebConnectionBuilderSupport<
 
 	/**
 	 * 基于提供的 {@link MockMvc} 实例创建新的 {@code MockMvcWebClientBuilder}。
-	 * @param mockMvc the {@code MockMvc} instance to use; never {@code null}
-	 * @return the MockMvcWebClientBuilder to customize
+	 * @param mockMvc 要使用的 {@code MockMvc} 实例；永不为 {@code null}
+	 * @return 要定制的 MockMvcWebClientBuilder
 	 */
 	public static MockMvcWebClientBuilder mockMvcSetup(MockMvc mockMvc) {
 		Assert.notNull(mockMvc, "MockMvc must not be null");
@@ -71,9 +71,9 @@ public class MockMvcWebClientBuilder extends MockMvcWebConnectionBuilderSupport<
 
 	/**
 	 * 基于提供的 {@link WebApplicationContext} 创建新的 {@code MockMvcWebClientBuilder}。
-	 * @param context the {@code WebApplicationContext} to create a {@link MockMvc}
-	 * instance from; never {@code null}
-	 * @return the MockMvcWebClientBuilder to customize
+	 * @param context 用于从中创建 {@link MockMvc} 实例的 {@code WebApplicationContext}；
+	 * 永不为 {@code null}
+	 * @return 要定制的 MockMvcWebClientBuilder
 	 */
 	public static MockMvcWebClientBuilder webAppContextSetup(WebApplicationContext context) {
 		Assert.notNull(context, "WebApplicationContext must not be null");
@@ -83,10 +83,10 @@ public class MockMvcWebClientBuilder extends MockMvcWebConnectionBuilderSupport<
 	/**
 	 * 基于提供的 {@link WebApplicationContext} 和 {@link MockMvcConfigurer} 创建新的
 	 * {@code MockMvcWebClientBuilder}。
-	 * @param context the {@code WebApplicationContext} to create a {@link MockMvc}
-	 * instance from; never {@code null}
-	 * @param configurer the {@code MockMvcConfigurer} to apply; never {@code null}
-	 * @return the MockMvcWebClientBuilder to customize
+	 * @param context 用于从中创建 {@link MockMvc} 实例的 {@code WebApplicationContext}；
+	 * 永不为 {@code null}
+	 * @param configurer 要应用的 {@code MockMvcConfigurer}；永不为 {@code null}
+	 * @return 要定制的 MockMvcWebClientBuilder
 	 */
 	public static MockMvcWebClientBuilder webAppContextSetup(WebApplicationContext context, MockMvcConfigurer configurer) {
 		Assert.notNull(context, "WebApplicationContext must not be null");
@@ -98,9 +98,9 @@ public class MockMvcWebClientBuilder extends MockMvcWebConnectionBuilderSupport<
 	 * 提供此构建器 {@linkplain #build 构建} 的客户端在处理
 	 * 非{@linkplain WebRequestMatcher 匹配}请求时应委托给
 	 * 的 {@code WebClient}。
-	 * @param webClient the {@code WebClient} to delegate to for requests
-	 * that do not match; never {@code null}
-	 * @return this builder for further customization
+	 * @param webClient 用于委托处理不匹配请求的 {@code WebClient}；
+	 * 永不为 {@code null}
+	 * @return 该构建器，用于进一步定制
 	 * @see #build()
 	 */
 	public MockMvcWebClientBuilder withDelegate(WebClient webClient) {
@@ -118,7 +118,7 @@ public class MockMvcWebClientBuilder extends MockMvcWebConnectionBuilderSupport<
 	 * <p>如果已显式配置{@linkplain #withDelegate 委托}，
 	 * 则使用该委托；否则，将配置默认的 {@code WebClient}
 	 * 作为委托。
-	 * @return the {@code WebClient} to use
+	 * @return 要使用的 {@code WebClient}
 	 * @see #withDelegate(WebClient)
 	 */
 	public WebClient build() {

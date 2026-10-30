@@ -34,12 +34,10 @@ public interface BeanNameAware extends Aware {
 	/**
 	 * 设置该 Bean 在创建它的 Bean 工厂中的名称。<p>在填充普通 Bean 属性之后、在诸如
 	 * {@link InitializingBean#afterPropertiesSet()} 之类的初始化回调或自定义 init-method 之前调用。
-	 * @param name the name of the bean in the factory.
-	 * Note that this name is the actual bean name used in the factory, which may
-	 * differ from the originally specified name: in particular for inner bean
-	 * names, the actual bean name might have been made unique through appending
-	 * "#..." suffixes. Use the {@link BeanFactoryUtils#originalBeanName(String)}
-	 * method to extract the original bean name (without suffix), if desired.
+	 * @param name 工厂中该 Bean 的名称。注意此名称是工厂中实际使用的 Bean 名称，
+	 * 可能与最初指定的名称不同：特别是对于内部 Bean 名称，实际 Bean 名称
+	 * 可能通过追加 "#..." 后缀而变得唯一。如果需要，可使用
+	 * {@link BeanFactoryUtils#originalBeanName(String)} 方法提取原始 Bean 名称（不含后缀）。
 	 */
 	void setBeanName(String name);
 

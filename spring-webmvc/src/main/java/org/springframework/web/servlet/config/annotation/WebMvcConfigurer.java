@@ -133,7 +133,7 @@ public interface WebMvcConfigurer {
 	 * 添加解析器以支持自定义控制器方法参数类型。
 	 * <p>这不会覆盖解析处理器方法参数的内置支持。要自定义内置的参数解析支持，
 	 * 请直接配置 {@link RequestMappingHandlerAdapter}。
-	 * @param resolvers initially an empty list
+	 * @param resolvers 初始为空的列表
 	 */
 	default void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
 	}
@@ -142,7 +142,7 @@ public interface WebMvcConfigurer {
 	 * 添加处理器以支持自定义控制器方法返回值类型。
 	 * <p>使用此选项不会覆盖处理返回值的的内置支持。要自定义内置的返回值处理支持，
 	 * 请直接配置 RequestMappingHandlerAdapter。
-	 * @param handlers initially an empty list
+	 * @param handlers 初始为空的列表
 	 */
 	default void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> handlers) {
 	}
@@ -153,7 +153,7 @@ public interface WebMvcConfigurer {
 	 * 就会配置所有内置转换器。
 	 * <p><strong>注意</strong> 使用此方法会关闭默认转换器注册。或者，
 	 * 使用 {@link #extendMessageConverters(java.util.List)} 修改默认的转换器列表。
-	 * @param converters initially an empty list of converters
+	 * @param converters 初始为空的转换器列表
 	 */
 	default void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 	}
@@ -163,7 +163,7 @@ public interface WebMvcConfigurer {
 	 * 初始化之后，扩展或修改该列表。
 	 * <p>注意转换器注册的顺序很重要。特别是在客户端接受
 	 * {@link org.springframework.http.MediaType#ALL} 的情况下，较早配置的转换器将被优先使用。
-	 * @param converters the list of configured converters to be extended
+	 * @param converters 要扩展的已配置转换器列表
 	 * @since 4.1.3
 	 */
 	default void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -179,7 +179,7 @@ public interface WebMvcConfigurer {
 	 * <p>或者，您可以使用
 	 * {@link #extendHandlerExceptionResolvers(List)}，它允许扩展或修改
 	 * 默认配置的异常解析器列表。
-	 * @param resolvers initially an empty list
+	 * @param resolvers 初始为空的列表
 	 * @see #extendHandlerExceptionResolvers(List)
 	 * @see WebMvcConfigurationSupport#addDefaultHandlerExceptionResolvers(List, org.springframework.web.accept.ContentNegotiationManager)
 	 */
@@ -189,7 +189,7 @@ public interface WebMvcConfigurer {
 	/**
 	 * 扩展或修改默认配置的异常解析器列表。
 	 * 这对于在不干扰默认解析器的情况下插入自定义异常解析器很有用。
-	 * @param resolvers the list of configured resolvers to extend
+	 * @param resolvers 要扩展的已配置解析器列表
 	 * @since 4.3
 	 * @see WebMvcConfigurationSupport#addDefaultHandlerExceptionResolvers(List, org.springframework.web.accept.ContentNegotiationManager)
 	 */

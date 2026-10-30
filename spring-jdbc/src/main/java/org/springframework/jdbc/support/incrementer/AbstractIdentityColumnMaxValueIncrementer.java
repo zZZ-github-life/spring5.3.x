@@ -123,13 +123,13 @@ public abstract class AbstractIdentityColumnMaxValueIncrementer extends Abstract
 
 	/**
 	 * 用于递增"序列"值的语句。
-	 * @return the SQL statement to use
+	 * @return 要使用的 SQL 语句
 	 */
 	protected abstract String getIncrementStatement();
 
 	/**
 	 * 用于获取当前标识值的语句。
-	 * @return the SQL statement to use
+	 * @return 要使用的 SQL 语句
 	 */
 	protected abstract String getIdentityStatement();
 
@@ -138,9 +138,8 @@ public abstract class AbstractIdentityColumnMaxValueIncrementer extends Abstract
 	 * <p>默认实现根据 {@link #isDeleteSpecificValues()} 设置，
 	 * 要么删除当前最大值以下的整个范围，
 	 * 要么删除具体生成的值（从最小值减 1 开始，仅保留最大值）。
-	 * @param values the currently generated key values
-	 * (the number of values corresponds to {@link #getCacheSize()})
-	 * @return the SQL statement to use
+	 * @param values 当前生成的键值（值的数量与 {@link #getCacheSize()} 相对应）
+	 * @return 要使用的 SQL 语句
 	 */
 	protected String getDeleteStatement(long[] values) {
 		StringBuilder sb = new StringBuilder(64);

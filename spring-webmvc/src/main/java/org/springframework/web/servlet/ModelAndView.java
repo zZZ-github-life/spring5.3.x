@@ -71,8 +71,8 @@ public class ModelAndView {
 	/**
 	 * 当没有模型数据需要暴露时使用的便捷构造函数。
 	 * 也可以与 {@code addObject} 配合使用。
-	 * @param viewName name of the View to render, to be resolved
-	 * by the DispatcherServlet's ViewResolver
+	 * @param viewName 要渲染的视图名称，将由 DispatcherServlet 的
+	 * ViewResolver 解析
 	 * @see #addObject
 	 */
 	public ModelAndView(String viewName) {
@@ -82,7 +82,7 @@ public class ModelAndView {
 	/**
 	 * 当没有模型数据需要暴露时使用的便捷构造函数。
 	 * 也可以与 {@code addObject} 配合使用。
-	 * @param view the View object to render
+	 * @param view 要渲染的 View 对象
 	 * @see #addObject
 	 */
 	public ModelAndView(View view) {
@@ -91,11 +91,11 @@ public class ModelAndView {
 
 	/**
 	 * 根据视图名称和模型创建一个新的 ModelAndView。
-	 * @param viewName name of the View to render, to be resolved
-	 * by the DispatcherServlet's ViewResolver
-	 * @param model a Map of model names (Strings) to model objects
-	 * (Objects). Model entries may not be {@code null}, but the
-	 * model Map may be {@code null} if there is no model data.
+	 * @param viewName 要渲染的视图名称，将由 DispatcherServlet 的
+	 * ViewResolver 解析
+	 * @param model 从模型名称（String）到模型对象（Object）的 Map。
+	 * 模型条目不可为 {@code null}，但如果没有模型数据，
+	 * 则模型 Map 可以为 {@code null}。
 	 */
 	public ModelAndView(String viewName, @Nullable Map<String, ?> model) {
 		this.view = viewName;
@@ -108,10 +108,10 @@ public class ModelAndView {
 	 * 根据 View 对象和模型创建一个新的 ModelAndView。
 	 * <em>注意：所提供的模型数据会被复制到本类的内部存储中。
 	 * 将 Map 提供给本类之后，不应再修改它</em>
-	 * @param view the View object to render
-	 * @param model a Map of model names (Strings) to model objects
-	 * (Objects). Model entries may not be {@code null}, but the
-	 * model Map may be {@code null} if there is no model data.
+	 * @param view 要渲染的 View 对象
+	 * @param model 从模型名称（String）到模型对象（Object）的 Map。
+	 * 模型条目不可为 {@code null}，但如果没有模型数据，
+	 * 则模型 Map 可以为 {@code null}。
 	 */
 	public ModelAndView(View view, @Nullable Map<String, ?> model) {
 		this.view = view;
@@ -122,10 +122,10 @@ public class ModelAndView {
 
 	/**
 	 * 根据视图名称和 HTTP 状态创建一个新的 ModelAndView。
-	 * @param viewName name of the View to render, to be resolved
-	 * by the DispatcherServlet's ViewResolver
-	 * @param status an HTTP status code to use for the response
-	 * (to be set just prior to View rendering)
+	 * @param viewName 要渲染的视图名称，将由 DispatcherServlet 的
+	 * ViewResolver 解析
+	 * @param status 用于响应的 HTTP 状态码
+	 * （在渲染 View 之前设置）
 	 * @since 4.3.8
 	 */
 	public ModelAndView(String viewName, HttpStatus status) {
@@ -135,13 +135,13 @@ public class ModelAndView {
 
 	/**
 	 * 根据视图名称、模型和 HTTP 状态创建一个新的 ModelAndView。
-	 * @param viewName name of the View to render, to be resolved
-	 * by the DispatcherServlet's ViewResolver
-	 * @param model a Map of model names (Strings) to model objects
-	 * (Objects). Model entries may not be {@code null}, but the
-	 * model Map may be {@code null} if there is no model data.
-	 * @param status an HTTP status code to use for the response
-	 * (to be set just prior to View rendering)
+	 * @param viewName 要渲染的视图名称，将由 DispatcherServlet 的
+	 * ViewResolver 解析
+	 * @param model 从模型名称（String）到模型对象（Object）的 Map。
+	 * 模型条目不可为 {@code null}，但如果没有模型数据，
+	 * 则模型 Map 可以为 {@code null}。
+	 * @param status 用于响应的 HTTP 状态码
+	 * （在渲染 View 之前设置）
 	 * @since 4.3
 	 */
 	public ModelAndView(@Nullable String viewName, @Nullable Map<String, ?> model, @Nullable HttpStatus status) {
@@ -154,10 +154,10 @@ public class ModelAndView {
 
 	/**
 	 * 用于接收单个模型对象的便捷构造函数。
-	 * @param viewName name of the View to render, to be resolved
-	 * by the DispatcherServlet's ViewResolver
-	 * @param modelName name of the single entry in the model
-	 * @param modelObject the single model object
+	 * @param viewName 要渲染的视图名称，将由 DispatcherServlet 的
+	 * ViewResolver 解析
+	 * @param modelName 模型中唯一条目的名称
+	 * @param modelObject 单个模型对象
 	 */
 	public ModelAndView(String viewName, String modelName, Object modelObject) {
 		this.view = viewName;
@@ -166,9 +166,9 @@ public class ModelAndView {
 
 	/**
 	 * 用于接收单个模型对象的便捷构造函数。
-	 * @param view the View object to render
-	 * @param modelName name of the single entry in the model
-	 * @param modelObject the single model object
+	 * @param view 要渲染的 View 对象
+	 * @param modelName 模型中唯一条目的名称
+	 * @param modelObject 单个模型对象
 	 */
 	public ModelAndView(View view, String modelName, Object modelObject) {
 		this.view = view;
@@ -273,8 +273,8 @@ public class ModelAndView {
 
 	/**
 	 * 向模型中添加一个属性。
-	 * @param attributeName name of the object to add to the model (never {@code null})
-	 * @param attributeValue object to add to the model (can be {@code null})
+	 * @param attributeName 要添加到模型的对象名称（永不为 {@code null}）
+	 * @param attributeValue 要添加到模型的对象（可以为 {@code null}）
 	 * @see ModelMap#addAttribute(String, Object)
 	 * @see #getModelMap()
 	 */
@@ -285,7 +285,7 @@ public class ModelAndView {
 
 	/**
 	 * 使用参数名生成方式向模型中添加一个属性。
-	 * @param attributeValue the object to add to the model (never {@code null})
+	 * @param attributeValue 要添加到模型的对象（永不为 {@code null}）
 	 * @see ModelMap#addAttribute(Object)
 	 * @see #getModelMap()
 	 */
@@ -296,7 +296,7 @@ public class ModelAndView {
 
 	/**
 	 * 将所提供的 Map 中包含的所有属性添加到模型中。
-	 * @param modelMap a Map of attributeName &rarr; attributeValue pairs
+	 * @param modelMap attributeName &rarr; attributeValue 对的 Map
 	 * @see ModelMap#addAllAttributes(Map)
 	 * @see #getModelMap()
 	 */

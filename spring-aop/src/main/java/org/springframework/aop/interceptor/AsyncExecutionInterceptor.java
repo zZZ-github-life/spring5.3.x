@@ -65,9 +65,9 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 
 	/**
 	 * 使用默认的 {@link AsyncUncaughtExceptionHandler} 创建一个新实例。
-	 * @param defaultExecutor the {@link Executor} (typically a Spring {@link AsyncTaskExecutor}
-	 * or {@link java.util.concurrent.ExecutorService}) to delegate to;
-	 * as of 4.2.6, a local executor for this interceptor will be built otherwise
+	 * @param defaultExecutor 要委托的 {@link Executor}（通常是 Spring {@link AsyncTaskExecutor}
+	 * 或 {@link java.util.concurrent.ExecutorService}）；自 4.2.6 起，
+	 * 否则将为该拦截器构建一个本地执行器
 	 */
 	public AsyncExecutionInterceptor(@Nullable Executor defaultExecutor) {
 		super(defaultExecutor);
@@ -75,10 +75,10 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 
 	/**
 	 * 创建一个新的 {@code AsyncExecutionInterceptor}。
-	 * @param defaultExecutor the {@link Executor} (typically a Spring {@link AsyncTaskExecutor}
-	 * or {@link java.util.concurrent.ExecutorService}) to delegate to;
-	 * as of 4.2.6, a local executor for this interceptor will be built otherwise
-	 * @param exceptionHandler the {@link AsyncUncaughtExceptionHandler} to use
+	 * @param defaultExecutor 要委托的 {@link Executor}（通常是 Spring {@link AsyncTaskExecutor}
+	 * 或 {@link java.util.concurrent.ExecutorService}）；自 4.2.6 起，
+	 * 否则将为该拦截器构建一个本地执行器
+	 * @param exceptionHandler 要使用的 {@link AsyncUncaughtExceptionHandler}
 	 */
 	public AsyncExecutionInterceptor(@Nullable Executor defaultExecutor, AsyncUncaughtExceptionHandler exceptionHandler) {
 		super(defaultExecutor, exceptionHandler);
@@ -87,9 +87,8 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 
 	/**
 	 * 拦截给定的方法调用，将方法的实际调用提交给正确的任务执行器，并立即返回给调用方。
-	 * @param invocation the method to intercept and make asynchronous
-	 * @return {@link Future} if the original method returns {@code Future}; {@code null}
-	 * otherwise.
+	 * @param invocation 要拦截并使其异步的方法
+	 * @return 如果原方法返回 {@code Future}，则返回 {@link Future}；否则返回 {@code null}。
 	 */
 	@Override
 	@Nullable
@@ -126,7 +125,7 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 	/**
 	 * 此实现为兼容 Spring 3.1.2 而采用空操作。子类可以覆盖此方法以支持提取限定符信息，例如通过给定方法
 	 * 上的注解。
-	 * @return always {@code null}
+	 * @return 始终为 {@code null}
 	 * @since 3.1.2
 	 * @see #determineAsyncExecutor(Method)
 	 */

@@ -40,10 +40,9 @@ public class BeanNotOfRequiredTypeException extends BeansException {
 
 	/**
 	 * 创建一个新的 BeanNotOfRequiredTypeException。
-	 * @param beanName the name of the bean requested
-	 * @param requiredType the required type
-	 * @param actualType the actual type returned, which did not match
-	 * the expected type
+	 * @param beanName 所请求的 Bean 名称
+	 * @param requiredType 所需的类型
+	 * @param actualType 返回的实际类型，它与预期类型不匹配
 	 */
 	public BeanNotOfRequiredTypeException(String beanName, Class<?> requiredType, Class<?> actualType) {
 		super("Bean named '" + beanName + "' is expected to be of type '" + ClassUtils.getQualifiedName(requiredType) +

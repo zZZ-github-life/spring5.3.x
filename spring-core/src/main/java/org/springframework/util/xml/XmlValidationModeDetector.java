@@ -83,8 +83,8 @@ public class XmlValidationModeDetector {
 	/**
 	 * 检测提供的 {@link InputStream} 中 XML 文档的验证模式。
 	 * <p>请注意，此方法在返回前会关闭提供的 {@link InputStream}。
-	 * @param inputStream the InputStream to parse
-	 * @throws IOException in case of I/O failure
+	 * @param inputStream 要解析的 InputStream
+	 * @throws IOException 发生 I/O 失败时
 	 * @see #VALIDATION_DTD
 	 * @see #VALIDATION_XSD
 	 */

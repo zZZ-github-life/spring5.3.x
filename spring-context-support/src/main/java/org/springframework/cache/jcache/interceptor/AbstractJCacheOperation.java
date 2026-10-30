@@ -39,7 +39,7 @@ import org.springframework.util.ExceptionTypeFilter;
  *
  * @author Stephane Nicoll
  * @since 4.1
- * @param <A> the annotation type
+ * @param <A> 注解类型
  */
 abstract class AbstractJCacheOperation<A extends Annotation> implements JCacheOperation<A> {
 
@@ -52,8 +52,8 @@ abstract class AbstractJCacheOperation<A extends Annotation> implements JCacheOp
 
 	/**
 	 * 构造一个新的 {@code AbstractJCacheOperation}。
-	 * @param methodDetails the {@link CacheMethodDetails} related to the cached method
-	 * @param cacheResolver the cache resolver to resolve regular caches
+	 * @param methodDetails 与已缓存方法相关的 {@link CacheMethodDetails}
+	 * @param cacheResolver 用于解析常规缓存的缓存解析器
 	 */
 	protected AbstractJCacheOperation(CacheMethodDetails<A> methodDetails, CacheResolver cacheResolver) {
 		Assert.notNull(methodDetails, "CacheMethodDetails must not be null");

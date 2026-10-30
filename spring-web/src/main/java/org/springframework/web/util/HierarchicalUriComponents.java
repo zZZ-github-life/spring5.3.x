@@ -118,14 +118,14 @@ final class HierarchicalUriComponents extends UriComponents {
 
 	/**
 	 * 包私有构造方法。所有参数都是可选的，可以为 {@code null}。
-	 * @param scheme the scheme
-	 * @param userInfo the user info
-	 * @param host the host
-	 * @param port the port
-	 * @param path the path
-	 * @param query the query parameters
-	 * @param fragment the fragment
-	 * @param encoded whether the components are already encoded
+	 * @param scheme URI 方案
+	 * @param userInfo 用户信息
+	 * @param host 主机
+	 * @param port 端口
+	 * @param path 路径
+	 * @param query 查询参数
+	 * @param fragment 片段
+	 * @param encoded 各组成部分是否已编码
 	 */
 	HierarchicalUriComponents(@Nullable String scheme, @Nullable String fragment, @Nullable String userInfo,
 			@Nullable String host, @Nullable String port, @Nullable PathComponent path,
@@ -311,11 +311,11 @@ final class HierarchicalUriComponents extends UriComponents {
 
 	/**
 	 * 使用给定组件指定的规则和给定选项，将给定源编码为已编码 String。
-	 * @param source the source String
-	 * @param encoding the encoding of the source String
-	 * @param type the URI component for the source
-	 * @return the encoded URI
-	 * @throws IllegalArgumentException when the given value is not a valid URI component
+	 * @param source 源 String
+	 * @param encoding 源 String 的编码
+	 * @param type 源所属的 URI 组件
+	 * @return 编码后的 URI
+	 * @throws IllegalArgumentException 当给定值不是有效的 URI 组件时
 	 */
 	static String encodeUriComponent(String source, String encoding, Type type) {
 		return encodeUriComponent(source, Charset.forName(encoding), type);
@@ -323,11 +323,11 @@ final class HierarchicalUriComponents extends UriComponents {
 
 	/**
 	 * 使用给定组件指定的规则和给定选项，将给定源编码为已编码 String。
-	 * @param source the source String
-	 * @param charset the encoding of the source String
-	 * @param type the URI component for the source
-	 * @return the encoded URI
-	 * @throws IllegalArgumentException when the given value is not a valid URI component
+	 * @param source 源 String
+	 * @param charset 源 String 的编码
+	 * @param type 源所属的 URI 组件
+	 * @return 编码后的 URI
+	 * @throws IllegalArgumentException 当给定值不是有效的 URI 组件时
 	 */
 	static String encodeUriComponent(String source, Charset charset, Type type) {
 		if (!StringUtils.hasLength(source)) {
@@ -372,7 +372,7 @@ final class HierarchicalUriComponents extends UriComponents {
 
 	/**
 	 * 检查任何 URI 组件是否包含非法字符。
-	 * @throws IllegalArgumentException if any component has illegal characters
+	 * @throws IllegalArgumentException 如果任何组件包含非法字符
 	 */
 	private void verify() {
 		verifyUriComponent(getScheme(), Type.SCHEME);
@@ -667,7 +667,7 @@ final class HierarchicalUriComponents extends UriComponents {
 
 		/**
 		 * 指示给定字符是否允许出现在此 URI 组件中。
-		 * @return {@code true} if the character is allowed; {@code false} otherwise
+		 * @return 如果允许该字符则返回 {@code true}；否则返回 {@code false}
 		 */
 		public abstract boolean isAllowed(int c);
 

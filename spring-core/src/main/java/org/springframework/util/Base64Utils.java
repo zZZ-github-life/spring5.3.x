@@ -37,8 +37,8 @@ public abstract class Base64Utils {
 
 	/**
 	 * 对给定的字节数组进行 Base64 编码。
-	 * @param src the original byte array
-	 * @return the encoded byte array
+	 * @param src 原始字节数组
+	 * @return 编码后的字节数组
 	 */
 	public static byte[] encode(byte[] src) {
 		if (src.length == 0) {
@@ -49,8 +49,8 @@ public abstract class Base64Utils {
 
 	/**
 	 * 对给定的字节数组进行 Base64 解码。
-	 * @param src the encoded byte array
-	 * @return the original byte array
+	 * @param src 编码后的字节数组
+	 * @return 原始字节数组
 	 */
 	public static byte[] decode(byte[] src) {
 		if (src.length == 0) {
@@ -61,8 +61,8 @@ public abstract class Base64Utils {
 
 	/**
 	 * 使用 RFC 4648 的 "URL and Filename Safe Alphabet" 对给定的字节数组进行 Base64 编码。
-	 * @param src the original byte array
-	 * @return the encoded byte array
+	 * @param src 原始字节数组
+	 * @return 编码后的字节数组
 	 * @since 4.2.4
 	 */
 	public static byte[] encodeUrlSafe(byte[] src) {
@@ -74,8 +74,8 @@ public abstract class Base64Utils {
 
 	/**
 	 * 使用 RFC 4648 的 "URL and Filename Safe Alphabet" 对给定的字节数组进行 Base64 解码。
-	 * @param src the encoded byte array
-	 * @return the original byte array
+	 * @param src 编码后的字节数组
+	 * @return 原始字节数组
 	 * @since 4.2.4
 	 */
 	public static byte[] decodeUrlSafe(byte[] src) {
@@ -87,8 +87,8 @@ public abstract class Base64Utils {
 
 	/**
 	 * 将给定的字节数组进行 Base64 编码为 String。
-	 * @param src the original byte array
-	 * @return the encoded byte array as a UTF-8 String
+	 * @param src 原始字节数组
+	 * @return 编码后的字节数组（UTF-8 字符串）
 	 */
 	public static String encodeToString(byte[] src) {
 		if (src.length == 0) {
@@ -99,8 +99,8 @@ public abstract class Base64Utils {
 
 	/**
 	 * 从 UTF-8 String 对给定的字节数组进行 Base64 解码。
-	 * @param src the encoded UTF-8 String
-	 * @return the original byte array
+	 * @param src 编码后的 UTF-8 字符串
+	 * @return 原始字节数组
 	 */
 	public static byte[] decodeFromString(String src) {
 		if (src.isEmpty()) {
@@ -111,8 +111,8 @@ public abstract class Base64Utils {
 
 	/**
 	 * 使用 RFC 4648 的 "URL and Filename Safe Alphabet" 将给定的字节数组进行 Base64 编码为 String。
-	 * @param src the original byte array
-	 * @return the encoded byte array as a UTF-8 String
+	 * @param src 原始字节数组
+	 * @return 编码后的字节数组，以 UTF-8 字符串形式表示
 	 */
 	public static String encodeToUrlSafeString(byte[] src) {
 		return new String(encodeUrlSafe(src), DEFAULT_CHARSET);
@@ -121,8 +121,8 @@ public abstract class Base64Utils {
 	/**
 	 * 从 UTF-8 String 使用 RFC 4648 的 "URL and Filename Safe Alphabet" 对给定的字节数组进行 Base64 解
 	 * 码。
-	 * @param src the encoded UTF-8 String
-	 * @return the original byte array
+	 * @param src 编码后的 UTF-8 字符串
+	 * @return 原始字节数组
 	 */
 	public static byte[] decodeFromUrlSafeString(String src) {
 		return decodeUrlSafe(src.getBytes(DEFAULT_CHARSET));

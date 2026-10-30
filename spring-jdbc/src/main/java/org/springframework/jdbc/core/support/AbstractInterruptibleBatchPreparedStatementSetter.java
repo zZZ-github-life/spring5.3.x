@@ -66,13 +66,11 @@ public abstract class AbstractInterruptibleBatchPreparedStatementSetter
 	/**
 	 * 检查可用值并将其设置到给定的 PreparedStatement 上。
 	 * 如果不再有可用值，则返回 {@code false}。
-	 * @param ps the PreparedStatement we'll invoke setter methods on
-	 * @param i index of the statement we're issuing in the batch, starting from 0
-	 * @return whether there were values to apply (that is, whether the applied
-	 * parameters should be added to the batch and this method should be called
-	 * for a further iteration)
-	 * @throws SQLException if an SQLException is encountered
-	 * (i.e. there is no need to catch SQLException)
+	 * @param ps 将要在其上调用 setter 方法的 PreparedStatement
+	 * @param i 批处理中当前发出的语句索引，从 0 开始
+	 * @return 是否有要应用的值（即已应用的参数是否应添加到批处理中，
+	 * 以及是否应再次调用此方法进行下一轮迭代）
+	 * @throws SQLException 如果遇到 SQLException（即无需捕获 SQLException）
 	 */
 	protected abstract boolean setValuesIfAvailable(PreparedStatement ps, int i) throws SQLException;
 

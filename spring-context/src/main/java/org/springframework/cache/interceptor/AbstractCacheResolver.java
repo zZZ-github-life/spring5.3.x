@@ -48,7 +48,7 @@ public abstract class AbstractCacheResolver implements CacheResolver, Initializi
 
 	/**
 	 * 为给定的 {@link CacheManager} 构造一个新的 {@code AbstractCacheResolver}。
-	 * @param cacheManager the CacheManager to use
+	 * @param cacheManager 要使用的 CacheManager
 	 */
 	protected AbstractCacheResolver(CacheManager cacheManager) {
 		this.cacheManager = cacheManager;
@@ -97,8 +97,8 @@ public abstract class AbstractCacheResolver implements CacheResolver, Initializi
 	/**
 	 * 提供要针对当前缓存管理器解析的缓存名称。
 	 * <p>可以返回 {@code null}，表示无法为此调用解析任何缓存。
-	 * @param context the context of the particular invocation
-	 * @return the cache name(s) to resolve, or {@code null} if no cache should be resolved
+	 * @param context 本次特定调用的上下文
+	 * @return 要解析的缓存名称；如果不应解析任何缓存，则为 {@code null}
 	 */
 	@Nullable
 	protected abstract Collection<String> getCacheNames(CacheOperationInvocationContext<?> context);

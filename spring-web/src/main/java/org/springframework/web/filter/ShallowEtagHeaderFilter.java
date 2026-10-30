@@ -137,11 +137,11 @@ public class ShallowEtagHeaderFilter extends OncePerRequestFilter {
 	 * <li>请求方法为 GET。</li>
 	 * <li>响应 Cache-Control 头不包含 "no-store"（或完全不存在）。</li>
 	 * </ul>
-	 * @param request the HTTP request
-	 * @param response the HTTP response
-	 * @param responseStatusCode the HTTP response status code
-	 * @param inputStream the response body
-	 * @return {@code true} if eligible for ETag generation, {@code false} otherwise
+	 * @param request HTTP 请求
+	 * @param response HTTP 响应
+	 * @param responseStatusCode HTTP 响应状态码
+	 * @param inputStream 响应体
+	 * @return 如果适合生成 ETag 则返回 {@code true}，否则返回 {@code false}
 	 */
 	protected boolean isEligibleForEtag(HttpServletRequest request, HttpServletResponse response,
 			int responseStatusCode, InputStream inputStream) {
@@ -160,9 +160,9 @@ public class ShallowEtagHeaderFilter extends OncePerRequestFilter {
 	/**
 	 * 根据给定的响应体字节数组生成 ETag 头值。
 	 * <p>默认实现生成 MD5 哈希值。
-	 * @param inputStream the response body as an InputStream
-	 * @param isWeak whether the generated ETag should be weak
-	 * @return the ETag header value
+	 * @param inputStream 作为 InputStream 的响应体
+	 * @param isWeak 生成的 ETag 是否应为弱 ETag
+	 * @return ETag 标头值
 	 * @see org.springframework.util.DigestUtils
 	 */
 	protected String generateETagHeaderValue(InputStream inputStream, boolean isWeak) throws IOException {

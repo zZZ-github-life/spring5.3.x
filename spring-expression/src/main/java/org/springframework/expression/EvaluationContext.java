@@ -89,9 +89,9 @@ public interface EvaluationContext {
 	 * 才应调用此方法。
 	 * <p>默认情况下，此方法委托给 {@code setVariable(String, Object)}，并提供由 {@code valueSupplier}
 	 * 创建的值。具体实现可以覆盖此<em>默认</em>方法，以提供不同的语义。
-	 * @param name the name of the variable to assign
-	 * @param valueSupplier the supplier of the value to be assigned to the variable
-	 * @return a {@link TypedValue} wrapping the assigned value
+	 * @param name 要赋值的变量名称
+	 * @param valueSupplier 提供要赋给该变量的值的 Supplier
+	 * @return 包装所赋值的 {@link TypedValue}
 	 * @since 5.2.24
 	 */
 	default TypedValue assignVariable(String name, Supplier<TypedValue> valueSupplier) {
@@ -104,15 +104,15 @@ public interface EvaluationContext {
 	 * 将此求值上下文中的命名变量设置为指定值。
 	 * <p>与 {@link #assignVariable(String, Supplier)} 不同，仅当以编程方式直接与
 	 * {@code EvaluationContext} 交互时，才应调用此方法 &mdash; 例如，为上下文提供初始配置。
-	 * @param name the name of the variable to set
-	 * @param value the value to be placed in the variable
+	 * @param name 要设置的变量名称
+	 * @param value 要放入该变量的值
 	 */
 	void setVariable(String name, @Nullable Object value);
 
 	/**
 	 * 在此求值上下文中查找命名变量。
-	 * @param name the name of the variable to look up
-	 * @return the value of the variable, or {@code null} if not found
+	 * @param name 要查找的变量名称
+	 * @return 变量的值，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	Object lookupVariable(String name);

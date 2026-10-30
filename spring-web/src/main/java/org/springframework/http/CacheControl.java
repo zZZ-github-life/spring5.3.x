@@ -80,7 +80,7 @@ public class CacheControl {
 	/**
 	 * 返回一个空指令。
 	 * <p>这非常适合在不使用 "max-age"、"no-cache" 或 "no-store" 的情况下使用其他可选指令。
-	 * @return {@code this}, to facilitate method chaining
+	 * @return {@code this}，以便进行方法链式调用
 	 */
 	public static CacheControl empty() {
 		return new CacheControl();
@@ -90,9 +90,9 @@ public class CacheControl {
 	 * 添加 "max-age=" 指令。
 	 * <p>该指令非常适合公开缓存资源，前提是这些资源在配置的时间段内不会发生变化。如果资源不应被共享缓存缓存（{@link #cachePrivate()}）或转换（{@link #noTransform()}），还可以同时使用其他指令。
 	 * <p>为了防止缓存在响应已过期（即已超过 "max-age" 延迟）时仍复用缓存的响应，应设置 "must-revalidate" 指令（{@link #mustRevalidate()}
-	 * @param maxAge the maximum time the response should be cached
-	 * @param unit the time unit of the {@code maxAge} argument
-	 * @return {@code this}, to facilitate method chaining
+	 * @param maxAge 响应应被缓存的最长时间
+	 * @param unit {@code maxAge} 参数的时间单位
+	 * @return {@code this}，以便进行方法链式调用
 	 * @see #maxAge(Duration)
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.8">rfc7234 section 5.2.2.8</a>
 	 */
@@ -104,8 +104,8 @@ public class CacheControl {
 	 * 添加 "max-age=" 指令。
 	 * <p>该指令非常适合公开缓存资源，前提是这些资源在配置的时间段内不会发生变化。如果资源不应被共享缓存缓存（{@link #cachePrivate()}）或转换（{@link #noTransform()}），还可以同时使用其他指令。
 	 * <p>为了防止缓存在响应已过期（即已超过 "max-age" 延迟）时仍复用缓存的响应，应设置 "must-revalidate" 指令（{@link #mustRevalidate()}
-	 * @param maxAge the maximum time the response should be cached
-	 * @return {@code this}, to facilitate method chaining
+	 * @param maxAge 响应应被缓存的最长时间
+	 * @return {@code this}，以便进行方法链式调用
 	 * @since 5.2
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.8">rfc7234 section 5.2.2.8</a>
 	 */
@@ -119,7 +119,7 @@ public class CacheControl {
 	 * 添加 "no-cache" 指令。
 	 * <p>该指令适合告知缓存：只有当客户端向服务器重新验证响应之后，该响应才可以被复用。此指令不会完全禁用缓存，客户端可能会发送条件请求（带有 "ETag"、"If-Modified-Since" 头），服务器则以 "304 - Not Modified" 状态响应。
 	 * <p>为了禁用缓存并尽量减少请求/响应交换，应使用 {@link #noStore()} 指令而不是 {@code #noCache()}。
-	 * @return {@code this}, to facilitate method chaining
+	 * @return {@code this}，以便进行方法链式调用
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.2">rfc7234 section 5.2.2.2</a>
 	 */
 	public static CacheControl noCache() {
@@ -131,7 +131,7 @@ public class CacheControl {
 	/**
 	 * 添加 "no-store" 指令。
 	 * <p>该指令适合阻止缓存（浏览器和代理）缓存响应内容。
-	 * @return {@code this}, to facilitate method chaining
+	 * @return {@code this}，以便进行方法链式调用
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.3">rfc7234 section 5.2.2.3</a>
 	 */
 	public static CacheControl noStore() {
@@ -144,7 +144,7 @@ public class CacheControl {
 	/**
 	 * 添加 "must-revalidate" 指令。
 	 * <p>该指令表示，一旦响应过期，缓存在未对源服务器成功验证之前，不得使用该响应来满足后续请求。
-	 * @return {@code this}, to facilitate method chaining
+	 * @return {@code this}，以便进行方法链式调用
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.1">rfc7234 section 5.2.2.1</a>
 	 */
 	public CacheControl mustRevalidate() {
@@ -155,7 +155,7 @@ public class CacheControl {
 	/**
 	 * 添加 "no-transform" 指令。
 	 * <p>该指令表示中间层（缓存及其他组件）不应转换响应内容。这可用于强制缓存和 CDN 不要自动对响应内容进行 gzip 压缩或优化。
-	 * @return {@code this}, to facilitate method chaining
+	 * @return {@code this}，以便进行方法链式调用
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.4">rfc7234 section 5.2.2.4</a>
 	 */
 	public CacheControl noTransform() {
@@ -166,7 +166,7 @@ public class CacheControl {
 	/**
 	 * 添加 "public" 指令。
 	 * <p>该指令表示任何缓存都可以存储该响应，即使该响应通常不可缓存，或只能在私有缓存中缓存。
-	 * @return {@code this}, to facilitate method chaining
+	 * @return {@code this}，以便进行方法链式调用
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.5">rfc7234 section 5.2.2.5</a>
 	 */
 	public CacheControl cachePublic() {
@@ -177,7 +177,7 @@ public class CacheControl {
 	/**
 	 * 添加 "private" 指令。
 	 * <p>该指令表示该响应消息仅面向单个用户，不得由共享缓存存储。
-	 * @return {@code this}, to facilitate method chaining
+	 * @return {@code this}，以便进行方法链式调用
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.6">rfc7234 section 5.2.2.6</a>
 	 */
 	public CacheControl cachePrivate() {
@@ -188,7 +188,7 @@ public class CacheControl {
 	/**
 	 * 添加 "proxy-revalidate" 指令。
 	 * <p>该指令与 "must-revalidate" 指令含义相同，区别在于它不适用于私有缓存（即浏览器、HTTP 客户端）。
-	 * @return {@code this}, to facilitate method chaining
+	 * @return {@code this}，以便进行方法链式调用
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.7">rfc7234 section 5.2.2.7</a>
 	 */
 	public CacheControl proxyRevalidate() {
@@ -199,9 +199,9 @@ public class CacheControl {
 	/**
 	 * 添加 "s-maxage" 指令。
 	 * <p>该指令表示在共享缓存中，此指令指定的最大年龄会覆盖其他指令指定的最大年龄。
-	 * @param sMaxAge the maximum time the response should be cached
-	 * @param unit the time unit of the {@code sMaxAge} argument
-	 * @return {@code this}, to facilitate method chaining
+	 * @param sMaxAge 响应应被缓存的最长时间
+	 * @param unit {@code sMaxAge} 参数的时间单位
+	 * @return {@code this}，以便进行方法链式调用
 	 * @see #sMaxAge(Duration)
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.9">rfc7234 section 5.2.2.9</a>
 	 */
@@ -212,8 +212,8 @@ public class CacheControl {
 	/**
 	 * 添加 "s-maxage" 指令。
 	 * <p>该指令表示在共享缓存中，此指令指定的最大年龄会覆盖其他指令指定的最大年龄。
-	 * @param sMaxAge the maximum time the response should be cached
-	 * @return {@code this}, to facilitate method chaining
+	 * @param sMaxAge 响应应被缓存的最长时间
+	 * @return {@code this}，以便进行方法链式调用
 	 * @since 5.2
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.9">rfc7234 section 5.2.2.9</a>
 	 */
@@ -225,9 +225,9 @@ public class CacheControl {
 	/**
 	 * 添加 "stale-while-revalidate" 指令。
 	 * <p>该指令表示缓存可以在响应过期后继续提供该响应，最长不超过指定的秒数。如果由于此扩展的存在而以过期状态提供缓存响应，缓存应尝试在继续提供过期响应的同时重新验证它（即不阻塞）。
-	 * @param staleWhileRevalidate the maximum time the response should be used while being revalidated
-	 * @param unit the time unit of the {@code staleWhileRevalidate} argument
-	 * @return {@code this}, to facilitate method chaining
+	 * @param staleWhileRevalidate 响应在重新验证期间应被使用的最长时间
+	 * @param unit {@code staleWhileRevalidate} 参数的时间单位
+	 * @return {@code this}，以便进行方法链式调用
 	 * @see #staleWhileRevalidate(Duration)
 	 * @see <a href="https://tools.ietf.org/html/rfc5861#section-3">rfc5861 section 3</a>
 	 */
@@ -238,8 +238,8 @@ public class CacheControl {
 	/**
 	 * 添加 "stale-while-revalidate" 指令。
 	 * <p>该指令表示缓存可以在响应过期后继续提供该响应，最长不超过指定的秒数。如果由于此扩展的存在而以过期状态提供缓存响应，缓存应尝试在继续提供过期响应的同时重新验证它（即不阻塞）。
-	 * @param staleWhileRevalidate the maximum time the response should be used while being revalidated
-	 * @return {@code this}, to facilitate method chaining
+	 * @param staleWhileRevalidate 响应在重新验证期间应被使用的最长时间
+	 * @return {@code this}，以便进行方法链式调用
 	 * @since 5.2
 	 * @see <a href="https://tools.ietf.org/html/rfc5861#section-3">rfc5861 section 3</a>
 	 */
@@ -251,9 +251,9 @@ public class CacheControl {
 	/**
 	 * 添加 "stale-if-error" 指令。
 	 * <p>该指令表示当遇到错误时，可以使用缓存的过期响应来满足请求，而不考虑其他新鲜度信息。
-	 * @param staleIfError the maximum time the response should be used when errors are encountered
-	 * @param unit the time unit of the {@code staleIfError} argument
-	 * @return {@code this}, to facilitate method chaining
+	 * @param staleIfError 在遇到错误时响应应被使用的最长时间
+	 * @param unit {@code staleIfError} 参数的时间单位
+	 * @return {@code this}，以便进行方法链式调用
 	 * @see #staleIfError(Duration)
 	 * @see <a href="https://tools.ietf.org/html/rfc5861#section-4">rfc5861 section 4</a>
 	 */
@@ -264,8 +264,8 @@ public class CacheControl {
 	/**
 	 * 添加 "stale-if-error" 指令。
 	 * <p>该指令表示当遇到错误时，可以使用缓存的过期响应来满足请求，而不考虑其他新鲜度信息。
-	 * @param staleIfError the maximum time the response should be used when errors are encountered
-	 * @return {@code this}, to facilitate method chaining
+	 * @param staleIfError 在遇到错误时响应应被使用的最长时间
+	 * @return {@code this}，以便进行方法链式调用
 	 * @since 5.2
 	 * @see <a href="https://tools.ietf.org/html/rfc5861#section-4">rfc5861 section 4</a>
 	 */
@@ -276,7 +276,7 @@ public class CacheControl {
 
 	/**
 	 * 返回 "Cache-Control" 头值（如果有）。
-	 * @return the header value, or {@code null} if no directive was added
+	 * @return 标头值，若未添加任何指令则为 {@code null}
 	 */
 	@Nullable
 	public String getHeaderValue() {
@@ -286,7 +286,7 @@ public class CacheControl {
 
 	/**
 	 * 返回 "Cache-Control" 头值。
-	 * @return the header value (potentially empty)
+	 * @return 标头值（可能为空）
 	 */
 	private String toHeaderValue() {
 		StringBuilder headerValue = new StringBuilder();

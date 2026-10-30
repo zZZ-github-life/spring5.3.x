@@ -28,29 +28,29 @@ public interface BindTarget {
 
 	/**
 	 * 绑定一个值。
-	 * @param identifier the identifier to bind to
-	 * @param value the value to bind
+	 * @param identifier 要绑定到的标识符
+	 * @param value 要绑定的值
 	 */
 	void bind(String identifier, Object value);
 
 	/**
 	 * 将值绑定到索引。索引从零开始。
-	 * @param index the index to bind to
-	 * @param value the value to bind
+	 * @param index 要绑定到的索引
+	 * @param value 要绑定的值
 	 */
 	void bind(int index, Object value);
 
 	/**
 	 * 绑定一个 {@code null} 值。
-	 * @param identifier the identifier to bind to
-	 * @param type the type of {@code null} value
+	 * @param identifier 要绑定到的标识符
+	 * @param type {@code null} 值的类型
 	 */
 	void bindNull(String identifier, Class<?> type);
 
 	/**
 	 * 绑定一个 {@code null} 值。
-	 * @param index the index to bind to
-	 * @param type the type of {@code null} value
+	 * @param index 要绑定到的索引
+	 * @param type {@code null} 值的类型
 	 */
 	void bindNull(int index, Class<?> type);
 

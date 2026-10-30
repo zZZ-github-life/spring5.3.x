@@ -36,8 +36,8 @@ public interface EntityManagerProxy extends EntityManager {
 	 * <p>对于扩展的 EntityManager，这将是关联的原始 EntityManager。
 	 * <p>对于共享的（"事务性"）EntityManager，这将是当前与事务关联的
 	 * 原始 EntityManager。在事务之外调用时，将抛出 IllegalStateException。
-	 * @return the underlying raw EntityManager (never {@code null})
-	 * @throws IllegalStateException if no underlying EntityManager is available
+	 * @return 底层的原始 EntityManager（永不为 {@code null}）
+	 * @throws IllegalStateException 如果没有可用的底层 EntityManager
 	 */
 	EntityManager getTargetEntityManager() throws IllegalStateException;
 

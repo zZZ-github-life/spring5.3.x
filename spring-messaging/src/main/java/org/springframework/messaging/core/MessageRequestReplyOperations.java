@@ -28,26 +28,24 @@ import org.springframework.messaging.MessagingException;
  * @author Mark Fisher
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <D> the type of destination
+ * @param <D> 目的地类型
  * @see GenericMessagingTemplate
  */
 public interface MessageRequestReplyOperations<D> {
 
 	/**
 	 * 向默认目标发送请求消息并接收应答。
-	 * @param requestMessage the message to send
-	 * @return the reply, possibly {@code null} if the message could not be received,
-	 * for example due to a timeout
+	 * @param requestMessage 要发送的消息
+	 * @return 回复；如果无法接收消息（例如因超时），则可能为 {@code null}
 	 */
 	@Nullable
 	Message<?> sendAndReceive(Message<?> requestMessage) throws MessagingException;
 
 	/**
 	 * 向给定目标发送请求消息并接收应答。
-	 * @param destination the target destination
-	 * @param requestMessage the message to send
-	 * @return the reply, possibly {@code null} if the message could not be received,
-	 * for example due to a timeout
+	 * @param destination 目标目的地
+	 * @param requestMessage 要发送的消息
+	 * @return 回复；如果无法接收消息（例如因超时），则可能为 {@code null}
 	 */
 	@Nullable
 	Message<?> sendAndReceive(D destination, Message<?> requestMessage) throws MessagingException;
@@ -56,10 +54,10 @@ public interface MessageRequestReplyOperations<D> {
 	 * 将给定请求 Object 转换为序列化形式（可能使用
 	 * {@link org.springframework.messaging.converter.MessageConverter}），
 	 * 将其作为 {@link Message} 发送到默认目标，接收应答并将其正文转换为指定目标类。
-	 * @param request payload for the request message to send
-	 * @param targetClass the target type to convert the payload of the reply to
-	 * @return the payload of the reply message, possibly {@code null} if the message
-	 * could not be received, for example due to a timeout
+	 * @param request 要发送的请求消息的载荷
+	 * @param targetClass 回复消息的载荷要转换成的目标类型
+	 * @return 回复消息的载荷；如果无法接收消息（例如因超时），
+	 * 则可能为 {@code null}
 	 */
 	@Nullable
 	<T> T convertSendAndReceive(Object request, Class<T> targetClass) throws MessagingException;
@@ -68,11 +66,11 @@ public interface MessageRequestReplyOperations<D> {
 	 * 将给定请求 Object 转换为序列化形式（可能使用
 	 * {@link org.springframework.messaging.converter.MessageConverter}），
 	 * 将其作为 {@link Message} 发送到给定目标，接收应答并将其正文转换为指定目标类。
-	 * @param destination the target destination
-	 * @param request payload for the request message to send
-	 * @param targetClass the target type to convert the payload of the reply to
-	 * @return the payload of the reply message, possibly {@code null} if the message
-	 * could not be received, for example due to a timeout
+	 * @param destination 目标目的地
+	 * @param request 要发送的请求消息的载荷
+	 * @param targetClass 回复消息的载荷要转换成的目标类型
+	 * @return 回复消息的载荷；如果无法接收消息（例如因超时），
+	 * 则可能为 {@code null}
 	 */
 	@Nullable
 	<T> T convertSendAndReceive(D destination, Object request, Class<T> targetClass) throws MessagingException;
@@ -82,12 +80,12 @@ public interface MessageRequestReplyOperations<D> {
 	 * {@link org.springframework.messaging.converter.MessageConverter}），
 	 * 将其作为带有给定头的 {@link Message} 发送到指定目标，
 	 * 接收应答并将其正文转换为指定目标类。
-	 * @param destination the target destination
-	 * @param request payload for the request message to send
-	 * @param headers the headers for the request message to send
-	 * @param targetClass the target type to convert the payload of the reply to
-	 * @return the payload of the reply message, possibly {@code null} if the message
-	 * could not be received, for example due to a timeout
+	 * @param destination 目标目的地
+	 * @param request 要发送的请求消息的载荷
+	 * @param headers 要发送的请求消息的消息头
+	 * @param targetClass 回复消息的载荷要转换成的目标类型
+	 * @return 回复消息的载荷；如果无法接收消息（例如因超时），
+	 * 则可能为 {@code null}
 	 */
 	@Nullable
 	<T> T convertSendAndReceive(
@@ -99,11 +97,11 @@ public interface MessageRequestReplyOperations<D> {
 	 * {@link org.springframework.messaging.converter.MessageConverter}），
 	 * 应用给定的后处理器并将结果 {@link Message} 发送到默认目标，
 	 * 接收应答并将其正文转换为给定目标类。
-	 * @param request payload for the request message to send
-	 * @param targetClass the target type to convert the payload of the reply to
-	 * @param requestPostProcessor post process to apply to the request message
-	 * @return the payload of the reply message, possibly {@code null} if the message
-	 * could not be received, for example due to a timeout
+	 * @param request 要发送的请求消息的载荷
+	 * @param targetClass 回复消息的载荷要转换成的目标类型
+	 * @param requestPostProcessor 要应用到请求消息的后处理
+	 * @return 回复消息的载荷；如果无法接收消息（例如因超时），
+	 * 则可能为 {@code null}
 	 */
 	@Nullable
 	<T> T convertSendAndReceive(
@@ -115,12 +113,12 @@ public interface MessageRequestReplyOperations<D> {
 	 * {@link org.springframework.messaging.converter.MessageConverter}），
 	 * 应用给定的后处理器并将结果 {@link Message} 发送到给定目标，
 	 * 接收应答并将其正文转换为给定目标类。
-	 * @param destination the target destination
-	 * @param request payload for the request message to send
-	 * @param targetClass the target type to convert the payload of the reply to
-	 * @param requestPostProcessor post process to apply to the request message
-	 * @return the payload of the reply message, possibly {@code null} if the message
-	 * could not be received, for example due to a timeout
+	 * @param destination 目标目的地
+	 * @param request 要发送的请求消息的载荷
+	 * @param targetClass 回复消息的载荷要转换成的目标类型
+	 * @param requestPostProcessor 要应用到请求消息的后处理
+	 * @return 回复消息的载荷；如果无法接收消息（例如因超时），
+	 * 则可能为 {@code null}
 	 */
 	@Nullable
 	<T> T convertSendAndReceive(D destination, Object request, Class<T> targetClass,
@@ -131,12 +129,12 @@ public interface MessageRequestReplyOperations<D> {
 	 * {@link org.springframework.messaging.converter.MessageConverter}），
 	 * 将其包装为带有给定头的消息，应用给定的后处理器，
 	 * 并将结果 {@link Message} 发送到指定目标，接收应答并将其正文转换为给定目标类。
-	 * @param destination the target destination
-	 * @param request payload for the request message to send
-	 * @param targetClass the target type to convert the payload of the reply to
-	 * @param requestPostProcessor post process to apply to the request message
-	 * @return the payload of the reply message, possibly {@code null} if the message
-	 * could not be received, for example due to a timeout
+	 * @param destination 目标目的地
+	 * @param request 要发送的请求消息的载荷
+	 * @param targetClass 回复消息的载荷要转换成的目标类型
+	 * @param requestPostProcessor 要应用到请求消息的后处理
+	 * @return 回复消息的载荷；如果无法接收消息（例如因超时），
+	 * 则可能为 {@code null}
 	 */
 	@Nullable
 	<T> T convertSendAndReceive(

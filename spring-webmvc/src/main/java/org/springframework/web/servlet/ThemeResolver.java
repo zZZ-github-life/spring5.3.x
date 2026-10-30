@@ -48,18 +48,18 @@ public interface ThemeResolver {
 	/**
 	 * 通过给定的请求解析当前主题名称。
 	 * 在任何情况下都应返回默认主题作为回退。
-	 * @param request the request to be used for resolution
-	 * @return the current theme name
+	 * @param request 用于解析的请求
+	 * @return 当前主题名称
 	 */
 	String resolveThemeName(HttpServletRequest request);
 
 	/**
 	 * 将当前主题名称设置为给定的名称。
-	 * @param request the request to be used for theme name modification
-	 * @param response the response to be used for theme name modification
-	 * @param themeName the new theme name ({@code null} or empty to reset it)
-	 * @throws UnsupportedOperationException if the ThemeResolver implementation
-	 * does not support dynamic changing of the theme
+	 * @param request 用于修改主题名称的请求
+	 * @param response 用于修改主题名称的响应
+	 * @param themeName 新的主题名称（{@code null} 或空表示重置）
+	 * @throws UnsupportedOperationException 如果 ThemeResolver 实现不支持
+	 * 动态更改主题
 	 */
 	void setThemeName(HttpServletRequest request, @Nullable HttpServletResponse response, @Nullable String themeName);
 

@@ -32,8 +32,8 @@ public abstract class SupplierUtils {
 	/**
 	 * 解析给定的 {@code Supplier}，获取其结果；如果该 supplier 本身为 {@code null}，则立即返回
 	 * {@code null}。
-	 * @param supplier the supplier to resolve
-	 * @return the supplier's result, or {@code null} if none
+	 * @param supplier 要解析的 supplier
+	 * @return supplier 的结果，如果没有则为 {@code null}
 	 */
 	@Nullable
 	public static <T> T resolve(@Nullable Supplier<T> supplier) {

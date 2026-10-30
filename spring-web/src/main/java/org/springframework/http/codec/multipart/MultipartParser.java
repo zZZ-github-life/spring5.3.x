@@ -87,11 +87,11 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 
 	/**
 	 * 将给定的 {@link DataBuffer} 对象流解析为 {@link Token} 对象流。
-	 * @param buffers the input buffers
-	 * @param boundary the multipart boundary, as found in the {@code Content-Type} header
-	 * @param maxHeadersSize the maximum buffered header size
-	 * @param headersCharset the charset to use for decoding headers
-	 * @return a stream of parsed tokens
+	 * @param buffers 输入缓冲区
+	 * @param boundary multipart 边界，来自 {@code Content-Type} 头
+	 * @param maxHeadersSize 缓冲头的最大大小
+	 * @param headersCharset 用于解码头的字符集
+	 * @return 解析得到的 Token 流
 	 */
 	public static Flux<Token> parse(Flux<DataBuffer> buffers, byte[] boundary, int maxHeadersSize,
 			Charset headersCharset) {

@@ -139,8 +139,7 @@ public abstract class SchedulerAccessor implements ResourceLoaderAware {
 	/**
 	 * 向此 FactoryBean 创建的 Scheduler 注册
 	 * Quartz Calendar 对象列表，供 Trigger 引用。
-	 * @param calendars a Map with calendar names as keys as Calendar
-	 * objects as values
+	 * @param calendars 以日历名称为键、Calendar 对象为值的 Map
 	 * @see org.quartz.Calendar
 	 */
 	public void setCalendars(Map<String, Calendar> calendars) {
@@ -272,9 +271,9 @@ public abstract class SchedulerAccessor implements ResourceLoaderAware {
 	/**
 	 * 将给定的 job 添加到 Scheduler（如果尚不存在）。
 	 * 如果设置了 "overwriteExistingJobs"，则在任何情况下都会覆盖。
-	 * @param jobDetail the job to add
-	 * @return {@code true} if the job was actually added,
-	 * {@code false} if it already existed before
+	 * @param jobDetail 要添加的作业
+	 * @return 如果作业实际被添加，则为 {@code true}；
+	 * 如果它之前已存在，则为 {@code false}
 	 * @see #setOverwriteExistingJobs
 	 */
 	private boolean addJobToScheduler(JobDetail jobDetail) throws SchedulerException {
@@ -290,9 +289,9 @@ public abstract class SchedulerAccessor implements ResourceLoaderAware {
 	/**
 	 * 将给定的 trigger 添加到 Scheduler（如果尚不存在）。
 	 * 如果设置了 "overwriteExistingJobs"，则在任何情况下都会覆盖。
-	 * @param trigger the trigger to add
-	 * @return {@code true} if the trigger was actually added,
-	 * {@code false} if it already existed before
+	 * @param trigger 要添加的触发器
+	 * @return 如果触发器实际被添加，则为 {@code true}；
+	 * 如果它之前已存在，则为 {@code false}
 	 * @see #setOverwriteExistingJobs
 	 */
 	private boolean addTriggerToScheduler(Trigger trigger) throws SchedulerException {

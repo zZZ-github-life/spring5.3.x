@@ -53,12 +53,12 @@ public abstract class RemoteInvocationBasedExporter extends RemoteExporter {
 	 * 将给定的远程调用应用到给定的目标对象。默认实现委托给 RemoteInvocationExecutor。
 	 * <p>可以在子类中覆盖此方法以实现自定义调用行为，例如应用来自自定义 RemoteInvocation 子类的额外调
 	 * 用参数。请注意，最好使用可复用的自定义 RemoteInvocationExecutor 策略。
-	 * @param invocation the remote invocation
-	 * @param targetObject the target object to apply the invocation to
-	 * @return the invocation result
-	 * @throws NoSuchMethodException if the method name could not be resolved
-	 * @throws IllegalAccessException if the method could not be accessed
-	 * @throws InvocationTargetException if the method invocation resulted in an exception
+	 * @param invocation 远程调用
+	 * @param targetObject 要对其应用该调用的目标对象
+	 * @return 调用结果
+	 * @throws NoSuchMethodException 如果无法解析方法名
+	 * @throws IllegalAccessException 如果无法访问该方法
+	 * @throws InvocationTargetException 如果方法调用导致异常
 	 * @see RemoteInvocationExecutor#invoke
 	 */
 	protected Object invoke(RemoteInvocation invocation, Object targetObject)
@@ -95,9 +95,9 @@ public abstract class RemoteInvocationBasedExporter extends RemoteExporter {
 	 * 默认实现创建一个普通的 RemoteInvocationResult。
 	 * <p>可以在子类中覆盖此方法以实现自定义调用行为，例如返回额外的上下文信息。请注意，这不在
 	 * RemoteInvocationExecutor 策略的覆盖范围内！
-	 * @param invocation the remote invocation
-	 * @param targetObject the target object to apply the invocation to
-	 * @return the invocation result
+	 * @param invocation 远程调用
+	 * @param targetObject 要对其应用该调用的目标对象
+	 * @return 调用结果
 	 * @see #invoke
 	 */
 	protected RemoteInvocationResult invokeAndCreateResult(RemoteInvocation invocation, Object targetObject) {

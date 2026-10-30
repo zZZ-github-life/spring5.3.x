@@ -61,9 +61,9 @@ public abstract class TagUtils {
 	 * 确定给定输入 {@code String} 的作用域。
 	 * <p>如果该 {@code String} 不匹配 'request'、'session'、
 	 * 'page' 或 'application'，此方法将返回 {@link PageContext#PAGE_SCOPE}。
-	 * @param scope the {@code String} to inspect
-	 * @return the scope found, or {@link PageContext#PAGE_SCOPE} if no scope matched
-	 * @throws IllegalArgumentException if the supplied {@code scope} is {@code null}
+	 * @param scope 要检查的 {@code String}
+	 * @return 找到的作用域；如果没有匹配的作用域，则为 {@link PageContext#PAGE_SCOPE}
+	 * @throws IllegalArgumentException 如果提供的 {@code scope} 为 {@code null}
 	 */
 	public static int getScope(String scope) {
 		Assert.notNull(scope, "Scope to search for cannot be null");
@@ -83,13 +83,13 @@ public abstract class TagUtils {
 
 	/**
 	 * 确定提供的 {@link Tag} 是否具有提供类型的任何祖先标签。
-	 * @param tag the tag whose ancestors are to be checked
-	 * @param ancestorTagClass the ancestor {@link Class} being searched for
-	 * @return {@code true} if the supplied {@link Tag} has any ancestor tag
-	 * of the supplied type
-	 * @throws IllegalArgumentException if either of the supplied arguments is {@code null};
-	 * or if the supplied {@code ancestorTagClass} is not type-assignable to
-	 * the {@link Tag} class
+	 * @param tag 要检查其祖先的标签
+	 * @param ancestorTagClass 要查找的祖先 {@link Class}
+	 * @return 如果提供的 {@link Tag} 具有给定类型的祖先标签，
+	 * 则返回 {@code true}
+	 * @throws IllegalArgumentException 如果提供的任一参数为 {@code null}；
+	 * 或提供的 {@code ancestorTagClass} 无法赋值给
+	 * {@link Tag} 类型
 	 */
 	public static boolean hasAncestorOfType(Tag tag, Class<?> ancestorTagClass) {
 		Assert.notNull(tag, "Tag cannot be null");
@@ -111,16 +111,16 @@ public abstract class TagUtils {
 	/**
 	 * 确定提供的 {@link Tag} 是否具有提供类型的任何祖先标签，
 	 * 如果没有，则抛出 {@link IllegalStateException}。
-	 * @param tag the tag whose ancestors are to be checked
-	 * @param ancestorTagClass the ancestor {@link Class} being searched for
-	 * @param tagName the name of the {@code tag}; for example '{@code option}'
-	 * @param ancestorTagName the name of the ancestor {@code tag}; for example '{@code select}'
-	 * @throws IllegalStateException if the supplied {@code tag} does not
-	 * have a tag of the supplied {@code parentTagClass} as an ancestor
-	 * @throws IllegalArgumentException if any of the supplied arguments is {@code null},
-	 * or in the case of the {@link String}-typed arguments, is composed wholly
-	 * of whitespace; or if the supplied {@code ancestorTagClass} is not
-	 * type-assignable to the {@link Tag} class
+	 * @param tag 要检查其祖先的标签
+	 * @param ancestorTagClass 要查找的祖先 {@link Class}
+	 * @param tagName {@code tag} 的名称；例如 '{@code option}'
+	 * @param ancestorTagName 祖先 {@code tag} 的名称；例如 '{@code select}'
+	 * @throws IllegalStateException 如果提供的 {@code tag} 没有类型为
+	 * 给定 {@code parentTagClass} 的祖先标签
+	 * @throws IllegalArgumentException 如果提供的任一参数为 {@code null}，
+	 * 或对于 {@link String} 类型的参数全部由空白组成；
+	 * 或提供的 {@code ancestorTagClass} 无法赋值给
+	 * {@link Tag} 类型
 	 * @see #hasAncestorOfType(javax.servlet.jsp.tagext.Tag, Class)
 	 */
 	public static void assertHasAncestorOfType(Tag tag, Class<?> ancestorTagClass, String tagName,

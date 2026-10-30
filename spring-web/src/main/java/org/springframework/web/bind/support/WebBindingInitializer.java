@@ -31,15 +31,15 @@ public interface WebBindingInitializer {
 
 	/**
 	 * 初始化给定的 DataBinder。
-	 * @param binder the DataBinder to initialize
+	 * @param binder 要初始化的 DataBinder
 	 * @since 5.0
 	 */
 	void initBinder(WebDataBinder binder);
 
 	/**
 	 * 为给定（Servlet）请求初始化给定的 DataBinder。
-	 * @param binder the DataBinder to initialize
-	 * @param request the web request that the data binding happens within
+	 * @param binder 要初始化的 DataBinder
+	 * @param request 数据绑定所在的 Web 请求
 	 * @deprecated as of 5.0 in favor of {@link #initBinder(WebDataBinder)}
 	 */
 	@Deprecated

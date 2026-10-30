@@ -31,7 +31,7 @@ public interface ArgumentAware {
 
 	/**
 	 * 供嵌套的 spring:argument 标签将其值传递给父标签的回调钩子。
-	 * @param argument the result of the nested {@code spring:argument} tag
+	 * @param argument 嵌套 {@code spring:argument} 标签的结果
 	 */
 	void addArgument(@Nullable Object argument) throws JspTagException;
 

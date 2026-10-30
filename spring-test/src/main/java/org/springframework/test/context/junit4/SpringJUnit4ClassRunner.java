@@ -113,7 +113,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 
 	/**
 	 * 构造一个新的 {@code SpringJUnit4ClassRunner}，并初始化一个 {@link TestContextManager}，以为标准 JUnit 测试提供 Spring 测试功能。
-	 * @param clazz the test class to be run
+	 * @param clazz 要运行的测试类
 	 * @see #createTestContextManager(Class)
 	 */
 	public SpringJUnit4ClassRunner(Class<?> clazz) throws InitializationError {
@@ -128,7 +128,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	/**
 	 * 为所提供的测试类创建一个新的 {@link TestContextManager}。
 	 * <p>可由子类重写。
-	 * @param clazz the test class to be managed
+	 * @param clazz 要管理的测试类
 	 */
 	protected TestContextManager createTestContextManager(Class<?> clazz) {
 		return new TestContextManager(clazz);
@@ -293,7 +293,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	 * 获取所提供的{@linkplain FrameworkMethod 测试方法}预期抛出的 {@code exception}。
 	 * <p>支持 JUnit 的 {@link Test#expected() @Test(expected=...)} 注解。
 	 * <p>可由子类重写。
-	 * @return the expected exception, or {@code null} if none was specified
+	 * @return 预期的异常；如果未指定，则为 {@code null}
 	 */
 	@Nullable
 	protected Class<? extends Throwable> getExpectedException(FrameworkMethod frameworkMethod) {
@@ -304,8 +304,8 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	/**
 	 * 执行与 {@link BlockJUnit4ClassRunner#withPotentialTimeout(FrameworkMethod, Object, Statement)} 相同的逻辑，但额外支持 Spring 的 {@code @Timed} 注解。
 	 * <p>同时支持 Spring 的 {@link org.springframework.test.annotation.Timed @Timed} 和 JUnit 的 {@link Test#timeout() @Test(timeout=...)} 注解，但不能同时使用两者。
-	 * @return either a {@link SpringFailOnTimeout}, a {@link FailOnTimeout},
-	 * or the supplied {@link Statement} as appropriate
+	 * @return 根据情况返回 {@link SpringFailOnTimeout}、{@link FailOnTimeout}
+	 * 或所提供的 {@link Statement}
 	 * @see #getSpringTimeout(FrameworkMethod)
 	 * @see #getJUnitTimeout(FrameworkMethod)
 	 */
@@ -340,7 +340,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 
 	/**
 	 * 从所提供的{@linkplain FrameworkMethod 测试方法}上的 {@link Test @Test} 注解中获取配置的 JUnit {@code timeout}。
-	 * @return the timeout, or {@code 0} if none was specified
+	 * @return 超时时间；如果未指定，则为 {@code 0}
 	 */
 	protected long getJUnitTimeout(FrameworkMethod frameworkMethod) {
 		Test test = frameworkMethod.getAnnotation(Test.class);
@@ -349,7 +349,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 
 	/**
 	 * 从所提供的{@linkplain FrameworkMethod 测试方法}上的 {@link org.springframework.test.annotation.Timed @Timed} 注解中获取配置的 Spring 特有 {@code timeout}。
-	 * @return the timeout, or {@code 0} if none was specified
+	 * @return 超时时间；如果未指定，则为 {@code 0}
 	 * @see TestAnnotationUtils#getTimeout(Method)
 	 */
 	protected long getSpringTimeout(FrameworkMethod frameworkMethod) {

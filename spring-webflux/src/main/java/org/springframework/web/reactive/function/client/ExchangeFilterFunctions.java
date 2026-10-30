@@ -52,8 +52,8 @@ public abstract class ExchangeFilterFunctions {
 	/**
 	 * 从响应正文消费最多指定数量的字节，如果还有更多数据到达则取消。
 	 * <p>内部委托给 {@link DataBufferUtils#takeUntilByteCount}。
-	 * @param maxByteCount the limit as number of bytes
-	 * @return the filter to limit the response size with
+	 * @param maxByteCount 以字节数表示的限制
+	 * @return 用于限制响应大小的过滤器
 	 * @since 5.1
 	 */
 	public static ExchangeFilterFunction limitResponseSize(long maxByteCount) {
@@ -66,9 +66,9 @@ public abstract class ExchangeFilterFunctions {
 
 	/**
 	 * 返回当给定 {@link HttpStatus} 谓词匹配时生成错误信号的过滤器。
-	 * @param statusPredicate the predicate to check the HTTP status with
-	 * @param exceptionFunction the function to create the exception
-	 * @return the filter to generate an error signal
+	 * @param statusPredicate 用于检查 HTTP 状态的谓词
+	 * @param exceptionFunction 用于创建异常的函数
+	 * @return 用于生成错误信号的过滤器
 	 */
 	public static ExchangeFilterFunction statusError(Predicate<HttpStatus> statusPredicate,
 			Function<ClientResponse, ? extends Throwable> exceptionFunction) {
@@ -83,9 +83,9 @@ public abstract class ExchangeFilterFunctions {
 
 	/**
 	 * 返回通过 {@link HttpHeaders#setBasicAuth(String)} 和 {@link HttpHeaders#encodeBasicAuth(String, String, Charset)} 将 HTTP 基本认证应用到请求头的过滤器。
-	 * @param username the username
-	 * @param password the password
-	 * @return the filter to add authentication headers with
+	 * @param username 用户名
+	 * @param password 密码
+	 * @return 用于添加认证头的过滤器
 	 * @see HttpHeaders#encodeBasicAuth(String, String, Charset)
 	 * @see HttpHeaders#setBasicAuth(String)
 	 */
@@ -99,7 +99,7 @@ public abstract class ExchangeFilterFunctions {
 
 	/**
 	 * {@link #basicAuthentication(String, String)} 的变体，从{@link #BASIC_AUTHENTICATION_CREDENTIALS_ATTRIBUTE 请求属性}中查找 {@link Credentials Credentials}。
-	 * @return the filter to use
+	 * @return 要使用的过滤器
 	 * @see Credentials
 	 * @deprecated as of Spring 5.1 in favor of using
 	 * {@link HttpHeaders#setBasicAuth(String, String)} while building the request.
@@ -135,8 +135,8 @@ public abstract class ExchangeFilterFunctions {
 
 		/**
 		 * 使用给定的用户名和密码创建新的 {@code Credentials} 实例。
-		 * @param username the username
-		 * @param password the password
+		 * @param username 用户名
+		 * @param password 密码
 		 */
 		public Credentials(String username, String password) {
 			Assert.notNull(username, "'username' must not be null");
@@ -147,10 +147,11 @@ public abstract class ExchangeFilterFunctions {
 
 		/**
 		 * 返回一个 {@literal Consumer}，它将给定用户名和密码存储为 {@code Credentials} 类型的请求属性，随后由 {@link ExchangeFilterFunctions#basicAuthentication()} 使用。
-		 * @param username the username
-		 * @param password the password
-		 * @return a consumer that can be passed into
+		 * @param username 用户名
+		 * @param password 密码
+		 * @return 可传入
 		 * {@linkplain ClientRequest.Builder#attributes(java.util.function.Consumer)}
+		 * 的消费者
 		 * @see ClientRequest.Builder#attributes(java.util.function.Consumer)
 		 * @see #BASIC_AUTHENTICATION_CREDENTIALS_ATTRIBUTE
 		 */

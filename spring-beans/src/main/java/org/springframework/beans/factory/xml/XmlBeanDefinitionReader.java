@@ -135,8 +135,8 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * 为给定的 Bean 工厂创建新的 XmlBeanDefinitionReader。
-	 * @param registry the BeanFactory to load bean definitions into,
-	 * in the form of a BeanDefinitionRegistry
+	 * @param registry 要将 Bean 定义加载到的 BeanFactory，
+	 * 以 BeanDefinitionRegistry 的形式提供
 	 */
 	public XmlBeanDefinitionReader(BeanDefinitionRegistry registry) {
 		super(registry);
@@ -273,7 +273,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	/**
 	 * 指定要使用的 {@link BeanDefinitionDocumentReader} 实现，它负责实际读取 XML Bean 定义文档。<p>默
 	 * 认为 {@link DefaultBeanDefinitionDocumentReader}。
-	 * @param documentReaderClass the desired BeanDefinitionDocumentReader implementation class
+	 * @param documentReaderClass 所需的 BeanDefinitionDocumentReader 实现类
 	 */
 	public void setDocumentReaderClass(Class<? extends BeanDefinitionDocumentReader> documentReaderClass) {
 		this.documentReaderClass = documentReaderClass;
@@ -282,9 +282,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * 从指定的 XML 文件加载 Bean 定义。
-	 * @param resource the resource descriptor for the XML file
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * @param resource XML 文件的资源描述符
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeanDefinitionStoreException 在加载或解析出错时
 	 */
 	@Override
 	public int loadBeanDefinitions(Resource resource) throws BeanDefinitionStoreException {
@@ -293,10 +293,10 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * 从指定的 XML 文件加载 Bean 定义。
-	 * @param encodedResource the resource descriptor for the XML file,
-	 * allowing to specify an encoding to use for parsing the file
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * @param encodedResource XML 文件的资源描述符，
+	 * 可指定解析该文件时使用的编码
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeanDefinitionStoreException 在加载或解析出错时
 	 */
 	public int loadBeanDefinitions(EncodedResource encodedResource) throws BeanDefinitionStoreException {
 		Assert.notNull(encodedResource, "EncodedResource must not be null");
@@ -332,9 +332,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * 从指定的 XML 文件加载 Bean 定义。
-	 * @param inputSource the SAX InputSource to read from
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * @param inputSource 要从中读取的 SAX InputSource
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeanDefinitionStoreException 在加载或解析出错时
 	 */
 	public int loadBeanDefinitions(InputSource inputSource) throws BeanDefinitionStoreException {
 		return loadBeanDefinitions(inputSource, "resource loaded through SAX InputSource");
@@ -342,11 +342,10 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * 从指定的 XML 文件加载 Bean 定义。
-	 * @param inputSource the SAX InputSource to read from
-	 * @param resourceDescription a description of the resource
-	 * (can be {@code null} or empty)
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * @param inputSource 要从中读取的 SAX InputSource
+	 * @param resourceDescription 资源的描述（可以为 {@code null} 或为空）
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeanDefinitionStoreException 在加载或解析出错时
 	 */
 	public int loadBeanDefinitions(InputSource inputSource, @Nullable String resourceDescription)
 			throws BeanDefinitionStoreException {
@@ -357,10 +356,10 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * 实际从指定的 XML 文件加载 Bean 定义。
-	 * @param inputSource the SAX InputSource to read from
-	 * @param resource the resource descriptor for the XML file
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * @param inputSource 要从中读取的 SAX InputSource
+	 * @param resource XML 文件的资源描述符
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeanDefinitionStoreException 在加载或解析出错时
 	 * @see #doLoadDocument
 	 * @see #registerBeanDefinitions
 	 */
@@ -402,10 +401,10 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * 使用配置的 DocumentLoader 实际加载指定的文档。
-	 * @param inputSource the SAX InputSource to read from
-	 * @param resource the resource descriptor for the XML file
-	 * @return the DOM Document
-	 * @throws Exception when thrown from the DocumentLoader
+	 * @param inputSource 要从中读取的 SAX InputSource
+	 * @param resource XML 文件的资源描述符
+	 * @return DOM 文档
+	 * @throws Exception 当由 DocumentLoader 抛出时
 	 * @see #setDocumentLoader
 	 * @see DocumentLoader#loadDocument
 	 */
@@ -472,10 +471,10 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	/**
 	 * 注册给定 DOM 文档中包含的 Bean 定义。由 {@code loadBeanDefinitions} 调用。<p>创建解析器类的新实
 	 * 例，并在其上调用 {@code registerBeanDefinitions}。
-	 * @param doc the DOM document
-	 * @param resource the resource descriptor (for context information)
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of parsing errors
+	 * @param doc DOM 文档
+	 * @param resource 资源描述符（用于提供上下文信息）
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeanDefinitionStoreException 在解析出错时
 	 * @see #loadBeanDefinitions
 	 * @see #setDocumentReaderClass
 	 * @see BeanDefinitionDocumentReader#registerBeanDefinitions

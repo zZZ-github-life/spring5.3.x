@@ -125,8 +125,7 @@ public class JobDetailFactoryBean
 	 * 数据库中）时，不要将 Spring 管理的 bean 或
 	 * ApplicationContext 引用放入 JobDataMap 中，
 	 * 而应放入 SchedulerContext 中。
-	 * @param jobDataAsMap a Map with String keys and any objects as values
-	 * (for example Spring-managed beans)
+	 * @param jobDataAsMap 以 String 为键、任意对象为值的 Map（例如由 Spring 管理的 Bean）
 	 * @see org.springframework.scheduling.quartz.SchedulerFactoryBean#setSchedulerContextAsMap
 	 */
 	public void setJobDataAsMap(Map<String, ?> jobDataAsMap) {

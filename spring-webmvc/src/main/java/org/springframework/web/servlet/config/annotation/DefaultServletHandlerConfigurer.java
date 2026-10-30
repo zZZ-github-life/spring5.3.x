@@ -50,7 +50,7 @@ public class DefaultServletHandlerConfigurer {
 
 	/**
 	 * 创建一个 {@link DefaultServletHandlerConfigurer} 实例。
-	 * @param servletContext the ServletContext to use.
+	 * @param servletContext 要使用的 ServletContext。
 	 */
 	public DefaultServletHandlerConfigurer(ServletContext servletContext) {
 		Assert.notNull(servletContext, "ServletContext is required");

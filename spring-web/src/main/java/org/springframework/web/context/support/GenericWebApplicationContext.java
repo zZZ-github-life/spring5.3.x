@@ -94,7 +94,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 
 	/**
 	 * 为给定的 {@link ServletContext} 创建一个新的 {@code GenericWebApplicationContext}。
-	 * @param servletContext the {@code ServletContext} to run in
+	 * @param servletContext 要在其中运行的 {@code ServletContext}
 	 * @see #registerBeanDefinition
 	 * @see #refresh
 	 */
@@ -105,7 +105,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 	/**
 	 * 使用给定的 {@link DefaultListableBeanFactory} 创建一个新的
 	 * {@code GenericWebApplicationContext}。
-	 * @param beanFactory the {@code DefaultListableBeanFactory} instance to use for this context
+	 * @param beanFactory 用于此上下文的 {@code DefaultListableBeanFactory} 实例
 	 * @see #setServletContext
 	 * @see #registerBeanDefinition
 	 * @see #refresh
@@ -117,8 +117,8 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 	/**
 	 * 使用给定的 {@link DefaultListableBeanFactory} 和 {@link ServletContext}
 	 * 创建一个新的 {@code GenericWebApplicationContext}。
-	 * @param beanFactory the {@code DefaultListableBeanFactory} instance to use for this context
-	 * @param servletContext the {@code ServletContext} to run in
+	 * @param beanFactory 用于此上下文的 {@code DefaultListableBeanFactory} 实例
+	 * @param servletContext 要在其中运行的 {@code ServletContext}
 	 * @see #registerBeanDefinition
 	 * @see #refresh
 	 */

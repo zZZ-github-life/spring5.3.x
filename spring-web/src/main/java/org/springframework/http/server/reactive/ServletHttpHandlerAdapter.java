@@ -99,9 +99,9 @@ public class ServletHttpHandlerAdapter implements Servlet {
 	/**
 	 * 通过从 {@link #init(ServletConfig)} 检查 Servlet 注册信息，
 	 * 返回部署该 Servlet 的 Servlet 路径。
-	 * @return the path, or an empty string if the Servlet is deployed without
-	 * a prefix (i.e. "/" or "/*"), or {@code null} if this method is invoked
-	 * before the {@link #init(ServletConfig)} Servlet container callback.
+	 * @return 该路径；如果 Servlet 部署时没有前缀（即 “/” 或 “/*”），
+	 * 则为空字符串；如果此方法在 {@link #init(ServletConfig)}
+	 * Servlet 容器回调之前被调用，则为 {@code null}。
 	 */
 	@Nullable
 	public String getServletPath() {

@@ -40,9 +40,9 @@ public interface Transport {
 
 	/**
 	 * 连接传输。
-	 * @param request the transport request.
-	 * @param webSocketHandler the application handler to delegate lifecycle events to.
-	 * @return a future to indicate success or failure to connect.
+	 * @param request 传输请求。
+	 * @param webSocketHandler 要向其委托生命周期事件的应用程序处理器。
+	 * @return 指示连接成功或失败的 future。
 	 */
 	ListenableFuture<WebSocketSession> connect(TransportRequest request, WebSocketHandler webSocketHandler);
 

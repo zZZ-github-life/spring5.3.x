@@ -92,8 +92,8 @@ public class ExponentialBackOff implements BackOff {
 
 	/**
 	 * 使用提供的设置创建一个实例。
-	 * @param initialInterval the initial interval in milliseconds
-	 * @param multiplier the multiplier (should be greater than or equal to 1)
+	 * @param initialInterval 初始间隔，单位为毫秒
+	 * @param multiplier 乘数（应大于或等于 1）
 	 */
 	public ExponentialBackOff(long initialInterval, double multiplier) {
 		checkMultiplier(multiplier);

@@ -91,7 +91,7 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 	/**
 	 * 使用给定的 {@link HttpClient} 实例创建
 	 * HttpComponentsClientHttpRequestFactory 的新实例。
-	 * @param httpClient the HttpClient instance to use for this request executor
+	 * @param httpClient 要用于此请求执行器的 HttpClient 实例
 	 */
 	public HttpComponentsHttpInvokerRequestExecutor(HttpClient httpClient) {
 		this(httpClient, null);
@@ -136,7 +136,7 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 	 * 超时值为 0 表示无限超时。
 	 * <p>可以通过在自定义的 {@link HttpClient} 上指定
 	 * {@link RequestConfig} 实例来配置其他属性。
-	 * @param timeout the timeout value in milliseconds
+	 * @param timeout 以毫秒为单位的超时值
 	 * @see RequestConfig#getConnectTimeout()
 	 */
 	public void setConnectTimeout(int timeout) {
@@ -149,7 +149,7 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 	 * 超时值为 0 表示无限超时。
 	 * <p>可以通过在自定义的 {@link HttpClient} 上指定
 	 * {@link RequestConfig} 实例来配置其他属性。
-	 * @param connectionRequestTimeout the timeout value to request a connection in milliseconds
+	 * @param connectionRequestTimeout 以毫秒为单位的连接请求超时值
 	 * @see RequestConfig#getConnectionRequestTimeout()
 	 */
 	public void setConnectionRequestTimeout(int connectionRequestTimeout) {
@@ -161,7 +161,7 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 	 * 超时值为 0 表示无限超时。
 	 * <p>可以通过在自定义的 {@link HttpClient} 上指定
 	 * {@link RequestConfig} 实例来配置其他属性。
-	 * @param timeout the timeout value in milliseconds
+	 * @param timeout 以毫秒为单位的超时值
 	 * @see #DEFAULT_READ_TIMEOUT_MILLISECONDS
 	 * @see RequestConfig#getSocketTimeout()
 	 */
@@ -207,10 +207,9 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 	 * 为给定的配置创建 HttpPost。
 	 * <p>默认实现创建一个标准的 HttpPost，
 	 * 并将 "application/x-java-serialized-object" 作为 "Content-Type" 头。
-	 * @param config the HTTP invoker configuration that specifies the
-	 * target service
-	 * @return the HttpPost instance
-	 * @throws java.io.IOException if thrown by I/O methods
+	 * @param config 指定目标服务的 HTTP invoker 配置
+	 * @return HttpPost 实例
+	 * @throws java.io.IOException 如果由 I/O 方法抛出则传播
 	 */
 	protected HttpPost createHttpPost(HttpInvokerClientConfiguration config) throws IOException {
 		HttpPost httpPost = new HttpPost(config.getServiceUrl());
@@ -240,9 +239,8 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 	 * 表示不应设置自定义请求配置，而应使用 {@link HttpClient} 的默认配置。
 	 * <p>默认实现会尝试将客户端的默认配置与此实例的
 	 * 本地自定义配置（如果有）合并。
-	 * @param config the HTTP invoker configuration that specifies the
-	 * target service
-	 * @return the RequestConfig to use
+	 * @param config 指定目标服务的 HTTP invoker 配置
+	 * @return 要使用的 RequestConfig
 	 */
 	@Nullable
 	protected RequestConfig createRequestConfig(HttpInvokerClientConfiguration config) {
@@ -280,11 +278,11 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 	 * <p>默认实现仅将已序列化的调用设置为
 	 * HttpPost 的请求体。可重写此方法，例如以特定编码写入，
 	 * 并可能设置适当的 HTTP 请求头。
-	 * @param config the HTTP invoker configuration that specifies the target service
-	 * @param httpPost the HttpPost to set the request body on
-	 * @param baos the ByteArrayOutputStream that contains the serialized
-	 * RemoteInvocation object
-	 * @throws java.io.IOException if thrown by I/O methods
+	 * @param config 指定目标服务的 HTTP invoker 配置
+	 * @param httpPost 要为其设置请求体的 HttpPost
+	 * @param baos 包含序列化后 RemoteInvocation 对象的
+	 * ByteArrayOutputStream
+	 * @throws java.io.IOException 如果由 I/O 方法抛出则传播
 	 */
 	protected void setRequestBody(
 			HttpInvokerClientConfiguration config, HttpPost httpPost, ByteArrayOutputStream baos)
@@ -297,11 +295,11 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 
 	/**
 	 * 执行给定的 HttpPost 实例。
-	 * @param config the HTTP invoker configuration that specifies the target service
-	 * @param httpClient the HttpClient to execute on
-	 * @param httpPost the HttpPost to execute
-	 * @return the resulting HttpResponse
-	 * @throws java.io.IOException if thrown by I/O methods
+	 * @param config 指定目标服务的 HTTP invoker 配置
+	 * @param httpClient 要对其执行请求的 HttpClient
+	 * @param httpPost 要执行的 HttpPost
+	 * @return 得到的 HttpResponse
+	 * @throws java.io.IOException 如果由 I/O 方法抛出则传播
 	 */
 	protected HttpResponse executeHttpPost(
 			HttpInvokerClientConfiguration config, HttpClient httpClient, HttpPost httpPost)
@@ -315,9 +313,9 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 	 * 如果响应不对应于成功的 HTTP 响应，则抛出异常。
 	 * <p>默认实现拒绝 2xx 之外的任何 HTTP 状态码，以避免
 	 * 解析响应体并尝试从损坏的流中反序列化。
-	 * @param config the HTTP invoker configuration that specifies the target service
-	 * @param response the resulting HttpResponse to validate
-	 * @throws java.io.IOException if validation failed
+	 * @param config 指定目标服务的 HTTP invoker 配置
+	 * @param response 要校验的得到的 HttpResponse
+	 * @throws java.io.IOException 如果校验失败则抛出
 	 */
 	protected void validateResponse(HttpInvokerClientConfiguration config, HttpResponse response)
 			throws IOException {
@@ -335,10 +333,10 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 	 * <p>默认实现仅获取 HttpPost 的响应体流。
 	 * 如果响应被识别为 GZIP 响应，则会将 InputStream 包装在
 	 * GZIPInputStream 中。
-	 * @param config the HTTP invoker configuration that specifies the target service
-	 * @param httpResponse the resulting HttpResponse to read the response body from
-	 * @return an InputStream for the response body
-	 * @throws java.io.IOException if thrown by I/O methods
+	 * @param config 指定目标服务的 HTTP invoker 配置
+	 * @param httpResponse 要从中读取响应体的得到的 HttpResponse
+	 * @return 响应体的 InputStream
+	 * @throws java.io.IOException 如果由 I/O 方法抛出则传播
 	 * @see #isGzipResponse
 	 * @see java.util.zip.GZIPInputStream
 	 */
@@ -357,8 +355,8 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 	 * 确定给定的响应是否为 GZIP 响应。
 	 * <p>默认实现检查 HTTP "Content-Encoding"
 	 * 头是否包含 "gzip"（不区分大小写）。
-	 * @param httpResponse the resulting HttpResponse to check
-	 * @return whether the given response indicates a GZIP response
+	 * @param httpResponse 要检查的得到的 HttpResponse
+	 * @return 给定响应是否表示 GZIP 响应
 	 */
 	protected boolean isGzipResponse(HttpResponse httpResponse) {
 		Header encodingHeader = httpResponse.getFirstHeader(HTTP_HEADER_CONTENT_ENCODING);

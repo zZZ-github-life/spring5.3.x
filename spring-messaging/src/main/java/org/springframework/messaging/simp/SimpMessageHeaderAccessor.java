@@ -189,7 +189,7 @@ public class SimpMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	/**
 	 * 提供在调用 {@link #setUser(Principal)} 时（如果发生）要调用的回调。
 	 * 这在入站通道内部用于通过拦截器检测基于令牌的认证。
-	 * @param callback the callback to invoke
+	 * @param callback 要调用的回调
 	 * @since 5.1.9
 	 */
 	public void setUserChangeCallback(Consumer<Principal> callback) {

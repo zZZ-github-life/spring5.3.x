@@ -32,7 +32,7 @@ import org.springframework.test.web.servlet.setup.MockMvcConfigurer;
  * 简单委托给具体子类提供的 {@link ConfigurableMockMvcBuilder}。
  * @author Rossen Stoyanchev
  * @since 5.3
- * @param <B> the type of the concrete subclass spec
+ * @param <B> 具体子类规格的类型
  */
 abstract class AbstractMockMvcServerSpec<B extends MockMvcWebTestClient.MockMvcServerSpec<B>>
 		implements MockMvcWebTestClient.MockMvcServerSpec<B> {

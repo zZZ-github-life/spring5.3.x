@@ -53,9 +53,9 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 
 	/**
 	 * 根据 0 个或多个 "consumes" 表达式创建新实例。
-	 * @param consumes expressions with the syntax described in
-	 * {@link RequestMapping#consumes()}; if 0 expressions are provided,
-	 * the condition will match to every request
+	 * @param consumes 表达式，语法见 {@link RequestMapping#consumes()}；
+	 * 如果提供的表达式为 0 个，
+	 * 则该条件将匹配所有请求
 	 */
 	public ConsumesRequestCondition(String... consumes) {
 		this(consumes, null);
@@ -63,8 +63,8 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 
 	/**
 	 * 使用 "consumes" 和 "header" 表达式创建新实例。头名称不是 'Content-Type' 或未定义头值的 "header" 表达式将被忽略。如果总共提供 0 个表达式，则该条件将匹配所有请求。
-	 * @param consumes as described in {@link RequestMapping#consumes()}
-	 * @param headers as described in {@link RequestMapping#headers()}
+	 * @param consumes 如 {@link RequestMapping#consumes()} 所述
+	 * @param headers 如 {@link RequestMapping#headers()} 所述
 	 */
 	public ConsumesRequestCondition(String[] consumes, String[] headers) {
 		this.expressions = parseExpressions(consumes, headers);
@@ -145,7 +145,7 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 	 * 此条件是否应要求请求包含正文。
 	 * <p>默认设置为 {@code true}，此时假定需要请求正文，该条件匹配 "Content-Type" 头，或回退到 "Content-Type: application/octet-stream"。
 	 * <p>如果设置为 {@code false} 且请求没有正文，则该条件自动匹配，即无需检查表达式。
-	 * @param bodyRequired whether requests are expected to have a body
+	 * @param bodyRequired 是否期望请求具有正文
 	 * @since 5.2
 	 */
 	public void setBodyRequired(boolean bodyRequired) {
@@ -171,10 +171,10 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 
 	/**
 	 * 检查所包含的任何媒体类型表达式是否匹配给定请求的 'Content-Type' 头，并返回一个保证仅包含匹配表达式的实例。匹配通过 {@link MediaType#includes(MediaType)} 执行。
-	 * @param exchange the current exchange
-	 * @return the same instance if the condition contains no expressions;
-	 * or a new condition with matching expressions only;
-	 * or {@code null} if no expressions match.
+	 * @param exchange 当前交换
+	 * @return 如果该条件不包含任何表达式，则返回同一实例；
+	 * 否则返回仅包含匹配表达式的新条件；
+	 * 如果没有表达式匹配，则返回 {@code null}。
 	 */
 	@Override
 	public ConsumesRequestCondition getMatchingCondition(ServerWebExchange exchange) {

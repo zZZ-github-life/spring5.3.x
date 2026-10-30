@@ -56,7 +56,7 @@ class StaxResult extends SAXResult {
 
 	/**
 	 * 使用指定的 {@code XMLEventWriter} 构造一个新的 {@code StaxResult} 实例。
-	 * @param eventWriter the {@code XMLEventWriter} to write to
+	 * @param eventWriter 要写入的 {@code XMLEventWriter}
 	 */
 	public StaxResult(XMLEventWriter eventWriter) {
 		StaxEventHandler handler = new StaxEventHandler(eventWriter);
@@ -67,7 +67,7 @@ class StaxResult extends SAXResult {
 
 	/**
 	 * 使用指定的 {@code XMLStreamWriter} 构造一个新的 {@code StaxResult} 实例。
-	 * @param streamWriter the {@code XMLStreamWriter} to write to
+	 * @param streamWriter 要写入的 {@code XMLStreamWriter}
 	 */
 	public StaxResult(XMLStreamWriter streamWriter) {
 		StaxStreamHandler handler = new StaxStreamHandler(streamWriter);
@@ -81,7 +81,7 @@ class StaxResult extends SAXResult {
 	 * 返回此 {@code StaxResult} 使用的 {@code XMLEventWriter}。
 	 * <p>如果此 {@code StaxResult} 是使用 {@code XMLStreamWriter} 创建的，
 	 * 则结果为 {@code null}。
-	 * @return the StAX event writer used by this result
+	 * @return 该结果使用的 StAX 事件写入器
 	 * @see #StaxResult(javax.xml.stream.XMLEventWriter)
 	 */
 	@Nullable
@@ -93,7 +93,7 @@ class StaxResult extends SAXResult {
 	 * 返回此 {@code StaxResult} 使用的 {@code XMLStreamWriter}。
 	 * <p>如果此 {@code StaxResult} 是使用 {@code XMLEventConsumer} 创建的，
 	 * 则结果为 {@code null}。
-	 * @return the StAX stream writer used by this result
+	 * @return 该结果使用的 StAX 流写入器
 	 * @see #StaxResult(javax.xml.stream.XMLStreamWriter)
 	 */
 	@Nullable
@@ -104,7 +104,7 @@ class StaxResult extends SAXResult {
 
 	/**
 	 * 抛出一个 {@code UnsupportedOperationException}。
-	 * @throws UnsupportedOperationException always
+	 * @throws UnsupportedOperationException 总是
 	 */
 	@Override
 	public void setHandler(ContentHandler handler) {
@@ -113,7 +113,7 @@ class StaxResult extends SAXResult {
 
 	/**
 	 * 抛出一个 {@code UnsupportedOperationException}。
-	 * @throws UnsupportedOperationException always
+	 * @throws UnsupportedOperationException 总是
 	 */
 	@Override
 	public void setLexicalHandler(LexicalHandler handler) {

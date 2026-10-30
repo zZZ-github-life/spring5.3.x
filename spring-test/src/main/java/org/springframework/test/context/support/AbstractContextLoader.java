@@ -92,8 +92,8 @@ public abstract class AbstractContextLoader implements SmartContextLoader {
 	 * </ul>
 	 * </li>
 	 * </ul>
-	 * @param context the newly created application context
-	 * @param mergedConfig the merged context configuration
+	 * @param context 新创建的应用上下文
+	 * @param mergedConfig 合并后的上下文配置
 	 * @since 3.2
 	 * @see TestPropertySourceUtils#addPropertiesFilesToEnvironment
 	 * @see TestPropertySourceUtils#addInlinedPropertiesToEnvironment
@@ -144,8 +144,8 @@ public abstract class AbstractContextLoader implements SmartContextLoader {
 	/**
 	 * 在 Bean 定义已加载到上下文<i>之后</i>但上下文刷新<i>之前</i>，定制由该 {@code ContextLoader} 创建的 {@link ConfigurableApplicationContext}。
 	 * <p>默认实现委托给已注册到所提供的 {@code mergedConfig} 的所有 {@link MergedContextConfiguration#getContextCustomizers context customizers}。
-	 * @param context the newly created application context
-	 * @param mergedConfig the merged context configuration
+	 * @param context 新创建的应用上下文
+	 * @param mergedConfig 合并后的上下文配置
 	 * @since 4.3
 	 */
 	protected void customizeContext(ConfigurableApplicationContext context, MergedContextConfiguration mergedConfig) {
@@ -159,11 +159,10 @@ public abstract class AbstractContextLoader implements SmartContextLoader {
 
 	/**
 	 * 如果所提供的 {@code locations} 为 {@code null} 或<em>空</em>，且 {@link #isGenerateDefaultLocations()} 返回 {@code true}，则将针对指定的 {@link Class class} 和配置的 {@linkplain #getResourceSuffixes() 资源后缀}生成（即检测）默认位置；否则，将按需{@linkplain #modifyLocations 修改}所提供的 {@code locations} 并返回。
-	 * @param clazz the class with which the locations are associated: to be
-	 * used when generating default locations
-	 * @param locations the unmodified locations to use for loading the
-	 * application context (can be {@code null} or empty)
-	 * @return a processed array of application context resource locations
+	 * @param clazz 位置所关联的类：在生成默认位置时使用
+	 * @param locations 用于加载应用上下文的未修改位置
+	 * （可以为 {@code null} 或空）
+	 * @return 处理后的应用上下文资源位置数组
 	 * @since 2.5
 	 * @see #isGenerateDefaultLocations()
 	 * @see #generateDefaultLocations(Class)
@@ -182,8 +181,8 @@ public abstract class AbstractContextLoader implements SmartContextLoader {
 	 * <p>例如，如果所提供的类是 {@code com.example.MyTest}，则生成的位置将包含单个字符串，其值为 {@code "classpath:com/example/MyTest<suffix>"}，其中 {@code <suffix>} 是第一个配置的 {@linkplain #getResourceSuffixes() 资源后缀}的值，且该后缀对应的生成位置在类路径中实际存在。
 	 * <p>从 Spring 3.1 开始，此方法的实现遵循 {@link SmartContextLoader} SPI 中定义的契约。具体而言，此方法将<em>预先</em>验证生成的默认位置确实存在。如果不存在，此方法将记录一条警告并返回空数组。
 	 * <p>子类可以重写此方法以实现不同的<em>默认位置生成</em>策略。
-	 * @param clazz the class for which the default locations are to be generated
-	 * @return an array of default application context resource locations
+	 * @param clazz 要为其生成默认位置的类
+	 * @return 默认应用上下文资源位置数组
 	 * @since 2.5
 	 * @see #getResourceSuffixes()
 	 */
@@ -221,9 +220,9 @@ public abstract class AbstractContextLoader implements SmartContextLoader {
 	 * 生成所提供位置数组的修改版本并返回。
 	 * <p>默认实现简单地委托给 {@link TestContextResourceUtils#convertToClasspathResourcePaths}。
 	 * <p>子类可以重写此方法以实现不同的<em>位置修改</em>策略。
-	 * @param clazz the class with which the locations are associated
-	 * @param locations the resource locations to be modified
-	 * @return an array of modified application context resource locations
+	 * @param clazz 位置所关联的类
+	 * @param locations 要修改的资源位置
+	 * @return 修改后的应用上下文资源位置数组
 	 * @since 2.5
 	 */
 	protected String[] modifyLocations(Class<?> clazz, String... locations) {
@@ -234,7 +233,7 @@ public abstract class AbstractContextLoader implements SmartContextLoader {
 	 * 确定如果传递给 {@link #processLocations(Class, String...)} 的 {@code locations} 为 {@code null} 或空，是否应生成<em>默认</em>资源位置。
 	 * <p>从 Spring 3.1 开始，此方法的语义已被扩展，以涵盖对默认资源位置或默认配置类的检测。因此，如果传递给 {@link #processContextConfiguration(ContextConfigurationAttributes)} 的 {@link ContextConfigurationAttributes configuration attributes} 中的 {@code classes} 为 {@code null} 或空，此方法还可用于确定是否应检测<em>默认</em>配置类。
 	 * <p>子类可以重写此方法以更改默认行为。
-	 * @return always {@code true} by default
+	 * @return 默认情况下始终为 {@code true}
 	 * @since 2.5
 	 */
 	protected boolean isGenerateDefaultLocations() {
@@ -244,7 +243,7 @@ public abstract class AbstractContextLoader implements SmartContextLoader {
 	/**
 	 * 获取在检测默认位置时要追加到 {@link ApplicationContext} 资源位置的后缀。
 	 * <p>默认实现只是将 {@link #getResourceSuffix()} 返回的值包装在单元素数组中，但子类可以重写此方法以支持多个后缀。
-	 * @return the resource suffixes; never {@code null} or empty
+	 * @return 资源后缀；从不为 {@code null} 或空
 	 * @since 4.1
 	 * @see #generateDefaultLocations(Class)
 	 */
@@ -255,7 +254,7 @@ public abstract class AbstractContextLoader implements SmartContextLoader {
 	/**
 	 * 获取在检测默认位置时要追加到 {@link ApplicationContext} 资源位置的后缀。
 	 * <p>子类必须提供此方法的一个实现，返回单个后缀。或者，子类可以提供此方法的<em>无操作</em>实现，并重写 {@link #getResourceSuffixes()} 以提供多个自定义后缀。
-	 * @return the resource suffix; never {@code null} or empty
+	 * @return 资源后缀；从不为 {@code null} 或空
 	 * @since 2.5
 	 * @see #generateDefaultLocations(Class)
 	 * @see #getResourceSuffixes()

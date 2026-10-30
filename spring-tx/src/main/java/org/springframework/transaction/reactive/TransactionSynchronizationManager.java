@@ -87,8 +87,8 @@ public class TransactionSynchronizationManager {
 
 	/**
 	 * 检查给定键是否有资源绑定到当前线程。
-	 * @param key the key to check (usually the resource factory)
-	 * @return if there is a value bound to the current thread
+	 * @param key 要检查的键（通常是资源工厂）
+	 * @return 当前线程是否绑定了值
 	 */
 	public boolean hasResource(Object key) {
 		Object actualKey = TransactionSynchronizationUtils.unwrapResourceIfNecessary(key);
@@ -98,9 +98,9 @@ public class TransactionSynchronizationManager {
 
 	/**
 	 * 检索绑定到当前线程的给定键的资源。
-	 * @param key the key to check (usually the resource factory)
-	 * @return a value bound to the current thread (usually the active
-	 * resource object), or {@code null} if none
+	 * @param key 要检查的键（通常是资源工厂）
+	 * @return 绑定到当前线程的值（通常是活动资源对象），
+	 * 如果没有则为 {@code null}
 	 */
 	@Nullable
 	public Object getResource(Object key) {
@@ -118,9 +118,9 @@ public class TransactionSynchronizationManager {
 
 	/**
 	 * 将给定资源绑定到给定键的当前上下文。
-	 * @param key the key to bind the value to (usually the resource factory)
-	 * @param value the value to bind (usually the active resource object)
-	 * @throws IllegalStateException if there is already a value bound to the context
+	 * @param key 要绑定值的键（通常是资源工厂）
+	 * @param value 要绑定的值（通常是活动资源对象）
+	 * @throws IllegalStateException 如果上下文中已绑定了值
 	 */
 	public void bindResource(Object key, Object value) throws IllegalStateException {
 		Object actualKey = TransactionSynchronizationUtils.unwrapResourceIfNecessary(key);
@@ -185,7 +185,7 @@ public class TransactionSynchronizationManager {
 	/**
 	 * 为当前上下文激活事务同步。
 	 * 由事务管理器在事务开始时调用。
-	 * @throws IllegalStateException if synchronization is already active
+	 * @throws IllegalStateException 如果同步已处于激活状态
 	 */
 	public void initSynchronization() throws IllegalStateException {
 		if (isSynchronizationActive()) {
@@ -200,8 +200,8 @@ public class TransactionSynchronizationManager {
 	 * <p>请注意，同步可以实现
 	 * {@link org.springframework.core.Ordered}接口。
 	 * 它们将根据其顺序值（如果有）按顺序执行。
-	 * @param synchronization the synchronization object to register
-	 * @throws IllegalStateException if transaction synchronization is not active
+	 * @param synchronization 要注册的同步对象
+	 * @throws IllegalStateException 如果事务同步未激活
 	 * @see org.springframework.core.Ordered
 	 */
 	public void registerSynchronization(TransactionSynchronization synchronization)
@@ -217,8 +217,8 @@ public class TransactionSynchronizationManager {
 
 	/**
 	 * 返回当前上下文所有已注册同步的不可修改快照列表。
-	 * @return unmodifiable List of TransactionSynchronization instances
-	 * @throws IllegalStateException if synchronization is not active
+	 * @return TransactionSynchronization 实例的不可修改 List
+	 * @throws IllegalStateException 如果同步未激活
 	 * @see TransactionSynchronization
 	 */
 	public List<TransactionSynchronization> getSynchronizations() throws IllegalStateException {
@@ -243,7 +243,7 @@ public class TransactionSynchronizationManager {
 	/**
 	 * 为当前上下文停用事务同步。
 	 * 由事务管理器在事务清理时调用。
-	 * @throws IllegalStateException if synchronization is not active
+	 * @throws IllegalStateException 如果同步未激活
 	 */
 	public void clearSynchronization() throws IllegalStateException {
 		if (!isSynchronizationActive()) {
@@ -260,7 +260,7 @@ public class TransactionSynchronizationManager {
 	/**
 	 * 暴露当前事务的名称（如果有）。
 	 * 由事务管理器在事务开始和清理时调用。
-	 * @param name the name of the transaction, or {@code null} to reset it
+	 * @param name 事务名称，或 {@code null} 以重置
 	 * @see org.springframework.transaction.TransactionDefinition#getName()
 	 */
 	public void setCurrentTransactionName(@Nullable String name) {
@@ -281,8 +281,8 @@ public class TransactionSynchronizationManager {
 	/**
 	 * 为当前事务暴露只读标志。
 	 * 由事务管理器在事务开始和清理时调用。
-	 * @param readOnly {@code true} to mark the current transaction
-	 * as read-only; {@code false} to reset such a read-only marker
+	 * @param readOnly {@code true} 表示将当前事务标记为只读；
+	 * {@code false} 表示重置该只读标记
 	 * @see org.springframework.transaction.TransactionDefinition#isReadOnly()
 	 */
 	public void setCurrentTransactionReadOnly(boolean readOnly) {
@@ -305,9 +305,9 @@ public class TransactionSynchronizationManager {
 	/**
 	 * 为当前事务暴露隔离级别。
 	 * 由事务管理器在事务开始和清理时调用。
-	 * @param isolationLevel the isolation level to expose, according to the
-	 * R2DBC Connection constants (equivalent to the corresponding Spring
-	 * TransactionDefinition constants), or {@code null} to reset it
+	 * @param isolationLevel 要公开的隔离级别，依据 R2DBC Connection 常量
+	 * （等同于相应的 Spring TransactionDefinition 常量），
+	 * 或 {@code null} 以重置
 	 * @see org.springframework.transaction.TransactionDefinition#ISOLATION_READ_UNCOMMITTED
 	 * @see org.springframework.transaction.TransactionDefinition#ISOLATION_READ_COMMITTED
 	 * @see org.springframework.transaction.TransactionDefinition#ISOLATION_REPEATABLE_READ
@@ -322,9 +322,9 @@ public class TransactionSynchronizationManager {
 	 * 返回当前事务的隔离级别（如果有）。
 	 * 供资源管理代码在准备新创建的资源时调用
 	 * （例如R2DBC Connection）。
-	 * @return the currently exposed isolation level, according to the
-	 * R2DBC Connection constants (equivalent to the corresponding Spring
-	 * TransactionDefinition constants), or {@code null} if none
+	 * @return 当前公开的隔离级别，依据 R2DBC Connection 常量
+	 * （等同于相应的 Spring TransactionDefinition 常量），
+	 * 如果没有则为 {@code null}
 	 * @see org.springframework.transaction.TransactionDefinition#ISOLATION_READ_UNCOMMITTED
 	 * @see org.springframework.transaction.TransactionDefinition#ISOLATION_READ_COMMITTED
 	 * @see org.springframework.transaction.TransactionDefinition#ISOLATION_REPEATABLE_READ
@@ -339,8 +339,8 @@ public class TransactionSynchronizationManager {
 	/**
 	 * 暴露当前是否有实际事务处于活跃状态。
 	 * 由事务管理器在事务开始和清理时调用。
-	 * @param active {@code true} to mark the current context as being associated
-	 * with an actual transaction; {@code false} to reset that marker
+	 * @param active {@code true} 表示将当前上下文标记为与实际事务关联；
+	 * {@code false} 表示重置该标记
 	 */
 	public void setActualTransactionActive(boolean active) {
 		this.transactionContext.setActualTransactionActive(active);

@@ -51,8 +51,8 @@ public interface TransactionAttribute extends TransactionDefinition {
 
 	/**
 	 * 是否应在给定异常时回滚?
-	 * @param ex the exception to evaluate
-	 * @return whether to perform a rollback or not
+	 * @param ex 要评估的异常
+	 * @return 是否执行回滚
 	 */
 	boolean rollbackOn(Throwable ex);
 

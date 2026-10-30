@@ -78,8 +78,8 @@ public abstract class JmsAccessor implements InitializingBean {
 
 	/**
 	 * 获取实际使用的 ConnectionFactory。
-	 * @return the ConnectionFactory (never {@code null})
-	 * @throws IllegalStateException in case of no ConnectionFactory set
+	 * @return ConnectionFactory（永不为 {@code null}）
+	 * @throws IllegalStateException 未设置 ConnectionFactory 时
 	 * @since 5.0
 	 */
 	protected final ConnectionFactory obtainConnectionFactory() {
@@ -117,7 +117,7 @@ public abstract class JmsAccessor implements InitializingBean {
 	 * 通过 JMS {@link Session} 接口中对应常量的名称来设置 JMS 确认模式，
 	 * 例如 "CLIENT_ACKNOWLEDGE"。
 	 * <p>如果要使用供应商对确认模式的扩展，请改用 {@link #setSessionAcknowledgeMode(int)}。
-	 * @param constantName the name of the {@link Session} acknowledge mode constant
+	 * @param constantName {@link Session} 确认模式常量的名称
 	 * @see javax.jms.Session#AUTO_ACKNOWLEDGE
 	 * @see javax.jms.Session#CLIENT_ACKNOWLEDGE
 	 * @see javax.jms.Session#DUPS_OK_ACKNOWLEDGE
@@ -134,7 +134,7 @@ public abstract class JmsAccessor implements InitializingBean {
 	 * <p>请注意，在 EJB 内部，{@code create(Queue/Topic)Session(boolean transacted, int acknowledgeMode)}
 	 * 方法的参数不会被考虑。根据 EJB 中的事务上下文，容器会自行决定这些值。
 	 * 参见 EJB 规范第 17.3.5 节。
-	 * @param sessionAcknowledgeMode the acknowledgement mode constant
+	 * @param sessionAcknowledgeMode 确认模式常量
 	 * @see javax.jms.Session#AUTO_ACKNOWLEDGE
 	 * @see javax.jms.Session#CLIENT_ACKNOWLEDGE
 	 * @see javax.jms.Session#DUPS_OK_ACKNOWLEDGE
@@ -163,8 +163,8 @@ public abstract class JmsAccessor implements InitializingBean {
 	 * 将指定的受检 {@link javax.jms.JMSException JMSException} 转换为
 	 * 等价的 Spring 运行时 {@link org.springframework.jms.JmsException JmsException}。
 	 * <p>默认实现委托给 {@link JmsUtils#convertJmsAccessException} 方法。
-	 * @param ex the original checked {@link JMSException} to convert
-	 * @return the Spring runtime {@link JmsException} wrapping {@code ex}
+	 * @param ex 要转换的原始受检 {@link JMSException}
+	 * @return 包装 {@code ex} 的 Spring 运行时 {@link JmsException}
 	 * @see JmsUtils#convertJmsAccessException
 	 */
 	protected JmsException convertJmsAccessException(JMSException ex) {
@@ -174,8 +174,8 @@ public abstract class JmsAccessor implements InitializingBean {
 	/**
 	 * 通过此模板的 ConnectionFactory 创建一个 JMS Connection。
 	 * <p>此实现使用 JMS 1.1 API。
-	 * @return the new JMS Connection
-	 * @throws JMSException if thrown by JMS API methods
+	 * @return 新的 JMS Connection
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 * @see javax.jms.ConnectionFactory#createConnection()
 	 */
 	protected Connection createConnection() throws JMSException {
@@ -191,9 +191,9 @@ public abstract class JmsAccessor implements InitializingBean {
 	/**
 	 * 为给定的 Connection 创建一个 JMS Session。
 	 * <p>此实现使用 JMS 1.1 API。
-	 * @param con the JMS Connection to create a Session for
-	 * @return the new JMS Session
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param con 要为其创建 Session 的 JMS Connection
+	 * @return 新的 JMS Session
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 * @see javax.jms.Connection#createSession(boolean, int)
 	 */
 	protected Session createSession(Connection con) throws JMSException {
@@ -203,9 +203,9 @@ public abstract class JmsAccessor implements InitializingBean {
 	/**
 	 * 判断给定的 Session 是否处于客户端确认模式。
 	 * <p>此实现使用 JMS 1.1 API。
-	 * @param session the JMS Session to check
-	 * @return whether the given Session is in client acknowledge mode
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
+	 * @param session 要检查的 Session
+	 * @return 给定的 Session 是否处于客户端确认模式
+	 * @throws javax.jms.JMSException 如果由 JMS API 方法抛出
 	 * @see javax.jms.Session#getAcknowledgeMode()
 	 * @see javax.jms.Session#CLIENT_ACKNOWLEDGE
 	 */

@@ -199,8 +199,8 @@ public class CaffeineCacheManager implements CacheManager {
 	 * {@code registerCustomCache("myCache", Caffeine.newBuilder().maximumSize(10).build())}
 	 * <p>注意，其他缓存，无论是通过 {@link #setCacheNames} 静态指定的还是按需动态构建的，
 	 * 仍然使用缓存管理器配置中的通用设置。
- 	 * @param name the name of the cache
-	 * @param cache the custom Caffeine Cache instance to register
+	 * @param name 缓存的名称
+	 * @param cache 要注册的自定义 Caffeine Cache 实例
 	 * @since 5.2.8
 	 * @see #adaptCaffeineCache
 	 */
@@ -212,9 +212,9 @@ public class CaffeineCacheManager implements CacheManager {
 	/**
 	 * 将给定的新的本地 Caffeine Cache 实例适配为 Spring 的 {@link Cache} 抽象，
 	 * 对应指定的缓存名称。
-	 * @param name the name of the cache
-	 * @param cache the native Caffeine Cache instance
-	 * @return the Spring CaffeineCache adapter (or a decorator thereof)
+	 * @param name 缓存的名称
+	 * @param cache 原生 Caffeine Cache 实例
+	 * @return Spring 的 CaffeineCache 适配器（或它的装饰器）
 	 * @since 5.2.8
 	 * @see CaffeineCache
 	 * @see #isAllowNullValues()
@@ -228,8 +228,8 @@ public class CaffeineCacheManager implements CacheManager {
 	 * 为指定的缓存名称构建通用的 {@link CaffeineCache} 实例。
 	 * <p>委托给 {@link #adaptCaffeineCache} 作为到 Spring 缓存抽象的适配方法
 	 * （允许集中装饰等），传入一个新构建的本地 Caffeine Cache 实例。
-	 * @param name the name of the cache
-	 * @return the Spring CaffeineCache adapter (or a decorator thereof)
+	 * @param name 缓存的名称
+	 * @return Spring 的 CaffeineCache 适配器（或它的装饰器）
 	 * @see #adaptCaffeineCache
 	 * @see #createNativeCaffeineCache
 	 */
@@ -240,8 +240,8 @@ public class CaffeineCacheManager implements CacheManager {
 	/**
 	 * 使用此缓存管理器上指定的通用 Caffeine 配置，
 	 * 为指定的缓存名称构建通用的 Caffeine Cache 实例。
-	 * @param name the name of the cache
-	 * @return the native Caffeine Cache instance
+	 * @param name 缓存的名称
+	 * @return 原生 Caffeine Cache 实例
 	 * @see #createCaffeineCache
 	 */
 	protected com.github.benmanes.caffeine.cache.Cache<Object, Object> createNativeCaffeineCache(String name) {

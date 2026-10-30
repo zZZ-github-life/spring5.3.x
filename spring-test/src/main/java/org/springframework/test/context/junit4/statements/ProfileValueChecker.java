@@ -50,11 +50,10 @@ public class ProfileValueChecker extends Statement {
 
 	/**
 	 * 构造一个新的 {@code ProfileValueChecker} 语句。
-	 * @param next the next {@code Statement} in the execution chain;
-	 * never {@code null}
-	 * @param testClass the test class to check; never {@code null}
-	 * @param testMethod the test method to check; may be {@code null} if
-	 * this {@code ProfileValueChecker} is being applied at the class level
+	 * @param next 执行链中的下一个 {@code Statement}；从不为 {@code null}
+	 * @param testClass 要检查的测试类；从不为 {@code null}
+	 * @param testMethod 要检查的测试方法；如果该 {@code ProfileValueChecker} 应用在类级别，
+	 * 则可以为 {@code null}
 	 */
 	public ProfileValueChecker(Statement next, Class<?> testClass, @Nullable Method testMethod) {
 		Assert.notNull(next, "The next statement must not be null");
@@ -69,8 +68,8 @@ public class ProfileValueChecker extends Statement {
 	 * 确定由 {@linkplain #ProfileValueChecker 构造函数}参数指定的测试在当前环境中是否<em>启用</em>（根据 {@link IfProfileValue &#064;IfProfileValue} 注解的配置）。
 	 * <p>如果测试未标注 {@code @IfProfileValue}，则视为已启用。
 	 * <p>如果测试未启用，此方法将通过失败的假设中止执行链的进一步评估；否则，此方法将仅评估执行链中的下一个 {@link Statement}。
-	 * @throws AssumptionViolatedException if the test is disabled
-	 * @throws Throwable if evaluation of the next statement fails
+	 * @throws AssumptionViolatedException 如果测试被禁用
+	 * @throws Throwable 如果对下一个语句的求值失败
 	 * @see ProfileValueUtils#isTestEnabledInThisEnvironment(Class)
 	 * @see ProfileValueUtils#isTestEnabledInThisEnvironment(Method, Class)
 	 */

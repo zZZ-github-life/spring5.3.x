@@ -40,9 +40,9 @@ public interface DeferredResultProcessingInterceptor {
 	/**
 	 * 在并发处理开始之前立即调用，所在线程与启动并发处理的线程相同。此方法可用于在开始使用给定
 	 * {@code DeferredResult} 进行并发处理之前捕获状态。
-	 * @param request the current request
-	 * @param deferredResult the DeferredResult for the current request
-	 * @throws Exception in case of errors
+	 * @param request 当前请求
+	 * @param deferredResult 当前请求的 DeferredResult
+	 * @throws Exception 发生错误时
 	 */
 	default <T> void beforeConcurrentHandling(NativeWebRequest request, DeferredResult<T> deferredResult)
 			throws Exception {
@@ -52,9 +52,9 @@ public interface DeferredResultProcessingInterceptor {
 	 * 在并发处理开始之后立即调用，所在线程与启动并发处理的线程相同。此方法可用于检测使用给定
 	 * {@code DeferredResult} 的并发处理已经开始。
 	 * <p>{@code DeferredResult} 可能已经被设置，例如在其创建时或由另一个线程设置。
-	 * @param request the current request
-	 * @param deferredResult the DeferredResult for the current request
-	 * @throws Exception in case of errors
+	 * @param request 当前请求
+	 * @param deferredResult 当前请求的 DeferredResult
+	 * @throws Exception 发生错误时
 	 */
 	default <T> void preProcess(NativeWebRequest request, DeferredResult<T> deferredResult)
 			throws Exception {
@@ -67,10 +67,10 @@ public interface DeferredResultProcessingInterceptor {
 	 * 此时也已准备好处理并发结果。
 	 * <p>如果 {@code DeferredResult} 是通过接受默认超时结果的构造函数创建的，
 	 * 此方法也可能在超时之后被调用。
-	 * @param request the current request
-	 * @param deferredResult the DeferredResult for the current request
-	 * @param concurrentResult the result to which the {@code DeferredResult}
-	 * @throws Exception in case of errors
+	 * @param request 当前请求
+	 * @param deferredResult 当前请求的 DeferredResult
+	 * @param concurrentResult 要设置到 {@code DeferredResult} 的结果
+	 * @throws Exception 发生错误时
 	 */
 	default <T> void postProcess(NativeWebRequest request, DeferredResult<T> deferredResult,
 			Object concurrentResult) throws Exception {
@@ -81,13 +81,12 @@ public interface DeferredResultProcessingInterceptor {
 	 * 实现可以调用
 	 * {@link DeferredResult#setResult(Object) setResult} 或
 	 * {@link DeferredResult#setErrorResult(Object) setErrorResult} 来恢复处理。
-	 * @param request the current request
-	 * @param deferredResult the DeferredResult for the current request; if the
-	 * {@code DeferredResult} is set, then concurrent processing is resumed and
-	 * subsequent interceptors are not invoked
-	 * @return {@code true} if processing should continue, or {@code false} if
-	 * other interceptors should not be invoked
-	 * @throws Exception in case of errors
+	 * @param request 当前请求
+	 * @param deferredResult 当前请求的 DeferredResult；如果已设置 {@code DeferredResult}，
+	 * 则恢复并发处理，并且不调用后续拦截器
+	 * @return 如果应继续处理则返回 {@code true}；
+	 * 如果不应调用其他拦截器则返回 {@code false}
+	 * @throws Exception 发生错误时
 	 */
 	default <T> boolean handleTimeout(NativeWebRequest request, DeferredResult<T> deferredResult)
 			throws Exception {
@@ -100,14 +99,13 @@ public interface DeferredResultProcessingInterceptor {
 	 * 实现可以调用
 	 * {@link DeferredResult#setResult(Object) setResult} 或
 	 * {@link DeferredResult#setErrorResult(Object) setErrorResult} 来恢复处理。
-	 * @param request the current request
-	 * @param deferredResult the DeferredResult for the current request; if the
-	 * {@code DeferredResult} is set, then concurrent processing is resumed and
-	 * subsequent interceptors are not invoked
-	 * @param t the error that occurred while request processing
-	 * @return {@code true} if error handling should continue, or {@code false} if
-	 * other interceptors should be bypassed and not be invoked
-	 * @throws Exception in case of errors
+	 * @param request 当前请求
+	 * @param deferredResult 当前请求的 DeferredResult；如果已设置 {@code DeferredResult}，
+	 * 则恢复并发处理，并且不调用后续拦截器
+	 * @param t 请求处理期间发生的错误
+	 * @return 如果应继续错误处理则返回 {@code true}；
+	 * 如果应跳过其他拦截器且不调用它们则返回 {@code false}
+	 * @throws Exception 发生错误时
 	 */
 	default <T> boolean handleError(NativeWebRequest request, DeferredResult<T> deferredResult,
 			Throwable t) throws Exception {
@@ -118,9 +116,9 @@ public interface DeferredResultProcessingInterceptor {
 	/**
 	 * 当异步请求因任何原因（包括超时和网络错误）完成时，从容器线程调用。
 	 * 此方法可用于检测 {@code DeferredResult} 实例是否已不再可用。
-	 * @param request the current request
-	 * @param deferredResult the DeferredResult for the current request
-	 * @throws Exception in case of errors
+	 * @param request 当前请求
+	 * @param deferredResult 当前请求的 DeferredResult
+	 * @throws Exception 发生错误时
 	 */
 	default <T> void afterCompletion(NativeWebRequest request, DeferredResult<T> deferredResult)
 			throws Exception {

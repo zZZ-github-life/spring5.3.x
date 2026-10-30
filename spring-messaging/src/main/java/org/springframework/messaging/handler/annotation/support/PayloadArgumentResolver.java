@@ -36,7 +36,7 @@ public class PayloadArgumentResolver extends PayloadMethodArgumentResolver {
 
 	/**
 	 * 使用给定 {@link MessageConverter} 创建新的 {@code PayloadArgumentResolver}。
-	 * @param messageConverter the MessageConverter to use (required)
+	 * @param messageConverter 要使用的 MessageConverter（必需）
 	 * @since 4.0.9
 	 */
 	public PayloadArgumentResolver(MessageConverter messageConverter) {
@@ -46,8 +46,8 @@ public class PayloadArgumentResolver extends PayloadMethodArgumentResolver {
 	/**
 	 * 使用给定 {@link MessageConverter} 和 {@link Validator}
 	 * 创建新的 {@code PayloadArgumentResolver}。
-	 * @param messageConverter the MessageConverter to use (required)
-	 * @param validator the Validator to use (optional)
+	 * @param messageConverter 要使用的 MessageConverter（必需）
+	 * @param validator 要使用的 Validator（可选）
 	 */
 	public PayloadArgumentResolver(MessageConverter messageConverter, @Nullable Validator validator) {
 		this(messageConverter, validator, true);
@@ -56,11 +56,10 @@ public class PayloadArgumentResolver extends PayloadMethodArgumentResolver {
 	/**
 	 * 使用给定 {@link MessageConverter} 和 {@link Validator}
 	 * 创建新的 {@code PayloadArgumentResolver}。
-	 * @param messageConverter the MessageConverter to use (required)
-	 * @param validator the Validator to use (optional)
-	 * @param useDefaultResolution if "true" (the default) this resolver supports
-	 * all parameters; if "false" then only arguments with the {@code @Payload}
-	 * annotation are supported.
+	 * @param messageConverter 要使用的 MessageConverter（必需）
+	 * @param validator 要使用的 Validator（可选）
+	 * @param useDefaultResolution 如果为 "true"（默认值），则该解析器支持所有参数；
+	 * 如果为 "false"，则仅支持带有 {@code @Payload} 注解的参数。
 	 */
 	public PayloadArgumentResolver(MessageConverter messageConverter, @Nullable Validator validator,
 			boolean useDefaultResolution) {

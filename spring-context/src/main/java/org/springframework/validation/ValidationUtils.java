@@ -43,12 +43,12 @@ public abstract class ValidationUtils {
 
 	/**
 	 * 为所提供的对象和 {@link Errors} 实例调用给定的 {@link Validator}。
-	 * @param validator the {@code Validator} to be invoked
-	 * @param target the object to bind the parameters to
-	 * @param errors the {@link Errors} instance that should store the errors
-	 * @throws IllegalArgumentException if either of the {@code Validator} or {@code Errors}
-	 * arguments is {@code null}, or if the supplied {@code Validator} does not
-	 * {@link Validator#supports(Class) support} the validation of the supplied object's type
+	 * @param validator 要调用的 {@code Validator}。
+	 * @param target 要绑定参数的对象。
+	 * @param errors 应存储错误的 {@link Errors} 实例。
+	 * @throws IllegalArgumentException 如果 {@code Validator} 或 {@code Errors}
+	 * 参数之一为 {@code null}，或者提供的 {@code Validator} 不
+	 * {@link Validator#supports(Class) 支持}校验所提供对象的类型。
 	 */
 	public static void invokeValidator(Validator validator, Object target, Errors errors) {
 		invokeValidator(validator, target, errors, (Object[]) null);
@@ -56,13 +56,13 @@ public abstract class ValidationUtils {
 
 	/**
 	 * 为所提供的对象和 {@link Errors} 实例调用给定的 {@link Validator}/{@link SmartValidator}。
-	 * @param validator the {@code Validator} to be invoked
-	 * @param target the object to bind the parameters to
-	 * @param errors the {@link Errors} instance that should store the errors
-	 * @param validationHints one or more hint objects to be passed to the validation engine
-	 * @throws IllegalArgumentException if either of the {@code Validator} or {@code Errors}
-	 * arguments is {@code null}, or if the supplied {@code Validator} does not
-	 * {@link Validator#supports(Class) support} the validation of the supplied object's type
+	 * @param validator 要调用的 {@code Validator}。
+	 * @param target 要绑定参数的对象。
+	 * @param errors 应存储错误的 {@link Errors} 实例。
+	 * @param validationHints 要传递给校验引擎的一个或多个提示对象。
+	 * @throws IllegalArgumentException 如果 {@code Validator} 或 {@code Errors}
+	 * 参数之一为 {@code null}，或者提供的 {@code Validator} 不
+	 * {@link Validator#supports(Class) 支持}校验所提供对象的类型。
 	 */
 	public static void invokeValidator(
 			Validator validator, Object target, Errors errors, @Nullable Object... validationHints) {
@@ -104,9 +104,9 @@ public abstract class ValidationUtils {
 	 *
 	 * <p>无需传入正在校验其字段的对象，因为 {@link Errors} 实例可以自行解析字段值（它通常会持有对目标
 	 * 对象的内部引用）。
-	 * @param errors the {@code Errors} instance to register errors on
-	 * @param field the field name to check
-	 * @param errorCode the error code, interpretable as message key
+	 * @param errors 用于注册错误的 {@code Errors} 实例。
+	 * @param field 要检查的字段名。
+	 * @param errorCode 错误代码，可作为消息键解释。
 	 */
 	public static void rejectIfEmpty(Errors errors, String field, String errorCode) {
 		rejectIfEmpty(errors, field, errorCode, null, null);
@@ -119,10 +119,10 @@ public abstract class ValidationUtils {
 	 *
 	 * <p>无需传入正在校验其字段的对象，因为 {@link Errors} 实例可以自行解析字段值（它通常会持有对目标
 	 * 对象的内部引用）。
-	 * @param errors the {@code Errors} instance to register errors on
-	 * @param field the field name to check
-	 * @param errorCode error code, interpretable as message key
-	 * @param defaultMessage fallback default message
+	 * @param errors 用于注册错误的 {@code Errors} 实例。
+	 * @param field 要检查的字段名。
+	 * @param errorCode 错误代码，可作为消息键解释。
+	 * @param defaultMessage 回退的默认消息。
 	 */
 	public static void rejectIfEmpty(Errors errors, String field, String errorCode, String defaultMessage) {
 		rejectIfEmpty(errors, field, errorCode, null, defaultMessage);
@@ -135,11 +135,11 @@ public abstract class ValidationUtils {
 	 *
 	 * <p>无需传入正在校验其字段的对象，因为 {@link Errors} 实例可以自行解析字段值（它通常会持有对目标
 	 * 对象的内部引用）。
-	 * @param errors the {@code Errors} instance to register errors on
-	 * @param field the field name to check
-	 * @param errorCode the error code, interpretable as message key
-	 * @param errorArgs the error arguments, for argument binding via MessageFormat
-	 * (can be {@code null})
+	 * @param errors 用于注册错误的 {@code Errors} 实例。
+	 * @param field 要检查的字段名。
+	 * @param errorCode 错误代码，可作为消息键解释。
+	 * @param errorArgs 错误参数，用于通过 MessageFormat 进行参数绑定
+	 * （可以为 {@code null}）。
 	 */
 	public static void rejectIfEmpty(Errors errors, String field, String errorCode, Object[] errorArgs) {
 		rejectIfEmpty(errors, field, errorCode, errorArgs, null);
@@ -152,12 +152,12 @@ public abstract class ValidationUtils {
 	 *
 	 * <p>无需传入正在校验其字段的对象，因为 {@link Errors} 实例可以自行解析字段值（它通常会持有对目标
 	 * 对象的内部引用）。
-	 * @param errors the {@code Errors} instance to register errors on
-	 * @param field the field name to check
-	 * @param errorCode the error code, interpretable as message key
-	 * @param errorArgs the error arguments, for argument binding via MessageFormat
-	 * (can be {@code null})
-	 * @param defaultMessage fallback default message
+	 * @param errors 用于注册错误的 {@code Errors} 实例。
+	 * @param field 要检查的字段名。
+	 * @param errorCode 错误代码，可作为消息键解释。
+	 * @param errorArgs 错误参数，用于通过 MessageFormat 进行参数绑定
+	 * （可以为 {@code null}）。
+	 * @param defaultMessage 回退的默认消息。
 	 */
 	public static void rejectIfEmpty(Errors errors, String field, String errorCode,
 			@Nullable Object[] errorArgs, @Nullable String defaultMessage) {
@@ -176,9 +176,9 @@ public abstract class ValidationUtils {
 	 *
 	 * <p>无需传入正在校验其字段的对象，因为 {@link Errors} 实例可以自行解析字段值（它通常会持有对目标
 	 * 对象的内部引用）。
-	 * @param errors the {@code Errors} instance to register errors on
-	 * @param field the field name to check
-	 * @param errorCode the error code, interpretable as message key
+	 * @param errors 用于注册错误的 {@code Errors} 实例。
+	 * @param field 要检查的字段名。
+	 * @param errorCode 错误代码，可作为消息键解释。
 	 */
 	public static void rejectIfEmptyOrWhitespace(Errors errors, String field, String errorCode) {
 		rejectIfEmptyOrWhitespace(errors, field, errorCode, null, null);
@@ -191,10 +191,10 @@ public abstract class ValidationUtils {
 	 *
 	 * <p>无需传入正在校验其字段的对象，因为 {@link Errors} 实例可以自行解析字段值（它通常会持有对目标
 	 * 对象的内部引用）。
-	 * @param errors the {@code Errors} instance to register errors on
-	 * @param field the field name to check
-	 * @param errorCode the error code, interpretable as message key
-	 * @param defaultMessage fallback default message
+	 * @param errors 用于注册错误的 {@code Errors} 实例。
+	 * @param field 要检查的字段名。
+	 * @param errorCode 错误代码，可作为消息键解释。
+	 * @param defaultMessage 回退的默认消息。
 	 */
 	public static void rejectIfEmptyOrWhitespace(
 			Errors errors, String field, String errorCode, String defaultMessage) {
@@ -209,11 +209,11 @@ public abstract class ValidationUtils {
 	 *
 	 * <p>无需传入正在校验其字段的对象，因为 {@link Errors} 实例可以自行解析字段值（它通常会持有对目标
 	 * 对象的内部引用）。
-	 * @param errors the {@code Errors} instance to register errors on
-	 * @param field the field name to check
-	 * @param errorCode the error code, interpretable as message key
-	 * @param errorArgs the error arguments, for argument binding via MessageFormat
-	 * (can be {@code null})
+	 * @param errors 用于注册错误的 {@code Errors} 实例。
+	 * @param field 要检查的字段名。
+	 * @param errorCode 错误代码，可作为消息键解释。
+	 * @param errorArgs 错误参数，用于通过 MessageFormat 进行参数绑定
+	 * （可以为 {@code null}）。
 	 */
 	public static void rejectIfEmptyOrWhitespace(
 			Errors errors, String field, String errorCode, @Nullable Object[] errorArgs) {
@@ -228,12 +228,12 @@ public abstract class ValidationUtils {
 	 *
 	 * <p>无需传入正在校验其字段的对象，因为 {@link Errors} 实例可以自行解析字段值（它通常会持有对目标
 	 * 对象的内部引用）。
-	 * @param errors the {@code Errors} instance to register errors on
-	 * @param field the field name to check
-	 * @param errorCode the error code, interpretable as message key
-	 * @param errorArgs the error arguments, for argument binding via MessageFormat
-	 * (can be {@code null})
-	 * @param defaultMessage fallback default message
+	 * @param errors 用于注册错误的 {@code Errors} 实例。
+	 * @param field 要检查的字段名。
+	 * @param errorCode 错误代码，可作为消息键解释。
+	 * @param errorArgs 错误参数，用于通过 MessageFormat 进行参数绑定
+	 * （可以为 {@code null}）。
+	 * @param defaultMessage 回退的默认消息。
 	 */
 	public static void rejectIfEmptyOrWhitespace(
 			Errors errors, String field, String errorCode, @Nullable Object[] errorArgs, @Nullable String defaultMessage) {

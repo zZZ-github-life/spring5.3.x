@@ -35,13 +35,13 @@ public interface ExchangeStrategies {
 
 	/**
 	 * 返回用于读取和解码响应正文的 {@link HttpMessageReader HttpMessageReaders}。
-	 * @return the message readers
+	 * @return 消息读取器
 	 */
 	List<HttpMessageReader<?>> messageReaders();
 
 	/**
 	 * 返回用于写入和编码请求正文的 {@link HttpMessageWriter HttpMessageWriters}。
-	 * @return the message writers
+	 * @return 消息写入器
 	 */
 	List<HttpMessageWriter<?>> messageWriters();
 
@@ -87,14 +87,14 @@ public interface ExchangeStrategies {
 
 		/**
 		 * 自定义客户端 HTTP 消息读写器列表。
-		 * @param consumer the consumer to customize the codecs
-		 * @return this builder
+		 * @param consumer 用于自定义编解码器的消费者
+		 * @return 此构建器
 		 */
 		Builder codecs(Consumer<ClientCodecConfigurer> consumer);
 
 		/**
 		 * 构建 {@link ExchangeStrategies}。
-		 * @return the built strategies
+		 * @return 构建的策略
 		 */
 		ExchangeStrategies build();
 	}

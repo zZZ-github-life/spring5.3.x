@@ -24,7 +24,7 @@ import java.util.Comparator;
  *
  * @author Keith Donald
  * @since 1.2.2
- * @param <T> the type of comparable objects that may be compared by this comparator
+ * @param <T> 该比较器可以比较的可比较对象类型
  * @see Comparable
  */
 public class ComparableComparator<T extends Comparable<T>> implements Comparator<T> {

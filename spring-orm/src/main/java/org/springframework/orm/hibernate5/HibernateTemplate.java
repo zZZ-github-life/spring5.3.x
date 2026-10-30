@@ -118,7 +118,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 
 	/**
 	 * 创建一个新的 HibernateTemplate 实例。
-	 * @param sessionFactory the SessionFactory to create Sessions with
+	 * @param sessionFactory 用于创建 Session 的 SessionFactory
 	 */
 	public HibernateTemplate(SessionFactory sessionFactory) {
 		setSessionFactory(sessionFactory);
@@ -143,8 +143,8 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 
 	/**
 	 * 获取实际使用的 SessionFactory。
-	 * @return the SessionFactory (never {@code null})
-	 * @throws IllegalStateException in case of no SessionFactory set
+	 * @return SessionFactory（永不为 {@code null}）
+	 * @throws IllegalStateException 如果未设置 SessionFactory
 	 * @since 5.0
 	 */
 	protected final SessionFactory obtainSessionFactory() {
@@ -318,9 +318,9 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	 * 在原生 {@link Session} 中执行给定操作对象所指定的动作。
 	 * <p>此 execute 变体会覆盖模板范围的
 	 * {@link #isExposeNativeSession() "exposeNativeSession"} 设置。
-	 * @param action callback object that specifies the Hibernate action
-	 * @return a result object returned by the action, or {@code null}
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param action 指定 Hibernate 操作的回调对象
+	 * @return 由操作返回的结果对象，或 {@code null}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 */
 	@Nullable
 	public <T> T executeWithNativeSession(HibernateCallback<T> action) {
@@ -329,11 +329,10 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 
 	/**
 	 * 在 Session 中执行给定操作对象所指定的动作。
-	 * @param action callback object that specifies the Hibernate action
-	 * @param enforceNativeSession whether to enforce exposure of the native
-	 * Hibernate Session to callback code
-	 * @return a result object returned by the action, or {@code null}
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param action 指定 Hibernate 操作的回调对象
+	 * @param enforceNativeSession 是否强制向回调代码暴露原生 Hibernate Session
+	 * @return 由操作返回的结果对象，或 {@code null}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 */
 	@Nullable
 	protected <T> T doExecute(HibernateCallback<T> action, boolean enforceNativeSession) throws DataAccessException {
@@ -385,8 +384,8 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	/**
 	 * 为给定的 Hibernate Session 创建一个抑制 close 的代理。
 	 * 该代理还会准备返回的 Query 和 Criteria 对象。
-	 * @param session the Hibernate Session to create a proxy for
-	 * @return the Session proxy
+	 * @param session 要为其创建代理的 Hibernate Session
+	 * @return Session 代理
 	 * @see Session#close()
 	 * @see #prepareQuery
 	 * @see #prepareCriteria
@@ -399,7 +398,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 
 	/**
 	 * 在给定 Session 上启用指定的过滤器。
-	 * @param session the current Hibernate Session
+	 * @param session 当前的 Hibernate Session
 	 * @see #setFilterNames
 	 * @see Session#enableFilter(String)
 	 */
@@ -414,7 +413,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 
 	/**
 	 * 在给定 Session 上禁用指定的过滤器。
-	 * @param session the current Hibernate Session
+	 * @param session 当前的 Hibernate Session
 	 * @see #setFilterNames
 	 * @see Session#disableFilter(String)
 	 */
@@ -1029,8 +1028,8 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	 * 检查是否允许在给定 Session 上执行写操作。
 	 * <p>默认实现在 {@code FlushMode.MANUAL} 的情况下抛出
 	 * InvalidDataAccessApiUsageException。可在子类中重写。
-	 * @param session current Hibernate Session
-	 * @throws InvalidDataAccessApiUsageException if write operations are not allowed
+	 * @param session 当前的 Hibernate Session
+	 * @throws InvalidDataAccessApiUsageException 如果不允许写操作
 	 * @see #setCheckWriteOperations
 	 * @see Session#getFlushMode()
 	 * @see FlushMode#MANUAL
@@ -1046,7 +1045,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	/**
 	 * 准备给定的 Criteria 对象，应用缓存设置和/或
 	 * 事务超时。
-	 * @param criteria the Criteria object to prepare
+	 * @param criteria 要准备的 Criteria 对象
 	 * @see #setCacheQueries
 	 * @see #setQueryCacheRegion
 	 */
@@ -1074,7 +1073,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	/**
 	 * 准备给定的 Query 对象，应用缓存设置和/或
 	 * 事务超时。
-	 * @param queryObject the Query object to prepare
+	 * @param queryObject 要准备的 Query 对象
 	 * @see #setCacheQueries
 	 * @see #setQueryCacheRegion
 	 */
@@ -1101,10 +1100,10 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 
 	/**
 	 * 将给定名称的参数应用到给定的 Query 对象。
-	 * @param queryObject the Query object
-	 * @param paramName the name of the parameter
-	 * @param value the value of the parameter
-	 * @throws HibernateException if thrown by the Query object
+	 * @param queryObject Query 对象
+	 * @param paramName 参数名称
+	 * @param value 参数的值
+	 * @throws HibernateException 如果由 Query 对象抛出
 	 */
 	protected void applyNamedParameterToQuery(Query<?> queryObject, String paramName, Object value)
 			throws HibernateException {

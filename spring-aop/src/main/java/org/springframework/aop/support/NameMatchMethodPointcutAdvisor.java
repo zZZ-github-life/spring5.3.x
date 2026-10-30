@@ -71,8 +71,8 @@ public class NameMatchMethodPointcutAdvisor extends AbstractGenericPointcutAdvis
 	/**
 	 * 在已指定的方法名之外，再添加一个符合条件的方法名。与 set 方法一样，此方法用于配置代理时、在代理
 	 * 使用之前。
-	 * @param name the name of the additional method that will match
-	 * @return this pointcut to allow for multiple additions in one line
+	 * @param name 将匹配的附加方法名称
+	 * @return 此切点，以便在一行中多次添加
 	 * @see NameMatchMethodPointcut#addMethodName
 	 */
 	public NameMatchMethodPointcut addMethodName(String name) {

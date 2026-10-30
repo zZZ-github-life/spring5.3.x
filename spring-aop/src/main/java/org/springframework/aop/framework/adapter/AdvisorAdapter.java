@@ -36,8 +36,8 @@ public interface AdvisorAdapter {
 	/**
 	 * 此适配器能否理解此 advice 对象？使用包含此 advice 作为参数的 Advisor 调用
 	 * {@code getInterceptors} 方法是否有效？
-	 * @param advice an Advice such as a BeforeAdvice
-	 * @return whether this adapter understands the given advice object
+	 * @param advice 一个 Advice，例如 BeforeAdvice
+	 * @return 此适配器是否理解给定的通知对象
 	 * @see #getInterceptor(org.springframework.aop.Advisor)
 	 * @see org.springframework.aop.BeforeAdvice
 	 */
@@ -46,11 +46,9 @@ public interface AdvisorAdapter {
 	/**
 	 * 返回一个 AOP Alliance MethodInterceptor，向基于拦截的 AOP 框架暴露给定 advice 的行为。
 	 * <p>不必担心 Advisor 中包含的任何 Pointcut；AOP 框架会负责检查切点。
-	 * @param advisor the Advisor. The supportsAdvice() method must have
-	 * returned true on this object
-	 * @return an AOP Alliance interceptor for this Advisor. There's
-	 * no need to cache instances for efficiency, as the AOP framework
-	 * caches advice chains.
+	 * @param advisor 该 Advisor。supportsAdvice() 方法必须已对此对象返回 true
+	 * @return 此 Advisor 的 AOP Alliance 拦截器。无需为了效率缓存实例，
+	 * 因为 AOP 框架会缓存通知链。
 	 */
 	MethodInterceptor getInterceptor(Advisor advisor);
 

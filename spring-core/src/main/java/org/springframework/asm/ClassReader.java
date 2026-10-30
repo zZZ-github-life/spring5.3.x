@@ -147,7 +147,7 @@ public class ClassReader {
   /**
    * 构造一个新的 {@link ClassReader} 对象。
    *
-   * @param classFile the JVMS ClassFile structure to be read.
+   * @param classFile 要读取的 JVMS ClassFile 结构。
    */
   public ClassReader(final byte[] classFile) {
     this(classFile, 0, classFile.length);
@@ -156,9 +156,9 @@ public class ClassReader {
   /**
    * 构造一个新的 {@link ClassReader} 对象。
    *
-   * @param classFileBuffer a byte array containing the JVMS ClassFile structure to be read.
-   * @param classFileOffset the offset in byteBuffer of the first byte of the ClassFile to be read.
-   * @param classFileLength the length in bytes of the ClassFile to be read.
+   * @param classFileBuffer 包含要读取的 JVMS ClassFile 结构的字节数组。
+   * @param classFileOffset 要读取的 ClassFile 第一个字节在 byteBuffer 中的偏移量。
+   * @param classFileLength 要读取的 ClassFile 的字节长度。
    */
   public ClassReader(
       final byte[] classFileBuffer,
@@ -170,9 +170,9 @@ public class ClassReader {
   /**
    * 构造一个新的 {@link ClassReader} 对象。<i>此内部构造函数不得作为公共 API 暴露</i>。
    *
-   * @param classFileBuffer a byte array containing the JVMS ClassFile structure to be read.
-   * @param classFileOffset the offset in byteBuffer of the first byte of the ClassFile to be read.
-   * @param checkClassVersion whether to check the class version or not.
+   * @param classFileBuffer 包含要读取的 JVMS ClassFile 结构的字节数组。
+   * @param classFileOffset 要读取的 ClassFile 第一个字节在 byteBuffer 中的偏移量。
+   * @param checkClassVersion 是否检查类版本。
    */
   ClassReader(
       final byte[] classFileBuffer, final int classFileOffset, final boolean checkClassVersion) {
@@ -264,10 +264,9 @@ public class ClassReader {
   /**
    * 构造一个新的 {@link ClassReader} 对象。
    *
-   * @param inputStream an input stream of the JVMS ClassFile structure to be read. This input
-   *     stream must contain nothing more than the ClassFile structure itself. It is read from its
-   *     current position to its end.
-   * @throws IOException if a problem occurs during reading.
+   * @param inputStream 要读取的 JVMS ClassFile 结构的输入流。此输入流必须只包含 ClassFile 结构本身。
+   * 它从其当前位置读取到末尾。
+   * @throws IOException 如果读取过程中出现问题。
    */
   public ClassReader(final InputStream inputStream) throws IOException {
     this(readStream(inputStream, false));
@@ -276,9 +275,9 @@ public class ClassReader {
   /**
    * 构造一个新的 {@link ClassReader} 对象。
    *
-   * @param className the fully qualified name of the class to be read. The ClassFile structure is
-   *     retrieved with the current class loader's {@link ClassLoader#getSystemResourceAsStream}.
-   * @throws IOException if an exception occurs during reading.
+   * @param className 要读取的类的完全限定名。ClassFile 结构通过当前类加载器的
+   * {@link ClassLoader#getSystemResourceAsStream} 获取。
+   * @throws IOException 如果读取过程中发生异常。
    */
   public ClassReader(final String className) throws IOException {
     this(
@@ -289,10 +288,10 @@ public class ClassReader {
   /**
    * 读取给定的输入流，并将其内容作为字节数组返回。
    *
-   * @param inputStream an input stream.
-   * @param close true to close the input stream after reading.
-   * @return the content of the given input stream.
-   * @throws IOException if a problem occurs during reading.
+   * @param inputStream 一个输入流。
+   * @param close true 表示读取后关闭输入流。
+   * @return 给定输入流的内容。
+   * @throws IOException 如果读取过程中出现问题。
    */
   @SuppressWarnings("PMD.UseTryWithResources")
   private static byte[] readStream(final InputStream inputStream, final boolean close)
@@ -344,7 +343,7 @@ public class ClassReader {
    * 返回类的访问标志（参见 {@link Opcodes}）。当字节码版本低于 1.5 且这些标志由属性表示时，此值可能
    * 不反映 Deprecated 和 Synthetic 标志。
    *
-   * @return the class access flags.
+   * @return 类的访问标志。
    * @see ClassVisitor#visit(int, int, String, String, String, String[])
    */
   public int getAccess() {
@@ -354,7 +353,7 @@ public class ClassReader {
   /**
    * 返回类的内部名称（参见 {@link Type#getInternalName()}）。
    *
-   * @return the internal class name.
+   * @return 内部类名。
    * @see ClassVisitor#visit(int, int, String, String, String, String[])
    */
   public String getClassName() {
@@ -365,7 +364,7 @@ public class ClassReader {
   /**
    * 返回超类的内部名称（参见 {@link Type#getInternalName()}）。对于接口，超类为 {@link Object}。
    *
-   * @return the internal name of the super class, or {@literal null} for {@link Object} class.
+   * @return 超类的内部名；对于 {@link Object} 类则为 {@literal null}。
    * @see ClassVisitor#visit(int, int, String, String, String, String[])
    */
   public String getSuperName() {
@@ -376,8 +375,7 @@ public class ClassReader {
   /**
    * 返回所实现接口的内部名称（参见 {@link Type#getInternalName()}）。
    *
-   * @return the internal names of the directly implemented interfaces. Inherited implemented
-   *     interfaces are not returned.
+   * @return 直接实现的接口的内部名。不返回继承的已实现接口。
    * @see ClassVisitor#visit(int, int, String, String, String, String[])
    */
   public String[] getInterfaces() {
@@ -402,9 +400,9 @@ public class ClassReader {
   /**
    * 让给定的访问器访问传递给此 {@link ClassReader} 构造函数的 JVMS ClassFile 结构。
    *
-   * @param classVisitor the visitor that must visit this class.
-   * @param parsingOptions the options to use to parse this class. One or more of {@link
-   *     #SKIP_CODE}, {@link #SKIP_DEBUG}, {@link #SKIP_FRAMES} or {@link #EXPAND_FRAMES}.
+   * @param classVisitor 必须访问此类的访问器。
+   * @param parsingOptions 用于解析此类的选项。{@link #SKIP_CODE}、{@link #SKIP_DEBUG}、{@link #SKIP_FRAMES}
+   * 或 {@link #EXPAND_FRAMES} 中的一项或多项。
    */
   public void accept(final ClassVisitor classVisitor, final int parsingOptions) {
     accept(classVisitor, new Attribute[0], parsingOptions);
@@ -413,15 +411,12 @@ public class ClassReader {
   /**
    * 让给定的访问器访问传递给此 {@link ClassReader} 构造函数的 JVMS ClassFile 结构。
    *
-   * @param classVisitor the visitor that must visit this class.
-   * @param attributePrototypes prototypes of the attributes that must be parsed during the visit of
-   *     the class. Any attribute whose type is not equal to the type of one the prototypes will not
-   *     be parsed: its byte array value will be passed unchanged to the ClassWriter. <i>This may
-   *     corrupt it if this value contains references to the constant pool, or has syntactic or
-   *     semantic links with a class element that has been transformed by a class adapter between
-   *     the reader and the writer</i>.
-   * @param parsingOptions the options to use to parse this class. One or more of {@link
-   *     #SKIP_CODE}, {@link #SKIP_DEBUG}, {@link #SKIP_FRAMES} or {@link #EXPAND_FRAMES}.
+   * @param classVisitor 必须访问此类的访问器。
+   * @param attributePrototypes 在访问类期间必须解析的属性的原型。类型与任一原型都不相同的属性将不会被解析：
+   * 其字节数组值会原样传递给 ClassWriter。<i>如果该值包含对常量池的引用，或与读取器
+   * 与写入器之间某个类适配器转换过的类元素存在语法或语义关联，则可能会损坏该值</i>。
+   * @param parsingOptions 用于解析此类的选项。{@link #SKIP_CODE}、{@link #SKIP_DEBUG}、{@link #SKIP_FRAMES}
+   * 或 {@link #EXPAND_FRAMES} 中的一项或多项。
    */
   public void accept(
       final ClassVisitor classVisitor,
@@ -740,14 +735,13 @@ public class ClassReader {
   /**
    * 读取 Module、ModulePackages 和 ModuleMainClass 属性并访问它们。
    *
-   * @param classVisitor the current class visitor
-   * @param context information about the class being parsed.
-   * @param moduleOffset the offset of the Module attribute (excluding the attribute_info's
-   *     attribute_name_index and attribute_length fields).
-   * @param modulePackagesOffset the offset of the ModulePackages attribute (excluding the
-   *     attribute_info's attribute_name_index and attribute_length fields), or 0.
-   * @param moduleMainClass the string corresponding to the ModuleMainClass attribute, or {@literal
-   *     null}.
+   * @param classVisitor 当前类访问器。
+   * @param context 正在解析的类的信息。
+   * @param moduleOffset Module 属性的偏移量（不包括 attribute_info 的 attribute_name_index
+   * 和 attribute_length 字段）。
+   * @param modulePackagesOffset ModulePackages 属性的偏移量（不包括 attribute_info 的 attribute_name_index
+   * 和 attribute_length 字段），或 0。
+   * @param moduleMainClass 与 ModuleMainClass 属性对应的字符串，或 {@literal null}。
    */
   private void readModuleAttributes(
       final ClassVisitor classVisitor,
@@ -867,10 +861,10 @@ public class ClassReader {
   /**
    * 读取一个记录组件并访问它。
    *
-   * @param classVisitor the current class visitor
-   * @param context information about the class being parsed.
-   * @param recordComponentOffset the offset of the current record component.
-   * @return the offset of the first byte following the record component.
+   * @param classVisitor 当前类访问器。
+   * @param context 正在解析的类的信息。
+   * @param recordComponentOffset 当前记录组件的偏移量。
+   * @return 该记录组件之后第一个字节的偏移量。
    */
   private int readRecordComponent(
       final ClassVisitor classVisitor, final Context context, final int recordComponentOffset) {
@@ -1041,10 +1035,10 @@ public class ClassReader {
   /**
    * 读取一个 JVMS field_info 结构，并让给定的访问器访问它。
    *
-   * @param classVisitor the visitor that must visit the field.
-   * @param context information about the class being parsed.
-   * @param fieldInfoOffset the start offset of the field_info structure.
-   * @return the offset of the first byte following the field_info structure.
+   * @param classVisitor 必须访问该字段的访问器。
+   * @param context 正在解析的类的信息。
+   * @param fieldInfoOffset field_info 结构的起始偏移量。
+   * @return field_info 结构之后第一个字节的偏移量。
    */
   private int readField(
       final ClassVisitor classVisitor, final Context context, final int fieldInfoOffset) {
@@ -1225,10 +1219,10 @@ public class ClassReader {
   /**
    * 读取一个 JVMS method_info 结构，并让给定的访问器访问它。
    *
-   * @param classVisitor the visitor that must visit the method.
-   * @param context information about the class being parsed.
-   * @param methodInfoOffset the start offset of the method_info structure.
-   * @return the offset of the first byte following the method_info structure.
+   * @param classVisitor 必须访问该方法的访问器。
+   * @param context 正在解析的类的信息。
+   * @param methodInfoOffset method_info 结构的起始偏移量。
+   * @return method_info 结构之后第一个字节的偏移量。
    */
   private int readMethod(
       final ClassVisitor classVisitor, final Context context, final int methodInfoOffset) {
@@ -1511,10 +1505,10 @@ public class ClassReader {
   /**
    * 读取一个 JVMS 'Code' 属性，并让给定的访问器访问它。
    *
-   * @param methodVisitor the visitor that must visit the Code attribute.
-   * @param context information about the class being parsed.
-   * @param codeOffset the start offset in {@link #classFileBuffer} of the Code attribute, excluding
-   *     its attribute_name_index and attribute_length fields.
+   * @param methodVisitor 必须访问 Code 属性的访问器。
+   * @param context 正在解析的类的信息。
+   * @param codeOffset Code 属性在 {@link #classFileBuffer} 中的起始偏移量，不包括其
+   * attribute_name_index 和 attribute_length 字段。
    */
   private void readCode(
       final MethodVisitor methodVisitor, final Context context, final int codeOffset) {
@@ -2653,11 +2647,10 @@ public class ClassReader {
   /**
    * 返回与给定字节码偏移量对应的标签。如果尚未为给定偏移量创建标签，此方法的默认实现会为其创建一个。
    *
-   * @param bytecodeOffset a bytecode offset in a method.
-   * @param labels the already created labels, indexed by their offset. If a label already exists
-   *     for bytecodeOffset this method must not create a new one. Otherwise it must store the new
-   *     label in this array.
-   * @return a non null Label, which must be equal to labels[bytecodeOffset].
+   * @param bytecodeOffset 方法中的一个字节码偏移量。
+   * @param labels 已创建的标签，按其偏移量索引。如果 bytecodeOffset 已存在标签，此方法不得创建新标签。
+   * 否则必须将新标签存储在此数组中。
+   * @return 一个非 null 的 Label，必须等于 labels[bytecodeOffset]。
    */
   protected Label readLabel(final int bytecodeOffset, final Label[] labels) {
     // SPRING PATCH: leniently handle offset mismatch
@@ -2675,9 +2668,9 @@ public class ClassReader {
    * 为给定字节码偏移量创建一个未设置 {@link Label#FLAG_DEBUG_ONLY} 标志的标签。该标签通过调用
    * {@link #readLabel} 创建，并清除其 {@link Label#FLAG_DEBUG_ONLY} 标志。
    *
-   * @param bytecodeOffset a bytecode offset in a method.
-   * @param labels the already created labels, indexed by their offset.
-   * @return a Label without the {@link Label#FLAG_DEBUG_ONLY} flag set.
+   * @param bytecodeOffset 方法中的一个字节码偏移量。
+   * @param labels 已创建的标签，按其偏移量索引。
+   * @return 未设置 {@link Label#FLAG_DEBUG_ONLY} 标志的 Label。
    */
   private Label createLabel(final int bytecodeOffset, final Label[] labels) {
     Label label = readLabel(bytecodeOffset, labels);
@@ -2689,8 +2682,8 @@ public class ClassReader {
    * 如果给定字节码偏移量尚不存在标签，则创建一个设置了 {@link Label#FLAG_DEBUG_ONLY} 标志的标签（否
    * 则不做任何事）。该标签通过调用 {@link #readLabel} 创建。
    *
-   * @param bytecodeOffset a bytecode offset in a method.
-   * @param labels the already created labels, indexed by their offset.
+   * @param bytecodeOffset 方法中的一个字节码偏移量。
+   * @param labels 已创建的标签，按其偏移量索引。
    */
   private void createDebugLabel(final int bytecodeOffset, final Label[] labels) {
     if (labels[bytecodeOffset] == null) {
@@ -2706,14 +2699,13 @@ public class ClassReader {
    * 解析 Runtime[In]VisibleTypeAnnotations 属性，以找到其中每个 type_annotation 条目的偏移量、找到相
    * 应的标签，并访问 try catch 块注解。
    *
-   * @param methodVisitor the method visitor to be used to visit the try catch block annotations.
-   * @param context information about the class being parsed.
-   * @param runtimeTypeAnnotationsOffset the start offset of a Runtime[In]VisibleTypeAnnotations
-   *     attribute, excluding the attribute_info's attribute_name_index and attribute_length fields.
-   * @param visible true if the attribute to parse is a RuntimeVisibleTypeAnnotations attribute,
-   *     false it is a RuntimeInvisibleTypeAnnotations attribute.
-   * @return the start offset of each entry of the Runtime[In]VisibleTypeAnnotations_attribute's
-   *     'annotations' array field.
+   * @param methodVisitor 用于访问 try catch 块注解的方法访问器。
+   * @param context 正在解析的类的信息。
+   * @param runtimeTypeAnnotationsOffset Runtime[In]VisibleTypeAnnotations 属性的起始偏移量，不包括 attribute_info 的
+   * attribute_name_index 和 attribute_length 字段。
+   * @param visible 如果要解析的属性是 RuntimeVisibleTypeAnnotations 属性，则为 true；
+   * 如果是 RuntimeInvisibleTypeAnnotations 属性，则为 false。
+   * @return Runtime[In]VisibleTypeAnnotations 属性 'annotations' 数组字段中每个条目的起始偏移量。
    */
   private int[] readTypeAnnotations(
       final MethodVisitor methodVisitor,
@@ -2812,11 +2804,11 @@ public class ClassReader {
    * 返回与指定的 JVMS 'type_annotation' 结构相对应的字节码偏移量；如果不存在这样的 type_annotation，
    * 或者它没有字节码偏移量，则返回 -1。
    *
-   * @param typeAnnotationOffsets the offset of each 'type_annotation' entry in a
-   *     Runtime[In]VisibleTypeAnnotations attribute, or {@literal null}.
-   * @param typeAnnotationIndex the index a 'type_annotation' entry in typeAnnotationOffsets.
-   * @return bytecode offset corresponding to the specified JVMS 'type_annotation' structure, or -1
-   *     if there is no such type_annotation of if it does not have a bytecode offset.
+   * @param typeAnnotationOffsets Runtime[In]VisibleTypeAnnotations 属性中每个 'type_annotation' 条目的偏移量，
+   * 或 {@literal null}。
+   * @param typeAnnotationIndex typeAnnotationOffsets 中某个 'type_annotation' 条目的索引。
+   * @return 与指定 JVMS 'type_annotation' 结构对应的字节码偏移量；如果不存在此类
+   * type_annotation，或其没有字节码偏移量，则为 -1。
    */
   private int getTypeAnnotationBytecodeOffset(
       final int[] typeAnnotationOffsets, final int typeAnnotationIndex) {
@@ -2832,10 +2824,9 @@ public class ClassReader {
    * 解析 JVMS type_annotation 结构的头部，以提取其 target_type、target_info 和 target_path（结果存储
    * 在给定的上下文中），并返回该 type_annotation 结构其余部分的起始偏移量。
    *
-   * @param context information about the class being parsed. This is where the extracted
-   *     target_type and target_path must be stored.
-   * @param typeAnnotationOffset the start offset of a type_annotation structure.
-   * @return the start offset of the rest of the type_annotation structure.
+   * @param context 正在解析的类的信息。提取出的 target_type 和 target_path 必须存储在此处。
+   * @param typeAnnotationOffset type_annotation 结构的起始偏移量。
+   * @return type_annotation 结构其余部分的起始偏移量。
    */
   private int readTypeAnnotationTarget(final Context context, final int typeAnnotationOffset) {
     int currentOffset = typeAnnotationOffset;
@@ -2912,13 +2903,12 @@ public class ClassReader {
   /**
    * 读取一个 Runtime[In]VisibleParameterAnnotations 属性，并让给定的访问器访问它。
    *
-   * @param methodVisitor the visitor that must visit the parameter annotations.
-   * @param context information about the class being parsed.
-   * @param runtimeParameterAnnotationsOffset the start offset of a
-   *     Runtime[In]VisibleParameterAnnotations attribute, excluding the attribute_info's
-   *     attribute_name_index and attribute_length fields.
-   * @param visible true if the attribute to parse is a RuntimeVisibleParameterAnnotations
-   *     attribute, false it is a RuntimeInvisibleParameterAnnotations attribute.
+   * @param methodVisitor 必须访问参数注解的访问器。
+   * @param context 正在解析的类的信息。
+   * @param runtimeParameterAnnotationsOffset Runtime[In]VisibleParameterAnnotations 属性的起始偏移量，不包括 attribute_info 的
+   * attribute_name_index 和 attribute_length 字段。
+   * @param visible 如果要解析的属性是 RuntimeVisibleParameterAnnotations 属性，则为 true；
+   * 如果是 RuntimeInvisibleParameterAnnotations 属性，则为 false。
    */
   private void readParameterAnnotations(
       final MethodVisitor methodVisitor,
@@ -2951,14 +2941,12 @@ public class ClassReader {
    * 读取 JVMS 'annotation' 结构的元素值，并让给定的访问器访问它们。此方法也可用于读取注解的
    * 'element_value' 中 JVMS 'array_value' 字段的值。
    *
-   * @param annotationVisitor the visitor that must visit the values.
-   * @param annotationOffset the start offset of an 'annotation' structure (excluding its type_index
-   *     field) or of an 'array_value' structure.
-   * @param named if the annotation values are named or not. This should be true to parse the values
-   *     of a JVMS 'annotation' structure, and false to parse the JVMS 'array_value' of an
-   *     annotation's element_value.
-   * @param charBuffer the buffer used to read strings in the constant pool.
-   * @return the end offset of the JVMS 'annotation' or 'array_value' structure.
+   * @param annotationVisitor 必须访问这些值的访问器。
+   * @param annotationOffset 'annotation' 结构（不包括其 type_index 字段）或 'array_value' 结构的起始偏移量。
+   * @param named 注解值是否带有名称。解析 JVMS 'annotation' 结构的值时应为 true，解析注解
+   * element_value 的 JVMS 'array_value' 时应为 false。
+   * @param charBuffer 用于读取常量池中字符串的缓冲区。
+   * @return JVMS 'annotation' 或 'array_value' 结构的结束偏移量。
    */
   private int readElementValues(
       final AnnotationVisitor annotationVisitor,
@@ -2992,12 +2980,11 @@ public class ClassReader {
   /**
    * 读取一个 JVMS 'element_value' 结构，并让给定的访问器访问它。
    *
-   * @param annotationVisitor the visitor that must visit the element_value structure.
-   * @param elementValueOffset the start offset in {@link #classFileBuffer} of the element_value
-   *     structure to be read.
-   * @param elementName the name of the element_value structure to be read, or {@literal null}.
-   * @param charBuffer the buffer used to read strings in the constant pool.
-   * @return the end offset of the JVMS 'element_value' structure.
+   * @param annotationVisitor 必须访问 element_value 结构的访问器。
+   * @param elementValueOffset 要读取的 element_value 结构在 {@link #classFileBuffer} 中的起始偏移量。
+   * @param elementName 要读取的 element_value 结构的名称，或 {@literal null}。
+   * @param charBuffer 用于读取常量池中字符串的缓冲区。
+   * @return JVMS 'element_value' 结构的结束偏移量。
    */
   private int readElementValue(
       final AnnotationVisitor annotationVisitor,
@@ -3175,7 +3162,7 @@ public class ClassReader {
   /**
    * 计算当前正在解析的方法的隐式帧（如给定 {@link Context} 中所定义），并将其存储在给定的上下文中。
    *
-   * @param context information about the class being parsed.
+   * @param context 正在解析的类的信息。
    */
   private void computeImplicitFrame(final Context context) {
     String methodDescriptor = context.currentMethodDescriptor;
@@ -3243,14 +3230,13 @@ public class ClassReader {
    * 读取一个 JVMS 'stack_map_frame' 结构，并将结果存储在给定的 {@link Context} 对象中。此方法也可用
    * 于读取 full_frame 结构（不包括其 frame_type 字段），这用于解析旧版 StackMap 属性。
    *
-   * @param stackMapFrameOffset the start offset in {@link #classFileBuffer} of the
-   *     stack_map_frame_value structure to be read, or the start offset of a full_frame structure
-   *     (excluding its frame_type field).
-   * @param compressed true to read a 'stack_map_frame' structure, false to read a 'full_frame'
-   *     structure without its frame_type field.
-   * @param expand if the stack map frame must be expanded. See {@link #EXPAND_FRAMES}.
-   * @param context where the parsed stack map frame must be stored.
-   * @return the end offset of the JVMS 'stack_map_frame' or 'full_frame' structure.
+   * @param stackMapFrameOffset 要读取的 stack_map_frame_value 结构在 {@link #classFileBuffer} 中的起始偏移量，
+   * 或 full_frame 结构的起始偏移量（不包括其 frame_type 字段）。
+   * @param compressed true 表示读取 'stack_map_frame' 结构；false 表示读取不带 frame_type 字段的
+   * 'full_frame' 结构。
+   * @param expand 是否必须展开栈映射帧。参见 {@link #EXPAND_FRAMES}。
+   * @param context 必须存储所解析栈映射帧的位置。
+   * @return JVMS 'stack_map_frame' 或 'full_frame' 结构的结束偏移量。
    */
   private int readStackMapFrame(
       final int stackMapFrameOffset,
@@ -3340,15 +3326,13 @@ public class ClassReader {
   /**
    * 读取一个 JVMS 'verification_type_info' 结构，并将其存储在给定数组的给定索引处。
    *
-   * @param verificationTypeInfoOffset the start offset of the 'verification_type_info' structure to
-   *     read.
-   * @param frame the array where the parsed type must be stored.
-   * @param index the index in 'frame' where the parsed type must be stored.
-   * @param charBuffer the buffer used to read strings in the constant pool.
-   * @param labels the labels of the method currently being parsed, indexed by their offset. If the
-   *     parsed type is an ITEM_Uninitialized, a new label for the corresponding NEW instruction is
-   *     stored in this array if it does not already exist.
-   * @return the end offset of the JVMS 'verification_type_info' structure.
+   * @param verificationTypeInfoOffset 要读取的 'verification_type_info' 结构的起始偏移量。
+   * @param frame 必须存储所解析类型的数组。
+   * @param index 'frame' 中必须存储所解析类型的索引。
+   * @param charBuffer 用于读取常量池中字符串的缓冲区。
+   * @param labels 当前正在解析的方法的标签，按其偏移量索引。如果解析出的类型是 ITEM_Uninitialized，
+   * 则在对应的 NEW 指令标签尚不存在时，将其存入此数组。
+   * @return JVMS 'verification_type_info' 结构的结束偏移量。
    */
   private int readVerificationTypeInfo(
       final int verificationTypeInfoOffset,
@@ -3401,8 +3385,7 @@ public class ClassReader {
   /**
    * 返回 ClassFile 的 'attributes' 数组字段第一个条目在 {@link #classFileBuffer} 中的偏移量。
    *
-   * @return the offset in {@link #classFileBuffer} of the first ClassFile's 'attributes' array
-   *     field entry.
+   * @return 第一个 ClassFile 的 'attributes' 数组字段条目在 {@link #classFileBuffer} 中的偏移量。
    */
   final int getFirstAttributeOffset() {
     // Skip the access_flags, this_class, super_class, and interfaces_count fields (using 2 bytes
@@ -3447,9 +3430,8 @@ public class ClassReader {
   /**
    * 读取 BootstrapMethods 属性，以计算每个引导方法的偏移量。
    *
-   * @param maxStringLength a conservative estimate of the maximum length of the strings contained
-   *     in the constant pool of the class.
-   * @return the offsets of the bootstrap methods.
+   * @param maxStringLength 对类常量池中所含字符串最大长度的保守估计。
+   * @return 各引导方法（bootstrap method）的偏移量。
    */
   private int[] readBootstrapMethodsAttribute(final int maxStringLength) {
     char[] charBuffer = new char[maxStringLength];
@@ -3481,22 +3463,18 @@ public class ClassReader {
   /**
    * 读取 {@link #classFileBuffer} 中一个非标准的 JVMS 'attribute' 结构。
    *
-   * @param attributePrototypes prototypes of the attributes that must be parsed during the visit of
-   *     the class. Any attribute whose type is not equal to the type of one the prototypes will not
-   *     be parsed: its byte array value will be passed unchanged to the ClassWriter.
-   * @param type the type of the attribute.
-   * @param offset the start offset of the JVMS 'attribute' structure in {@link #classFileBuffer}.
-   *     The 6 attribute header bytes (attribute_name_index and attribute_length) are not taken into
-   *     account here.
-   * @param length the length of the attribute's content (excluding the 6 attribute header bytes).
-   * @param charBuffer the buffer to be used to read strings in the constant pool.
-   * @param codeAttributeOffset the start offset of the enclosing Code attribute in {@link
-   *     #classFileBuffer}, or -1 if the attribute to be read is not a code attribute. The 6
-   *     attribute header bytes (attribute_name_index and attribute_length) are not taken into
-   *     account here.
-   * @param labels the labels of the method's code, or {@literal null} if the attribute to be read
-   *     is not a code attribute.
-   * @return the attribute that has been read.
+   * @param attributePrototypes 在访问类期间必须解析的属性的原型。类型与任一原型都不相同的属性将不会被解析：
+   * 其字节数组值会原样传递给 ClassWriter。
+   * @param type 属性的类型。
+   * @param offset JVMS 'attribute' 结构在 {@link #classFileBuffer} 中的起始偏移量。此处不计入 6 个
+   * 属性头字节（attribute_name_index 和 attribute_length）。
+   * @param length 该属性内容的长度（不包括 6 个属性头字节）。
+   * @param charBuffer 用于读取常量池中字符串的缓冲区。
+   * @param codeAttributeOffset 包含属性的 Code 属性在 {@link #classFileBuffer} 中的起始偏移量；如果要读取的属性不是
+   * Code 属性，则为 -1。此处不计入 6 个属性头字节（attribute_name_index 和
+   * attribute_length）。
+   * @param labels 该方法代码的标签；如果要读取的属性不是 Code 属性，则为 {@literal null}。
+   * @return 已读取的属性。
    */
   private Attribute readAttribute(
       final Attribute[] attributePrototypes,
@@ -3522,7 +3500,7 @@ public class ClassReader {
   /**
    * 返回类的常量池表中的条目数。
    *
-   * @return the number of entries in the class's constant pool table.
+   * @return 类常量池表中的条目数量。
    */
   public int getItemCount() {
     return cpInfoOffsets.length;
@@ -3532,10 +3510,8 @@ public class ClassReader {
    * 返回某个 JVMS 'cp_info' 结构（即常量池条目）在此 {@link ClassReader} 中的起始偏移量加一。<i>此方
    * 法供 {@link Attribute} 子类使用，类生成器或适配器通常不需要它。</i>
    *
-   * @param constantPoolEntryIndex the index a constant pool entry in the class's constant pool
-   *     table.
-   * @return the start offset in this {@link ClassReader} of the corresponding JVMS 'cp_info'
-   *     structure, plus one.
+   * @param constantPoolEntryIndex 类常量池表中某个常量池条目的索引。
+   * @return 此 {@link ClassReader} 中对应 JVMS 'cp_info' 结构的起始偏移量加一。
    */
   public int getItem(final int constantPoolEntryIndex) {
     return cpInfoOffsets[constantPoolEntryIndex];
@@ -3544,8 +3520,7 @@ public class ClassReader {
   /**
    * 返回对类的常量池表中所含字符串最大长度的一个保守估计。
    *
-   * @return a conservative estimate of the maximum length of the strings contained in the class's
-   *     constant pool table.
+   * @return 对类常量池表中所含字符串最大长度的保守估计。
    */
   public int getMaxStringLength() {
     return maxStringLength;
@@ -3555,8 +3530,8 @@ public class ClassReader {
    * 在此 {@link ClassReader} 中读取一个字节值。<i>此方法供 {@link Attribute} 子类使用，类生成器或适
    * 配器通常不需要它。</i>
    *
-   * @param offset the start offset of the value to be read in this {@link ClassReader}.
-   * @return the read value.
+   * @param offset 要读取的值在此 {@link ClassReader} 中的起始偏移量。
+   * @return 读取到的值。
    */
   public int readByte(final int offset) {
     return classFileBuffer[offset] & 0xFF;
@@ -3566,8 +3541,8 @@ public class ClassReader {
    * 在此 {@link ClassReader} 中读取一个无符号 short 值。<i>此方法供 {@link Attribute} 子类使用，类生
    * 成器或适配器通常不需要它。</i>
    *
-   * @param offset the start index of the value to be read in this {@link ClassReader}.
-   * @return the read value.
+   * @param offset 要读取的值在此 {@link ClassReader} 中的起始索引。
+   * @return 读取到的值。
    */
   public int readUnsignedShort(final int offset) {
     byte[] classBuffer = classFileBuffer;
@@ -3578,8 +3553,8 @@ public class ClassReader {
    * 在此 {@link ClassReader} 中读取一个有符号 short 值。<i>此方法供 {@link Attribute} 子类使用，类生
    * 成器或适配器通常不需要它。</i>
    *
-   * @param offset the start offset of the value to be read in this {@link ClassReader}.
-   * @return the read value.
+   * @param offset 要读取的值在此 {@link ClassReader} 中的起始偏移量。
+   * @return 读取到的值。
    */
   public short readShort(final int offset) {
     byte[] classBuffer = classFileBuffer;
@@ -3590,8 +3565,8 @@ public class ClassReader {
    * 在此 {@link ClassReader} 中读取一个有符号 int 值。<i>此方法供 {@link Attribute} 子类使用，类生成
    * 器或适配器通常不需要它。</i>
    *
-   * @param offset the start offset of the value to be read in this {@link ClassReader}.
-   * @return the read value.
+   * @param offset 要读取的值在此 {@link ClassReader} 中的起始偏移量。
+   * @return 读取到的值。
    */
   public int readInt(final int offset) {
     byte[] classBuffer = classFileBuffer;
@@ -3605,8 +3580,8 @@ public class ClassReader {
    * 在此 {@link ClassReader} 中读取一个有符号 long 值。<i>此方法供 {@link Attribute} 子类使用，类生
    * 成器或适配器通常不需要它。</i>
    *
-   * @param offset the start offset of the value to be read in this {@link ClassReader}.
-   * @return the read value.
+   * @param offset 要读取的值在此 {@link ClassReader} 中的起始偏移量。
+   * @return 读取到的值。
    */
   public long readLong(final int offset) {
     long l1 = readInt(offset);
@@ -3618,11 +3593,10 @@ public class ClassReader {
    * 在此 {@link ClassReader} 中读取一个 CONSTANT_Utf8 常量池条目。<i>此方法供 {@link Attribute} 子类
    * 使用，类生成器或适配器通常不需要它。</i>
    *
-   * @param offset the start offset of an unsigned short value in this {@link ClassReader}, whose
-   *     value is the index of a CONSTANT_Utf8 entry in the class's constant pool table.
-   * @param charBuffer the buffer to be used to read the string. This buffer must be sufficiently
-   *     large. It is not automatically resized.
-   * @return the String corresponding to the specified CONSTANT_Utf8 entry.
+   * @param offset 此 {@link ClassReader} 中某个无符号 short 值的起始偏移量，其值为类的常量池表中
+   * CONSTANT_Utf8 条目的索引。
+   * @param charBuffer 用于读取字符串的缓冲区。此缓冲区必须足够大，不会自动扩容。
+   * @return 与指定 CONSTANT_Utf8 条目对应的 String。
    */
   // DontCheck(AbbreviationAsWordInName): can't be renamed (for backward binary compatibility).
   public String readUTF8(final int offset, final char[] charBuffer) {
@@ -3636,11 +3610,9 @@ public class ClassReader {
   /**
    * 在 {@link #classFileBuffer} 中读取一个 CONSTANT_Utf8 常量池条目。
    *
-   * @param constantPoolEntryIndex the index of a CONSTANT_Utf8 entry in the class's constant pool
-   *     table.
-   * @param charBuffer the buffer to be used to read the string. This buffer must be sufficiently
-   *     large. It is not automatically resized.
-   * @return the String corresponding to the specified CONSTANT_Utf8 entry.
+   * @param constantPoolEntryIndex 类常量池表中某个 CONSTANT_Utf8 条目的索引。
+   * @param charBuffer 用于读取字符串的缓冲区。此缓冲区必须足够大，不会自动扩容。
+   * @return 与指定 CONSTANT_Utf8 条目对应的 String。
    */
   final String readUtf(final int constantPoolEntryIndex, final char[] charBuffer) {
     String value = constantUtf8Values[constantPoolEntryIndex];
@@ -3655,11 +3627,10 @@ public class ClassReader {
   /**
    * 在 {@link #classFileBuffer} 中读取一个 UTF8 字符串。
    *
-   * @param utfOffset the start offset of the UTF8 string to be read.
-   * @param utfLength the length of the UTF8 string to be read.
-   * @param charBuffer the buffer to be used to read the string. This buffer must be sufficiently
-   *     large. It is not automatically resized.
-   * @return the String corresponding to the specified UTF8 string.
+   * @param utfOffset 要读取的 UTF8 字符串的起始偏移量。
+   * @param utfLength 要读取的 UTF8 字符串的长度。
+   * @param charBuffer 用于读取字符串的缓冲区。此缓冲区必须足够大，不会自动扩容。
+   * @return 与指定 UTF8 字符串对应的 String。
    */
   private String readUtf(final int utfOffset, final int utfLength, final char[] charBuffer) {
     int currentOffset = utfOffset;
@@ -3689,12 +3660,11 @@ public class ClassReader {
    * CONSTANT_Module 或 CONSTANT_Package 常量池条目。<i>此方法供 {@link Attribute} 子类使用，类生成器
    * 或适配器通常不需要它。</i>
    *
-   * @param offset the start offset of an unsigned short value in {@link #classFileBuffer}, whose
-   *     value is the index of a CONSTANT_Class, CONSTANT_String, CONSTANT_MethodType,
-   *     CONSTANT_Module or CONSTANT_Package entry in class's constant pool table.
-   * @param charBuffer the buffer to be used to read the item. This buffer must be sufficiently
-   *     large. It is not automatically resized.
-   * @return the String corresponding to the specified constant pool entry.
+   * @param offset {@link #classFileBuffer} 中某个无符号 short 值的起始偏移量，其值为类常量池表中
+   * CONSTANT_Class、CONSTANT_String、CONSTANT_MethodType、CONSTANT_Module 或
+   * CONSTANT_Package 条目的索引。
+   * @param charBuffer 用于读取该项的缓冲区。此缓冲区必须足够大，不会自动扩容。
+   * @return 与指定常量池条目对应的 String。
    */
   private String readStringish(final int offset, final char[] charBuffer) {
     // Get the start offset of the cp_info structure (plus one), and read the CONSTANT_Utf8 entry
@@ -3706,11 +3676,10 @@ public class ClassReader {
    * 在此 {@link ClassReader} 中读取一个 CONSTANT_Class 常量池条目。<i>此方法供 {@link Attribute} 子
    * 类使用，类生成器或适配器通常不需要它。</i>
    *
-   * @param offset the start offset of an unsigned short value in this {@link ClassReader}, whose
-   *     value is the index of a CONSTANT_Class entry in class's constant pool table.
-   * @param charBuffer the buffer to be used to read the item. This buffer must be sufficiently
-   *     large. It is not automatically resized.
-   * @return the String corresponding to the specified CONSTANT_Class entry.
+   * @param offset 此 {@link ClassReader} 中某个无符号 short 值的起始偏移量，其值为类常量池表中
+   * CONSTANT_Class 条目的索引。
+   * @param charBuffer 用于读取该项的缓冲区。此缓冲区必须足够大，不会自动扩容。
+   * @return 与指定 CONSTANT_Class 条目对应的 String。
    */
   public String readClass(final int offset, final char[] charBuffer) {
     return readStringish(offset, charBuffer);
@@ -3720,11 +3689,10 @@ public class ClassReader {
    * 在此 {@link ClassReader} 中读取一个 CONSTANT_Module 常量池条目。<i>此方法供 {@link Attribute} 子
    * 类使用，类生成器或适配器通常不需要它。</i>
    *
-   * @param offset the start offset of an unsigned short value in this {@link ClassReader}, whose
-   *     value is the index of a CONSTANT_Module entry in class's constant pool table.
-   * @param charBuffer the buffer to be used to read the item. This buffer must be sufficiently
-   *     large. It is not automatically resized.
-   * @return the String corresponding to the specified CONSTANT_Module entry.
+   * @param offset 此 {@link ClassReader} 中某个无符号 short 值的起始偏移量，其值为类常量池表中
+   * CONSTANT_Module 条目的索引。
+   * @param charBuffer 用于读取该项的缓冲区。此缓冲区必须足够大，不会自动扩容。
+   * @return 与指定 CONSTANT_Module 条目对应的 String。
    */
   public String readModule(final int offset, final char[] charBuffer) {
     return readStringish(offset, charBuffer);
@@ -3734,11 +3702,10 @@ public class ClassReader {
    * 在此 {@link ClassReader} 中读取一个 CONSTANT_Package 常量池条目。<i>此方法供 {@link Attribute}
    * 子类使用，类生成器或适配器通常不需要它。</i>
    *
-   * @param offset the start offset of an unsigned short value in this {@link ClassReader}, whose
-   *     value is the index of a CONSTANT_Package entry in class's constant pool table.
-   * @param charBuffer the buffer to be used to read the item. This buffer must be sufficiently
-   *     large. It is not automatically resized.
-   * @return the String corresponding to the specified CONSTANT_Package entry.
+   * @param offset 此 {@link ClassReader} 中某个无符号 short 值的起始偏移量，其值为类常量池表中
+   * CONSTANT_Package 条目的索引。
+   * @param charBuffer 用于读取该项的缓冲区。此缓冲区必须足够大，不会自动扩容。
+   * @return 与指定 CONSTANT_Package 条目对应的 String。
    */
   public String readPackage(final int offset, final char[] charBuffer) {
     return readStringish(offset, charBuffer);
@@ -3747,11 +3714,9 @@ public class ClassReader {
   /**
    * 在 {@link #classFileBuffer} 中读取一个 CONSTANT_Dynamic 常量池条目。
    *
-   * @param constantPoolEntryIndex the index of a CONSTANT_Dynamic entry in the class's constant
-   *     pool table.
-   * @param charBuffer the buffer to be used to read the string. This buffer must be sufficiently
-   *     large. It is not automatically resized.
-   * @return the ConstantDynamic corresponding to the specified CONSTANT_Dynamic entry.
+   * @param constantPoolEntryIndex 类常量池表中某个 CONSTANT_Dynamic 条目的索引。
+   * @param charBuffer 用于读取字符串的缓冲区。此缓冲区必须足够大，不会自动扩容。
+   * @return 与指定 CONSTANT_Dynamic 条目对应的 ConstantDynamic。
    */
   private ConstantDynamic readConstantDynamic(
       final int constantPoolEntryIndex, final char[] charBuffer) {
@@ -3779,14 +3744,13 @@ public class ClassReader {
    * 在此 {@link ClassReader} 中读取一个数值或字符串常量池条目。<i>此方法供 {@link Attribute} 子类使
    * 用，类生成器或适配器通常不需要它。</i>
    *
-   * @param constantPoolEntryIndex the index of a CONSTANT_Integer, CONSTANT_Float, CONSTANT_Long,
-   *     CONSTANT_Double, CONSTANT_Class, CONSTANT_String, CONSTANT_MethodType,
-   *     CONSTANT_MethodHandle or CONSTANT_Dynamic entry in the class's constant pool.
-   * @param charBuffer the buffer to be used to read strings. This buffer must be sufficiently
-   *     large. It is not automatically resized.
-   * @return the {@link Integer}, {@link Float}, {@link Long}, {@link Double}, {@link String},
-   *     {@link Type}, {@link Handle} or {@link ConstantDynamic} corresponding to the specified
-   *     constant pool entry.
+   * @param constantPoolEntryIndex 类常量池中 CONSTANT_Integer、CONSTANT_Float、CONSTANT_Long、CONSTANT_Double、
+   * CONSTANT_Class、CONSTANT_String、CONSTANT_MethodType、CONSTANT_MethodHandle
+   * 或 CONSTANT_Dynamic 条目的索引。
+   * @param charBuffer 用于读取字符串的缓冲区。此缓冲区必须足够大，不会自动扩容。
+   * @return 与指定常量池条目对应的 {@link Integer}、{@link Float}、{@link Long}、
+   * {@link Double}、{@link String}、{@link Type}、{@link Handle} 或
+   * {@link ConstantDynamic}。
    */
   public Object readConst(final int constantPoolEntryIndex, final char[] charBuffer) {
     int cpInfoOffset = cpInfoOffsets[constantPoolEntryIndex];

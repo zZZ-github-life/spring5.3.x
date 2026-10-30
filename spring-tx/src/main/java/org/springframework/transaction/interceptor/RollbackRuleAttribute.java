@@ -62,10 +62,9 @@ public class RollbackRuleAttribute implements Serializable{
 	 * <p>这是构造匹配给定异常类型、其子类和嵌套类的回滚规则的首选方式。
 	 * <p>有关回滚规则语义、模式和可能意外匹配的警告, 请参阅
 	 * {@link org.springframework.transaction.annotation.Transactional @Transactional}的javadoc。
-	 * @param exceptionType exception type; must be {@link Throwable} or a subclass
-	 * of {@code Throwable}
-	 * @throws IllegalArgumentException if the supplied {@code exceptionType} is
-	 * not a {@code Throwable} type or is {@code null}
+	 * @param exceptionType 异常类型；必须是 {@link Throwable} 或 {@code Throwable} 的子类
+	 * @throws IllegalArgumentException 如果提供的 {@code exceptionType} 不是 {@code Throwable} 类型，
+	 * 或为 {@code null}
 	 */
 	public RollbackRuleAttribute(Class<?> exceptionType) {
 		Assert.notNull(exceptionType, "'exceptionType' cannot be null");
@@ -80,10 +79,8 @@ public class RollbackRuleAttribute implements Serializable{
 	 * 为给定的{@code exceptionPattern}创建{@code RollbackRuleAttribute}类的新实例。
 	 * <p>有关回滚规则语义、模式和可能意外匹配的警告, 请参阅
 	 * {@link org.springframework.transaction.annotation.Transactional @Transactional}的javadoc。
-	 * @param exceptionPattern the exception name pattern; can also be a fully
-	 * package-qualified class name
-	 * @throws IllegalArgumentException if the supplied {@code exceptionPattern}
-	 * is {@code null} or empty
+	 * @param exceptionPattern 异常名称模式；也可以是全限定包名的类名
+	 * @throws IllegalArgumentException 如果提供的 {@code exceptionPattern} 为 {@code null} 或为空
 	 */
 	public RollbackRuleAttribute(String exceptionPattern) {
 		Assert.hasText(exceptionPattern, "'exceptionPattern' cannot be null or empty");

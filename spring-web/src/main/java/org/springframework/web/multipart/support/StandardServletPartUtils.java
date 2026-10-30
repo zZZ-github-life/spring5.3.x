@@ -39,9 +39,9 @@ public abstract class StandardServletPartUtils {
 
 	/**
 	 * 从给定的 Servlet 请求中检索所有部分。
-	 * @param request the servlet request
-	 * @return the parts in a MultiValueMap
-	 * @throws MultipartException in case of failures
+	 * @param request Servlet 请求
+	 * @return MultiValueMap 中的 part
+	 * @throws MultipartException 失败时抛出
 	 */
 	public static MultiValueMap<String, Part> getParts(HttpServletRequest request) throws MultipartException {
 		try {
@@ -58,10 +58,10 @@ public abstract class StandardServletPartUtils {
 
 	/**
 	 * 从给定的 Servlet 请求中检索所有具有给定名称的部分。
-	 * @param request the servlet request
-	 * @param name the name to look for
-	 * @return the parts in a MultiValueMap
-	 * @throws MultipartException in case of failures
+	 * @param request Servlet 请求
+	 * @param name 要查找的名称
+	 * @return MultiValueMap 中的 part
+	 * @throws MultipartException 失败时抛出
 	 */
 	public static List<Part> getParts(HttpServletRequest request, String name) throws MultipartException {
 		try {
@@ -80,10 +80,10 @@ public abstract class StandardServletPartUtils {
 
 	/**
 	 * 绑定给定 Servlet 请求中的所有部分。
-	 * @param request the servlet request
-	 * @param mpvs the property values to bind to
-	 * @param bindEmpty whether to bind empty parts as well
-	 * @throws MultipartException in case of failures
+	 * @param request Servlet 请求
+	 * @param mpvs 要绑定到的属性值
+	 * @param bindEmpty 是否也绑定空的 part
+	 * @throws MultipartException 失败时抛出
 	 */
 	public static void bindParts(HttpServletRequest request, MutablePropertyValues mpvs, boolean bindEmpty)
 			throws MultipartException {

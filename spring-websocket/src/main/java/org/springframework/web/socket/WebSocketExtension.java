@@ -57,7 +57,7 @@ public class WebSocketExtension {
 
 	/**
 	 * 使用给定名称创建一个 WebSocketExtension。
-	 * @param name the name of the extension
+	 * @param name 扩展的名称
 	 */
 	public WebSocketExtension(String name) {
 		this(name, null);
@@ -65,8 +65,8 @@ public class WebSocketExtension {
 
 	/**
 	 * 使用给定名称和参数创建一个 WebSocketExtension。
-	 * @param name the name of the extension
-	 * @param parameters the parameters
+	 * @param name 扩展的名称
+	 * @param parameters 参数
 	 */
 	public WebSocketExtension(String name, @Nullable Map<String, String> parameters) {
 		Assert.hasLength(name, "Extension name must not be empty");
@@ -126,9 +126,9 @@ public class WebSocketExtension {
 	/**
 	 * 将给定的逗号分隔字符串解析为 {@code WebSocketExtension} 对象列表。
 	 * <p>此方法可用于解析 "Sec-WebSocket-Extension" 头。
-	 * @param extensions the string to parse
-	 * @return the list of extensions
-	 * @throws IllegalArgumentException if the string cannot be parsed
+	 * @param extensions 要解析的字符串
+	 * @return 扩展列表
+	 * @throws IllegalArgumentException 如果无法解析该字符串
 	 */
 	public static List<WebSocketExtension> parseExtensions(String extensions) {
 		if (StringUtils.hasText(extensions)) {

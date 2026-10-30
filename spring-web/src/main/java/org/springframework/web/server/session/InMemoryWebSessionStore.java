@@ -61,7 +61,7 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 	 * 设置可存储的最大会话数。一旦达到该限制，任何再存储会话的尝试都会导致
 	 * {@link IllegalStateException}。
 	 * <p>默认设置为 10000。
-	 * @param maxSessions the maximum number of sessions
+	 * @param maxSessions 最大会话数
 	 * @since 5.0.8
 	 */
 	public void setMaxSessions(int maxSessions) {
@@ -82,7 +82,7 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 	 * <p>这在需要对齐不同时区或在测试中回拨时钟时可能很有用，例如使用
 	 * {@code Clock.offset(clock, Duration.ofMinutes(-31))} 来模拟会话过期。
 	 * <p>默认值为 {@code Clock.system(ZoneId.of("GMT"))}。
-	 * @param clock the clock to use
+	 * @param clock 要使用的时钟
 	 */
 	public void setClock(Clock clock) {
 		Assert.notNull(clock, "Clock is required");

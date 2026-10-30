@@ -74,7 +74,7 @@ public class XmlViewResolver extends AbstractCachingViewResolver
 	/**
 	 * 设置定义视图 bean 的 XML 文件的位置。
 	 * <p>默认为 "/WEB-INF/views.xml"。
-	 * @param location the location of the XML file.
+	 * @param location XML 文件的位置。
 	 */
 	public void setLocation(Resource location) {
 		this.location = location;
@@ -129,7 +129,7 @@ public class XmlViewResolver extends AbstractCachingViewResolver
 	/**
 	 * 从 XML 文件初始化视图 bean 工厂。
 	 * 由于会被并行线程访问，因此使用同步。
-	 * @throws BeansException in case of initialization errors
+	 * @throws BeansException 如果发生初始化错误
 	 */
 	protected synchronized BeanFactory initFactory() throws BeansException {
 		if (this.cachedFactory != null) {

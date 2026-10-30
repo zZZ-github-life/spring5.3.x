@@ -258,9 +258,9 @@ public class JmsListenerAnnotationBeanPostProcessor
 	/**
 	 * 处理给定方法上的给定 {@link JmsListener} 注解，
 	 * 为给定 bean 实例注册相应的端点。
-	 * @param jmsListener the annotation to process
-	 * @param mostSpecificMethod the annotated method
-	 * @param bean the instance to invoke the method on
+	 * @param jmsListener 要处理的注解
+	 * @param mostSpecificMethod 被注解的方法
+	 * @param bean 要在其上调用该方法的实例
 	 * @see #createMethodJmsListenerEndpoint()
 	 * @see JmsListenerEndpointRegistrar#registerEndpoint
 	 */
@@ -306,7 +306,7 @@ public class JmsListenerAnnotationBeanPostProcessor
 	/**
 	 * 实例化一个空的 {@link MethodJmsListenerEndpoint}，
 	 * 以便在 {@link #processJmsListener} 中使用提供的参数进行进一步配置。
-	 * @return a new {@code MethodJmsListenerEndpoint} or subclass thereof
+	 * @return 新的 {@code MethodJmsListenerEndpoint} 或其子类
 	 * @since 4.1.9
 	 * @see MethodJmsListenerEndpoint#createMessageListenerInstance()
 	 */

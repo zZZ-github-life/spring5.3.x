@@ -51,7 +51,7 @@ public class LocalizedResourceHelper {
 
 	/**
 	 * 使用给定的 ResourceLoader 创建一个新的 LocalizedResourceHelper。
-	 * @param resourceLoader the ResourceLoader to use
+	 * @param resourceLoader 要使用的 ResourceLoader
 	 */
 	public LocalizedResourceHelper(ResourceLoader resourceLoader) {
 		Assert.notNull(resourceLoader, "ResourceLoader must not be null");
@@ -76,10 +76,10 @@ public class LocalizedResourceHelper {
 	 * <li>[name][extension]
 	 * </ul>
 	 * <p>如果找不到任何特定的文件，将返回默认位置的资源描述符。
-	 * @param name the name of the file, without localization part nor extension
-	 * @param extension the file extension (e.g. ".xls")
-	 * @param locale the current locale (may be {@code null})
-	 * @return the most specific localized resource found
+	 * @param name 文件名，不含本地化部分和扩展名
+	 * @param extension 文件扩展名（例如 ".xls"）
+	 * @param locale 当前区域设置（可能为 {@code null}）
+	 * @return 找到的最具体的本地化资源
 	 * @see java.util.ResourceBundle
 	 */
 	public Resource findLocalizedResource(String name, String extension, @Nullable Locale locale) {

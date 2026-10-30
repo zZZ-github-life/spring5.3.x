@@ -31,7 +31,7 @@ public class AdviceEntry implements ParseState.Entry {
 
 	/**
 	 * 创建一个新的 {@code AdviceEntry} 实例。
-	 * @param kind the kind of advice represented by this entry (before, after, around)
+	 * @param kind 此条目所表示的通知类型（before、after、around）
 	 */
 	public AdviceEntry(String kind) {
 		this.kind = kind;

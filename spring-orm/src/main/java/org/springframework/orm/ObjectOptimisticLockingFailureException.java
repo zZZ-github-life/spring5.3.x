@@ -39,8 +39,8 @@ public class ObjectOptimisticLockingFailureException extends OptimisticLockingFa
 	/**
 	 * 使用给定消息创建一个通用的 ObjectOptimisticLockingFailureException，
 	 * 不包含任何受影响对象的信息。
-	 * @param msg the detail message
-	 * @param cause the source exception
+	 * @param msg 详细消息
+	 * @param cause 源异常
 	 */
 	public ObjectOptimisticLockingFailureException(String msg, Throwable cause) {
 		super(msg, cause);
@@ -51,8 +51,8 @@ public class ObjectOptimisticLockingFailureException extends OptimisticLockingFa
 	/**
 	 * 为给定对象创建一个新的 ObjectOptimisticLockingFailureException，
 	 * 使用默认的 "optimistic locking failed" 消息。
-	 * @param persistentClass the persistent class
-	 * @param identifier the ID of the object for which the locking failed
+	 * @param persistentClass 持久化类
+	 * @param identifier 加锁失败的对象 ID
 	 */
 	public ObjectOptimisticLockingFailureException(Class<?> persistentClass, Object identifier) {
 		this(persistentClass, identifier, null);
@@ -61,9 +61,9 @@ public class ObjectOptimisticLockingFailureException extends OptimisticLockingFa
 	/**
 	 * 为给定对象创建一个新的 ObjectOptimisticLockingFailureException，
 	 * 使用默认的 "optimistic locking failed" 消息。
-	 * @param persistentClass the persistent class
-	 * @param identifier the ID of the object for which the locking failed
-	 * @param cause the source exception
+	 * @param persistentClass 持久化类
+	 * @param identifier 加锁失败的对象 ID
+	 * @param cause 源异常
 	 */
 	public ObjectOptimisticLockingFailureException(
 			Class<?> persistentClass, Object identifier, @Nullable Throwable cause) {
@@ -76,10 +76,10 @@ public class ObjectOptimisticLockingFailureException extends OptimisticLockingFa
 	/**
 	 * 为给定对象创建一个新的 ObjectOptimisticLockingFailureException，
 	 * 使用给定的显式消息。
-	 * @param persistentClass the persistent class
-	 * @param identifier the ID of the object for which the locking failed
-	 * @param msg the detail message
-	 * @param cause the source exception
+	 * @param persistentClass 持久化类
+	 * @param identifier 加锁失败的对象 ID
+	 * @param msg 详细消息
+	 * @param cause 源异常
 	 */
 	public ObjectOptimisticLockingFailureException(
 			Class<?> persistentClass, Object identifier, String msg, @Nullable Throwable cause) {
@@ -92,8 +92,8 @@ public class ObjectOptimisticLockingFailureException extends OptimisticLockingFa
 	/**
 	 * 为给定对象创建一个新的 ObjectOptimisticLockingFailureException，
 	 * 使用默认的 "optimistic locking failed" 消息。
-	 * @param persistentClassName the name of the persistent class
-	 * @param identifier the ID of the object for which the locking failed
+	 * @param persistentClassName 持久化类的名称
+	 * @param identifier 加锁失败的对象 ID
 	 */
 	public ObjectOptimisticLockingFailureException(String persistentClassName, Object identifier) {
 		this(persistentClassName, identifier, null);
@@ -102,9 +102,9 @@ public class ObjectOptimisticLockingFailureException extends OptimisticLockingFa
 	/**
 	 * 为给定对象创建一个新的 ObjectOptimisticLockingFailureException，
 	 * 使用默认的 "optimistic locking failed" 消息。
-	 * @param persistentClassName the name of the persistent class
-	 * @param identifier the ID of the object for which the locking failed
-	 * @param cause the source exception
+	 * @param persistentClassName 持久化类的名称
+	 * @param identifier 加锁失败的对象 ID
+	 * @param cause 源异常
 	 */
 	public ObjectOptimisticLockingFailureException(
 			String persistentClassName, Object identifier, @Nullable Throwable cause) {
@@ -117,10 +117,10 @@ public class ObjectOptimisticLockingFailureException extends OptimisticLockingFa
 	/**
 	 * 为给定对象创建一个新的 ObjectOptimisticLockingFailureException，
 	 * 使用给定的显式消息。
-	 * @param persistentClassName the name of the persistent class
-	 * @param identifier the ID of the object for which the locking failed
-	 * @param msg the detail message
-	 * @param cause the source exception
+	 * @param persistentClassName 持久化类的名称
+	 * @param identifier 加锁失败的对象 ID
+	 * @param msg 详细消息
+	 * @param cause 源异常
 	 */
 	public ObjectOptimisticLockingFailureException(
 			String persistentClassName, Object identifier, String msg, @Nullable Throwable cause) {

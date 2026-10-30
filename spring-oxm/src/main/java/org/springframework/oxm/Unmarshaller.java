@@ -32,18 +32,17 @@ public interface Unmarshaller {
 
 	/**
 	 * 指示此 unmarshaller 是否能够 unmarshal 所提供类型的实例。
-	 * @param clazz the class that this unmarshaller is being asked if it can marshal
-	 * @return {@code true} if this unmarshaller can indeed unmarshal to the supplied class;
-	 * {@code false} otherwise
+	 * @param clazz 询问此 unmarshaller 是否能编组的类
+	 * @return 如果此 unmarshaller 确实能解组为所提供的类，则返回 {@code true}；否则返回 {@code false}
 	 */
 	boolean supports(Class<?> clazz);
 
 	/**
 	 * 将给定的 {@link Source} unmarshal 为对象图。
-	 * @param source the source to marshal from
-	 * @return the object graph
-	 * @throws IOException if an I/O error occurs
-	 * @throws XmlMappingException if the given source cannot be mapped to an object
+	 * @param source 要从中解组的源
+	 * @return 对象图
+	 * @throws IOException 如果发生 I/O 错误
+	 * @throws XmlMappingException 如果给定源无法映射到对象
 	 */
 	Object unmarshal(Source source) throws IOException, XmlMappingException;
 

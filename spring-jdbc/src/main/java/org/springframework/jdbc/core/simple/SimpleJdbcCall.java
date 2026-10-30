@@ -58,7 +58,7 @@ public class SimpleJdbcCall extends AbstractJdbcCall implements SimpleJdbcCallOp
 	/**
 	 * 接受一个参数的构造器，参数为创建底层 JdbcTemplate 时使用的
 	 * JDBC DataSource。
-	 * @param dataSource the {@code DataSource} to use
+	 * @param dataSource 要使用的 {@code DataSource}
 	 * @see org.springframework.jdbc.core.JdbcTemplate#setDataSource
 	 */
 	public SimpleJdbcCall(DataSource dataSource) {
@@ -67,7 +67,7 @@ public class SimpleJdbcCall extends AbstractJdbcCall implements SimpleJdbcCallOp
 
 	/**
 	 * 备选构造器，接受一个参数，即要使用的 JdbcTemplate。
-	 * @param jdbcTemplate the {@code JdbcTemplate} to use
+	 * @param jdbcTemplate 要使用的 {@code JdbcTemplate}
 	 * @see org.springframework.jdbc.core.JdbcTemplate#setDataSource
 	 */
 	public SimpleJdbcCall(JdbcTemplate jdbcTemplate) {

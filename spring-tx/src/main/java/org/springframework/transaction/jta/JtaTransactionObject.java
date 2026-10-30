@@ -44,8 +44,8 @@ public class JtaTransactionObject implements SmartTransactionObject {
 
 	/**
 	 * 为给定的JTA UserTransaction创建一个新的JtaTransactionObject。
-	 * @param userTransaction the JTA UserTransaction for the current transaction
-	 * (either a shared object or retrieved through a fresh per-transaction lookup)
+	 * @param userTransaction 当前事务的 JTA UserTransaction
+	 * （可以是共享对象，也可以通过每次事务的全新查找获得）
 	 */
 	public JtaTransactionObject(UserTransaction userTransaction) {
 		this.userTransaction = userTransaction;

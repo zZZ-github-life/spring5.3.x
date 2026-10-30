@@ -31,8 +31,8 @@ public interface PersistenceUnitPostProcessor {
 	/**
 	 * 对给定的 PersistenceUnitInfo 进行后处理，例如注册
 	 * 更多的实体类和 jar 文件。
-	 * @param pui the chosen PersistenceUnitInfo, as read from {@code persistence.xml}.
-	 * Passed in as MutablePersistenceUnitInfo.
+	 * @param pui 选定的 PersistenceUnitInfo，读取自 {@code persistence.xml}。
+	 * 以 MutablePersistenceUnitInfo 形式传入。
 	 */
 	void postProcessPersistenceUnitInfo(MutablePersistenceUnitInfo pui);
 

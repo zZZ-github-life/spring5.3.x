@@ -58,44 +58,44 @@ public interface DataBuffer {
 
 	/**
 	 * 返回创建此缓冲区的 {@link DataBufferFactory}。
-	 * @return the creating buffer factory
+	 * @return 创建该缓冲区的缓冲区工厂
 	 */
 	DataBufferFactory factory();
 
 	/**
 	 * 返回此缓冲区中匹配给定谓词的第一个字节的索引。
-	 * @param predicate the predicate to match
-	 * @param fromIndex the index to start the search from
-	 * @return the index of the first byte that matches {@code predicate};
-	 * or {@code -1} if none match
+	 * @param predicate 要匹配的谓词
+	 * @param fromIndex 开始搜索的索引
+	 * @return 第一个匹配 {@code predicate} 的字节的索引；
+	 * 如果没有匹配项则为 {@code -1}
 	 */
 	int indexOf(IntPredicate predicate, int fromIndex);
 
 	/**
 	 * 返回此缓冲区中匹配给定谓词的最后一个字节的索引。
-	 * @param predicate the predicate to match
-	 * @param fromIndex the index to start the search from
-	 * @return the index of the last byte that matches {@code predicate};
-	 * or {@code -1} if none match
+	 * @param predicate 要匹配的谓词
+	 * @param fromIndex 开始搜索的索引
+	 * @return 最后一个匹配 {@code predicate} 的字节的索引；
+	 * 如果没有匹配项则为 {@code -1}
 	 */
 	int lastIndexOf(IntPredicate predicate, int fromIndex);
 
 	/**
 	 * 返回可从此数据缓冲区读取的字节数。
-	 * @return the readable byte count
+	 * @return 可读取的字节数
 	 */
 	int readableByteCount();
 
 	/**
 	 * 返回可写入此数据缓冲区的字节数。
-	 * @return the writable byte count
+	 * @return 可写入的字节数
 	 * @since 5.0.1
 	 */
 	int writableByteCount();
 
 	/**
 	 * 返回此缓冲区可容纳的字节数。
-	 * @return the capacity
+	 * @return 容量
 	 * @since 5.0.1
 	 */
 	int capacity();
@@ -103,16 +103,16 @@ public interface DataBuffer {
 	/**
 	 * 设置此缓冲区可容纳的字节数。
 	 * <p>如果新容量小于当前容量，此缓冲区的内容将被截断。如果新容量大于当前容量，则会进行扩展。
-	 * @param capacity the new capacity
-	 * @return this buffer
+	 * @param capacity 新的容量
+	 * @return 此缓冲区
 	 */
 	DataBuffer capacity(int capacity);
 
 	/**
 	 * 确保当前缓冲区具有足够的 {@link #writableByteCount()} 来写入作为参数给出的数据量。如果不足，缺少
 	 * 的容量将被添加到缓冲区中。
-	 * @param capacity the writable capacity to check for
-	 * @return this buffer
+	 * @param capacity 要检查的可写容量
+	 * @return 此缓冲区
 	 * @since 5.1.4
 	 */
 	default DataBuffer ensureCapacity(int capacity) {
@@ -121,112 +121,112 @@ public interface DataBuffer {
 
 	/**
 	 * 返回此缓冲区将从中读取的位置。
-	 * @return the read position
+	 * @return 读取位置
 	 * @since 5.0.1
 	 */
 	int readPosition();
 
 	/**
 	 * 设置此缓冲区将从中读取的位置。
-	 * @param readPosition the new read position
-	 * @return this buffer
-	 * @throws IndexOutOfBoundsException if {@code readPosition} is smaller than 0
-	 * or greater than {@link #writePosition()}
+	 * @param readPosition 新的读取位置
+	 * @return 此缓冲区
+	 * @throws IndexOutOfBoundsException 如果 {@code readPosition} 小于 0
+	 * 或大于 {@link #writePosition()}
 	 * @since 5.0.1
 	 */
 	DataBuffer readPosition(int readPosition);
 
 	/**
 	 * 返回此缓冲区将写入到的位置。
-	 * @return the write position
+	 * @return 写入位置
 	 * @since 5.0.1
 	 */
 	int writePosition();
 
 	/**
 	 * 设置此缓冲区将写入到的位置。
-	 * @param writePosition the new write position
-	 * @return this buffer
-	 * @throws IndexOutOfBoundsException if {@code writePosition} is smaller than
-	 * {@link #readPosition()} or greater than {@link #capacity()}
+	 * @param writePosition 新的写入位置
+	 * @return 此缓冲区
+	 * @throws IndexOutOfBoundsException 如果 {@code writePosition} 小于
+	 * {@link #readPosition()} 或大于 {@link #capacity()}
 	 * @since 5.0.1
 	 */
 	DataBuffer writePosition(int writePosition);
 
 	/**
 	 * 从此数据缓冲区的给定索引处读取单个字节。
-	 * @param index the index at which the byte will be read
-	 * @return the byte at the given index
-	 * @throws IndexOutOfBoundsException when {@code index} is out of bounds
+	 * @param index 读取字节处的索引
+	 * @return 给定索引处的字节
+	 * @throws IndexOutOfBoundsException 当 {@code index} 越界时
 	 * @since 5.0.4
 	 */
 	byte getByte(int index);
 
 	/**
 	 * 从此数据缓冲区的当前读取位置读取单个字节。
-	 * @return the byte at this buffer's current reading position
+	 * @return 此缓冲区当前读取位置处的字节
 	 */
 	byte read();
 
 	/**
 	 * 将此缓冲区的数据读入指定目标，从此缓冲区的当前读取位置开始。
-	 * @param destination the array into which the bytes are to be written
-	 * @return this buffer
+	 * @param destination 字节要写入的数组
+	 * @return 此缓冲区
 	 */
 	DataBuffer read(byte[] destination);
 
 	/**
 	 * 将此缓冲区最多 {@code length} 个字节读入指定目标，从此缓冲区的当前读取位置开始。
-	 * @param destination the array into which the bytes are to be written
-	 * @param offset the index within {@code destination} of the first byte to be written
-	 * @param length the maximum number of bytes to be written in {@code destination}
-	 * @return this buffer
+	 * @param destination 字节要写入的数组
+	 * @param offset 要写入的第一个字节在 {@code destination} 中的索引
+	 * @param length 要写入 {@code destination} 的最大字节数
+	 * @return 此缓冲区
 	 */
 	DataBuffer read(byte[] destination, int offset, int length);
 
 	/**
 	 * 在当前写入位置向此缓冲区写入单个字节。
-	 * @param b the byte to be written
-	 * @return this buffer
+	 * @param b 要写入的字节
+	 * @return 此缓冲区
 	 */
 	DataBuffer write(byte b);
 
 	/**
 	 * 将给定源写入此缓冲区，从此缓冲区的当前写入位置开始。
-	 * @param source the bytes to be written into this buffer
-	 * @return this buffer
+	 * @param source 要写入此缓冲区的字节
+	 * @return 此缓冲区
 	 */
 	DataBuffer write(byte[] source);
 
 	/**
 	 * 将给定源最多 {@code length} 个字节写入此缓冲区，从此缓冲区的当前写入位置开始。
-	 * @param source the bytes to be written into this buffer
-	 * @param offset the index within {@code source} to start writing from
-	 * @param length the maximum number of bytes to be written from {@code source}
-	 * @return this buffer
+	 * @param source 要写入此缓冲区的字节
+	 * @param offset 在 {@code source} 中开始写入的索引
+	 * @param length 要从 {@code source} 写入的最大字节数
+	 * @return 此缓冲区
 	 */
 	DataBuffer write(byte[] source, int offset, int length);
 
 	/**
 	 * 将一个或多个 {@code DataBuffer} 写入此缓冲区，从当前写入位置开始。调用方负责
 	 * {@linkplain DataBufferUtils#release(DataBuffer) release} 给定的数据缓冲区。
-	 * @param buffers the byte buffers to write into this buffer
-	 * @return this buffer
+	 * @param buffers 要写入此缓冲区的字节缓冲区
+	 * @return 此缓冲区
 	 */
 	DataBuffer write(DataBuffer... buffers);
 
 	/**
 	 * 将一个或多个 {@link ByteBuffer} 写入此缓冲区，从当前写入位置开始。
-	 * @param buffers the byte buffers to write into this buffer
-	 * @return this buffer
+	 * @param buffers 要写入此缓冲区的字节缓冲区
+	 * @return 此缓冲区
 	 */
 	DataBuffer write(ByteBuffer... buffers);
 
 	/**
 	 * 使用给定 {@code Charset} 写入给定 {@code CharSequence}，从当前写入位置开始。
-	 * @param charSequence the char sequence to write into this buffer
-	 * @param charset the charset to encode the char sequence with
-	 * @return this buffer
+	 * @param charSequence 要写入此缓冲区的字符序列
+	 * @param charset 用于编码该字符序列的字符集
+	 * @return 此缓冲区
 	 * @since 5.1.4
 	 */
 	default DataBuffer write(CharSequence charSequence, Charset charset) {
@@ -266,9 +266,9 @@ public interface DataBuffer {
 	 * 之间的数据是共享的；不过返回缓冲区位置的变化不会反映在此数据缓冲区的读位置或写位置中。
 	 * <p>请注意，此方法<strong>不会</strong>对生成的切片调用
 	 * {@link DataBufferUtils#retain(DataBuffer)}：引用计数不会增加。
-	 * @param index the index at which to start the slice
-	 * @param length the length of the slice
-	 * @return the specified slice of this data buffer
+	 * @param index 切片的起始索引
+	 * @param length 切片的长度
+	 * @return 此数据缓冲区的指定切片
 	 */
 	DataBuffer slice(int index, int length);
 
@@ -277,9 +277,9 @@ public interface DataBuffer {
 	 * 缓冲区之间的数据是共享的；不过返回缓冲区位置的变化不会反映在此数据缓冲区的读位置或写位置中。
 	 * <p>请注意，与 {@link #slice(int, int)} 不同，此方法<strong>会</strong>对生成的切片调用
 	 * {@link DataBufferUtils#retain(DataBuffer)}（或等效方法）。
-	 * @param index the index at which to start the slice
-	 * @param length the length of the slice
-	 * @return the specified, retained slice of this data buffer
+	 * @param index 切片的起始索引
+	 * @param length 切片的长度
+	 * @return 此数据缓冲区的指定保留切片
 	 * @since 5.2
 	 */
 	default DataBuffer retainedSlice(int index, int length) {
@@ -290,7 +290,7 @@ public interface DataBuffer {
 	 * 将此缓冲区的字节暴露为 {@link ByteBuffer}。此 {@code DataBuffer} 与返回的 {@code ByteBuffer} 之
 	 * 间的数据是共享的；不过返回缓冲区 {@linkplain ByteBuffer#position() position} 的变化不会反映在此
 	 * 数据缓冲区的读位置或写位置中。
-	 * @return this data buffer as a byte buffer
+	 * @return 此数据缓冲区作为字节缓冲区
 	 */
 	ByteBuffer asByteBuffer();
 
@@ -298,9 +298,9 @@ public interface DataBuffer {
 	 * 将此缓冲区字节的子序列暴露为 {@link ByteBuffer}。此 {@code DataBuffer} 与返回的
 	 * {@code ByteBuffer} 之间的数据是共享的；不过返回缓冲区
 	 * {@linkplain ByteBuffer#position() position} 的变化不会反映在此数据缓冲区的读位置或写位置中。
-	 * @param index the index at which to start the byte buffer
-	 * @param length the length of the returned byte buffer
-	 * @return this data buffer as a byte buffer
+	 * @param index 字节缓冲区的起始索引
+	 * @param length 返回的字节缓冲区的长度
+	 * @return 此数据缓冲区作为字节缓冲区
 	 * @since 5.0.1
 	 */
 	ByteBuffer asByteBuffer(int index, int length);
@@ -309,32 +309,32 @@ public interface DataBuffer {
 	 * 将此缓冲区的数据暴露为 {@link InputStream}。数据与读位置在返回的流与此数据缓冲区之间共享。当输入
 	 * 流被 {@linkplain InputStream#close() closed} 时，底层缓冲区<strong>不会</strong>被
 	 * {@linkplain DataBufferUtils#release(DataBuffer) released}。
-	 * @return this data buffer as an input stream
+	 * @return 此数据缓冲区作为输入流
 	 * @see #asInputStream(boolean)
 	 */
 	InputStream asInputStream();
 
 	/**
 	 * 将此缓冲区的数据暴露为 {@link InputStream}。数据与读位置在返回的流与此数据缓冲区之间共享。
-	 * @param releaseOnClose whether the underlying buffer will be
-	 * {@linkplain DataBufferUtils#release(DataBuffer) released} when the input stream is
-	 * {@linkplain InputStream#close() closed}.
-	 * @return this data buffer as an input stream
+	 * @param releaseOnClose 当输入流被{@linkplain InputStream#close() closed}时，
+	 * 底层缓冲区是否会被
+	 * {@linkplain DataBufferUtils#release(DataBuffer) released}。
+	 * @return 此数据缓冲区作为输入流
 	 * @since 5.0.4
 	 */
 	InputStream asInputStream(boolean releaseOnClose);
 
 	/**
 	 * 将此缓冲区的数据暴露为 {@link OutputStream}。数据与写位置在返回的流与此数据缓冲区之间共享。
-	 * @return this data buffer as an output stream
+	 * @return 此数据缓冲区作为输出流
 	 */
 	OutputStream asOutputStream();
 
 	/**
 	 * 使用指定字符集将此缓冲区的数据作为 String 返回。默认实现委托给
 	 * {@code toString(readPosition(), readableByteCount(), charset)}。
-	 * @param charset the character set to use
-	 * @return a string representation of all this buffers data
+	 * @param charset 要使用的字符集
+	 * @return 此缓冲区全部数据的字符串表示
 	 * @since 5.2
 	 */
 	default String toString(Charset charset) {
@@ -344,10 +344,10 @@ public interface DataBuffer {
 
 	/**
 	 * 使用指定字符集将此缓冲区数据的一部分作为 String 返回。
-	 * @param index the index at which to start the string
-	 * @param length the number of bytes to use for the string
-	 * @param charset the charset to use
-	 * @return a string representation of a part of this buffers data
+	 * @param index 字符串的起始索引
+	 * @param length 用于该字符串的字节数
+	 * @param charset 要使用的字符集
+	 * @return 此缓冲区部分数据的字符串表示
 	 * @since 5.2
 	 */
 	String toString(int index, int length, Charset charset);

@@ -35,16 +35,15 @@ public interface CacheManager {
 	 * 获取与给定名称关联的缓存。
 	 *
 	 * <p>请注意，如果原生提供者支持，缓存可能会在运行时延迟创建。
-	 * @param name the cache identifier (must not be {@code null})
-	 * @return the associated cache, or {@code null} if such a cache
-	 * does not exist or could be not created
+	 * @param name 缓存标识符（不能为 {@code null}）
+	 * @return 关联的缓存；如果此类缓存不存在或无法创建，则为 {@code null}
 	 */
 	@Nullable
 	Cache getCache(String name);
 
 	/**
 	 * 获取此管理器已知的缓存名称集合。
-	 * @return the names of all caches known by the cache manager
+	 * @return 缓存管理器已知的所有缓存的名称
 	 */
 	Collection<String> getCacheNames();
 

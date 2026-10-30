@@ -64,9 +64,9 @@ public abstract class JndiLocatorSupport extends JndiAccessor {
 	/**
 	 * 通过 JndiTemplate 对给定名称执行实际的 JNDI 查找。
 	 * <p>如果名称不以 "java:comp/env/" 开头，则在 "resourceRef" 设置为 "true" 时添加此前缀。
-	 * @param jndiName the JNDI name to look up
-	 * @return the obtained object
-	 * @throws NamingException if the JNDI lookup failed
+	 * @param jndiName 要查找的 JNDI 名称
+	 * @return 获取到的对象
+	 * @throws NamingException 如果 JNDI 查找失败
 	 * @see #setResourceRef
 	 */
 	protected Object lookup(String jndiName) throws NamingException {
@@ -76,10 +76,10 @@ public abstract class JndiLocatorSupport extends JndiAccessor {
 	/**
 	 * 通过 JndiTemplate 对给定名称执行实际的 JNDI 查找。
 	 * <p>如果名称不以 "java:comp/env/" 开头，则在 "resourceRef" 设置为 "true" 时添加此前缀。
-	 * @param jndiName the JNDI name to look up
-	 * @param requiredType the required type of the object
-	 * @return the obtained object
-	 * @throws NamingException if the JNDI lookup failed
+	 * @param jndiName 要查找的 JNDI 名称
+	 * @param requiredType 对象所需的类型
+	 * @return 获取到的对象
+	 * @throws NamingException 如果 JNDI 查找失败
 	 * @see #setResourceRef
 	 */
 	protected <T> T lookup(String jndiName, @Nullable Class<T> requiredType) throws NamingException {
@@ -112,8 +112,8 @@ public abstract class JndiLocatorSupport extends JndiAccessor {
 	 * 将给定的 JNDI 名称转换为实际要使用的 JNDI 名称。
 	 * <p>如果 "resourceRef" 为 "true" 且未给出其他方案（例如 "java:"），默认实现会添加
 	 * "java:comp/env/" 前缀。
-	 * @param jndiName the original JNDI name
-	 * @return the JNDI name to use
+	 * @param jndiName 原始 JNDI 名称
+	 * @return 要使用的 JNDI 名称
 	 * @see #CONTAINER_PREFIX
 	 * @see #setResourceRef
 	 */

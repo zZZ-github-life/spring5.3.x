@@ -58,7 +58,7 @@ public abstract class JmsUtils {
 	/**
 	 * 关闭给定的 JMS Connection 并忽略任何抛出的异常。
 	 * 这对于手写 JMS 代码中的典型 {@code finally} 块很有用。
-	 * @param con the JMS Connection to close (may be {@code null})
+	 * @param con 要关闭的 JMS Connection（可能为 {@code null}）
 	 */
 	public static void closeConnection(@Nullable Connection con) {
 		closeConnection(con, false);
@@ -67,8 +67,8 @@ public abstract class JmsUtils {
 	/**
 	 * 关闭给定的 JMS Connection 并忽略任何抛出的异常。
 	 * 这对于手写 JMS 代码中的典型 {@code finally} 块很有用。
-	 * @param con the JMS Connection to close (may be {@code null})
-	 * @param stop whether to call {@code stop()} before closing
+	 * @param con 要关闭的 JMS Connection（可能为 {@code null}）
+	 * @param stop 是否在关闭前调用 {@code stop()}
 	 */
 	public static void closeConnection(@Nullable Connection con, boolean stop) {
 		if (con != null) {
@@ -101,7 +101,7 @@ public abstract class JmsUtils {
 	/**
 	 * 关闭给定的 JMS Session 并忽略任何抛出的异常。
 	 * 这对于手写 JMS 代码中的典型 {@code finally} 块很有用。
-	 * @param session the JMS Session to close (may be {@code null})
+	 * @param session 要关闭的 JMS Session（可能为 {@code null}）
 	 */
 	public static void closeSession(@Nullable Session session) {
 		if (session != null) {
@@ -121,7 +121,7 @@ public abstract class JmsUtils {
 	/**
 	 * 关闭给定的 JMS MessageProducer 并忽略任何抛出的异常。
 	 * 这对于手写 JMS 代码中的典型 {@code finally} 块很有用。
-	 * @param producer the JMS MessageProducer to close (may be {@code null})
+	 * @param producer 要关闭的 JMS MessageProducer（可能为 {@code null}）
 	 */
 	public static void closeMessageProducer(@Nullable MessageProducer producer) {
 		if (producer != null) {
@@ -141,7 +141,7 @@ public abstract class JmsUtils {
 	/**
 	 * 关闭给定的 JMS MessageConsumer 并忽略任何抛出的异常。
 	 * 这对于手写 JMS 代码中的典型 {@code finally} 块很有用。
-	 * @param consumer the JMS MessageConsumer to close (may be {@code null})
+	 * @param consumer 要关闭的 JMS MessageConsumer（可能为 {@code null}）
 	 */
 	public static void closeMessageConsumer(@Nullable MessageConsumer consumer) {
 		if (consumer != null) {
@@ -170,7 +170,7 @@ public abstract class JmsUtils {
 	/**
 	 * 关闭给定的 JMS QueueBrowser 并忽略任何抛出的异常。
 	 * 这对于手写 JMS 代码中的典型 {@code finally} 块很有用。
-	 * @param browser the JMS QueueBrowser to close (may be {@code null})
+	 * @param browser 要关闭的 JMS QueueBrowser（可能为 {@code null}）
 	 */
 	public static void closeQueueBrowser(@Nullable QueueBrowser browser) {
 		if (browser != null) {
@@ -190,7 +190,7 @@ public abstract class JmsUtils {
 	/**
 	 * 关闭给定的 JMS QueueRequestor 并忽略任何抛出的异常。
 	 * 这对于手写 JMS 代码中的典型 {@code finally} 块很有用。
-	 * @param requestor the JMS QueueRequestor to close (may be {@code null})
+	 * @param requestor 要关闭的 JMS QueueRequestor（可能为 {@code null}）
 	 */
 	public static void closeQueueRequestor(@Nullable QueueRequestor requestor) {
 		if (requestor != null) {
@@ -209,8 +209,8 @@ public abstract class JmsUtils {
 
 	/**
 	 * 如果不在 JTA 事务中，则提交该 Session。
-	 * @param session the JMS Session to commit
-	 * @throws JMSException if committing failed
+	 * @param session 要提交的 JMS Session
+	 * @throws JMSException 提交失败时
 	 */
 	public static void commitIfNecessary(Session session) throws JMSException {
 		Assert.notNull(session, "Session must not be null");
@@ -224,8 +224,8 @@ public abstract class JmsUtils {
 
 	/**
 	 * 如果不在 JTA 事务中，则回滚该 Session。
-	 * @param session the JMS Session to rollback
-	 * @throws JMSException if committing failed
+	 * @param session 要回滚的 JMS Session
+	 * @throws JMSException 提交失败时
 	 */
 	public static void rollbackIfNecessary(Session session) throws JMSException {
 		Assert.notNull(session, "Session must not be null");
@@ -240,8 +240,8 @@ public abstract class JmsUtils {
 	/**
 	 * 为给定的 JMSException 构建描述性的异常消息，
 	 * 并在适当时纳入链接异常（linked exception）的消息。
-	 * @param ex the JMSException to build a message for
-	 * @return the descriptive message String
+	 * @param ex 要为其构建消息的 JMSException
+	 * @return 描述性消息字符串
 	 * @see javax.jms.JMSException#getLinkedException()
 	 */
 	public static String buildExceptionMessage(JMSException ex) {
@@ -264,8 +264,8 @@ public abstract class JmsUtils {
 	/**
 	 * 将指定的受检 {@link javax.jms.JMSException JMSException} 转换为
 	 * 等价的 Spring 运行时 {@link org.springframework.jms.JmsException JmsException}。
-	 * @param ex the original checked JMSException to convert
-	 * @return the Spring runtime JmsException wrapping the given exception
+	 * @param ex 要转换的原始受检 JMSException
+	 * @return 包装给定异常的 Spring 运行时 JmsException
 	 */
 	public static JmsException convertJmsAccessException(JMSException ex) {
 		Assert.notNull(ex, "JMSException must not be null");

@@ -52,10 +52,8 @@ public abstract class ProfileValueUtils {
 	 * <p>如果指定类上不存在 {@link ProfileValueSourceConfiguration
 	 * &#064;ProfileValueSourceConfiguration}，或者未声明自定义 {@link ProfileValueSource}，
 	 * 则改为返回默认的 {@link SystemProfileValueSource}。
-	 * @param testClass the test class for which the ProfileValueSource should
-	 * be retrieved
-	 * @return the configured (or default) ProfileValueSource for the specified
-	 * class
+	 * @param testClass 应为其获取 ProfileValueSource 的测试类
+	 * @return 指定类所配置（或默认）的 ProfileValueSource
 	 * @see SystemProfileValueSource
 	 */
 	@SuppressWarnings("unchecked")
@@ -108,9 +106,9 @@ public abstract class ProfileValueUtils {
 	 * &#064;IfProfileValue} 注解指定。
 	 * <p>如果未声明 {@link IfProfileValue
 	 * &#064;IfProfileValue} 注解，默认为 {@code true}。
-	 * @param testClass the test class
-	 * @return {@code true} if the test is <em>enabled</em> in the current
-	 * environment
+	 * @param testClass 测试类
+	 * @return 如果测试在当前环境中处于<em>启用</em>状态，
+	 * 则返回 {@code true}。
 	 */
 	public static boolean isTestEnabledInThisEnvironment(Class<?> testClass) {
 		IfProfileValue ifProfileValue = AnnotatedElementUtils.findMergedAnnotation(testClass, IfProfileValue.class);
@@ -125,10 +123,10 @@ public abstract class ProfileValueUtils {
 	 * 方法级用法。
 	 * <p>如果未声明 {@link IfProfileValue
 	 * &#064;IfProfileValue} 注解，默认为 {@code true}。
-	 * @param testMethod the test method
-	 * @param testClass the test class
-	 * @return {@code true} if the test is <em>enabled</em> in the current
-	 * environment
+	 * @param testMethod 测试方法
+	 * @param testClass 测试类
+	 * @return 如果测试在当前环境中处于<em>启用</em>状态，
+	 * 则返回 {@code true}。
 	 */
 	public static boolean isTestEnabledInThisEnvironment(Method testMethod, Class<?> testClass) {
 		return isTestEnabledInThisEnvironment(retrieveProfileValueSource(testClass), testMethod, testClass);
@@ -142,12 +140,11 @@ public abstract class ProfileValueUtils {
 	 * 方法级用法。
 	 * <p>如果未声明 {@link IfProfileValue
 	 * &#064;IfProfileValue} 注解，默认为 {@code true}。
-	 * @param profileValueSource the ProfileValueSource to use to determine if
-	 * the test is enabled
-	 * @param testMethod the test method
-	 * @param testClass the test class
-	 * @return {@code true} if the test is <em>enabled</em> in the current
-	 * environment
+	 * @param profileValueSource 用于判断测试是否启用的 ProfileValueSource
+	 * @param testMethod 测试方法
+	 * @param testClass 测试类
+	 * @return 如果测试在当前环境中处于<em>启用</em>状态，
+	 * 则返回 {@code true}。
 	 */
 	public static boolean isTestEnabledInThisEnvironment(ProfileValueSource profileValueSource, Method testMethod,
 			Class<?> testClass) {
@@ -167,13 +164,11 @@ public abstract class ProfileValueUtils {
 	 * 确定提供的 {@link IfProfileValue &#064;IfProfileValue} 注解中的
 	 * {@code value}（或其中一个 {@code values}）在当前环境中是否
 	 * <em>启用</em>。
-	 * @param profileValueSource the ProfileValueSource to use to determine if
-	 * the test is enabled
-	 * @param ifProfileValue the annotation to introspect; may be
-	 * {@code null}
-	 * @return {@code true} if the test is <em>enabled</em> in the current
-	 * environment or if the supplied {@code ifProfileValue} is
-	 * {@code null}
+	 * @param profileValueSource 用于判断测试是否启用的 ProfileValueSource
+	 * @param ifProfileValue 要内省的注解；可为 {@code null}
+	 * @return 如果测试在当前环境中处于<em>启用</em>状态，
+	 * 或提供的 {@code ifProfileValue} 为 {@code null}，
+	 * 则返回 {@code true}。
 	 */
 	private static boolean isTestEnabledInThisEnvironment(ProfileValueSource profileValueSource,
 			@Nullable IfProfileValue ifProfileValue) {

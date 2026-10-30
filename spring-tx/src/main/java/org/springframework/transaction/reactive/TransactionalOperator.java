@@ -51,10 +51,10 @@ public interface TransactionalOperator {
 
 	/**
 	 * 将给定Flux指定的函数式序列包装在事务中。
-	 * @param flux the Flux that should be executed within the transaction
-	 * @return a result publisher returned by the callback, or {@code null} if none
-	 * @throws TransactionException in case of initialization, rollback, or system errors
-	 * @throws RuntimeException if thrown by the TransactionCallback
+	 * @param flux 应在该事务内执行的 Flux
+	 * @return 回调返回的结果发布者；如果没有则为 {@code null}
+	 * @throws TransactionException 初始化、回滚或系统错误时
+	 * @throws RuntimeException 如果由 TransactionCallback 抛出
 	 */
 	default <T> Flux<T> transactional(Flux<T> flux) {
 		return execute(it -> flux);
@@ -62,10 +62,10 @@ public interface TransactionalOperator {
 
 	/**
 	 * 将给定Mono指定的函数式序列包装在事务中。
-	 * @param mono the Mono that should be executed within the transaction
-	 * @return a result publisher returned by the callback
-	 * @throws TransactionException in case of initialization, rollback, or system errors
-	 * @throws RuntimeException if thrown by the TransactionCallback
+	 * @param mono 应在该事务内执行的 Mono
+	 * @return 回调返回的结果发布者
+	 * @throws TransactionException 初始化、回滚或系统错误时
+	 * @throws RuntimeException 如果由 TransactionCallback 抛出
 	 */
 	<T> Mono<T> transactional(Mono<T> mono);
 
@@ -75,10 +75,10 @@ public interface TransactionalOperator {
 	 * 领域对象或领域对象的集合。回调抛出的RuntimeException
 	 * 被视为强制回滚的致命异常。
 	 * 此类异常将传播到模板的调用者。
-	 * @param action the callback object that specifies the transactional action
-	 * @return a result object returned by the callback
-	 * @throws TransactionException in case of initialization, rollback, or system errors
-	 * @throws RuntimeException if thrown by the TransactionCallback
+	 * @param action 指定事务性动作的回调对象
+	 * @return 回调返回的结果对象
+	 * @throws TransactionException 初始化、回滚或系统错误时
+	 * @throws RuntimeException 如果由 TransactionCallback 抛出
 	 */
 	<T> Flux<T> execute(TransactionCallback<T> action) throws TransactionException;
 
@@ -88,8 +88,8 @@ public interface TransactionalOperator {
 	/**
 	 * 使用{@link ReactiveTransactionManager}创建一个新的{@link TransactionalOperator}，
 	 * 使用默认事务。
-	 * @param transactionManager the transaction management strategy to be used
-	 * @return the transactional operator
+	 * @param transactionManager 要使用的事务管理策略
+	 * @return 事务操作器
 	 */
 	static TransactionalOperator create(ReactiveTransactionManager transactionManager){
 		return create(transactionManager, TransactionDefinition.withDefaults());
@@ -98,9 +98,9 @@ public interface TransactionalOperator {
 	/**
 	 * 使用{@link ReactiveTransactionManager}和{@link TransactionDefinition}
 	 * 创建一个新的{@link TransactionalOperator}。
-	 * @param transactionManager the transaction management strategy to be used
-	 * @param transactionDefinition the transaction definition to apply
-	 * @return the transactional operator
+	 * @param transactionManager 要使用的事务管理策略
+	 * @param transactionDefinition 要应用的事务定义
+	 * @return 事务操作器
 	 */
 	static TransactionalOperator create(
 			ReactiveTransactionManager transactionManager, TransactionDefinition transactionDefinition){

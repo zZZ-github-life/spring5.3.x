@@ -36,8 +36,8 @@ public class SimpleTheme implements Theme {
 
 	/**
 	 * 创建 SimpleTheme。
-	 * @param name the name of the theme
-	 * @param messageSource the MessageSource that resolves theme messages
+	 * @param name 主题的名称
+	 * @param messageSource 解析主题消息的 MessageSource
 	 */
 	public SimpleTheme(String name, MessageSource messageSource) {
 		Assert.notNull(name, "Name must not be null");

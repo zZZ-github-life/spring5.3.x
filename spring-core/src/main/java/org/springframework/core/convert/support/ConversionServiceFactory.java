@@ -40,9 +40,9 @@ public final class ConversionServiceFactory {
 
 	/**
 	 * 将给定的 Converter 对象注册到给定的目标 ConverterRegistry。
-	 * @param converters the converter objects: implementing {@link Converter},
-	 * {@link ConverterFactory}, or {@link GenericConverter}
-	 * @param registry the target registry
+	 * @param converters 转换器对象：实现 {@link Converter}、
+	 * {@link ConverterFactory} 或 {@link GenericConverter}
+	 * @param registry 目标注册表
 	 */
 	public static void registerConverters(@Nullable Set<?> converters, ConverterRegistry registry) {
 		if (converters != null) {

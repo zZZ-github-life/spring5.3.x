@@ -36,10 +36,10 @@ public interface AsyncClientHttpRequestFactory {
 	 * 为指定的 URI 和 HTTP 方法创建新的异步 {@link AsyncClientHttpRequest}。
 	 * <p>返回的请求可以写入，然后通过调用
 	 * {@link AsyncClientHttpRequest#executeAsync()} 执行。
-	 * @param uri the URI to create a request for
-	 * @param httpMethod the HTTP method to execute
-	 * @return the created request
-	 * @throws IOException in case of I/O errors
+	 * @param uri 为其创建请求的 URI
+	 * @param httpMethod 要执行的 HTTP 方法
+	 * @return 所创建的请求
+	 * @throws IOException 如果发生 I/O 错误
 	 */
 	AsyncClientHttpRequest createAsyncRequest(URI uri, HttpMethod httpMethod) throws IOException;
 

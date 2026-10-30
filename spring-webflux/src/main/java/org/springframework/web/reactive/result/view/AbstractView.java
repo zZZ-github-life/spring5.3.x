@@ -164,8 +164,8 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 
 	/**
 	 * 获取实际使用的 {@link ApplicationContext}。
-	 * @return the {@code ApplicationContext} (never {@code null})
-	 * @throws IllegalStateException if the ApplicationContext cannot be obtained
+	 * @return 该 {@code ApplicationContext}（永不为 {@code null}）
+	 * @throws IllegalStateException 如果无法获取 ApplicationContext
 	 * @see #getApplicationContext()
 	 */
 	protected final ApplicationContext obtainApplicationContext() {
@@ -177,12 +177,12 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 
 	/**
 	 * 准备要渲染的模型。
-	 * @param model a map with attribute names as keys and corresponding model
-	 * objects as values (the map can also be {@code null} in case of an empty model)
-	 * @param contentType the content type selected to render with, which should
-	 * match one of the {@link #getSupportedMediaTypes() supported media types}
-	 * @param exchange the current exchange
-	 * @return a {@code Mono} that represents when and if rendering succeeds
+	 * @param model 以属性名称为键、对应模型对象为值的映射
+	 * （在模型为空的情况下，该映射也可以为 {@code null}）
+	 * @param contentType 选择用于渲染的内容类型，
+	 * 它应匹配 {@link #getSupportedMediaTypes() supported media types} 之一
+	 * @param exchange 当前交换
+	 * @return 表示渲染何时成功以及是否成功的 {@code Mono}
 	 */
 	@Override
 	public Mono<Void> render(@Nullable Map<String, ?> model, @Nullable MediaType contentType,
@@ -235,7 +235,7 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 
 	/**
 	 * 使用配置的 {@link ReactiveAdapterRegistry} 将异步属性适配为 {@code Mono<T>} 或 {@code Mono<List<T>>}，然后等待将其解析为实际值。当返回的 {@code Mono<Void>} 完成时，模型中的异步属性将被替换为相应的已解析值。
-	 * @return result a {@code Mono} that completes when the model is ready
+	 * @return 模型就绪时完成的 {@code Mono}
 	 * @since 5.1.8
 	 */
 	protected Mono<Void> resolveAsyncAttributes(Map<String, Object> model, ServerWebExchange exchange) {
@@ -287,7 +287,7 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 
 	/**
 	 * 使用配置的 {@link ReactiveAdapterRegistry} 将异步属性适配为 {@code Mono<T>} 或 {@code Mono<List<T>>}，然后等待将其解析为实际值。当返回的 {@code Mono<Void>} 完成时，模型中的异步属性将被替换为相应的已解析值。
-	 * @return result {@code Mono} that completes when the model is ready
+	 * @return 模型就绪时完成的 {@code Mono}
 	 * @deprecated as of 5.1.8 this method is still invoked but it is a no-op.
 	 * Please use {@link #resolveAsyncAttributes(Map, ServerWebExchange)}
 	 * instead. It is invoked after this one and does the actual work.
@@ -301,10 +301,10 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 	 * 创建要在{@linkplain #setRequestContextAttribute 指定属性名称}下公开的 {@link RequestContext}。
 	 * <p>默认实现为给定交换和模型创建标准的 {@code RequestContext} 实例。
 	 * <p>可以在子类中重写以创建自定义实例。
-	 * @param exchange the current exchange
-	 * @param model a combined output Map (never {@code null}), with dynamic values
-	 * taking precedence over static attributes
-	 * @return the {@code RequestContext} instance
+	 * @param exchange 当前交换
+	 * @param model 合并后的输出 Map（永不为 {@code null}），
+	 * 其中动态值优先于静态属性
+	 * @return 该 {@code RequestContext} 实例
 	 * @see #setRequestContextAttribute
 	 */
 	protected RequestContext createRequestContext(ServerWebExchange exchange, Map<String, Object> model) {
@@ -314,8 +314,8 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 	/**
 	 * 获取要使用的 {@link RequestDataValueProcessor}。
 	 * <p>默认实现会在 {@link #getApplicationContext() ApplicationContext} 中查找名称为 {@link #REQUEST_DATA_VALUE_PROCESSOR_BEAN_NAME} 的 {@code RequestDataValueProcessor} Bean。
-	 * @return the {@code RequestDataValueProcessor}, or {@code null} if there is
-	 * none in the application context
+	 * @return 该 {@code RequestDataValueProcessor}；如果应用上下文中没有，
+	 * 则为 {@code null}
 	 */
 	@Nullable
 	protected RequestDataValueProcessor getRequestDataValueProcessor() {
@@ -328,12 +328,12 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 
 	/**
 	 * 子类必须实现此方法以实际渲染视图。
-	 * @param renderAttributes combined output Map (never {@code null}),
-	 * with dynamic values taking precedence over static attributes
-	 * @param contentType the content type selected to render with, which should
-	 * match one of the {@linkplain #getSupportedMediaTypes() supported media types}
-	 * @param exchange current exchange
-	 * @return a {@code Mono} that represents when and if rendering succeeds
+	 * @param renderAttributes 合并后的输出 Map（永不为 {@code null}），
+	 * 其中动态值优先于静态属性
+	 * @param contentType 选择用于渲染的内容类型，
+	 * 它应匹配 {@linkplain #getSupportedMediaTypes() supported media types} 之一
+	 * @param exchange 当前交换
+	 * @return 表示渲染何时成功以及是否成功的 {@code Mono}
 	 */
 	protected abstract Mono<Void> renderInternal(Map<String, Object> renderAttributes,
 			@Nullable MediaType contentType, ServerWebExchange exchange);

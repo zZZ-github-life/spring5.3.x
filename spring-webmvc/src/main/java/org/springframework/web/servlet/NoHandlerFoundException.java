@@ -44,9 +44,9 @@ public class NoHandlerFoundException extends ServletException {
 
 	/**
 	 * NoHandlerFoundException 的构造函数。
-	 * @param httpMethod the HTTP method
-	 * @param requestURL the HTTP request URL
-	 * @param headers the HTTP request headers
+	 * @param httpMethod HTTP 方法
+	 * @param requestURL HTTP 请求 URL
+	 * @param headers HTTP 请求头
 	 */
 	public NoHandlerFoundException(String httpMethod, String requestURL, HttpHeaders headers) {
 		super("No handler found for " + httpMethod + " " + requestURL);

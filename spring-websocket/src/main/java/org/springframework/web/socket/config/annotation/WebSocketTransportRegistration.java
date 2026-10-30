@@ -88,8 +88,8 @@ public class WebSocketTransportRegistration {
 	 * 请考虑自定义操作系统级别的 TCP 设置，例如 Linux 上的
 	 * {@code /proc/sys/net/ipv4/tcp_retries2}。
 	 * <p>默认值为 10 秒（即 10 * 1000）。
-	 * @param timeLimit the timeout value in milliseconds; the value must be
-	 * greater than 0, otherwise it is ignored.
+	 * @param timeLimit 超时值，单位为毫秒；该值必须
+	 * 大于 0，否则将被忽略。
 	 */
 	public WebSocketTransportRegistration setSendTimeLimit(int timeLimit) {
 		this.sendTimeLimit = timeLimit;
@@ -121,9 +121,9 @@ public class WebSocketTransportRegistration {
 	 * 请考虑自定义操作系统级别的 TCP 设置，例如 Linux 上的
 	 * {@code /proc/sys/net/ipv4/tcp_retries2}。
 	 * <p>默认值为 512K（即 512 * 1024）。
-	 * @param sendBufferSizeLimit the maximum number of bytes to buffer when
-	 * sending messages; if the value is less than or equal to 0 then buffering
-	 * is effectively disabled.
+	 * @param sendBufferSizeLimit 发送消息时最多缓冲的字节数；
+	 * 如果该值小于或等于 0，则缓冲
+	 * 实际上被禁用。
 	 */
 	public WebSocketTransportRegistration setSendBufferSizeLimit(int sendBufferSizeLimit) {
 		this.sendBufferSizeLimit = sendBufferSizeLimit;
@@ -146,7 +146,7 @@ public class WebSocketTransportRegistration {
 	 * 否则就认为连接状态不佳（例如代理问题、网络缓慢），
 	 * 并可以将其关闭。
 	 * <p>默认情况下设置为 {@code 60,000}（1 分钟）。
-	 * @param timeToFirstMessage the maximum time allowed in milliseconds
+	 * @param timeToFirstMessage 允许的最长时间，单位为毫秒
 	 * @since 5.1
 	 */
 	public WebSocketTransportRegistration setTimeToFirstMessage(int timeToFirstMessage) {

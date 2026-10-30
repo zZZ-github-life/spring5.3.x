@@ -49,7 +49,7 @@ public class DefaultWebSessionManager implements WebSessionManager {
 	/**
 	 * 配置 ID 解析策略。
 	 * <p>默认使用 {@link CookieWebSessionIdResolver} 的实例。
-	 * @param sessionIdResolver the resolver to use
+	 * @param sessionIdResolver 要使用的解析器
 	 */
 	public void setSessionIdResolver(WebSessionIdResolver sessionIdResolver) {
 		Assert.notNull(sessionIdResolver, "WebSessionIdResolver is required");
@@ -66,7 +66,7 @@ public class DefaultWebSessionManager implements WebSessionManager {
 	/**
 	 * 配置持久化策略。
 	 * <p>默认使用 {@link InMemoryWebSessionStore} 的实例。
-	 * @param sessionStore the persistence strategy to use
+	 * @param sessionStore 要使用的持久化策略
 	 */
 	public void setSessionStore(WebSessionStore sessionStore) {
 		Assert.notNull(sessionStore, "WebSessionStore is required");

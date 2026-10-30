@@ -69,8 +69,8 @@ public final class CustomSQLExceptionTranslatorRegistry {
 
 	/**
 	 * 为指定的数据库名称注册新的自定义转换器。
-	 * @param dbName the database name
-	 * @param translator the custom translator
+	 * @param dbName 数据库名称
+	 * @param translator 自定义转换器
 	 */
 	public void registerTranslator(String dbName, SQLExceptionTranslator translator) {
 		SQLExceptionTranslator replaced = this.translatorMap.put(dbName, translator);
@@ -88,8 +88,8 @@ public final class CustomSQLExceptionTranslatorRegistry {
 
 	/**
 	 * 查找指定数据库的自定义转换器。
-	 * @param dbName the database name
-	 * @return the custom translator, or {@code null} if none found
+	 * @param dbName 数据库名称
+	 * @return 自定义转换器，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public SQLExceptionTranslator findTranslatorForDatabase(String dbName) {

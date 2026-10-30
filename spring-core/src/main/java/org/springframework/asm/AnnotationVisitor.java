@@ -49,8 +49,7 @@ public abstract class AnnotationVisitor {
   /**
    * 构造一个新的 {@link AnnotationVisitor}。
    *
-   * @param api the ASM API version implemented by this visitor. Must be one of the {@code
-   *     ASM}<i>x</i> values in {@link Opcodes}.
+   * @param api 此访问器实现的 ASM API 版本，必须是 {@link Opcodes} 中 {@code ASM}<i>x</i> 值之一。
    */
   protected AnnotationVisitor(final int api) {
     this(api, null);
@@ -59,10 +58,8 @@ public abstract class AnnotationVisitor {
   /**
    * 构造一个新的 {@link AnnotationVisitor}。
    *
-   * @param api the ASM API version implemented by this visitor. Must be one of the {@code
-   *     ASM}<i>x</i> values in {@link Opcodes}.
-   * @param annotationVisitor the annotation visitor to which this visitor must delegate method
-   *     calls. May be {@literal null}.
+   * @param api 此访问器实现的 ASM API 版本，必须是 {@link Opcodes} 中 {@code ASM}<i>x</i> 值之一。
+   * @param annotationVisitor 此访问器必须将方法调用委托给的注解访问器。可以为 {@literal null}。
    */
   protected AnnotationVisitor(final int api, final AnnotationVisitor annotationVisitor) {
     if (api != Opcodes.ASM9
@@ -82,8 +79,7 @@ public abstract class AnnotationVisitor {
   /**
    * 此访问器必须将方法调用委托给它的注解访问器。可以为 {@literal null}。
    *
-   * @return the annotation visitor to which this visitor must delegate method calls, or {@literal
-   *     null}.
+   * @return 此访问器必须将方法调用委托给的注解访问器，或 {@literal null}。
    */
   public AnnotationVisitor getDelegate() {
     return av;
@@ -92,13 +88,12 @@ public abstract class AnnotationVisitor {
   /**
    * 访问注解的一个基本类型值。
    *
-   * @param name the value name.
-   * @param value the actual value, whose type must be {@link Byte}, {@link Boolean}, {@link
-   *     Character}, {@link Short}, {@link Integer} , {@link Long}, {@link Float}, {@link Double},
-   *     {@link String} or {@link Type} of {@link Type#OBJECT} or {@link Type#ARRAY} sort. This
-   *     value can also be an array of byte, boolean, short, char, int, long, float or double values
-   *     (this is equivalent to using {@link #visitArray} and visiting each array element in turn,
-   *     but is more convenient).
+   * @param name 值的名称。
+   * @param value 实际值，其类型必须是 {@link Byte}、{@link Boolean}、{@link Character}、{@link Short}、
+   * {@link Integer}、{@link Long}、{@link Float}、{@link Double}、{@link String}，或种类为
+   * {@link Type#OBJECT} 或 {@link Type#ARRAY} 的 {@link Type}。该值也可以是 byte、
+   * boolean、short、char、int、long、float 或 double 值的数组（等价于使用
+   * {@link #visitArray} 并依次访问每个数组元素，但更方便）。
    */
   public void visit(final String name, final Object value) {
     if (av != null) {
@@ -109,9 +104,9 @@ public abstract class AnnotationVisitor {
   /**
    * 访问注解的一个枚举值。
    *
-   * @param name the value name.
-   * @param descriptor the class descriptor of the enumeration class.
-   * @param value the actual enumeration value.
+   * @param name 值的名称。
+   * @param descriptor 枚举类的类描述符。
+   * @param value 实际的枚举值。
    */
   public void visitEnum(final String name, final String descriptor, final String value) {
     if (av != null) {
@@ -122,11 +117,10 @@ public abstract class AnnotationVisitor {
   /**
    * 访问注解的一个嵌套注解值。
    *
-   * @param name the value name.
-   * @param descriptor the class descriptor of the nested annotation class.
-   * @return a visitor to visit the actual nested annotation value, or {@literal null} if this
-   *     visitor is not interested in visiting this nested annotation. <i>The nested annotation
-   *     value must be fully visited before calling other methods on this annotation visitor</i>.
+   * @param name 值的名称。
+   * @param descriptor 嵌套注解类的类描述符。
+   * @return 用于访问实际嵌套注解值的访问器；如果此访问器不关心访问该嵌套注解，则为
+   * {@literal null}。<i>在对此注解访问器调用其他方法之前，必须先完整访问该嵌套注解值</i>。
    */
   public AnnotationVisitor visitAnnotation(final String name, final String descriptor) {
     if (av != null) {
@@ -140,11 +134,10 @@ public abstract class AnnotationVisitor {
    * 或 double）可以作为 value 传递给 {@link #visit visit}。对于非空的基本类型值数组，
    * {@link ClassReader} 正是这样做的。
    *
-   * @param name the value name.
-   * @return a visitor to visit the actual array value elements, or {@literal null} if this visitor
-   *     is not interested in visiting these values. The 'name' parameters passed to the methods of
-   *     this visitor are ignored. <i>All the array values must be visited before calling other
-   *     methods on this annotation visitor</i>.
+   * @param name 值的名称。
+   * @return 用于访问实际数组值元素的访问器；如果此访问器不关心访问这些值，则为
+   * {@literal null}。传递给此访问器各方法的 'name' 参数会被忽略。
+   * <i>在对此注解访问器调用其他方法之前，必须先访问所有数组值</i>。
    */
   public AnnotationVisitor visitArray(final String name) {
     if (av != null) {

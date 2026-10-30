@@ -78,9 +78,9 @@ public class ProtobufJsonFormatHttpMessageConverter extends ProtobufHttpMessageC
 	 * 使用给定的 {@code JsonFormat.Parser} 和 {@code JsonFormat.Printer} 配置
 	 * 构造一个新的 {@code ProtobufJsonFormatHttpMessageConverter}，
 	 * 同时接受一个允许注册消息扩展的初始化器。
-	 * @param parser the JSON parser configuration
-	 * @param printer the JSON printer configuration
-	 * @param registryInitializer an initializer for message extensions
+	 * @param parser JSON 解析器配置
+	 * @param printer JSON 打印器配置
+	 * @param registryInitializer 消息扩展的初始化器
 	 * @deprecated as of 5.1, in favor of
 	 * {@link #ProtobufJsonFormatHttpMessageConverter(com.google.protobuf.util.JsonFormat.Parser, com.google.protobuf.util.JsonFormat.Printer, ExtensionRegistry)}
 	 */

@@ -72,16 +72,14 @@ public abstract class AbstractAnnotationConfigDispatcherServletInitializer
 
 	/**
 	 * 为{@linkplain #createRootApplicationContext() 根应用上下文}指定 {@code @Configuration} 和/或 {@code @Component} 类。
-	 * @return the configuration for the root application context, or {@code null}
-	 * if creation and registration of a root context is not desired
+	 * @return 根应用上下文的配置；如果不希望创建并注册根上下文，则为 {@code null}
 	 */
 	@Nullable
 	protected abstract Class<?>[] getRootConfigClasses();
 
 	/**
 	 * 为{@linkplain #createServletApplicationContext() Servlet 应用上下文}指定 {@code @Configuration} 和/或 {@code @Component} 类。
-	 * @return the configuration for the Servlet application context, or
-	 * {@code null} if all configuration is specified through root config classes.
+	 * @return Servlet 应用上下文的配置；如果所有配置都通过根配置类指定，则为 {@code null}。
 	 */
 	@Nullable
 	protected abstract Class<?>[] getServletConfigClasses();

@@ -43,10 +43,10 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 
 	/**
 	 * 创建所有 JMX 实现都会提供的 {@code ModelMBeanInfoSupport} 类实例，并通过调用子类来填充元数据。
-	 * @param managedBean the bean that will be exposed (might be an AOP proxy)
-	 * @param beanKey the key associated with the managed bean
-	 * @return the populated ModelMBeanInfo instance
-	 * @throws JMException in case of errors
+	 * @param managedBean 将被公开的 Bean（可能是 AOP 代理）
+	 * @param beanKey 受管 Bean 关联的键
+	 * @return 已填充的 ModelMBeanInfo 实例
+	 * @throws JMException 如果发生错误
 	 * @see #getDescription(Object, String)
 	 * @see #getAttributeInfo(Object, String)
 	 * @see #getConstructorInfo(Object, String)
@@ -70,8 +70,8 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	/**
 	 * 检查给定的 Bean 实例，如果它不适合用此装配器暴露，则抛出 IllegalArgumentException。
 	 * <p>默认实现为空，接受所有 Bean 实例。
-	 * @param managedBean the bean that will be exposed (might be an AOP proxy)
-	 * @throws IllegalArgumentException the bean is not valid for exposure
+	 * @param managedBean 将被公开的 Bean（可能是 AOP 代理）
+	 * @throws IllegalArgumentException 该 Bean 不适合公开
 	 */
 	protected void checkManagedBean(Object managedBean) throws IllegalArgumentException {
 	}
@@ -79,8 +79,8 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	/**
 	 * 返回给定 Bean 实例的实际 Bean 类。这是暴露给描述式 JMX 属性的类。
 	 * <p>默认实现对于 AOP 代理返回目标类，否则返回普通 Bean 类。
-	 * @param managedBean the bean instance (might be an AOP proxy)
-	 * @return the bean class to expose
+	 * @param managedBean Bean 实例（可能是 AOP 代理）
+	 * @return 要公开的 Bean 类
 	 * @see org.springframework.aop.support.AopUtils#getTargetClass(Object)
 	 */
 	protected Class<?> getTargetClass(Object managedBean) {
@@ -89,8 +89,8 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 
 	/**
 	 * 返回要为给定 Bean 暴露的类或接口。这是将要搜索属性和操作（例如检查注解）的类。
-	 * @param managedBean the bean instance (might be an AOP proxy)
-	 * @return the bean class to expose
+	 * @param managedBean Bean 实例（可能是 AOP 代理）
+	 * @return 要公开的 Bean 类
 	 * @see JmxUtils#getClassToExpose(Object)
 	 */
 	protected Class<?> getClassToExpose(Object managedBean) {
@@ -99,8 +99,8 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 
 	/**
 	 * 返回要为给定 Bean 类暴露的类或接口。这是将要搜索属性和操作的类。
-	 * @param beanClass the bean class (might be an AOP proxy class)
-	 * @return the bean class to expose
+	 * @param beanClass Bean 类（可能是 AOP 代理类）
+	 * @return 要公开的 Bean 类
 	 * @see JmxUtils#getClassToExpose(Class)
 	 */
 	protected Class<?> getClassToExpose(Class<?> beanClass) {
@@ -110,11 +110,11 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	/**
 	 * 获取 MBean 资源的类名。
 	 * <p>默认实现基于类名返回 MBean 的简单描述。
-	 * @param managedBean the bean instance (might be an AOP proxy)
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
-	 * @return the MBean description
-	 * @throws JMException in case of errors
+	 * @param managedBean Bean 实例（可能是 AOP 代理）
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
+	 * @return MBean 描述
+	 * @throws JMException 如果发生错误
 	 */
 	protected String getClassName(Object managedBean, String beanKey) throws JMException {
 		return getTargetClass(managedBean).getName();
@@ -123,10 +123,10 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	/**
 	 * 获取 MBean 资源的描述。
 	 * <p>默认实现基于类名返回 MBean 的简单描述。
-	 * @param managedBean the bean instance (might be an AOP proxy)
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
-	 * @throws JMException in case of errors
+	 * @param managedBean Bean 实例（可能是 AOP 代理）
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
+	 * @throws JMException 如果发生错误
 	 */
 	protected String getDescription(Object managedBean, String beanKey) throws JMException {
 		String targetClassName = getTargetClass(managedBean).getName();
@@ -139,11 +139,11 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	/**
 	 * 在 {@code ModelMBeanInfo} 实例构造完成之后、传递给 {@code MBeanExporter} 之前调用。
 	 * <p>子类可以实现此方法，向 MBean 元数据添加额外的描述符。默认实现为空。
-	 * @param descriptor the {@code Descriptor} for the MBean resource.
-	 * @param managedBean the bean instance (might be an AOP proxy)
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
-	 * @throws JMException in case of errors
+	 * @param descriptor MBean 资源的 {@code Descriptor}。
+	 * @param managedBean Bean 实例（可能是 AOP 代理）
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
+	 * @throws JMException 如果发生错误
 	 */
 	protected void populateMBeanDescriptor(Descriptor descriptor, Object managedBean, String beanKey)
 			throws JMException {
@@ -153,11 +153,11 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	 * 获取 MBean 资源的构造器元数据。子类应实现此方法，为所有应在被管理资源的管理接口中暴露的构造器返
 	 * 回适当的元数据。
 	 * <p>默认实现返回空的 {@code ModelMBeanConstructorInfo} 数组。
-	 * @param managedBean the bean instance (might be an AOP proxy)
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
-	 * @return the constructor metadata
-	 * @throws JMException in case of errors
+	 * @param managedBean Bean 实例（可能是 AOP 代理）
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
+	 * @return 构造函数元数据
+	 * @throws JMException 如果发生错误
 	 */
 	protected ModelMBeanConstructorInfo[] getConstructorInfo(Object managedBean, String beanKey)
 			throws JMException {
@@ -168,11 +168,11 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	 * 获取 MBean 资源的通知元数据。子类应实现此方法，为所有应在被管理资源的管理接口中暴露的通知返回适
 	 * 当的元数据。
 	 * <p>默认实现返回空的 {@code ModelMBeanNotificationInfo} 数组。
-	 * @param managedBean the bean instance (might be an AOP proxy)
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
-	 * @return the notification metadata
-	 * @throws JMException in case of errors
+	 * @param managedBean Bean 实例（可能是 AOP 代理）
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
+	 * @return 通知元数据
+	 * @throws JMException 如果发生错误
 	 */
 	protected ModelMBeanNotificationInfo[] getNotificationInfo(Object managedBean, String beanKey)
 			throws JMException {
@@ -183,11 +183,11 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	/**
 	 * 获取 MBean 资源的属性元数据。子类应实现此方法，为所有应在被管理资源的管理接口中暴露的属性返回适
 	 * 当的元数据。
-	 * @param managedBean the bean instance (might be an AOP proxy)
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
-	 * @return the attribute metadata
-	 * @throws JMException in case of errors
+	 * @param managedBean Bean 实例（可能是 AOP 代理）
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
+	 * @return 属性元数据
+	 * @throws JMException 如果发生错误
 	 */
 	protected abstract ModelMBeanAttributeInfo[] getAttributeInfo(Object managedBean, String beanKey)
 			throws JMException;
@@ -195,11 +195,11 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	/**
 	 * 获取 MBean 资源的操作元数据。子类应实现此方法，为所有应在被管理资源的管理接口中暴露的操作返回适
 	 * 当的元数据。
-	 * @param managedBean the bean instance (might be an AOP proxy)
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
-	 * @return the operation metadata
-	 * @throws JMException in case of errors
+	 * @param managedBean Bean 实例（可能是 AOP 代理）
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
+	 * @return 操作元数据
+	 * @throws JMException 如果发生错误
 	 */
 	protected abstract ModelMBeanOperationInfo[] getOperationInfo(Object managedBean, String beanKey)
 			throws JMException;

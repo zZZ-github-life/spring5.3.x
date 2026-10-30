@@ -88,7 +88,7 @@ public abstract class AbstractJUnit4SpringContextTests implements ApplicationCon
 
 	/**
 	 * 设置此测试实例要使用的 {@link ApplicationContext}，通过 {@link ApplicationContextAware} 语义提供。
-	 * @param applicationContext the ApplicationContext that this test runs in
+	 * @param applicationContext 该测试运行所在的 ApplicationContext
 	 */
 	@Override
 	public final void setApplicationContext(final ApplicationContext applicationContext) {

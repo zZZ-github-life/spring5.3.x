@@ -112,13 +112,12 @@ class CacheResultInterceptor extends AbstractKeyCacheInterceptor<CacheResultOper
 	 * <p>克隆指定的异常。如果该异常不是 {@code serializable}，则返回原始异常。如果找不到共同的祖先，则
 	 * 返回原始异常。
 	 * <p>用于确保已缓存的异常具有有效的调用上下文。
-	 * @param exception the exception to merge with the current call stack
-	 * @param className the class name of the common ancestor
-	 * @param methodName the method name of the common ancestor
-	 * @return a clone exception with a rewritten call stack composed of the current call
-	 * stack up to (included) the common ancestor specified by the {@code className} and
-	 * {@code methodName} arguments, followed by stack trace elements of the specified
-	 * {@code exception} after the common ancestor.
+	 * @param exception 要与当前调用栈合并的异常
+	 * @param className 公共祖先的类名
+	 * @param methodName 公共祖先的方法名
+	 * @return 异常的克隆对象，其调用栈被重写，由当前调用栈
+	 * （直到并包含由 {@code className} 和 {@code methodName} 参数指定的公共祖先），
+	 * 再加上指定 {@code exception} 中该公共祖先之后的栈帧元素组成
 	 */
 	private static CacheOperationInvoker.ThrowableWrapper rewriteCallStack(
 			Throwable exception, String className, String methodName) {

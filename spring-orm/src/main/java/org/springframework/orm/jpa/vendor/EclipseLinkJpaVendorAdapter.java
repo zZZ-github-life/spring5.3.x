@@ -91,8 +91,8 @@ public class EclipseLinkJpaVendorAdapter extends AbstractJpaVendorAdapter {
 
 	/**
 	 * 确定给定数据库对应的 EclipseLink 目标数据库名称。
-	 * @param database the specified database
-	 * @return the EclipseLink target database name, or {@code null} if none found
+	 * @param database 指定的数据库
+	 * @return EclipseLink 目标数据库名称；如果未找到，则为 {@code null}
 	 */
 	@Nullable
 	protected String determineTargetDatabaseName(Database database) {

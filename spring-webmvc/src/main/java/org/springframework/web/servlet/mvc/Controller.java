@@ -116,10 +116,10 @@ public interface Controller {
 	 * 进行渲染。返回 {@code null} 不是错误：它表示
 	 * 此对象已自行完成请求处理，因此没有
 	 * 需要渲染的 ModelAndView。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @return a ModelAndView to render, or {@code null} if handled directly
-	 * @throws Exception in case of errors
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @return 要渲染的 ModelAndView，若已直接处理则为 {@code null}
+	 * @throws Exception 发生错误时
 	 */
 	@Nullable
 	ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception;

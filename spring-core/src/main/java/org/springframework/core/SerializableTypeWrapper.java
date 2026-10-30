@@ -83,8 +83,8 @@ final class SerializableTypeWrapper {
 
 	/**
 	 * 解包给定类型，实际上返回原始的非序列化类型。
-	 * @param type the type to unwrap
-	 * @return the original non-serializable type
+	 * @param type 要解包的类型
+	 * @return 原始的非可序列化类型
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends Type> T unwrap(T type) {

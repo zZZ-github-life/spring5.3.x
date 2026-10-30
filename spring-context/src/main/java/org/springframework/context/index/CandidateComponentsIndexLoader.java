@@ -71,10 +71,9 @@ public final class CandidateComponentsIndexLoader {
 	/**
 	 * 使用给定的类加载器，从 {@value #COMPONENTS_RESOURCE_LOCATION} 加载并实例化
 	 * {@link CandidateComponentsIndex}。如果没有可用的索引，则返回 {@code null}。
-	 * @param classLoader the ClassLoader to use for loading (can be {@code null} to use the default)
-	 * @return the index to use or {@code null} if no index was found
-	 * @throws IllegalArgumentException if any module index cannot
-	 * be loaded or if an error occurs while creating {@link CandidateComponentsIndex}
+	 * @param classLoader 用于加载的 ClassLoader（可以为 {@code null}，表示使用默认值）
+	 * @return 要使用的索引；如果未找到索引则为 {@code null}
+	 * @throws IllegalArgumentException 如果任何模块索引无法加载，或在创建 {@link CandidateComponentsIndex} 时发生错误
 	 */
 	@Nullable
 	public static CandidateComponentsIndex loadIndex(@Nullable ClassLoader classLoader) {

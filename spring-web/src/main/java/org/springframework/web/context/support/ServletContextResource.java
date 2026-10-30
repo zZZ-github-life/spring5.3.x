@@ -57,8 +57,8 @@ public class ServletContextResource extends AbstractFileResolvingResource implem
 	 * 创建一个新的 ServletContextResource。
 	 * <p>Servlet 规范要求资源路径以斜杠开头，尽管许多容器也接受不带前导斜杠的路径。因此，如果给定路
 	 * 径尚未以斜杠开头，则会为其前置一个斜杠。
-	 * @param servletContext the ServletContext to load from
-	 * @param path the path of the resource
+	 * @param servletContext 要从中加载的 ServletContext
+	 * @param path 资源的路径
 	 */
 	public ServletContextResource(ServletContext servletContext, String path) {
 		// check ServletContext

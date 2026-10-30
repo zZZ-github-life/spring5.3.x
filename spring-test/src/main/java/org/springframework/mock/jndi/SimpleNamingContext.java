@@ -119,7 +119,7 @@ public class SimpleNamingContext implements Context {
 	 * 查找具有给定名称的对象。
 	 * <p>注意：不打算由应用程序直接使用。
 	 * 任何标准的 InitialContext JNDI 查找都会使用它。
-	 * @throws javax.naming.NameNotFoundException if the object could not be found
+	 * @throws javax.naming.NameNotFoundException 如果找不到该对象
 	 */
 	@Override
 	public Object lookup(String lookupName) throws NameNotFoundException {

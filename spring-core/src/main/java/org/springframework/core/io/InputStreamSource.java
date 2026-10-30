@@ -42,9 +42,9 @@ public interface InputStreamSource {
 	 * <p>预期每次调用都会创建一个<i>全新的</i>流。
 	 * <p>当你考虑 JavaMail 之类的 API 时，这一要求尤为重要，因为它在创建邮件附件时需要能够多次读取该流。
 	 * 对于此类用例，<i>要求</i>每次 {@code getInputStream()} 调用都返回全新的流。
-	 * @return the input stream for the underlying resource (must not be {@code null})
-	 * @throws java.io.FileNotFoundException if the underlying resource does not exist
-	 * @throws IOException if the content stream could not be opened
+	 * @return 底层资源的输入流（不得为 {@code null}）
+	 * @throws java.io.FileNotFoundException 如果底层资源不存在
+	 * @throws IOException 如果无法打开内容流
 	 * @see Resource#isReadable()
 	 */
 	InputStream getInputStream() throws IOException;

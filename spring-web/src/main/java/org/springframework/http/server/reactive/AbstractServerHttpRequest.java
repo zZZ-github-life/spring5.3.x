@@ -67,9 +67,9 @@ public abstract class AbstractServerHttpRequest implements ServerHttpRequest {
 
 	/**
 	 * 使用请求的 URI 和头构造。
-	 * @param uri the URI for the request
-	 * @param contextPath the context path for the request
-	 * @param headers the headers for the request (as {@link MultiValueMap})
+	 * @param uri 请求的 URI
+	 * @param contextPath 请求的上下文路径
+	 * @param headers 请求的头（作为 {@link MultiValueMap}）
 	 * @since 5.3
 	 */
 	public AbstractServerHttpRequest(URI uri, @Nullable String contextPath, MultiValueMap<String, String> headers) {
@@ -80,9 +80,9 @@ public abstract class AbstractServerHttpRequest implements ServerHttpRequest {
 
 	/**
 	 * 使用请求的 URI 和头构造。
-	 * @param uri the URI for the request
-	 * @param contextPath the context path for the request
-	 * @param headers the headers for the request (as {@link HttpHeaders})
+	 * @param uri 请求的 URI
+	 * @param contextPath 请求的上下文路径
+	 * @param headers 请求的头（作为 {@link HttpHeaders}）
 	 */
 	public AbstractServerHttpRequest(URI uri, @Nullable String contextPath, HttpHeaders headers) {
 		this.uri = uri;
@@ -196,7 +196,7 @@ public abstract class AbstractServerHttpRequest implements ServerHttpRequest {
 
 	/**
 	 * 从底层"原生"请求获取 SSL 会话信息。
-	 * @return the session information, or {@code null} if none available
+	 * @return 会话信息，如果没有可用会话则为 {@code null}
 	 * @since 5.0.2
 	 */
 	@Nullable

@@ -43,8 +43,8 @@ public interface RequestCallback {
 	/**
 	 * 由 {@link RestTemplate#execute} 在打开 {@code ClientHttpRequest} 后调用。
 	 * 无需关心关闭请求或处理错误：这些都将由 {@code RestTemplate} 处理。
-	 * @param request the active HTTP request
-	 * @throws IOException in case of I/O errors
+	 * @param request 当前活动的 HTTP 请求
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	void doWithRequest(ClientHttpRequest request) throws IOException;
 

@@ -42,8 +42,8 @@ public class ConfigurableObjectInputStream extends ObjectInputStream {
 
 	/**
 	 * 为给定的 InputStream 和 ClassLoader 创建新的 ConfigurableObjectInputStream。
-	 * @param in the InputStream to read from
-	 * @param classLoader the ClassLoader to use for loading local classes
+	 * @param in 要读取的 InputStream
+	 * @param classLoader 用于加载本地类的 ClassLoader
 	 * @see java.io.ObjectInputStream#ObjectInputStream(java.io.InputStream)
 	 */
 	public ConfigurableObjectInputStream(InputStream in, @Nullable ClassLoader classLoader) throws IOException {
@@ -52,10 +52,9 @@ public class ConfigurableObjectInputStream extends ObjectInputStream {
 
 	/**
 	 * 为给定的 InputStream 和 ClassLoader 创建新的 ConfigurableObjectInputStream。
-	 * @param in the InputStream to read from
-	 * @param classLoader the ClassLoader to use for loading local classes
-	 * @param acceptProxyClasses whether to accept deserialization of proxy classes
-	 * (may be deactivated as a security measure)
+	 * @param in 要读取的 InputStream
+	 * @param classLoader 用于加载本地类的 ClassLoader
+	 * @param acceptProxyClasses 是否接受代理类的反序列化（可作为安全措施禁用）
 	 * @see java.io.ObjectInputStream#ObjectInputStream(java.io.InputStream)
 	 */
 	public ConfigurableObjectInputStream(
@@ -126,9 +125,9 @@ public class ConfigurableObjectInputStream extends ObjectInputStream {
 	/**
 	 * 针对回退类加载器解析给定的类名。
 	 * <p>默认实现只是重新抛出原始异常，因为没有可用的回退方案。
-	 * @param className the class name to resolve
-	 * @param ex the original exception thrown when attempting to load the class
-	 * @return the newly resolved class (never {@code null})
+	 * @param className 要解析的类名
+	 * @param ex 尝试加载该类时抛出的原始异常
+	 * @return 新解析出的类（永不为 {@code null}）
 	 */
 	protected Class<?> resolveFallbackIfPossible(String className, ClassNotFoundException ex)
 			throws IOException, ClassNotFoundException{

@@ -48,7 +48,7 @@ import org.springframework.util.ObjectUtils;
  * @author Arjen Poutsma
  * @author Juergen Hoeller
  * @since 3.0.2
- * @param <T> the body type
+ * @param <T> 正文类型
  * @see org.springframework.web.client.RestTemplate
  * @see #getBody()
  * @see #getHeaders()
@@ -76,7 +76,7 @@ public class HttpEntity<T> {
 
 	/**
 	 * 使用给定正文创建一个新的 {@code HttpEntity}，不包含头。
-	 * @param body the entity body
+	 * @param body 实体正文
 	 */
 	public HttpEntity(T body) {
 		this(body, null);
@@ -84,7 +84,7 @@ public class HttpEntity<T> {
 
 	/**
 	 * 使用给定头创建一个新的 {@code HttpEntity}，不包含正文。
-	 * @param headers the entity headers
+	 * @param headers 实体标头
 	 */
 	public HttpEntity(MultiValueMap<String, String> headers) {
 		this(null, headers);
@@ -92,8 +92,8 @@ public class HttpEntity<T> {
 
 	/**
 	 * 使用给定正文和头创建一个新的 {@code HttpEntity}。
-	 * @param body the entity body
-	 * @param headers the entity headers
+	 * @param body 实体正文
+	 * @param headers 实体标头
 	 */
 	public HttpEntity(@Nullable T body, @Nullable MultiValueMap<String, String> headers) {
 		this.body = body;

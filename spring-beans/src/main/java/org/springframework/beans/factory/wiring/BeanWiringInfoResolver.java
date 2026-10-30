@@ -35,8 +35,8 @@ public interface BeanWiringInfoResolver {
 
 	/**
 	 * 解析给定 Bean 实例的 BeanWiringInfo。
-	 * @param beanInstance the bean instance to resolve info for
-	 * @return the BeanWiringInfo, or {@code null} if not found
+	 * @param beanInstance 要为其解析信息的 Bean 实例
+	 * @return BeanWiringInfo，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	BeanWiringInfo resolveWiringInfo(Object beanInstance);

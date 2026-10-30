@@ -40,11 +40,12 @@ public interface TypeConverter {
 	 * 将值转换为所需的类型（如有必要，从 String 转换）。
 	 * <p>从 String 到任意类型的转换通常使用 PropertyEditor 类的 {@code setAsText} 方法，或
 	 * ConversionService 中的 Spring Converter。
-	 * @param value the value to convert
-	 * @param requiredType the type we must convert to
-	 * (or {@code null} if not known, for example in case of a collection element)
-	 * @return the new value, possibly the result of type conversion
-	 * @throws TypeMismatchException if type conversion failed
+	 * @param value 要转换的值
+	 * @param requiredType 我们必须转换到的类型
+	 * （如果未知则为 {@code null}，
+	 * 例如在集合元素的情况下）
+	 * @return 新值，可能是类型转换的结果
+	 * @throws TypeMismatchException 如果类型转换失败
 	 * @see java.beans.PropertyEditor#setAsText(String)
 	 * @see java.beans.PropertyEditor#getValue()
 	 * @see org.springframework.core.convert.ConversionService
@@ -57,13 +58,14 @@ public interface TypeConverter {
 	 * 将值转换为所需的类型（如有必要，从 String 转换）。
 	 * <p>从 String 到任意类型的转换通常使用 PropertyEditor 类的 {@code setAsText} 方法，或
 	 * ConversionService 中的 Spring Converter。
-	 * @param value the value to convert
-	 * @param requiredType the type we must convert to
-	 * (or {@code null} if not known, for example in case of a collection element)
-	 * @param methodParam the method parameter that is the target of the conversion
-	 * (for analysis of generic types; may be {@code null})
-	 * @return the new value, possibly the result of type conversion
-	 * @throws TypeMismatchException if type conversion failed
+	 * @param value 要转换的值
+	 * @param requiredType 我们必须转换到的类型
+	 * （如果未知则为 {@code null}，
+	 * 例如在集合元素的情况下）
+	 * @param methodParam 作为转换目标的方法参数
+	 * （用于分析泛型类型；可能为 {@code null}）
+	 * @return 新值，可能是类型转换的结果
+	 * @throws TypeMismatchException 如果类型转换失败
 	 * @see java.beans.PropertyEditor#setAsText(String)
 	 * @see java.beans.PropertyEditor#getValue()
 	 * @see org.springframework.core.convert.ConversionService
@@ -77,13 +79,14 @@ public interface TypeConverter {
 	 * 将值转换为所需的类型（如有必要，从 String 转换）。
 	 * <p>从 String 到任意类型的转换通常使用 PropertyEditor 类的 {@code setAsText} 方法，或
 	 * ConversionService 中的 Spring Converter。
-	 * @param value the value to convert
-	 * @param requiredType the type we must convert to
-	 * (or {@code null} if not known, for example in case of a collection element)
-	 * @param field the reflective field that is the target of the conversion
-	 * (for analysis of generic types; may be {@code null})
-	 * @return the new value, possibly the result of type conversion
-	 * @throws TypeMismatchException if type conversion failed
+	 * @param value 要转换的值
+	 * @param requiredType 我们必须转换到的类型
+	 * （如果未知则为 {@code null}，
+	 * 例如在集合元素的情况下）
+	 * @param field 作为转换目标的反射字段
+	 * （用于分析泛型类型；可能为 {@code null}）
+	 * @return 新值，可能是类型转换的结果
+	 * @throws TypeMismatchException 如果类型转换失败
 	 * @see java.beans.PropertyEditor#setAsText(String)
 	 * @see java.beans.PropertyEditor#getValue()
 	 * @see org.springframework.core.convert.ConversionService
@@ -97,12 +100,11 @@ public interface TypeConverter {
 	 * 将值转换为所需的类型（如有必要，从 String 转换）。
 	 * <p>从 String 到任意类型的转换通常使用 PropertyEditor 类的 {@code setAsText} 方法，或
 	 * ConversionService 中的 Spring Converter。
-	 * @param value the value to convert
-	 * @param requiredType the type we must convert to
-	 * (or {@code null} if not known, for example in case of a collection element)
-	 * @param typeDescriptor the type descriptor to use (may be {@code null}))
-	 * @return the new value, possibly the result of type conversion
-	 * @throws TypeMismatchException if type conversion failed
+	 * @param value 要转换的值
+	 * @param requiredType 要转换成的类型（若未知则为 {@code null}，如集合元素的情形）
+	 * @param typeDescriptor 要使用的类型描述符（可能为 {@code null}）
+	 * @return 新值，可能是类型转换的结果
+	 * @throws TypeMismatchException 如果类型转换失败
 	 * @since 5.1.4
 	 * @see java.beans.PropertyEditor#setAsText(String)
 	 * @see java.beans.PropertyEditor#getValue()

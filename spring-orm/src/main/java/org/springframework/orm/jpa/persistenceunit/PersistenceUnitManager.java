@@ -36,20 +36,17 @@ public interface PersistenceUnitManager {
 
 	/**
 	 * 从此管理器获取默认的 PersistenceUnitInfo。
-	 * @return the PersistenceUnitInfo (never {@code null})
-	 * @throws IllegalStateException if there is no default PersistenceUnitInfo defined
-	 * or it has already been obtained
+	 * @return PersistenceUnitInfo（永不为 {@code null}）
+	 * @throws IllegalStateException 如果未定义默认的 PersistenceUnitInfo，或它已被获取
 	 */
 	PersistenceUnitInfo obtainDefaultPersistenceUnitInfo() throws IllegalStateException;
 
 	/**
 	 * 从此管理器获取指定的 PersistenceUnitInfo。
-	 * @param persistenceUnitName the name of the desired persistence unit
-	 * @return the PersistenceUnitInfo (never {@code null})
-	 * @throws IllegalArgumentException if no PersistenceUnitInfo with the given
-	 * name is defined
-	 * @throws IllegalStateException if the PersistenceUnitInfo with the given
-	 * name has already been obtained
+	 * @param persistenceUnitName 所需持久化单元的名称
+	 * @return PersistenceUnitInfo（永不为 {@code null}）
+	 * @throws IllegalArgumentException 如果未定义具有给定名称的 PersistenceUnitInfo
+	 * @throws IllegalStateException 如果具有给定名称的 PersistenceUnitInfo 已被获取
 	 */
 	PersistenceUnitInfo obtainPersistenceUnitInfo(String persistenceUnitName)
 			throws IllegalArgumentException, IllegalStateException;

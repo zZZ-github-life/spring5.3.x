@@ -96,7 +96,7 @@ public class StandardBeanExpressionResolver implements BeanExpressionResolver {
 	/**
 	 * 使用给定的 Bean 类加载器创建一个新的 {@code StandardBeanExpressionResolver}，并以它作为表达式编
 	 * 译的基础。
-	 * @param beanClassLoader the factory's bean class loader
+	 * @param beanClassLoader 工厂的 Bean 类加载器
 	 */
 	public StandardBeanExpressionResolver(@Nullable ClassLoader beanClassLoader) {
 		this.expressionParser = new SpelExpressionParser(new SpelParserConfiguration(null, beanClassLoader));

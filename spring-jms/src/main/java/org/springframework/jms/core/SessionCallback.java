@@ -29,7 +29,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Mark Pollack
  * @since 1.1
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see JmsTemplate#execute(SessionCallback)
  */
 @FunctionalInterface
@@ -37,10 +37,10 @@ public interface SessionCallback<T> {
 
 	/**
 	 * 对所提供的 JMS {@link Session} 执行任意数量的操作，并可能返回结果。
-	 * @param session the JMS {@code Session}
-	 * @return a result object from working with the {@code Session}, if any
-	 * (or {@code null} if none)
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
+	 * @param session 该 JMS {@code Session}
+	 * @return 使用 {@code Session} 得到的结果对象（如果存在），
+	 * 否则为 {@code null}
+	 * @throws javax.jms.JMSException 如果由 JMS API 方法抛出
 	 */
 	@Nullable
 	T doInJms(Session session) throws JMSException;

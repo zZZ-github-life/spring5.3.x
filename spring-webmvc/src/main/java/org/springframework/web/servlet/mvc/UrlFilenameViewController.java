@@ -105,8 +105,8 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 	/**
 	 * 从给定请求中提取 URL 路径，
 	 * 以便用于提取视图名称。
-	 * @param request current HTTP request
-	 * @return the URL to use for view name extraction
+	 * @param request 当前 HTTP 请求
+	 * @return 用于提取视图名称的 URL
 	 */
 	protected String extractOperableUrl(HttpServletRequest request) {
 		String urlPath = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
@@ -119,8 +119,8 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 	/**
 	 * 基于 URL 文件名返回视图名称，
 	 * 并在适当时应用前缀/后缀。
-	 * @param uri the request URI; for example {@code "/index.html"}
-	 * @return the extracted URI filename; for example {@code "index"}
+	 * @param uri 请求 URI；例如 {@code "/index.html"}
+	 * @return 提取出的 URI 文件名；例如 {@code "index"}
 	 * @see #extractViewNameFromUrlPath
 	 * @see #postProcessViewName
 	 */
@@ -130,8 +130,8 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 
 	/**
 	 * 从给定请求 URI 中提取 URL 文件名。
-	 * @param uri the request URI; for example {@code "/index.html"}
-	 * @return the extracted URI filename; for example {@code "index"}
+	 * @param uri 请求 URI；例如 {@code "/index.html"}
+	 * @return 提取出的 URI 文件名；例如 {@code "index"}
 	 */
 	protected String extractViewNameFromUrlPath(String uri) {
 		int start = (uri.charAt(0) == '/' ? 1 : 0);
@@ -145,8 +145,8 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 	 * 构建完整的视图名称。
 	 * <p>默认实现只是简单地应用前缀和后缀。
 	 * 可以覆盖此方法，例如用于处理大写/小写转换等。
-	 * @param viewName the original view name, as indicated by the URL path
-	 * @return the full view name to use
+	 * @param viewName 原始视图名称，由 URL 路径指示
+	 * @return 要使用的完整视图名称
 	 * @see #getPrefix()
 	 * @see #getSuffix()
 	 */

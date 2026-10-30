@@ -32,7 +32,7 @@ import org.springframework.lang.Nullable;
  * @author Stephane Nicoll
  * @author Sam Brannen
  * @since 21.01.2004
- * @param <E> the element type
+ * @param <E> 元素类型
  */
 @SuppressWarnings("serial")
 public class ManagedSet<E> extends LinkedHashSet<E> implements Mergeable, BeanMetadataElement {
@@ -56,9 +56,9 @@ public class ManagedSet<E> extends LinkedHashSet<E> implements Mergeable, BeanMe
 
 	/**
 	 * 创建一个包含任意数量元素的新实例。
-	 * @param elements the elements to be contained in the set
-	 * @param <E> the {@code Set}'s element type
-	 * @return a {@code ManagedSet} containing the specified elements
+	 * @param elements 要包含在集合中的元素
+	 * @param <E> {@code Set} 的元素类型
+	 * @return 包含指定元素的 {@code ManagedSet}
 	 * @since 5.3.16
 	 */
 	@SafeVarargs

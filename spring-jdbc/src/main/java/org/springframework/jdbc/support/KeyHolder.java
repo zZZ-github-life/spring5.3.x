@@ -49,8 +49,8 @@ public interface KeyHolder {
 	 * <p>键保存在 Map 的 List 中，其中列表中的每个条目表示每一行的键。
 	 * 如果存在多个列，则 Map 也会有多个条目。如果此方法在 map 或列表中发现
 	 * 多个条目（意味着返回了多个键），则抛出 InvalidDataAccessApiUsageException。
-	 * @return the generated key as a number
-	 * @throws InvalidDataAccessApiUsageException if multiple keys are encountered
+	 * @return 以数字形式表示的生成键
+	 * @throws InvalidDataAccessApiUsageException 如果遇到多个键
 	 * @see #getKeyAs(Class)
 	 */
 	@Nullable
@@ -62,9 +62,9 @@ public interface KeyHolder {
 	 * <p>键保存在 Map 的 List 中，其中列表中的每个条目表示每一行的键。
 	 * 如果存在多个列，则 Map 也会有多个条目。如果此方法在 map 或列表中发现
 	 * 多个条目（意味着返回了多个键），则抛出 InvalidDataAccessApiUsageException。
-	 * @param keyType the type of the auto-generated key
-	 * @return the generated key as an instance of specified type
-	 * @throws InvalidDataAccessApiUsageException if multiple keys are encountered
+	 * @param keyType 自动生成键的类型
+	 * @return 以指定类型实例形式表示的生成键
+	 * @throws InvalidDataAccessApiUsageException 如果遇到多个键
 	 * @since 5.3
 	 * @see #getKey()
 	 */
@@ -75,8 +75,8 @@ public interface KeyHolder {
 	 * 获取第一个键 map。
 	 * <p>如果列表中有多个条目（意味着多行返回了键），
 	 * 则抛出 InvalidDataAccessApiUsageException。
-	 * @return the Map of generated keys for a single row
-	 * @throws InvalidDataAccessApiUsageException if keys for multiple rows are encountered
+	 * @return 单行的生成键 Map
+	 * @throws InvalidDataAccessApiUsageException 如果遇到多行的键
 	 */
 	@Nullable
 	Map<String, Object> getKeys() throws InvalidDataAccessApiUsageException;
@@ -84,8 +84,8 @@ public interface KeyHolder {
 	/**
 	 * 返回对包含键的 List 的引用。
 	 * <p>可用于提取多行的键（不常见的情况），也可用于添加新的键 map。
-	 * @return the List for the generated keys, with each entry representing
-	 * an individual row through a Map of column names and key values
+	 * @return 生成键的 List，
+	 * 每个条目通过列名和键值的 Map 表示单独的一行
 	 */
 	List<Map<String, Object>> getKeyList();
 

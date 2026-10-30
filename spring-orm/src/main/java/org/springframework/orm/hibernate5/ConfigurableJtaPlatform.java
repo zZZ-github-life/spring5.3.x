@@ -52,9 +52,9 @@ class ConfigurableJtaPlatform implements JtaPlatform {
 	/**
 	 * 使用给定的 JTA TransactionManager 以及可选的给定 UserTransaction
 	 * 创建一个新的 ConfigurableJtaPlatform 实例。
-	 * @param tm the JTA TransactionManager reference (required)
-	 * @param ut the JTA UserTransaction reference (optional)
-	 * @param tsr the JTA 1.1 TransactionSynchronizationRegistry (optional)
+	 * @param tm JTA TransactionManager 引用（必需）
+	 * @param ut JTA UserTransaction 引用（可选）
+	 * @param tsr JTA 1.1 TransactionSynchronizationRegistry（可选）
 	 */
 	public ConfigurableJtaPlatform(TransactionManager tm, @Nullable UserTransaction ut,
 			@Nullable TransactionSynchronizationRegistry tsr) {

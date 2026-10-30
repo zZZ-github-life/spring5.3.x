@@ -36,7 +36,7 @@ public class MutableBindings extends Bindings {
 
 	/**
 	 * 创建新的 {@link MutableBindings}。
-	 * @param markers the {@link BindMarkers} to wrap
+	 * @param markers 要包装的 {@link BindMarkers}
 	 */
 	public MutableBindings(BindMarkers markers) {
 		super(new LinkedHashMap<>());
@@ -48,7 +48,7 @@ public class MutableBindings extends Bindings {
 	/**
 	 * 获取下一个 {@link BindMarker}。
 	 * 递增 {@link BindMarkers} 的状态
-	 * @return the next {@link BindMarker}
+	 * @return 下一个 {@link BindMarker}
 	 */
 	public BindMarker nextMarker() {
 		return this.markers.next();
@@ -57,8 +57,8 @@ public class MutableBindings extends Bindings {
 	/**
 	 * 获取带名称 {@code hint} 的下一个 {@link BindMarker}。
 	 * 递增 {@link BindMarkers} 的状态。
-	 * @param hint name hint
-	 * @return the next {@link BindMarker}
+	 * @param hint 名称提示
+	 * @return 下一个 {@link BindMarker}
 	 */
 	public BindMarker nextMarker(String hint) {
 		return this.markers.next(hint);
@@ -66,8 +66,8 @@ public class MutableBindings extends Bindings {
 
 	/**
 	 * 将值绑定到 {@link BindMarker}。
-	 * @param marker the {@link BindMarker} to bind to
-	 * @param value the value to bind
+	 * @param marker 要绑定到的 {@link BindMarker}
+	 * @param value 要绑定的值
 	 */
 	public MutableBindings bind(BindMarker marker, Object value) {
 		Assert.notNull(marker, "BindMarker must not be null");
@@ -79,7 +79,7 @@ public class MutableBindings extends Bindings {
 	/**
 	 * 绑定一个值并返回相关的 {@link BindMarker}。
 	 * 递增 {@link BindMarkers} 的状态。
-	 * @param value the value to bind
+	 * @param value 要绑定的值
 	 */
 	public BindMarker bind(Object value) {
 		Assert.notNull(value, "Value must not be null");
@@ -90,8 +90,8 @@ public class MutableBindings extends Bindings {
 
 	/**
 	 * 将 {@code NULL} 值绑定到 {@link BindMarker}。
-	 * @param marker the {@link BindMarker} to bind to
-	 * @param valueType the value type
+	 * @param marker 要绑定到的 {@link BindMarker}
+	 * @param valueType 值类型
 	 */
 	public MutableBindings bindNull(BindMarker marker, Class<?> valueType) {
 		Assert.notNull(marker, "BindMarker must not be null");
@@ -103,7 +103,7 @@ public class MutableBindings extends Bindings {
 	/**
 	 * 绑定一个 {@code NULL} 值并返回相关的 {@link BindMarker}。
 	 * 递增 {@link BindMarkers} 的状态。
-	 * @param valueType the value type
+	 * @param valueType 值类型
 	 */
 	public BindMarker bindNull(Class<?> valueType) {
 		Assert.notNull(valueType, "Value type must not be null");

@@ -177,7 +177,7 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 	 * 设置生成类所在的 <code>ClassLoader</code>。如果未设置，<code>AbstractClassGenerator</code> 的具
 	 * 体子类（如 <code>Enhancer</code>）会尝试选择合适的默认值。<p>类按 <code>ClassLoader</code> 使用
 	 * <code>WeakHashMap</code> 进行缓存，以便在关联的加载器被垃圾回收时移除生成的类。
-	 * @param classLoader the loader to generate the new class with, or null to use the default
+	 * @param classLoader 用于生成新类的类加载器，为 null 则使用默认的
 	 */
 	public void setClassLoader(ClassLoader classLoader) {
 		this.classLoader = classLoader;
@@ -191,7 +191,7 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 
 	/**
 	 * 覆盖默认命名策略。
-	 * @param namingPolicy the custom policy, or null to use the default
+	 * @param namingPolicy 自定义策略，为 null 则使用默认的
 	 * @see DefaultNamingPolicy
 	 */
 	public void setNamingPolicy(NamingPolicy namingPolicy) {
@@ -278,7 +278,7 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 	/**
 	 * 返回定义类时要使用的保护域。<p>默认实现返回 <code>null</code>，以使用默认保护域。子类可以覆盖此
 	 * 方法以使用更具体的保护域。</p>
-	 * @return the protection domain (<code>null</code> for using a default)
+	 * @return 保护域（使用默认值时则为 <code>null</code>）
 	 */
 	protected ProtectionDomain getProtectionDomain() {
 		return null;

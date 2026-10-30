@@ -59,7 +59,7 @@ public interface WebSocketSession extends Closeable {
 	 * 该映射可以通过
 	 * {@link org.springframework.web.socket.client.WebSocketClient
 	 * WebSocketClient} 的握手方法进行填充。
-	 * @return a Map with the session attributes (never {@code null})
+	 * @return 包含会话属性的 Map（永不为 {@code null}）
 	 */
 	Map<String, Object> getAttributes();
 
@@ -84,8 +84,8 @@ public interface WebSocketSession extends Closeable {
 
 	/**
 	 * 返回协商后的子协议。
-	 * @return the protocol identifier, or {@code null} if no protocol
-	 * was specified or negotiated successfully
+	 * @return 协议标识符；如果没有指定协议
+	 * 或未能成功协商，则为 {@code null}
 	 */
 	@Nullable
 	String getAcceptedProtocol();
@@ -112,8 +112,8 @@ public interface WebSocketSession extends Closeable {
 
 	/**
 	 * 确定协商后的扩展。
-	 * @return the list of extensions, or an empty list if no extension
-	 * was specified or negotiated successfully
+	 * @return 扩展列表；如果没有指定扩展
+	 * 或未能成功协商，则为空列表
 	 */
 	List<WebSocketExtension> getExtensions();
 

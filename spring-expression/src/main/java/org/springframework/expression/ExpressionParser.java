@@ -32,9 +32,9 @@ public interface ExpressionParser {
 	 *     3 + 4
 	 *     name.firstName
 	 * </pre>
-	 * @param expressionString the raw expression string to parse
-	 * @return an evaluator for the parsed expression
-	 * @throws ParseException an exception occurred during parsing
+	 * @param expressionString 要解析的原始表达式字符串
+	 * @return 用于已解析表达式的求值器
+	 * @throws ParseException 解析过程中发生异常
 	 */
 	Expression parseExpression(String expressionString) throws ParseException;
 
@@ -45,10 +45,10 @@ public interface ExpressionParser {
 	 *     3 + 4
 	 *     name.firstName
 	 * </pre>
-	 * @param expressionString the raw expression string to parse
-	 * @param context a context for influencing this expression parsing routine (optional)
-	 * @return an evaluator for the parsed expression
-	 * @throws ParseException an exception occurred during parsing
+	 * @param expressionString 要解析的原始表达式字符串
+	 * @param context 用于影响此表达式解析过程的上下文（可选）
+	 * @return 用于已解析表达式的求值器
+	 * @throws ParseException 解析过程中发生异常
 	 */
 	Expression parseExpression(String expressionString, ParserContext context) throws ParseException;
 

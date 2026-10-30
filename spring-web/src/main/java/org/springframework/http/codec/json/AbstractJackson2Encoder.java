@@ -337,8 +337,8 @@ public abstract class AbstractJackson2Encoder extends Jackson2CodecSupport imple
 
 	/**
 	 * 确定用于给定 MIME 类型的 JSON 编码。
-	 * @param mimeType the mime type as requested by the caller
-	 * @return the JSON encoding to use (never {@code null})
+	 * @param mimeType 调用方请求的 MIME 类型
+	 * @return 要使用的 JSON 编码（永不为 {@code null}）
 	 * @since 5.0.5
 	 */
 	protected JsonEncoding getJsonEncoding(@Nullable MimeType mimeType) {

@@ -95,12 +95,10 @@ class OptionWriter {
 
 	/**
 	 * 为给定的 {@code objectSource} 创建一个新的 {@code OptionWriter}。
-	 * @param optionSource the source of the {@code options} (never {@code null})
-	 * @param bindStatus the {@link BindStatus} for the bound value (never {@code null})
-	 * @param valueProperty the name of the property used to render {@code option} values
-	 * (optional)
-	 * @param labelProperty the name of the property used to render {@code option} labels
-	 * (optional)
+	 * @param optionSource {@code options} 的来源（永不为 {@code null}）
+	 * @param bindStatus 绑定值的 {@link BindStatus}（永不为 {@code null}）
+	 * @param valueProperty 用于渲染 {@code option} 值的属性名称（可选）
+	 * @param labelProperty 用于渲染 {@code option} 标签的属性名称（可选）
 	 */
 	public OptionWriter(Object optionSource, BindStatus bindStatus,
 			@Nullable String valueProperty, @Nullable String labelProperty, boolean htmlEscape) {

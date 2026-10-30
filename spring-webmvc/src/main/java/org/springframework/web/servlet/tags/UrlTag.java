@@ -264,7 +264,7 @@ public class UrlTag extends HtmlEscapingAwareTag implements ParamAware {
 
 	/**
 	 * 根据标签属性和参数为此标签构建 URL。
-	 * @return the URL value as a String
+	 * @return 以 String 形式表示的 URL 值
 	 */
 	String createUrl() throws JspException {
 		Assert.state(this.value != null, "No value set");
@@ -309,12 +309,10 @@ public class UrlTag extends HtmlEscapingAwareTag implements ParamAware {
 	/**
 	 * 从尚未作为模板参数应用的可用参数构建查询字符串。
 	 * <p>参数的名称和值均经过 URL 编码。
-	 * @param params the parameters to build the query string from
-	 * @param usedParams set of parameter names that have been applied as
-	 * template params
-	 * @param includeQueryStringDelimiter true if the query string should start
-	 * with a '?' instead of '&amp;'
-	 * @return the query string
+	 * @param params 用于构建查询字符串的参数
+	 * @param usedParams 已作为模板参数应用的参数名称集合
+	 * @param includeQueryStringDelimiter 如果查询字符串应以 '?' 而不是 '&amp;' 开头则为 true
+	 * @return 查询字符串
 	 */
 	protected String createQueryString(List<Param> params, Set<String> usedParams, boolean includeQueryStringDelimiter)
 			throws JspException {
@@ -348,10 +346,10 @@ public class UrlTag extends HtmlEscapingAwareTag implements ParamAware {
 	 * 替换 URL 中与可用参数匹配的模板标记。匹配参数的
 	 * 名称会被添加到已使用参数集合中。
 	 * <p>参数值经过 URL 编码。
-	 * @param uri the URL with template parameters to replace
-	 * @param params parameters used to replace template markers
-	 * @param usedParams set of template parameter names that have been replaced
-	 * @return the URL with template parameters replaced
+	 * @param uri 包含待替换模板参数的 URL
+	 * @param params 用于替换模板标记的参数
+	 * @param usedParams 已替换的模板参数名称集合
+	 * @return 替换模板参数后的 URL
 	 */
 	protected String replaceUriTemplateParams(String uri, List<Param> params, Set<String> usedParams)
 			throws JspException {

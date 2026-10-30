@@ -88,7 +88,7 @@ public class CciTemplate implements CciOperations {
 	/**
 	 * 构造新的 CciTemplate，给定用于获取 Connection 的 ConnectionFactory。
 	 * 注意：这将触发异常转换器的预先初始化。
-	 * @param connectionFactory the JCA ConnectionFactory to obtain Connections from
+	 * @param connectionFactory 要从中获取 Connection 的 JCA ConnectionFactory
 	 */
 	public CciTemplate(ConnectionFactory connectionFactory) {
 		setConnectionFactory(connectionFactory);
@@ -98,9 +98,9 @@ public class CciTemplate implements CciOperations {
 	/**
 	 * 构造新的 CciTemplate，给定用于获取 Connection 的 ConnectionFactory。
 	 * 注意：这将触发异常转换器的预先初始化。
-	 * @param connectionFactory the JCA ConnectionFactory to obtain Connections from
-	 * @param connectionSpec the CCI ConnectionSpec to obtain Connections for
-	 * (may be {@code null})
+	 * @param connectionFactory 要从中获取 Connection 的 JCA ConnectionFactory
+	 * @param connectionSpec 用于获取 Connection 的 CCI ConnectionSpec
+	 * （可以为 {@code null}）
 	 */
 	public CciTemplate(ConnectionFactory connectionFactory, @Nullable ConnectionSpec connectionSpec) {
 		setConnectionFactory(connectionFactory);
@@ -179,9 +179,9 @@ public class CciTemplate implements CciOperations {
 	/**
 	 * 从此模板实例创建一个派生模板，
 	 * 继承 ConnectionFactory 和其他设置，但覆盖用于获取 Connection 的 ConnectionSpec。
-	 * @param connectionSpec the CCI ConnectionSpec that the derived template
-	 * instance is supposed to obtain Connections for
-	 * @return the derived template instance
+	 * @param connectionSpec 派生模板实例应为其获取 Connection 的
+	 * CCI ConnectionSpec
+	 * @return 派生的模板实例
 	 * @see #setConnectionSpec
 	 */
 	public CciTemplate getDerivedTemplate(ConnectionSpec connectionSpec) {
@@ -270,13 +270,13 @@ public class CciTemplate implements CciOperations {
 
 	/**
 	 * 使用 CCI 在 EIS 上执行指定的交互。所有其他交互执行方法都通过此方法。
-	 * @param spec the CCI InteractionSpec instance that defines
-	 * the interaction (connector-specific)
-	 * @param inputRecord the input record
-	 * @param outputRecord output record (can be {@code null})
-	 * @param outputExtractor object to convert the output record to a result object
-	 * @return the output data extracted with the RecordExtractor object
-	 * @throws DataAccessException if there is any problem
+	 * @param spec 定义该交互的 CCI InteractionSpec 实例
+	 * （特定于连接器）
+	 * @param inputRecord 输入记录
+	 * @param outputRecord 输出记录（可以为 {@code null}）
+	 * @param outputExtractor 将输出记录转换为结果对象的对象
+	 * @return 使用 RecordExtractor 对象提取的输出数据
+	 * @throws DataAccessException 如果出现任何问题
 	 */
 	@Nullable
 	protected <T> T doExecute(
@@ -310,9 +310,9 @@ public class CciTemplate implements CciOperations {
 
 	/**
 	 * 通过 ConnectionFactory 的 RecordFactory 创建索引 Record。
-	 * @param name the name of the record
-	 * @return the Record
-	 * @throws DataAccessException if creation of the Record failed
+	 * @param name 记录的名称
+	 * @return 该 Record
+	 * @throws DataAccessException 如果 Record 创建失败
 	 * @see #getRecordFactory(javax.resource.cci.ConnectionFactory)
 	 * @see javax.resource.cci.RecordFactory#createIndexedRecord(String)
 	 */
@@ -333,9 +333,9 @@ public class CciTemplate implements CciOperations {
 
 	/**
 	 * 从 ConnectionFactory 的 RecordFactory 创建映射 Record。
-	 * @param name record name
-	 * @return the Record
-	 * @throws DataAccessException if creation of the Record failed
+	 * @param name 记录名称
+	 * @return 该 Record
+	 * @throws DataAccessException 如果 Record 创建失败
 	 * @see #getRecordFactory(javax.resource.cci.ConnectionFactory)
 	 * @see javax.resource.cci.RecordFactory#createMappedRecord(String)
 	 */
@@ -357,9 +357,9 @@ public class CciTemplate implements CciOperations {
 	/**
 	 * 调用给定的 RecordCreator，将 JCA ResourceException 转换为
 	 * Spring 的 DataAccessException 层次结构。
-	 * @param recordCreator the RecordCreator to invoke
-	 * @return the created Record
-	 * @throws DataAccessException if creation of the Record failed
+	 * @param recordCreator 要调用的 RecordCreator
+	 * @return 创建的 Record
+	 * @throws DataAccessException 如果 Record 创建失败
 	 * @see #getRecordFactory(javax.resource.cci.ConnectionFactory)
 	 * @see RecordCreator#createRecord(javax.resource.cci.RecordFactory)
 	 */
@@ -383,9 +383,9 @@ public class CciTemplate implements CciOperations {
 	 * <p>默认实现在可用时返回连接器的 RecordFactory，否则回退到
 	 * NotSupportedRecordFactory 占位符。这允许在任何情况下都以非空的
 	 * RecordFactory 引用调用 RecordCreator 回调。
-	 * @param connectionFactory the CCI ConnectionFactory
-	 * @return the CCI RecordFactory for the ConnectionFactory
-	 * @throws ResourceException if thrown by CCI methods
+	 * @param connectionFactory 该 CCI ConnectionFactory
+	 * @return 该 ConnectionFactory 对应的 CCI RecordFactory
+	 * @throws ResourceException 如果由 CCI 方法抛出
 	 * @see org.springframework.jca.cci.connection.NotSupportedRecordFactory
 	 */
 	protected RecordFactory getRecordFactory(ConnectionFactory connectionFactory) throws ResourceException {
@@ -401,7 +401,7 @@ public class CciTemplate implements CciOperations {
 	/**
 	 * 关闭给定的 CCI Interaction 并忽略任何抛出的异常。
 	 * 这对于手动 CCI 代码中的典型 finally 块很有用。
-	 * @param interaction the CCI Interaction to close
+	 * @param interaction 要关闭的 CCI Interaction
 	 * @see javax.resource.cci.Interaction#close()
 	 */
 	private void closeInteraction(@Nullable Interaction interaction) {
@@ -422,7 +422,7 @@ public class CciTemplate implements CciOperations {
 	/**
 	 * 关闭给定的 CCI ResultSet 并忽略任何抛出的异常。
 	 * 这对于手动 CCI 代码中的典型 finally 块很有用。
-	 * @param resultSet the CCI ResultSet to close
+	 * @param resultSet 要关闭的 CCI ResultSet
 	 * @see javax.resource.cci.ResultSet#close()
 	 */
 	private void closeResultSet(@Nullable ResultSet resultSet) {

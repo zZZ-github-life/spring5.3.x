@@ -97,8 +97,8 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 
 	/**
 	 * 创建一个新的空访问器。之后需要设置被包装的实例。
-	 * @param registerDefaultEditors whether to register default editors
-	 * (can be suppressed if the accessor won't need any type conversion)
+	 * @param registerDefaultEditors 是否注册默认编辑器
+	 * （如果该访问器不需要任何类型转换，可以禁用）
 	 * @see #setWrappedInstance
 	 */
 	protected AbstractNestablePropertyAccessor(boolean registerDefaultEditors) {
@@ -110,7 +110,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 
 	/**
 	 * 为给定对象创建一个新的访问器。
-	 * @param object the object wrapped by this accessor
+	 * @param object 该访问器所包装的对象
 	 */
 	protected AbstractNestablePropertyAccessor(Object object) {
 		registerDefaultEditors();
@@ -119,7 +119,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 
 	/**
 	 * 创建一个新的访问器，包装指定类的新实例。
-	 * @param clazz class to instantiate and wrap
+	 * @param clazz 要实例化并包装的类
 	 */
 	protected AbstractNestablePropertyAccessor(Class<?> clazz) {
 		registerDefaultEditors();
@@ -128,9 +128,9 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 
 	/**
 	 * 为给定对象创建一个新的访问器，并注册该对象所处的嵌套路径。
-	 * @param object the object wrapped by this accessor
-	 * @param nestedPath the nested path of the object
-	 * @param rootObject the root object at the top of the path
+	 * @param object 该访问器所包装的对象
+	 * @param nestedPath 该对象的嵌套路径
+	 * @param rootObject 路径顶部的根对象
 	 */
 	protected AbstractNestablePropertyAccessor(Object object, String nestedPath, Object rootObject) {
 		registerDefaultEditors();
@@ -139,9 +139,9 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 
 	/**
 	 * 为给定对象创建一个新的访问器，并注册该对象所处的嵌套路径。
-	 * @param object the object wrapped by this accessor
-	 * @param nestedPath the nested path of the object
-	 * @param parent the containing accessor (must not be {@code null})
+	 * @param object 该访问器所包装的对象
+	 * @param nestedPath 该对象的嵌套路径
+	 * @param parent 包含该对象的访问器（不能为 {@code null}）
 	 */
 	protected AbstractNestablePropertyAccessor(Object object, String nestedPath, AbstractNestablePropertyAccessor parent) {
 		setWrappedInstance(object, nestedPath, parent.getWrappedInstance());
@@ -168,7 +168,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 
 	/**
 	 * 切换目标对象，仅当新对象的类与被替换对象的类不同时，才替换缓存的内省结果。
-	 * @param object the new target object
+	 * @param object 新的目标对象
 	 */
 	public void setWrappedInstance(Object object) {
 		setWrappedInstance(object, "", null);
@@ -176,9 +176,9 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 
 	/**
 	 * 切换目标对象，仅当新对象的类与被替换对象的类不同时，才替换缓存的内省结果。
-	 * @param object the new target object
-	 * @param nestedPath the nested path of the object
-	 * @param rootObject the root object at the top of the path
+	 * @param object 新的目标对象
+	 * @param nestedPath 该对象的嵌套路径
+	 * @param rootObject 路径顶部的根对象
 	 */
 	public void setWrappedInstance(Object object, @Nullable String nestedPath, @Nullable Object rootObject) {
 		this.wrappedObject = ObjectUtils.unwrapOptional(object);
@@ -708,10 +708,10 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	/**
 	 * 返回指定 {@code propertyName} 的 {@link PropertyHandler}，必要时进行导航。如果未找到则返回
 	 * {@code null}，而不是抛出异常。
-	 * @param propertyName the property to obtain the descriptor for
-	 * @return the property descriptor for the specified property,
-	 * or {@code null} if not found
-	 * @throws BeansException in case of introspection failure
+	 * @param propertyName 要获取其描述符的属性
+	 * @return 指定属性的属性描述符，
+	 * 如果未找到则为 {@code null}
+	 * @throws BeansException 如果内省失败
 	 */
 	@Nullable
 	protected PropertyHandler getPropertyHandler(String propertyName) throws BeansException {
@@ -722,17 +722,17 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 
 	/**
 	 * 返回指定本地 {@code propertyName} 的 {@link PropertyHandler}。仅用于访问当前上下文中可用的属性。
-	 * @param propertyName the name of a local property
-	 * @return the handler for that property, or {@code null} if it has not been found
+	 * @param propertyName 本地属性的名称
+	 * @return 该属性的处理器，如果尚未找到则为 {@code null}
 	 */
 	@Nullable
 	protected abstract PropertyHandler getLocalPropertyHandler(String propertyName);
 
 	/**
 	 * 创建一个新的嵌套属性访问器实例。可在子类中覆盖，以创建 PropertyAccessor 的子类。
-	 * @param object the object wrapped by this PropertyAccessor
-	 * @param nestedPath the nested path of the object
-	 * @return the nested PropertyAccessor instance
+	 * @param object 该 PropertyAccessor 所包装的对象
+	 * @param nestedPath 该对象的嵌套路径
+	 * @return 嵌套的 PropertyAccessor 实例
 	 */
 	protected abstract AbstractNestablePropertyAccessor newNestedPropertyAccessor(Object object, String nestedPath);
 
@@ -783,9 +783,9 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 
 	/**
 	 * 获取路径的最后一个组成部分。即使不是嵌套的也适用。
-	 * @param pa property accessor to work on
-	 * @param nestedPath property path we know is nested
-	 * @return last component of the path (the property on the target bean)
+	 * @param pa 要操作的属性访问器
+	 * @param nestedPath 已知为嵌套的属性路径
+	 * @return 路径的最后一个组成部分（目标 Bean 上的属性）
 	 */
 	protected String getFinalPath(AbstractNestablePropertyAccessor pa, String nestedPath) {
 		if (pa == this) {
@@ -796,8 +796,8 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 
 	/**
 	 * 递归导航，返回嵌套属性路径的属性访问器。
-	 * @param propertyPath property path, which may be nested
-	 * @return a property accessor for the target bean
+	 * @param propertyPath 属性路径，可能是嵌套的
+	 * @return 目标 Bean 的属性访问器
 	 */
 	protected AbstractNestablePropertyAccessor getPropertyAccessorForPropertyPath(String propertyPath) {
 		int pos = PropertyAccessorUtils.getFirstNestedPropertySeparatorIndex(propertyPath);
@@ -816,8 +816,8 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	/**
 	 * 获取给定嵌套属性的 Property 访问器。如果缓存中未找到，则创建一个新的。<p>注意：现在必须缓存嵌套
 	 * 的 PropertyAccessor，以保留为嵌套属性注册的自定义编辑器。
-	 * @param nestedProperty property to create the PropertyAccessor for
-	 * @return the PropertyAccessor instance, either cached or newly created
+	 * @param nestedProperty 要为其创建 PropertyAccessor 的属性
+	 * @return PropertyAccessor 实例，可能是缓存的或新建的
 	 */
 	private AbstractNestablePropertyAccessor getNestedPropertyAccessor(String nestedProperty) {
 		if (this.nestedPropertyAccessors == null) {
@@ -912,8 +912,8 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 
 	/**
 	 * 将给定属性名解析为相应的属性名标记。
-	 * @param propertyName the property name to parse
-	 * @return representation of the parsed property tokens
+	 * @param propertyName 要解析的属性名称
+	 * @return 解析后的属性标记的表示形式
 	 */
 	private PropertyTokenHolder getPropertyNameTokens(String propertyName) {
 		String actualName = null;

@@ -44,7 +44,7 @@ class SessionAttributesHandler {
 
 	/**
 	 * 创建新的会话属性处理器。如果给定类型上存在 {@code @SessionAttributes} 注解，则从中提取会话属性名称和类型。
-	 * @param handlerType the controller type
+	 * @param handlerType 控制器类型
 	 */
 	public SessionAttributesHandler(Class<?> handlerType) {
 		SessionAttributes ann = AnnotatedElementUtils.findMergedAnnotation(handlerType, SessionAttributes.class);
@@ -66,8 +66,8 @@ class SessionAttributesHandler {
 	/**
 	 * 属性名称或类型是否匹配底层控制器上通过 {@code @SessionAttributes} 指定的名称和类型。
 	 * <p>通过此方法成功解析的属性会被“记住”，随后用于 {@link #retrieveAttributes(WebSession)} 和 {@link #cleanupAttributes(WebSession)}。
-	 * @param attributeName the attribute name to check
-	 * @param attributeType the type for the attribute
+	 * @param attributeName 要检查的属性名称
+	 * @param attributeType 属性的类型
 	 */
 	public boolean isHandlerSessionAttribute(String attributeName, Class<?> attributeType) {
 		Assert.notNull(attributeName, "Attribute name must not be null");
@@ -82,8 +82,8 @@ class SessionAttributesHandler {
 
 	/**
 	 * 从会话中检索“已知”属性，即在 {@code @SessionAttributes} 中按名称列出的属性，或之前存储在模型中且类型匹配的属性。
-	 * @param session the current session
-	 * @return a map with handler session attributes, possibly empty
+	 * @param session 当前会话
+	 * @return 包含处理器会话属性的映射，可能为空
 	 */
 	public Map<String, Object> retrieveAttributes(WebSession session) {
 		Map<String, Object> attributes = new HashMap<>();
@@ -98,8 +98,8 @@ class SessionAttributesHandler {
 
 	/**
 	 * 将给定属性的子集存储在会话中。未通过 {@code @SessionAttributes} 声明为会话属性的属性将被忽略。
-	 * @param session the current session
-	 * @param attributes candidate attributes for session storage
+	 * @param session 当前会话
+	 * @param attributes 用于会话存储的候选属性
 	 */
 	public void storeAttributes(WebSession session, Map<String, ?> attributes) {
 		attributes.forEach((name, value) -> {
@@ -111,7 +111,7 @@ class SessionAttributesHandler {
 
 	/**
 	 * 从会话中移除“已知”属性，即在 {@code @SessionAttributes} 中按名称列出的属性，或之前存储在模型中且类型匹配的属性。
-	 * @param session the current session
+	 * @param session 当前会话
 	 */
 	public void cleanupAttributes(WebSession session) {
 		this.knownAttributeNames.forEach(name -> session.getAttributes().remove(name));

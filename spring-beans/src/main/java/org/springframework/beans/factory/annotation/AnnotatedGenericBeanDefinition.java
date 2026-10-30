@@ -49,7 +49,7 @@ public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implem
 
 	/**
 	 * 为给定的 Bean 类创建一个新的 AnnotatedGenericBeanDefinition。
-	 * @param beanClass the loaded bean class
+	 * @param beanClass 已加载的 Bean 类
 	 */
 	public AnnotatedGenericBeanDefinition(Class<?> beanClass) {
 		setBeanClass(beanClass);
@@ -61,7 +61,7 @@ public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implem
 	 * 加载 Bean 类。请注意，该构造器在功能上等同于
 	 * {@link org.springframework.context.annotation.ScannedGenericBeanDefinition ScannedGenericBeanDefinition}，
 	 * 但后者的语义表明某个 Bean 是通过组件扫描而非其他方式专门发现的。
-	 * @param metadata the annotation metadata for the bean class in question
+	 * @param metadata 相关 Bean 类的注解元数据
 	 * @since 3.1.1
 	 */
 	public AnnotatedGenericBeanDefinition(AnnotationMetadata metadata) {
@@ -78,8 +78,8 @@ public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implem
 	/**
 	 * 基于带注解的类及该类上的工厂方法，为给定的注解元数据创建一个新的 AnnotatedGenericBeanDefinition。
 	 *
-	 * @param metadata the annotation metadata for the bean class in question
-	 * @param factoryMethodMetadata metadata for the selected factory method
+	 * @param metadata 相关 Bean 类的注解元数据
+	 * @param factoryMethodMetadata 所选工厂方法的元数据
 	 * @since 4.1.1
 	 */
 	public AnnotatedGenericBeanDefinition(AnnotationMetadata metadata, MethodMetadata factoryMethodMetadata) {

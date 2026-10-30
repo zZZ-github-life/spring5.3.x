@@ -37,9 +37,9 @@ public abstract class ValidationAnnotationUtils {
 	 *
 	 * <p>此实现会检查 {@code @javax.validation.Valid}、Spring 的
 	 * {@link org.springframework.validation.annotation.Validated}，以及名称以 "Valid" 开头的自定义注解。
-	 * @param ann the annotation (potentially a validation annotation)
-	 * @return the validation hints to apply (possibly an empty array),
-	 * or {@code null} if this annotation does not trigger any validation
+	 * @param ann 该注解（可能是一个校验注解）。
+	 * @return 要应用的校验提示（可能为空数组），
+	 * 如果该注解不触发任何校验，则为 {@code null}。
 	 */
 	@Nullable
 	public static Object[] determineValidationHints(Annotation ann) {

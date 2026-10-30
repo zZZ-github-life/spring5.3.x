@@ -31,8 +31,8 @@ import java.util.function.Function;
  * @author Brian Clozel
  * @author Juergen Hoeller
  * @since 5.3
- * @param <K> the type of the key used for cache retrieval
- * @param <V> the type of the cached values
+ * @param <K> 用于缓存检索的键的类型
+ * @param <V> 缓存值的类型
  * @see #get
  */
 public class ConcurrentLruCache<K, V> {
@@ -52,9 +52,9 @@ public class ConcurrentLruCache<K, V> {
 
 	/**
 	 * 使用给定的上限和生成函数创建一个新的缓存实例。
-	 * @param sizeLimit the maximum number of entries in the cache
-	 * (0 indicates no caching, always generating a new value)
-	 * @param generator a function to generate a new value for a given key
+	 * @param sizeLimit 缓存中的最大条目数
+	 * （0 表示不缓存，始终生成新值）
+	 * @param generator 为给定键生成新值的函数
 	 */
 	public ConcurrentLruCache(int sizeLimit, Function<K, V> generator) {
 		Assert.isTrue(sizeLimit >= 0, "Cache size limit must not be negative");
@@ -66,8 +66,8 @@ public class ConcurrentLruCache<K, V> {
 
 	/**
 	 * 从缓存中检索条目，可能会触发值的生成。
-	 * @param key the key to retrieve the entry for
-	 * @return the cached or newly generated value
+	 * @param key 要获取其条目的键
+	 * @return 缓存的值或新生成的值
 	 */
 	public V get(K key) {
 		if (this.sizeLimit == 0) {
@@ -121,9 +121,9 @@ public class ConcurrentLruCache<K, V> {
 
 	/**
 	 * 判断给定键是否存在于该缓存中。
-	 * @param key the key to check for
-	 * @return {@code true} if the key is present,
-	 * {@code false} if there was no matching key
+	 * @param key 要检查的键
+	 * @return 如果键存在则返回 {@code true}，
+	 * 如果没有匹配的键则返回 {@code false}
 	 */
 	public boolean contains(K key) {
 		return this.cache.containsKey(key);
@@ -131,9 +131,9 @@ public class ConcurrentLruCache<K, V> {
 
 	/**
 	 * 立即移除给定键及其关联的任何值。
-	 * @param key the key to evict the entry for
-	 * @return {@code true} if the key was present before,
-	 * {@code false} if there was no matching key
+	 * @param key 要移除其条目的键
+	 * @return 如果此前键存在则返回 {@code true}，
+	 * 如果没有匹配的键则返回 {@code false}
 	 */
 	public boolean remove(K key) {
 		this.lock.writeLock().lock();

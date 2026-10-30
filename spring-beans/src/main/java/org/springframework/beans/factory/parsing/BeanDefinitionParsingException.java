@@ -30,7 +30,7 @@ public class BeanDefinitionParsingException extends BeanDefinitionStoreException
 
 	/**
 	 * 创建一个新的 BeanDefinitionParsingException。
-	 * @param problem the configuration problem that was detected during the parsing process
+	 * @param problem 解析过程中检测到的配置问题
 	 */
 	public BeanDefinitionParsingException(Problem problem) {
 		super(problem.getResourceDescription(), problem.toString(), problem.getRootCause());

@@ -104,7 +104,7 @@ public class DefaultMessageHandlerMethodFactory
 	/**
 	 * 设置自定义 {@code HandlerMethodArgumentResolver} 列表，
 	 * 这些解析器将在受支持参数类型的解析器之后使用。
-	 * @param customArgumentResolvers the list of resolvers (never {@code null})
+	 * @param customArgumentResolvers 解析器列表（永远不会为 {@code null}）
 	 */
 	public void setCustomArgumentResolvers(List<HandlerMethodArgumentResolver> customArgumentResolvers) {
 		this.customArgumentResolvers = customArgumentResolvers;

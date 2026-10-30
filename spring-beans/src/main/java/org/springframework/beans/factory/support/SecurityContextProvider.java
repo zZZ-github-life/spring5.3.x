@@ -28,7 +28,7 @@ public interface SecurityContextProvider {
 
 	/**
 	 * 提供与 Bean 工厂相关的安全访问控制上下文。
-	 * @return bean factory security control context
+	 * @return Bean 工厂安全控制上下文
 	 */
 	AccessControlContext getAccessControlContext();
 

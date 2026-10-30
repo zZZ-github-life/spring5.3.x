@@ -207,7 +207,7 @@ class Frame {
   /**
    * 构造一个新的 Frame。
    *
-   * @param owner the basic block to which these input and output stack map frames correspond.
+   * @param owner 这些输入与输出栈映射帧所对应的基本块。
    */
   Frame(final Label owner) {
     this.owner = owner;
@@ -218,7 +218,7 @@ class Frame {
    *
    * <p>警告：调用此方法后，两个帧共享相同的数据结构。建议丢弃给定的帧以避免意外的副作用。
    *
-   * @param frame The new frame value.
+   * @param frame 新的帧值。
    */
   final void copyFrom(final Frame frame) {
     inputLocals = frame.inputLocals;
@@ -238,13 +238,13 @@ class Frame {
   /**
    * 返回与给定公共 API 帧元素类型相对应的抽象类型。
    *
-   * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
-   * @param type a frame element type described using the same format as in {@link
-   *     MethodVisitor#visitFrame}, i.e. either {@link Opcodes#TOP}, {@link Opcodes#INTEGER}, {@link
-   *     Opcodes#FLOAT}, {@link Opcodes#LONG}, {@link Opcodes#DOUBLE}, {@link Opcodes#NULL}, or
-   *     {@link Opcodes#UNINITIALIZED_THIS}, or the internal name of a class, or a Label designating
-   *     a NEW instruction (for uninitialized types).
-   * @return the abstract type corresponding to the given frame element type.
+   * @param symbolTable 用于查找和存储类型 {@link Symbol} 的类型表。
+   * @param type 以与 {@link MethodVisitor#visitFrame} 相同的格式描述的帧元素类型，即
+   * {@link Opcodes#TOP}、{@link Opcodes#INTEGER}、{@link Opcodes#FLOAT}、
+   * {@link Opcodes#LONG}、{@link Opcodes#DOUBLE}、{@link Opcodes#NULL} 或
+   * {@link Opcodes#UNINITIALIZED_THIS} 之一，或类的内部名称，
+   * 或指示 NEW 指令的 Label（用于未初始化的类型）。
+   * @return 与给定帧元素类型对应的抽象类型。
    */
   static int getAbstractTypeFromApiFormat(final SymbolTable symbolTable, final Object type) {
     if (type instanceof Integer) {
@@ -261,10 +261,9 @@ class Frame {
   /**
    * 返回与类内部名称相对应的抽象类型。
    *
-   * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
-   * @param internalName the internal name of a class. This must <i>not</i> be an array type
-   *     descriptor.
-   * @return the abstract type value corresponding to the given internal name.
+   * @param symbolTable 用于查找和存储类型 {@link Symbol} 的类型表。
+   * @param internalName 类的内部名称。这<i>不能</i>是数组类型描述符。
+   * @return 与给定内部名称对应的抽象类型值。
    */
   static int getAbstractTypeFromInternalName(
       final SymbolTable symbolTable, final String internalName) {
@@ -274,10 +273,10 @@ class Frame {
   /**
    * 返回与给定类型描述符相对应的抽象类型。
    *
-   * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
-   * @param buffer a string ending with a type descriptor.
-   * @param offset the start offset of the type descriptor in buffer.
-   * @return the abstract type corresponding to the given type descriptor.
+   * @param symbolTable 用于查找和存储类型 {@link Symbol} 的类型表。
+   * @param buffer 以类型描述符结尾的字符串。
+   * @param offset 类型描述符在 buffer 中的起始偏移量。
+   * @return 与给定类型描述符对应的抽象类型。
    */
   private static int getAbstractTypeFromDescriptor(
       final SymbolTable symbolTable, final String buffer, final int offset) {
@@ -353,10 +352,10 @@ class Frame {
    * 根据给定的方法描述设置输入帧。此方法用于初始化方法的第一个帧，该帧是隐式的（即不显式存储在
    * StackMapTable 属性中）。
    *
-   * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
-   * @param access the method's access flags.
-   * @param descriptor the method descriptor.
-   * @param maxLocals the maximum number of local variables of the method.
+   * @param symbolTable 用于查找和存储类型 {@link Symbol} 的类型表。
+   * @param access 方法的访问标志。
+   * @param descriptor 方法描述符。
+   * @param maxLocals 该方法局部变量的最大数量。
    */
   final void setInputFrameFromDescriptor(
       final SymbolTable symbolTable,
@@ -390,13 +389,11 @@ class Frame {
   /**
    * 根据给定的公共 API 帧描述设置输入帧。
    *
-   * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
-   * @param numLocal the number of local variables.
-   * @param local the local variable types, described using the same format as in {@link
-   *     MethodVisitor#visitFrame}.
-   * @param numStack the number of operand stack elements.
-   * @param stack the operand stack types, described using the same format as in {@link
-   *     MethodVisitor#visitFrame}.
+   * @param symbolTable 用于查找和存储类型 {@link Symbol} 的类型表。
+   * @param numLocal 局部变量的数量。
+   * @param local 局部变量类型，使用与 {@link MethodVisitor#visitFrame} 相同的格式描述。
+   * @param numStack 操作数栈元素的数量。
+   * @param stack 操作数栈类型，使用与 {@link MethodVisitor#visitFrame} 相同的格式描述。
    */
   final void setInputFrameFromApiFormat(
       final SymbolTable symbolTable,
@@ -443,8 +440,8 @@ class Frame {
   /**
    * 返回输出帧中给定局部变量索引处存储的抽象类型。
    *
-   * @param localIndex the index of the local variable whose value must be returned.
-   * @return the abstract type stored at the given local variable index in the output frame.
+   * @param localIndex 要返回其值的局部变量索引。
+   * @return 输出帧中存储在给定局部变量索引处的抽象类型。
    */
   private int getLocal(final int localIndex) {
     if (outputLocals == null || localIndex >= outputLocals.length) {
@@ -465,8 +462,8 @@ class Frame {
   /**
    * 替换输出帧中给定局部变量索引处存储的抽象类型。
    *
-   * @param localIndex the index of the output frame local variable that must be set.
-   * @param abstractType the value that must be set.
+   * @param localIndex 要设置的输出帧局部变量索引。
+   * @param abstractType 要设置的值。
    */
   private void setLocal(final int localIndex, final int abstractType) {
     // Create and/or resize the output local variables array if necessary.
@@ -486,7 +483,7 @@ class Frame {
   /**
    * 将给定的抽象类型压入输出帧栈。
    *
-   * @param abstractType an abstract type.
+   * @param abstractType 一个抽象类型。
    */
   private void push(final int abstractType) {
     // Create and/or resize the output stack array if necessary.
@@ -512,8 +509,8 @@ class Frame {
   /**
    * 将与给定描述符相对应的抽象类型压入输出帧栈。
    *
-   * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
-   * @param descriptor a type or method descriptor (in which case its return type is pushed).
+   * @param symbolTable 用于查找和存储类型 {@link Symbol} 的类型表。
+   * @param descriptor 类型或方法描述符（若为方法描述符，则压入其返回类型）。
    */
   private void push(final SymbolTable symbolTable, final String descriptor) {
     int typeDescriptorOffset =
@@ -530,7 +527,7 @@ class Frame {
   /**
    * 从输出帧栈中弹出一个抽象类型并返回其值。
    *
-   * @return the abstract type that has been popped from the output frame stack.
+   * @return 从输出帧栈中弹出的抽象类型。
    */
   private int pop() {
     if (outputStackTop > 0) {
@@ -544,7 +541,7 @@ class Frame {
   /**
    * 从输出帧栈中弹出给定数量的抽象类型。
    *
-   * @param elements the number of abstract types that must be popped.
+   * @param elements 要弹出的抽象类型数量。
    */
   private void pop(final int elements) {
     if (outputStackTop >= elements) {
@@ -560,7 +557,7 @@ class Frame {
   /**
    * 从输出帧栈中弹出与给定描述符所描述的相同数量的抽象类型。
    *
-   * @param descriptor a type or method descriptor (in which case its argument types are popped).
+   * @param descriptor 类型或方法描述符（若为方法描述符，则弹出其参数类型）。
    */
   private void pop(final String descriptor) {
     char firstDescriptorChar = descriptor.charAt(0);
@@ -580,7 +577,7 @@ class Frame {
   /**
    * 将一个抽象类型添加到基本块中调用了构造函数的类型列表中。
    *
-   * @param abstractType an abstract type on a which a constructor is invoked.
+   * @param abstractType 在其上调用构造器的抽象类型。
    */
   private void addInitializedType(final int abstractType) {
     // Create and/or resize the initializations array if necessary.
@@ -601,11 +598,11 @@ class Frame {
   /**
    * 返回与给定抽象类型相对应的“已初始化”抽象类型。
    *
-   * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
-   * @param abstractType an abstract type.
-   * @return the REFERENCE_KIND abstract type corresponding to abstractType if it is
-   *     UNINITIALIZED_THIS or an UNINITIALIZED_KIND abstract type for one of the types on which a
-   *     constructor is invoked in the basic block. Otherwise returns abstractType.
+   * @param symbolTable 用于查找和存储类型 {@link Symbol} 的类型表。
+   * @param abstractType 一个抽象类型。
+   * @return 如果 abstractType 是 UNINITIALIZED_THIS，或者是基本块中某个被调用构造器的类型的
+   * UNINITIALIZED_KIND 抽象类型，则返回与之对应的 REFERENCE_KIND 抽象类型；
+   * 否则返回 abstractType。
    */
   private int getInitializedType(final SymbolTable symbolTable, final int abstractType) {
     if (abstractType == UNINITIALIZED_THIS
@@ -640,10 +637,10 @@ class Frame {
   /**
    * 在输出栈帧上模拟给定指令的动作。
    *
-   * @param opcode the opcode of the instruction.
-   * @param arg the numeric operand of the instruction, if any.
-   * @param argSymbol the Symbol operand of the instruction, if any.
-   * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
+   * @param opcode 指令的操作码。
+   * @param arg 指令的数值操作数（如果有）。
+   * @param argSymbol 指令的 Symbol 操作数（如果有）。
+   * @param symbolTable 用于查找和存储类型 {@link Symbol} 的类型表。
    */
   void execute(
       final int opcode, final int arg, final Symbol argSymbol, final SymbolTable symbolTable) {
@@ -1082,10 +1079,9 @@ class Frame {
   /**
    * 计算与给定抽象输出类型相对应的具体输出类型。
    *
-   * @param abstractOutputType an abstract output type.
-   * @param numStack the size of the input stack, used to resolve abstract output types of
-   *     STACK_KIND kind.
-   * @return the concrete output type corresponding to 'abstractOutputType'.
+   * @param abstractOutputType 一个抽象输出类型。
+   * @param numStack 输入栈的大小，用于解析 STACK_KIND 种类的抽象输出类型。
+   * @return 与 'abstractOutputType' 对应的具体输出类型。
    */
   private int getConcreteOutputType(final int abstractOutputType, final int numStack) {
     int dim = abstractOutputType & DIM_MASK;
@@ -1119,12 +1115,11 @@ class Frame {
    * 将给定 {@link Frame} 的输入帧与此 {@link Frame} 的输入帧和输出帧合并。如果给定帧被此操作更改，则
    * 返回 {@literal true}（此 {@link Frame} 的输入帧和输出帧永远不会被更改）。
    *
-   * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
-   * @param dstFrame the {@link Frame} whose input frame must be updated. This should be the frame
-   *     of a successor, in the control flow graph, of the basic block corresponding to this frame.
-   * @param catchTypeIndex if 'frame' corresponds to an exception handler basic block, the type
-   *     table index of the caught exception type, otherwise 0.
-   * @return {@literal true} if the input frame of 'frame' has been changed by this operation.
+   * @param symbolTable 用于查找和存储类型 {@link Symbol} 的类型表。
+   * @param dstFrame 其输入帧必须被更新的 {@link Frame}。此帧应为控制流图中
+   * 当前帧所对应基本块的后继帧。
+   * @param catchTypeIndex 如果 'frame' 对应异常处理器基本块，则为被捕获异常类型的类型表索引，否则为 0。
+   * @return 如果 'frame' 的输入帧被此操作修改，则为 {@literal true}。
    */
   final boolean merge(
       final SymbolTable symbolTable, final Frame dstFrame, final int catchTypeIndex) {
@@ -1217,15 +1212,14 @@ class Frame {
    * 将给定抽象类型数组中给定索引处的类型与给定类型合并。如果该类型数组被此操作修改，则返回
    * {@literal true}。
    *
-   * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
-   * @param sourceType the abstract type with which the abstract type array element must be merged.
-   *     This type should be of {@link #CONSTANT_KIND}, {@link #REFERENCE_KIND} or {@link
-   *     #UNINITIALIZED_KIND} kind, with positive or {@literal null} array dimensions.
-   * @param dstTypes an array of abstract types. These types should be of {@link #CONSTANT_KIND},
-   *     {@link #REFERENCE_KIND} or {@link #UNINITIALIZED_KIND} kind, with positive or {@literal
-   *     null} array dimensions.
-   * @param dstIndex the index of the type that must be merged in dstTypes.
-   * @return {@literal true} if the type array has been modified by this operation.
+   * @param symbolTable 用于查找和存储类型 {@link Symbol} 的类型表。
+   * @param sourceType 要与抽象类型数组元素合并的抽象类型。该类型应为 {@link #CONSTANT_KIND}、
+   * {@link #REFERENCE_KIND} 或 {@link #UNINITIALIZED_KIND} 种类，
+   * 并具有正数或 {@literal null} 的数组维度。
+   * @param dstTypes 抽象类型数组。这些类型应为 {@link #CONSTANT_KIND}、{@link #REFERENCE_KIND} 或
+   * {@link #UNINITIALIZED_KIND} 种类，并具有正数或 {@literal null} 的数组维度。
+   * @param dstIndex dstTypes 中要合并的类型的索引。
+   * @return 如果类型数组被此操作修改，则为 {@literal true}。
    */
   private static boolean merge(
       final SymbolTable symbolTable,
@@ -1314,8 +1308,7 @@ class Frame {
    * {@link MethodWriter#visitFrameStart}、{@link MethodWriter#visitAbstractType} 和
    * {@link MethodWriter#visitFrameEnd} 方法完成。
    *
-   * @param methodWriter the {@link MethodWriter} that should visit the input frame of this {@link
-   *     Frame}.
+   * @param methodWriter 应当访问此 {@link Frame} 输入帧的 {@link MethodWriter}。
    */
   final void accept(final MethodWriter methodWriter) {
     // Compute the number of locals, ignoring TOP types that are just after a LONG or a DOUBLE, and
@@ -1364,10 +1357,10 @@ class Frame {
    * 使用 StackMapTable 属性中所用的 JVMS verification_type_info 格式，将给定的抽象类型放入给定的
    * ByteVector 中。
    *
-   * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
-   * @param abstractType an abstract type, restricted to {@link Frame#CONSTANT_KIND}, {@link
-   *     Frame#REFERENCE_KIND} or {@link Frame#UNINITIALIZED_KIND} types.
-   * @param output where the abstract type must be put.
+   * @param symbolTable 用于查找和存储类型 {@link Symbol} 的类型表。
+   * @param abstractType 一个抽象类型，限于 {@link Frame#CONSTANT_KIND}、{@link Frame#REFERENCE_KIND} 或
+   * {@link Frame#UNINITIALIZED_KIND} 类型。
+   * @param output 放置抽象类型的位置。
    * @see <a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html#jvms-4.7.4">JVMS
    *     4.7.4</a>
    */

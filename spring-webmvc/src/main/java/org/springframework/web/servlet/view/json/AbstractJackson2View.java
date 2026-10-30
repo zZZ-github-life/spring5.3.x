@@ -177,9 +177,9 @@ public abstract class AbstractJackson2View extends AbstractView {
 
 	/**
 	 * 过滤 model，并可选地将其包装到 {@link MappingJacksonValue} 容器中。
-	 * @param model the model, as passed on to {@link #renderMergedOutputModel}
-	 * @param request current HTTP request
-	 * @return the wrapped or unwrapped value to be rendered
+	 * @param model 模型，将传递给 {@link #renderMergedOutputModel}
+	 * @param request 当前 HTTP 请求
+	 * @return 要渲染的包装或未包装的值
 	 */
 	protected Object filterAndWrapModel(Map<String, Object> model, HttpServletRequest request) {
 		Object value = filterModel(model);
@@ -200,9 +200,9 @@ public abstract class AbstractJackson2View extends AbstractView {
 
 	/**
 	 * 将实际的 JSON 内容写入输出流。
-	 * @param stream the output stream to use
-	 * @param object the value to be rendered, as returned from {@link #filterModel}
-	 * @throws IOException if writing failed
+	 * @param stream 要使用的输出流
+	 * @param object 要渲染的值，由 {@link #filterModel} 返回
+	 * @throws IOException 如果写入失败
 	 */
 	protected void writeContent(OutputStream stream, Object object) throws IOException {
 		try (JsonGenerator generator = this.objectMapper.getFactory().createGenerator(stream, this.encoding)) {
@@ -241,23 +241,23 @@ public abstract class AbstractJackson2View extends AbstractView {
 	/**
 	 * 从给定 model 中过滤掉不需要的属性。
 	 * 返回值可以是另一个 {@link Map}，也可以是单个值对象。
-	 * @param model the model, as passed on to {@link #renderMergedOutputModel}
-	 * @return the value to be rendered
+	 * @param model 模型，将传递给 {@link #renderMergedOutputModel}
+	 * @return 要渲染的值
 	 */
 	protected abstract Object filterModel(Map<String, Object> model);
 
 	/**
 	 * 在主要内容之前写入前缀。
-	 * @param generator the generator to use for writing content.
-	 * @param object the object to write to the output message.
+	 * @param generator 用于写入内容的生成器。
+	 * @param object 要写入输出消息的对象。
 	 */
 	protected void writePrefix(JsonGenerator generator, Object object) throws IOException {
 	}
 
 	/**
 	 * 在主要内容之后写入后缀。
-	 * @param generator the generator to use for writing content.
-	 * @param object the object to write to the output message.
+	 * @param generator 用于写入内容的生成器。
+	 * @param object 要写入输出消息的对象。
 	 */
 	protected void writeSuffix(JsonGenerator generator, Object object) throws IOException {
 	}

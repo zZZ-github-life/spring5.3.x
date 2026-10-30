@@ -30,8 +30,8 @@ public interface SimpUserRegistry {
 
 	/**
 	 * 获取给定名称的用户。
-	 * @param userName the name of the user to look up
-	 * @return the user, or {@code null} if not connected
+	 * @param userName 要查找的用户名称
+	 * @return 用户，如果未连接则为 {@code null}
 	 */
 	@Nullable
 	SimpUser getUser(String userName);
@@ -39,21 +39,21 @@ public interface SimpUserRegistry {
 	/**
 	 * 返回所有已连接用户的快照。
 	 * <p>返回的集合是副本，不会反映后续更改。
-	 * @return the connected users, or an empty set if none
+	 * @return 已连接的用户，如果没有则为空集合
 	 */
 	Set<SimpUser> getUsers();
 
 	/**
 	 * 返回所有已连接用户的数量。
-	 * @return the number of connected users
+	 * @return 已连接用户的数量
 	 * @since 4.3.5
 	 */
 	int getUserCount();
 
 	/**
 	 * 使用给定匹配器查找订阅。
-	 * @param matcher the matcher to use
-	 * @return a set of matching subscriptions, or an empty set if none
+	 * @param matcher 要使用的匹配器
+	 * @return 匹配的订阅集合，如果没有则为空集合
 	 */
 	Set<SimpSubscription> findSubscriptions(SimpSubscriptionMatcher matcher);
 

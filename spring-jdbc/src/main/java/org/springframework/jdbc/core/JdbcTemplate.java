@@ -160,7 +160,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	/**
 	 * 使用给定的 DataSource 构造一个新的 JdbcTemplate 以获取连接。
 	 * <p>注意：这不会触发异常转换器的初始化。
-	 * @param dataSource the JDBC DataSource to obtain connections from
+	 * @param dataSource 用于获取连接的 JDBC DataSource
 	 */
 	public JdbcTemplate(DataSource dataSource) {
 		setDataSource(dataSource);
@@ -170,8 +170,8 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	/**
 	 * 使用给定的 DataSource 构造一个新的 JdbcTemplate 以获取连接。
 	 * <p>注意：根据“lazyInit”标志，将触发异常转换器的初始化。
-	 * @param dataSource the JDBC DataSource to obtain connections from
-	 * @param lazyInit whether to lazily initialize the SQLExceptionTranslator
+	 * @param dataSource 用于获取连接的 JDBC DataSource
+	 * @param lazyInit 是否延迟初始化 SQLExceptionTranslator
 	 */
 	public JdbcTemplate(DataSource dataSource, boolean lazyInit) {
 		setDataSource(dataSource);
@@ -340,8 +340,8 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	 * 由 {@code execute} 方法调用。
 	 * <p>该代理还会准备返回的 JDBC Statement，应用 fetch size、max rows
 	 * 和 query timeout 等语句设置。
-	 * @param con the JDBC Connection to create a proxy for
-	 * @return the Connection proxy
+	 * @param con 要为其创建代理的 JDBC Connection
+	 * @return Connection 代理
 	 * @see java.sql.Connection#close()
 	 * @see #execute(ConnectionCallback)
 	 * @see #applyStatementSettings
@@ -684,12 +684,12 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	 * 使用预编译语句执行查询，允许传入 PreparedStatementCreator
 	 * 和 PreparedStatementSetter。大多数其他查询方法都使用此方法，
 	 * 但应用程序代码始终只会使用 creator 或 setter 之一。
-	 * @param psc a callback that creates a PreparedStatement given a Connection
-	 * @param pss a callback that knows how to set values on the prepared statement.
-	 * If this is {@code null}, the SQL will be assumed to contain no bind parameters.
-	 * @param rse a callback that will extract results
-	 * @return an arbitrary result object, as returned by the ResultSetExtractor
-	 * @throws DataAccessException if there is any problem
+	 * @param psc 根据 Connection 创建 PreparedStatement 的回调
+	 * @param pss 知道如何在 PreparedStatement 上设置值的回调。
+	 * 如果此参数为 {@code null}，则假定该 SQL 不包含绑定参数。
+	 * @param rse 提取结果的回调
+	 * @return 任意结果对象，由 ResultSetExtractor 返回
+	 * @throws DataAccessException 如果出现任何问题
 	 */
 	@Nullable
 	public <T> T query(
@@ -808,13 +808,13 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	 * 使用预编译语句进行查询，允许使用 PreparedStatementCreator
 	 * 和 PreparedStatementSetter。大多数其他查询方法都使用此方法，
 	 * 但应用程序代码通常只使用 creator 或 setter 之一。
-	 * @param psc a callback that creates a PreparedStatement given a Connection
-	 * @param pss a callback that knows how to set values on the prepared statement.
-	 * If this is {@code null}, the SQL will be assumed to contain no bind parameters.
-	 * @param rowMapper a callback that will map one object per row
-	 * @return the result Stream, containing mapped objects, needing to be
-	 * closed once fully processed (e.g. through a try-with-resources clause)
-	 * @throws DataAccessException if the query fails
+	 * @param psc 根据 Connection 创建 PreparedStatement 的回调
+	 * @param pss 知道如何在预编译语句上设置值的回调。
+	 * 如果为 {@code null}，则假定 SQL 不包含绑定参数。
+	 * @param rowMapper 将每行映射为一个对象的回调
+	 * @return 结果 Stream，包含映射后的对象，在处理完成后需要关闭
+	 * （例如通过 try-with-resources 子句）
+	 * @throws DataAccessException 如果查询失败
 	 * @since 5.3
 	 */
 	public <T> Stream<T> queryForStream(PreparedStatementCreator psc, @Nullable PreparedStatementSetter pss,
@@ -1252,10 +1252,10 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 	/**
 	 * 从已完成的存储过程中提取返回的 ResultSet。
-	 * @param cs a JDBC wrapper for the stored procedure
-	 * @param updateCountParameters the parameter list of declared update count parameters for the stored procedure
-	 * @param resultSetParameters the parameter list of declared resultSet parameters for the stored procedure
-	 * @return a Map that contains returned results
+	 * @param cs 存储过程的 JDBC 包装器
+	 * @param updateCountParameters 存储过程声明的更新计数参数列表
+	 * @param resultSetParameters 存储过程声明的 resultSet 参数列表
+	 * @return 包含返回结果的 Map
 	 */
 	protected Map<String, Object> extractReturnedResults(CallableStatement cs,
 			@Nullable List<SqlParameter> updateCountParameters, @Nullable List<SqlParameter> resultSetParameters,
@@ -1316,9 +1316,9 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 	/**
 	 * 从已完成的存储过程中提取输出参数。
-	 * @param cs the JDBC wrapper for the stored procedure
-	 * @param parameters parameter list for the stored procedure
-	 * @return a Map that contains returned results
+	 * @param cs 存储过程的 JDBC 包装器
+	 * @param parameters 存储过程的参数列表
+	 * @return 包含返回结果的 Map
 	 */
 	protected Map<String, Object> extractOutputParameters(CallableStatement cs, List<SqlParameter> parameters)
 			throws SQLException {
@@ -1363,9 +1363,9 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 	/**
 	 * 处理存储过程返回的给定 ResultSet。
-	 * @param rs the ResultSet to process
-	 * @param param the corresponding stored procedure parameter
-	 * @return a Map that contains returned results
+	 * @param rs 要处理的 ResultSet
+	 * @param param 对应的存储过程参数
+	 * @return 包含返回结果的 Map
 	 */
 	protected Map<String, Object> processResultSet(
 			@Nullable ResultSet rs, ResultSetSupportingSqlParameter param) throws SQLException {
@@ -1402,7 +1402,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 	/**
 	 * 创建一个新的 RowMapper，用于将列读取为键值对。
-	 * @return the RowMapper to use
+	 * @return 要使用的 RowMapper
 	 * @see ColumnMapRowMapper
 	 */
 	protected RowMapper<Map<String, Object>> getColumnMapRowMapper() {
@@ -1411,8 +1411,8 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 	/**
 	 * 创建一个新的 RowMapper，用于从单列中读取结果对象。
-	 * @param requiredType the type that each result object is expected to match
-	 * @return the RowMapper to use
+	 * @param requiredType 每个结果对象应匹配的类型
+	 * @return 要使用的 RowMapper
 	 * @see SingleColumnRowMapper
 	 */
 	protected <T> RowMapper<T> getSingleColumnRowMapper(Class<T> requiredType) {
@@ -1424,7 +1424,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	 * <p>如果 {@link #resultsMapCaseInsensitive} 已被设置为 true，
 	 * 则创建 {@link LinkedCaseInsensitiveMap}；否则创建
 	 * {@link LinkedHashMap}。
-	 * @return the results Map instance
+	 * @return 结果 Map 实例
 	 * @see #setResultsMapCaseInsensitive
 	 * @see #isResultsMapCaseInsensitive
 	 */
@@ -1440,8 +1440,8 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	/**
 	 * 准备给定的 JDBC Statement（或 PreparedStatement、CallableStatement），
 	 * 并应用 fetch size、max rows 和查询超时等语句设置。
-	 * @param stmt the JDBC Statement to prepare
-	 * @throws SQLException if thrown by JDBC API
+	 * @param stmt 要准备的 JDBC Statement
+	 * @throws SQLException 如果由 JDBC API 抛出
 	 * @see #setFetchSize
 	 * @see #setMaxRows
 	 * @see #setQueryTimeout
@@ -1463,8 +1463,8 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	 * 使用传入的参数创建一个基于参数的 PreparedStatementSetter。
 	 * <p>默认情况下，我们会创建 {@link ArgumentPreparedStatementSetter}。
 	 * 此方法允许子类覆盖创建过程。
-	 * @param args object array with arguments
-	 * @return the new PreparedStatementSetter to use
+	 * @param args 包含参数的对象数组
+	 * @return 要使用的新 PreparedStatementSetter
 	 */
 	protected PreparedStatementSetter newArgPreparedStatementSetter(@Nullable Object[] args) {
 		return new ArgumentPreparedStatementSetter(args);
@@ -1474,9 +1474,9 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	 * 使用传入的参数和类型创建一个基于参数类型的 PreparedStatementSetter。
 	 * <p>默认情况下，我们会创建 {@link ArgumentTypePreparedStatementSetter}。
 	 * 此方法允许子类覆盖创建过程。
-	 * @param args object array with arguments
-	 * @param argTypes int array of SQLTypes for the associated arguments
-	 * @return the new PreparedStatementSetter to use
+	 * @param args 包含参数的对象数组
+	 * @param argTypes 相关参数的 SQLTypes int 数组
+	 * @return 要使用的新 PreparedStatementSetter
 	 */
 	protected PreparedStatementSetter newArgTypePreparedStatementSetter(Object[] args, int[] argTypes) {
 		return new ArgumentTypePreparedStatementSetter(args, argTypes);
@@ -1485,8 +1485,8 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	/**
 	 * 如果未忽略警告，则抛出 SQLWarningException，
 	 * 否则以 debug 级别记录这些警告。
-	 * @param stmt the current JDBC statement
-	 * @throws SQLWarningException if not ignoring warnings
+	 * @param stmt 当前的 JDBC 语句
+	 * @throws SQLWarningException 如果不忽略警告
 	 * @see org.springframework.jdbc.SQLWarningException
 	 */
 	protected void handleWarnings(Statement stmt) throws SQLException {
@@ -1507,9 +1507,9 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 	/**
 	 * 如果遇到实际警告，则抛出 SQLWarningException。
-	 * @param warning the warnings object from the current statement.
-	 * May be {@code null}, in which case this method does nothing.
-	 * @throws SQLWarningException in case of an actual warning to be raised
+	 * @param warning 当前语句的警告对象。
+	 * 可以为 {@code null}，此时本方法不执行任何操作。
+	 * @throws SQLWarningException 在需要抛出实际警告的情况下
 	 */
 	protected void handleWarnings(@Nullable SQLWarning warning) throws SQLWarningException {
 		if (warning != null) {
@@ -1519,10 +1519,10 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 	/**
 	 * 将给定的 {@link SQLException} 转换为通用的 {@link DataAccessException}。
-	 * @param task readable text describing the task being attempted
-	 * @param sql the SQL query or update that caused the problem (may be {@code null})
-	 * @param ex the offending {@code SQLException}
-	 * @return a DataAccessException wrapping the {@code SQLException} (never {@code null})
+	 * @param task 描述所尝试任务的可读文本
+	 * @param sql 导致问题的 SQL 查询或更新（可以为 {@code null}）
+	 * @param ex 出错的 {@code SQLException}
+	 * @return 包装该 {@code SQLException} 的 DataAccessException（永不为 {@code null}）
 	 * @since 5.0
 	 * @see #getExceptionTranslator()
 	 */
@@ -1534,8 +1534,8 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 	/**
 	 * 从可能的 provider 对象中确定 SQL。
-	 * @param sqlProvider object which is potentially an SqlProvider
-	 * @return the SQL string, or {@code null} if not known
+	 * @param sqlProvider 可能是 SqlProvider 的对象
+	 * @return SQL 字符串，如果未知则为 {@code null}
 	 * @see SqlProvider
 	 */
 	@Nullable

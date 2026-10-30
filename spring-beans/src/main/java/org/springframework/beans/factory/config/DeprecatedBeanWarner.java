@@ -72,9 +72,9 @@ public class DeprecatedBeanWarner implements BeanFactoryPostProcessor {
 
 	/**
 	 * 为标注了 {@link Deprecated @Deprecated} 的 Bean 记录一条警告。
-	 * @param beanName the name of the deprecated bean
-	 * @param beanType the user-specified type of the deprecated bean
-	 * @param beanDefinition the definition of the deprecated bean
+	 * @param beanName 已弃用 Bean 的名称
+	 * @param beanType 已弃用 Bean 的用户指定类型
+	 * @param beanDefinition 已弃用 Bean 的定义
 	 */
 	protected void logDeprecatedBean(String beanName, Class<?> beanType, BeanDefinition beanDefinition) {
 		StringBuilder builder = new StringBuilder();
@@ -94,7 +94,7 @@ public class DeprecatedBeanWarner implements BeanFactoryPostProcessor {
 	/**
 	 * 实际写入底层日志。
 	 * <p>默认实现以 "warn" 级别记录该消息。
-	 * @param message the message to write
+	 * @param message 要写入的消息
 	 */
 	protected void writeToLog(String message) {
 		logger.warn(message);

@@ -179,10 +179,10 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 	/**
 	 * 为给定的 {@link ExecutionPhase} 和 {@link TestContext} 执行通过所提供的 {@link Sql @Sql} 注解配置的 SQL 脚本。
 	 * <p>必须特别小心，以正确支持配置的 {@link SqlConfig#transactionMode}。
-	 * @param sql the {@code @Sql} annotation to parse
-	 * @param executionPhase the current execution phase
-	 * @param testContext the current {@code TestContext}
-	 * @param classLevel {@code true} if {@link Sql @Sql} was declared at the class level
+	 * @param sql 要解析的 {@code @Sql} 注解
+	 * @param executionPhase 当前执行阶段
+	 * @param testContext 当前的 {@code TestContext}
+	 * @param classLevel 如果在类级别声明了 {@link Sql @Sql}，则为 {@code true}
 	 */
 	private void executeSqlScripts(
 			Sql sql, ExecutionPhase executionPhase, TestContext testContext, boolean classLevel) {

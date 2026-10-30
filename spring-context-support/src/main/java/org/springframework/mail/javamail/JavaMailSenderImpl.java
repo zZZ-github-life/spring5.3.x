@@ -398,14 +398,11 @@ public class JavaMailSenderImpl implements JavaMailSender {
 
 	/**
 	 * 通过 JavaMail 实际发送给定的 MimeMessage 数组。
-	 * @param mimeMessages the MimeMessage objects to send
-	 * @param originalMessages corresponding original message objects
-	 * that the MimeMessages have been created from (with same array
-	 * length and indices as the "mimeMessages" array), if any
-	 * @throws org.springframework.mail.MailAuthenticationException
-	 * in case of authentication failure
-	 * @throws org.springframework.mail.MailSendException
-	 * in case of failure when sending a message
+	 * @param mimeMessages 要发送的 MimeMessage 对象
+	 * @param originalMessages 对应的原始消息对象（如果有的话），MimeMessage 由这些对象创建
+	 * （与 "mimeMessages" 数组具有相同的长度和索引）
+	 * @throws org.springframework.mail.MailAuthenticationException 认证失败时
+	 * @throws org.springframework.mail.MailSendException 发送消息失败时
 	 */
 	protected void doSend(MimeMessage[] mimeMessages, @Nullable Object[] originalMessages) throws MailException {
 		Map<Object, Exception> failedMessages = new LinkedHashMap<>();
@@ -487,8 +484,8 @@ public class JavaMailSenderImpl implements JavaMailSender {
 	/**
 	 * 从底层 JavaMail Session 获取并连接 Transport，
 	 * 传入指定的主机、端口、用户名和密码。
-	 * @return the connected Transport object
-	 * @throws MessagingException if the connect attempt failed
+	 * @return 已连接的 Transport 对象
+	 * @throws MessagingException 连接尝试失败时
 	 * @since 4.1.2
 	 * @see #getTransport
 	 * @see #getHost()

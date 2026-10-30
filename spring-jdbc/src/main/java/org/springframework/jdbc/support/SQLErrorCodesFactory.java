@@ -141,10 +141,10 @@ public class SQLErrorCodesFactory {
 	 * <p><b>应用程序开发者不应重写此方法，而应通过静态的 {@link #getInstance()}
 	 * 方法获取此类的实例。</b>
 	 * <p>声明为 protected 是为了便于测试。
-	 * @param path resource path; either a custom path or one of either
-	 * {@link #SQL_ERROR_CODE_DEFAULT_PATH} or
-	 * {@link #SQL_ERROR_CODE_OVERRIDE_PATH}.
-	 * @return the resource, or {@code null} if the resource wasn't found
+	 * @param path 资源路径；可以是自定义路径，
+	 * 也可以是 {@link #SQL_ERROR_CODE_DEFAULT_PATH} 或
+	 * {@link #SQL_ERROR_CODE_OVERRIDE_PATH} 之一。
+	 * @return 资源，如果未找到该资源则为 {@code null}
 	 * @see #getInstance
 	 */
 	@Nullable
@@ -156,10 +156,10 @@ public class SQLErrorCodesFactory {
 	/**
 	 * 返回给定数据库对应的 {@link SQLErrorCodes} 实例。
 	 * <p>无需进行数据库元数据查找。
-	 * @param databaseName the database name (must not be {@code null})
-	 * @return the {@code SQLErrorCodes} instance for the given database
-	 * (never {@code null}; potentially empty)
-	 * @throws IllegalArgumentException if the supplied database name is {@code null}
+	 * @param databaseName 数据库名称（不能为 {@code null}）
+	 * @return 给定数据库的 {@code SQLErrorCodes} 实例
+	 * （永不为 {@code null}；可能为空）
+	 * @throws IllegalArgumentException 如果提供的数据库名称为 {@code null}
 	 */
 	public SQLErrorCodes getErrorCodes(String databaseName) {
 		Assert.notNull(databaseName, "Database product name must not be null");
@@ -192,9 +192,9 @@ public class SQLErrorCodesFactory {
 	 * 返回给定 {@link DataSource} 对应的 {@link SQLErrorCodes}，通过
 	 * {@link java.sql.DatabaseMetaData} 评估 "databaseProductName"；
 	 * 如果未找到任何 {@code SQLErrorCodes}，则返回空的错误码实例。
-	 * @param dataSource the {@code DataSource} identifying the database
-	 * @return the corresponding {@code SQLErrorCodes} object
-	 * (never {@code null}; potentially empty)
+	 * @param dataSource 标识数据库的 {@code DataSource}
+	 * @return 对应的 {@code SQLErrorCodes} 对象
+	 * （永不为 {@code null}；可能为空）
 	 * @see java.sql.DatabaseMetaData#getDatabaseProductName()
 	 */
 	public SQLErrorCodes getErrorCodes(DataSource dataSource) {
@@ -206,9 +206,9 @@ public class SQLErrorCodesFactory {
 	 * 返回给定 {@link DataSource} 对应的 {@link SQLErrorCodes}，通过
 	 * {@link java.sql.DatabaseMetaData} 评估 "databaseProductName"；
 	 * 如果出现 JDBC 元数据访问问题，则返回 {@code null}。
-	 * @param dataSource the {@code DataSource} identifying the database
-	 * @return the corresponding {@code SQLErrorCodes} object,
-	 * or {@code null} in case of a JDBC meta-data access problem
+	 * @param dataSource 标识数据库的 {@code DataSource}
+	 * @return 对应的 {@code SQLErrorCodes} 对象，
+	 * 如果出现 JDBC 元数据访问问题则为 {@code null}
 	 * @since 5.2.9
 	 * @see java.sql.DatabaseMetaData#getDatabaseProductName()
 	 */
@@ -251,10 +251,10 @@ public class SQLErrorCodesFactory {
 
 	/**
 	 * 将指定的数据库名称与给定的 {@link DataSource} 关联起来。
-	 * @param dataSource the {@code DataSource} identifying the database
-	 * @param databaseName the corresponding database name as stated in the error codes
-	 * definition file (must not be {@code null})
-	 * @return the corresponding {@code SQLErrorCodes} object (never {@code null})
+	 * @param dataSource 标识数据库的 {@code DataSource}
+	 * @param databaseName 错误码定义文件中所述的对应数据库名称
+	 * （不能为 {@code null}）
+	 * @return 对应的 {@code SQLErrorCodes} 对象（永不为 {@code null}）
 	 * @see #unregisterDatabase(DataSource)
 	 */
 	public SQLErrorCodes registerDatabase(DataSource dataSource, String databaseName) {
@@ -269,9 +269,9 @@ public class SQLErrorCodesFactory {
 
 	/**
 	 * 清除指定 {@link DataSource} 的缓存（如果已注册）。
-	 * @param dataSource the {@code DataSource} identifying the database
-	 * @return the corresponding {@code SQLErrorCodes} object that got removed,
-	 * or {@code null} if not registered
+	 * @param dataSource 标识数据库的 {@code DataSource}
+	 * @return 被移除的对应 {@code SQLErrorCodes} 对象，
+	 * 如果未注册则为 {@code null}
 	 * @since 4.3.5
 	 * @see #registerDatabase(DataSource, String)
 	 */
@@ -282,8 +282,8 @@ public class SQLErrorCodesFactory {
 
 	/**
 	 * 为给定的 {@link DataSource} 构建标识字符串，主要用于日志记录。
-	 * @param dataSource the {@code DataSource} to introspect
-	 * @return the identification String
+	 * @param dataSource 要内省的 {@code DataSource}
+	 * @return 标识字符串
 	 */
 	private String identify(DataSource dataSource) {
 		return dataSource.getClass().getName() + '@' + Integer.toHexString(dataSource.hashCode());

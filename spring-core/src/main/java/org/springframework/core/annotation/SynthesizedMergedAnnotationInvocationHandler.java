@@ -40,7 +40,7 @@ import org.springframework.util.ReflectionUtils;
  * @author Sam Brannen
  * @author Phillip Webb
  * @since 5.2
- * @param <A> the annotation type
+ * @param <A> 注解类型
  * @see Annotation
  * @see AnnotationUtils#synthesizeAnnotation(Annotation, AnnotatedElement)
  */
@@ -98,7 +98,7 @@ final class SynthesizedMergedAnnotationInvocationHandler<A extends Annotation> i
 
 	/**
 	 * 有关所需算法的定义，请参见 {@link Annotation#equals(Object)}。
-	 * @param other the other object to compare against
+	 * @param other 用于比较的另一个对象
 	 */
 	private boolean annotationEquals(Object other) {
 		if (this == other) {
@@ -200,8 +200,8 @@ final class SynthesizedMergedAnnotationInvocationHandler<A extends Annotation> i
 	 * <li>字符或 String 字面量中的非 ASCII、不可见和不可打印字符不会被转义。</li>
 	 * <li>float 和 double 值的格式化不考虑该值是否为非数值 (NaN) 或无穷大。</li>
 	 * </ul>
-	 * @param value the attribute value to format
-	 * @return the formatted string representation
+	 * @param value 要格式化的属性值
+	 * @return 格式化后的字符串表示
 	 */
 	private String toString(Object value) {
 		if (value instanceof String) {
@@ -260,7 +260,7 @@ final class SynthesizedMergedAnnotationInvocationHandler<A extends Annotation> i
 
 	/**
 	 * 克隆所提供的数组，确保保留原始的组件类型。
-	 * @param array the array to clone
+	 * @param array 要克隆的数组
 	 */
 	private Object cloneArray(Object array) {
 		if (array instanceof boolean[]) {

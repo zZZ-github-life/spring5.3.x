@@ -44,8 +44,8 @@ public class SpringRepeat extends Statement {
 
 	/**
 	 * 为所提供的 {@code testMethod} 构造一个新的 {@code SpringRepeat} 语句，并从所提供方法上的 {@code @Repeat} 注解获取配置的重复次数。
-	 * @param next the next {@code Statement} in the execution chain
-	 * @param testMethod the current test method
+	 * @param next 执行链中的下一个 {@code Statement}
+	 * @param testMethod 当前的测试方法
 	 * @see TestAnnotationUtils#getRepeatCount(Method)
 	 */
 	public SpringRepeat(Statement next, Method testMethod) {
@@ -54,9 +54,9 @@ public class SpringRepeat extends Statement {
 
 	/**
 	 * 为所提供的 {@code testMethod} 和 {@code repeat} 次数构造一个新的 {@code SpringRepeat} 语句。
-	 * @param next the next {@code Statement} in the execution chain
-	 * @param testMethod the current test method
-	 * @param repeat the configured repeat count for the current test method
+	 * @param next 执行链中的下一个 {@code Statement}
+	 * @param testMethod 当前的测试方法
+	 * @param repeat 为当前测试方法配置的重复次数
 	 */
 	public SpringRepeat(Statement next, Method testMethod, int repeat) {
 		this.next = next;

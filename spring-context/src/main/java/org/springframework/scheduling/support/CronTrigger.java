@@ -43,8 +43,7 @@ public class CronTrigger implements Trigger {
 
 	/**
 	 * 使用默认时区中提供的模式构建一个 {@code CronTrigger}。
-	 * @param expression a space-separated list of time fields, following cron
-	 * expression conventions
+	 * @param expression 以空格分隔的时间字段列表，遵循 cron 表达式约定
 	 */
 	public CronTrigger(String expression) {
 		this(expression, ZoneId.systemDefault());
@@ -52,9 +51,8 @@ public class CronTrigger implements Trigger {
 
 	/**
 	 * 使用给定时区中提供的模式构建一个 {@code CronTrigger}。
-	 * @param expression a space-separated list of time fields, following cron
-	 * expression conventions
-	 * @param timeZone a time zone in which the trigger times will be generated
+	 * @param expression 以空格分隔的时间字段列表，遵循 cron 表达式约定
+	 * @param timeZone 用于生成触发时间的时区
 	 */
 	public CronTrigger(String expression, TimeZone timeZone) {
 		this(expression, timeZone.toZoneId());
@@ -62,9 +60,8 @@ public class CronTrigger implements Trigger {
 
 	/**
 	 * 使用给定时区中提供的模式构建一个 {@code CronTrigger}。
-	 * @param expression a space-separated list of time fields, following cron
-	 * expression conventions
-	 * @param zoneId a time zone in which the trigger times will be generated
+	 * @param expression 以空格分隔的时间字段列表，遵循 cron 表达式约定
+	 * @param zoneId 用于生成触发时间的时区
 	 * @since 5.3
 	 * @see CronExpression#parse(String)
 	 */

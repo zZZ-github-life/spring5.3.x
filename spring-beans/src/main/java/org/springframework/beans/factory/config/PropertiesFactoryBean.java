@@ -90,8 +90,8 @@ public class PropertiesFactoryBean extends PropertiesLoaderSupport
 	 * 模板方法，子类可以重写它以构造此工厂返回的对象。默认实现返回普通的合并后的 Properties 实例。
 	 * <p>在共享单例的情况下，此方法在此 FactoryBean 初始化时调用；否则在每次 {@link #getObject()} 调用
 	 * 时调用。
-	 * @return the object returned by this factory
-	 * @throws IOException if an exception occurred during properties loading
+	 * @return 此工厂返回的对象
+	 * @throws IOException 如果在加载属性期间发生异常则抛出
 	 * @see #mergeProperties()
 	 */
 	protected Properties createProperties() throws IOException {

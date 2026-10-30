@@ -37,8 +37,8 @@ public class MethodArgumentNotValidException extends BindException {
 
 	/**
 	 * {@link MethodArgumentNotValidException} 的构造函数。
-	 * @param parameter the parameter that failed validation
-	 * @param bindingResult the results of the validation
+	 * @param parameter 校验失败的参数
+	 * @param bindingResult 校验结果
 	 */
 	public MethodArgumentNotValidException(MethodParameter parameter, BindingResult bindingResult) {
 		super(bindingResult);

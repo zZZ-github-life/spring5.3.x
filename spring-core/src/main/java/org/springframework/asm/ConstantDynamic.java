@@ -53,11 +53,10 @@ public final class ConstantDynamic {
   /**
    * 构造一个新的 {@link ConstantDynamic}。
    *
-   * @param name the constant name (can be arbitrary).
-   * @param descriptor the constant type (must be a field descriptor).
-   * @param bootstrapMethod the bootstrap method to use to compute the constant value at runtime.
-   * @param bootstrapMethodArguments the arguments to pass to the bootstrap method, in order to
-   *     compute the constant value at runtime.
+   * @param name 常量名称（可以是任意名称）。
+   * @param descriptor 常量类型（必须是字段描述符）。
+   * @param bootstrapMethod 用于在运行时计算常量值的引导方法（bootstrap method）。
+   * @param bootstrapMethodArguments 为在运行时计算常量值而传给引导方法的参数，按顺序给出。
    */
   public ConstantDynamic(
       final String name,
@@ -73,7 +72,7 @@ public final class ConstantDynamic {
   /**
    * 返回此常量的名称。
    *
-   * @return the name of this constant.
+   * @return 此常量的名称。
    */
   public String getName() {
     return name;
@@ -82,7 +81,7 @@ public final class ConstantDynamic {
   /**
    * 返回此常量的类型。
    *
-   * @return the type of this constant, as a field descriptor.
+   * @return 此常量的类型，以字段描述符表示。
    */
   public String getDescriptor() {
     return descriptor;
@@ -91,7 +90,7 @@ public final class ConstantDynamic {
   /**
    * 返回用于计算此常量值的引导方法。
    *
-   * @return the bootstrap method used to compute the value of this constant.
+   * @return 用于计算此常量值的引导方法（bootstrap method）。
    */
   public Handle getBootstrapMethod() {
     return bootstrapMethod;
@@ -100,8 +99,7 @@ public final class ConstantDynamic {
   /**
    * 返回为了计算此常量的值而传递给引导方法的参数数量。
    *
-   * @return the number of arguments passed to the bootstrap method, in order to compute the value
-   *     of this constant.
+   * @return 为计算此常量值而传给引导方法的参数个数。
    */
   public int getBootstrapMethodArgumentCount() {
     return bootstrapMethodArguments.length;
@@ -110,9 +108,8 @@ public final class ConstantDynamic {
   /**
    * 返回为了计算此常量的值而传递给引导方法的一个参数。
    *
-   * @param index an argument index, between 0 and {@link #getBootstrapMethodArgumentCount()}
-   *     (exclusive).
-   * @return the argument passed to the bootstrap method, with the given index.
+   * @param index 参数索引，介于 0 与 {@link #getBootstrapMethodArgumentCount()} 之间（不含该上界）。
+   * @return 以给定索引传给引导方法的参数。
    */
   public Object getBootstrapMethodArgument(final int index) {
     return bootstrapMethodArguments[index];
@@ -121,8 +118,7 @@ public final class ConstantDynamic {
   /**
    * 返回为了计算此常量的值而传递给引导方法的参数。警告：不得修改此数组，也不得将其返回给用户。
    *
-   * @return the arguments to pass to the bootstrap method, in order to compute the value of this
-   *     constant.
+   * @return 为计算此常量值而要传给引导方法的参数。
    */
   Object[] getBootstrapMethodArgumentsUnsafe() {
     return bootstrapMethodArguments;
@@ -131,7 +127,7 @@ public final class ConstantDynamic {
   /**
    * 返回此常量的大小。
    *
-   * @return the size of this constant, i.e., 2 for {@code long} and {@code double}, 1 otherwise.
+   * @return 此常量的大小，即 {@code long} 和 {@code double} 为 2，其他为 1。
    */
   public int getSize() {
     char firstCharOfDescriptor = descriptor.charAt(0);

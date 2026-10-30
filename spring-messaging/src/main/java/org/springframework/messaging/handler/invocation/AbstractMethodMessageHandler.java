@@ -66,8 +66,8 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @since 4.0
- * @param <T> the type of the Object that contains information mapping a
- * {@link org.springframework.messaging.handler.HandlerMethod} to incoming messages
+ * @param <T> 包含将 {@link org.springframework.messaging.handler.HandlerMethod}
+ * 映射到传入消息的信息的对象类型
  */
 public abstract class AbstractMethodMessageHandler<T>
 		implements MessageHandler, ApplicationContextAware, InitializingBean {
@@ -289,7 +289,7 @@ public abstract class AbstractMethodMessageHandler<T>
 	/**
 	 * 检测给定处理器是否有任何可以处理消息的方法，如果有，
 	 * 则使用提取的映射信息注册它。
-	 * @param handler the handler to check, either an instance of a Spring bean name
+	 * @param handler 要检查的处理器，可以是实例或 Spring Bean 名称
 	 */
 	protected final void detectHandlerMethods(final Object handler) {
 		Class<?> handlerType;
@@ -333,20 +333,19 @@ public abstract class AbstractMethodMessageHandler<T>
 
 	/**
 	 * 提供处理器方法的映射。
-	 * @param method the method to provide a mapping for
-	 * @param handlerType the handler type, possibly a subtype of the method's declaring class
-	 * @return the mapping, or {@code null} if the method is not mapped
+	 * @param method 要为其提供映射的方法
+	 * @param handlerType 处理器类型，可能是该方法声明类的子类型
+	 * @return 映射；如果该方法未被映射则返回 {@code null}
 	 */
 	@Nullable
 	protected abstract T getMappingForMethod(Method method, Class<?> handlerType);
 
 	/**
 	 * 注册处理器方法及其唯一映射。
-	 * @param handler the bean name of the handler or the handler instance
-	 * @param method the method to register
-	 * @param mapping the mapping conditions associated with the handler method
-	 * @throws IllegalStateException if another method was already registered
-	 * under the same mapping
+	 * @param handler 处理器的 Bean 名称或处理器实例
+	 * @param method 要注册的方法
+	 * @param mapping 与处理器方法关联的映射条件
+	 * @throws IllegalStateException 如果已在同一映射下注册了其他方法
 	 */
 	protected void registerHandlerMethod(Object handler, Method method, T mapping) {
 		Assert.notNull(mapping, "Mapping must not be null");
@@ -528,9 +527,9 @@ public abstract class AbstractMethodMessageHandler<T>
 
 	/**
 	 * 检查映射是否匹配当前消息，并返回一个可能包含与当前请求相关条件的新映射。
-	 * @param mapping the mapping to get a match for
-	 * @param message the message being handled
-	 * @return the match or {@code null} if there is no match
+	 * @param mapping 要为其获取匹配项的映射
+	 * @param message 正在处理的消息
+	 * @return 匹配项；如果没有匹配则返回 {@code null}
 	 */
 	@Nullable
 	protected abstract T getMatchingMapping(T mapping, Message<?> message);
@@ -542,8 +541,8 @@ public abstract class AbstractMethodMessageHandler<T>
 	/**
 	 * 返回用于对匹配映射排序的比较器。
 	 * 返回的比较器应将“更好”的匹配排在前面。
-	 * @param message the current Message
-	 * @return the comparator, never {@code null}
+	 * @param message 当前消息
+	 * @return 比较器，永远不会为 {@code null}
 	 */
 	protected abstract Comparator<T> getMappingComparator(Message<?> message);
 
@@ -615,9 +614,9 @@ public abstract class AbstractMethodMessageHandler<T>
 	 * 则继续在已配置的
 	 * {@linkplain org.springframework.messaging.handler.MessagingAdviceBean
 	 * MessagingAdviceBean}（如果有）中搜索其他 {@code @MessageExceptionHandler} 方法。
-	 * @param handlerMethod the method where the exception was raised
-	 * @param exception the raised exception
-	 * @return a method to handle the exception, or {@code null}
+	 * @param handlerMethod 引发异常的方法
+	 * @param exception 引发的异常
+	 * @return 用于处理该异常的方法，或 {@code null}
 	 * @since 4.2
 	 */
 	@Nullable

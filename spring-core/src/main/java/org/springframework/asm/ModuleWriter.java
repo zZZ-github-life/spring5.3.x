@@ -179,7 +179,7 @@ final class ModuleWriter extends ModuleVisitor {
   /**
    * 返回此 ModuleWriter 生成的 Module、ModulePackages 和 ModuleMainClass 属性的数量。
    *
-   * @return the number of Module, ModulePackages and ModuleMainClass attributes (between 1 and 3).
+   * @return Module、ModulePackages 和 ModuleMainClass 属性的数量（介于 1 和 3 之间）。
    */
   int getAttributeCount() {
     return 1 + (packageCount > 0 ? 1 : 0) + (mainClassIndex > 0 ? 1 : 0);
@@ -189,7 +189,7 @@ final class ModuleWriter extends ModuleVisitor {
    * 返回此 ModuleWriter 生成的 Module、ModulePackages 和 ModuleMainClass 属性的大小。同时将这些属性
    * 的名称添加到常量池中。
    *
-   * @return the size in bytes of the Module, ModulePackages and ModuleMainClass attributes.
+   * @return Module、ModulePackages 和 ModuleMainClass 属性的字节大小。
    */
   int computeAttributesSize() {
     symbolTable.addConstantUtf8(Constants.MODULE);
@@ -213,7 +213,7 @@ final class ModuleWriter extends ModuleVisitor {
    * 将此 ModuleWriter 生成的 Module、ModulePackages 和 ModuleMainClass 属性放入
    * 给定的 ByteVector 中。
    *
-   * @param output where the attributes must be put.
+   * @param output 放置属性的位置。
    */
   void putAttributes(final ByteVector output) {
     // 6 bytes for name, flags and version, and 5 * 2 bytes for counts.

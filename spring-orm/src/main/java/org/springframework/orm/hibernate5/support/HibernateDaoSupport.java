@@ -73,8 +73,8 @@ public abstract class HibernateDaoSupport extends DaoSupport {
 	 * 仅在向 DAO 填充 SessionFactory 引用时调用！
 	 * <p>可以在子类中重写，以提供具有不同配置的 HibernateTemplate 实例，
 	 * 或提供自定义的 HibernateTemplate 子类。
-	 * @param sessionFactory the Hibernate SessionFactory to create a HibernateTemplate for
-	 * @return the new HibernateTemplate instance
+	 * @param sessionFactory 要为其创建 HibernateTemplate 的 Hibernate SessionFactory
+	 * @return 新的 HibernateTemplate 实例
 	 * @see #setSessionFactory
 	 */
 	protected HibernateTemplate createHibernateTemplate(SessionFactory sessionFactory) {
@@ -123,8 +123,8 @@ public abstract class HibernateDaoSupport extends DaoSupport {
 
 	/**
 	 * 便捷地获取当前的 Hibernate Session。
-	 * @return the Hibernate Session
-	 * @throws DataAccessResourceFailureException if the Session couldn't be created
+	 * @return 该 Hibernate Session
+	 * @throws DataAccessResourceFailureException 如果无法创建 Session
 	 * @see SessionFactory#getCurrentSession()
 	 */
 	protected final Session currentSession() throws DataAccessResourceFailureException {

@@ -44,8 +44,8 @@ public class MockRequestDispatcher implements RequestDispatcher {
 
 	/**
 	 * 为给定资源创建一个新的 MockRequestDispatcher。
-	 * @param resource the server resource to dispatch to, located at a
-	 * particular path or given by a particular name
+	 * @param resource 要转发到的服务器资源，
+	 * 位于特定路径或由特定名称指定
 	 */
 	public MockRequestDispatcher(String resource) {
 		Assert.notNull(resource, "Resource must not be null");

@@ -45,7 +45,7 @@ public class AcceptHeaderLocaleResolver implements LocaleResolver {
 
 	/**
 	 * 配置受支持的区域设置，用于与通过 {@link HttpServletRequest#getLocales()} 确定的请求区域设置进行对照检查。如果未配置，则改用 {@link HttpServletRequest#getLocale()}。
-	 * @param locales the supported locales
+	 * @param locales 受支持的 Locale
 	 * @since 4.3
 	 */
 	public void setSupportedLocales(List<Locale> locales) {
@@ -63,7 +63,7 @@ public class AcceptHeaderLocaleResolver implements LocaleResolver {
 
 	/**
 	 * 配置一个固定的默认区域设置，当请求没有 "Accept-Language" 头时回退使用。<p>默认情况下不设置；此时如果没有 "Accept-Language" 头，则使用服务器默认区域设置，如 {@link HttpServletRequest#getLocale()} 所定义。
-	 * @param defaultLocale the default locale to use
+	 * @param defaultLocale 要使用的默认 Locale
 	 * @since 4.3
 	 */
 	public void setDefaultLocale(@Nullable Locale defaultLocale) {

@@ -29,8 +29,8 @@ public interface ReconnectStrategy {
 
 	/**
 	 * 返回距下一次重连尝试的时间。
-	 * @param attemptCount how many reconnect attempts have been made already
-	 * @return the amount of time in milliseconds, or {@code null} to stop
+	 * @param attemptCount 已经进行了多少次重连尝试
+	 * @return 时间量，单位为毫秒，或 {@code null} 表示停止
 	 */
 	@Nullable
 	Long getTimeToNextAttempt(int attemptCount);

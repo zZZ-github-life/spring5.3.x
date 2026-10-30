@@ -33,9 +33,9 @@ public interface CacheResolver {
 
 	/**
 	 * 返回用于指定调用的缓存。
-	 * @param context the context of the particular invocation
-	 * @return the cache(s) to use (never {@code null})
-	 * @throws IllegalStateException if cache resolution failed
+	 * @param context 本次特定调用的上下文
+	 * @return 要使用的缓存（永不为 {@code null}）
+	 * @throws IllegalStateException 如果缓存解析失败
 	 */
 	Collection<? extends Cache> resolveCaches(CacheOperationInvocationContext<?> context);
 

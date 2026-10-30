@@ -82,13 +82,13 @@ public class ExchangeResult {
 
 	/**
 	 * 使用 HTTP 请求和响应以及序列化请求体和响应体内容的 Promise 创建实例。
-	 * @param request the HTTP request
-	 * @param response the HTTP response
-	 * @param requestBody capture of serialized request body content
-	 * @param responseBody capture of serialized response body content
-	 * @param timeout how long to wait for content to materialize
-	 * @param uriTemplate the URI template used to set up the request, if any
-	 * @param serverResult the result of a mock server exchange if applicable.
+	 * @param request HTTP 请求
+	 * @param response HTTP 响应
+	 * @param requestBody 序列化请求体内容的捕获
+	 * @param responseBody 序列化响应体内容的捕获
+	 * @param timeout 等待内容具体化的时长
+	 * @param uriTemplate 用于设置请求的 URI 模板（如果有）
+	 * @param serverResult 模拟服务器交换的结果（如果适用）。
 	 */
 	ExchangeResult(ClientHttpRequest request, ClientHttpResponse response,
 			Mono<byte[]> requestBody, Mono<byte[]> responseBody, Duration timeout, @Nullable String uriTemplate,
@@ -155,7 +155,7 @@ public class ExchangeResult {
 	/**
 	 * 返回通过请求写入的原始请求体内容。
 	 * <p><strong>注意：</strong>如果请求内容由于任何原因尚未被消费，使用此方法将触发消费。
-	 * @throws IllegalStateException if the request body has not been fully written.
+	 * @throws IllegalStateException 如果请求体尚未完全写入。
 	 */
 	@Nullable
 	public byte[] getRequestBodyContent() {
@@ -165,7 +165,7 @@ public class ExchangeResult {
 
 	/**
 	 * 以 {@link HttpStatus} 枚举值形式返回 HTTP 状态码。
-	 * @throws IllegalArgumentException in case of an unknown HTTP status code
+	 * @throws IllegalArgumentException 遇到未知的 HTTP 状态码时。
 	 * @see #getRawStatusCode()
 	 */
 	public HttpStatus getStatus() {
@@ -199,7 +199,7 @@ public class ExchangeResult {
 	 * 返回写入响应的原始响应体内容。
 	 * <p><strong>注意：</strong>如果响应内容尚未被消费，
 	 * 使用此方法将触发消费。
-	 * @throws IllegalStateException if the response has not been fully read.
+	 * @throws IllegalStateException 如果响应尚未完全读取。
 	 */
 	@Nullable
 	public byte[] getResponseBodyContent() {

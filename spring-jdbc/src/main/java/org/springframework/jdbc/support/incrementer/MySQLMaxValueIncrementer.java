@@ -84,9 +84,9 @@ public class MySQLMaxValueIncrementer extends AbstractColumnMaxValueIncrementer 
 
 	/**
 	 * 便捷构造函数。
-	 * @param dataSource the DataSource to use
-	 * @param incrementerName the name of the sequence table to use
-	 * @param columnName the name of the column in the sequence table to use
+	 * @param dataSource 要使用的 DataSource
+	 * @param incrementerName 要使用的序列表的名称
+	 * @param columnName 要使用的序列表中的列名
 	 */
 	public MySQLMaxValueIncrementer(DataSource dataSource, String incrementerName, String columnName) {
 		super(dataSource, incrementerName, columnName);

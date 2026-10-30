@@ -37,7 +37,7 @@ public final class RequestConditionHolder extends AbstractRequestCondition<Reque
 
 	/**
 	 * 创建新容器以包装给定的请求条件。
-	 * @param requestCondition the condition to hold (may be {@code null})
+	 * @param requestCondition 要持有的条件（可以为 {@code null}）
 	 */
 	@SuppressWarnings("unchecked")
 	public RequestConditionHolder(@Nullable RequestCondition<?> requestCondition) {

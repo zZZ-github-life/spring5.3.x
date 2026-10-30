@@ -109,8 +109,8 @@ public class SubProtocolWebSocketHandler
 
 	/**
 	 * 为给定的入站和出站通道创建一个新的 {@code SubProtocolWebSocketHandler}。
-	 * @param clientInboundChannel the inbound {@code MessageChannel}
-	 * @param clientOutboundChannel the outbound {@code MessageChannel}
+	 * @param clientInboundChannel 入站 {@code MessageChannel}
+	 * @param clientOutboundChannel 出站 {@code MessageChannel}
 	 */
 	public SubProtocolWebSocketHandler(MessageChannel clientInboundChannel, SubscribableChannel clientOutboundChannel) {
 		Assert.notNull(clientInboundChannel, "Inbound MessageChannel must not be null");
@@ -123,7 +123,7 @@ public class SubProtocolWebSocketHandler
 	/**
 	 * 配置一个或多个处理器，根据客户端在 WebSocket 握手请求中请求的子协议
 	 * 来决定使用哪个。
-	 * @param protocolHandlers the sub-protocol handlers to use
+	 * @param protocolHandlers 要使用的子协议处理器
 	 */
 	public void setProtocolHandlers(List<SubProtocolHandler> protocolHandlers) {
 		this.protocolHandlerLookup.clear();
@@ -167,7 +167,7 @@ public class SubProtocolWebSocketHandler
 
 	/**
 	 * 设置客户端未请求子协议时要使用的 {@link SubProtocolHandler}。
-	 * @param defaultProtocolHandler the default handler
+	 * @param defaultProtocolHandler 默认处理器
 	 */
 	public void setDefaultProtocolHandler(@Nullable SubProtocolHandler defaultProtocolHandler) {
 		this.defaultProtocolHandler = defaultProtocolHandler;
@@ -230,7 +230,7 @@ public class SubProtocolWebSocketHandler
 	 * 否则就认为连接状态不佳（例如代理问题、网络缓慢），
 	 * 并可以将其关闭。
 	 * <p>默认情况下设置为 {@code 60,000}（1 分钟）。
-	 * @param timeToFirstMessage the maximum time allowed in milliseconds
+	 * @param timeToFirstMessage 允许的最长时间，单位为毫秒
 	 * @since 5.1
 	 * @see #checkSessions()
 	 */
@@ -410,8 +410,8 @@ public class SubProtocolWebSocketHandler
 	 * <p>默认实现使用配置的 {@link #getSendTimeLimit() 发送时间限制}
 	 * 和 {@link #getSendBufferSizeLimit() 缓冲区大小限制}
 	 * 构建一个 {@link ConcurrentWebSocketSessionDecorator}。
-	 * @param session the original {@code WebSocketSession}
-	 * @return the decorated {@code WebSocketSession}, or potentially the given session as-is
+	 * @param session 原始的 {@code WebSocketSession}
+	 * @return 装饰后的 {@code WebSocketSession}，也可能是原样返回的给定会话
 	 * @since 4.3.13
 	 */
 	protected WebSocketSession decorateSession(WebSocketSession session) {
@@ -420,7 +420,7 @@ public class SubProtocolWebSocketHandler
 
 	/**
 	 * 为给定会话查找 {@link SubProtocolHandler}。
-	 * @param session the {@code WebSocketSession} to find a handler for
+	 * @param session 要为其查找处理器的 {@code WebSocketSession}
 	 */
 	protected final SubProtocolHandler findProtocolHandler(WebSocketSession session) {
 		String protocol = null;

@@ -163,10 +163,10 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 	 * 创建一个新的 {@link ScheduledExecutorService} 实例。
 	 * <p>默认实现创建一个 {@link ScheduledThreadPoolExecutor}。可在子类中重写，以提供自定义的
 	 * {@link ScheduledExecutorService} 实例。
-	 * @param poolSize the specified pool size
-	 * @param threadFactory the ThreadFactory to use
-	 * @param rejectedExecutionHandler the RejectedExecutionHandler to use
-	 * @return a new ScheduledExecutorService instance
+	 * @param poolSize 指定的池大小
+	 * @param threadFactory 要使用的 ThreadFactory
+	 * @param rejectedExecutionHandler 要使用的 RejectedExecutionHandler
+	 * @return 新的 ScheduledExecutorService 实例
 	 * @see #afterPropertiesSet()
 	 * @see java.util.concurrent.ScheduledThreadPoolExecutor
 	 */
@@ -179,8 +179,8 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 	/**
 	 * 在给定的 {@link ScheduledExecutorService} 上注册指定的
 	 * {@link ScheduledExecutorTask ScheduledExecutorTasks}。
-	 * @param tasks the specified ScheduledExecutorTasks (never empty)
-	 * @param executor the ScheduledExecutorService to register the tasks on.
+	 * @param tasks 指定的 ScheduledExecutorTasks（永不为空）
+	 * @param executor 要在其上注册任务的 ScheduledExecutorService。
 	 */
 	protected void registerTasks(ScheduledExecutorTask[] tasks, ScheduledExecutorService executor) {
 		for (ScheduledExecutorTask task : tasks) {
@@ -206,8 +206,8 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 	 * 并记录 Exception。如有必要，它会根据
 	 * {@link #setContinueScheduledExecutionAfterException "continueScheduledExecutionAfterException"}
 	 * 标志抑制该 Exception。
-	 * @param task the ScheduledExecutorTask to schedule
-	 * @return the actual Runnable to schedule (may be a decorator)
+	 * @param task 要调度的 ScheduledExecutorTask
+	 * @return 实际要调度的 Runnable（可能是装饰器）
 	 */
 	protected Runnable getRunnableToSchedule(ScheduledExecutorTask task) {
 		return (this.continueScheduledExecutionAfterException ?

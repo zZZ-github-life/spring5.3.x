@@ -105,8 +105,8 @@ public class DelegatingFilterProxy extends GenericFilterBean {
 	 * 完全无需与 Spring 应用上下文交互、指定
 	 * {@linkplain #setTargetBeanName 目标 Bean 名称}等。
 	 * <p>用于基于实例的过滤器注册。
-	 * @param delegate the {@code Filter} instance that this proxy will delegate to and
-	 * manage the lifecycle for (must not be {@code null}).
+	 * @param delegate 此代理将委托并管理其生命周期的 {@code Filter} 实例
+	 * （不能为 {@code null}）。
 	 * @see #doFilter(ServletRequest, ServletResponse, FilterChain)
 	 * @see #invokeDelegate(Filter, ServletRequest, ServletResponse, FilterChain)
 	 * @see #destroy()
@@ -123,8 +123,8 @@ public class DelegatingFilterProxy extends GenericFilterBean {
 	 * {@link #setContextAttribute} 命名的上下文）中获取指定名称的目标 Bean。
 	 * <p>用于基于实例的过滤器注册。
 	 * <p>目标 Bean 必须实现标准的 Servlet Filter 接口。
-	 * @param targetBeanName name of the target filter bean to look up in the Spring
-	 * application context (must not be {@code null}).
+	 * @param targetBeanName 要在 Spring 应用上下文中查找的目标过滤器 Bean 的名称
+	 * （不能为 {@code null}）。
 	 * @see #findWebApplicationContext()
 	 * @see #setEnvironment(org.springframework.core.env.Environment)
 	 */
@@ -143,11 +143,9 @@ public class DelegatingFilterProxy extends GenericFilterBean {
 	 * {@link ConfigurableApplicationContext#refresh() refresh()}。
 	 * <p>此代理的 {@code Environment} 将从给定的
 	 * {@code WebApplicationContext} 继承。
-	 * @param targetBeanName name of the target filter bean in the Spring application
-	 * context (must not be {@code null}).
-	 * @param wac the application context from which the target filter will be retrieved;
-	 * if {@code null}, an application context will be looked up from {@code ServletContext}
-	 * as a fallback.
+	 * @param targetBeanName Spring 应用上下文中目标过滤器 Bean 的名称（不能为 {@code null}）。
+	 * @param wac 从中获取目标过滤器的应用上下文；
+	 * 如果为 {@code null}，将回退到从 {@code ServletContext} 中查找应用上下文。
 	 * @see #findWebApplicationContext()
 	 * @see #setEnvironment(org.springframework.core.env.Environment)
 	 */
@@ -276,7 +274,7 @@ public class DelegatingFilterProxy extends GenericFilterBean {
 	 * 查找 {@code WebApplicationContext}。在此过滤器初始化（或被调用）之前，
 	 * {@code WebApplicationContext} 必须已加载并存储在 {@code ServletContext} 中。
 	 * <p>子类可以重写此方法以提供不同的 {@code WebApplicationContext} 获取策略。
-	 * @return the {@code WebApplicationContext} for this proxy, or {@code null} if not found
+	 * @return 此代理的 {@code WebApplicationContext}，如果未找到则为 {@code null}
 	 * @see #DelegatingFilterProxy(String, WebApplicationContext)
 	 * @see #getContextAttribute()
 	 * @see WebApplicationContextUtils#getWebApplicationContext(javax.servlet.ServletContext)
@@ -308,9 +306,9 @@ public class DelegatingFilterProxy extends GenericFilterBean {
 	 * 初始化 Filter 委托，即在给定的 Spring 应用上下文中定义的 Bean。
 	 * <p>默认实现从应用上下文中获取该 Bean，并在其上调用标准的
 	 * {@code Filter.init} 方法，传入此 Filter 代理的 FilterConfig。
-	 * @param wac the root application context
-	 * @return the initialized delegate Filter
-	 * @throws ServletException if thrown by the Filter
+	 * @param wac 根应用上下文
+	 * @return 已初始化的委托 Filter
+	 * @throws ServletException 如果由 Filter 抛出
 	 * @see #getTargetBeanName()
 	 * @see #isTargetFilterLifecycle()
 	 * @see #getFilterConfig()
@@ -328,12 +326,12 @@ public class DelegatingFilterProxy extends GenericFilterBean {
 
 	/**
 	 * 使用给定的请求和响应实际调用委托 Filter。
-	 * @param delegate the delegate Filter
-	 * @param request the current HTTP request
-	 * @param response the current HTTP response
-	 * @param filterChain the current FilterChain
-	 * @throws ServletException if thrown by the Filter
-	 * @throws IOException if thrown by the Filter
+	 * @param delegate 委托 Filter
+	 * @param request 当前的 HTTP 请求
+	 * @param response 当前的 HTTP 响应
+	 * @param filterChain 当前的 FilterChain
+	 * @throws ServletException 如果由 Filter 抛出
+	 * @throws IOException 如果由 Filter 抛出
 	 */
 	protected void invokeDelegate(
 			Filter delegate, ServletRequest request, ServletResponse response, FilterChain filterChain)
@@ -345,7 +343,7 @@ public class DelegatingFilterProxy extends GenericFilterBean {
 	/**
 	 * 销毁 Filter 委托。
 	 * 默认实现仅在其上调用 {@code Filter.destroy}。
-	 * @param delegate the Filter delegate (never {@code null})
+	 * @param delegate Filter 委托（永不为 {@code null}）
 	 * @see #isTargetFilterLifecycle()
 	 * @see javax.servlet.Filter#destroy()
 	 */

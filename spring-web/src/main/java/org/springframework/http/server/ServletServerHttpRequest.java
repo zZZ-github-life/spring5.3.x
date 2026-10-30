@@ -74,7 +74,7 @@ public class ServletServerHttpRequest implements ServerHttpRequest {
 	/**
 	 * 基于给定的 {@link HttpServletRequest} 构造
 	 * ServletServerHttpRequest 的新实例。
-	 * @param servletRequest the servlet request
+	 * @param servletRequest Servlet 请求
 	 */
 	public ServletServerHttpRequest(HttpServletRequest servletRequest) {
 		Assert.notNull(servletRequest, "HttpServletRequest must not be null");

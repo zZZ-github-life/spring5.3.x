@@ -61,8 +61,7 @@ public enum Autowire {
 
 	/**
 	 * 返回该值是否表示一个实际的自动装配值。
-	 * @return whether actual autowiring was specified
-	 * (either BY_NAME or BY_TYPE)
+	 * @return 是否指定了实际的自动装配（BY_NAME 或 BY_TYPE）
 	 */
 	public boolean isAutowire() {
 		return (this == BY_NAME || this == BY_TYPE);

@@ -81,7 +81,7 @@ public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequest
 	/**
 	 * 使用给定的 {@link HttpClient} 实例
 	 * 创建新的 {@code HttpComponentsClientHttpRequestFactory} 实例。
-	 * @param httpClient the HttpClient instance to use for this request factory
+	 * @param httpClient 此请求工厂要使用的 HttpClient 实例
 	 */
 	public HttpComponentsClientHttpRequestFactory(HttpClient httpClient) {
 		this.httpClient = httpClient;
@@ -113,7 +113,7 @@ public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequest
 	 * <p>此选项不影响 SSL 握手或 CONNECT 请求的连接超时；
 	 * 为此，需要在 {@link HttpClient} 自身上使用
 	 * {@link org.apache.http.config.SocketConfig}。
-	 * @param timeout the timeout value in milliseconds
+	 * @param timeout 以毫秒为单位的超时值
 	 * @see RequestConfig#getConnectTimeout()
 	 * @see org.apache.http.config.SocketConfig#getSoTimeout
 	 */
@@ -128,7 +128,7 @@ public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequest
 	 * 超时值 0 表示无限超时。
 	 * <p>可以通过在自定义 {@link HttpClient} 上指定
 	 * {@link RequestConfig} 实例来配置其他属性。
-	 * @param connectionRequestTimeout the timeout value to request a connection in milliseconds
+	 * @param connectionRequestTimeout 以毫秒为单位的请求连接超时值
 	 * @see RequestConfig#getConnectionRequestTimeout()
 	 */
 	public void setConnectionRequestTimeout(int connectionRequestTimeout) {
@@ -141,7 +141,7 @@ public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequest
 	 * 超时值 0 表示无限超时。
 	 * <p>可以通过在自定义 {@link HttpClient} 上指定
 	 * {@link RequestConfig} 实例来配置其他属性。
-	 * @param timeout the timeout value in milliseconds
+	 * @param timeout 以毫秒为单位的超时值
 	 * @see RequestConfig#getSocketTimeout()
 	 */
 	public void setReadTimeout(int timeout) {
@@ -165,7 +165,7 @@ public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequest
 	 * 使用不同的 {@code RestTemplate}，以便通过给定 {@code RestTemplate} 实例
 	 * 发出的所有调用都关联到同一客户端身份。{@link HttpClientContext#setUserToken(Object)}
 	 * 可用于为所有请求指定固定的用户令牌。
-	 * @param httpContextFactory the context factory to use
+	 * @param httpContextFactory 要使用的上下文工厂
 	 * @since 5.2.7
 	 */
 	public void setHttpContextFactory(BiFunction<HttpMethod, URI, HttpContext> httpContextFactory) {
@@ -221,8 +221,8 @@ public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequest
 	 * 而应使用 {@link HttpClient} 的默认值。
 	 * <p>默认实现会尝试将客户端的默认值
 	 * 与此工厂实例的本地自定义配置（如果有）合并。
-	 * @param client the {@link HttpClient} (or {@code HttpAsyncClient}) to check
-	 * @return the actual RequestConfig to use (may be {@code null})
+	 * @param client 要检查的 {@link HttpClient}（或 {@code HttpAsyncClient}）
+	 * @return 实际要使用的 RequestConfig（可能为 {@code null}）
 	 * @since 4.2
 	 * @see #mergeRequestConfig(RequestConfig)
 	 */
@@ -238,8 +238,8 @@ public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequest
 	/**
 	 * 如有必要，将给定的 {@link HttpClient} 级 {@link RequestConfig}
 	 * 与工厂级 {@link RequestConfig} 合并。
-	 * @param clientConfig the config held by the current
-	 * @return the merged request config
+	 * @param clientConfig 当前对象持有的配置
+	 * @return 合并后的请求配置
 	 * @since 4.2
 	 */
 	protected RequestConfig mergeRequestConfig(RequestConfig clientConfig) {
@@ -265,9 +265,9 @@ public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequest
 
 	/**
 	 * 为给定的 HTTP 方法和 URI 规范创建 Commons HttpMethodBase 对象。
-	 * @param httpMethod the HTTP method
-	 * @param uri the URI
-	 * @return the Commons HttpMethodBase object
+	 * @param httpMethod HTTP 方法
+	 * @param uri 该 URI
+	 * @return Commons 的 HttpMethodBase 对象
 	 */
 	protected HttpUriRequest createHttpUriRequest(HttpMethod httpMethod, URI uri) {
 		switch (httpMethod) {
@@ -296,7 +296,7 @@ public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequest
 	 * 允许在将 {@link HttpUriRequest} 作为
 	 * {@link HttpComponentsClientHttpRequest} 的一部分返回之前对其进行操作的模板方法。
 	 * <p>默认实现为空。
-	 * @param request the request to process
+	 * @param request 要处理的请求
 	 */
 	protected void postProcessHttpRequest(HttpUriRequest request) {
 	}
@@ -304,9 +304,9 @@ public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequest
 	/**
 	 * 为给定的 HTTP 方法和 URI 创建 {@link HttpContext} 的模板方法。
 	 * <p>默认实现返回 {@code null}。
-	 * @param httpMethod the HTTP method
-	 * @param uri the URI
-	 * @return the http context
+	 * @param httpMethod HTTP 方法
+	 * @param uri 该 URI
+	 * @return HTTP 上下文
 	 */
 	@Nullable
 	protected HttpContext createHttpContext(HttpMethod httpMethod, URI uri) {

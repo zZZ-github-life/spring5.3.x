@@ -43,10 +43,10 @@ public abstract class ModelAndViewAssert {
 
 	/**
 	 * 检查给定 {@code modelName} 下的模型值是否存在，并根据 {@code expectedType} 检查其类型。如果模型条目存在且类型匹配，则返回该模型值。
-	 * @param mav the ModelAndView to test against (never {@code null})
-	 * @param modelName name of the object to add to the model (never {@code null})
-	 * @param expectedType expected type of the model value
-	 * @return the model value
+	 * @param mav 要据此测试的 ModelAndView（永不为 {@code null}）
+	 * @param modelName 要添加到模型中的对象的名称（永不为 {@code null}）
+	 * @param expectedType 模型值的期望类型
+	 * @return 模型值
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T assertAndReturnModelAttributeOfType(ModelAndView mav, String modelName, Class<T> expectedType) {
@@ -62,9 +62,9 @@ public abstract class ModelAndViewAssert {
 
 	/**
 	 * 逐个比较列表中的每个条目，而不先对列表排序。
-	 * @param mav the ModelAndView to test against (never {@code null})
-	 * @param modelName name of the object to add to the model (never {@code null})
-	 * @param expectedList the expected list
+	 * @param mav 要据此测试的 ModelAndView（永不为 {@code null}）
+	 * @param modelName 要添加到模型中的对象的名称（永不为 {@code null}）
+	 * @param expectedList 期望的列表
 	 */
 	@SuppressWarnings("rawtypes")
 	public static void assertCompareListModelAttribute(ModelAndView mav, String modelName, List expectedList) {
@@ -77,8 +77,8 @@ public abstract class ModelAndViewAssert {
 
 	/**
 	 * 断言模型属性是否可用。
-	 * @param mav the ModelAndView to test against (never {@code null})
-	 * @param modelName name of the object to add to the model (never {@code null})
+	 * @param mav 要据此测试的 ModelAndView（永不为 {@code null}）
+	 * @param modelName 要添加到模型中的对象的名称（永不为 {@code null}）
 	 */
 	public static void assertModelAttributeAvailable(ModelAndView mav, String modelName) {
 		Map<String, Object> model = mav.getModel();
@@ -87,9 +87,9 @@ public abstract class ModelAndViewAssert {
 
 	/**
 	 * 将给定的 {@code expectedValue} 与绑定在给定 {@code modelName} 下的模型值进行比较。
-	 * @param mav the ModelAndView to test against (never {@code null})
-	 * @param modelName name of the object to add to the model (never {@code null})
-	 * @param expectedValue the model value
+	 * @param mav 要据此测试的 ModelAndView（永不为 {@code null}）
+	 * @param modelName 要添加到模型中的对象的名称（永不为 {@code null}）
+	 * @param expectedValue 模型值
 	 */
 	public static void assertModelAttributeValue(ModelAndView mav, String modelName, Object expectedValue) {
 		Object modelValue = assertAndReturnModelAttributeOfType(mav, modelName, Object.class);
@@ -99,8 +99,8 @@ public abstract class ModelAndViewAssert {
 
 	/**
 	 * 检查 {@code expectedModel}，看模型中的所有元素是否都出现且相等。
-	 * @param mav the ModelAndView to test against (never {@code null})
-	 * @param expectedModel the expected model
+	 * @param mav 要据此测试的 ModelAndView（永不为 {@code null}）
+	 * @param expectedModel 期望的模型
 	 */
 	public static void assertModelAttributeValues(ModelAndView mav, Map<String, Object> expectedModel) {
 		Map<String, Object> model = mav.getModel();
@@ -128,11 +128,11 @@ public abstract class ModelAndViewAssert {
 
 	/**
 	 * 在分别对两个列表排序后（可选地使用比较器），逐个比较列表中的每个条目。
-	 * @param mav the ModelAndView to test against (never {@code null})
-	 * @param modelName name of the object to add to the model (never {@code null})
-	 * @param expectedList the expected list
-	 * @param comparator the comparator to use (may be {@code null}). If not
-	 * specifying the comparator, both lists will be sorted not using any comparator.
+	 * @param mav 要据此测试的 ModelAndView（永不为 {@code null}）
+	 * @param modelName 要添加到模型中的对象的名称（永不为 {@code null}）
+	 * @param expectedList 期望的列表
+	 * @param comparator 要使用的比较器（可以为 {@code null}）。
+	 * 如果不指定比较器，两个列表将不使用任何比较器进行排序。
 	 */
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	public static void assertSortAndCompareListModelAttribute(
@@ -151,8 +151,8 @@ public abstract class ModelAndViewAssert {
 
 	/**
 	 * 检查 ModelAndView 中的视图名是否与给定的 {@code expectedName} 匹配。
-	 * @param mav the ModelAndView to test against (never {@code null})
-	 * @param expectedName the name of the model value
+	 * @param mav 要据此测试的 ModelAndView（永不为 {@code null}）
+	 * @param expectedName 模型值的名称
 	 */
 	public static void assertViewName(ModelAndView mav, String expectedName) {
 		assertTrue("View name is not equal to '" + expectedName + "' but was '" + mav.getViewName() + "'",

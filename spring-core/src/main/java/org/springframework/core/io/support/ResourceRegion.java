@@ -39,9 +39,9 @@ public class ResourceRegion {
 	 * 根据给定的 {@link Resource} 创建一个新的 {@code ResourceRegion}。
 	 * 该资源区域由给定 {@code Resource} 中的起始 {@code position}
 	 * 和字节 {@code count} 表示。
-	 * @param resource a Resource
-	 * @param position the start position of the region in that resource
-	 * @param count the byte count of the region in that resource
+	 * @param resource 一个 Resource
+	 * @param position 该区域在该资源中的起始位置
+	 * @param count 该区域在该资源中的字节数
 	 */
 	public ResourceRegion(Resource resource, long position, long count) {
 		Assert.notNull(resource, "Resource must not be null");

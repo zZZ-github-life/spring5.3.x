@@ -39,7 +39,7 @@ import org.springframework.lang.Nullable;
  * @author Rob Harrop
  * @author Juergen Hoeller
  * @since 2.0
- * @param <E> the element type
+ * @param <E> 元素类型
  */
 @SuppressWarnings("serial")
 public class AutoPopulatingList<E> implements List<E>, Serializable {
@@ -240,16 +240,16 @@ public class AutoPopulatingList<E> implements List<E>, Serializable {
 	/**
 	 * 用于为基于索引访问的数据结构（例如 {@link java.util.List}）创建元素的工厂接口。
 	 *
-	 * @param <E> the element type
+	 * @param <E> 元素类型
 	 */
 	@FunctionalInterface
 	public interface ElementFactory<E> {
 
 		/**
 		 * 为所提供的索引创建元素。
-		 * @return the element object
-		 * @throws ElementInstantiationException if the instantiation process failed
-		 * (any exception thrown by a target constructor should be propagated as-is)
+		 * @return 元素对象
+		 * @throws ElementInstantiationException 如果实例化过程失败
+		 * （目标构造函数抛出的任何异常都应原样传播）
 		 */
 		E createElement(int index) throws ElementInstantiationException;
 	}

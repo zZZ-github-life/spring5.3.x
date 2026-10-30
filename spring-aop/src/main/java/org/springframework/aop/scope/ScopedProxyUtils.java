@@ -46,10 +46,10 @@ public abstract class ScopedProxyUtils {
 	/**
 	 * 为提供的目标 Bean 生成作用域代理，以内部名称注册该目标 Bean，并在作用域代理上设置
 	 * 'targetBeanName'。
-	 * @param definition the original bean definition
-	 * @param registry the bean definition registry
-	 * @param proxyTargetClass whether to create a target class proxy
-	 * @return the scoped proxy definition
+	 * @param definition 原始的 Bean 定义
+	 * @param registry Bean 定义注册表
+	 * @param proxyTargetClass 是否创建目标类代理
+	 * @return 作用域代理定义
 	 * @see #getTargetBeanName(String)
 	 * @see #getOriginalBeanName(String)
 	 */
@@ -98,8 +98,8 @@ public abstract class ScopedProxyUtils {
 
 	/**
 	 * 生成在作用域代理内部用于引用目标 Bean 的 Bean 名称。
-	 * @param originalBeanName the original name of bean
-	 * @return the generated bean to be used to reference the target bean
+	 * @param originalBeanName Bean 的原始名称
+	 * @return 用于引用目标 Bean 的生成 Bean 名称
 	 * @see #getOriginalBeanName(String)
 	 */
 	public static String getTargetBeanName(String originalBeanName) {
@@ -108,10 +108,9 @@ public abstract class ScopedProxyUtils {
 
 	/**
 	 * 获取所提供 {@linkplain #getTargetBeanName target bean name} 对应的原始 Bean 名称。
-	 * @param targetBeanName the target bean name for the scoped proxy
-	 * @return the original bean name
-	 * @throws IllegalArgumentException if the supplied bean name does not refer
-	 * to the target of a scoped proxy
+	 * @param targetBeanName 作用域代理的目标 Bean 名称
+	 * @return 原始 Bean 名称
+	 * @throws IllegalArgumentException 如果提供的 Bean 名称未指向作用域代理的目标
 	 * @since 5.1.10
 	 * @see #getTargetBeanName(String)
 	 * @see #isScopedTarget(String)

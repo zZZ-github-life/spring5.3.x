@@ -68,7 +68,7 @@ public class HttpComponentsClientHttpConnector implements ClientHttpConnector, C
 
 	/**
 	 * 使用预配置的 {@link CloseableHttpAsyncClient} 实例的构造函数。
-	 * @param client the client to use
+	 * @param client 要使用的客户端
 	 */
 	public HttpComponentsClientHttpConnector(CloseableHttpAsyncClient client) {
 		this(client, (method, uri) -> HttpClientContext.create());
@@ -78,8 +78,8 @@ public class HttpComponentsClientHttpConnector implements ClientHttpConnector, C
 	 * 使用预配置的 {@link CloseableHttpAsyncClient} 实例以及
 	 * {@link HttpClientContext} 供应商 lambda 的构造函数，该 lambda 在每个请求之前
 	 * 调用并传递给客户端。
-	 * @param client the client to use
-	 * @param contextProvider a {@link HttpClientContext} supplier
+	 * @param client 要使用的客户端
+	 * @param contextProvider {@link HttpClientContext} 的 Supplier
 	 */
 	public HttpComponentsClientHttpConnector(CloseableHttpAsyncClient client,
 			BiFunction<HttpMethod, URI, ? extends HttpClientContext> contextProvider) {

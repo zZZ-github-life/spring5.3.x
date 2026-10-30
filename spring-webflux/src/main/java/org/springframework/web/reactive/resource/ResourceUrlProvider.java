@@ -114,9 +114,9 @@ public class ResourceUrlProvider implements ApplicationListener<ContextRefreshed
 	/**
 	 * 获取给定 URI 字符串的公共资源 URL。
 	 * <p>URI 字符串应为路径；如果它包含查询或片段，则这些内容将保留在生成的公共资源 URL 中。
-	 * @param uriString the URI string to transform
-	 * @param exchange the current exchange
-	 * @return the resolved public resource URL path, or empty if unresolved
+	 * @param uriString 要转换的 URI 字符串
+	 * @param exchange 当前交换
+	 * @return 解析出的公开资源 URL 路径；如果无法解析则为空
 	 */
 	public final Mono<String> getForUriString(String uriString, ServerWebExchange exchange) {
 		ServerHttpRequest request = exchange.getRequest();

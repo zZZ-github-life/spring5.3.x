@@ -98,10 +98,9 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 
 	/**
 	 * 为给定的远程调用请求打开一个 {@link HttpURLConnection}。
-	 * @param config the HTTP invoker configuration that specifies the
-	 * target service
-	 * @return the HttpURLConnection for the given request
-	 * @throws IOException if thrown by I/O methods
+	 * @param config 指定目标服务的 HTTP invoker 配置
+	 * @return 给定请求的 HttpURLConnection
+	 * @throws IOException 如果由 I/O 方法抛出则传播
 	 * @see java.net.URL#openConnection()
 	 */
 	protected HttpURLConnection openConnection(HttpInvokerClientConfiguration config) throws IOException {
@@ -118,9 +117,9 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 	 * <p>默认实现将方法指定为 POST，
 	 * 将 "application/x-java-serialized-object" 作为 "Content-Type" 头，
 	 * 并将给定的内容长度作为 "Content-Length" 头。
-	 * @param connection the HTTP connection to prepare
-	 * @param contentLength the length of the content to send
-	 * @throws IOException if thrown by HttpURLConnection methods
+	 * @param connection 要准备的 HTTP 连接
+	 * @param contentLength 要发送的内容长度
+	 * @throws IOException 如果由 HttpURLConnection 方法抛出则传播
 	 * @see java.net.HttpURLConnection#setRequestMethod
 	 * @see java.net.HttpURLConnection#setRequestProperty
 	 */
@@ -155,11 +154,11 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 	 * <p>默认实现仅将已序列化的调用写入
 	 * HttpURLConnection 的 OutputStream。可重写此方法，例如以特定编码写入，
 	 * 并可能设置适当的 HTTP 请求头。
-	 * @param config the HTTP invoker configuration that specifies the target service
-	 * @param con the HttpURLConnection to write the request body to
-	 * @param baos the ByteArrayOutputStream that contains the serialized
-	 * RemoteInvocation object
-	 * @throws IOException if thrown by I/O methods
+	 * @param config 指定目标服务的 HTTP invoker 配置
+	 * @param con 要向其写入请求体的 HttpURLConnection
+	 * @param baos 包含序列化后 RemoteInvocation 对象的
+	 * ByteArrayOutputStream
+	 * @throws IOException 如果由 I/O 方法抛出则传播
 	 * @see java.net.HttpURLConnection#getOutputStream()
 	 * @see java.net.HttpURLConnection#setRequestProperty
 	 */
@@ -175,9 +174,9 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 	 * 如果响应不对应于成功的 HTTP 响应，则抛出异常。
 	 * <p>默认实现拒绝 2xx 之外的任何 HTTP 状态码，以避免
 	 * 解析响应体并尝试从损坏的流中反序列化。
-	 * @param config the HTTP invoker configuration that specifies the target service
-	 * @param con the HttpURLConnection to validate
-	 * @throws IOException if validation failed
+	 * @param config 指定目标服务的 HTTP invoker 配置
+	 * @param con 要校验的 HttpURLConnection
+	 * @throws IOException 如果校验失败则抛出
 	 * @see java.net.HttpURLConnection#getResponseCode()
 	 */
 	protected void validateResponse(HttpInvokerClientConfiguration config, HttpURLConnection con)
@@ -195,10 +194,10 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 	 * <p>默认实现仅从 HttpURLConnection 的 InputStream 读取
 	 * 已序列化的调用。如果响应被识别为 GZIP 响应，
 	 * 则会将 InputStream 包装在 GZIPInputStream 中。
-	 * @param config the HTTP invoker configuration that specifies the target service
-	 * @param con the HttpURLConnection to read the response body from
-	 * @return an InputStream for the response body
-	 * @throws IOException if thrown by I/O methods
+	 * @param config 指定目标服务的 HTTP invoker 配置
+	 * @param con 要从中读取响应体的 HttpURLConnection
+	 * @return 响应体的 InputStream
+	 * @throws IOException 如果由 I/O 方法抛出则传播
 	 * @see #isGzipResponse
 	 * @see java.util.zip.GZIPInputStream
 	 * @see java.net.HttpURLConnection#getInputStream()
@@ -222,7 +221,7 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 	 * 确定给定的响应是否为 GZIP 响应。
 	 * <p>默认实现检查 HTTP "Content-Encoding"
 	 * 头是否包含 "gzip"（不区分大小写）。
-	 * @param con the HttpURLConnection to check
+	 * @param con 要检查的 HttpURLConnection
 	 */
 	protected boolean isGzipResponse(HttpURLConnection con) {
 		String encodingHeader = con.getHeaderField(HTTP_HEADER_CONTENT_ENCODING);

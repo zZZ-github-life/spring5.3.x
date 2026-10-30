@@ -58,7 +58,7 @@ public class DestinationPatternsMessageCondition
 	/**
 	 * 仅使用模式的构造函数。创建并使用默认设置的 {@link AntPathMatcher} 实例。
 	 * <p>不以 "/" 开头的非空模式会前置 "/"。
-	 * @param patterns the URL patterns to match to, or if 0 then always match
+	 * @param patterns 要匹配的 URL 模式；如果为 0，则始终匹配
 	 */
 	public DestinationPatternsMessageCondition(String... patterns) {
 		this(patterns, (PathMatcher) null);
@@ -66,8 +66,8 @@ public class DestinationPatternsMessageCondition
 
 	/**
 	 * 使用模式和 {@code PathMatcher} 实例的构造函数。
-	 * @param patterns the URL patterns to match to, or if 0 then always match
-	 * @param matcher the {@code PathMatcher} to use
+	 * @param patterns 要匹配的 URL 模式；如果为 0，则始终匹配
+	 * @param matcher 要使用的 {@code PathMatcher}
 	 */
 	public DestinationPatternsMessageCondition(String[] patterns, @Nullable PathMatcher matcher) {
 		this(patterns, new SimpleRouteMatcher(matcher != null ? matcher : new AntPathMatcher()));
@@ -75,8 +75,8 @@ public class DestinationPatternsMessageCondition
 
 	/**
 	 * 使用模式和 {@code RouteMatcher} 实例的构造函数。
-	 * @param patterns the URL patterns to match to, or if 0 then always match
-	 * @param routeMatcher the {@code RouteMatcher} to use
+	 * @param patterns 要匹配的 URL 模式；如果为 0，则始终匹配
+	 * @param routeMatcher 要使用的 {@code RouteMatcher}
 	 * @since 5.2
 	 */
 	public DestinationPatternsMessageCondition(String[] patterns, RouteMatcher routeMatcher) {
@@ -154,10 +154,10 @@ public class DestinationPatternsMessageCondition
 	 * 检查是否有任何模式与给定 Message 的目标匹配，并返回一个保证包含匹配模式的实例，
 	 * 这些模式通过 {@link org.springframework.util.PathMatcher#getPatternComparator(String)}
 	 * 排序。
-	 * @param message the message to match to
-	 * @return the same instance if the condition contains no patterns;
-	 * or a new condition with sorted matching patterns;
-	 * or {@code null} either if a destination can not be extracted or there is no match
+	 * @param message 要匹配的消息
+	 * @return 如果该条件不包含任何模式，则返回同一实例；
+	 * 否则返回带有已排序匹配模式的新条件；
+	 * 如果无法提取目的地或没有匹配项，则返回 {@code null}
 	 */
 	@Override
 	@Nullable

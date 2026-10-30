@@ -62,8 +62,7 @@ public class BshScriptFactory implements ScriptFactory, BeanClassLoaderAware {
 	/**
 	 * 为给定的脚本源创建一个新的 BshScriptFactory。
 	 * <p>使用此 {@code BshScriptFactory} 变体时，脚本需要声明完整的类，或返回脚本化对象的实际实例。
-	 * @param scriptSourceLocator a locator that points to the source of the script.
-	 * Interpreted by the post-processor that actually creates the script.
+	 * @param scriptSourceLocator 指向脚本源的定位符。由实际创建脚本的后处理器进行解释。
 	 */
 	public BshScriptFactory(String scriptSourceLocator) {
 		Assert.hasText(scriptSourceLocator, "'scriptSourceLocator' must not be empty");
@@ -75,10 +74,8 @@ public class BshScriptFactory implements ScriptFactory, BeanClassLoaderAware {
 	 * 为给定的脚本源创建一个新的 BshScriptFactory。
 	 * <p>脚本既可以是一个简单脚本（需要生成相应的代理，实现指定的接口），也可以声明完整的类，或返回脚
 	 * 本化对象的实际实例（此时，指定的接口（如有）需要由该类/实例实现）。
-	 * @param scriptSourceLocator a locator that points to the source of the script.
-	 * Interpreted by the post-processor that actually creates the script.
-	 * @param scriptInterfaces the Java interfaces that the scripted object
-	 * is supposed to implement (may be {@code null})
+	 * @param scriptSourceLocator 指向脚本源的定位符。由实际创建脚本的后处理器进行解释。
+	 * @param scriptInterfaces 脚本化对象应实现的 Java 接口（可为 {@code null}）
 	 */
 	public BshScriptFactory(String scriptSourceLocator, @Nullable Class<?>... scriptInterfaces) {
 		Assert.hasText(scriptSourceLocator, "'scriptSourceLocator' must not be empty");

@@ -35,7 +35,7 @@ public class SimpleThrowawayClassLoader extends OverridingClassLoader {
 
 	/**
 	 * 为给定的 ClassLoader 创建一个新的 SimpleThrowawayClassLoader。
-	 * @param parent the ClassLoader to build a throwaway ClassLoader for
+	 * @param parent 要为其构建用完即弃 ClassLoader 的 ClassLoader
 	 */
 	public SimpleThrowawayClassLoader(@Nullable ClassLoader parent) {
 		super(parent);

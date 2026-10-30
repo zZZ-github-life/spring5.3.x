@@ -46,7 +46,7 @@ public class StringMultipartFileEditor extends PropertyEditorSupport {
 
 	/**
 	 * 使用给定字符集创建一个新的 {@link StringMultipartFileEditor}。
-	 * @param charsetName valid charset name
+	 * @param charsetName 有效的字符集名称
 	 * @see java.lang.String#String(byte[],String)
 	 */
 	public StringMultipartFileEditor(String charsetName) {

@@ -94,7 +94,7 @@ public class UnsupportedMediaTypeException extends NestedRuntimeException {
 
 	/**
 	 * 返回生成此异常时所处的正文类型。当异常是在尝试从特定 Java 类型编码或向特定 Java 类型解码时引发的，此属性适用。
-	 * @return the body type, or {@code null} if not available
+	 * @return 主体类型，如果不可用则为 {@code null}
 	 * @since 5.1
 	 */
 	@Nullable

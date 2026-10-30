@@ -27,31 +27,30 @@ public interface AliasRegistry {
 
 	/**
 	 * 给定一个名称，为其注册别名。
-	 * @param name the canonical name
-	 * @param alias the alias to be registered
-	 * @throws IllegalStateException if the alias is already in use
-	 * and may not be overridden
+	 * @param name 规范名称
+	 * @param alias 要注册的别名
+	 * @throws IllegalStateException 如果该别名已被使用且不允许覆盖
 	 */
 	void registerAlias(String name, String alias);
 
 	/**
 	 * 从此注册表中移除指定的别名。
-	 * @param alias the alias to remove
-	 * @throws IllegalStateException if no such alias was found
+	 * @param alias 要移除的别名
+	 * @throws IllegalStateException 如果未找到该别名
 	 */
 	void removeAlias(String alias);
 
 	/**
 	 * 判断给定名称是否被定义为别名（而非实际注册的组件的名称）。
-	 * @param name the name to check
-	 * @return whether the given name is an alias
+	 * @param name 要检查的名称
+	 * @return 给定名称是否为别名
 	 */
 	boolean isAlias(String name);
 
 	/**
 	 * 返回给定名称的别名（如果已定义）。
-	 * @param name the name to check for aliases
-	 * @return the aliases, or an empty array if none
+	 * @param name 要检查别名的名称
+	 * @return 别名数组，若没有则为空数组
 	 */
 	String[] getAliases(String name);
 

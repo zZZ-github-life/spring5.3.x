@@ -42,11 +42,11 @@ public class RenderingContext {
 	/**
 	 * 创建一个新的 {@code RenderingContext}。
 	 *
-	 * @param applicationContext the application context
-	 * @param locale the locale of the rendered template
-	 * @param templateLoader a function that takes a template path as input and returns
-	 * the template content as a String
-	 * @param url the URL of the rendered template
+	 * @param applicationContext 应用上下文
+	 * @param locale 所渲染模板的 Locale
+	 * @param templateLoader 接受模板路径作为输入并返回
+	 * 模板内容字符串的函数
+	 * @param url 所渲染模板的 URL
 	 */
 	public RenderingContext(ApplicationContext applicationContext, Locale locale,
 			Function<String, String> templateLoader, String url) {

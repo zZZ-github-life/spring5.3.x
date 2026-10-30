@@ -52,7 +52,7 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 
 	/**
 	 * 使用给定的父上下文创建一个新的 AbstractRefreshableConfigApplicationContext。
-	 * @param parent the parent context
+	 * @param parent 父上下文
 	 */
 	public AbstractRefreshableConfigApplicationContext(@Nullable ApplicationContext parent) {
 		super(parent);
@@ -91,7 +91,7 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 	 * 式将通过 ResourcePatternResolver 解析。
 	 *
 	 * <p>默认实现返回 {@code null}。子类可以重写此方法，提供一组用于加载 Bean 定义的资源位置。
-	 * @return an array of resource locations, or {@code null} if none
+	 * @return 资源位置数组；如果没有则为 {@code null}
 	 * @see #getResources
 	 * @see #getResourcePatternResolver
 	 */
@@ -104,7 +104,7 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 	 * 返回要使用的默认配置位置，用于未指定显式配置位置的情况。
 	 *
 	 * <p>默认实现返回 {@code null}，要求提供显式配置位置。
-	 * @return an array of default config locations, if any
+	 * @return 默认配置位置数组（如果有）
 	 * @see #setConfigLocations
 	 */
 	@Nullable
@@ -114,8 +114,8 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 
 	/**
 	 * 解析给定路径，必要时用相应的环境属性值替换占位符。应用于配置位置。
-	 * @param path the original file path
-	 * @return the resolved file path
+	 * @param path 原始文件路径
+	 * @return 解析后的文件路径
 	 * @see org.springframework.core.env.Environment#resolveRequiredPlaceholders(String)
 	 */
 	protected String resolvePath(String path) {

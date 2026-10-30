@@ -40,7 +40,7 @@ public class StaticScriptSource implements ScriptSource {
 
 	/**
 	 * 为给定的脚本创建一个新的 StaticScriptSource。
-	 * @param script the script String
+	 * @param script 脚本字符串
 	 */
 	public StaticScriptSource(String script) {
 		setScript(script);
@@ -48,9 +48,8 @@ public class StaticScriptSource implements ScriptSource {
 
 	/**
 	 * 为给定的脚本创建一个新的 StaticScriptSource。
-	 * @param script the script String
-	 * @param className the suggested class name for the script
-	 * (may be {@code null})
+	 * @param script 脚本字符串
+	 * @param className 脚本的建议类名（可为 {@code null}）
 	 */
 	public StaticScriptSource(String script, @Nullable String className) {
 		setScript(script);
@@ -59,7 +58,7 @@ public class StaticScriptSource implements ScriptSource {
 
 	/**
 	 * 设置新的脚本文本字符串，覆盖之前的脚本。
-	 * @param script the script String
+	 * @param script 脚本字符串
 	 */
 	public synchronized void setScript(String script) {
 		Assert.hasText(script, "Script must not be empty");

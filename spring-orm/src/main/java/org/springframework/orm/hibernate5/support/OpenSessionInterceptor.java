@@ -105,9 +105,9 @@ public class OpenSessionInterceptor implements MethodInterceptor, InitializingBe
 	 * 为给定的 SessionFactory 打开一个 Session。
 	 * <p>默认实现委托给 {@link SessionFactory#openSession} 方法，
 	 * 并将 {@link Session} 的 flush 模式设置为 "MANUAL"。
-	 * @param sessionFactory the SessionFactory to use
-	 * @return the Session to use
-	 * @throws DataAccessResourceFailureException if the Session could not be created
+	 * @param sessionFactory 要使用的 SessionFactory
+	 * @return 要使用的 Session
+	 * @throws DataAccessResourceFailureException 如果无法创建 Session
 	 * @since 5.0
 	 * @see FlushMode#MANUAL
 	 */

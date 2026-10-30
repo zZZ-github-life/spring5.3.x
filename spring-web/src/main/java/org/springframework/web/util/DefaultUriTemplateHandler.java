@@ -52,7 +52,7 @@ public class DefaultUriTemplateHandler extends AbstractUriTemplateHandler {
 	 * 路径中的 URI 变量中的任何 "/" 字符都会被百分号编码。
 	 * <p>默认设置为 {@code false}，此时路径保持为完整路径，
 	 * 展开的 URI 变量会保留 "/" 字符。
-	 * @param parsePath whether to parse the path into path segments
+	 * @param parsePath 是否将路径解析为路径段
 	 */
 	public void setParsePath(boolean parsePath) {
 		this.parsePath = parsePath;
@@ -76,7 +76,7 @@ public class DefaultUriTemplateHandler extends AbstractUriTemplateHandler {
 	 * 因此不会被编码。
 	 * <p><strong>注意：</strong>此属性取代了同时设置
 	 * {@link #setParsePath parsePath} 属性的需要。
-	 * @param strictEncoding whether to perform strict encoding
+	 * @param strictEncoding 是否执行严格编码
 	 * @since 4.3
 	 */
 	public void setStrictEncoding(boolean strictEncoding) {

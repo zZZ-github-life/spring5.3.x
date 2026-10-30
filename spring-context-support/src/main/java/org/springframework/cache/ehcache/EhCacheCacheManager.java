@@ -51,7 +51,7 @@ public class EhCacheCacheManager extends AbstractTransactionSupportingCacheManag
 
 	/**
 	 * 为给定的底层 EhCache CacheManager 创建一个新的 EhCacheCacheManager。
-	 * @param cacheManager the backing EhCache {@link net.sf.ehcache.CacheManager}
+	 * @param cacheManager 底层 EhCache {@link net.sf.ehcache.CacheManager}
 	 */
 	public EhCacheCacheManager(net.sf.ehcache.CacheManager cacheManager) {
 		this.cacheManager = cacheManager;

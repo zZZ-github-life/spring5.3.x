@@ -68,25 +68,25 @@ public interface PropertyValues extends Iterable<PropertyValue> {
 
 	/**
 	 * 返回具有给定名称的属性值（如果有）。
-	 * @param propertyName the name to search for
-	 * @return the property value, or {@code null} if none
+	 * @param propertyName 要搜索的名称
+	 * @return 属性值，如果没有则为 {@code null}
 	 */
 	@Nullable
 	PropertyValue getPropertyValue(String propertyName);
 
 	/**
 	 * 返回相对于前一个 PropertyValues 的变更。子类还应重写 {@code equals}。
-	 * @param old the old property values
-	 * @return the updated or new properties.
-	 * Return empty PropertyValues if there are no changes.
+	 * @param old 旧的属性值
+	 * @return 更新后的或新的属性。
+	 * 如果没有变化，则返回空的 PropertyValues。
 	 * @see Object#equals
 	 */
 	PropertyValues changesSince(PropertyValues old);
 
 	/**
 	 * 此属性是否存在属性值（或其他处理项）？
-	 * @param propertyName the name of the property we're interested in
-	 * @return whether there is a property value for this property
+	 * @param propertyName 我们感兴趣的属性名称
+	 * @return 该属性是否存在属性值
 	 */
 	boolean contains(String propertyName);
 

@@ -69,7 +69,7 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 
 	/**
 	 * 为给定的 {@code JmxAttributeSource} 创建一个新的 {@code MetadataMBeanInfoAssembler}。
-	 * @param attributeSource the JmxAttributeSource to use
+	 * @param attributeSource 要使用的 JmxAttributeSource
 	 */
 	public MetadataMBeanInfoAssembler(JmxAttributeSource attributeSource) {
 		Assert.notNull(attributeSource, "JmxAttributeSource must not be null");
@@ -114,8 +114,8 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 	/**
 	 * 用于 Bean 的自动检测。检查 Bean 的类是否具有 {@code ManagedResource} 属性。如果有，则将其添加到
 	 * 包含的 Bean 列表中。
-	 * @param beanClass the class of the bean
-	 * @param beanName the name of the bean in the bean factory
+	 * @param beanClass Bean 的类
+	 * @param beanName Bean 在 Bean 工厂中的名称
 	 */
 	@Override
 	public boolean includeBean(Class<?> beanClass, String beanName) {
@@ -124,9 +124,9 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 
 	/**
 	 * 对属性访问器的包含进行投票。
-	 * @param method the accessor method
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * @return whether the method has the appropriate metadata
+	 * @param method 访问器方法
+	 * @param beanKey MBean 在 beans 映射中关联的键
+	 * @return 该方法是否具有相应的元数据
 	 */
 	@Override
 	protected boolean includeReadAttribute(Method method, String beanKey) {
@@ -135,9 +135,9 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 
 	/**
 	 * 对属性修改器的包含进行投票。
-	 * @param method the mutator method
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * @return whether the method has the appropriate metadata
+	 * @param method 修改器方法
+	 * @param beanKey MBean 在 beans 映射中关联的键
+	 * @return 该方法是否具有相应的元数据
 	 */
 	@Override
 	protected boolean includeWriteAttribute(Method method, String beanKey) {
@@ -146,9 +146,9 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 
 	/**
 	 * 对操作的包含进行投票。
-	 * @param method the operation method
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * @return whether the method has the appropriate metadata
+	 * @param method 操作方法
+	 * @param beanKey MBean 在 beans 映射中关联的键
+	 * @return 该方法是否具有相应的元数据
 	 */
 	@Override
 	protected boolean includeOperation(Method method, String beanKey) {
@@ -172,7 +172,7 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 
 	/**
 	 * 检查给定 Method 是否具有 {@code ManagedOperation} 属性。
-	 * @param method the method to check
+	 * @param method 要检查的方法
 	 */
 	private boolean hasManagedOperation(Method method) {
 		return (obtainAttributeSource().getManagedOperation(method) != null);
@@ -397,8 +397,8 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 	 * 确定两个 {@code int} 值中的哪一个应作为属性描述符的值。通常只有 getter 或 setter 之一具有非负值，
 	 * 因此我们使用该值。如果两个值均为非负，则使用两者中较大的值。此方法可用于解析任何有两个可能值的
 	 * {@code int} 值描述符。
-	 * @param getter the int value associated with the getter for this attribute
-	 * @param setter the int associated with the setter for this attribute
+	 * @param getter 该属性的 getter 关联的 int 值
+	 * @param setter 该属性的 setter 关联的 int 值
 	 */
 	private int resolveIntDescriptor(int getter, int setter) {
 		return (getter >= setter ? getter : setter);
@@ -407,9 +407,9 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 	/**
 	 * 根据附加到 getter 和 setter 方法的值定位描述符的值。如果两者都提供了值，则优先使用附加到 getter
 	 * 的值。
-	 * @param getter the Object value associated with the get method
-	 * @param setter the Object value associated with the set method
-	 * @return the appropriate Object to use as the value for the descriptor
+	 * @param getter get 方法关联的 Object 值
+	 * @param setter set 方法关联的 Object 值
+	 * @return 用作描述符值的适当 Object
 	 */
 	@Nullable
 	private Object resolveObjectDescriptor(@Nullable Object getter, @Nullable Object setter) {
@@ -419,9 +419,9 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 	/**
 	 * 根据附加到 getter 和 setter 方法的值定位描述符的值。如果两者都提供了值，则优先使用附加到 getter
 	 * 的值。所提供的默认值用于检查与 getter 关联的值是否已从默认值改变。
-	 * @param getter the String value associated with the get method
-	 * @param setter the String value associated with the set method
-	 * @return the appropriate String to use as the value for the descriptor
+	 * @param getter get 方法关联的 String 值
+	 * @param setter set 方法关联的 String 值
+	 * @return 用作描述符值的适当 String
 	 */
 	@Nullable
 	private String resolveStringDescriptor(@Nullable String getter, @Nullable String setter) {

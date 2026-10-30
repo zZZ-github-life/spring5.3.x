@@ -62,10 +62,9 @@ public class ModelAttributeMethodArgumentResolver extends HandlerMethodArgumentR
 
 	/**
 	 * 带默认解析模式标志的类构造函数。
-	 * @param adapterRegistry for adapting to other reactive types from and to Mono
-	 * @param useDefaultResolution if "true", non-simple method arguments and
-	 * return values are considered model attributes with or without a
-	 * {@code @ModelAttribute} annotation present.
+	 * @param adapterRegistry 用于在 Mono 与其他响应式类型之间进行适配
+	 * @param useDefaultResolution 如果为 "true"，则不论是否存在 {@code @ModelAttribute} 注解，
+	 * 非简单方法参数和返回值都被视为模型属性。
 	 */
 	public ModelAttributeMethodArgumentResolver(ReactiveAdapterRegistry adapterRegistry,
 			boolean useDefaultResolution) {
@@ -147,8 +146,8 @@ public class ModelAttributeMethodArgumentResolver extends HandlerMethodArgumentR
 
 	/**
 	 * 用于将请求绑定到目标对象的扩展点。
-	 * @param binder the data binder instance to use for the binding
-	 * @param exchange the current request
+	 * @param binder 用于绑定的数据绑定器实例
+	 * @param exchange 当前请求
 	 * @since 5.2.6
 	 */
 	protected Mono<Void> bindRequestParameters(WebExchangeDataBinder binder, ServerWebExchange exchange) {
@@ -253,9 +252,9 @@ public class ModelAttributeMethodArgumentResolver extends HandlerMethodArgumentR
 
 	/**
 	 * 用于获取数据绑定值的受保护方法。默认情况下，此方法委托给 {@link WebExchangeDataBinder#getValuesToBind}。
-	 * @param binder the data binder in use
-	 * @param exchange the current exchange
-	 * @return a map of bind values
+	 * @param binder 正在使用的数据绑定器
+	 * @param exchange 当前交换
+	 * @return 绑定值的映射
 	 * @since 5.3
 	 */
 	public Mono<Map<String, Object>> getValuesToBind(WebExchangeDataBinder binder, ServerWebExchange exchange) {

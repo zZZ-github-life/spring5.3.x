@@ -38,11 +38,11 @@ public interface MimeUnmarshaller extends Unmarshaller {
 	/**
 	 * 将所提供的 {@link Source} unmarshal 为对象图，
 	 * 并从 {@link MimeContainer} 中读取二进制附件。
-	 * @param source the source to marshal from
-	 * @param mimeContainer the MIME container to read extracted binary content from
-	 * @return the object graph
-	 * @throws XmlMappingException if the given source cannot be mapped to an object
-	 * @throws IOException if an I/O Exception occurs
+	 * @param source 要从中解组的源
+	 * @param mimeContainer 用于读取提取出的二进制内容的 MIME 容器
+	 * @return 对象图
+	 * @throws XmlMappingException 如果给定源无法映射到对象
+	 * @throws IOException 如果发生 I/O 异常
 	 */
 	Object unmarshal(Source source, @Nullable MimeContainer mimeContainer) throws XmlMappingException, IOException;
 

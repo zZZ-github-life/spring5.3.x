@@ -62,7 +62,7 @@ public interface ResourceLoaderAware extends Aware {
 	 * <p>在填充普通 Bean 属性之后、在诸如 InitializingBean 的 {@code afterPropertiesSet} 或自定义
 	 * init-method 之类的初始化回调之前调用。在 ApplicationContextAware 的
 	 * {@code setApplicationContext} 之前调用。
-	 * @param resourceLoader the ResourceLoader object to be used by this object
+	 * @param resourceLoader 此对象要使用的 ResourceLoader 对象
 	 * @see org.springframework.core.io.support.ResourcePatternResolver
 	 * @see org.springframework.core.io.support.ResourcePatternUtils#getResourcePatternResolver
 	 */

@@ -92,7 +92,7 @@ public class ProtobufDecoder extends ProtobufCodecSupport implements Decoder<Mes
 	/**
 	 * 构造一个新的 {@code ProtobufDecoder}，并提供一个允许
 	 * 注册消息扩展的初始化器。
-	 * @param extensionRegistry a message extension registry
+	 * @param extensionRegistry 消息扩展注册表
 	 */
 	public ProtobufDecoder(ExtensionRegistry extensionRegistry) {
 		Assert.notNull(extensionRegistry, "ExtensionRegistry must not be null");
@@ -103,7 +103,7 @@ public class ProtobufDecoder extends ProtobufCodecSupport implements Decoder<Mes
 	/**
 	 * 每条消息允许的最大大小。
 	 * <p>默认设置为 256K。
-	 * @param maxMessageSize the max size per message, or -1 for unlimited
+	 * @param maxMessageSize 每条消息的最大大小，-1 表示不限
 	 */
 	public void setMaxMessageSize(int maxMessageSize) {
 		this.maxMessageSize = maxMessageSize;
@@ -263,8 +263,8 @@ public class ProtobufDecoder extends ProtobufCodecSupport implements Decoder<Mes
 		 * 从输入流中解析 varint 形式的消息大小，必要时更新 {@code messageBytesToRead} 和
 		 * {@code offset} 字段，以便处理后续的数据块。
 		 * 灵感来自 {@link CodedInputStream#readRawVarint32(int, java.io.InputStream)}
-		 * @return {@code true} when the message size is parsed successfully, {@code false} when the message size is
-		 * truncated
+		 * @return 消息大小解析成功时返回 {@code true}，
+		 * 消息大小被截断时返回 {@code false}
 		 * @see <a href="https://developers.google.com/protocol-buffers/docs/encoding#varints">Base 128 Varints</a>
 		 */
 		private boolean readMessageSize(DataBuffer input) {

@@ -81,7 +81,7 @@ class InternalPathPatternParser {
 
 	/**
 	 * 供 {@link PathPatternParser#parse} 使用的包级私有构造函数。
-	 * @param parentParser reference back to the stateless, public parser
+	 * @param parentParser 对无状态的公共解析器的反向引用
 	 */
 	InternalPathPatternParser(PathPatternParser parentParser) {
 		this.parser = parentParser;
@@ -255,7 +255,7 @@ class InternalPathPatternParser {
 
 	/**
 	 * 将路径元素推入正在构建的链中。
-	 * @param newPathElement the new path element to add
+	 * @param newPathElement 要添加的新路径元素
 	 */
 	private void pushPathElement(PathElement newPathElement) {
 		if (newPathElement instanceof CaptureTheRestPathElement) {
@@ -307,7 +307,7 @@ class InternalPathPatternParser {
 	/**
 	 * 利用自上一个路径元素以来处理过程中积累的信息，确定要创建
 	 * 哪种路径元素。
-	 * @return the new path element
+	 * @return 新的路径元素
 	 */
 	private PathElement createPathElement() {
 		if (this.insideVariableCapture) {
@@ -380,10 +380,10 @@ class InternalPathPatternParser {
 	/**
 	 * 对于表示捕获变量的路径元素，定位约束模式。
 	 * 假定存在约束模式。
-	 * @param data a complete path expression, e.g. /aaa/bbb/{ccc:...}
-	 * @param offset the start of the capture pattern of interest
-	 * @return the index of the character after the ':' within
-	 * the pattern expression relative to the start of the whole expression
+	 * @param data 完整的路径表达式，例如 /aaa/bbb/{ccc:...}
+	 * @param offset 所关注的捕获模式的起始位置
+	 * @return 模式表达式中 ':' 之后的字符索引，
+	 * 该索引相对于整个表达式的起始位置
 	 */
 	private int findRegexStart(char[] data, int offset) {
 		int pos = offset;

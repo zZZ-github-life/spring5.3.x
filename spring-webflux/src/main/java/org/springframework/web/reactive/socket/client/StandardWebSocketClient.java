@@ -69,7 +69,7 @@ public class StandardWebSocketClient implements WebSocketClient {
 
 	/**
 	 * 接受现有 {@link WebSocketContainer} 实例的构造函数。
-	 * @param webSocketContainer a web socket container
+	 * @param webSocketContainer WebSocket 容器
 	 */
 	public StandardWebSocketClient(WebSocketContainer webSocketContainer) {
 		this.webSocketContainer = webSocketContainer;

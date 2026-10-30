@@ -69,27 +69,27 @@ public interface BeanDefinitionReader {
 
 	/**
 	 * 从指定资源加载 Bean 定义。
-	 * @param resource the resource descriptor
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * @param resource 资源描述符
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeanDefinitionStoreException 在加载或解析出错时
 	 */
 	int loadBeanDefinitions(Resource resource) throws BeanDefinitionStoreException;
 
 	/**
 	 * 从指定的多个资源加载 Bean 定义。
-	 * @param resources the resource descriptors
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * @param resources 资源描述符
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeanDefinitionStoreException 在加载或解析出错时
 	 */
 	int loadBeanDefinitions(Resource... resources) throws BeanDefinitionStoreException;
 
 	/**
 	 * 从指定资源位置加载 Bean 定义。<p>该位置也可以是位置模式，前提是此 Bean 定义读取器的
 	 * {@link ResourceLoader} 是 {@code ResourcePatternResolver}。
-	 * @param location the resource location, to be loaded with the {@code ResourceLoader}
-	 * (or {@code ResourcePatternResolver}) of this bean definition reader
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * @param location 资源位置，将使用该 Bean 定义读取器的 {@code ResourceLoader}
+	 * （或 {@code ResourcePatternResolver}）加载
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeanDefinitionStoreException 在加载或解析出错时
 	 * @see #getResourceLoader()
 	 * @see #loadBeanDefinitions(org.springframework.core.io.Resource)
 	 * @see #loadBeanDefinitions(org.springframework.core.io.Resource[])
@@ -98,10 +98,10 @@ public interface BeanDefinitionReader {
 
 	/**
 	 * 从指定的多个资源位置加载 Bean 定义。
-	 * @param locations the resource locations, to be loaded with the {@code ResourceLoader}
-	 * (or {@code ResourcePatternResolver}) of this bean definition reader
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * @param locations 资源位置，将使用该 Bean 定义读取器的 {@code ResourceLoader}
+	 * （或 {@code ResourcePatternResolver}）加载
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeanDefinitionStoreException 在加载或解析出错时
 	 */
 	int loadBeanDefinitions(String... locations) throws BeanDefinitionStoreException;
 

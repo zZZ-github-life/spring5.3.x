@@ -62,8 +62,8 @@ public final class ScheduledTask {
 
 	/**
 	 * 触发取消此已调度任务。
-	 * @param mayInterruptIfRunning whether to force interruption of the task
-	 * if still running (specify {@code false} to allow the task to complete)
+	 * @param mayInterruptIfRunning 是否在任务仍在运行时强制中断它
+	 * （指定 {@code false} 以允许任务完成）
 	 * @since 5.3.18
 	 * @see ScheduledFuture#cancel(boolean)
 	 */

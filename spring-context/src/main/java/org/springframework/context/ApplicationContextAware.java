@@ -60,9 +60,9 @@ public interface ApplicationContextAware extends Aware {
 	 * 或自定义 init-method 之前调用。如果适用，则在 {@link ResourceLoaderAware#setResourceLoader}、
 	 * {@link ApplicationEventPublisherAware#setApplicationEventPublisher} 和
 	 * {@link MessageSourceAware} 之后调用。
-	 * @param applicationContext the ApplicationContext object to be used by this object
-	 * @throws ApplicationContextException in case of context initialization errors
-	 * @throws BeansException if thrown by application context methods
+	 * @param applicationContext 此对象要使用的 ApplicationContext 对象
+	 * @throws ApplicationContextException 如果发生上下文初始化错误
+	 * @throws BeansException 如果由应用上下文方法抛出
 	 * @see org.springframework.beans.factory.BeanInitializationException
 	 */
 	void setApplicationContext(ApplicationContext applicationContext) throws BeansException;

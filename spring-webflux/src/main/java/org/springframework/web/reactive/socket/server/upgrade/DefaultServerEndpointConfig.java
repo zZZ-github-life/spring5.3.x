@@ -49,8 +49,8 @@ class DefaultServerEndpointConfig extends ServerEndpointConfig.Configurator
 
 	/**
 	 * 使用路径和 {@code javax.websocket.Endpoint} 构造。
-	 * @param path the endpoint path
-	 * @param endpoint the endpoint instance
+	 * @param path 端点路径
+	 * @param endpoint 端点实例
 	 */
 	public DefaultServerEndpointConfig(String path, Endpoint endpoint) {
 		Assert.hasText(path, "path must not be empty");

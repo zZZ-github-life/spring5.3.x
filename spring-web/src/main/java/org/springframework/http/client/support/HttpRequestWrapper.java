@@ -40,7 +40,7 @@ public class HttpRequestWrapper implements HttpRequest {
 
 	/**
 	 * 创建一个包装给定请求对象的 {@code HttpRequest}。
-	 * @param request the request object to be wrapped
+	 * @param request 要包装的请求对象
 	 */
 	public HttpRequestWrapper(HttpRequest request) {
 		Assert.notNull(request, "HttpRequest must not be null");

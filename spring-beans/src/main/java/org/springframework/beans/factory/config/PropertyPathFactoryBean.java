@@ -106,8 +106,8 @@ public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAwa
 
 	/**
 	 * 指定要将属性路径应用到的目标对象。或者指定目标 Bean 名称。
-	 * @param targetObject a target object, for example a bean reference
-	 * or an inner bean
+	 * @param targetObject 目标对象，例如 Bean 引用
+	 * 或内部 Bean
 	 * @see #setTargetBeanName
 	 */
 	public void setTargetObject(Object targetObject) {
@@ -116,8 +116,8 @@ public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAwa
 
 	/**
 	 * 指定要将属性路径应用到的目标 Bean 名称。或者直接指定目标对象。
-	 * @param targetBeanName the bean name to be looked up in the
-	 * containing bean factory (e.g. "testBean")
+	 * @param targetBeanName 要在所属 Bean 工厂中查找的 Bean 名称
+	 * （例如 "testBean"）
 	 * @see #setTargetObject
 	 */
 	public void setTargetBeanName(String targetBeanName) {
@@ -126,8 +126,8 @@ public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAwa
 
 	/**
 	 * 指定要应用到目标上的属性路径。
-	 * @param propertyPath the property path, potentially nested
-	 * (e.g. "age" or "spouse.age")
+	 * @param propertyPath 属性路径，可以嵌套
+	 * （例如 "age" 或 "spouse.age"）
 	 */
 	public void setPropertyPath(String propertyPath) {
 		this.propertyPath = StringUtils.trimAllWhitespace(propertyPath);
@@ -137,7 +137,7 @@ public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAwa
 	 * 指定对属性路径求值所得结果的类型。
 	 * <p>注意：对于直接指定的目标对象或单例目标 Bean，这是不必要的，因为可以通过内省确定类型。仅当目标
 	 * 是原型时，如果你需要按类型匹配（例如用于自动装配），才需要指定此项。
-	 * @param resultType the result type, for example "java.lang.Integer"
+	 * @param resultType 结果类型，例如 "java.lang.Integer"
 	 */
 	public void setResultType(Class<?> resultType) {
 		this.resultType = resultType;

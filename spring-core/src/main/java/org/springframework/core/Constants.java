@@ -55,8 +55,8 @@ public class Constants {
 	/**
 	 * 创建包装给定类的新的 Constants 转换器类。
 	 * <p>所有 <b>public</b> static final 变量都会被公开，无论其类型如何。
-	 * @param clazz the class to analyze
-	 * @throws IllegalArgumentException if the supplied {@code clazz} is {@code null}
+	 * @param clazz 要分析的类
+	 * @throws IllegalArgumentException 如果提供的 {@code clazz} 为 {@code null}
 	 */
 	public Constants(Class<?> clazz) {
 		Assert.notNull(clazz, "Class must not be null");
@@ -101,10 +101,9 @@ public class Constants {
 
 	/**
 	 * 返回转换为 Number 的常量值。
-	 * @param code the name of the field (never {@code null})
-	 * @return the Number value
-	 * @throws ConstantException if the field name wasn't found
-	 * or if the type wasn't compatible with Number
+	 * @param code 字段的名称（永不为 {@code null}）
+	 * @return Number 值
+	 * @throws ConstantException 如果未找到字段名，或类型与 Number 不兼容
 	 * @see #asObject
 	 */
 	public Number asNumber(String code) throws ConstantException {
@@ -117,10 +116,9 @@ public class Constants {
 
 	/**
 	 * 以 String 形式返回常量值。
-	 * @param code the name of the field (never {@code null})
-	 * @return the String value
-	 * Works even if it's not a string (invokes {@code toString()}).
-	 * @throws ConstantException if the field name wasn't found
+	 * @param code 字段的名称（永不为 {@code null}）
+	 * @return String 值。即使它不是字符串也能工作（会调用 {@code toString()}）。
+	 * @throws ConstantException 如果未找到字段名
 	 * @see #asObject
 	 */
 	public String asString(String code) throws ConstantException {
@@ -130,9 +128,9 @@ public class Constants {
 	/**
 	 * 解析给定的 String（接受大写或小写），如果它是我们正在分析的类中某个常量字段的名称，
 	 * 则返回相应的值。
-	 * @param code the name of the field (never {@code null})
-	 * @return the Object value
-	 * @throws ConstantException if there's no such field
+	 * @param code 字段的名称（永不为 {@code null}）
+	 * @return Object 值
+	 * @throws ConstantException 如果不存在该字段
 	 */
 	public Object asObject(String code) throws ConstantException {
 		Assert.notNull(code, "Code must not be null");
@@ -150,8 +148,8 @@ public class Constants {
 	 * <p>请注意，此方法假定常量的命名遵循 Java 常量值的标准约定（即全部大写）。
 	 * 在进入此方法的主要逻辑之前，
 	 * 提供的 {@code namePrefix} 会以与区域设置无关的方式转换为大写。
-	 * @param namePrefix prefix of the constant names to search (may be {@code null})
-	 * @return the set of constant names
+	 * @param namePrefix 要搜索的常量名前缀（可以为 {@code null}）
+	 * @return 常量名称集合
 	 */
 	public Set<String> getNames(@Nullable String namePrefix) {
 		String prefixToUse = (namePrefix != null ? namePrefix.trim().toUpperCase(Locale.ENGLISH) : "");
@@ -166,8 +164,8 @@ public class Constants {
 
 	/**
 	 * 返回给定 Bean 属性名对应常量组的所有名称。
-	 * @param propertyName the name of the bean property
-	 * @return the set of values
+	 * @param propertyName Bean 属性的名称
+	 * @return 值的集合
 	 * @see #propertyToConstantNamePrefix
 	 */
 	public Set<String> getNamesForProperty(String propertyName) {
@@ -179,8 +177,8 @@ public class Constants {
 	 * <p>请注意，此方法假定常量的命名遵循 Java 常量值的标准约定（即全部大写）。
 	 * 在进入此方法的主要逻辑之前，
 	 * 提供的 {@code nameSuffix} 会以与区域设置无关的方式转换为大写。
-	 * @param nameSuffix suffix of the constant names to search (may be {@code null})
-	 * @return the set of constant names
+	 * @param nameSuffix 要搜索的常量名后缀（可以为 {@code null}）
+	 * @return 常量名称集合
 	 */
 	public Set<String> getNamesForSuffix(@Nullable String nameSuffix) {
 		String suffixToUse = (nameSuffix != null ? nameSuffix.trim().toUpperCase(Locale.ENGLISH) : "");
@@ -199,8 +197,8 @@ public class Constants {
 	 * <p>请注意，此方法假定常量的命名遵循 Java 常量值的标准约定（即全部大写）。
 	 * 在进入此方法的主要逻辑之前，
 	 * 提供的 {@code namePrefix} 会以与区域设置无关的方式转换为大写。
-	 * @param namePrefix prefix of the constant names to search (may be {@code null})
-	 * @return the set of values
+	 * @param namePrefix 要搜索的常量名前缀（可以为 {@code null}）
+	 * @return 值的集合
 	 */
 	public Set<Object> getValues(@Nullable String namePrefix) {
 		String prefixToUse = (namePrefix != null ? namePrefix.trim().toUpperCase(Locale.ENGLISH) : "");
@@ -215,8 +213,8 @@ public class Constants {
 
 	/**
 	 * 返回给定 Bean 属性名对应常量组的所有值。
-	 * @param propertyName the name of the bean property
-	 * @return the set of values
+	 * @param propertyName Bean 属性的名称
+	 * @return 值的集合
 	 * @see #propertyToConstantNamePrefix
 	 */
 	public Set<Object> getValuesForProperty(String propertyName) {
@@ -228,8 +226,8 @@ public class Constants {
 	 * <p>请注意，此方法假定常量的命名遵循 Java 常量值的标准约定（即全部大写）。
 	 * 在进入此方法的主要逻辑之前，
 	 * 提供的 {@code nameSuffix} 会以与区域设置无关的方式转换为大写。
-	 * @param nameSuffix suffix of the constant names to search (may be {@code null})
-	 * @return the set of values
+	 * @param nameSuffix 要搜索的常量名后缀（可以为 {@code null}）
+	 * @return 值的集合
 	 */
 	public Set<Object> getValuesForSuffix(@Nullable String nameSuffix) {
 		String suffixToUse = (nameSuffix != null ? nameSuffix.trim().toUpperCase(Locale.ENGLISH) : "");
@@ -246,10 +244,10 @@ public class Constants {
 	/**
 	 * 在给定常量组中查找给定的值。
 	 * <p>将返回第一个匹配项。
-	 * @param value constant value to look up
-	 * @param namePrefix prefix of the constant names to search (may be {@code null})
-	 * @return the name of the constant field
-	 * @throws ConstantException if the value wasn't found
+	 * @param value 要查找的常量值
+	 * @param namePrefix 要搜索的常量名前缀（可以为 {@code null}）
+	 * @return 常量字段的名称
+	 * @throws ConstantException 如果未找到该值
 	 */
 	public String toCode(Object value, @Nullable String namePrefix) throws ConstantException {
 		String prefixToUse = (namePrefix != null ? namePrefix.trim().toUpperCase(Locale.ENGLISH) : "");
@@ -263,10 +261,10 @@ public class Constants {
 
 	/**
 	 * 在给定 Bean 属性名对应的常量组中查找给定的值。将返回第一个匹配项。
-	 * @param value constant value to look up
-	 * @param propertyName the name of the bean property
-	 * @return the name of the constant field
-	 * @throws ConstantException if the value wasn't found
+	 * @param value 要查找的常量值
+	 * @param propertyName Bean 属性的名称
+	 * @return 常量字段的名称
+	 * @throws ConstantException 如果未找到该值
 	 * @see #propertyToConstantNamePrefix
 	 */
 	public String toCodeForProperty(Object value, String propertyName) throws ConstantException {
@@ -276,10 +274,10 @@ public class Constants {
 	/**
 	 * 在给定常量组中查找给定的值。
 	 * <p>将返回第一个匹配项。
-	 * @param value constant value to look up
-	 * @param nameSuffix suffix of the constant names to search (may be {@code null})
-	 * @return the name of the constant field
-	 * @throws ConstantException if the value wasn't found
+	 * @param value 要查找的常量值
+	 * @param nameSuffix 要搜索的常量名后缀（可以为 {@code null}）
+	 * @return 常量字段的名称
+	 * @throws ConstantException 如果未找到该值
 	 */
 	public String toCodeForSuffix(Object value, @Nullable String nameSuffix) throws ConstantException {
 		String suffixToUse = (nameSuffix != null ? nameSuffix.trim().toUpperCase(Locale.ENGLISH) : "");
@@ -299,8 +297,8 @@ public class Constants {
 	 * 示例："imagesize" &rarr; "IMAGESIZE".<br>
 	 * 示例："ImageSize" &rarr; "_IMAGE_SIZE".<br>
 	 * 示例："IMAGESIZE" &rarr; "_I_M_A_G_E_S_I_Z_E"
-	 * @param propertyName the name of the bean property
-	 * @return the corresponding constant name prefix
+	 * @param propertyName Bean 属性的名称
+	 * @return 对应的常量名前缀
 	 * @see #getValuesForProperty
 	 * @see #toCodeForProperty
 	 */
@@ -328,9 +326,9 @@ public class Constants {
 
 		/**
 		 * 当请求无效的常量名时抛出。
-		 * @param className name of the class containing the constant definitions
-		 * @param field invalid constant name
-		 * @param message description of the problem
+		 * @param className 包含常量定义的类的名称
+		 * @param field 无效的常量名
+		 * @param message 问题的描述
 		 */
 		public ConstantException(String className, String field, String message) {
 			super("Field '" + field + "' " + message + " in class [" + className + "]");
@@ -338,9 +336,9 @@ public class Constants {
 
 		/**
 		 * 当查找无效的常量值时抛出。
-		 * @param className name of the class containing the constant definitions
-		 * @param namePrefix prefix of the searched constant names
-		 * @param value the looked up constant value
+		 * @param className 包含常量定义的类的名称
+		 * @param namePrefix 所搜索常量名的前缀
+		 * @param value 所查找的常量值
 		 */
 		public ConstantException(String className, String namePrefix, Object value) {
 			super("No '" + namePrefix + "' field with value '" + value + "' found in class [" + className + "]");

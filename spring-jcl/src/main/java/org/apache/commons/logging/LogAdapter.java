@@ -81,7 +81,7 @@ final class LogAdapter {
 
 	/**
 	 * 为选定的 API 创建实际的 {@link Log} 实例。
-	 * @param name the logger name
+	 * @param name 日志记录器名称
 	 */
 	public static Log createLog(String name) {
 		switch (logApi) {

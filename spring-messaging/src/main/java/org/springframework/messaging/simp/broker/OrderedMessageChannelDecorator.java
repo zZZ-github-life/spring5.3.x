@@ -140,9 +140,9 @@ public class OrderedMessageChannelDecorator implements MessageChannel {
 	/**
 	 * 安装或移除 {@link ExecutorChannelInterceptor}，该拦截器会调用完成的任务
 	 * （如果在消息头中找到）。
-	 * @param channel the channel to configure
-	 * @param preserveOrder whether preserve the order or publication; when
-	 * "true" an interceptor is inserted, when "false" it removed.
+	 * @param channel 要配置的通道
+	 * @param preserveOrder 是否保持发布顺序；
+	 * "true" 时插入拦截器，"false" 时移除拦截器。
 	 */
 	public static void configureInterceptor(MessageChannel channel, boolean preserveOrder) {
 		if (preserveOrder) {

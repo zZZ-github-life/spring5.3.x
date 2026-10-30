@@ -157,7 +157,7 @@ public class ContentResultMatchers {
 	 * 即无论顺序如何，它们包含相同的元素和属性。
 	 * <p>使用此匹配器需要 <a
 	 * href="https://www.xmlunit.org/">XMLUnit</a> 库。
-	 * @param xmlContent the expected XML content
+	 * @param xmlContent 期望的 XML 内容
 	 * @see MockMvcResultMatchers#xpath(String, Object...)
 	 * @see MockMvcResultMatchers#xpath(String, Map, Object...)
 	 */
@@ -193,7 +193,7 @@ public class ContentResultMatchers {
 	 * 将预期字符串和实际字符串解析为 JSON，并断言两者“相似”——
 	 * 即无论格式如何，它们包含相同的属性-值对，且使用宽松检查
 	 * （可扩展，数组顺序不严格）。
-	 * @param jsonContent the expected JSON content
+	 * @param jsonContent 期望的 JSON 内容
 	 * @since 4.1
 	 */
 	public ResultMatcher json(String jsonContent) {
@@ -210,8 +210,8 @@ public class ContentResultMatchers {
 	 * </ul>
 	 * <p>使用此匹配器需要 <a
 	 * href="https://jsonassert.skyscreamer.org/">JSONassert</a> 库。
-	 * @param jsonContent the expected JSON content
-	 * @param strict enables strict checking
+	 * @param jsonContent 期望的 JSON 内容
+	 * @param strict 启用严格检查
 	 * @since 4.2
 	 */
 	public ResultMatcher json(String jsonContent, boolean strict) {

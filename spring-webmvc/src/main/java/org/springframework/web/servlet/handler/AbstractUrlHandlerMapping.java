@@ -134,8 +134,8 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 
 	/**
 	 * 查找给定请求的 URL 路径对应的处理器。
-	 * @param request current HTTP request
-	 * @return the handler instance, or {@code null} if none found
+	 * @param request 当前 HTTP 请求
+	 * @return 处理器实例，若未找到则为 {@code null}
 	 */
 	@Override
 	@Nullable
@@ -175,10 +175,10 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	/**
 	 * 查找给定 URL 路径对应的处理器实例。当解析后的
 	 * {@code PathPattern} {@link #usesPathPatterns() 启用}时使用此方法。
-	 * @param path the parsed RequestPath
-	 * @param lookupPath the String lookupPath for checking direct hits
-	 * @param request current HTTP request
-	 * @return a matching handler, or {@code null} if not found
+	 * @param path 解析后的 RequestPath
+	 * @param lookupPath 用于检查直接命中的 String 类型 lookupPath
+	 * @param request 当前 HTTP 请求
+	 * @return 匹配的处理器，若未找到则为 {@code null}
 	 * @since 5.3
 	 */
 	@Nullable
@@ -222,9 +222,9 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	/**
 	 * 查找给定 URL 路径对应的处理器实例。当使用
 	 * {@code PathMatcher} 进行字符串模式匹配时使用此方法。
-	 * @param lookupPath the path to match patterns against
-	 * @param request current HTTP request
-	 * @return a matching handler, or {@code null} if not found
+	 * @param lookupPath 用于匹配模式的路径
+	 * @param request 当前 HTTP 请求
+	 * @return 匹配的处理器，若未找到则为 {@code null}
 	 * @see #exposePathWithinMapping
 	 * @see AntPathMatcher
 	 */
@@ -315,9 +315,9 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	 * 针对当前请求验证给定处理器。
 	 * <p>默认实现为空。可以在子类中重写，
 	 * 例如强制执行 URL 映射中表达的特定前提条件。
-	 * @param handler the handler object to validate
-	 * @param request current HTTP request
-	 * @throws Exception if validation failed
+	 * @param handler 要校验的处理器对象
+	 * @param request 当前 HTTP 请求
+	 * @throws Exception 校验失败时
 	 */
 	protected void validateHandler(Object handler, HttpServletRequest request) throws Exception {
 	}
@@ -329,10 +329,10 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	 * <p>默认实现使用一个特殊的拦截器构建 {@link HandlerExecutionChain}，
 	 * 该拦截器负责暴露路径属性和 URI
 	 * 模板变量
-	 * @param rawHandler the raw handler to expose
-	 * @param pathWithinMapping the path to expose before executing the handler
-	 * @param uriTemplateVariables the URI template variables, can be {@code null} if no variables found
-	 * @return the final handler object
+	 * @param rawHandler 要暴露的原始处理器
+	 * @param pathWithinMapping 执行处理器之前要暴露的路径
+	 * @param uriTemplateVariables URI 模板变量，若未找到变量则可为 {@code null}
+	 * @return 最终的处理器对象
 	 */
 	protected Object buildPathExposingHandler(Object rawHandler, String bestMatchingPattern,
 			String pathWithinMapping, @Nullable Map<String, String> uriTemplateVariables) {
@@ -347,8 +347,8 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 
 	/**
 	 * 将当前映射内的路径作为请求属性暴露。
-	 * @param pathWithinMapping the path within the current mapping
-	 * @param request the request to expose the path to
+	 * @param pathWithinMapping 当前映射内的路径
+	 * @param request 要向其暴露路径的请求
 	 * @see #PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE
 	 */
 	protected void exposePathWithinMapping(String bestMatchingPattern, String pathWithinMapping,
@@ -360,8 +360,8 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 
 	/**
 	 * 将 URI 模板变量作为请求属性暴露。
-	 * @param uriTemplateVariables the URI template variables
-	 * @param request the request to expose the path to
+	 * @param uriTemplateVariables URI 模板变量
+	 * @param request 要向其暴露路径的请求
 	 * @see #PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE
 	 */
 	protected void exposeUriTemplateVariables(Map<String, String> uriTemplateVariables, HttpServletRequest request) {
@@ -386,10 +386,10 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 
 	/**
 	 * 为给定 URL 路径注册指定处理器。
-	 * @param urlPaths the URLs that the bean should be mapped to
-	 * @param beanName the name of the handler bean
-	 * @throws BeansException if the handler couldn't be registered
-	 * @throws IllegalStateException if there is a conflicting handler registered
+	 * @param urlPaths 该 Bean 应映射到的 URL
+	 * @param beanName 处理器 Bean 的名称
+	 * @throws BeansException 无法注册处理器时
+	 * @throws IllegalStateException 已注册冲突的处理器时
 	 */
 	protected void registerHandler(String[] urlPaths, String beanName) throws BeansException, IllegalStateException {
 		Assert.notNull(urlPaths, "URL path array must not be null");
@@ -400,11 +400,11 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 
 	/**
 	 * 为给定 URL 路径注册指定处理器。
-	 * @param urlPath the URL the bean should be mapped to
-	 * @param handler the handler instance or handler bean name String
-	 * (a bean name will automatically be resolved into the corresponding handler bean)
-	 * @throws BeansException if the handler couldn't be registered
-	 * @throws IllegalStateException if there is a conflicting handler registered
+	 * @param urlPath 该 Bean 应映射到的 URL
+	 * @param handler 处理器实例或处理器 Bean 名称字符串
+	 * （Bean 名称将自动解析为对应的处理器 Bean）
+	 * @throws BeansException 无法注册处理器时
+	 * @throws IllegalStateException 已注册冲突的处理器时
 	 */
 	protected void registerHandler(String urlPath, Object handler) throws BeansException, IllegalStateException {
 		Assert.notNull(urlPath, "URL path must not be null");

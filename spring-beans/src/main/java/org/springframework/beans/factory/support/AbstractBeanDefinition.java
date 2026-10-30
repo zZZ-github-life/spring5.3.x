@@ -214,7 +214,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * 以给定 Bean 定义的深拷贝创建一个新的 AbstractBeanDefinition。
-	 * @param original the original bean definition to copy from
+	 * @param original 要从中复制的原始 Bean 定义
 	 */
 	protected AbstractBeanDefinition(BeanDefinition original) {
 		setParentName(original.getParentName());
@@ -346,7 +346,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * 将提供的默认值应用到此 Bean。
-	 * @param defaults the default settings to apply
+	 * @param defaults 要应用的默认设置
 	 * @since 2.5
 	 */
 	public void applyDefaults(BeanDefinitionDefaults defaults) {
@@ -403,9 +403,9 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	 * {@link org.springframework.beans.factory.BeanFactory#getType}；该调用会考虑上述所有情况，并返回
 	 * 对同一 Bean 名称调用 {@link org.springframework.beans.factory.BeanFactory#getBean} 时将要返回的
 	 * 对象类型。
-	 * @return the resolved bean class (never {@code null})
-	 * @throws IllegalStateException if the bean definition does not define a bean class,
-	 * or a specified bean class name has not been resolved into an actual Class yet
+	 * @return 已解析的 Bean 类（永不为 {@code null}）
+	 * @throws IllegalStateException 如果 Bean 定义未定义 Bean 类，
+	 * 或指定的 Bean 类名尚未解析为实际的 Class
 	 * @see #getBeanClassName()
 	 * @see #hasBeanClass()
 	 * @see #setBeanClass(Class)
@@ -436,9 +436,9 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	/**
 	 * 确定所包装 Bean 的类，必要时根据指定的类名解析它。当调用时 Bean 类已解析，也会根据类名重新加载指
 	 * 定的 Class。
-	 * @param classLoader the ClassLoader to use for resolving a (potential) class name
-	 * @return the resolved bean class
-	 * @throws ClassNotFoundException if the class name could be resolved
+	 * @param classLoader 用于解析（可能的）类名的 ClassLoader
+	 * @return 已解析的 Bean 类
+	 * @throws ClassNotFoundException 如果无法解析该类名
 	 */
 	@Nullable
 	public Class<?> resolveBeanClass(@Nullable ClassLoader classLoader) throws ClassNotFoundException {
@@ -526,7 +526,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * 返回此 Bean 是否应延迟初始化，即不在启动时预先实例化。仅适用于单例 Bean。
-	 * @return whether to apply lazy-init semantics ({@code false} by default)
+	 * @return 是否应用延迟初始化语义（默认 {@code false}）
 	 */
 	@Override
 	public boolean isLazyInit() {
@@ -535,7 +535,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * 返回此 Bean 是否应延迟初始化，即不在启动时预先实例化。仅适用于单例 Bean。
-	 * @return the lazy-init flag if explicitly set, or {@code null} otherwise
+	 * @return 显式设置时的延迟初始化标志；否则为 {@code null}
 	 * @since 5.2
 	 */
 	@Nullable
@@ -546,8 +546,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	/**
 	 * 设置自动装配模式。这决定了是否会发生对 Bean 引用的自动检测和设置。默认是 AUTOWIRE_NO，这意味着不
 	 * 会进行基于名称或类型的约定式自动装配（不过，仍然可能存在显式的注解驱动自动装配）。
-	 * @param autowireMode the autowire mode to set.
-	 * Must be one of the constants defined in this class.
+	 * @param autowireMode 要设置的自动装配模式。必须是本类中定义的常量之一。
 	 * @see #AUTOWIRE_NO
 	 * @see #AUTOWIRE_BY_NAME
 	 * @see #AUTOWIRE_BY_TYPE
@@ -592,8 +591,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * 设置依赖检查代码。
-	 * @param dependencyCheck the code to set.
-	 * Must be one of the four constants defined in this class.
+	 * @param dependencyCheck 要设置的代码。必须是本类中定义的四个常量之一。
 	 * @see #DEPENDENCY_CHECK_NONE
 	 * @see #DEPENDENCY_CHECK_OBJECTS
 	 * @see #DEPENDENCY_CHECK_SIMPLE
@@ -691,7 +689,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * 返回所有已注册的限定符。
-	 * @return the Set of {@link AutowireCandidateQualifier} objects.
+	 * @return {@link AutowireCandidateQualifier} 对象的 Set。
 	 */
 	public Set<AutowireCandidateQualifier> getQualifiers() {
 		return new LinkedHashSet<>(this.qualifiers.values());
@@ -699,7 +697,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * 将所提供的 AbstractBeanDefinition 中的限定符复制到此 Bean 定义。
-	 * @param source the AbstractBeanDefinition to copy from
+	 * @param source 要从中复制的 AbstractBeanDefinition
 	 */
 	public void copyQualifiersFrom(AbstractBeanDefinition source) {
 		Assert.notNull(source, "Source must not be null");
@@ -1045,7 +1043,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * 校验此 Bean 定义。
-	 * @throws BeanDefinitionValidationException in case of validation failure
+	 * @throws BeanDefinitionValidationException 校验失败时
 	 */
 	public void validate() throws BeanDefinitionValidationException {
 		/*如果有方法重写（需要代理），又是工厂方法（无法代理） 那就抛出异常*/
@@ -1061,7 +1059,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * 校验并准备为此 Bean 定义的方法覆盖。检查是否存在具有指定名称的方法。
-	 * @throws BeanDefinitionValidationException in case of validation failure
+	 * @throws BeanDefinitionValidationException 校验失败时
 	 */
 	public void prepareMethodOverrides() throws BeanDefinitionValidationException {
 		// Check that lookup methods exist and determine their overloaded status.
@@ -1077,8 +1075,8 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * 校验并准备给定的方法覆盖。检查是否存在具有指定名称的方法，如果未找到，则将其标记为未重载。
-	 * @param mo the MethodOverride object to validate
-	 * @throws BeanDefinitionValidationException in case of validation failure
+	 * @param mo 要校验的 MethodOverride 对象
+	 * @throws BeanDefinitionValidationException 校验失败时
 	 */
 	protected void prepareMethodOverride(MethodOverride mo) throws BeanDefinitionValidationException {
 		int count = ClassUtils.getMethodCountForName(getBeanClass(), mo.getMethodName());
@@ -1105,7 +1103,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * 克隆此 Bean 定义。由具体子类实现。
-	 * @return the cloned bean definition object
+	 * @return 克隆得到的 Bean 定义对象
 	 */
 	public abstract AbstractBeanDefinition cloneBeanDefinition();
 

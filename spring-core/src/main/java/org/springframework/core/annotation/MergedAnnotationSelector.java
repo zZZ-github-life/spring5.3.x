@@ -23,7 +23,7 @@ import java.lang.annotation.Annotation;
  *
  * @author Phillip Webb
  * @since 5.2
- * @param <A> the annotation type
+ * @param <A> 注解类型
  * @see MergedAnnotationSelectors
  */
 @FunctionalInterface
@@ -31,8 +31,8 @@ public interface MergedAnnotationSelector<A extends Annotation> {
 
 	/**
 	 * 判断现有注解是否已知为最佳候选，从而可以跳过任何后续选择。
-	 * @param annotation the annotation to check
-	 * @return {@code true} if the annotation is known to be the best candidate
+	 * @param annotation 要检查的注解
+	 * @return 如果已知该注解是最佳候选，则返回 {@code true}
 	 */
 	default boolean isBestCandidate(MergedAnnotation<A> annotation) {
 		return false;
@@ -40,10 +40,9 @@ public interface MergedAnnotationSelector<A extends Annotation> {
 
 	/**
 	 * 选择应使用的注解。
-	 * @param existing an existing annotation returned from an earlier result
-	 * @param candidate a candidate annotation that may be better suited
-	 * @return the most appropriate annotation from the {@code existing} or
-	 * {@code candidate}
+	 * @param existing 先前结果返回的现有注解
+	 * @param candidate 可能更合适的候选注解
+	 * @return 从 {@code existing} 或 {@code candidate} 中最合适的注解
 	 */
 	MergedAnnotation<A> select(MergedAnnotation<A> existing, MergedAnnotation<A> candidate);
 

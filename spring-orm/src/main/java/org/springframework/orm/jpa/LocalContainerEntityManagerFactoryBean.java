@@ -121,9 +121,9 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * 这是一个 Spring 资源位置。
 	 * <p>默认值为 "classpath:META-INF/persistence.xml"。
 	 * <p><b>注意：仅在未指定外部 PersistenceUnitManager 时生效。</b>
-	 * @param persistenceXmlLocation a Spring resource String
-	 * identifying the location of the {@code persistence.xml} file
-	 * that this LocalContainerEntityManagerFactoryBean should parse
+	 * @param persistenceXmlLocation 一个 Spring 资源字符串，
+	 * 标识该 LocalContainerEntityManagerFactoryBean
+	 * 应解析的 {@code persistence.xml} 文件位置
 	 * @see #setPersistenceUnitManager
 	 */
 	public void setPersistenceXmlLocation(String persistenceXmlLocation) {
@@ -175,8 +175,8 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * 我们假定它仅用于在那里定义的持久化单元，如同标准 JPA 那样），
 	 * 则将其注册为默认单元的映射资源。
 	 * <p><b>注意：仅在未指定外部 PersistenceUnitManager 时生效。</b>
-	 * @param packagesToScan one or more base packages to search, analogous to
-	 * Spring's component-scan configuration for regular Spring components
+	 * @param packagesToScan 要搜索的一个或多个基础包，类似于 Spring 常规组件的
+	 * component-scan 配置
 	 * @see #setPersistenceUnitManager
 	 * @see DefaultPersistenceUnitManager#setPackagesToScan
 	 */
@@ -363,8 +363,8 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * <p>默认实现从 {@code persistence.xml} 中读取所有持久化单元信息，
 	 * 如 JPA 规范所定义。如果未指定实体管理器名称，
 	 * 则取读取器返回的数组中的第一个信息。否则，检查是否有匹配的名称。
-	 * @param persistenceUnitManager the PersistenceUnitManager to obtain from
-	 * @return the chosen PersistenceUnitInfo
+	 * @param persistenceUnitManager 要从中获取的 PersistenceUnitManager
+	 * @return 选定的 PersistenceUnitInfo
 	 */
 	protected PersistenceUnitInfo determinePersistenceUnitInfo(PersistenceUnitManager persistenceUnitManager) {
 		if (getPersistenceUnitName() != null) {
@@ -379,8 +379,8 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * 钩子方法，允许子类在通过 PersistenceProvider 创建 EntityManagerFactory
 	 * 之后对其进行定制。
 	 * <p>默认实现为空。
-	 * @param emf the newly created EntityManagerFactory we are working with
-	 * @param pui the PersistenceUnitInfo used to configure the EntityManagerFactory
+	 * @param emf 我们正在使用的、新建的 EntityManagerFactory
+	 * @param pui 用于配置该 EntityManagerFactory 的 PersistenceUnitInfo
 	 * @see javax.persistence.spi.PersistenceProvider#createContainerEntityManagerFactory
 	 */
 	protected void postProcessEntityManagerFactory(EntityManagerFactory emf, PersistenceUnitInfo pui) {

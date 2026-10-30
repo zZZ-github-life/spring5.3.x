@@ -63,7 +63,7 @@ import org.springframework.util.StreamUtils;
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @since 3.0
- * @param <T> the converted object type
+ * @param <T> 转换后的对象类型
  */
 public class SourceHttpMessageConverter<T extends Source> extends AbstractHttpMessageConverter<T> {
 

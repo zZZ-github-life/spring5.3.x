@@ -80,9 +80,9 @@ public abstract class AbstractXlsView extends AbstractView {
 	 * <p>默认实现创建一个传统的 {@link HSSFWorkbook}。
 	 * Spring 提供的子类针对基于 OOXML 的变体重写了此方法；
 	 * 自定义子类可以重写此方法以从文件读取工作簿。
-	 * @param model the model Map
-	 * @param request current HTTP request (for taking the URL or headers into account)
-	 * @return the new {@link Workbook} instance
+	 * @param model 模型 Map
+	 * @param request 当前 HTTP 请求（用于考虑 URL 或请求头）
+	 * @return 新的 {@link Workbook} 实例
 	 */
 	protected Workbook createWorkbook(Map<String, Object> model, HttpServletRequest request) {
 		return new HSSFWorkbook();
@@ -90,9 +90,9 @@ public abstract class AbstractXlsView extends AbstractView {
 
 	/**
 	 * 实际的渲染步骤：获取 POI {@link Workbook} 并将其渲染到给定的 response。
-	 * @param workbook the POI Workbook to render
-	 * @param response current HTTP response
-	 * @throws IOException when thrown by I/O methods that we're delegating to
+	 * @param workbook 要渲染的 POI Workbook
+	 * @param response 当前 HTTP 响应
+	 * @throws IOException 当委托的 I/O 方法抛出时
 	 */
 	protected void renderWorkbook(Workbook workbook, HttpServletResponse response) throws IOException {
 		ServletOutputStream out = response.getOutputStream();
@@ -103,10 +103,10 @@ public abstract class AbstractXlsView extends AbstractView {
 	/**
 	 * 由应用提供的子类必须实现此方法，以便根据 model
 	 * 填充 Excel 工作簿文档。
-	 * @param model the model Map
-	 * @param workbook the Excel workbook to populate
-	 * @param request in case we need locale etc. Shouldn't look at attributes.
-	 * @param response in case we need to set cookies. Shouldn't write to it.
+	 * @param model 模型 Map
+	 * @param workbook 要填充的 Excel 工作簿
+	 * @param request 在需要 Locale 等情况下使用。不应查看属性。
+	 * @param response 在需要设置 Cookie 的情况下使用。不应向其写入。
 	 */
 	protected abstract void buildExcelDocument(
 			Map<String, Object> model, Workbook workbook, HttpServletRequest request, HttpServletResponse response)

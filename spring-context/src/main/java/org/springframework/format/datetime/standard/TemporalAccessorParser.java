@@ -62,9 +62,9 @@ public final class TemporalAccessorParser implements Parser<TemporalAccessor> {
 
 	/**
 	 * 为给定的 TemporalAccessor 类型创建一个新的 TemporalAccessorParser。
-	 * @param temporalAccessorType the specific TemporalAccessor class
-	 * (LocalDate, LocalTime, LocalDateTime, ZonedDateTime, OffsetDateTime, OffsetTime)
-	 * @param formatter the base DateTimeFormatter instance
+	 * @param temporalAccessorType 具体的 TemporalAccessor 类
+	 * （LocalDate、LocalTime、LocalDateTime、ZonedDateTime、OffsetDateTime、OffsetTime）
+	 * @param formatter 基础 DateTimeFormatter 实例
 	 */
 	public TemporalAccessorParser(Class<? extends TemporalAccessor> temporalAccessorType, DateTimeFormatter formatter) {
 		this(temporalAccessorType, formatter, null, null);

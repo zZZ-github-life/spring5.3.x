@@ -44,13 +44,13 @@ public interface DestinationResolver {
 
 	/**
 	 * 解析给定的目的地名称，可以作为已定位的资源，也可以作为动态目的地。
-	 * @param session the current JMS Session
-	 * (may be {@code null} if the resolver implementation is able to work without it)
-	 * @param destinationName the name of the destination
-	 * @param pubSubDomain {@code true} if the domain is pub-sub, {@code false} if P2P
-	 * @return the JMS destination (either a topic or a queue)
-	 * @throws javax.jms.JMSException if the JMS Session failed to resolve the destination
-	 * @throws DestinationResolutionException in case of general destination resolution failure
+	 * @param session 当前的 JMS Session
+	 * （如果解析器实现无需它即可工作，则可能为 {@code null}）
+	 * @param destinationName 目标的名称
+	 * @param pubSubDomain 如果域为发布-订阅，则为 {@code true}；如果为点对点（P2P），则为 {@code false}
+	 * @return JMS 目标（主题或队列）
+	 * @throws javax.jms.JMSException 如果 JMS Session 无法解析目标
+	 * @throws DestinationResolutionException 发生一般性目标解析失败时
 	 */
 	Destination resolveDestinationName(@Nullable Session session, String destinationName, boolean pubSubDomain)
 			throws JMSException;

@@ -30,7 +30,7 @@ public class UnknownAdviceTypeException extends IllegalArgumentException {
 	/**
 	 * 为给定 advice 对象创建一个新的 UnknownAdviceTypeException。将创建一条消息文本，说明该对象既不是
 	 * Advice 的子接口，也不是 Advisor。
-	 * @param advice the advice object of unknown type
+	 * @param advice 类型未知的通知对象
 	 */
 	public UnknownAdviceTypeException(Object advice) {
 		super("Advice object [" + advice + "] is neither a supported subinterface of " +
@@ -39,7 +39,7 @@ public class UnknownAdviceTypeException extends IllegalArgumentException {
 
 	/**
 	 * 使用给定消息创建一个新的 UnknownAdviceTypeException。
-	 * @param message the message text
+	 * @param message 消息文本
 	 */
 	public UnknownAdviceTypeException(String message) {
 		super(message);

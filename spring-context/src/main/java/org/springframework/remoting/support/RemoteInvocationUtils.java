@@ -33,7 +33,7 @@ public abstract class RemoteInvocationUtils {
 	 * 将当前客户端的堆栈跟踪填充到给定异常中。
 	 * <p>给定异常通常是在服务器端抛出并按原样序列化的，客户端希望它也包含客户端部分的堆栈跟踪。这里我
 	 * 们能做的是：在运行于 JDK 1.4+ 时，用当前客户端的堆栈跟踪更新 {@code StackTraceElement} 数组。
-	 * @param ex the exception to update
+	 * @param ex 要更新的异常
 	 * @see Throwable#getStackTrace()
 	 * @see Throwable#setStackTrace(StackTraceElement[])
 	 */

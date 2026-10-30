@@ -30,8 +30,8 @@ public class SockJsTransportFailureException extends SockJsException {
 
 	/**
 	 * SockJsTransportFailureException 的构造函数。
-	 * @param message the exception message
-	 * @param cause the root cause
+	 * @param message 异常消息
+	 * @param cause 根本原因
 	 * @since 4.1.7
 	 */
 	public SockJsTransportFailureException(String message, @Nullable Throwable cause) {
@@ -40,9 +40,9 @@ public class SockJsTransportFailureException extends SockJsException {
 
 	/**
 	 * SockJsTransportFailureException 的构造函数。
-	 * @param message the exception message
-	 * @param sessionId the SockJS session id
-	 * @param cause the root cause
+	 * @param message 异常消息
+	 * @param sessionId SockJS 会话 ID
+	 * @param cause 根本原因
 	 */
 	public SockJsTransportFailureException(String message, String sessionId, @Nullable Throwable cause) {
 		super(message, sessionId, cause);

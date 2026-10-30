@@ -27,13 +27,13 @@ public interface AdvisedSupportListener {
 
 	/**
 	 * 在创建第一个代理时调用。
-	 * @param advised the AdvisedSupport object
+	 * @param advised AdvisedSupport 对象
 	 */
 	void activated(AdvisedSupport advised);
 
 	/**
 	 * 在创建代理之后通知发生变更时调用。
-	 * @param advised the AdvisedSupport object
+	 * @param advised AdvisedSupport 对象
 	 */
 	void adviceChanged(AdvisedSupport advised);
 

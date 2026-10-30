@@ -35,9 +35,9 @@ final class EmbeddedDatabaseConfigurerFactory {
 
 	/**
 	 * 返回给定嵌入式数据库类型的配置器实例。
-	 * @param type the embedded database type (HSQL, H2 or Derby)
-	 * @return the configurer instance
-	 * @throws IllegalStateException if the driver for the specified database type is not available
+	 * @param type 内嵌数据库类型（HSQL、H2 或 Derby）
+	 * @return 配置器实例
+	 * @throws IllegalStateException 如果指定数据库类型的驱动不可用
 	 */
 	public static EmbeddedDatabaseConfigurer getConfigurer(EmbeddedDatabaseType type) throws IllegalStateException {
 		Assert.notNull(type, "EmbeddedDatabaseType is required");

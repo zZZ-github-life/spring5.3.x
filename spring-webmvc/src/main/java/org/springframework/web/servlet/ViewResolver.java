@@ -41,13 +41,13 @@ public interface ViewResolver {
 	 * ViewResolver 应返回 {@code null}。
 	 * 但这并非强制要求：某些 ViewResolver 总是会尝试构建具有给定名称的 View 对象，
 	 * 无法返回 {@code null}（而是在 View 创建失败时抛出异常）。
-	 * @param viewName name of the view to resolve
-	 * @param locale the Locale in which to resolve the view.
-	 * ViewResolvers that support internationalization should respect this.
-	 * @return the View object, or {@code null} if not found
-	 * (optional, to allow for ViewResolver chaining)
-	 * @throws Exception if the view cannot be resolved
-	 * (typically in case of problems creating an actual View object)
+	 * @param viewName 要解析的视图名称
+	 * @param locale 用于解析视图的 Locale。
+	 * 支持国际化的 ViewResolver 应遵循此设置。
+	 * @return View 对象；如果未找到则为 {@code null}
+	 * （可选，以便支持 ViewResolver 链式调用）
+	 * @throws Exception 如果视图无法解析
+	 * （通常是在创建实际 View 对象时出现问题）
 	 */
 	@Nullable
 	View resolveViewName(String viewName, Locale locale) throws Exception;

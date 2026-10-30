@@ -38,7 +38,7 @@ public class FilteringWebHandler extends WebHandlerDecorator {
 
 	/**
 	 * 构造函数。
-	 * @param filters the chain of filters
+	 * @param filters 过滤器链
 	 */
 	public FilteringWebHandler(WebHandler handler, List<WebFilter> filters) {
 		super(handler);

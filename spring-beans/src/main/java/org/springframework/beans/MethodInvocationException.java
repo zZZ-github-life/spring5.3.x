@@ -34,8 +34,8 @@ public class MethodInvocationException extends PropertyAccessException {
 
 	/**
 	 * 创建一个新的 MethodInvocationException。
-	 * @param propertyChangeEvent the PropertyChangeEvent that resulted in an exception
-	 * @param cause the Throwable raised by the invoked method
+	 * @param propertyChangeEvent 导致异常的 PropertyChangeEvent
+	 * @param cause 被调用方法抛出的 Throwable
 	 */
 	public MethodInvocationException(PropertyChangeEvent propertyChangeEvent, Throwable cause) {
 		super(propertyChangeEvent, "Property '" + propertyChangeEvent.getPropertyName() + "' threw exception", cause);

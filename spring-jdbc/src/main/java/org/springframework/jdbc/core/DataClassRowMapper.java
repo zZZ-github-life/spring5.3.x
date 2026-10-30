@@ -49,7 +49,7 @@ import org.springframework.util.Assert;
  * @author Juergen Hoeller
  * @author Sam Brannen
  * @since 5.3
- * @param <T> the result type
+ * @param <T> 结果类型
  */
 public class DataClassRowMapper<T> extends BeanPropertyRowMapper<T> {
 
@@ -73,7 +73,7 @@ public class DataClassRowMapper<T> extends BeanPropertyRowMapper<T> {
 
 	/**
 	 * 创建一个新的{@code DataClassRowMapper}。
-	 * @param mappedClass the class that each row should be mapped to
+	 * @param mappedClass 每行应映射到的类
 	 */
 	public DataClassRowMapper(Class<T> mappedClass) {
 		super(mappedClass);
@@ -131,7 +131,7 @@ public class DataClassRowMapper<T> extends BeanPropertyRowMapper<T> {
 
 	/**
 	 * 静态工厂方法，创建一个新的{@code DataClassRowMapper}。
-	 * @param mappedClass the class that each row should be mapped to
+	 * @param mappedClass 每行应映射到的类
 	 * @see #newInstance(Class, ConversionService)
 	 */
 	public static <T> DataClassRowMapper<T> newInstance(Class<T> mappedClass) {
@@ -140,9 +140,9 @@ public class DataClassRowMapper<T> extends BeanPropertyRowMapper<T> {
 
 	/**
 	 * 静态工厂方法，创建一个新的{@code DataClassRowMapper}。
-	 * @param mappedClass the class that each row should be mapped to
-	 * @param conversionService the {@link ConversionService} for binding
-	 * JDBC values to bean properties, or {@code null} for none
+	 * @param mappedClass 每行应映射到的类
+	 * @param conversionService 用于将 JDBC 值绑定到 Bean 属性的 {@link ConversionService}；
+	 * 如果没有则为 {@code null}
 	 * @see #newInstance(Class)
 	 * @see #setConversionService
 	 */

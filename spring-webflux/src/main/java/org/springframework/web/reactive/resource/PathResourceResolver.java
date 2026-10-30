@@ -52,7 +52,7 @@ public class PathResourceResolver extends AbstractResourceResolver {
 	 * 默认情况下，当找到 Resource 时，会比较所解析资源的路径，以确保它位于发现它的输入位置之下。但有时可能并非如此，例如当 {@link CssLinkResourceTransformer} 解析其包含链接的公共 URL 时，CSS 文件是位置，而所解析的资源是位于相邻或父目录中的 css 文件、图像、字体等。
 	 * <p>此属性允许配置完整的资源必须位于其下的位置列表，这样如果资源不在发现它的相对位置之下，也可以检查此列表。
 	 * <p>默认情况下，{@link ResourceWebHandler} 会将此属性初始化为与其位置列表匹配。
-	 * @param locations the list of allowed locations
+	 * @param locations 允许的位置列表
 	 */
 	public void setAllowedLocations(@Nullable Resource... locations) {
 		this.allowedLocations = locations;
@@ -92,9 +92,9 @@ public class PathResourceResolver extends AbstractResourceResolver {
 	/**
 	 * 在给定位置下查找资源。
 	 * <p>默认实现检查相对于该位置的给定路径是否存在可读的 {@code Resource}。
-	 * @param resourcePath the path to the resource
-	 * @param location the location to check
-	 * @return the resource, or empty {@link Mono} if none found
+	 * @param resourcePath 资源路径
+	 * @param location 要检查的位置
+	 * @return 资源；如果未找到则为空的 {@link Mono}
 	 */
 	protected Mono<Resource> getResource(String resourcePath, Resource location) {
 		try {
@@ -133,9 +133,9 @@ public class PathResourceResolver extends AbstractResourceResolver {
 
 	/**
 	 * 对已解析资源执行除检查资源是否存在且可读之外的其他检查。默认实现还会验证资源要么位于发现它的相对位置之下，要么位于{@link #setAllowedLocations 允许的位置}之一。
-	 * @param resource the resource to check
-	 * @param location the location relative to which the resource was found
-	 * @return "true" if resource is in a valid location, "false" otherwise.
+	 * @param resource 要检查的资源
+	 * @param location 找到该资源时所相对于的位置
+	 * @return 如果资源位于有效位置则返回 "true"，否则返回 "false"。
 	 */
 	protected boolean checkResource(Resource resource, Resource location) throws IOException {
 		if (isResourceUnderLocation(resource, location)) {

@@ -58,7 +58,7 @@ public class JCacheCacheManager extends AbstractTransactionSupportingCacheManage
 	/**
 	 * 为给定的底层 JCache {@link CacheManager javax.cache.CacheManager}
 	 * 创建一个新的 {@code JCacheCacheManager}。
-	 * @param cacheManager the backing JCache {@code javax.cache.CacheManager}
+	 * @param cacheManager 底层 JCache {@code javax.cache.CacheManager}
 	 */
 	public JCacheCacheManager(CacheManager cacheManager) {
 		this.cacheManager = cacheManager;

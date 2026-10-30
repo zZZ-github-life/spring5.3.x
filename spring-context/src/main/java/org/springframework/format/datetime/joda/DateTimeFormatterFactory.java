@@ -68,7 +68,7 @@ public class DateTimeFormatterFactory {
 
 	/**
 	 * 创建一个新的 {@code DateTimeFormatterFactory} 实例。
-	 * @param pattern the pattern to use to format date values
+	 * @param pattern 用于格式化日期值的模式
 	 */
 	public DateTimeFormatterFactory(String pattern) {
 		this.pattern = pattern;
@@ -77,7 +77,7 @@ public class DateTimeFormatterFactory {
 
 	/**
 	 * 设置用于格式化日期值的模式。
-	 * @param pattern the format pattern
+	 * @param pattern 格式模式
 	 */
 	public void setPattern(String pattern) {
 		this.pattern = pattern;
@@ -85,7 +85,7 @@ public class DateTimeFormatterFactory {
 
 	/**
 	 * 设置用于格式化日期值的 ISO 格式。
-	 * @param iso the ISO format
+	 * @param iso ISO 格式
 	 */
 	public void setIso(ISO iso) {
 		this.iso = iso;
@@ -101,7 +101,7 @@ public class DateTimeFormatterFactory {
 	 * <li>'F' = Full</li>
 	 * <li>'-' = Omitted</li>
 	 * </ul>
-	 * @param style two characters from the set {"S", "M", "L", "F", "-"}
+	 * @param style 取自 {"S", "M", "L", "F", "-"} 集合的两个字符
 	 */
 	public void setStyle(String style) {
 		this.style = style;
@@ -109,7 +109,7 @@ public class DateTimeFormatterFactory {
 
 	/**
 	 * 设置用于将日期值规范化到的 {@code TimeZone}（如果有）。
-	 * @param timeZone the time zone
+	 * @param timeZone 时区
 	 */
 	public void setTimeZone(TimeZone timeZone) {
 		this.timeZone = timeZone;
@@ -119,7 +119,7 @@ public class DateTimeFormatterFactory {
 	/**
 	 * 使用此工厂创建一个新的 {@code DateTimeFormatter}。<p>如果未定义特定的模式或样式，将使用
 	 * {@link DateTimeFormat#mediumDateTime() medium date time format}。
-	 * @return a new date time formatter
+	 * @return 新的日期时间格式化器
 	 * @see #createDateTimeFormatter(DateTimeFormatter)
 	 */
 	public DateTimeFormatter createDateTimeFormatter() {
@@ -129,9 +129,9 @@ public class DateTimeFormatterFactory {
 	/**
 	 * 使用此工厂创建一个新的 {@code DateTimeFormatter}。<p>如果未定义特定的模式或样式，将使用提供的
 	 * {@code fallbackFormatter}。
-	 * @param fallbackFormatter the fall-back formatter to use
-	 * when no specific factory properties have been set
-	 * @return a new date time formatter
+	 * @param fallbackFormatter 未设置任何具体的工厂属性时
+	 * 要使用的回退格式化器
+	 * @return 新的日期时间格式化器
 	 */
 	public DateTimeFormatter createDateTimeFormatter(DateTimeFormatter fallbackFormatter) {
 		DateTimeFormatter dateTimeFormatter = null;

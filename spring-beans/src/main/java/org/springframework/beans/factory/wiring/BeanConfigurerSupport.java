@@ -86,7 +86,7 @@ public class BeanConfigurerSupport implements BeanFactoryAware, InitializingBean
 	/**
 	 * 创建在未显式指定时使用的默认 BeanWiringInfoResolver。<p>默认实现会构建
 	 * {@link ClassNameBeanWiringInfoResolver}。
-	 * @return the default BeanWiringInfoResolver (never {@code null})
+	 * @return 默认的 BeanWiringInfoResolver（永不为 {@code null}）
 	 */
 	@Nullable
 	protected BeanWiringInfoResolver createDefaultBeanWiringInfoResolver() {
@@ -114,7 +114,7 @@ public class BeanConfigurerSupport implements BeanFactoryAware, InitializingBean
 	/**
 	 * 配置 Bean 实例。<p>子类可以覆盖此方法以提供自定义配置逻辑。通常由切面对切点匹配的所有 Bean 实例
 	 * 调用。
-	 * @param beanInstance the bean instance to configure (must <b>not</b> be {@code null})
+	 * @param beanInstance 要配置的 Bean 实例（<b>不能</b>为 {@code null}）
 	 */
 	public void configureBean(Object beanInstance) {
 		if (this.beanFactory == null) {

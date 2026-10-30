@@ -121,8 +121,8 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	 * 检查是否存在给定名称的已注册缓存。
 	 * 与 {@link #getCache(String)} 不同，此方法不会通过
 	 * {@link #getMissingCache(String)} 触发对缺失缓存的延迟创建。
-	 * @param name the cache identifier (must not be {@code null})
-	 * @return the associated Cache instance, or {@code null} if none found
+	 * @param name 缓存标识符（不能为 {@code null}）
+	 * @return 关联的 Cache 实例；如果未找到，则为 {@code null}
 	 * @since 4.1
 	 * @see #getCache(String)
 	 * @see #getMissingCache(String)
@@ -134,7 +134,7 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 
 	/**
 	 * 向此管理器动态注册一个额外的 Cache。
-	 * @param cache the Cache to register
+	 * @param cache 要注册的 Cache
 	 * @deprecated as of Spring 4.3, in favor of {@link #getMissingCache(String)}
 	 */
 	@Deprecated
@@ -152,7 +152,7 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	 * <p>这一操作始终会在完整的 {@link #cacheMap} 锁内被调用，
 	 * 其行为实际上类似于一个 {@code CopyOnWriteArraySet}，
 	 * 保留顺序但以不可修改的引用对外暴露。
-	 * @param name the name of the cache to be added
+	 * @param name 要添加的缓存名称
 	 */
 	private void updateCacheNames(String name) {
 		Set<String> cacheNames = new LinkedHashSet<>(this.cacheNames);
@@ -165,9 +165,9 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 
 	/**
 	 * 如有必要，装饰给定的 Cache 对象。
-	 * @param cache the Cache object to be added to this CacheManager
-	 * @return the decorated Cache object to be used instead,
-	 * or simply the passed-in Cache object by default
+	 * @param cache 要添加到此 CacheManager 的 Cache 对象
+	 * @return 改为使用的装饰后 Cache 对象；
+	 * 默认情况下就是传入的 Cache 对象本身
 	 */
 	protected Cache decorateCache(Cache cache) {
 		return cache;
@@ -180,9 +180,8 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	 * 如果按名称查找未得到任何结果，{@code AbstractCacheManager}
 	 * 子类就有机会在运行时注册这样的缓存。返回的缓存
 	 * 将被自动添加到该缓存管理器。
-	 * @param name the name of the cache to retrieve
-	 * @return the missing cache, or {@code null} if no such cache exists or could be
-	 * created on demand
+	 * @param name 要获取的缓存名称
+	 * @return 缺失的缓存；如果此类缓存不存在或无法按需创建，则为 {@code null}
 	 * @since 4.1
 	 * @see #getCache(String)
 	 */

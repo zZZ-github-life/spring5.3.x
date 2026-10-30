@@ -29,23 +29,22 @@ public interface OperatorOverloader {
 
 	/**
 	 * 如果运算符重载器支持两个操作数之间的指定运算因而应被调用来处理该运算，则返回 true。
-	 * @param operation the operation to be performed
-	 * @param leftOperand the left operand
-	 * @param rightOperand the right operand
-	 * @return true if the OperatorOverloader supports the specified operation
-	 * between the two operands
-	 * @throws EvaluationException if there is a problem performing the operation
+	 * @param operation 要执行的操作
+	 * @param leftOperand 左操作数
+	 * @param rightOperand 右操作数
+	 * @return 如果 OperatorOverloader 支持这两个操作数之间的指定操作则返回 true
+	 * @throws EvaluationException 如果执行操作时出现问题
 	 */
 	boolean overridesOperation(Operation operation, @Nullable Object leftOperand, @Nullable Object rightOperand)
 			throws EvaluationException;
 
 	/**
 	 * 对两个操作数执行指定的运算并返回结果。受支持的运算参见 {@link Operation}。
-	 * @param operation the operation to be performed
-	 * @param leftOperand the left operand
-	 * @param rightOperand the right operand
-	 * @return the result of performing the operation on the two operands
-	 * @throws EvaluationException if there is a problem performing the operation
+	 * @param operation 要执行的操作
+	 * @param leftOperand 左操作数
+	 * @param rightOperand 右操作数
+	 * @return 对两个操作数执行该操作的结果
+	 * @throws EvaluationException 如果执行操作时出现问题
 	 */
 	Object operate(Operation operation, @Nullable Object leftOperand, @Nullable Object rightOperand)
 			throws EvaluationException;

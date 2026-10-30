@@ -52,7 +52,8 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 
 	/**
 	 * 使用给定的 URL 模式创建新实例。
-	 * @param patterns 0 or more URL patterns; if 0 the condition will match to every request.
+	 * @param patterns 0 个或多个 URL 模式；如果为 0 个，
+	 * 则该条件将匹配所有请求。
 	 */
 	public PatternsRequestCondition(PathPattern... patterns) {
 		this(ObjectUtils.isEmpty(patterns) ? Collections.emptyList() : Arrays.asList(patterns));
@@ -138,10 +139,10 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 
 	/**
 	 * 检查是否有任何模式匹配给定请求，并返回一个保证包含匹配模式的实例，结果已排序。
-	 * @param exchange the current exchange
-	 * @return the same instance if the condition contains no patterns;
-	 * or a new condition with sorted matching patterns;
-	 * or {@code null} if no patterns match.
+	 * @param exchange 当前交换
+	 * @return 如果该条件不包含任何模式，则返回同一实例；
+	 * 否则返回包含已排序匹配模式的新条件；
+	 * 如果没有模式匹配，则返回 {@code null}。
 	 */
 	@Override
 	@Nullable

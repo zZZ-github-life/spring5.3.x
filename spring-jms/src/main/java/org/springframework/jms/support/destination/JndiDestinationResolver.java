@@ -129,10 +129,9 @@ public class JndiDestinationResolver extends JndiLocatorSupport implements Cachi
 
 	/**
 	 * 校验给定的 Destination 对象，检查其是否与预期的类型匹配。
-	 * @param destination the Destination object to validate
-	 * @param destinationName the name of the destination
-	 * @param pubSubDomain {@code true} if a Topic is expected,
-	 * {@code false} in case of a Queue
+	 * @param destination 要验证的 Destination 对象
+	 * @param destinationName 目标的名称
+	 * @param pubSubDomain 如果预期为 Topic，则为 {@code true}；如果为 Queue，则为 {@code false}
 	 */
 	protected void validateDestination(Destination destination, String destinationName, boolean pubSubDomain) {
 		Class<?> targetClass = Queue.class;

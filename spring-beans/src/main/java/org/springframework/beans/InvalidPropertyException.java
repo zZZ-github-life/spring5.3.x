@@ -34,9 +34,9 @@ public class InvalidPropertyException extends FatalBeanException {
 
 	/**
 	 * 创建一个新的 InvalidPropertyException。
-	 * @param beanClass the offending bean class
-	 * @param propertyName the offending property
-	 * @param msg the detail message
+	 * @param beanClass 出错的 Bean 类
+	 * @param propertyName 出错的属性
+	 * @param msg 详细消息
 	 */
 	public InvalidPropertyException(Class<?> beanClass, String propertyName, String msg) {
 		this(beanClass, propertyName, msg, null);
@@ -44,10 +44,10 @@ public class InvalidPropertyException extends FatalBeanException {
 
 	/**
 	 * 创建一个新的 InvalidPropertyException。
-	 * @param beanClass the offending bean class
-	 * @param propertyName the offending property
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param beanClass 出错的 Bean 类
+	 * @param propertyName 出错的属性
+	 * @param msg 详细消息
+	 * @param cause 根本原因
 	 */
 	public InvalidPropertyException(Class<?> beanClass, String propertyName, String msg, @Nullable Throwable cause) {
 		super("Invalid property '" + propertyName + "' of bean class [" + beanClass.getName() + "]: " + msg, cause);

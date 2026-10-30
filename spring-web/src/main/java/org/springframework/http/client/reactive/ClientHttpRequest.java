@@ -49,7 +49,7 @@ public interface ClientHttpRequest extends ReactiveHttpOutputMessage {
 
 	/**
 	 * 返回来自底层 HTTP 库的请求。
-	 * @param <T> the expected type of the request to cast to
+	 * @param <T> 请求要转换成的预期类型
 	 * @since 5.3
 	 */
 	<T> T getNativeRequest();

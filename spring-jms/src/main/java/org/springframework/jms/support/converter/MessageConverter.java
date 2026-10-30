@@ -39,20 +39,20 @@ public interface MessageConverter {
 	/**
 	 * 使用提供的会话将 Java 对象转换为 JMS Message，
 	 * 由该会话创建消息对象。
-	 * @param object the object to convert
-	 * @param session the Session to use for creating a JMS Message
-	 * @return the JMS Message
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
-	 * @throws MessageConversionException in case of conversion failure
+	 * @param object 要转换的对象
+	 * @param session 用于创建 JMS Message 的 Session
+	 * @return 该 JMS Message
+	 * @throws javax.jms.JMSException 如果由 JMS API 方法抛出
+	 * @throws MessageConversionException 转换失败时
 	 */
 	Message toMessage(Object object, Session session) throws JMSException, MessageConversionException;
 
 	/**
 	 * 将 JMS Message 转换为 Java 对象。
-	 * @param message the message to convert
-	 * @return the converted Java object
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
-	 * @throws MessageConversionException in case of conversion failure
+	 * @param message 要转换的消息
+	 * @return 转换后的 Java 对象
+	 * @throws javax.jms.JMSException 如果由 JMS API 方法抛出
+	 * @throws MessageConversionException 转换失败时
 	 */
 	Object fromMessage(Message message) throws JMSException, MessageConversionException;
 

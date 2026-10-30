@@ -63,7 +63,7 @@ public abstract class SpringBeanAutowiringSupport {
 	/**
 	 * 基于当前 Web 应用上下文，为给定目标对象处理 {@code @Autowired} 注入。
 	 * <p>用于作为委托。
-	 * @param target the target object to process
+	 * @param target 要处理的目标对象
 	 * @see org.springframework.web.context.ContextLoader#getCurrentWebApplicationContext()
 	 */
 	public static void processInjectionBasedOnCurrentContext(Object target) {
@@ -89,8 +89,8 @@ public abstract class SpringBeanAutowiringSupport {
 	 * 基于存储在 ServletContext 中的当前根 Web 应用上下文，为给定目标对象处理 {@code @Autowired} 注
 	 * 入。
 	 * <p>用于作为委托。
-	 * @param target the target object to process
-	 * @param servletContext the ServletContext to find the Spring web application context in
+	 * @param target 要处理的目标对象
+	 * @param servletContext 要在其中查找 Spring Web 应用上下文的 ServletContext
 	 * @see WebApplicationContextUtils#getWebApplicationContext(javax.servlet.ServletContext)
 	 */
 	public static void processInjectionBasedOnServletContext(Object target, ServletContext servletContext) {

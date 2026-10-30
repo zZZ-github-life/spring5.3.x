@@ -31,13 +31,11 @@ public interface MethodBeforeAdvice extends BeforeAdvice {
 
 	/**
 	 * 在给定方法被调用之前的回调。
-	 * @param method the method being invoked
-	 * @param args the arguments to the method
-	 * @param target the target of the method invocation. May be {@code null}.
-	 * @throws Throwable if this object wishes to abort the call.
-	 * Any exception thrown will be returned to the caller if it's
-	 * allowed by the method signature. Otherwise the exception
-	 * will be wrapped as a runtime exception.
+	 * @param method 被调用的方法
+	 * @param args 方法的参数
+	 * @param target 方法调用的目标。可能为 {@code null}。
+	 * @throws Throwable 如果该对象希望中止调用。任何抛出的异常都会在方法签名允许时
+	 * 返回给调用方。否则该异常将被包装为运行时异常。
 	 */
 	void before(Method method, Object[] args, @Nullable Object target) throws Throwable;
 

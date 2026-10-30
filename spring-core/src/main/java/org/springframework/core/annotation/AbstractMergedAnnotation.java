@@ -31,7 +31,7 @@ import org.springframework.util.Assert;
  * @author Phillip Webb
  * @author Juergen Hoeller
  * @since 5.2
- * @param <A> the annotation type
+ * @param <A> 注解类型
  */
 abstract class AbstractMergedAnnotation<A extends Annotation> implements MergedAnnotation<A> {
 
@@ -224,13 +224,11 @@ abstract class AbstractMergedAnnotation<A extends Annotation> implements MergedA
 
 	/**
 	 * 获取底层属性值。
-	 * @param attributeName the attribute name
-	 * @param type the type to return (see {@link MergedAnnotation} class
-	 * documentation for details)
-	 * @return the attribute value or {@code null} if the value is not found and
-	 * is not required
-	 * @throws IllegalArgumentException if the source type is not compatible
-	 * @throws NoSuchElementException if the value is required but not found
+	 * @param attributeName 属性名称
+	 * @param type 要返回的类型（详情请参见 {@link MergedAnnotation} 类的文档）
+	 * @return 属性值，如果未找到该值且不是必需的，则为 {@code null}
+	 * @throws IllegalArgumentException 如果源类型不兼容
+	 * @throws NoSuchElementException 如果该值是必需的但未找到
 	 */
 	@Nullable
 	protected abstract <T> T getAttributeValue(String attributeName, Class<T> type);

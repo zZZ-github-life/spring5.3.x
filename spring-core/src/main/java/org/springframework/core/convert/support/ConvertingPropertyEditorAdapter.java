@@ -42,8 +42,8 @@ public class ConvertingPropertyEditorAdapter extends PropertyEditorSupport {
 	/**
 	 * 为给定的 {@link org.springframework.core.convert.ConversionService}
 	 * 和给定的目标类型创建一个新的 ConvertingPropertyEditorAdapter。
-	 * @param conversionService the ConversionService to delegate to
-	 * @param targetDescriptor the target type to convert to
+	 * @param conversionService 要委托给的 ConversionService
+	 * @param targetDescriptor 要转换到的目标类型
 	 */
 	public ConvertingPropertyEditorAdapter(ConversionService conversionService, TypeDescriptor targetDescriptor) {
 		Assert.notNull(conversionService, "ConversionService must not be null");

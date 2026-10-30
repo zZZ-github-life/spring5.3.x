@@ -290,7 +290,7 @@ public class SelectTag extends AbstractHtmlInputElementTag {
 
 	/**
 	 * 设置用于生成内部 '{@code option}' 标签的 {@link Collection}、{@link Map} 或对象数组。<p>当希望从数组、{@link Collection} 或 {@link Map} 渲染 '{@code option}' 标签时为必需。<p>通常为运行时表达式。
-	 * @param items the items that comprise the options of this selection
+	 * @param items 组成该选择框选项的项
 	 */
 	public void setItems(@Nullable Object items) {
 		this.items = (items != null ? items : EMPTY);

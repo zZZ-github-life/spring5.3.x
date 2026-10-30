@@ -103,9 +103,9 @@ public class MethodExclusionMBeanInfoAssembler extends AbstractConfigurableMBean
 
 	/**
 	 * 确定给定方法是否应被包含，即未被配置为忽略。
-	 * @param method the operation method
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
+	 * @param method 操作方法
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
 	 */
 	protected boolean isNotIgnored(Method method, String beanKey) {
 		if (this.ignoredMethodMappings != null) {

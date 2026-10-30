@@ -80,9 +80,9 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 
 	/**
 	 * 创建一个新的 {@link AbstractNamedValueMethodArgumentResolver} 实例。
-	 * @param beanFactory a bean factory to use for resolving ${...} placeholder
-	 * and #{...} SpEL expressions in default values, or {@code null} if default
-	 * values are not expected to contain expressions
+	 * @param beanFactory 用于解析默认值中的 ${...} 占位符
+	 * 和 #{...} SpEL 表达式的 Bean 工厂，如果默认值
+	 * 预计不包含表达式，则为 {@code null}
 	 */
 	public AbstractNamedValueMethodArgumentResolver(@Nullable ConfigurableBeanFactory beanFactory) {
 		this.configurableBeanFactory = beanFactory;
@@ -160,8 +160,8 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 	/**
 	 * 为给定方法参数创建 {@link NamedValueInfo} 对象。实现通常通过
 	 * {@link MethodParameter#getParameterAnnotation(Class)} 获取方法注解。
-	 * @param parameter the method parameter
-	 * @return the named value information
+	 * @param parameter 方法参数
+	 * @return 命名值信息
 	 */
 	protected abstract NamedValueInfo createNamedValueInfo(MethodParameter parameter);
 
@@ -200,12 +200,12 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 
 	/**
 	 * 将给定的参数类型和值名称解析为参数值。
-	 * @param name the name of the value being resolved
-	 * @param parameter the method parameter to resolve to an argument value
-	 * (pre-nested in case of a {@link java.util.Optional} declaration)
-	 * @param request the current request
-	 * @return the resolved argument (may be {@code null})
-	 * @throws Exception in case of errors
+	 * @param name 正在解析的值的名称
+	 * @param parameter 要解析为参数值的方法参数
+	 * （如果声明为 {@link java.util.Optional}，则已预先嵌套）
+	 * @param request 当前请求
+	 * @return 解析后的参数（可能为 {@code null}）
+	 * @throws Exception 如果出错
 	 */
 	@Nullable
 	protected abstract Object resolveName(String name, MethodParameter parameter, NativeWebRequest request)
@@ -214,9 +214,9 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 	/**
 	 * 在需要命名值，但 {@link #resolveName(String, MethodParameter, NativeWebRequest)}
 	 * 返回 {@code null} 且没有默认值时调用。子类通常会在此情况下抛出异常。
-	 * @param name the name for the value
-	 * @param parameter the method parameter
-	 * @param request the current request
+	 * @param name 值的名称
+	 * @param parameter 方法参数
+	 * @param request 当前请求
 	 * @since 4.3
 	 */
 	protected void handleMissingValue(String name, MethodParameter parameter, NativeWebRequest request)
@@ -228,8 +228,8 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 	/**
 	 * 在需要命名值，但 {@link #resolveName(String, MethodParameter, NativeWebRequest)}
 	 * 返回 {@code null} 且没有默认值时调用。子类通常会在此情况下抛出异常。
-	 * @param name the name for the value
-	 * @param parameter the method parameter
+	 * @param name 值的名称
+	 * @param parameter 方法参数
 	 */
 	protected void handleMissingValue(String name, MethodParameter parameter) throws ServletException {
 		throw new ServletRequestBindingException("Missing argument '" + name +
@@ -238,9 +238,9 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 
 	/**
 	 * 在命名值存在但在转换后变为 {@code null} 时调用。
-	 * @param name the name for the value
-	 * @param parameter the method parameter
-	 * @param request the current request
+	 * @param name 值的名称
+	 * @param parameter 方法参数
+	 * @param request 当前请求
 	 * @since 5.3.6
 	 */
 	protected void handleMissingValueAfterConversion(String name, MethodParameter parameter, NativeWebRequest request)
@@ -270,11 +270,11 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 
 	/**
 	 * 在值解析完成后调用。
-	 * @param arg the resolved argument value
-	 * @param name the argument name
-	 * @param parameter the argument parameter type
-	 * @param mavContainer the {@link ModelAndViewContainer} (may be {@code null})
-	 * @param webRequest the current request
+	 * @param arg 解析后的参数值
+	 * @param name 参数名称
+	 * @param parameter 参数类型
+	 * @param mavContainer {@link ModelAndViewContainer}（可能为 {@code null}）
+	 * @param webRequest 当前请求
 	 */
 	protected void handleResolvedValue(@Nullable Object arg, String name, MethodParameter parameter,
 			@Nullable ModelAndViewContainer mavContainer, NativeWebRequest webRequest) {

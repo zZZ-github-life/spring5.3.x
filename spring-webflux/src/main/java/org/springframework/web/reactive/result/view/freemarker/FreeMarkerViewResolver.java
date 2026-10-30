@@ -40,8 +40,8 @@ public class FreeMarkerViewResolver extends UrlBasedViewResolver {
 
 	/**
 	 * 带有前缀和后缀的便捷构造方法。
-	 * @param suffix the suffix to prepend view names with
-	 * @param prefix the prefix to prepend view names with
+	 * @param suffix 要前置到视图名称的后缀
+	 * @param prefix 要前置到视图名称的前缀
 	 */
 	public FreeMarkerViewResolver(String prefix, String suffix) {
 		setViewClass(requiredViewClass());

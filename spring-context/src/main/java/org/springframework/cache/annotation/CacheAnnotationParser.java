@@ -42,10 +42,9 @@ public interface CacheAnnotationParser {
 	 * <p>如果此方法返回 {@code false}，则不会针对 {@code #parseCacheAnnotations} 内省而遍历给定类上的
 	 * 方法。因此，对于不受影响的类，返回 {@code false} 是一种优化；而 {@code true} 仅表示需要针对给定
 	 * 类上的每个方法对该类进行完整内省。
-	 * @param targetClass the class to introspect
-	 * @return {@code false} if the class is known to have no cache operation
-	 * annotations at class or method level; {@code true} otherwise. The default
-	 * implementation returns {@code true}, leading to regular introspection.
+	 * @param targetClass 要内省的类
+	 * @return 如果已知该类在类或方法级别没有缓存操作注解，则返回 {@code false}；
+	 * 否则返回 {@code true}。默认实现返回 {@code true}，从而执行常规内省。
 	 * @since 5.2
 	 */
 	default boolean isCandidateClass(Class<?> targetClass) {
@@ -57,8 +56,8 @@ public interface CacheAnnotationParser {
 	 *
 	 * <p>这实质上将一个已知的缓存注解解析为 Spring 的元数据属性类。如果该类不可缓存，则返回
 	 * {@code null}。
-	 * @param type the annotated class
-	 * @return the configured caching operation, or {@code null} if none found
+	 * @param type 带注解的类
+	 * @return 配置的缓存操作；如果未找到任何缓存操作，则为 {@code null}
 	 * @see AnnotationCacheOperationSource#findCacheOperations(Class)
 	 */
 	@Nullable
@@ -69,8 +68,8 @@ public interface CacheAnnotationParser {
 	 *
 	 * <p>这实质上将一个已知的缓存注解解析为 Spring 的元数据属性类。如果该方法不可缓存，则返回
 	 * {@code null}。
-	 * @param method the annotated method
-	 * @return the configured caching operation, or {@code null} if none found
+	 * @param method 带注解的方法
+	 * @return 配置的缓存操作；如果未找到任何缓存操作，则为 {@code null}
 	 * @see AnnotationCacheOperationSource#findCacheOperations(Method)
 	 */
 	@Nullable

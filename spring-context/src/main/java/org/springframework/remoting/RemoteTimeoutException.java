@@ -27,7 +27,7 @@ public class RemoteTimeoutException extends RemoteAccessException {
 
 	/**
 	 * RemoteTimeoutException 的构造器。
-	 * @param msg the detail message
+	 * @param msg 详细信息
 	 */
 	public RemoteTimeoutException(String msg) {
 		super(msg);
@@ -35,8 +35,8 @@ public class RemoteTimeoutException extends RemoteAccessException {
 
 	/**
 	 * RemoteTimeoutException 的构造器。
-	 * @param msg the detail message
-	 * @param cause the root cause from the remoting API in use
+	 * @param msg 详细信息
+	 * @param cause 来自所用远程调用 API 的根本原因
 	 */
 	public RemoteTimeoutException(String msg, Throwable cause) {
 		super(msg, cause);

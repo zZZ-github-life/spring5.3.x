@@ -62,11 +62,11 @@ public interface Validator {
 	 * <p>此方法<i>通常</i>这样实现：
 	 * <pre class="code">return Foo.class.isAssignableFrom(clazz);</pre>
 	 * （其中 {@code Foo} 是要被{@link #validate(Object, Errors) validated} 的实际对象实例的类（或超类）。）
-	 * @param clazz the {@link Class} that this {@link Validator} is
-	 * being asked if it can {@link #validate(Object, Errors) validate}
-	 * @return {@code true} if this {@link Validator} can indeed
-	 * {@link #validate(Object, Errors) validate} instances of the
-	 * supplied {@code clazz}
+	 * @param clazz 此 {@link Validator} 被询问能否
+	 * {@link #validate(Object, Errors) 校验}的 {@link Class}。
+	 * @return 如果此 {@link Validator} 确实能够
+	 * {@link #validate(Object, Errors) 校验}
+	 * 所提供的 {@code clazz} 的实例，则为 {@code true}。
 	 */
 	boolean supports(Class<?> clazz);
 
@@ -75,8 +75,8 @@ public interface Validator {
 	 * {@link #supports(Class)} 方法通常已经（或将会）返回 {@code true}。
 	 *
 	 * <p>所提供的 {@link Errors errors} 实例可用于报告任何产生的校验错误。
-	 * @param target the object that is to be validated
-	 * @param errors contextual state about the validation process
+	 * @param target 要校验的对象。
+	 * @param errors 关于校验过程的上下文状态。
 	 * @see ValidationUtils
 	 */
 	void validate(Object target, Errors errors);

@@ -145,12 +145,11 @@ public abstract class AbstractPropertyAccessor extends TypeConverterSupport impl
 
 	/**
 	 * 实际获取属性的值。
-	 * @param propertyName name of the property to get the value of
-	 * @return the value of the property
-	 * @throws InvalidPropertyException if there is no such property or
-	 * if the property isn't readable
-	 * @throws PropertyAccessException if the property was valid but the
-	 * accessor method failed
+	 * @param propertyName 要获取其值的属性名称
+	 * @return 该属性的值
+	 * @throws InvalidPropertyException 如果不存在这样的属性，
+	 * 或者该属性不可读
+	 * @throws PropertyAccessException 如果属性有效但访问器方法失败
 	 */
 	@Override
 	@Nullable
@@ -158,12 +157,12 @@ public abstract class AbstractPropertyAccessor extends TypeConverterSupport impl
 
 	/**
 	 * 实际设置属性值。
-	 * @param propertyName name of the property to set value of
-	 * @param value the new value
-	 * @throws InvalidPropertyException if there is no such property or
-	 * if the property isn't writable
-	 * @throws PropertyAccessException if the property was valid but the
-	 * accessor method failed or a type mismatch occurred
+	 * @param propertyName 要设置其值的属性名称
+	 * @param value 新值
+	 * @throws InvalidPropertyException 如果不存在这样的属性，
+	 * 或者该属性不可写
+	 * @throws PropertyAccessException 如果属性有效但访问器方法失败
+	 * 或发生了类型不匹配
 	 */
 	@Override
 	public abstract void setPropertyValue(String propertyName, @Nullable Object value) throws BeansException;

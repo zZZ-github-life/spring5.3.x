@@ -133,8 +133,7 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 
 	/**
 	 * 设置用于创建视图的视图类。
-	 * @param viewClass a class that is assignable to the required view class
-	 * (by default: AbstractUrlBasedView)
+	 * @param viewClass 可赋值给所需视图类的类（默认为 AbstractUrlBasedView）
 	 * @see #requiredViewClass()
 	 * @see #instantiateView()
 	 * @see AbstractUrlBasedView
@@ -254,7 +253,7 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 	 * <p>实际上，此属性提供了一种方式：对于带有主机且该主机未被列为已知主机的 URL，
 	 * 在重定向时关闭通过 {@link HttpServletResponse#encodeRedirectURL} 进行的编码。
 	 * <p>如果未设置（默认情况），则所有 URL 都会通过响应进行编码。
-	 * @param redirectHosts one or more application hosts
+	 * @param redirectHosts 一个或多个应用主机
 	 * @since 4.3
 	 */
 	public void setRedirectHosts(@Nullable String... redirectHosts) {
@@ -272,7 +271,7 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 
 	/**
 	 * 设置所有视图的 RequestContext 属性名称。
-	 * @param requestContextAttribute name of the RequestContext attribute
+	 * @param requestContextAttribute RequestContext 属性的名称
 	 * @see AbstractView#setRequestContextAttribute
 	 */
 	public void setRequestContextAttribute(@Nullable String requestContextAttribute) {
@@ -304,7 +303,7 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 	 * 从此解析器返回的所有视图的 Map 中设置静态属性。
 	 * 这样可以设置任意类型的属性值，例如 bean 引用。
 	 * <p>可以通过 XML bean 定义中的 "map" 或 "props" 元素来填充。
-	 * @param attributes a Map with name Strings as keys and attribute objects as values
+	 * @param attributes 一个 Map，键为名称 String，值为属性对象
 	 * @see AbstractView#setAttributesMap
 	 */
 	public void setAttributesMap(@Nullable Map<String, ?> attributes) {
@@ -471,9 +470,9 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 	 * 指示此 {@link org.springframework.web.servlet.ViewResolver} 能否处理提供的视图名称。
 	 * 如果不能，{@link #createView(String, java.util.Locale)} 将返回 {@code null}。
 	 * 默认实现会根据已配置的 {@link #setViewNames 视图名称}进行检查。
-	 * @param viewName the name of the view to retrieve
-	 * @param locale the Locale to retrieve the view for
-	 * @return whether this resolver applies to the specified view
+	 * @param viewName 要获取的视图名称
+	 * @param locale 要为其获取视图的 Locale
+	 * @return 该解析器是否适用于指定的视图
 	 * @see org.springframework.util.PatternMatchUtils#simpleMatch(String, String)
 	 */
 	protected boolean canHandle(String viewName, Locale locale) {
@@ -494,7 +493,7 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 	/**
 	 * 实例化指定的视图类。
 	 * <p>默认实现使用反射来实例化该类。
-	 * @return a new instance of the view class
+	 * @return 视图类的新实例
 	 * @since 5.3
 	 * @see #setViewClass
 	 */
@@ -511,9 +510,9 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 	 * <li>ApplicationContextAware 的 {@code setApplicationContext}
 	 * <li>InitializingBean 的 {@code afterPropertiesSet}
 	 * </ul>
-	 * @param viewName the name of the view to retrieve
-	 * @return the View instance
-	 * @throws Exception if the view couldn't be resolved
+	 * @param viewName 要获取的视图名称
+	 * @return View 实例
+	 * @throws Exception 如果无法解析视图
 	 * @see #buildView(String)
 	 * @see org.springframework.context.ApplicationContextAware#setApplicationContext
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
@@ -533,9 +532,9 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 	 * <p>子类通常应先调用 {@code super.buildView(viewName)}，
 	 * 然后再自行设置其他属性。{@code loadView} 随后将在此过程结束时
 	 * 应用 Spring 生命周期方法。
-	 * @param viewName the name of the view to build
-	 * @return the View instance
-	 * @throws Exception if the view couldn't be resolved
+	 * @param viewName 要构建的视图名称
+	 * @return View 实例
+	 * @throws Exception 如果无法解析视图
 	 * @see #loadView(String, java.util.Locale)
 	 */
 	protected AbstractUrlBasedView buildView(String viewName) throws Exception {
@@ -572,11 +571,10 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 	/**
 	 * 如果存在包含 {@link ApplicationContext}，则将它的生命周期方法
 	 * 应用到给定的 {@link View} 实例上。
-	 * @param viewName the name of the view
-	 * @param view the freshly created View instance, pre-configured with
-	 * {@link AbstractUrlBasedView}'s properties
-	 * @return the {@link View} instance to use (either the original one
-	 * or a decorated variant)
+	 * @param viewName 视图名称
+	 * @param view 新创建的 View 实例，已使用
+	 * {@link AbstractUrlBasedView} 的属性预先配置
+	 * @return 要使用的 {@link View} 实例（原始实例或装饰后的变体）
 	 * @since 5.0
 	 * @see #getApplicationContext()
 	 * @see ApplicationContext#getAutowireCapableBeanFactory()

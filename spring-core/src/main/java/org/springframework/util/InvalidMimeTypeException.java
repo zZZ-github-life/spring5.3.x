@@ -31,8 +31,8 @@ public class InvalidMimeTypeException extends IllegalArgumentException {
 
 	/**
 	 * 为给定内容类型创建一个新的 InvalidContentTypeException。
-	 * @param mimeType the offending media type
-	 * @param message a detail message indicating the invalid part
+	 * @param mimeType 违规的媒体类型
+	 * @param message 指明无效部分的详细消息
 	 */
 	public InvalidMimeTypeException(String mimeType, String message) {
 		super("Invalid mime type \"" + mimeType + "\": " + message);

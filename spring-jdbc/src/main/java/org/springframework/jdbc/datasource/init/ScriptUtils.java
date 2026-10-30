@@ -104,11 +104,9 @@ public abstract class ScriptUtils {
 	 * 使用语句分隔符、注释分隔符和异常处理标志的默认设置执行给定的 SQL 脚本。
 	 * <p>在依次执行所提供的脚本中的各条语句之前，语句分隔符和注释将被移除。
 	 * <p><strong>警告</strong>：此方法 <em>不会</em> 释放提供的 {@link Connection}。
-	 * @param connection the JDBC connection to use to execute the script; already
-	 * configured and ready to use
-	 * @param resource the resource to load the SQL script from; encoded with the
-	 * current platform's default encoding
-	 * @throws ScriptException if an error occurred while executing the SQL script
+	 * @param connection 用于执行脚本的 JDBC 连接；已完成配置并可直接使用
+	 * @param resource 加载 SQL 脚本所用的资源；使用当前平台的默认编码进行编码
+	 * @throws ScriptException 在执行 SQL 脚本时发生错误
 	 * @see #executeSqlScript(Connection, EncodedResource, boolean, boolean, String, String, String, String)
 	 * @see #DEFAULT_STATEMENT_SEPARATOR
 	 * @see #DEFAULT_COMMENT_PREFIX
@@ -125,11 +123,9 @@ public abstract class ScriptUtils {
 	 * 使用语句分隔符、注释分隔符和异常处理标志的默认设置执行给定的 SQL 脚本。
 	 * <p>在依次执行所提供的脚本中的各条语句之前，语句分隔符和注释将被移除。
 	 * <p><strong>警告</strong>：此方法 <em>不会</em> 释放提供的 {@link Connection}。
-	 * @param connection the JDBC connection to use to execute the script; already
-	 * configured and ready to use
-	 * @param resource the resource (potentially associated with a specific encoding)
-	 * to load the SQL script from
-	 * @throws ScriptException if an error occurred while executing the SQL script
+	 * @param connection 用于执行脚本的 JDBC 连接；已完成配置并可直接使用
+	 * @param resource 加载 SQL 脚本所用的资源（可能关联了特定编码）
+	 * @throws ScriptException 在执行 SQL 脚本时发生错误
 	 * @see #executeSqlScript(Connection, EncodedResource, boolean, boolean, String, String, String, String)
 	 * @see #DEFAULT_STATEMENT_SEPARATOR
 	 * @see #DEFAULT_COMMENT_PREFIX
@@ -147,24 +143,19 @@ public abstract class ScriptUtils {
 	 * 执行给定的 SQL 脚本。
 	 * <p>在依次执行所提供的脚本中的各条语句之前，语句分隔符和注释将被移除。
 	 * <p><strong>警告</strong>：此方法 <em>不会</em> 释放提供的 {@link Connection}。
-	 * @param connection the JDBC connection to use to execute the script; already
-	 * configured and ready to use
-	 * @param resource the resource (potentially associated with a specific encoding)
-	 * to load the SQL script from
-	 * @param continueOnError whether to continue without throwing an exception
-	 * in the event of an error
-	 * @param ignoreFailedDrops whether to continue in the event of specifically
-	 * an error on a {@code DROP} statement
-	 * @param commentPrefix the prefix that identifies single-line comments in the
-	 * SQL script (typically "--")
-	 * @param separator the script statement separator; defaults to
-	 * {@value #DEFAULT_STATEMENT_SEPARATOR} if not specified and falls back to
-	 * {@value #FALLBACK_STATEMENT_SEPARATOR} as a last resort; may be set to
-	 * {@value #EOF_STATEMENT_SEPARATOR} to signal that the script contains a
-	 * single statement without a separator
-	 * @param blockCommentStartDelimiter the <em>start</em> block comment delimiter
-	 * @param blockCommentEndDelimiter the <em>end</em> block comment delimiter
-	 * @throws ScriptException if an error occurred while executing the SQL script
+	 * @param connection 用于执行脚本的 JDBC 连接；已完成配置并可直接使用
+	 * @param resource 加载 SQL 脚本所用的资源（可能关联了特定编码）
+	 * @param continueOnError 出错时是否继续执行而不抛出异常
+	 * @param ignoreFailedDrops 是否在 {@code DROP} 语句出错时继续执行
+	 * @param commentPrefix 标识 SQL 脚本中单行注释的前缀（通常为 "--"）
+	 * @param separator 脚本语句分隔符；如果未指定，则默认为
+	 * {@value #DEFAULT_STATEMENT_SEPARATOR}，
+	 * 最后会回退到 {@value #FALLBACK_STATEMENT_SEPARATOR}；
+	 * 可以将其设为 {@value #EOF_STATEMENT_SEPARATOR}，
+	 * 表示脚本仅包含一条语句且没有分隔符
+	 * @param blockCommentStartDelimiter 块注释的<em>起始</em>定界符
+	 * @param blockCommentEndDelimiter 块注释的<em>结束</em>定界符
+	 * @throws ScriptException 在执行 SQL 脚本时发生错误
 	 * @see #DEFAULT_STATEMENT_SEPARATOR
 	 * @see #FALLBACK_STATEMENT_SEPARATOR
 	 * @see #EOF_STATEMENT_SEPARATOR
@@ -184,24 +175,19 @@ public abstract class ScriptUtils {
 	 * 执行给定的 SQL 脚本。
 	 * <p>在依次执行所提供的脚本中的各条语句之前，语句分隔符和注释将被移除。
 	 * <p><strong>警告</strong>：此方法 <em>不会</em> 释放提供的 {@link Connection}。
-	 * @param connection the JDBC connection to use to execute the script; already
-	 * configured and ready to use
-	 * @param resource the resource (potentially associated with a specific encoding)
-	 * to load the SQL script from
-	 * @param continueOnError whether to continue without throwing an exception
-	 * in the event of an error
-	 * @param ignoreFailedDrops whether to continue in the event of specifically
-	 * an error on a {@code DROP} statement
-	 * @param commentPrefixes the prefixes that identify single-line comments in the
-	 * SQL script (typically "--")
-	 * @param separator the script statement separator; defaults to
-	 * {@value #DEFAULT_STATEMENT_SEPARATOR} if not specified and falls back to
-	 * {@value #FALLBACK_STATEMENT_SEPARATOR} as a last resort; may be set to
-	 * {@value #EOF_STATEMENT_SEPARATOR} to signal that the script contains a
-	 * single statement without a separator
-	 * @param blockCommentStartDelimiter the <em>start</em> block comment delimiter
-	 * @param blockCommentEndDelimiter the <em>end</em> block comment delimiter
-	 * @throws ScriptException if an error occurred while executing the SQL script
+	 * @param connection 用于执行脚本的 JDBC 连接；已完成配置并可直接使用
+	 * @param resource 加载 SQL 脚本所用的资源（可能关联了特定编码）
+	 * @param continueOnError 出错时是否继续执行而不抛出异常
+	 * @param ignoreFailedDrops 是否在 {@code DROP} 语句出错时继续执行
+	 * @param commentPrefixes 标识 SQL 脚本中单行注释的各个前缀（通常为 "--"）
+	 * @param separator 脚本语句分隔符；如果未指定，则默认为
+	 * {@value #DEFAULT_STATEMENT_SEPARATOR}，
+	 * 最后会回退到 {@value #FALLBACK_STATEMENT_SEPARATOR}；
+	 * 可以将其设为 {@value #EOF_STATEMENT_SEPARATOR}，
+	 * 表示脚本仅包含一条语句且没有分隔符
+	 * @param blockCommentStartDelimiter 块注释的<em>起始</em>定界符
+	 * @param blockCommentEndDelimiter 块注释的<em>结束</em>定界符
+	 * @throws ScriptException 在执行 SQL 脚本时发生错误
 	 * @since 5.2
 	 * @see #DEFAULT_STATEMENT_SEPARATOR
 	 * @see #FALLBACK_STATEMENT_SEPARATOR
@@ -300,14 +286,12 @@ public abstract class ScriptUtils {
 	 * 并构建包含各行的 {@code String}。
 	 * <p>以其中一个注释前缀 <em>开头</em> 的行会从结果中排除；
 	 * 但位于其他位置的行注释 &mdash; 例如语句内部的注释 &mdash; 则会包含在结果中。
-	 * @param resource the {@code EncodedResource} containing the script
-	 * to be processed
-	 * @param separator the statement separator in the SQL script (typically ";")
-	 * @param commentPrefixes the prefixes that identify comments in the SQL script
-	 * (typically "--")
-	 * @param blockCommentEndDelimiter the <em>end</em> block comment delimiter
-	 * @return a {@code String} containing the script lines
-	 * @throws IOException in case of I/O errors
+	 * @param resource 包含要处理的脚本的 {@code EncodedResource}
+	 * @param separator SQL 脚本中的语句分隔符（通常为 ";"）
+	 * @param commentPrefixes 标识 SQL 脚本中注释的各个前缀（通常为 "--"）
+	 * @param blockCommentEndDelimiter 块注释的<em>结束</em>定界符
+	 * @return 包含脚本各行的 {@code String}
+	 * @throws IOException 如果发生 I/O 错误
 	 */
 	static String readScript(EncodedResource resource, @Nullable String separator,
 			String[] commentPrefixes, String blockCommentEndDelimiter) throws IOException {
@@ -322,14 +306,12 @@ public abstract class ScriptUtils {
 	 * 并构建包含各行的 {@code String}。
 	 * <p>以该注释前缀 <em>开头</em> 的行会从结果中排除；
 	 * 但位于其他位置的行注释 &mdash; 例如语句内部的注释 &mdash; 则会包含在结果中。
-	 * @param lineNumberReader the {@code LineNumberReader} containing the script
-	 * to be processed
-	 * @param commentPrefix the prefix that identifies comments in the SQL script
-	 * (typically "--")
-	 * @param separator the statement separator in the SQL script (typically ";")
-	 * @param blockCommentEndDelimiter the <em>end</em> block comment delimiter
-	 * @return a {@code String} containing the script lines
-	 * @throws IOException in case of I/O errors
+	 * @param lineNumberReader 包含要处理的脚本的 {@code LineNumberReader}
+	 * @param commentPrefix 标识 SQL 脚本中注释的前缀（通常为 "--"）
+	 * @param separator SQL 脚本中的语句分隔符（通常为 ";"）
+	 * @param blockCommentEndDelimiter 块注释的<em>结束</em>定界符
+	 * @return 包含脚本各行的 {@code String}
+	 * @throws IOException 如果发生 I/O 错误
 	 * @deprecated as of Spring Framework 5.2.16 with no plans for replacement.
 	 * This is an internal API and will likely be removed in Spring Framework 6.0.
 	 */
@@ -346,14 +328,12 @@ public abstract class ScriptUtils {
 	 * 并构建包含各行的 {@code String}。
 	 * <p>以其中一个注释前缀 <em>开头</em> 的行会从结果中排除；
 	 * 但位于其他位置的行注释 &mdash; 例如语句内部的注释 &mdash; 则会包含在结果中。
-	 * @param lineNumberReader the {@code LineNumberReader} containing the script
-	 * to be processed
-	 * @param commentPrefixes the prefixes that identify comments in the SQL script
-	 * (typically "--")
-	 * @param separator the statement separator in the SQL script (typically ";")
-	 * @param blockCommentEndDelimiter the <em>end</em> block comment delimiter
-	 * @return a {@code String} containing the script lines
-	 * @throws IOException in case of I/O errors
+	 * @param lineNumberReader 包含要处理的脚本的 {@code LineNumberReader}
+	 * @param commentPrefixes 标识 SQL 脚本中注释的各个前缀（通常为 "--"）
+	 * @param separator SQL 脚本中的语句分隔符（通常为 ";"）
+	 * @param blockCommentEndDelimiter 块注释的<em>结束</em>定界符
+	 * @return 包含脚本各行的 {@code String}
+	 * @throws IOException 如果发生 I/O 错误
 	 * @since 5.2
 	 * @deprecated as of Spring Framework 5.2.16 with no plans for replacement.
 	 * This is an internal API and will likely be removed in Spring Framework 6.0.
@@ -399,8 +379,8 @@ public abstract class ScriptUtils {
 	 * <p>如果分隔符出现在由单引号（{@code '}）或双引号（{@code "}）括起来的
 	 * <em>字面量</em> 文本块中、通过反斜杠（{@code \}）转义，
 	 * 或者位于单行注释或块注释中，则脚本中出现的该分隔符将被忽略。
-	 * @param script the SQL script to search within
-	 * @param delimiter the statement delimiter to search for
+	 * @param script 要在其中搜索的 SQL 脚本
+	 * @param delimiter 要搜索的语句定界符
 	 * @see #DEFAULT_COMMENT_PREFIXES
 	 * @see #DEFAULT_BLOCK_COMMENT_START_DELIMITER
 	 * @see #DEFAULT_BLOCK_COMMENT_END_DELIMITER
@@ -419,16 +399,12 @@ public abstract class ScriptUtils {
 	 * <p>如果分隔符出现在由单引号（{@code '}）或双引号（{@code "}）括起来的
 	 * <em>字面量</em> 文本块中、通过反斜杠（{@code \}）转义，
 	 * 或者位于单行注释或块注释中，则脚本中出现的该分隔符将被忽略。
-	 * @param resource the resource from which the script was read, or {@code null}
-	 * if unknown
-	 * @param script the SQL script to search within
-	 * @param separator the statement separator to search for
-	 * @param commentPrefixes the prefixes that identify single-line comments
-	 * (typically {@code "--"})
-	 * @param blockCommentStartDelimiter the <em>start</em> block comment delimiter
-	 * (typically {@code "/*"})
-	 * @param blockCommentEndDelimiter the <em>end</em> block comment delimiter
-	 * (typically <code>"*&#47;"</code>)
+	 * @param resource 读取脚本所用的资源，如果未知则为 {@code null}
+	 * @param script 要在其中搜索的 SQL 脚本
+	 * @param separator 要搜索的语句分隔符
+	 * @param commentPrefixes 标识单行注释的各个前缀（通常为 {@code "--"}）
+	 * @param blockCommentStartDelimiter 块注释的<em>起始</em>定界符（通常为 {@code "/*"}）
+	 * @param blockCommentEndDelimiter 块注释的<em>结束</em>定界符（通常为 <code>"*&#47;"</code>）
 	 * @since 5.2.16
 	 */
 	private static boolean containsStatementSeparator(@Nullable EncodedResource resource, String script,
@@ -499,10 +475,10 @@ public abstract class ScriptUtils {
 	 * {@value #DEFAULT_BLOCK_COMMENT_END_DELIMITER} 将分别用作
 	 * 块注释的 <em>起始</em> 和 <em>结束</em> 分隔符：块注释中包含的任何文本
 	 * 都会从输出中省略。此外，多个相邻的空白字符将被合并为一个空格。
-	 * @param script the SQL script
-	 * @param separator character separating each statement (typically a ';')
-	 * @param statements the list that will contain the individual statements
-	 * @throws ScriptException if an error occurred while splitting the SQL script
+	 * @param script SQL 脚本
+	 * @param separator 分隔各语句的字符（通常为 ';'）
+	 * @param statements 用于存放各条语句的列表
+	 * @throws ScriptException 拆分 SQL 脚本时发生错误
 	 * @see #splitSqlScript(String, String, List)
 	 * @see #splitSqlScript(EncodedResource, String, String, String, String, String, List)
 	 * @deprecated as of Spring Framework 5.2.16 with no plans for replacement.
@@ -522,11 +498,10 @@ public abstract class ScriptUtils {
 	 * {@value #DEFAULT_BLOCK_COMMENT_END_DELIMITER} 将分别用作
 	 * 块注释的 <em>起始</em> 和 <em>结束</em> 分隔符：块注释中包含的任何文本
 	 * 都会从输出中省略。此外，多个相邻的空白字符将被合并为一个空格。
-	 * @param script the SQL script
-	 * @param separator text separating each statement
-	 * (typically a ';' or newline character)
-	 * @param statements the list that will contain the individual statements
-	 * @throws ScriptException if an error occurred while splitting the SQL script
+	 * @param script SQL 脚本
+	 * @param separator 分隔各语句的文本（通常为 ';' 或换行符）
+	 * @param statements 用于存放各条语句的列表
+	 * @throws ScriptException 拆分 SQL 脚本时发生错误
 	 * @see #splitSqlScript(String, char, List)
 	 * @see #splitSqlScript(EncodedResource, String, String, String, String, String, List)
 	 * @deprecated as of Spring Framework 5.2.16 with no plans for replacement.
@@ -546,18 +521,14 @@ public abstract class ScriptUtils {
 	 * 将遵循所提供的 {@code blockCommentStartDelimiter} 和
 	 * {@code blockCommentEndDelimiter} 分隔符：块注释中包含的任何文本
 	 * 都会从输出中省略。此外，多个相邻的空白字符将被合并为一个空格。
-	 * @param resource the resource from which the script was read
-	 * @param script the SQL script
-	 * @param separator text separating each statement
-	 * (typically a ';' or newline character)
-	 * @param commentPrefix the prefix that identifies SQL line comments
-	 * (typically "--")
-	 * @param blockCommentStartDelimiter the <em>start</em> block comment delimiter;
-	 * never {@code null} or empty
-	 * @param blockCommentEndDelimiter the <em>end</em> block comment delimiter;
-	 * never {@code null} or empty
-	 * @param statements the list that will contain the individual statements
-	 * @throws ScriptException if an error occurred while splitting the SQL script
+	 * @param resource 读取脚本所用的资源
+	 * @param script SQL 脚本
+	 * @param separator 分隔各语句的文本（通常为 ';' 或换行符）
+	 * @param commentPrefix 标识 SQL 行注释的前缀（通常为 "--"）
+	 * @param blockCommentStartDelimiter 块注释的<em>起始</em>定界符；永不为 {@code null} 或空
+	 * @param blockCommentEndDelimiter 块注释的<em>结束</em>定界符；永不为 {@code null} 或空
+	 * @param statements 用于存放各条语句的列表
+	 * @throws ScriptException 拆分 SQL 脚本时发生错误
 	 * @deprecated as of Spring Framework 5.2.16 with no plans for replacement.
 	 * This is an internal API and will likely be removed in Spring Framework 6.0.
 	 */
@@ -579,18 +550,14 @@ public abstract class ScriptUtils {
 	 * 将遵循所提供的 {@code blockCommentStartDelimiter} 和
 	 * {@code blockCommentEndDelimiter} 分隔符：块注释中包含的任何文本
 	 * 都会从输出中省略。此外，多个相邻的空白字符将被合并为一个空格。
-	 * @param resource the resource from which the script was read
-	 * @param script the SQL script
-	 * @param separator text separating each statement
-	 * (typically a ';' or newline character)
-	 * @param commentPrefixes the prefixes that identify SQL line comments
-	 * (typically "--")
-	 * @param blockCommentStartDelimiter the <em>start</em> block comment delimiter;
-	 * never {@code null} or empty
-	 * @param blockCommentEndDelimiter the <em>end</em> block comment delimiter;
-	 * never {@code null} or empty
-	 * @param statements the list that will contain the individual statements
-	 * @throws ScriptException if an error occurred while splitting the SQL script
+	 * @param resource 读取脚本所用的资源
+	 * @param script SQL 脚本
+	 * @param separator 分隔各语句的文本（通常为 ';' 或换行符）
+	 * @param commentPrefixes 标识 SQL 行注释的各个前缀（通常为 "--"）
+	 * @param blockCommentStartDelimiter 块注释的<em>起始</em>定界符；永不为 {@code null} 或空
+	 * @param blockCommentEndDelimiter 块注释的<em>结束</em>定界符；永不为 {@code null} 或空
+	 * @param statements 用于存放各条语句的列表
+	 * @throws ScriptException 拆分 SQL 脚本时发生错误
 	 * @since 5.2
 	 * @deprecated as of Spring Framework 5.2.16 with no plans for replacement.
 	 * This is an internal API and will likely be removed in Spring Framework 6.0.

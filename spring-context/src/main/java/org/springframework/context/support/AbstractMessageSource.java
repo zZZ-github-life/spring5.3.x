@@ -170,11 +170,10 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	/**
 	 * 在给定的 Locale 中将给定代码和参数解析为消息，如果未找到则返回 {@code null}。<i>不会</i>回退到将
 	 * 代码作为默认消息。由 {@code getMessage} 方法调用。
-	 * @param code the code to lookup up, such as 'calculator.noRateSet'
-	 * @param args array of arguments that will be filled in for params
-	 * within the message
-	 * @param locale the locale in which to do the lookup
-	 * @return the resolved message, or {@code null} if not found
+	 * @param code 要查找的代码，例如 'calculator.noRateSet'
+	 * @param args 用于填充消息内参数的参数数组
+	 * @param locale 进行查找所用的 Locale
+	 * @return 解析后的消息；如果未找到则为 {@code null}
 	 * @see #getMessage(String, Object[], String, Locale)
 	 * @see #getMessage(String, Object[], Locale)
 	 * @see #getMessage(MessageSourceResolvable, Locale)
@@ -230,11 +229,10 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 
 	/**
 	 * 如果存在父 {@code MessageSource}，则尝试从中检索给定消息。
-	 * @param code the code to lookup up, such as 'calculator.noRateSet'
-	 * @param args array of arguments that will be filled in for params
-	 * within the message
-	 * @param locale the locale in which to do the lookup
-	 * @return the resolved message, or {@code null} if not found
+	 * @param code 要查找的代码，例如 'calculator.noRateSet'
+	 * @param args 用于填充消息内参数的参数数组
+	 * @param locale 进行查找所用的 Locale
+	 * @return 解析后的消息；如果未找到则为 {@code null}
 	 * @see #getParentMessageSource()
 	 */
 	@Nullable
@@ -261,9 +259,9 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	 *
 	 * <p>此实现会在可用时完整呈现默认消息，或者在主消息代码被用作默认消息时直接返回纯默认消息
 	 * {@code String}。
-	 * @param resolvable the value object to resolve a default message for
-	 * @param locale the current locale
-	 * @return the default message, or {@code null} if none
+	 * @param resolvable 要为其解析默认消息的值对象
+	 * @param locale 当前 Locale
+	 * @return 默认消息；如果没有则为 {@code null}
 	 * @since 4.3.6
 	 * @see #renderDefaultMessage(String, Object[], Locale)
 	 * @see #getDefaultMessage(String)
@@ -293,9 +291,8 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	 *
 	 * <p>默认行为是：如果激活了 "useCodeAsDefaultMessage"，则返回代码本身，否则不返回回退消息。在没有
 	 * 回退消息的情况下，调用者通常会从 {@code getMessage} 收到 {@code NoSuchMessageException}。
-	 * @param code the message code that we couldn't resolve
-	 * and that we didn't receive an explicit default message for
-	 * @return the default message to use, or {@code null} if none
+	 * @param code 无法解析且未收到显式默认消息的消息代码
+	 * @return 要使用的默认消息；如果没有则为 {@code null}
 	 * @see #setUseCodeAsDefaultMessage
 	 */
 	@Nullable
@@ -311,9 +308,9 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	 * 搜索给定的对象数组，查找所有 MessageSourceResolvable 对象并解析它们。
 	 *
 	 * <p>允许消息将 MessageSourceResolvable 作为参数。
-	 * @param args array of arguments for a message
-	 * @param locale the locale to resolve through
-	 * @return an array of arguments with any MessageSourceResolvables resolved
+	 * @param args 消息的参数数组
+	 * @param locale 用于解析的 Locale
+	 * @return 所有 MessageSourceResolvable 均已解析的参数数组
 	 */
 	@Override
 	protected Object[] resolveArguments(@Nullable Object[] args, Locale locale) {
@@ -340,10 +337,9 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	 *
 	 * <p>遗憾的是，{@code java.text.MessageFormat} 的实现效率不高。特别是，它无法首先检测出消息模式不
 	 * 包含参数占位符。因此，对于不带参数的消息，建议绕过 MessageFormat。
-	 * @param code the code of the message to resolve
-	 * @param locale the locale to resolve the code for
-	 * (subclasses are encouraged to support internationalization)
-	 * @return the message String, or {@code null} if not found
+	 * @param code 要解析的消息代码
+	 * @param locale 要解析该代码所用的 Locale（建议子类支持国际化）
+	 * @return 消息 String；如果未找到则为 {@code null}
 	 * @see #resolveCode
 	 * @see java.text.MessageFormat
 	 */
@@ -365,10 +361,9 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	 *
 	 * <p><b>鼓励子类为不带参数的消息提供优化的解析，不涉及 MessageFormat。</b>有关详细信息，请参阅
 	 * {@link #resolveCodeWithoutArguments} 的 javadoc。
-	 * @param code the code of the message to resolve
-	 * @param locale the locale to resolve the code for
-	 * (subclasses are encouraged to support internationalization)
-	 * @return the MessageFormat for the message, or {@code null} if not found
+	 * @param code 要解析的消息代码
+	 * @param locale 要解析该代码所用的 Locale（建议子类支持国际化）
+	 * @return 消息的 MessageFormat；如果未找到则为 {@code null}
 	 * @see #resolveCodeWithoutArguments(String, java.util.Locale)
 	 */
 	@Nullable

@@ -52,7 +52,7 @@ public class TypedStringValue implements BeanMetadataElement {
 
 	/**
 	 * 为给定 String 值创建一个新的 {@link TypedStringValue}。
-	 * @param value the String value
+	 * @param value String 值
 	 */
 	public TypedStringValue(@Nullable String value) {
 		setValue(value);
@@ -60,8 +60,8 @@ public class TypedStringValue implements BeanMetadataElement {
 
 	/**
 	 * 为给定 String 值和目标类型创建一个新的 {@link TypedStringValue}。
-	 * @param value the String value
-	 * @param targetType the type to convert to
+	 * @param value String 值
+	 * @param targetType 要转换为的类型
 	 */
 	public TypedStringValue(@Nullable String value, Class<?> targetType) {
 		setValue(value);
@@ -70,8 +70,8 @@ public class TypedStringValue implements BeanMetadataElement {
 
 	/**
 	 * 为给定 String 值和目标类型创建一个新的 {@link TypedStringValue}。
-	 * @param value the String value
-	 * @param targetTypeName the type to convert to
+	 * @param value String 值
+	 * @param targetTypeName 要转换为的类型
 	 */
 	public TypedStringValue(@Nullable String value, String targetTypeName) {
 		setValue(value);
@@ -146,9 +146,9 @@ public class TypedStringValue implements BeanMetadataElement {
 	/**
 	 * 确定要转换到的类型，必要时从指定的类名解析。当调用时目标类型已解析，还会根据类名重新加载指定的
 	 * Class。
-	 * @param classLoader the ClassLoader to use for resolving a (potential) class name
-	 * @return the resolved type to convert to
-	 * @throws ClassNotFoundException if the type cannot be resolved
+	 * @param classLoader 用于解析（可能的）类名的 ClassLoader
+	 * @return 要转换到的已解析类型
+	 * @throws ClassNotFoundException 如果无法解析该类型
 	 */
 	@Nullable
 	public Class<?> resolveTargetType(@Nullable ClassLoader classLoader) throws ClassNotFoundException {

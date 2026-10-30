@@ -110,7 +110,7 @@ public class JmsTransactionManager extends AbstractPlatformTransactionManager
 
 	/**
 	 * 根据给定的 ConnectionFactory 创建一个新的 JmsTransactionManager。
-	 * @param connectionFactory the ConnectionFactory to obtain connections from
+	 * @param connectionFactory 用于获取连接的 ConnectionFactory
 	 */
 	public JmsTransactionManager(ConnectionFactory connectionFactory) {
 		this();
@@ -144,8 +144,8 @@ public class JmsTransactionManager extends AbstractPlatformTransactionManager
 
 	/**
 	 * 获取实际使用的 ConnectionFactory。
-	 * @return the ConnectionFactory (never {@code null})
-	 * @throws IllegalStateException in case of no ConnectionFactory set
+	 * @return 该 ConnectionFactory（永不为 {@code null}）
+	 * @throws IllegalStateException 如果未设置 ConnectionFactory
 	 * @since 5.0
 	 */
 	protected final ConnectionFactory obtainConnectionFactory() {
@@ -315,8 +315,8 @@ public class JmsTransactionManager extends AbstractPlatformTransactionManager
 	/**
 	 * 通过此模板的 ConnectionFactory 创建 JMS Connection。
 	 * <p>此实现使用 JMS 1.1 API。
-	 * @return the new JMS Connection
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
+	 * @return 新的 JMS Connection
+	 * @throws javax.jms.JMSException 如果由 JMS API 方法抛出
 	 */
 	protected Connection createConnection() throws JMSException {
 		return obtainConnectionFactory().createConnection();
@@ -325,9 +325,9 @@ public class JmsTransactionManager extends AbstractPlatformTransactionManager
 	/**
 	 * 为给定的 Connection 创建 JMS Session。
 	 * <p>此实现使用 JMS 1.1 API。
-	 * @param con the JMS Connection to create a Session for
-	 * @return the new JMS Session
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
+	 * @param con 要为其创建 Session 的 JMS Connection
+	 * @return 新的 JMS Session
+	 * @throws javax.jms.JMSException 如果由 JMS API 方法抛出
 	 */
 	protected Session createSession(Connection con) throws JMSException {
 		return con.createSession(true, Session.AUTO_ACKNOWLEDGE);

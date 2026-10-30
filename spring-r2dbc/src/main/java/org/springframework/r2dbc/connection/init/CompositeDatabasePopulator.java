@@ -53,7 +53,7 @@ public class CompositeDatabasePopulator implements DatabasePopulator {
 
 	/**
 	 * 使用给定的 populator 创建一个 {@code CompositeDatabasePopulator}。
-	 * @param populators one or more populators to delegate to.
+	 * @param populators 一个或多个要委托的填充器。
 	 */
 	public CompositeDatabasePopulator(Collection<DatabasePopulator> populators) {
 		Assert.notNull(populators, "DatabasePopulators must not be null");
@@ -62,7 +62,7 @@ public class CompositeDatabasePopulator implements DatabasePopulator {
 
 	/**
 	 * 使用给定的 populator 创建一个 {@code CompositeDatabasePopulator}。
-	 * @param populators one or more populators to delegate to.
+	 * @param populators 一个或多个要委托的填充器。
 	 */
 	public CompositeDatabasePopulator(DatabasePopulator... populators) {
 		Assert.notNull(populators, "DatabasePopulators must not be null");

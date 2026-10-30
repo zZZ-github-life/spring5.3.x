@@ -33,7 +33,7 @@ public interface GroovyObjectCustomizer {
 	/**
 	 * 自定义提供的 {@link GroovyObject}。
 	 * <p>例如，可以用它设置自定义元类来处理缺失的方法。
-	 * @param goo the {@code GroovyObject} to customize
+	 * @param goo 要定制的 {@code GroovyObject}
 	 */
 	void customize(GroovyObject goo);
 

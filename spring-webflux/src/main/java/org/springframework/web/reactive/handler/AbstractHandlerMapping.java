@@ -196,8 +196,8 @@ public abstract class AbstractHandlerMapping extends ApplicationObjectSupport
 	/**
 	 * 查找给定请求的处理器，如果未找到特定处理器，则返回空 {@code Mono}。此方法由 {@link #getHandler} 调用。
 	 * <p>对于 CORS 预检请求，此方法不应返回预检请求的匹配，而应基于 URL 路径、"Access-Control-Request-Method" 头中的 HTTP 方法以及 "Access-Control-Request-Headers" 头中的头，返回预期实际请求的匹配。
-	 * @param exchange current exchange
-	 * @return {@code Mono} for the matching handler, if any
+	 * @param exchange 当前交换
+	 * @return 匹配的处理器的 {@code Mono}（如果有）
 	 */
 	protected abstract Mono<?> getHandlerInternal(ServerWebExchange exchange);
 
@@ -211,9 +211,9 @@ public abstract class AbstractHandlerMapping extends ApplicationObjectSupport
 
 	/**
 	 * 获取给定处理器的 CORS 配置。
-	 * @param handler the handler to check (never {@code null})
-	 * @param exchange the current exchange
-	 * @return the CORS configuration for the handler, or {@code null} if none
+	 * @param handler 要检查的处理器（永不为 {@code null}）
+	 * @param exchange 当前交换
+	 * @return 处理器的 CORS 配置；如果没有则为 {@code null}
 	 */
 	@Nullable
 	protected CorsConfiguration getCorsConfiguration(Object handler, ServerWebExchange exchange) {

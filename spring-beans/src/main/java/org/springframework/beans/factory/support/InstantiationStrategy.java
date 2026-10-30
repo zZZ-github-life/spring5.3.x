@@ -36,45 +36,41 @@ public interface InstantiationStrategy {
 
 	/**
 	 * 返回此工厂中具有给定名称的 Bean 实例。
-	 * @param bd the bean definition
-	 * @param beanName the name of the bean when it is created in this context.
-	 * The name can be {@code null} if we are autowiring a bean which doesn't
-	 * belong to the factory.
-	 * @param owner the owning BeanFactory
-	 * @return a bean instance for this bean definition
-	 * @throws BeansException if the instantiation attempt failed
+	 * @param bd Bean 定义
+	 * @param beanName 该 Bean 在此上下文中创建时的名称。
+	 * 如果我们正在自动装配一个不属于该工厂的 Bean，该名称可以为 {@code null}。
+	 * @param owner 所属的 BeanFactory
+	 * @return 此 Bean 定义的 Bean 实例
+	 * @throws BeansException 如果实例化尝试失败
 	 */
 	Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner)
 			throws BeansException;
 
 	/**
 	 * 返回此工厂中具有给定名称的 Bean 实例，并通过给定构造器创建它。
-	 * @param bd the bean definition
-	 * @param beanName the name of the bean when it is created in this context.
-	 * The name can be {@code null} if we are autowiring a bean which doesn't
-	 * belong to the factory.
-	 * @param owner the owning BeanFactory
-	 * @param ctor the constructor to use
-	 * @param args the constructor arguments to apply
-	 * @return a bean instance for this bean definition
-	 * @throws BeansException if the instantiation attempt failed
+	 * @param bd Bean 定义
+	 * @param beanName 该 Bean 在此上下文中创建时的名称。
+	 * 如果我们正在自动装配一个不属于该工厂的 Bean，该名称可以为 {@code null}。
+	 * @param owner 所属的 BeanFactory
+	 * @param ctor 要使用的构造器
+	 * @param args 要应用的构造器参数
+	 * @return 此 Bean 定义的 Bean 实例
+	 * @throws BeansException 如果实例化尝试失败
 	 */
 	Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner,
 			Constructor<?> ctor, Object... args) throws BeansException;
 
 	/**
 	 * 返回此工厂中具有给定名称的 Bean 实例，并通过给定工厂方法创建它。
-	 * @param bd the bean definition
-	 * @param beanName the name of the bean when it is created in this context.
-	 * The name can be {@code null} if we are autowiring a bean which doesn't
-	 * belong to the factory.
-	 * @param owner the owning BeanFactory
-	 * @param factoryBean the factory bean instance to call the factory method on,
-	 * or {@code null} in case of a static factory method
-	 * @param factoryMethod the factory method to use
-	 * @param args the factory method arguments to apply
-	 * @return a bean instance for this bean definition
-	 * @throws BeansException if the instantiation attempt failed
+	 * @param bd Bean 定义
+	 * @param beanName 该 Bean 在此上下文中创建时的名称。
+	 * 如果我们正在自动装配一个不属于该工厂的 Bean，该名称可以为 {@code null}。
+	 * @param owner 所属的 BeanFactory
+	 * @param factoryBean 要调用工厂方法的工厂 Bean 实例；如果是静态工厂方法则为 {@code null}
+	 * @param factoryMethod 要使用的工厂方法
+	 * @param args 要应用的工厂方法参数
+	 * @return 此 Bean 定义的 Bean 实例
+	 * @throws BeansException 如果实例化尝试失败
 	 */
 	Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner,
 			@Nullable Object factoryBean, Method factoryMethod, Object... args)

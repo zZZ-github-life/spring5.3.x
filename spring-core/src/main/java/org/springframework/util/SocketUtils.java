@@ -80,8 +80,8 @@ public class SocketUtils {
 
 	/**
 	 * 从范围 [{@value #PORT_RANGE_MIN}, {@value #PORT_RANGE_MAX}] 中随机选择一个可用的 TCP 端口。
-	 * @return an available TCP port number
-	 * @throws IllegalStateException if no available port could be found
+	 * @return 一个可用的 TCP 端口号
+	 * @throws IllegalStateException 如果找不到可用端口
 	 */
 	public static int findAvailableTcpPort() {
 		return findAvailableTcpPort(PORT_RANGE_MIN);
@@ -89,9 +89,9 @@ public class SocketUtils {
 
 	/**
 	 * 从范围 [{@code minPort}, {@value #PORT_RANGE_MAX}] 中随机选择一个可用的 TCP 端口。
-	 * @param minPort the minimum port number
-	 * @return an available TCP port number
-	 * @throws IllegalStateException if no available port could be found
+	 * @param minPort 最小端口号
+	 * @return 一个可用的 TCP 端口号
+	 * @throws IllegalStateException 如果找不到可用端口
 	 */
 	public static int findAvailableTcpPort(int minPort) {
 		return findAvailableTcpPort(minPort, PORT_RANGE_MAX);
@@ -99,10 +99,10 @@ public class SocketUtils {
 
 	/**
 	 * 从范围 [{@code minPort}, {@code maxPort}] 中随机选择一个可用的 TCP 端口。
-	 * @param minPort the minimum port number
-	 * @param maxPort the maximum port number
-	 * @return an available TCP port number
-	 * @throws IllegalStateException if no available port could be found
+	 * @param minPort 最小端口号
+	 * @param maxPort 最大端口号
+	 * @return 一个可用的 TCP 端口号
+	 * @throws IllegalStateException 如果找不到可用端口
 	 */
 	public static int findAvailableTcpPort(int minPort, int maxPort) {
 		return SocketType.TCP.findAvailablePort(minPort, maxPort);
@@ -111,9 +111,9 @@ public class SocketUtils {
 	/**
 	 * 查找所需数量的可用 TCP 端口，每个端口从范围 [{@value #PORT_RANGE_MIN}, {@value #PORT_RANGE_MAX}]
 	 * 中随机选择。
-	 * @param numRequested the number of available ports to find
-	 * @return a sorted set of available TCP port numbers
-	 * @throws IllegalStateException if the requested number of available ports could not be found
+	 * @param numRequested 要查找的可用端口数量
+	 * @return 可用 TCP 端口号的排序集合
+	 * @throws IllegalStateException 如果找不到所请求数量的可用端口
 	 */
 	public static SortedSet<Integer> findAvailableTcpPorts(int numRequested) {
 		return findAvailableTcpPorts(numRequested, PORT_RANGE_MIN, PORT_RANGE_MAX);
@@ -121,11 +121,11 @@ public class SocketUtils {
 
 	/**
 	 * 查找所需数量的可用 TCP 端口，每个端口从范围 [{@code minPort}, {@code maxPort}] 中随机选择。
-	 * @param numRequested the number of available ports to find
-	 * @param minPort the minimum port number
-	 * @param maxPort the maximum port number
-	 * @return a sorted set of available TCP port numbers
-	 * @throws IllegalStateException if the requested number of available ports could not be found
+	 * @param numRequested 要查找的可用端口数量
+	 * @param minPort 最小端口号
+	 * @param maxPort 最大端口号
+	 * @return 可用 TCP 端口号的排序集合
+	 * @throws IllegalStateException 如果找不到所请求数量的可用端口
 	 */
 	public static SortedSet<Integer> findAvailableTcpPorts(int numRequested, int minPort, int maxPort) {
 		return SocketType.TCP.findAvailablePorts(numRequested, minPort, maxPort);
@@ -133,8 +133,8 @@ public class SocketUtils {
 
 	/**
 	 * 从范围 [{@value #PORT_RANGE_MIN}, {@value #PORT_RANGE_MAX}] 中随机选择一个可用的 UDP 端口。
-	 * @return an available UDP port number
-	 * @throws IllegalStateException if no available port could be found
+	 * @return 一个可用的 UDP 端口号
+	 * @throws IllegalStateException 如果找不到可用端口
 	 */
 	public static int findAvailableUdpPort() {
 		return findAvailableUdpPort(PORT_RANGE_MIN);
@@ -142,9 +142,9 @@ public class SocketUtils {
 
 	/**
 	 * 从范围 [{@code minPort}, {@value #PORT_RANGE_MAX}] 中随机选择一个可用的 UDP 端口。
-	 * @param minPort the minimum port number
-	 * @return an available UDP port number
-	 * @throws IllegalStateException if no available port could be found
+	 * @param minPort 最小端口号
+	 * @return 一个可用的 UDP 端口号
+	 * @throws IllegalStateException 如果找不到可用端口
 	 */
 	public static int findAvailableUdpPort(int minPort) {
 		return findAvailableUdpPort(minPort, PORT_RANGE_MAX);
@@ -152,10 +152,10 @@ public class SocketUtils {
 
 	/**
 	 * 从范围 [{@code minPort}, {@code maxPort}] 中随机选择一个可用的 UDP 端口。
-	 * @param minPort the minimum port number
-	 * @param maxPort the maximum port number
-	 * @return an available UDP port number
-	 * @throws IllegalStateException if no available port could be found
+	 * @param minPort 最小端口号
+	 * @param maxPort 最大端口号
+	 * @return 一个可用的 UDP 端口号
+	 * @throws IllegalStateException 如果找不到可用端口
 	 */
 	public static int findAvailableUdpPort(int minPort, int maxPort) {
 		return SocketType.UDP.findAvailablePort(minPort, maxPort);
@@ -164,9 +164,9 @@ public class SocketUtils {
 	/**
 	 * 查找所需数量的可用 UDP 端口，每个端口从范围 [{@value #PORT_RANGE_MIN}, {@value #PORT_RANGE_MAX}]
 	 * 中随机选择。
-	 * @param numRequested the number of available ports to find
-	 * @return a sorted set of available UDP port numbers
-	 * @throws IllegalStateException if the requested number of available ports could not be found
+	 * @param numRequested 要查找的可用端口数量
+	 * @return 可用 UDP 端口号的排序集合
+	 * @throws IllegalStateException 如果找不到所请求数量的可用端口
 	 */
 	public static SortedSet<Integer> findAvailableUdpPorts(int numRequested) {
 		return findAvailableUdpPorts(numRequested, PORT_RANGE_MIN, PORT_RANGE_MAX);
@@ -174,11 +174,11 @@ public class SocketUtils {
 
 	/**
 	 * 查找所需数量的可用 UDP 端口，每个端口从范围 [{@code minPort}, {@code maxPort}] 中随机选择。
-	 * @param numRequested the number of available ports to find
-	 * @param minPort the minimum port number
-	 * @param maxPort the maximum port number
-	 * @return a sorted set of available UDP port numbers
-	 * @throws IllegalStateException if the requested number of available ports could not be found
+	 * @param numRequested 要查找的可用端口数量
+	 * @param minPort 最小端口号
+	 * @param maxPort 最大端口号
+	 * @return 可用 UDP 端口号的排序集合
+	 * @throws IllegalStateException 如果找不到所请求数量的可用端口
 	 */
 	public static SortedSet<Integer> findAvailableUdpPorts(int numRequested, int minPort, int maxPort) {
 		return SocketType.UDP.findAvailablePorts(numRequested, minPort, maxPort);
@@ -223,9 +223,9 @@ public class SocketUtils {
 
 		/**
 		 * 在范围 [{@code minPort}, {@code maxPort}] 内查找一个伪随机端口号。
-		 * @param minPort the minimum port number
-		 * @param maxPort the maximum port number
-		 * @return a random port number within the specified range
+		 * @param minPort 最小端口号
+		 * @param maxPort 最大端口号
+		 * @return 指定范围内的随机端口号
 		 */
 		private int findRandomPort(int minPort, int maxPort) {
 			int portRange = maxPort - minPort;
@@ -234,10 +234,10 @@ public class SocketUtils {
 
 		/**
 		 * 为此 {@code SocketType} 查找一个可用端口，从范围 [{@code minPort}, {@code maxPort}] 中随机选择。
-		 * @param minPort the minimum port number
-		 * @param maxPort the maximum port number
-		 * @return an available port number for this socket type
-		 * @throws IllegalStateException if no available port could be found
+		 * @param minPort 最小端口号
+		 * @param maxPort 最大端口号
+		 * @return 此套接字类型的可用端口号
+		 * @throws IllegalStateException 如果找不到可用端口
 		 */
 		int findAvailablePort(int minPort, int maxPort) {
 			Assert.isTrue(minPort > 0, "'minPort' must be greater than 0");
@@ -264,11 +264,11 @@ public class SocketUtils {
 		/**
 		 * 为此 {@code SocketType} 查找所需数量的可用端口，每个端口从范围 [{@code minPort}, {@code maxPort}
 		 * ] 中随机选择。
-		 * @param numRequested the number of available ports to find
-		 * @param minPort the minimum port number
-		 * @param maxPort the maximum port number
-		 * @return a sorted set of available port numbers for this socket type
-		 * @throws IllegalStateException if the requested number of available ports could not be found
+		 * @param numRequested 要查找的可用端口数量
+		 * @param minPort 最小端口号
+		 * @param maxPort 最大端口号
+		 * @return 该套接字类型下可用端口号的有序集合
+		 * @throws IllegalStateException 如果找不到请求数量的可用端口
 		 */
 		SortedSet<Integer> findAvailablePorts(int numRequested, int minPort, int maxPort) {
 			Assert.isTrue(minPort > 0, "'minPort' must be greater than 0");

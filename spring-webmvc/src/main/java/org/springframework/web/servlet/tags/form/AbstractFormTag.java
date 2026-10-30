@@ -80,7 +80,7 @@ public abstract class AbstractFormTag extends HtmlEscapingAwareTag {
 	/**
 	 * 提供一个简单的模板方法，它调用 {@link #createTagWriter()}，
 	 * 并将创建的 {@link TagWriter} 传递给 {@link #writeTagContent(TagWriter)} 方法。
-	 * @return the value returned by {@link #writeTagContent(TagWriter)}
+	 * @return {@link #writeTagContent(TagWriter)} 返回的值
 	 */
 	@Override
 	protected final int doStartTagInternal() throws Exception {
@@ -117,7 +117,7 @@ public abstract class AbstractFormTag extends HtmlEscapingAwareTag {
 
 	/**
 	 * 子类应实现此方法以执行标签内容渲染。
-	 * @return valid tag render instruction as per {@link javax.servlet.jsp.tagext.Tag#doStartTag()}.
+	 * @return 符合 {@link javax.servlet.jsp.tagext.Tag#doStartTag()} 的有效标签渲染指令。
 	 */
 	protected abstract int writeTagContent(TagWriter tagWriter) throws JspException;
 

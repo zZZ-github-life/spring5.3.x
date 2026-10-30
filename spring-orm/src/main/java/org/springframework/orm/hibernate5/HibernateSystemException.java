@@ -36,7 +36,7 @@ public class HibernateSystemException extends UncategorizedDataAccessException {
 	/**
 	 * 创建一个新的 HibernateSystemException，
 	 * 包装任意 HibernateException。
-	 * @param cause the HibernateException thrown
+	 * @param cause 抛出的 HibernateException
 	 */
 	public HibernateSystemException(@Nullable HibernateException cause) {
 		super(cause != null ? cause.getMessage() : null, cause);

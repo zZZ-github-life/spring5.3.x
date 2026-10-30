@@ -31,15 +31,15 @@ public interface RequestPredicate {
 
 	/**
 	 * 对给定请求求值此谓词。
-	 * @param request the request to match against
-	 * @return {@code true} if the request matches the predicate; {@code false} otherwise
+	 * @param request 要匹配的请求
+	 * @return 如果请求与该谓词匹配，则返回 {@code true}；否则返回 {@code false}
 	 */
 	boolean test(ServerRequest request);
 
 	/**
 	 * 返回组合请求谓词，对此谓词和 {@code other} 谓词都进行测试（AND）。求值组合谓词时，如果此谓词为 {@code false}，则不会对 {@code other} 谓词求值。
-	 * @param other a predicate that will be logically-ANDed with this predicate
-	 * @return a predicate composed of this predicate AND the {@code other} predicate
+	 * @param other 将与此谓词进行逻辑与运算的谓词
+	 * @return 由此谓词与 {@code other} 谓词进行逻辑与组合而成的谓词
 	 */
 	default RequestPredicate and(RequestPredicate other) {
 		return new RequestPredicates.AndRequestPredicate(this, other);
@@ -47,7 +47,7 @@ public interface RequestPredicate {
 
 	/**
 	 * 返回表示此谓词逻辑取反的谓词。
-	 * @return a predicate that represents the logical negation of this predicate
+	 * @return 表示此谓词逻辑取反的谓词
 	 */
 	default RequestPredicate negate() {
 		return new RequestPredicates.NegateRequestPredicate(this);
@@ -55,8 +55,8 @@ public interface RequestPredicate {
 
 	/**
 	 * 返回组合请求谓词，对此谓词或 {@code other} 谓词进行测试（OR）。求值组合谓词时，如果此谓词为 {@code true}，则不会对 {@code other} 谓词求值。
-	 * @param other a predicate that will be logically-ORed with this predicate
-	 * @return a predicate composed of this predicate OR the {@code other} predicate
+	 * @param other 将与此谓词进行逻辑或运算的谓词
+	 * @return 由此谓词与 {@code other} 谓词进行逻辑或组合而成的谓词
 	 */
 	default RequestPredicate or(RequestPredicate other) {
 		return new RequestPredicates.OrRequestPredicate(this, other);
@@ -65,8 +65,8 @@ public interface RequestPredicate {
 	/**
 	 * 将给定请求转换为用于嵌套路由的请求。例如，基于路径的谓词可以返回匹配后剩余路径的 {@code ServerRequest}。
 	 * <p>默认实现会在 {@link #test(ServerRequest)} 求值为 {@code true} 时返回包装给定请求的 {@code Optional}；如果求值为 {@code false}，则返回 {@link Optional#empty()}。
-	 * @param request the request to be nested
-	 * @return the nested request
+	 * @param request 要嵌套的请求
+	 * @return 嵌套后的请求
 	 * @see RouterFunctions#nest(RequestPredicate, RouterFunction)
 	 */
 	default Optional<ServerRequest> nest(ServerRequest request) {
@@ -75,7 +75,7 @@ public interface RequestPredicate {
 
 	/**
 	 * 接受给定的访问者。默认实现调用 {@link RequestPredicates.Visitor#unknown(RequestPredicate)}；组合式 {@code RequestPredicate} 实现应为构成此请求谓词的所有组件调用 {@code accept}。
-	 * @param visitor the visitor to accept
+	 * @param visitor 要接受的访问者
 	 */
 	default void accept(RequestPredicates.Visitor visitor) {
 		visitor.unknown(this);

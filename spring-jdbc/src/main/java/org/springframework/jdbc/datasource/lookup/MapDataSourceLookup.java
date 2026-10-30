@@ -49,8 +49,8 @@ public class MapDataSourceLookup implements DataSourceLookup {
 
 	/**
 	 * 创建 {@link MapDataSourceLookup} 类的新实例。
-	 * @param dataSources the {@link Map} of {@link DataSource DataSources}; the keys
-	 * are {@link String Strings}, the values are actual {@link DataSource} instances.
+	 * @param dataSources {@link DataSource DataSources} 的 {@link Map}；
+	 * 键为 {@link String Strings}，值为实际的 {@link DataSource} 实例。
 	 */
 	public MapDataSourceLookup(Map<String, DataSource> dataSources) {
 		setDataSources(dataSources);
@@ -58,8 +58,8 @@ public class MapDataSourceLookup implements DataSourceLookup {
 
 	/**
 	 * 创建 {@link MapDataSourceLookup} 类的新实例。
-	 * @param dataSourceName the name under which the supplied {@link DataSource} is to be added
-	 * @param dataSource the {@link DataSource} to be added
+	 * @param dataSourceName 添加所提供 {@link DataSource} 时使用的名称
+	 * @param dataSource 要添加的 {@link DataSource}
 	 */
 	public MapDataSourceLookup(String dataSourceName, DataSource dataSource) {
 		addDataSource(dataSourceName, dataSource);
@@ -71,7 +71,7 @@ public class MapDataSourceLookup implements DataSourceLookup {
 	 * {@link String String}，值为实际的 {@link DataSource} 实例。
 	 * <p>如果提供的 {@link Map} 为 {@code null}，
 	 * 则调用此方法实际上没有任何效果。
-	 * @param dataSources said {@link Map} of {@link DataSource DataSources}
+	 * @param dataSources 上述 {@link DataSource DataSources} 的 {@link Map}
 	 */
 	public void setDataSources(@Nullable Map<String, DataSource> dataSources) {
 		if (dataSources != null) {
@@ -82,7 +82,7 @@ public class MapDataSourceLookup implements DataSourceLookup {
 	/**
 	 * 获取此对象维护的 {@link DataSource DataSource} 的 {@link Map}。
 	 * <p>返回的 {@link Map} 是 {@link Collections#unmodifiableMap(java.util.Map) 不可修改的}。
-	 * @return said {@link Map} of {@link DataSource DataSources} (never {@code null})
+	 * @return 上述 {@link DataSource DataSources} 的 {@link Map}（永不为 {@code null}）
 	 */
 	public Map<String, DataSource> getDataSources() {
 		return Collections.unmodifiableMap(this.dataSources);
@@ -91,8 +91,8 @@ public class MapDataSourceLookup implements DataSourceLookup {
 	/**
 	 * 将提供的 {@link DataSource} 添加到此对象维护的
 	 * {@link DataSource DataSource} 映射中。
-	 * @param dataSourceName the name under which the supplied {@link DataSource} is to be added
-	 * @param dataSource the {@link DataSource} to be so added
+	 * @param dataSourceName 添加所提供 {@link DataSource} 时使用的名称
+	 * @param dataSource 要如此添加的 {@link DataSource}
 	 */
 	public void addDataSource(String dataSourceName, DataSource dataSource) {
 		Assert.notNull(dataSourceName, "DataSource name must not be null");

@@ -37,9 +37,9 @@ public class JdbcUpdateAffectedIncorrectNumberOfRowsException extends IncorrectU
 
 	/**
 	 * 创建JdbcUpdateAffectedIncorrectNumberOfRowsException实例。
-	 * @param sql the SQL we were trying to execute
-	 * @param expected the expected number of rows affected
-	 * @param actual the actual number of rows affected
+	 * @param sql 我们尝试执行的 SQL
+	 * @param expected 预期受影响的行数
+	 * @param actual 实际受影响的行数
 	 */
 	public JdbcUpdateAffectedIncorrectNumberOfRowsException(String sql, int expected, int actual) {
 		super("SQL update '" + sql + "' affected " + actual + " rows, not " + expected + " as expected");

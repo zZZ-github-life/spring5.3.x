@@ -56,9 +56,9 @@ public abstract class StreamUtils {
 	/**
 	 * 将给定 InputStream 的内容复制到新的字节数组中。
 	 * <p>完成后使流保持打开状态。
-	 * @param in the stream to copy from (may be {@code null} or empty)
-	 * @return the new byte array that has been copied to (possibly empty)
-	 * @throws IOException in case of I/O errors
+	 * @param in 要从中复制的流（可以为 {@code null} 或空）
+	 * @return 已复制到的新的字节数组（可能为空）
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	public static byte[] copyToByteArray(@Nullable InputStream in) throws IOException {
 		if (in == null) {
@@ -73,10 +73,10 @@ public abstract class StreamUtils {
 	/**
 	 * 将给定 InputStream 的内容复制到 String 中。
 	 * <p>完成后使流保持打开状态。
-	 * @param in the InputStream to copy from (may be {@code null} or empty)
-	 * @param charset the {@link Charset} to use to decode the bytes
-	 * @return the String that has been copied to (possibly empty)
-	 * @throws IOException in case of I/O errors
+	 * @param in 要从中复制的 InputStream（可以为 {@code null} 或空）
+	 * @param charset 用于解码字节的 {@link Charset}
+	 * @return 已复制到的 String（可能为空）
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	public static String copyToString(@Nullable InputStream in, Charset charset) throws IOException {
 		if (in == null) {
@@ -96,9 +96,9 @@ public abstract class StreamUtils {
 	/**
 	 * 将给定 {@link ByteArrayOutputStream} 的内容复制到 {@link String} 中。
 	 * <p>这是 {@code new String(baos.toByteArray(), charset)} 的一种更高效的等价实现。
-	 * @param baos the {@code ByteArrayOutputStream} to be copied into a String
-	 * @param charset the {@link Charset} to use to decode the bytes
-	 * @return the String that has been copied to (possibly empty)
+	 * @param baos 要复制到 String 中的 {@code ByteArrayOutputStream}
+	 * @param charset 用于解码字节的 {@link Charset}
+	 * @return 已复制到的 String（可能为空）
 	 * @since 5.2.6
 	 */
 	public static String copyToString(ByteArrayOutputStream baos, Charset charset) {
@@ -117,9 +117,9 @@ public abstract class StreamUtils {
 	/**
 	 * 将给定字节数组的内容复制到给定 OutputStream。
 	 * <p>完成后使流保持打开状态。
-	 * @param in the byte array to copy from
-	 * @param out the OutputStream to copy to
-	 * @throws IOException in case of I/O errors
+	 * @param in 要从中复制的字节数组
+	 * @param out 要复制到的 OutputStream
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	public static void copy(byte[] in, OutputStream out) throws IOException {
 		Assert.notNull(in, "No input byte array specified");
@@ -132,10 +132,10 @@ public abstract class StreamUtils {
 	/**
 	 * 将给定 String 的内容复制到给定 OutputStream。
 	 * <p>完成后使流保持打开状态。
-	 * @param in the String to copy from
-	 * @param charset the Charset
-	 * @param out the OutputStream to copy to
-	 * @throws IOException in case of I/O errors
+	 * @param in 要从中复制的 String
+	 * @param charset 该 Charset
+	 * @param out 要复制到的 OutputStream
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	public static void copy(String in, Charset charset, OutputStream out) throws IOException {
 		Assert.notNull(in, "No input String specified");
@@ -150,10 +150,10 @@ public abstract class StreamUtils {
 	/**
 	 * 将给定 InputStream 的内容复制到给定 OutputStream。
 	 * <p>完成后使两个流都保持打开状态。
-	 * @param in the InputStream to copy from
-	 * @param out the OutputStream to copy to
-	 * @return the number of bytes copied
-	 * @throws IOException in case of I/O errors
+	 * @param in 要从中复制的 InputStream
+	 * @param out 要复制到的 OutputStream
+	 * @return 已复制的字节数
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	public static int copy(InputStream in, OutputStream out) throws IOException {
 		Assert.notNull(in, "No InputStream specified");
@@ -174,12 +174,12 @@ public abstract class StreamUtils {
 	 * 将给定 InputStream 的一段内容复制到给定 OutputStream。
 	 * <p>如果指定的范围超出 InputStream 的长度，则最多复制到流的末尾，并返回实际复制的字节数。
 	 * <p>完成后使两个流都保持打开状态。
-	 * @param in the InputStream to copy from
-	 * @param out the OutputStream to copy to
-	 * @param start the position to start copying from
-	 * @param end the position to end copying
-	 * @return the number of bytes copied
-	 * @throws IOException in case of I/O errors
+	 * @param in 要从中复制的 InputStream
+	 * @param out 要复制到的 OutputStream
+	 * @param start 开始复制的起始位置
+	 * @param end 结束复制的位置
+	 * @return 已复制的字节数
+	 * @throws IOException 发生 I/O 错误时
 	 * @since 4.3
 	 */
 	public static long copyRange(InputStream in, OutputStream out, long start, long end) throws IOException {
@@ -213,9 +213,9 @@ public abstract class StreamUtils {
 	/**
 	 * 排空给定 InputStream 的剩余内容。
 	 * <p>完成后使 InputStream 保持打开状态。
-	 * @param in the InputStream to drain
-	 * @return the number of bytes read
-	 * @throws IOException in case of I/O errors
+	 * @param in 要排空的 InputStream
+	 * @return 已读取的字节数
+	 * @throws IOException 发生 I/O 错误时
 	 * @since 4.3
 	 */
 	public static int drain(InputStream in) throws IOException {
@@ -231,7 +231,7 @@ public abstract class StreamUtils {
 
 	/**
 	 * 返回一个高效的空 {@link InputStream}。
-	 * @return a {@link ByteArrayInputStream} based on an empty byte array
+	 * @return 基于空字节数组的 {@link ByteArrayInputStream}
 	 * @since 4.2.2
 	 */
 	public static InputStream emptyInput() {
@@ -241,8 +241,8 @@ public abstract class StreamUtils {
 	/**
 	 * 返回给定 {@link InputStream} 的一个变体，对其调用 {@link InputStream#close() close()} 不产生任何
 	 * 效果。
-	 * @param in the InputStream to decorate
-	 * @return a version of the InputStream that ignores calls to close
+	 * @param in 要装饰的 InputStream
+	 * @return 忽略 close 调用的 InputStream 版本
 	 */
 	public static InputStream nonClosing(InputStream in) {
 		Assert.notNull(in, "No InputStream specified");
@@ -252,8 +252,8 @@ public abstract class StreamUtils {
 	/**
 	 * 返回给定 {@link OutputStream} 的一个变体，对其调用 {@link OutputStream#close() close()} 不产生任
 	 * 何效果。
-	 * @param out the OutputStream to decorate
-	 * @return a version of the OutputStream that ignores calls to close
+	 * @param out 要装饰的 OutputStream
+	 * @return 忽略 close 调用的 OutputStream 版本
 	 */
 	public static OutputStream nonClosing(OutputStream out) {
 		Assert.notNull(out, "No OutputStream specified");

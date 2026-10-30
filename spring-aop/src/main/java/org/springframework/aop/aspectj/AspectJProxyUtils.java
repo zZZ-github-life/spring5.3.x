@@ -39,9 +39,9 @@ public abstract class AspectJProxyUtils {
 	 * 加 {@link ExposeInvocationInterceptor}。
 	 * <p>这将暴露当前的 Spring AOP 调用（某些 AspectJ 切点匹配需要），并提供当前的 AspectJ JoinPoint。
 	 * 如果 Advisor 链中没有 AspectJ Advisor，则此调用不会产生任何效果。
-	 * @param advisors the advisors available
-	 * @return {@code true} if an {@link ExposeInvocationInterceptor} was added to the list,
-	 * otherwise {@code false}
+	 * @param advisors 可用的通知器
+	 * @return 如果向列表中添加了 {@link ExposeInvocationInterceptor}，则返回 {@code true}，
+	 * 否则返回 {@code false}
 	 */
 	public static boolean makeAdvisorChainAspectJCapableIfNecessary(List<Advisor> advisors) {
 		// Don't add advisors to an empty list; may indicate that proxying is just not required
@@ -65,7 +65,7 @@ public abstract class AspectJProxyUtils {
 
 	/**
 	 * 确定给定的 Advisor 是否包含 AspectJ 通知。
-	 * @param advisor the Advisor to check
+	 * @param advisor 要检查的 Advisor
 	 */
 	private static boolean isAspectJAdvice(Advisor advisor) {
 		return (advisor instanceof InstantiationModelAwarePointcutAdvisor ||

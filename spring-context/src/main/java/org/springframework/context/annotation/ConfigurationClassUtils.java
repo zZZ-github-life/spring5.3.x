@@ -77,9 +77,9 @@ abstract class ConfigurationClassUtils {
 	/**
 	 * 检查给定的 Bean 定义是否是配置类的候选（或者是配置类/组件类中声明的、也要自动注册的嵌套组件类），
 	 * 并相应地标记它。
-	 * @param beanDef the bean definition to check
-	 * @param metadataReaderFactory the current factory in use by the caller
-	 * @return whether the candidate qualifies as (any kind of) configuration class
+	 * @param beanDef 要检查的 Bean 定义
+	 * @param metadataReaderFactory 调用方当前使用的工厂
+	 * @return 该候选对象是否符合（任何类型的）配置类
 	 */
 	public static boolean checkConfigurationClassCandidate(
 			BeanDefinition beanDef, MetadataReaderFactory metadataReaderFactory) {
@@ -151,9 +151,9 @@ abstract class ConfigurationClassUtils {
 
 	/**
 	 * 检查给定元数据是否为配置类候选（或在配置类/组件类中声明的嵌套组件类）。
-	 * @param metadata the metadata of the annotated class
-	 * @return {@code true} if the given class is to be registered for
-	 * configuration class processing; {@code false} otherwise
+	 * @param metadata 带注解类的元数据
+	 * @return 如果给定类需要注册以进行配置类处理，则为 {@code true}；
+	 * 否则为 {@code false}
 
 
 	 * 检查是否为一个配置候选类：
@@ -193,9 +193,9 @@ abstract class ConfigurationClassUtils {
 
 	/**
 	 * 确定给定配置类元数据的顺序。
-	 * @param metadata the metadata of the annotated class
-	 * @return the {@code @Order} annotation value on the configuration class,
-	 * or {@code Ordered.LOWEST_PRECEDENCE} if none declared
+	 * @param metadata 带注解类的元数据
+	 * @return 配置类上的 {@code @Order} 注解值，
+	 * 如果未声明则为 {@code Ordered.LOWEST_PRECEDENCE}
 	 * @since 5.0
 	 */
 	@Nullable
@@ -206,9 +206,9 @@ abstract class ConfigurationClassUtils {
 
 	/**
 	 * 确定给定配置类 Bean 定义的顺序，该顺序由 {@link #checkConfigurationClassCandidate} 设置。
-	 * @param beanDef the bean definition to check
-	 * @return the {@link Order @Order} annotation value on the configuration class,
-	 * or {@link Ordered#LOWEST_PRECEDENCE} if none declared
+	 * @param beanDef 要检查的 Bean 定义
+	 * @return 配置类上的 {@link Order @Order} 注解值，
+	 * 如果未声明则为 {@link Ordered#LOWEST_PRECEDENCE}
 	 * @since 4.2
 	 */
 	public static int getOrder(BeanDefinition beanDef) {

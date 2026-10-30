@@ -118,7 +118,7 @@ public abstract class 	AbstractEnvironment implements ConfigurableEnvironment {
 	 * 使用特定的 {@link MutablePropertySources} 实例创建一个新的 {@code Environment} 实例，并在构造期
 	 * 间回调 {@link #customizePropertySources(MutablePropertySources)}，以便子类可以按需提供或操作
 	 * {@link PropertySource} 实例。
-	 * @param propertySources property sources to use
+	 * @param propertySources 要使用的属性源
 	 * @since 5.3.4
 	 * @see #customizePropertySources(MutablePropertySources)
 	 */
@@ -377,7 +377,7 @@ public abstract class 	AbstractEnvironment implements ConfigurableEnvironment {
 	/**
 	 * 返回给定 profile 是否处于活动状态；如果活动 profile 为空，则返回该 profile 是否应默认处于活动状
 	 * 态。
-	 * @throws IllegalArgumentException per {@link #validateProfile(String)}
+	 * @throws IllegalArgumentException 依据 {@link #validateProfile(String)}
 	 */
 	protected boolean isProfileActive(String profile) {
 		validateProfile(profile);
@@ -389,8 +389,8 @@ public abstract class 	AbstractEnvironment implements ConfigurableEnvironment {
 	/**
 	 * 校验给定的 profile，在添加到活动或默认 profile 集合之前由内部调用。
 	 * <p>子类可以重写以对 profile 语法施加更多限制。
-	 * @throws IllegalArgumentException if the profile is null, empty, whitespace-only or
-	 * begins with the profile NOT operator (!).
+	 * @throws IllegalArgumentException 如果 profile 为 null、为空、仅包含空白字符，
+	 * 或以 profile 取反运算符（!）开头。
 	 * @see #acceptsProfiles
 	 * @see #addActiveProfile
 	 * @see #setDefaultProfiles

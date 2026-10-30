@@ -76,7 +76,7 @@ public class PathResourceResolver extends AbstractResourceResolver {
 	 * 也可以检查此列表。
 	 * <p>默认情况下，{@link ResourceHttpRequestHandler} 会将此属性
 	 * 初始化为与其位置列表一致。
-	 * @param locations the list of allowed locations
+	 * @param locations 允许的位置列表
 	 * @since 4.1.2
 	 * @see ResourceHttpRequestHandler#initAllowedLocations()
 	 */
@@ -176,9 +176,9 @@ public class PathResourceResolver extends AbstractResourceResolver {
 	 * 在给定位置下查找资源。
 	 * <p>默认实现会检查给定路径是否相对于该位置存在
 	 * 可读的 {@code Resource}。
-	 * @param resourcePath the path to the resource
-	 * @param location the location to check
-	 * @return the resource, or {@code null} if none found
+	 * @param resourcePath 资源的路径
+	 * @param location 要检查的位置
+	 * @return 资源；如果未找到，则为 {@code null}
 	 */
 	@Nullable
 	protected Resource getResource(String resourcePath, Resource location) throws IOException {
@@ -204,9 +204,9 @@ public class PathResourceResolver extends AbstractResourceResolver {
 	 * 是否存在且可读。默认实现还会验证
 	 * 资源位于找到它的位置之下，或者
 	 * 位于 {@linkplain #setAllowedLocations allowed locations} 之一。
-	 * @param resource the resource to check
-	 * @param location the location relative to which the resource was found
-	 * @return "true" if resource is in a valid location, "false" otherwise.
+	 * @param resource 要检查的资源
+	 * @param location 找到该资源时所相对的位置
+	 * @return 如果资源位于有效位置，则返回 “true”，否则返回 “false”。
 	 * @since 4.1.2
 	 */
 	protected boolean checkResource(Resource resource, Resource location) throws IOException {

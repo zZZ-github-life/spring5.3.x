@@ -38,17 +38,17 @@ public interface BindMarker {
 
 	/**
 	 * 使用底层绑定策略将给定的 {@code value} 绑定到 {@link Statement}。
-	 * @param bindTarget the target to bind the value to
-	 * @param value the actual value (must not be {@code null};
-	 * use {@link #bindNull(BindTarget, Class)} for {@code null} values)
+	 * @param bindTarget 要绑定值的目标
+	 * @param value 实际值（不得为 {@code null}；
+	 * {@code null} 值请使用 {@link #bindNull(BindTarget, Class)}）
 	 * @see Statement#bind
 	 */
 	void bind(BindTarget bindTarget, Object value);
 
 	/**
 	 * 使用底层绑定策略将 {@code null} 值绑定到 {@link Statement}。
-	 * @param bindTarget the target to bind the value to
-	 * @param valueType the value type (must not be {@code null})
+	 * @param bindTarget 要绑定值的目标
+	 * @param valueType 值类型（不得为 {@code null}）
 	 * @see Statement#bindNull
 	 */
 	void bindNull(BindTarget bindTarget, Class<?> valueType);

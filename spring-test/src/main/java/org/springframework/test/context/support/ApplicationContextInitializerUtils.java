@@ -46,11 +46,11 @@ abstract class ApplicationContextInitializerUtils {
 	/**
 	 * 为所提供的 {@code ContextConfigurationAttributes} 列表解析合并后的 {@code ApplicationContextInitializer} 类集合。
 	 * <p>请注意，将考虑 {@link ContextConfiguration @ContextConfiguration} 的 {@link ContextConfiguration#inheritInitializers inheritInitializers} 标志。具体而言，如果对于所提供的配置属性所表示的类层次结构和外围类层次结构中的给定层级，{@code inheritInitializers} 标志设置为 {@code true}，则在该层级定义的上下文初始化器类将与类层次结构或外围类层次结构中更高层级定义的初始化器类合并。
-	 * @param configAttributesList the list of configuration attributes to process; must
-	 * not be {@code null} or <em>empty</em>; must be ordered <em>bottom-up</em>
-	 * (i.e., as if we were traversing up the class hierarchy or enclosing class hierarchy)
-	 * @return the set of merged context initializer classes, including those from
-	 * superclasses if appropriate (never {@code null})
+	 * @param configAttributesList 要处理的配置属性列表；不能为 {@code null} 或<em>空</em>；
+	 * 必须按<em>自下而上</em>顺序排列
+	 * （即，如同向上遍历类层次结构或外围类层次结构）
+	 * @return 合并后的上下文初始化器类集合，若适用则包括来自超类的
+	 * 初始化器类（从不为 {@code null}）
 	 * @since 3.2
 	 */
 	static Set<Class<? extends ApplicationContextInitializer<?>>> resolveInitializerClasses(

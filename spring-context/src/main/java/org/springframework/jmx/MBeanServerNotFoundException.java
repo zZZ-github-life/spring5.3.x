@@ -29,7 +29,7 @@ public class MBeanServerNotFoundException extends JmxException {
 
 	/**
 	 * 使用提供的错误消息创建新的 {@code MBeanServerNotFoundException}。
-	 * @param msg the error message
+	 * @param msg 错误消息
 	 */
 	public MBeanServerNotFoundException(String msg) {
 		super(msg);
@@ -37,8 +37,8 @@ public class MBeanServerNotFoundException extends JmxException {
 
 	/**
 	 * 使用指定的错误消息和根本原因创建新的 {@code MBeanServerNotFoundException}。
-	 * @param msg the error message
-	 * @param cause the root cause
+	 * @param msg 错误消息
+	 * @param cause 根本原因
 	 */
 	public MBeanServerNotFoundException(String msg, Throwable cause) {
 		super(msg, cause);

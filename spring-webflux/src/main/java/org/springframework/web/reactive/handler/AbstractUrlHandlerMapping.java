@@ -71,8 +71,8 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping {
 
 	/**
 	 * 配置谓词，用于对通过 URL 路径匹配的处理器进行扩展匹配。这允许通过检查请求的其他属性来进一步缩小映射范围。如果谓词返回 "false"，则结果为不匹配，从而允许另一个 {@link org.springframework.web.reactive.HandlerMapping} 进行匹配，或导致 404 (NOT_FOUND) 响应。
-	 * @param handlerPredicate a bi-predicate to match the candidate handler
-	 * against the current exchange.
+	 * @param handlerPredicate 用于将候选处理器与当前交换
+	 * 进行匹配的二元谓词。
 	 * @since 5.3.5
 	 * @see org.springframework.web.reactive.socket.server.support.WebSocketUpgradeHandlerPredicate
 	 */
@@ -98,9 +98,9 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping {
 	/**
 	 * 查找给定 URL 查找路径的处理器实例。
 	 * <p>支持直接匹配（例如注册的 "/test" 匹配 "/test"）以及各种路径模式匹配（例如注册的 "/t*" 同时匹配 "/test" 和 "/team"）。详情请参见 PathPattern 类。
-	 * @param lookupPath the URL the handler is mapped to
-	 * @param exchange the current exchange
-	 * @return the associated handler instance, or {@code null} if not found
+	 * @param lookupPath 处理器映射到的 URL
+	 * @param exchange 当前交换
+	 * @return 关联的处理器实例；如果未找到则为 {@code null}
 	 * @see org.springframework.web.util.pattern.PathPattern
 	 */
 	@Nullable
@@ -152,8 +152,8 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping {
 	/**
 	 * 根据当前请求校验给定处理器。
 	 * <p>默认实现为空。可以在子类中重写，例如强制执行 URL 映射中表达的特定前置条件。
-	 * @param handler the handler object to validate
-	 * @param exchange current exchange
+	 * @param handler 要校验的处理器对象
+	 * @param exchange 当前交换
 	 */
 	@SuppressWarnings("UnusedParameters")
 	protected void validateHandler(Object handler, ServerWebExchange exchange) {
@@ -161,10 +161,10 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping {
 
 	/**
 	 * 为给定 URL 路径注册指定的处理器。
-	 * @param urlPaths the URLs that the bean should be mapped to
-	 * @param beanName the name of the handler bean
-	 * @throws BeansException if the handler couldn't be registered
-	 * @throws IllegalStateException if there is a conflicting handler registered
+	 * @param urlPaths 该 Bean 应映射到的 URL
+	 * @param beanName 处理器 Bean 的名称
+	 * @throws BeansException 如果无法注册处理器
+	 * @throws IllegalStateException 如果存在冲突的已注册处理器
 	 */
 	protected void registerHandler(String[] urlPaths, String beanName) throws BeansException, IllegalStateException {
 		Assert.notNull(urlPaths, "URL path array must not be null");
@@ -175,11 +175,11 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping {
 
 	/**
 	 * 为给定 URL 路径注册指定的处理器。
-	 * @param urlPath the URL the bean should be mapped to
-	 * @param handler the handler instance or handler bean name String
-	 * (a bean name will automatically be resolved into the corresponding handler bean)
-	 * @throws BeansException if the handler couldn't be registered
-	 * @throws IllegalStateException if there is a conflicting handler registered
+	 * @param urlPath 该 Bean 应映射到的 URL
+	 * @param handler 处理器实例或处理器 Bean 名称字符串
+	 * （Bean 名称会自动解析为相应的处理器 Bean）
+	 * @throws BeansException 如果无法注册处理器
+	 * @throws IllegalStateException 如果存在冲突的已注册处理器
 	 */
 	protected void registerHandler(String urlPath, Object handler) throws BeansException, IllegalStateException {
 		Assert.notNull(urlPath, "URL path must not be null");

@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.SmartRequestBuilder;
  * 的扩展，可通过 {@link RequestPostProcessor RequestPostProcessors} 进行配置。
  * @author Rossen Stoyanchev
  * @since 4.1
- * @param <B> a self reference to the builder type
+ * @param <B> 构建器类型的自引用
  */
 public interface ConfigurableSmartRequestBuilder<B extends ConfigurableSmartRequestBuilder<B>>
 		extends SmartRequestBuilder {

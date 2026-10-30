@@ -52,7 +52,7 @@ public class ProxyProcessorSupport extends ProxyConfig implements Ordered, BeanC
 	/**
 	 * 设置适用于此处理器对 {@link Ordered} 实现的排序，在应用多个处理器时使用。
 	 * <p>默认值为 {@code Ordered.LOWEST_PRECEDENCE}，表示无序。
-	 * @param order the ordering value
+	 * @param order 排序值
 	 */
 	public void setOrder(int order) {
 		this.order = order;
@@ -93,8 +93,8 @@ public class ProxyProcessorSupport extends ProxyConfig implements Ordered, BeanC
 	 * 检查给定 Bean 类上的接口，并在适当的情况下将它们应用到 {@link ProxyFactory}。
 	 * <p>调用 {@link #isConfigurationCallbackInterface} 和 {@link #isInternalLanguageInterface} 来筛选
 	 * 合理的代理接口，否则回退到目标类代理。
-	 * @param beanClass the class of the bean
-	 * @param proxyFactory the ProxyFactory for the bean
+	 * @param beanClass Bean 的类
+	 * @param proxyFactory 该 Bean 的 ProxyFactory
 	 */
 	protected void evaluateProxyInterfaces(Class<?> beanClass, ProxyFactory proxyFactory) {
 		Class<?>[] targetInterfaces = ClassUtils.getAllInterfacesForClass(beanClass, getProxyClassLoader());
@@ -120,8 +120,8 @@ public class ProxyProcessorSupport extends ProxyConfig implements Ordered, BeanC
 	/**
 	 * 判断给定接口是否只是容器回调，因而不能被视为合理的代理接口。
 	 * <p>如果对给定 Bean 未找到合理的代理接口，则会使用其完整目标类进行代理，并假定这是用户的意图。
-	 * @param ifc the interface to check
-	 * @return whether the given interface is just a container callback
+	 * @param ifc 要检查的接口
+	 * @return 给定接口是否只是一个容器回调
 	 */
 	protected boolean isConfigurationCallbackInterface(Class<?> ifc) {
 		return (InitializingBean.class == ifc || DisposableBean.class == ifc || Closeable.class == ifc ||
@@ -131,8 +131,8 @@ public class ProxyProcessorSupport extends ProxyConfig implements Ordered, BeanC
 	/**
 	 * 判断给定接口是否是众所周知的内部语言接口，因而不能被视为合理的代理接口。
 	 * <p>如果对给定 Bean 未找到合理的代理接口，则会使用其完整目标类进行代理，并假定这是用户的意图。
-	 * @param ifc the interface to check
-	 * @return whether the given interface is an internal language interface
+	 * @param ifc 要检查的接口
+	 * @return 给定接口是否是内部语言接口
 	 */
 	protected boolean isInternalLanguageInterface(Class<?> ifc) {
 		return (ifc.getName().equals("groovy.lang.GroovyObject") ||

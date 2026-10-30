@@ -32,12 +32,10 @@ public interface ConstructorExecutor {
 
 	/**
 	 * 在指定的上下文中使用指定的参数执行构造器。
-	 * @param context the evaluation context in which the command is being executed
-	 * @param arguments the arguments to the constructor call, should match (in terms
-	 * of number and type) whatever the command will need to run
-	 * @return the new object
-	 * @throws AccessException if there is a problem executing the command or the
-	 * CommandExecutor is no longer valid
+	 * @param context 执行该命令所在的求值上下文
+	 * @param arguments 构造器调用的参数，其数量和类型应与该命令运行所需匹配
+	 * @return 新对象
+	 * @throws AccessException 如果执行命令时出现问题，或 CommandExecutor 已不再有效
 	 */
 	TypedValue execute(EvaluationContext context, Object... arguments) throws AccessException;
 

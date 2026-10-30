@@ -29,14 +29,14 @@ import org.springframework.lang.Nullable;
  *
  * @author Arjen Poutsma
  * @since 4.0
- * @param <T> the type of this {@code Future}
- * @param <S> the type of the adaptee's {@code Future}
+ * @param <T> 该 {@code Future} 的类型
+ * @param <S> 被适配对象的 {@code Future} 的类型
  */
 public abstract class ListenableFutureAdapter<T, S> extends FutureAdapter<T, S> implements ListenableFuture<T> {
 
 	/**
 	 * 使用给定的被适配对象构造一个新的 {@code ListenableFutureAdapter}。
-	 * @param adaptee the future to adapt to
+	 * @param adaptee 要适配到的 future
 	 */
 	protected ListenableFutureAdapter(ListenableFuture<S> adaptee) {
 		super(adaptee);

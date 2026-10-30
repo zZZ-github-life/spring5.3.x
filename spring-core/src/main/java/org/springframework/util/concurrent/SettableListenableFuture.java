@@ -35,7 +35,7 @@ import org.springframework.util.Assert;
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @since 4.1
- * @param <T> the result type returned by this Future's {@code get} method
+ * @param <T> 该 Future 的 {@code get} 方法返回的结果类型
  */
 public class SettableListenableFuture<T> implements ListenableFuture<T> {
 
@@ -50,8 +50,8 @@ public class SettableListenableFuture<T> implements ListenableFuture<T> {
 	/**
 	 * 设置此 future 的值。如果值设置成功，此方法返回 {@code true}；如果该 future 已被设置或已取消，则
 	 * 返回 {@code false}。
-	 * @param value the value that will be set
-	 * @return {@code true} if the value was successfully set, else {@code false}
+	 * @param value 将要设置的值
+	 * @return 如果值设置成功则返回 {@code true}，否则返回 {@code false}
 	 */
 	public boolean set(@Nullable T value) {
 		return this.settableTask.setResultValue(value);
@@ -60,8 +60,8 @@ public class SettableListenableFuture<T> implements ListenableFuture<T> {
 	/**
 	 * 设置此 future 的异常。如果异常设置成功，此方法返回 {@code true}；如果该 future 已被设置或已取消，
 	 * 则返回 {@code false}。
-	 * @param exception the value that will be set
-	 * @return {@code true} if the exception was successfully set, else {@code false}
+	 * @param exception 将要设置的值
+	 * @return 如果异常设置成功则返回 {@code true}，否则返回 {@code false}
 	 */
 	public boolean setException(Throwable exception) {
 		Assert.notNull(exception, "Exception must not be null");
@@ -110,7 +110,7 @@ public class SettableListenableFuture<T> implements ListenableFuture<T> {
 	 * {@link #setException(Throwable)} 设置异常，则抛出
 	 * {@link java.util.concurrent.ExecutionException}；如果该 future 已被取消，则抛出
 	 * {@link java.util.concurrent.CancellationException}。
-	 * @return the value associated with this future
+	 * @return 与该 future 关联的值
 	 */
 	@Nullable
 	@Override
@@ -124,9 +124,9 @@ public class SettableListenableFuture<T> implements ListenableFuture<T> {
 	 * {@link #setException(Throwable)} 设置异常，则抛出
 	 * {@link java.util.concurrent.ExecutionException}；如果该 future 已被取消，则抛出
 	 * {@link java.util.concurrent.CancellationException}。
-	 * @param timeout the maximum time to wait
-	 * @param unit the unit of the timeout argument
-	 * @return the value associated with this future
+	 * @param timeout 最长等待时间
+	 * @param unit 超时参数的时间单位
+	 * @return 与该 future 关联的值
 	 */
 	@Nullable
 	@Override

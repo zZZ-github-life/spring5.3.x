@@ -76,7 +76,7 @@ public class DriverManagerDataSource extends AbstractDriverBasedDataSource {
 	/**
 	 * 使用给定的 JDBC URL 创建一个新的 DriverManagerDataSource，
 	 * 不为 JDBC 访问指定用户名或密码。
-	 * @param url the JDBC URL to use for accessing the DriverManager
+	 * @param url 用于访问 DriverManager 的 JDBC URL
 	 * @see java.sql.DriverManager#getConnection(String)
 	 */
 	public DriverManagerDataSource(String url) {
@@ -85,9 +85,9 @@ public class DriverManagerDataSource extends AbstractDriverBasedDataSource {
 
 	/**
 	 * 使用给定的标准 DriverManager 参数创建一个新的 DriverManagerDataSource。
-	 * @param url the JDBC URL to use for accessing the DriverManager
-	 * @param username the JDBC username to use for accessing the DriverManager
-	 * @param password the JDBC password to use for accessing the DriverManager
+	 * @param url 用于访问 DriverManager 的 JDBC URL
+	 * @param username 用于访问 DriverManager 的 JDBC 用户名
+	 * @param password 用于访问 DriverManager 的 JDBC 密码
 	 * @see java.sql.DriverManager#getConnection(String, String, String)
 	 */
 	public DriverManagerDataSource(String url, String username, String password) {
@@ -99,8 +99,8 @@ public class DriverManagerDataSource extends AbstractDriverBasedDataSource {
 	/**
 	 * 使用给定的 JDBC URL 创建一个新的 DriverManagerDataSource，
 	 * 不为 JDBC 访问指定用户名或密码。
-	 * @param url the JDBC URL to use for accessing the DriverManager
-	 * @param conProps the JDBC connection properties
+	 * @param url 用于访问 DriverManager 的 JDBC URL
+	 * @param conProps JDBC 连接属性
 	 * @see java.sql.DriverManager#getConnection(String)
 	 */
 	public DriverManagerDataSource(String url, Properties conProps) {

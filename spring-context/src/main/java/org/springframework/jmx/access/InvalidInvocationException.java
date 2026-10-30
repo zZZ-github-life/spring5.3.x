@@ -31,7 +31,7 @@ public class InvalidInvocationException extends JMRuntimeException {
 
 	/**
 	 * 使用提供的错误消息创建新的 {@code InvalidInvocationException}。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public InvalidInvocationException(String msg) {
 		super(msg);

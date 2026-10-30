@@ -30,11 +30,11 @@ public interface IntroductionAwareMethodMatcher extends MethodMatcher {
 	/**
 	 * 执行静态检查，判断给定方法是否匹配。如果调用方支持扩展的 IntroductionAwareMethodMatcher 接口，则
 	 * 可能会调用此方法，而不是 2 参数版本的 {@link #matches(java.lang.reflect.Method, Class)} 方法。
-	 * @param method the candidate method
-	 * @param targetClass the target class
-	 * @param hasIntroductions {@code true} if the object on whose behalf we are
-	 * asking is the subject on one or more introductions; {@code false} otherwise
-	 * @return whether this method matches statically
+	 * @param method 候选方法
+	 * @param targetClass 目标类
+	 * @param hasIntroductions 如果代表其询问的对象是一个或多个引入的主体，则返回 {@code true}；
+	 * 否则返回 {@code false}
+	 * @return 该方法是否静态匹配
 	 */
 	boolean matches(Method method, Class<?> targetClass, boolean hasIntroductions);
 

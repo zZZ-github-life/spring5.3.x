@@ -38,10 +38,9 @@ public interface AopProxyFactory {
 
 	/**
 	 * 为给定的 AOP 配置创建 {@link AopProxy}。
-	 * @param config the AOP configuration in the form of an
-	 * AdvisedSupport object
-	 * @return the corresponding AOP proxy
-	 * @throws AopConfigException if the configuration is invalid
+	 * @param config 以 AdvisedSupport 对象形式表示的 AOP 配置
+	 * @return 对应的 AOP 代理
+	 * @throws AopConfigException 如果配置无效
 	 */
 	AopProxy createAopProxy(AdvisedSupport config) throws AopConfigException;
 

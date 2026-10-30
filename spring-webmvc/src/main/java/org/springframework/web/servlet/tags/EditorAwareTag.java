@@ -36,8 +36,8 @@ public interface EditorAwareTag {
 	/**
 	 * 获取此标签当前所绑定属性的 PropertyEditor。
 	 * 供协作的嵌套标签使用。
-	 * @return the current PropertyEditor, or {@code null} if none
-	 * @throws JspException if resolving the editor failed
+	 * @return 当前的 PropertyEditor，如果没有则为 {@code null}
+	 * @throws JspException 如果解析编辑器失败
 	 */
 	@Nullable
 	PropertyEditor getEditor() throws JspException;

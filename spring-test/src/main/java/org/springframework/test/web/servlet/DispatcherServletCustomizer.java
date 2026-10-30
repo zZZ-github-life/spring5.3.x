@@ -28,7 +28,7 @@ public interface DispatcherServletCustomizer {
 
 	/**
 	 * 在提供的 {@link DispatcherServlet} 初始化<em>之前</em>对其进行自定义。
-	 * @param dispatcherServlet the dispatcher servlet to customize
+	 * @param dispatcherServlet 要定制的 DispatcherServlet
 	 */
 	void customize(DispatcherServlet dispatcherServlet);
 

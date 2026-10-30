@@ -58,8 +58,8 @@ public abstract class AbstractMessageWriterResultHandler extends HandlerResultHa
 
 	/**
 	 * 使用 {@link HttpMessageWriter HttpMessageWriters} 和 {@code RequestedContentTypeResolver} 的构造函数。
-	 * @param messageWriters for serializing Objects to the response body stream
-	 * @param contentTypeResolver for resolving the requested content type
+	 * @param messageWriters 用于将 Object 序列化到响应正文流
+	 * @param contentTypeResolver 用于解析请求的内容类型
 	 */
 	protected AbstractMessageWriterResultHandler(List<HttpMessageWriter<?>> messageWriters,
 			RequestedContentTypeResolver contentTypeResolver) {
@@ -69,10 +69,10 @@ public abstract class AbstractMessageWriterResultHandler extends HandlerResultHa
 
 	/**
 	 * 附带 {@link ReactiveAdapterRegistry} 的构造函数。
-	 * @param messageWriters for serializing Objects to the response body stream
-	 * @param contentTypeResolver for resolving the requested content type
-	 * @param adapterRegistry for adapting other reactive types (e.g. rx.Observable,
-	 * rx.Single, etc.) to Flux or Mono
+	 * @param messageWriters 用于将 Object 序列化到响应正文流
+	 * @param contentTypeResolver 用于解析请求的内容类型
+	 * @param adapterRegistry 用于将其他响应式类型（例如 rx.Observable、
+	 * rx.Single 等）适配为 Flux 或 Mono
 	 */
 	protected AbstractMessageWriterResultHandler(List<HttpMessageWriter<?>> messageWriters,
 			RequestedContentTypeResolver contentTypeResolver, ReactiveAdapterRegistry adapterRegistry) {
@@ -93,10 +93,10 @@ public abstract class AbstractMessageWriterResultHandler extends HandlerResultHa
 
 	/**
 	 * 使用 {@link HttpMessageWriter} 将给定正文写入响应。
-	 * @param body the object to write
-	 * @param bodyParameter the {@link MethodParameter} of the body to write
-	 * @param exchange the current exchange
-	 * @return indicates completion or error
+	 * @param body 要写入的对象
+	 * @param bodyParameter 要写入的正文的 {@link MethodParameter}
+	 * @param exchange 当前交换
+	 * @return 指示完成或错误
 	 * @see #writeBody(Object, MethodParameter, MethodParameter, ServerWebExchange)
 	 */
 	protected Mono<Void> writeBody(@Nullable Object body, MethodParameter bodyParameter, ServerWebExchange exchange) {
@@ -105,13 +105,12 @@ public abstract class AbstractMessageWriterResultHandler extends HandlerResultHa
 
 	/**
 	 * 使用 {@link HttpMessageWriter} 将给定正文写入响应。
-	 * @param body the object to write
-	 * @param bodyParameter the {@link MethodParameter} of the body to write
-	 * @param actualParam the actual return type of the method that returned the value;
-	 * could be different from {@code bodyParameter} when processing {@code HttpEntity}
-	 * for example
-	 * @param exchange the current exchange
-	 * @return indicates completion or error
+	 * @param body 要写入的对象
+	 * @param bodyParameter 要写入的正文的 {@link MethodParameter}
+	 * @param actualParam 返回值的方法的实际返回类型；例如在处理 {@code HttpEntity} 时
+	 * 可能与 {@code bodyParameter} 不同
+	 * @param exchange 当前交换
+	 * @return 指示完成或错误
 	 * @since 5.0.2
 	 */
 	@SuppressWarnings({"unchecked", "rawtypes", "ConstantConditions"})

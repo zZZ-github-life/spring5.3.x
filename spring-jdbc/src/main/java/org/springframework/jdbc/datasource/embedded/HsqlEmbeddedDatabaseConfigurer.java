@@ -40,8 +40,8 @@ final class HsqlEmbeddedDatabaseConfigurer extends AbstractEmbeddedDatabaseConfi
 
 	/**
 	 * 获取单例 {@link HsqlEmbeddedDatabaseConfigurer} 实例。
-	 * @return the configurer instance
-	 * @throws ClassNotFoundException if HSQL is not on the classpath
+	 * @return 配置器实例
+	 * @throws ClassNotFoundException 如果 HSQL 不在 classpath 上
 	 */
 	@SuppressWarnings("unchecked")
 	public static synchronized HsqlEmbeddedDatabaseConfigurer getInstance() throws ClassNotFoundException {

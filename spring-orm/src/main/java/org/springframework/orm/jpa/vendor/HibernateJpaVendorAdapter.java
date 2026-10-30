@@ -166,8 +166,8 @@ public class HibernateJpaVendorAdapter extends AbstractJpaVendorAdapter {
 
 	/**
 	 * 确定给定目标数据库对应的 Hibernate 数据库方言类。
-	 * @param database the target database
-	 * @return the Hibernate database dialect class, or {@code null} if none found
+	 * @param database 目标数据库
+	 * @return Hibernate 数据库方言类；如果未找到，则为 {@code null}
 	 */
 	@Nullable
 	protected Class<?> determineDatabaseDialectClass(Database database) {

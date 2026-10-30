@@ -69,7 +69,7 @@ public interface TestContextBootstrapper {
 	/**
 	 * 为此引导器关联的 {@link BootstrapContext}
 	 * 构建 {@link TestContext}。
-	 * @return a new {@link TestContext}, never {@code null}
+	 * @return 新的 {@link TestContext}，永不为 {@code null}
 	 * @since 4.2
 	 * @see #buildMergedContextConfiguration()
 	 */
@@ -96,7 +96,7 @@ public interface TestContextBootstrapper {
 	 * <li>否则，具体实现可以自由确定默认使用哪个
 	 * {@code ContextLoader} 类。</li>
 	 * </ol>
-	 * @return the merged context configuration, never {@code null}
+	 * @return 合并后的上下文配置，永不为 {@code null}
 	 * @see #buildTestContext()
 	 */
 	MergedContextConfiguration buildMergedContextConfiguration();
@@ -121,7 +121,7 @@ public interface TestContextBootstrapper {
 	 * 标志。具体而言，如果 {@code inheritListeners}
 	 * 标志设置为 {@code true}，则必须将为给定测试类声明的监听器
 	 * 追加到超类或封闭类中声明的监听器列表的末尾。
-	 * @return a list of {@code TestExecutionListener} instances
+	 * @return {@code TestExecutionListener} 实例列表
 	 */
 	List<TestExecutionListener> getTestExecutionListeners();
 

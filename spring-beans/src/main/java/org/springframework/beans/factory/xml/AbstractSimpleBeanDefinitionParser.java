@@ -95,8 +95,8 @@ public abstract class AbstractSimpleBeanDefinitionParser extends AbstractSingleB
 	 * {@link BeanDefinitionBuilder#addPropertyValue(String, Object) 将其添加}到
 	 * {@link org.springframework.beans.factory.config.BeanDefinition 构建器}中。<p>
 	 * {@link #extractPropertyName(String)} 方法用于协调属性名与 JavaBean 属性名。
-	 * @param element the XML element being parsed
-	 * @param builder used to define the {@code BeanDefinition}
+	 * @param element 正在解析的 XML 元素
+	 * @param builder 用于定义 {@code BeanDefinition}
 	 * @see #extractPropertyName(String)
 	 */
 	@Override
@@ -117,8 +117,8 @@ public abstract class AbstractSimpleBeanDefinitionParser extends AbstractSingleB
 	/**
 	 * 确定给定属性是否符合转换为相应 Bean 属性值的条件。<p>默认实现认为除“id”属性和命名空间声明属性之
 	 * 外的任何属性都符合条件。
-	 * @param attribute the XML attribute to check
-	 * @param parserContext the {@code ParserContext}
+	 * @param attribute 要检查的 XML 属性
+	 * @param parserContext 该 {@code ParserContext}
 	 * @see #isEligibleAttribute(String)
 	 */
 	protected boolean isEligibleAttribute(Attr attribute, ParserContext parserContext) {
@@ -130,8 +130,7 @@ public abstract class AbstractSimpleBeanDefinitionParser extends AbstractSingleB
 	/**
 	 * 确定给定属性是否符合转换为相应 Bean 属性值的条件。<p>默认实现认为除“id”属性之外的任何属性都符合
 	 * 条件。
-	 * @param attributeName the attribute name taken straight from the
-	 * XML element being parsed (never {@code null})
+	 * @param attributeName 直接从正在解析的 XML 元素中获取的属性名称（永不为 {@code null}）
 	 */
 	protected boolean isEligibleAttribute(String attributeName) {
 		return !ID_ATTRIBUTE.equals(attributeName);
@@ -142,9 +141,8 @@ public abstract class AbstractSimpleBeanDefinitionParser extends AbstractSingleB
 	 * {@link Conventions#attributeNameToPropertyName(String)} 方法执行提取。<p>返回的名称必须遵循标准
 	 * 的 JavaBean 属性名约定。例如，对于具有 setter 方法 '{@code setBingoHallFavourite(String)}' 的类，
 	 * 返回的名称最好是 '{@code bingoHallFavourite}'（大小写完全一致）。
-	 * @param attributeName the attribute name taken straight from the
-	 * XML element being parsed (never {@code null})
-	 * @return the extracted JavaBean property name (must never be {@code null})
+	 * @param attributeName 直接从正在解析的 XML 元素中获取的属性名称（永不为 {@code null}）
+	 * @return 提取出的 JavaBean 属性名称（绝不能为 {@code null}）
 	 */
 	protected String extractPropertyName(String attributeName) {
 		return Conventions.attributeNameToPropertyName(attributeName);
@@ -152,8 +150,8 @@ public abstract class AbstractSimpleBeanDefinitionParser extends AbstractSingleB
 
 	/**
 	 * 钩子方法，派生类可以实现它，以便在解析完成后检查/更改 Bean 定义。<p>默认实现不执行任何操作。
-	 * @param beanDefinition the parsed (and probably totally defined) bean definition being built
-	 * @param element the XML element that was the source of the bean definition's metadata
+	 * @param beanDefinition 正在构建的已解析（且可能已完全定义）的 Bean 定义
+	 * @param element 作为该 Bean 定义元数据来源的 XML 元素
 	 */
 	protected void postProcess(BeanDefinitionBuilder beanDefinition, Element element) {
 	}

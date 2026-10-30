@@ -51,7 +51,7 @@ public class CallableStatementCreatorFactory {
 
 	/**
 	 * 创建新工厂。需要通过{@link #addParameter}方法添加参数，或者没有参数。
-	 * @param callString the SQL call string
+	 * @param callString SQL 调用字符串
 	 */
 	public CallableStatementCreatorFactory(String callString) {
 		this.callString = callString;
@@ -60,8 +60,8 @@ public class CallableStatementCreatorFactory {
 
 	/**
 	 * 使用给定的SQL和给定的参数创建新工厂。
-	 * @param callString the SQL call string
-	 * @param declaredParameters list of {@link SqlParameter} objects
+	 * @param callString SQL 调用字符串
+	 * @param declaredParameters {@link SqlParameter} 对象的列表
 	 */
 	public CallableStatementCreatorFactory(String callString, List<SqlParameter> declaredParameters) {
 		this.callString = callString;
@@ -80,7 +80,7 @@ public class CallableStatementCreatorFactory {
 	/**
 	 * 添加新的声明参数。
 	 * <p>参数添加的顺序很重要。
-	 * @param param the parameter to add to the list of declared parameters
+	 * @param param 要添加到已声明参数列表中的参数
 	 */
 	public void addParameter(SqlParameter param) {
 		this.declaredParameters.add(param);
@@ -88,7 +88,7 @@ public class CallableStatementCreatorFactory {
 
 	/**
 	 * 设置是否使用返回特定类型ResultSet的预编译语句。
-	 * @param resultSetType the ResultSet type
+	 * @param resultSetType ResultSet 类型
 	 * @see java.sql.ResultSet#TYPE_FORWARD_ONLY
 	 * @see java.sql.ResultSet#TYPE_SCROLL_INSENSITIVE
 	 * @see java.sql.ResultSet#TYPE_SCROLL_SENSITIVE
@@ -107,7 +107,7 @@ public class CallableStatementCreatorFactory {
 
 	/**
 	 * 根据给定参数返回新的CallableStatementCreator实例。
-	 * @param params list of parameters (may be {@code null})
+	 * @param params 参数列表（可能为 {@code null}）
 	 */
 	public CallableStatementCreator newCallableStatementCreator(@Nullable Map<String, ?> params) {
 		return new CallableStatementCreatorImpl(params != null ? params : new HashMap<>());
@@ -115,7 +115,7 @@ public class CallableStatementCreatorFactory {
 
 	/**
 	 * 根据给定的参数映射器返回新的CallableStatementCreator实例。
-	 * @param inParamMapper the ParameterMapper implementation that will return a Map of parameters
+	 * @param inParamMapper 返回参数 Map 的 ParameterMapper 实现
 	 */
 	public CallableStatementCreator newCallableStatementCreator(ParameterMapper inParamMapper) {
 		return new CallableStatementCreatorImpl(inParamMapper);
@@ -135,7 +135,7 @@ public class CallableStatementCreatorFactory {
 
 		/**
 		 * 创建新的CallableStatementCreatorImpl。
-		 * @param inParamMapper the ParameterMapper implementation for mapping input parameters
+		 * @param inParamMapper 用于映射输入参数的 ParameterMapper 实现
 		 */
 		public CallableStatementCreatorImpl(ParameterMapper inParamMapper) {
 			this.inParameterMapper = inParamMapper;
@@ -143,7 +143,7 @@ public class CallableStatementCreatorFactory {
 
 		/**
 		 * 创建新的CallableStatementCreatorImpl。
-		 * @param inParams list of SqlParameter objects
+		 * @param inParams SqlParameter 对象的列表
 		 */
 		public CallableStatementCreatorImpl(Map<String, ?> inParams) {
 			this.inParameters = inParams;

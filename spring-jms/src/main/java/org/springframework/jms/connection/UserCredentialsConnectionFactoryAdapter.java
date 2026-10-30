@@ -125,8 +125,8 @@ public class UserCredentialsConnectionFactoryAdapter
 	 * 所有 {@code createConnection()} 调用。
 	 * <p>这将覆盖任何静态指定的用户凭据，即 "username" 和 "password"
 	 * bean 属性的值。
-	 * @param username the username to apply
-	 * @param password the password to apply
+	 * @param username 要应用的用户名
+	 * @param password 要应用的密码
 	 * @see #removeCredentialsFromCurrentThread
 	 */
 	public void setCredentialsForCurrentThread(String username, String password) {
@@ -172,9 +172,9 @@ public class UserCredentialsConnectionFactoryAdapter
 	 * {@code createConnection(username, password)} 方法，并传入指定的用户凭据。
 	 * 如果指定的用户名为空，则仅委托给目标 ConnectionFactory 的标准
 	 * {@code createConnection()} 方法。
-	 * @param username the username to use
-	 * @param password the password to use
-	 * @return the Connection
+	 * @param username 要使用的用户名
+	 * @param password 要使用的密码
+	 * @return 该 Connection
 	 * @see javax.jms.ConnectionFactory#createConnection(String, String)
 	 * @see javax.jms.ConnectionFactory#createConnection()
 	 */
@@ -217,9 +217,9 @@ public class UserCredentialsConnectionFactoryAdapter
 	 * {@code createQueueConnection(username, password)} 方法，并传入指定的用户凭据。
 	 * 如果指定的用户名为空，则仅委托给目标 ConnectionFactory 的标准
 	 * {@code createQueueConnection()} 方法。
-	 * @param username the username to use
-	 * @param password the password to use
-	 * @return the Connection
+	 * @param username 要使用的用户名
+	 * @param password 要使用的密码
+	 * @return 该 Connection
 	 * @see javax.jms.QueueConnectionFactory#createQueueConnection(String, String)
 	 * @see javax.jms.QueueConnectionFactory#createQueueConnection()
 	 */
@@ -268,9 +268,9 @@ public class UserCredentialsConnectionFactoryAdapter
 	 * {@code createTopicConnection(username, password)} 方法，并传入指定的用户凭据。
 	 * 如果指定的用户名为空，则仅委托给目标 ConnectionFactory 的标准
 	 * {@code createTopicConnection()} 方法。
-	 * @param username the username to use
-	 * @param password the password to use
-	 * @return the Connection
+	 * @param username 要使用的用户名
+	 * @param password 要使用的密码
+	 * @return 该 Connection
 	 * @see javax.jms.TopicConnectionFactory#createTopicConnection(String, String)
 	 * @see javax.jms.TopicConnectionFactory#createTopicConnection()
 	 */

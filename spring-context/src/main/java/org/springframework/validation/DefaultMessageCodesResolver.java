@@ -141,7 +141,7 @@ public class DefaultMessageCodesResolver implements MessageCodesResolver, Serial
 	 * <p>数组、List 和 Map 会同时针对具体元素和整个集合进行解析。
 	 *
 	 * <p>有关所生成代码的详情，请参见 {@link DefaultMessageCodesResolver class level javadoc}。
-	 * @return the list of codes
+	 * @return 代码列表。
 	 */
 	@Override
 	public String[] resolveMessageCodes(String errorCode, String objectName, String field, @Nullable Class<?> fieldType) {
@@ -195,8 +195,8 @@ public class DefaultMessageCodesResolver implements MessageCodesResolver, Serial
 	 * 对由此解析器构建的给定消息代码进行后处理。
 	 *
 	 * <p>默认实现会应用指定的前缀（如果有）。
-	 * @param code the message code as built by this resolver
-	 * @return the final message code to be returned
+	 * @param code 由该解析器构建的消息代码。
+	 * @return 最终返回的消息代码。
 	 * @see #setPrefix
 	 */
 	protected String postProcessMessageCode(String code) {

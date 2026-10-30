@@ -202,8 +202,8 @@ public abstract class AnnotationJCacheOperationSource extends AbstractFallbackJC
 
 	/**
 	 * 为指定的 {@link Method} 生成默认缓存名称。
-	 * @param method the annotated method
-	 * @return the default cache name, according to JSR-107
+	 * @param method 带注解的方法
+	 * @return 根据 JSR-107 的默认缓存名称
 	 */
 	protected String generateDefaultCacheName(Method method) {
 		Class<?>[] parameterTypes = method.getParameterTypes();
@@ -230,8 +230,8 @@ public abstract class AnnotationJCacheOperationSource extends AbstractFallbackJC
 
 	/**
 	 * 定位或创建指定缓存策略 {@code type} 的实例。
-	 * @param type the type of the bean to manage
-	 * @return the required bean
+	 * @param type 要管理的 Bean 的类型
+	 * @return 所需的 Bean
 	 */
 	protected abstract <T> T getBean(Class<T> type);
 

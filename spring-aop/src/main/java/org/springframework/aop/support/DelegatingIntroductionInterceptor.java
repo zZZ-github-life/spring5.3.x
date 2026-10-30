@@ -56,7 +56,7 @@ public class DelegatingIntroductionInterceptor extends IntroductionInfoSupport
 
 	/**
 	 * 构造一个新的 DelegatingIntroductionInterceptor，并提供一个实现要引入接口的委托。
-	 * @param delegate the delegate that implements the introduced interfaces
+	 * @param delegate 实现所引介接口的委托对象
 	 */
 	public DelegatingIntroductionInterceptor(Object delegate) {
 		init(delegate);
@@ -72,7 +72,7 @@ public class DelegatingIntroductionInterceptor extends IntroductionInfoSupport
 
 	/**
 	 * 两个构造函数都使用此初始化方法，因为无法从一个构造函数向另一个构造函数传递 "this" 引用。
-	 * @param delegate the delegate object
+	 * @param delegate 委托对象
 	 */
 	private void init(Object delegate) {
 		Assert.notNull(delegate, "Delegate must not be null");

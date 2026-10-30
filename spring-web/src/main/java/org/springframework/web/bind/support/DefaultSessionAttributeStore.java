@@ -76,9 +76,9 @@ public class DefaultSessionAttributeStore implements SessionAttributeStore {
 	 * 计算后端会话中的属性名称。
 	 * <p>默认实现只是在配置了 {@link #setAttributeNamePrefix "attributeNamePrefix"}
 	 * 时将其添加到属性名称前面。
-	 * @param request the current request
-	 * @param attributeName the name of the attribute
-	 * @return the attribute name in the backend session
+	 * @param request 当前请求
+	 * @param attributeName 属性的名称
+	 * @return 后端会话中的属性名称
 	 */
 	protected String getAttributeNameInSession(WebRequest request, String attributeName) {
 		return this.attributeNamePrefix + attributeName;

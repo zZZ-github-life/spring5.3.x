@@ -84,8 +84,8 @@ public class ArgumentConvertingMethodInvoker extends MethodInvoker {
 	 * 为给定类型的所有属性注册给定的自定义属性编辑器。
 	 * <p>通常与默认的 {@link org.springframework.beans.SimpleTypeConverter} 一起使用；也可用于任何实现
 	 * 了 PropertyEditorRegistry 接口的 TypeConverter。
-	 * @param requiredType type of the property
-	 * @param propertyEditor editor to register
+	 * @param requiredType 属性的类型
+	 * @param propertyEditor 要注册的编辑器
 	 * @see #setTypeConverter
 	 * @see org.springframework.beans.PropertyEditorRegistry#registerCustomEditor
 	 */
@@ -120,8 +120,8 @@ public class ArgumentConvertingMethodInvoker extends MethodInvoker {
 
 	/**
 	 * 实际查找参数类型匹配的方法，即每个参数值都可以赋值给相应的参数类型。
-	 * @param arguments the argument values to match against method parameters
-	 * @return a matching method, or {@code null} if none
+	 * @param arguments 要与方法参数匹配的参数值
+	 * @return 匹配的方法；如果没有则为 {@code null}
 	 */
 	@Nullable
 	protected Method doFindMatchingMethod(Object[] arguments) {

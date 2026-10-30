@@ -28,8 +28,8 @@ public interface ValueStyler {
 
 	/**
 	 * 将给定值格式化为 String 表示形式。
-	 * @param value the Object value to style
-	 * @return the styled String
+	 * @param value 要设置样式的 Object 值
+	 * @return 设置样式后的 String
 	 */
 	String style(@Nullable Object value);
 

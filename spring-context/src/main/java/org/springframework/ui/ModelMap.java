@@ -64,8 +64,8 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 
 	/**
 	 * 在给定名称下添加提供的属性。
-	 * @param attributeName the name of the model attribute (never {@code null})
-	 * @param attributeValue the model attribute value (can be {@code null})
+	 * @param attributeName 模型属性的名称（永不为 {@code null}）
+	 * @param attributeValue 模型属性值（可为 {@code null}）
 	 */
 	public ModelMap addAttribute(String attributeName, @Nullable Object attributeValue) {
 		Assert.notNull(attributeName, "Model attribute name must not be null");
@@ -79,7 +79,7 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 	 *
 	 * <p><i>注意：使用此方法时，空的 {@link Collection Collections} 不会被添加到模型中，因为我们无法正
 	 * 确确定真正的约定名称。视图代码应检查 {@code null}，而不是检查空集合，JSTL 标签已经这样做了。</i>
-	 * @param attributeValue the model attribute value (never {@code null})
+	 * @param attributeValue 模型属性值（永不为 {@code null}）
 	 */
 	public ModelMap addAttribute(Object attributeValue) {
 		Assert.notNull(attributeValue, "Model object must not be null");
@@ -129,8 +129,8 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 
 	/**
 	 * 此模型是否包含给定名称的属性？
-	 * @param attributeName the name of the model attribute (never {@code null})
-	 * @return whether this model contains a corresponding attribute
+	 * @param attributeName 模型属性的名称（永不为 {@code null}）
+	 * @return 此模型是否包含相应的属性
 	 */
 	public boolean containsAttribute(String attributeName) {
 		return containsKey(attributeName);
@@ -138,8 +138,8 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 
 	/**
 	 * 返回给定名称的属性值（如果有）。
-	 * @param attributeName the name of the model attribute (never {@code null})
-	 * @return the corresponding attribute value, or {@code null} if none
+	 * @param attributeName 模型属性的名称（永不为 {@code null}）
+	 * @return 相应的属性值，如果没有则为 {@code null}
 	 * @since 5.2
 	 */
 	@Nullable

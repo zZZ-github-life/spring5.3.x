@@ -36,8 +36,8 @@ public class SQLWarningException extends UncategorizedDataAccessException {
 
 	/**
 	 * 创建SQLWarningException实例。
-	 * @param msg the detail message
-	 * @param ex the JDBC warning
+	 * @param msg 详细消息
+	 * @param ex JDBC 警告
 	 */
 	public SQLWarningException(String msg, SQLWarning ex) {
 		super(msg, ex);

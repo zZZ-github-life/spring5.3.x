@@ -188,9 +188,9 @@ public class SimpleHttpServerJaxWsServiceExporter extends AbstractJaxWsServiceEx
 
 	/**
 	 * 为给定的端点构建 HttpContext。
-	 * @param endpoint the JAX-WS Provider Endpoint object
-	 * @param serviceName the given service name
-	 * @return the fully populated HttpContext
+	 * @param endpoint JAX-WS 的 Provider Endpoint 对象
+	 * @param serviceName 给定的服务名称
+	 * @return 填充完整的 HttpContext
 	 */
 	protected HttpContext buildHttpContext(Endpoint endpoint, String serviceName) {
 		Assert.state(this.server != null, "No HttpServer available");
@@ -207,9 +207,9 @@ public class SimpleHttpServerJaxWsServiceExporter extends AbstractJaxWsServiceEx
 
 	/**
 	 * 计算给定端点的完整端点路径。
-	 * @param endpoint the JAX-WS Provider Endpoint object
-	 * @param serviceName the given service name
-	 * @return the full endpoint path
+	 * @param endpoint JAX-WS 的 Provider Endpoint 对象
+	 * @param serviceName 给定的服务名称
+	 * @return 完整的端点路径
 	 */
 	protected String calculateEndpointPath(Endpoint endpoint, String serviceName) {
 		return this.basePath + serviceName;

@@ -41,7 +41,7 @@ public class DelegatingConnectionFactory implements ConnectionFactory, Wrapped<C
 
 	/**
 	 * 创建一个新的 DelegatingConnectionFactory。
-	 * @param targetConnectionFactory the target ConnectionFactory
+	 * @param targetConnectionFactory 目标 ConnectionFactory
 	 */
 	public DelegatingConnectionFactory(ConnectionFactory targetConnectionFactory) {
 		Assert.notNull(targetConnectionFactory, "ConnectionFactory must not be null");

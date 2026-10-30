@@ -73,7 +73,7 @@ public class JettyRequestUpgradeStrategy implements RequestUpgradeStrategy, Life
 
 	/**
 	 * 配置用于初始化 {@link WebSocketServerFactory} 的 {@link WebSocketPolicy}。
-	 * @param webSocketPolicy the WebSocket settings
+	 * @param webSocketPolicy WebSocket 设置
 	 */
 	public void setWebSocketPolicy(WebSocketPolicy webSocketPolicy) {
 		this.webSocketPolicy = webSocketPolicy;

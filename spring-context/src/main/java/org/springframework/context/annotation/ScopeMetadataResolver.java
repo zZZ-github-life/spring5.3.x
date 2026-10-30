@@ -34,8 +34,8 @@ public interface ScopeMetadataResolver {
 	 * <p>实现当然可以使用任何自己喜欢的策略来确定作用域元数据，但一些立即浮现在脑海中的实现可能是使用
 	 * 所提供 {@code definition} 的 {@link BeanDefinition#getBeanClassName() 类}上存在的源代码级注解，
 	 * 或使用所提供 {@code definition} 的 {@link BeanDefinition#attributeNames()} 中存在的元数据。
-	 * @param definition the target bean definition
-	 * @return the relevant scope metadata; never {@code null}
+	 * @param definition 目标 Bean 定义
+	 * @return 相关的作用域元数据；永不为 {@code null}
 	 */
 	ScopeMetadata resolveScopeMetadata(BeanDefinition definition);
 

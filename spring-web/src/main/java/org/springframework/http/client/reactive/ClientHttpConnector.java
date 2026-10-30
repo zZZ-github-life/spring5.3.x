@@ -37,13 +37,12 @@ public interface ClientHttpConnector {
 	 * 使用给定的 {@code HttpMethod} 和 {@code URI} 连接到源服务器，
 	 * 并在底层 API 的 HTTP 请求可以初始化并写入时应用给定的
 	 * {@code requestCallback}。
-	 * @param method the HTTP request method
-	 * @param uri the HTTP request URI
-	 * @param requestCallback a function that prepares and writes to the request,
-	 * returning a publisher that signals when it's done writing.
-	 * Implementations can return a {@code Mono<Void>} by calling
-	 * {@link ClientHttpRequest#writeWith} or {@link ClientHttpRequest#setComplete}.
-	 * @return publisher for the {@link ClientHttpResponse}
+	 * @param method HTTP 请求方法
+	 * @param uri HTTP 请求 URI
+	 * @param requestCallback 用于准备并写入请求的函数，返回一个在写入完成时发出信号的 Publisher。
+	 * 实现可以通过调用 {@link ClientHttpRequest#writeWith} 或
+	 * {@link ClientHttpRequest#setComplete} 返回 {@code Mono<Void>}。
+	 * @return 针对 {@link ClientHttpResponse} 的 Publisher
 	 */
 	Mono<ClientHttpResponse> connect(HttpMethod method, URI uri,
 			Function<? super ClientHttpRequest, Mono<Void>> requestCallback);

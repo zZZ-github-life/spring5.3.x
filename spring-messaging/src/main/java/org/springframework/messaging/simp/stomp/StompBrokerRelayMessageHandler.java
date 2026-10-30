@@ -142,11 +142,11 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 
 	/**
 	 * 使用给定消息通道和目标前缀创建 StompBrokerRelayMessageHandler 实例。
-	 * @param inboundChannel the channel for receiving messages from clients (e.g. WebSocket clients)
-	 * @param outboundChannel the channel for sending messages to clients (e.g. WebSocket clients)
-	 * @param brokerChannel the channel for the application to send messages to the broker
-	 * @param destinationPrefixes the broker supported destination prefixes; destinations
-	 * that do not match the given prefix are ignored.
+	 * @param inboundChannel 用于接收来自客户端（例如 WebSocket 客户端）消息的通道
+	 * @param outboundChannel 用于向客户端（例如 WebSocket 客户端）发送消息的通道
+	 * @param brokerChannel 供应用向 Broker 发送消息的通道
+	 * @param destinationPrefixes Broker 支持的目标地址前缀；
+	 * 不匹配给定前缀的目标地址将被忽略。
 	 */
 	public StompBrokerRelayMessageHandler(SubscribableChannel inboundChannel, MessageChannel outboundChannel,
 			SubscribableChannel brokerChannel, Collection<String> destinationPrefixes) {
@@ -291,7 +291,7 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 	 * 配置共享“系统”连接上要订阅的一个或多个目标，以及用于处理接收消息的 MessageHandler。
 	 * <p>这供多应用服务器场景内部使用，其中服务器之间会相互转发消息
 	 * （例如未解析的用户目标）。
-	 * @param subscriptions the destinations to subscribe to.
+	 * @param subscriptions 要订阅的目标地址。
 	 */
 	public void setSystemSubscriptions(@Nullable Map<String, MessageHandler> subscriptions) {
 		this.systemSubscriptions.clear();
@@ -390,7 +390,7 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 	 * 配置用于在当前心跳周期内重置客户端到代理消息计数的
 	 * {@link TaskScheduler}。有关更多详细信息，请参阅
 	 * {@link org.springframework.messaging.simp.config.StompBrokerRelayRegistration#setTaskScheduler(TaskScheduler)}。
-	 * @param taskScheduler the scheduler to use
+	 * @param taskScheduler 要使用的调度器
 	 * @since 5.3
 	 */
 	public void setTaskScheduler(@Nullable TaskScheduler taskScheduler) {
@@ -828,8 +828,8 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 		 * 与其同步以防这种情况，此方法只是让它们尝试并失败。对于客户端会话，
 		 * 这可能会导致向下游发送额外的 STOMP ERROR 帧，但处理下游的代码
 		 * 在这种情况下应是幂等的。
-		 * @param message the message to send (never {@code null})
-		 * @return a future to wait for the result
+		 * @param message 要发送的消息（永不为 {@code null}）
+		 * @return 用于等待结果的 future
 		 */
 		@SuppressWarnings("unchecked")
 		public ListenableFuture<Void> forward(final Message<?> message, final StompHeaderAccessor accessor) {

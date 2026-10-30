@@ -50,7 +50,7 @@ public class ErrorMessage extends GenericMessage<Throwable> {
 
 	/**
 	 * 使用给定负载创建新的消息。
-	 * @param payload the message payload (never {@code null})
+	 * @param payload 消息负载（永不为 {@code null}）
 	 */
 	public ErrorMessage(Throwable payload) {
 		super(payload);
@@ -59,8 +59,8 @@ public class ErrorMessage extends GenericMessage<Throwable> {
 
 	/**
 	 * 使用给定负载和头部创建新的消息。将复制给定头部映射的内容。
-	 * @param payload the message payload (never {@code null})
-	 * @param headers message headers to use for initialization
+	 * @param payload 消息负载（永不为 {@code null}）
+	 * @param headers 用于初始化的消息头
 	 */
 	public ErrorMessage(Throwable payload, Map<String, Object> headers) {
 		super(payload, headers);
@@ -71,8 +71,8 @@ public class ErrorMessage extends GenericMessage<Throwable> {
 	 * 使用给定的 {@link MessageHeaders} 实例构造。
 	 * <p><strong>注意：</strong>给定的 {@code MessageHeaders} 实例会直接用于
 	 * 新消息中，即不会被复制。
-	 * @param payload the message payload (never {@code null})
-	 * @param headers message headers
+	 * @param payload 消息负载（永不为 {@code null}）
+	 * @param headers 消息头
 	 */
 	public ErrorMessage(Throwable payload, MessageHeaders headers) {
 		super(payload, headers);
@@ -81,9 +81,8 @@ public class ErrorMessage extends GenericMessage<Throwable> {
 
 	/**
 	 * 使用给定负载和原始消息创建新的消息。
-	 * @param payload the message payload (never {@code null})
-	 * @param originalMessage the original message (if present) at the point
-	 * in the stack where the ErrorMessage was created
+	 * @param payload 消息负载（永不为 {@code null}）
+	 * @param originalMessage 创建 ErrorMessage 时堆栈中存在的原始消息（如果有）
 	 * @since 5.0
 	 */
 	public ErrorMessage(Throwable payload, Message<?> originalMessage) {
@@ -93,10 +92,9 @@ public class ErrorMessage extends GenericMessage<Throwable> {
 
 	/**
 	 * 使用给定负载、头部和原始消息创建新的消息。将复制给定头部映射的内容。
-	 * @param payload the message payload (never {@code null})
-	 * @param headers message headers to use for initialization
-	 * @param originalMessage the original message (if present) at the point
-	 * in the stack where the ErrorMessage was created
+	 * @param payload 消息负载（永不为 {@code null}）
+	 * @param headers 用于初始化的消息头
+	 * @param originalMessage 创建 ErrorMessage 时堆栈中存在的原始消息（如果有）
 	 * @since 5.0
 	 */
 	public ErrorMessage(Throwable payload, Map<String, Object> headers, Message<?> originalMessage) {
@@ -108,10 +106,9 @@ public class ErrorMessage extends GenericMessage<Throwable> {
 	 * 使用负载、{@link MessageHeaders} 和原始消息创建新的消息。
 	 * <p><strong>注意：</strong>给定的 {@code MessageHeaders} 实例会直接用于
 	 * 新消息中，即不会被复制。
-	 * @param payload the message payload (never {@code null})
-	 * @param headers message headers
-	 * @param originalMessage the original message (if present) at the point
-	 * in the stack where the ErrorMessage was created
+	 * @param payload 消息负载（永不为 {@code null}）
+	 * @param headers 消息头
+	 * @param originalMessage 创建 ErrorMessage 时堆栈中存在的原始消息（如果有）
 	 * @since 5.0
 	 */
 	public ErrorMessage(Throwable payload, MessageHeaders headers, Message<?> originalMessage) {

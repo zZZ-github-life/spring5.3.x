@@ -43,11 +43,11 @@ public interface SQLExceptionTranslator {
 	 * 资源 API 引起。尽管如此，在预期发生基于 JDBC 的访问时，通过
 	 * {@code getRootCause() instanceof SQLException} 检查（以及随后的强制类型转换）
 	 * 被认为是可靠的。
-	 * @param task readable text describing the task being attempted
-	 * @param sql the SQL query or update that caused the problem (if known)
-	 * @param ex the offending {@code SQLException}
-	 * @return the DataAccessException wrapping the {@code SQLException},
-	 * or {@code null} if no specific translation could be applied
+	 * @param task 描述所尝试任务的可读文本
+	 * @param sql 导致问题的 SQL 查询或更新（如果已知）
+	 * @param ex 导致问题的 {@code SQLException}
+	 * @return 包装 {@code SQLException} 的 DataAccessException，
+	 * 如果无法应用特定转换则为 {@code null}
 	 * @see org.springframework.dao.DataAccessException#getRootCause()
 	 */
 	@Nullable

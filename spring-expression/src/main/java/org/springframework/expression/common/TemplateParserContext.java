@@ -40,8 +40,8 @@ public class TemplateParserContext implements ParserContext {
 
 	/**
 	 * 为给定前缀和后缀创建新的 TemplateParserContext。
-	 * @param expressionPrefix the expression prefix to use
-	 * @param expressionSuffix the expression suffix to use
+	 * @param expressionPrefix 要使用的表达式前缀
+	 * @param expressionSuffix 要使用的表达式后缀
 	 */
 	public TemplateParserContext(String expressionPrefix, String expressionSuffix) {
 		this.expressionPrefix = expressionPrefix;

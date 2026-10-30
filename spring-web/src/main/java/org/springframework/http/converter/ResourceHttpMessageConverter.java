@@ -59,8 +59,8 @@ public class ResourceHttpMessageConverter extends AbstractHttpMessageConverter<R
 
 	/**
 	 * 创建 {@code ResourceHttpMessageConverter} 的新实例。
-	 * @param supportsReadStreaming whether the converter should support
-	 * read streaming, i.e. convert to {@code InputStreamResource}
+	 * @param supportsReadStreaming 该转换器是否应支持读流式传输，
+	 * 即转换为 {@code InputStreamResource}
 	 * @since 5.0
 	 */
 	public ResourceHttpMessageConverter(boolean supportsReadStreaming) {

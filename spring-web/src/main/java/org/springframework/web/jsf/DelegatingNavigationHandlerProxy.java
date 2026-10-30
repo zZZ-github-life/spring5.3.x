@@ -88,7 +88,7 @@ public class DelegatingNavigationHandlerProxy extends NavigationHandler {
 
 	/**
 	 * 创建一个新的 DelegatingNavigationHandlerProxy。
-	 * @param originalNavigationHandler the original NavigationHandler
+	 * @param originalNavigationHandler 原始的 NavigationHandler
 	 */
 	public DelegatingNavigationHandlerProxy(NavigationHandler originalNavigationHandler) {
 		this.originalNavigationHandler = originalNavigationHandler;
@@ -118,8 +118,8 @@ public class DelegatingNavigationHandlerProxy extends NavigationHandler {
 	 * 返回要委托的目标 NavigationHandler。
 	 * <p>默认情况下，每次调用都会从 Spring 根 WebApplicationContext 中获取
 	 * 名称为 "jsfNavigationHandler" 的 Bean。
-	 * @param facesContext the current JSF context
-	 * @return the target NavigationHandler to delegate to
+	 * @param facesContext 当前的 JSF 上下文
+	 * @return 要委托的目标 NavigationHandler
 	 * @see #getTargetBeanName
 	 * @see #getBeanFactory
 	 */
@@ -131,8 +131,8 @@ public class DelegatingNavigationHandlerProxy extends NavigationHandler {
 	/**
 	 * 返回 BeanFactory 中目标 NavigationHandler Bean 的名称。
 	 * 默认为 "jsfNavigationHandler"。
-	 * @param facesContext the current JSF context
-	 * @return the name of the target bean
+	 * @param facesContext 当前的 JSF 上下文
+	 * @return 目标 Bean 的名称
 	 */
 	protected String getTargetBeanName(FacesContext facesContext) {
 		return DEFAULT_TARGET_BEAN_NAME;
@@ -143,8 +143,8 @@ public class DelegatingNavigationHandlerProxy extends NavigationHandler {
 	 * <p>默认实现委托给 {@code getWebApplicationContext}。
 	 * 可以重写此方法以提供一个任意的 BeanFactory 引用用于解析；
 	 * 通常这将是一个完整的 Spring ApplicationContext。
-	 * @param facesContext the current JSF context
-	 * @return the Spring BeanFactory (never {@code null})
+	 * @param facesContext 当前的 JSF 上下文
+	 * @return Spring BeanFactory（永不为 {@code null}）
 	 * @see #getWebApplicationContext
 	 */
 	protected BeanFactory getBeanFactory(FacesContext facesContext) {
@@ -154,8 +154,8 @@ public class DelegatingNavigationHandlerProxy extends NavigationHandler {
 	/**
 	 * 获取用于委托 Bean 名称解析的 Web 应用上下文。
 	 * <p>默认实现委托给 FacesContextUtils。
-	 * @param facesContext the current JSF context
-	 * @return the Spring web application context (never {@code null})
+	 * @param facesContext 当前的 JSF 上下文
+	 * @return Spring Web 应用上下文（永不为 {@code null}）
 	 * @see FacesContextUtils#getRequiredWebApplicationContext
 	 */
 	protected WebApplicationContext getWebApplicationContext(FacesContext facesContext) {

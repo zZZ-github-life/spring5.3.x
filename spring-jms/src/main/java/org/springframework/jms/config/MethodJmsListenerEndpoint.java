@@ -177,7 +177,7 @@ public class MethodJmsListenerEndpoint extends AbstractJmsListenerEndpoint imple
 
 	/**
 	 * 创建一个空的 {@link MessagingMessageListenerAdapter} 实例。
-	 * @return a new {@code MessagingMessageListenerAdapter} or subclass thereof
+	 * @return 新的 {@code MessagingMessageListenerAdapter} 或其子类
 	 */
 	protected MessagingMessageListenerAdapter createMessageListenerInstance() {
 		return new MessagingMessageListenerAdapter();

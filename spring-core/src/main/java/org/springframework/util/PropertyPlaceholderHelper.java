@@ -64,8 +64,8 @@ public class PropertyPlaceholderHelper {
 
 	/**
 	 * 创建一个使用所提供前缀和后缀的新 {@code PropertyPlaceholderHelper}。无法解析的占位符将被忽略。
-	 * @param placeholderPrefix the prefix that denotes the start of a placeholder
-	 * @param placeholderSuffix the suffix that denotes the end of a placeholder
+	 * @param placeholderPrefix 表示占位符起始位置的前缀
+	 * @param placeholderSuffix 表示占位符结束位置的后缀
 	 */
 	public PropertyPlaceholderHelper(String placeholderPrefix, String placeholderSuffix) {
 		this(placeholderPrefix, placeholderSuffix, null, true);
@@ -73,12 +73,11 @@ public class PropertyPlaceholderHelper {
 
 	/**
 	 * 创建一个使用所提供前缀和后缀的新 {@code PropertyPlaceholderHelper}。
-	 * @param placeholderPrefix the prefix that denotes the start of a placeholder
-	 * @param placeholderSuffix the suffix that denotes the end of a placeholder
-	 * @param valueSeparator the separating character between the placeholder variable
-	 * and the associated default value, if any
-	 * @param ignoreUnresolvablePlaceholders indicates whether unresolvable placeholders should
-	 * be ignored ({@code true}) or cause an exception ({@code false})
+	 * @param placeholderPrefix 表示占位符起始位置的前缀
+	 * @param placeholderSuffix 表示占位符结束位置的后缀
+	 * @param valueSeparator 占位符变量与其关联默认值（如果有）之间的分隔字符
+	 * @param ignoreUnresolvablePlaceholders 指示应忽略无法解析的占位符（{@code true}），
+	 * 还是抛出异常（{@code false}）
 	 */
 	public PropertyPlaceholderHelper(String placeholderPrefix, String placeholderSuffix,
 			@Nullable String valueSeparator, boolean ignoreUnresolvablePlaceholders) {
@@ -101,9 +100,9 @@ public class PropertyPlaceholderHelper {
 
 	/**
 	 * 将格式为 {@code ${name}} 的所有占位符替换为所提供的 {@link Properties} 中对应的属性值。
-	 * @param value the value containing the placeholders to be replaced
-	 * @param properties the {@code Properties} to use for replacement
-	 * @return the supplied value with placeholders replaced inline
+	 * @param value 包含要替换的占位符的值
+	 * @param properties 用于替换的 {@code Properties}
+	 * @return 占位符已就地替换后的所提供的值
 	 */
 	public String replacePlaceholders(String value, final Properties properties) {
 		Assert.notNull(properties, "'properties' must not be null");
@@ -112,9 +111,9 @@ public class PropertyPlaceholderHelper {
 
 	/**
 	 * 将格式为 {@code ${name}} 的所有占位符替换为所提供的 {@link PlaceholderResolver} 返回的值。
-	 * @param value the value containing the placeholders to be replaced
-	 * @param placeholderResolver the {@code PlaceholderResolver} to use for replacement
-	 * @return the supplied value with placeholders replaced inline
+	 * @param value 包含要替换的占位符的值
+	 * @param placeholderResolver 用于替换的 {@code PlaceholderResolver}
+	 * @return 占位符已就地替换后的所提供的值
 	 */
 	public String replacePlaceholders(String value, PlaceholderResolver placeholderResolver) {
 		Assert.notNull(value, "'value' must not be null");
@@ -217,8 +216,8 @@ public class PropertyPlaceholderHelper {
 
 		/**
 		 * 将所提供的占位符名称解析为替换值。
-		 * @param placeholderName the name of the placeholder to resolve
-		 * @return the replacement value, or {@code null} if no replacement is to be made
+		 * @param placeholderName 要解析的占位符名称
+		 * @return 替换值，如果不进行替换则为 {@code null}
 		 */
 		@Nullable
 		String resolvePlaceholder(String placeholderName);

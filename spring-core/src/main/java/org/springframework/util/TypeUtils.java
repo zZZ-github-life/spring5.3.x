@@ -37,9 +37,9 @@ public abstract class TypeUtils {
 
 	/**
 	 * 按照 Java 泛型规则检查右侧类型是否可以赋值给左侧类型。
-	 * @param lhsType the target type
-	 * @param rhsType the value type that should be assigned to the target type
-	 * @return true if rhs is assignable to lhs
+	 * @param lhsType 目标类型
+	 * @param rhsType 应赋值给目标类型的值类型
+	 * @return 如果 rhs 可赋值给 lhs 则返回 true。
 	 */
 	public static boolean isAssignable(Type lhsType, Type rhsType) {
 		Assert.notNull(lhsType, "Left-hand side type must not be null");

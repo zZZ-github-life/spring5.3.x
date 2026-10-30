@@ -162,7 +162,7 @@ public abstract class AbstractApplicationEventMulticaster
 
 	/**
 	 * 返回包含所有 ApplicationListener 的 Collection。
-	 * @return a Collection of ApplicationListeners
+	 * @return ApplicationListener 的 Collection
 	 * @see org.springframework.context.ApplicationListener
 	 */
 	protected Collection<ApplicationListener<?>> getApplicationListeners() {
@@ -173,10 +173,9 @@ public abstract class AbstractApplicationEventMulticaster
 
 	/**
 	 * 返回与给定事件类型匹配的 ApplicationListener 集合。不匹配的监听器会被尽早排除。
-	 * @param event the event to be propagated. Allows for excluding
-	 * non-matching listeners early, based on cached matching information.
-	 * @param eventType the event type
-	 * @return a Collection of ApplicationListeners
+	 * @param event 要传播的事件。可根据缓存的匹配信息，提前排除不匹配的监听器。
+	 * @param eventType 事件类型
+	 * @return ApplicationListener 的 Collection
 	 * @see org.springframework.context.ApplicationListener
 	 */
 	protected Collection<ApplicationListener<?>> getApplicationListeners(
@@ -218,10 +217,10 @@ public abstract class AbstractApplicationEventMulticaster
 
 	/**
 	 * 实际检索给定事件和源类型的应用监听器。
-	 * @param eventType the event type
-	 * @param sourceType the event source type
-	 * @param retriever the ListenerRetriever, if supposed to populate one (for caching purposes)
-	 * @return the pre-filtered list of application listeners for the given event and source type
+	 * @param eventType 事件类型
+	 * @param sourceType 事件源类型
+	 * @param retriever 用于填充的 ListenerRetriever（若需要填充，用于缓存目的）
+	 * @return 针对给定事件和源类型预过滤后的应用监听器列表
 	 */
 	private Collection<ApplicationListener<?>> retrieveApplicationListeners(
 			ResolvableType eventType, @Nullable Class<?> sourceType, @Nullable CachedListenerRetriever retriever) {
@@ -305,11 +304,10 @@ public abstract class AbstractApplicationEventMulticaster
 	 * 在尝试实例化之前，通过检查其泛型声明的事件类型，尽早过滤由 Bean 定义的监听器。<p>如果此方法对给
 	 * 定监听器首次检查返回 {@code true}，则随后会检索该监听器实例，并通过
 	 * {@link #supportsEvent(ApplicationListener, ResolvableType, Class)} 调用对其进行完整评估。
-	 * @param beanFactory the BeanFactory that contains the listener beans
-	 * @param listenerBeanName the name of the bean in the BeanFactory
-	 * @param eventType the event type to check
-	 * @return whether the given listener should be included in the candidates
-	 * for the given event type
+	 * @param beanFactory 包含监听器 Bean 的 BeanFactory
+	 * @param listenerBeanName BeanFactory 中 Bean 的名称
+	 * @param eventType 要检查的事件类型
+	 * @return 给定监听器是否应包含在给定事件类型的候选中
 	 * @see #supportsEvent(Class, ResolvableType)
 	 * @see #supportsEvent(ApplicationListener, ResolvableType, Class)
 	 */
@@ -339,10 +337,9 @@ public abstract class AbstractApplicationEventMulticaster
 	 * 在尝试实例化之前，通过检查监听器泛型声明的事件类型，尽早过滤该监听器。<p>如果此方法对给定监听器
 	 * 首次检查返回 {@code true}，则随后会检索该监听器实例，并通过
 	 * {@link #supportsEvent(ApplicationListener, ResolvableType, Class)} 调用对其进行完整评估。
-	 * @param listenerType the listener's type as determined by the BeanFactory
-	 * @param eventType the event type to check
-	 * @return whether the given listener should be included in the candidates
-	 * for the given event type
+	 * @param listenerType 由 BeanFactory 确定的监听器类型
+	 * @param eventType 要检查的事件类型
+	 * @return 给定监听器是否应包含在给定事件类型的候选中
 	 */
 	protected boolean supportsEvent(Class<?> listenerType, ResolvableType eventType) {
 		ResolvableType declaredEventType = GenericApplicationListenerAdapter.resolveDeclaredEventType(listenerType);
@@ -353,11 +350,10 @@ public abstract class AbstractApplicationEventMulticaster
 	 * 判断给定监听器是否支持给定事件。<p>默认实现会检测 {@link SmartApplicationListener} 和
 	 * {@link GenericApplicationListener} 接口。对于标准 {@link ApplicationListener}，将使用
 	 * {@link GenericApplicationListenerAdapter} 内省目标监听器泛型声明的类型。
-	 * @param listener the target listener to check
-	 * @param eventType the event type to check against
-	 * @param sourceType the source type to check against
-	 * @return whether the given listener should be included in the candidates
-	 * for the given event type
+	 * @param listener 要检查的目标监听器
+	 * @param eventType 要对照的事件类型
+	 * @param sourceType 要对照的源类型
+	 * @return 给定监听器是否应包含在给定事件类型的候选中
 	 */
 	protected boolean supportsEvent(
 			ApplicationListener<?> listener, ResolvableType eventType, @Nullable Class<?> sourceType) {

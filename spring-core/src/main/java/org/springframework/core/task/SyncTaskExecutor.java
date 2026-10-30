@@ -37,7 +37,7 @@ public class SyncTaskExecutor implements TaskExecutor, Serializable {
 
 	/**
 	 * 通过直接调用给定 {@code task} 的 {@link Runnable#run() run()} 方法，同步执行该任务。
-	 * @throws IllegalArgumentException if the given {@code task} is {@code null}
+	 * @throws IllegalArgumentException 如果给定的 {@code task} 为 {@code null}
 	 */
 	@Override
 	public void execute(Runnable task) {

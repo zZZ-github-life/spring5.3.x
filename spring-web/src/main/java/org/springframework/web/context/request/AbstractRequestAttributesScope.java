@@ -84,8 +84,7 @@ public abstract class AbstractRequestAttributesScope implements Scope {
 
 	/**
 	 * 确定实际目标作用域的模板方法。
-	 * @return the target scope, in the form of an appropriate
-	 * {@link RequestAttributes} constant
+	 * @return 目标作用域，以适当的 {@link RequestAttributes} 常量形式表示
 	 * @see RequestAttributes#SCOPE_REQUEST
 	 * @see RequestAttributes#SCOPE_SESSION
 	 */

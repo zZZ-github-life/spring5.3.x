@@ -29,7 +29,7 @@ public interface IdGenerator {
 
 	/**
 	 * 生成新的标识符。
-	 * @return the generated identifier
+	 * @return 生成的标识符
 	 */
 	UUID generateId();
 

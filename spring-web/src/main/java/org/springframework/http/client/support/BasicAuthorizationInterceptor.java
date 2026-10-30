@@ -47,8 +47,8 @@ public class BasicAuthorizationInterceptor implements ClientHttpRequestIntercept
 	/**
 	 * 创建一个新的拦截器，为给定的用户名和密码
 	 * 添加 BASIC 授权头部。
-	 * @param username the username to use
-	 * @param password the password to use
+	 * @param username 要使用的用户名
+	 * @param password 要使用的密码
 	 */
 	public BasicAuthorizationInterceptor(@Nullable String username, @Nullable String password) {
 		Assert.doesNotContain(username, ":", "Username must not contain a colon");

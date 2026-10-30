@@ -185,10 +185,10 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 	 * 创建一个新的 {@link ScheduledExecutorService} 实例。
 	 * <p>默认实现创建一个 {@link ScheduledThreadPoolExecutor}。可在子类中重写，以提供自定义的
 	 * {@link ScheduledExecutorService} 实例。
-	 * @param poolSize the specified pool size
-	 * @param threadFactory the ThreadFactory to use
-	 * @param rejectedExecutionHandler the RejectedExecutionHandler to use
-	 * @return a new ScheduledExecutorService instance
+	 * @param poolSize 指定的池大小
+	 * @param threadFactory 要使用的 ThreadFactory
+	 * @param rejectedExecutionHandler 要使用的 RejectedExecutionHandler
+	 * @return 新的 ScheduledExecutorService 实例
 	 * @see #afterPropertiesSet()
 	 * @see java.util.concurrent.ScheduledThreadPoolExecutor
 	 */
@@ -200,8 +200,8 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 
 	/**
 	 * 返回底层的 ScheduledExecutorService，以便进行原生访问。
-	 * @return the underlying ScheduledExecutorService (never {@code null})
-	 * @throws IllegalStateException if the ThreadPoolTaskScheduler hasn't been initialized yet
+	 * @return 底层的 ScheduledExecutorService（永不为 {@code null}）
+	 * @throws IllegalStateException 如果 ThreadPoolTaskScheduler 尚未初始化
 	 */
 	public ScheduledExecutorService getScheduledExecutor() throws IllegalStateException {
 		Assert.state(this.scheduledExecutor != null, "ThreadPoolTaskScheduler not initialized");
@@ -210,9 +210,10 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 
 	/**
 	 * 返回底层的 ScheduledThreadPoolExecutor（如果可用）。
-	 * @return the underlying ScheduledExecutorService (never {@code null})
-	 * @throws IllegalStateException if the ThreadPoolTaskScheduler hasn't been initialized yet
-	 * or if the underlying ScheduledExecutorService isn't a ScheduledThreadPoolExecutor
+	 * @return 底层的 ScheduledExecutorService（永不为 {@code null}）
+	 * @throws IllegalStateException 如果 ThreadPoolTaskScheduler 尚未初始化，
+	 * 或者底层的 ScheduledExecutorService 不是
+	 * ScheduledThreadPoolExecutor
 	 * @see #getScheduledExecutor()
 	 */
 	public ScheduledThreadPoolExecutor getScheduledThreadPoolExecutor() throws IllegalStateException {

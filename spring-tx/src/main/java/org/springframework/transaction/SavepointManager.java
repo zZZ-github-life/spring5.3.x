@@ -39,12 +39,11 @@ public interface SavepointManager {
 	 * 创建一个新的保存点。你可以通过 {@code rollbackToSavepoint} 回滚到特定的保存点，
 	 * 并通过 {@code releaseSavepoint} 显式释放不再需要的保存点。
 	 * <p>请注意，大多数事务管理器会在事务完成时自动释放保存点。
-	 * @return a savepoint object, to be passed into
-	 * {@link #rollbackToSavepoint} or {@link #releaseSavepoint}
-	 * @throws NestedTransactionNotSupportedException if the underlying
-	 * transaction does not support savepoints
-	 * @throws TransactionException if the savepoint could not be created,
-	 * for example because the transaction is not in an appropriate state
+	 * @return 一个保存点对象，
+	 * 将传入 {@link #rollbackToSavepoint} 或 {@link #releaseSavepoint}
+	 * @throws NestedTransactionNotSupportedException 如果底层事务不支持保存点
+	 * @throws TransactionException 如果无法创建保存点，
+	 * 例如因为事务未处于适当状态
 	 * @see java.sql.Connection#setSavepoint
 	 */
 	Object createSavepoint() throws TransactionException;
@@ -53,10 +52,9 @@ public interface SavepointManager {
 	 * 回滚到给定的保存点。
 	 * <p>回滚后保存点<i>不会</i>被自动释放。
 	 * 你可以显式调用 {@link #releaseSavepoint(Object)} 或依赖事务完成时自动释放。
-	 * @param savepoint the savepoint to roll back to
-	 * @throws NestedTransactionNotSupportedException if the underlying
-	 * transaction does not support savepoints
-	 * @throws TransactionException if the rollback failed
+	 * @param savepoint 要回滚到的保存点
+	 * @throws NestedTransactionNotSupportedException 如果底层事务不支持保存点
+	 * @throws TransactionException 如果回滚失败
 	 * @see java.sql.Connection#rollback(java.sql.Savepoint)
 	 */
 	void rollbackToSavepoint(Object savepoint) throws TransactionException;
@@ -66,10 +64,9 @@ public interface SavepointManager {
 	 * <p>请注意，大多数事务管理器会在事务完成时自动释放保存点。
 	 * <p>如果适当的资源清理最终会在事务完成时发生，
 	 * 则实现应尽可能安静地失败。
-	 * @param savepoint the savepoint to release
-	 * @throws NestedTransactionNotSupportedException if the underlying
-	 * transaction does not support savepoints
-	 * @throws TransactionException if the release failed
+	 * @param savepoint 要释放的保存点
+	 * @throws NestedTransactionNotSupportedException 如果底层事务不支持保存点
+	 * @throws TransactionException 如果释放失败
 	 * @see java.sql.Connection#releaseSavepoint
 	 */
 	void releaseSavepoint(Object savepoint) throws TransactionException;

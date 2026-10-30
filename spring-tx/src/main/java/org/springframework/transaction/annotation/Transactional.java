@@ -145,7 +145,7 @@ public @interface Transactional {
 	 * <p>默认使用底层事务系统的默认超时时间。
 	 * <p>专用于{@link Propagation#REQUIRED}或{@link Propagation#REQUIRES_NEW},
 	 * 因为它仅适用于新启动的事务。
-	 * @return the timeout in seconds
+	 * @return 超时时间，单位为秒
 	 * @see org.springframework.transaction.interceptor.TransactionAttribute#getTimeout()
 	 */
 	int timeout() default TransactionDefinition.TIMEOUT_DEFAULT;
@@ -155,7 +155,7 @@ public @interface Transactional {
 	 * <p>默认使用底层事务系统的默认超时时间。
 	 * <p>专用于{@link Propagation#REQUIRED}或{@link Propagation#REQUIRES_NEW},
 	 * 因为它仅适用于新启动的事务。
-	 * @return the timeout in seconds as a String value, e.g. a placeholder
+	 * @return 超时时间，以 String 值表示，例如占位符
 	 * @since 5.3
 	 * @see org.springframework.transaction.interceptor.TransactionAttribute#getTimeout()
 	 */

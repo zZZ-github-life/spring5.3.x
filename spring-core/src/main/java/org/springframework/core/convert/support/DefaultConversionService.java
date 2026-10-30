@@ -56,7 +56,7 @@ public class DefaultConversionService extends GenericConversionService {
 	 * 返回共享的默认 {@code ConversionService} 实例，
 	 * 在首次需要时延迟构建。
 	 * <p><b>注意：</b>我们强烈建议出于定制目的构造单独的 {@code ConversionService} 实例。此访问器仅作为回退方案，供那些需要简单类型转换但无法通过其他方式访问生命周期更长的 {@code ConversionService} 实例的代码路径使用。
-	 * @return the shared {@code ConversionService} instance (never {@code null})
+	 * @return 共享的 {@code ConversionService} 实例（永不为 {@code null}）
 	 * @since 4.3.5
 	 */
 	public static ConversionService getSharedInstance() {
@@ -75,9 +75,9 @@ public class DefaultConversionService extends GenericConversionService {
 
 	/**
 	 * 添加适用于大多数环境的转换器。
-	 * @param converterRegistry the registry of converters to add to
-	 * (must also be castable to ConversionService, e.g. being a {@link ConfigurableConversionService})
-	 * @throws ClassCastException if the given ConverterRegistry could not be cast to a ConversionService
+	 * @param converterRegistry 要添加转换器的注册表（还必须可转换为 ConversionService，
+	 * 例如是 {@link ConfigurableConversionService}）
+	 * @throws ClassCastException 如果给定的 ConverterRegistry 无法转换为 ConversionService
 	 */
 	public static void addDefaultConverters(ConverterRegistry converterRegistry) {
 		addScalarConverters(converterRegistry);
@@ -96,9 +96,9 @@ public class DefaultConversionService extends GenericConversionService {
 
 	/**
 	 * 添加常用的集合转换器。
-	 * @param converterRegistry the registry of converters to add to
-	 * (must also be castable to ConversionService, e.g. being a {@link ConfigurableConversionService})
-	 * @throws ClassCastException if the given ConverterRegistry could not be cast to a ConversionService
+	 * @param converterRegistry 要添加转换器的注册表（还必须可转换为 ConversionService，
+	 * 例如是 {@link ConfigurableConversionService}）
+	 * @throws ClassCastException 如果给定的 ConverterRegistry 无法转换为 ConversionService
 	 * @since 4.2.3
 	 */
 	public static void addCollectionConverters(ConverterRegistry converterRegistry) {

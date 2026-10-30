@@ -41,7 +41,7 @@ public class JtaAfterCompletionSynchronization implements Synchronization {
 
 	/**
 	 * 为给定的同步对象创建一个新的JtaAfterCompletionSynchronization。
-	 * @param synchronizations the List of TransactionSynchronization objects
+	 * @param synchronizations TransactionSynchronization 对象的 List
 	 * @see org.springframework.transaction.support.TransactionSynchronization
 	 */
 	public JtaAfterCompletionSynchronization(List<TransactionSynchronization> synchronizations) {

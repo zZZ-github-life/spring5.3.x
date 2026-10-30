@@ -40,8 +40,7 @@ public abstract class ApplicationEvent extends EventObject {
 	/**
 	 * 创建一个新的 {@code ApplicationEvent}，其 {@link #getTimestamp() 时间戳} 设置为
 	 * {@link System#currentTimeMillis()}。
-	 * @param source the object on which the event initially occurred or with
-	 * which the event is associated (never {@code null})
+	 * @param source 事件最初发生或与之关联的对象（永不为 {@code null}）
 	 * @see #ApplicationEvent(Object, Clock)
 	 */
 	public ApplicationEvent(Object source) {
@@ -54,9 +53,8 @@ public abstract class ApplicationEvent extends EventObject {
 	 * {@link Clock} 中 {@link Clock#millis()} 返回的值。
 	 *
 	 * <p>此构造函数通常用于测试场景。
-	 * @param source the object on which the event initially occurred or with
-	 * which the event is associated (never {@code null})
-	 * @param clock a clock which will provide the timestamp
+	 * @param source 事件最初发生或与之关联的对象（永不为 {@code null}）
+	 * @param clock 用于提供时间戳的时钟
 	 * @since 5.3.8
 	 * @see #ApplicationEvent(Object)
 	 */

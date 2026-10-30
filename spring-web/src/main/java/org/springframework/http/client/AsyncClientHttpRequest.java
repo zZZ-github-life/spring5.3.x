@@ -39,8 +39,8 @@ public interface AsyncClientHttpRequest extends HttpRequest, HttpOutputMessage {
 
 	/**
 	 * 异步执行此请求，返回可读取的 {@link ClientHttpResponse} 的 Future 句柄。
-	 * @return the future response result of the execution
-	 * @throws java.io.IOException in case of I/O errors
+	 * @return 执行所产生的响应 Future 结果
+	 * @throws java.io.IOException 如果发生 I/O 错误
 	 */
 	ListenableFuture<ClientHttpResponse> executeAsync() throws IOException;
 

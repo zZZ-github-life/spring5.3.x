@@ -50,11 +50,11 @@ public abstract class BeanFactoryAnnotationUtils {
 	/**
 	 * 从给定的 {@code BeanFactory} 中检索所有类型为 {@code T} 且声明了与给定限定符匹配的限定符（例如通
 	 * 过 {@code <qualifier>} 或 {@code @Qualifier}），或者 Bean 名称与给定限定符匹配的 Bean。
-	 * @param beanFactory the factory to get the target beans from (also searching ancestors)
-	 * @param beanType the type of beans to retrieve
-	 * @param qualifier the qualifier for selecting among all type matches
-	 * @return the matching beans of type {@code T}
-	 * @throws BeansException if any of the matching beans could not be created
+	 * @param beanFactory 要从中获取目标 Bean 的工厂（也会搜索祖先）
+	 * @param beanType 要获取的 Bean 类型
+	 * @param qualifier 用于在所有类型匹配之间进行选择的限定符
+	 * @return 类型为 {@code T} 的匹配 Bean
+	 * @throws BeansException 如果任何匹配的 Bean 无法创建
 	 * @since 5.1.1
 	 * @see BeanFactoryUtils#beansOfTypeIncludingAncestors(ListableBeanFactory, Class)
 	 */
@@ -74,13 +74,13 @@ public abstract class BeanFactoryAnnotationUtils {
 	/**
 	 * 从给定的 {@code BeanFactory} 中获取一个类型为 {@code T} 且声明了与给定限定符匹配的限定符（例如通
 	 * 过 {@code <qualifier>} 或 {@code @Qualifier}），或者 Bean 名称与给定限定符匹配的 Bean。
-	 * @param beanFactory the factory to get the target bean from (also searching ancestors)
-	 * @param beanType the type of bean to retrieve
-	 * @param qualifier the qualifier for selecting between multiple bean matches
-	 * @return the matching bean of type {@code T} (never {@code null})
-	 * @throws NoUniqueBeanDefinitionException if multiple matching beans of type {@code T} found
-	 * @throws NoSuchBeanDefinitionException if no matching bean of type {@code T} found
-	 * @throws BeansException if the bean could not be created
+	 * @param beanFactory 要从中获取目标 Bean 的工厂（也会搜索祖先）
+	 * @param beanType 要获取的 Bean 类型
+	 * @param qualifier 用于在多个 Bean 匹配之间进行选择的限定符
+	 * @return 类型为 {@code T} 的匹配 Bean（从不为 {@code null}）
+	 * @throws NoUniqueBeanDefinitionException 如果找到多个类型为 {@code T} 的匹配 Bean 则抛出
+	 * @throws NoSuchBeanDefinitionException 如果未找到类型为 {@code T} 的匹配 Bean 则抛出
+	 * @throws BeansException 如果无法创建该 Bean 则抛出
 	 * @see BeanFactoryUtils#beanOfTypeIncludingAncestors(ListableBeanFactory, Class)
 	 */
 	public static <T> T qualifiedBeanOfType(BeanFactory beanFactory, Class<T> beanType, String qualifier)
@@ -107,10 +107,10 @@ public abstract class BeanFactoryAnnotationUtils {
 	/**
 	 * 从给定的 {@code BeanFactory} 中获取一个类型为 {@code T} 且声明了与给定限定符匹配的限定符（例如
 	 * {@code <qualifier>} 或 {@code @Qualifier}）的 Bean。
-	 * @param bf the factory to get the target bean from
-	 * @param beanType the type of bean to retrieve
-	 * @param qualifier the qualifier for selecting between multiple bean matches
-	 * @return the matching bean of type {@code T} (never {@code null})
+	 * @param bf 用于获取目标 Bean 的工厂
+	 * @param beanType 要获取的 Bean 的类型
+	 * @param qualifier 用于在多个 Bean 匹配之间进行选择的限定符
+	 * @return 类型为 {@code T} 的匹配 Bean（永不为 {@code null}）
 	 */
 	private static <T> T qualifiedBeanOfType(ListableBeanFactory bf, Class<T> beanType, String qualifier) {
 		String[] candidateBeans = BeanFactoryUtils.beanNamesForTypeIncludingAncestors(bf, beanType);
@@ -138,12 +138,12 @@ public abstract class BeanFactoryAnnotationUtils {
 
 	/**
 	 * 检查指定名称的 Bean 是否声明了给定名称的限定符。
-	 * @param qualifier the qualifier to match
-	 * @param beanName the name of the candidate bean
-	 * @param beanFactory the factory from which to retrieve the named bean
-	 * @return {@code true} if either the bean definition (in the XML case)
-	 * or the bean's factory method (in the {@code @Bean} case) defines a matching
-	 * qualifier value (through {@code <qualifier>} or {@code @Qualifier})
+	 * @param qualifier 要匹配的限定符
+	 * @param beanName 候选 Bean 的名称
+	 * @param beanFactory 从中获取指定名称 Bean 的工厂
+	 * @return 如果 Bean 定义（XML 情况）或 Bean 的工厂方法
+	 * （{@code @Bean} 情况）通过 {@code <qualifier>} 或 {@code @Qualifier}
+	 * 定义了匹配的限定符值，则返回 {@code true}
 	 * @since 5.0
 	 */
 	public static boolean isQualifierMatch(

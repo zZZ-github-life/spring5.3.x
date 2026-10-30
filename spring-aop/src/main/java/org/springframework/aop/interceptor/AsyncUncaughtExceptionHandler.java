@@ -32,9 +32,9 @@ public interface AsyncUncaughtExceptionHandler {
 
 	/**
 	 * 处理异步方法抛出的给定未捕获异常。
-	 * @param ex the exception thrown from the asynchronous method
-	 * @param method the asynchronous method
-	 * @param params the parameters used to invoke the method
+	 * @param ex 异步方法抛出的异常
+	 * @param method 该异步方法
+	 * @param params 调用该方法所用的参数
 	 */
 	void handleUncaughtException(Throwable ex, Method method, Object... params);
 

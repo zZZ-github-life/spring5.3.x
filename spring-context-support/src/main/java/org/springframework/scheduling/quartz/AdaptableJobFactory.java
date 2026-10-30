@@ -51,10 +51,9 @@ public class AdaptableJobFactory implements JobFactory {
 	/**
 	 * 创建指定 job 类的实例。
 	 * <p>可以重写以对 job 实例进行后处理。
-	 * @param bundle the TriggerFiredBundle from which the JobDetail
-	 * and other info relating to the trigger firing can be obtained
-	 * @return the job instance
-	 * @throws Exception if job instantiation failed
+	 * @param bundle 可从中获取 JobDetail 以及与触发器触发相关的其他信息的 TriggerFiredBundle
+	 * @return 作业实例
+	 * @throws Exception 作业实例化失败时
 	 */
 	protected Object createJobInstance(TriggerFiredBundle bundle) throws Exception {
 		Class<?> jobClass = bundle.getJobDetail().getJobClass();
@@ -65,9 +64,9 @@ public class AdaptableJobFactory implements JobFactory {
 	 * 将给定的 job 对象适配为 Quartz Job 接口。
 	 * <p>默认实现直接支持 Quartz Job
 	 * 以及 Runnable，后者会被包装在 DelegatingJob 中。
-	 * @param jobObject the original instance of the specified job class
-	 * @return the adapted Quartz Job instance
-	 * @throws Exception if the given job could not be adapted
+	 * @param jobObject 指定作业类的原始实例
+	 * @return 适配后的 Quartz Job 实例
+	 * @throws Exception 如果给定的作业无法适配
 	 * @see DelegatingJob
 	 */
 	protected Job adaptJob(Object jobObject) throws Exception {

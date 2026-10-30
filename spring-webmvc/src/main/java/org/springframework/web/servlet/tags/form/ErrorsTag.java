@@ -253,7 +253,7 @@ public class ErrorsTag extends AbstractHtmlElementBodyTag implements BodyTag {
 	 * <p>在 {@link #getPropertyPath()} 返回的值后追加 '{@code .errors}'；
 	 * 如果省略了 {@code <form:errors/>} 标签的
 	 * '{@code path}' 属性，则追加到 model 属性名称后。
-	 * @return the value for the HTML '{@code id}' attribute
+	 * @return HTML '{@code id}' 属性的值
 	 * @see #getPropertyPath()
 	 */
 	@Override
@@ -280,7 +280,7 @@ public class ErrorsTag extends AbstractHtmlElementBodyTag implements BodyTag {
 	/**
 	 * 此标签是否应进行渲染？
 	 * <p>仅当配置的 {@link #setPath path} 存在错误时才渲染输出。
-	 * @return {@code true} only when there are errors for the configured {@link #setPath path}
+	 * @return 仅当所配置的 {@link #setPath path} 存在错误时才为 {@code true}
 	 */
 	@Override
 	protected boolean shouldRender() throws JspException {

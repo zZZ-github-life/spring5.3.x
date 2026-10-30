@@ -207,9 +207,9 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	/**
 	 * 为给定的 JMS Session 创建 MessageConsumer，
 	 * 并为指定的监听器注册 MessageListener。
-	 * @param session the JMS Session to work on
-	 * @return the MessageConsumer
-	 * @throws javax.jms.JMSException if thrown by JMS methods
+	 * @param session 要操作的 JMS Session
+	 * @return 该 MessageConsumer
+	 * @throws javax.jms.JMSException 如果由 JMS 方法抛出
 	 * @see #receiveAndExecute
 	 */
 	protected MessageConsumer createListenerConsumer(Session session) throws JMSException {
@@ -225,10 +225,10 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	/**
 	 * 对从给定消费者接收到的消息执行监听器，
 	 * 如有要求则将整个操作包装在外部事务中。
-	 * @param session the JMS Session to work on
-	 * @param consumer the MessageConsumer to work on
-	 * @return whether a message has been received
-	 * @throws JMSException if thrown by JMS methods
+	 * @param session 要操作的 JMS Session
+	 * @param consumer 要操作的 MessageConsumer
+	 * @return 是否已收到消息
+	 * @throws JMSException 如果由 JMS 方法抛出
 	 * @see #doReceiveAndExecute
 	 */
 	protected boolean receiveAndExecute(
@@ -271,11 +271,11 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	/**
 	 * 实际对从给定消费者接收到的消息执行监听器，
 	 * 获取所有所需资源并调用监听器。
-	 * @param session the JMS Session to work on
-	 * @param consumer the MessageConsumer to work on
-	 * @param status the TransactionStatus (may be {@code null})
-	 * @return whether a message has been received
-	 * @throws JMSException if thrown by JMS methods
+	 * @param session 要操作的 JMS Session
+	 * @param consumer 要操作的 MessageConsumer
+	 * @param status 该 TransactionStatus（可能为 {@code null}）
+	 * @return 是否已收到消息
+	 * @throws JMSException 如果由 JMS 方法抛出
 	 * @see #doExecuteListener(javax.jms.Session, javax.jms.Message)
 	 */
 	protected boolean doReceiveAndExecute(Object invoker, @Nullable Session session,
@@ -390,8 +390,8 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	/**
 	 * 确定在未收到任何消息后是否触发提交。
 	 * 在任何现代 JMS 提供者上这都是个好主意。
-	 * @param session the current JMS Session which received no message
-	 * @return whether to call {@link #commitIfNecessary} on the given Session
+	 * @param session 当前未收到消息的 JMS Session
+	 * @return 是否对给定的 Session 调用 {@link #commitIfNecessary}
 	 */
 	protected boolean shouldCommitAfterNoMessageReceived(Session session) {
 		return true;
@@ -399,8 +399,8 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 
 	/**
 	 * 执行回滚，并妥善处理回滚异常。
-	 * @param status object representing the transaction
-	 * @param ex the thrown listener exception or error
+	 * @param status 表示该事务的对象
+	 * @param ex 抛出的监听器异常或错误
 	 */
 	private void rollbackOnException(PlatformTransactionManager manager, TransactionStatus status, Throwable ex) {
 		logger.debug("Initiating transaction rollback on listener exception", ex);
@@ -419,9 +419,9 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 
 	/**
 	 * 从给定消费者接收消息。
-	 * @param consumer the MessageConsumer to use
-	 * @return the Message, or {@code null} if none
-	 * @throws JMSException if thrown by JMS methods
+	 * @param consumer 要使用的 MessageConsumer
+	 * @return 该 Message；如果没有，则为 {@code null}
+	 * @throws JMSException 如果由 JMS 方法抛出
 	 */
 	@Nullable
 	protected Message receiveMessage(MessageConsumer consumer) throws JMSException {
@@ -431,8 +431,8 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	/**
 	 * 模板方法，在收到新消息后、尝试处理它之前立即调用。
 	 * 允许子类对实际传入消息的事件作出反应，例如调整其消费者数量。
-	 * @param invoker the invoker object (passed through)
-	 * @param session the receiving JMS Session
+	 * @param invoker 调用器对象（原样传递）
+	 * @param session 接收消息的 JMS Session
 	 */
 	protected void messageReceived(Object invoker, Session session) {
 	}
@@ -440,8 +440,8 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	/**
 	 * 模板方法，在<i>未</i>收到任何消息时、返回接收循环之前调用。
 	 * 允许子类对没有传入消息的事件作出反应，例如将调用器标记为空闲。
-	 * @param invoker the invoker object (passed through)
-	 * @param session the receiving JMS Session
+	 * @param invoker 调用器对象（原样传递）
+	 * @param session 接收消息的 JMS Session
 	 */
 	protected void noMessageReceived(Object invoker, Session session) {
 	}
@@ -449,9 +449,9 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	/**
 	 * 从给定的 JmsResourceHolder 中获取适当的 Connection。
 	 * <p>此实现接受任何 JMS 1.1 Connection。
-	 * @param holder the JmsResourceHolder
-	 * @return an appropriate Connection fetched from the holder,
-	 * or {@code null} if none found
+	 * @param holder 该 JmsResourceHolder
+	 * @return 从 holder 中获取的相应 Connection；
+	 * 如果未找到，则为 {@code null}
 	 */
 	@Nullable
 	protected Connection getConnection(JmsResourceHolder holder) {
@@ -461,9 +461,9 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	/**
 	 * 从给定的 JmsResourceHolder 中获取适当的 Session。
 	 * <p>此实现接受任何 JMS 1.1 Session。
-	 * @param holder the JmsResourceHolder
-	 * @return an appropriate Session fetched from the holder,
-	 * or {@code null} if none found
+	 * @param holder 该 JmsResourceHolder
+	 * @return 从 holder 中获取的相应 Session；
+	 * 如果未找到，则为 {@code null}
 	 */
 	@Nullable
 	protected Session getSession(JmsResourceHolder holder) {

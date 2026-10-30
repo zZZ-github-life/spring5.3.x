@@ -55,7 +55,7 @@ public class Bindings implements Iterable<Bindings.Binding> {
 
 	/**
 	 * 根据给定的集合创建 {@link Bindings}。
-	 * @param bindings a collection of {@link Binding} objects
+	 * @param bindings {@link Binding} 对象的集合
 	 */
 	public Bindings(Collection<Binding> bindings) {
 		Assert.notNull(bindings, "Collection must not be null");
@@ -76,8 +76,8 @@ public class Bindings implements Iterable<Bindings.Binding> {
 	/**
 	 * 将此绑定与另一个 {@link Bindings} 对象合并，
 	 * 并创建一个新的合并后的 {@link Bindings} 对象。
-	 * @param other the object to merge with
-	 * @return a newly merged {@link Bindings} object
+	 * @param other 要与之合并的对象
+	 * @return 新合并的 {@link Bindings} 对象
 	 */
 	public Bindings and(Bindings other) {
 		return merge(this, other);
@@ -85,7 +85,7 @@ public class Bindings implements Iterable<Bindings.Binding> {
 
 	/**
 	 * 将绑定应用到 {@link BindTarget}。
-	 * @param bindTarget the target to apply bindings to
+	 * @param bindTarget 要应用绑定的目标
 	 */
 	public void apply(BindTarget bindTarget) {
 		Assert.notNull(bindTarget, "BindTarget must not be null");
@@ -96,7 +96,7 @@ public class Bindings implements Iterable<Bindings.Binding> {
 	 * 对此 {@link Bindings} 的每个绑定执行给定的操作，直到所有绑定
 	 * 都被处理完毕或该操作抛出异常。操作按迭代顺序执行
 	 * （如果指定了迭代顺序）。操作抛出的异常会向调用方传播。
-	 * @param action the action to be performed for each {@link Binding}
+	 * @param action 要对每个 {@link Binding} 执行的操作
 	 */
 	@Override
 	public void forEach(Consumer<? super Binding> action) {
@@ -124,9 +124,9 @@ public class Bindings implements Iterable<Bindings.Binding> {
 	/**
 	 * 将此绑定与另一个 {@link Bindings} 对象合并，
 	 * 并创建一个新的合并后的 {@link Bindings} 对象。
-	 * @param left the left object to merge with
-	 * @param right the right object to merge with
-	 * @return a newly merged {@link Bindings} object
+	 * @param left 要与之合并的左侧对象
+	 * @param right 要与之合并的右侧对象
+	 * @return 新合并的 {@link Bindings} 对象
 	 */
 	public static Bindings merge(Bindings left, Bindings right) {
 		Assert.notNull(left, "Left side Bindings must not be null");
@@ -158,14 +158,14 @@ public class Bindings implements Iterable<Bindings.Binding> {
 
 		/**
 		 * 返回该绑定是否关联了值。
-		 * @return {@code true} if there is a value present,
-		 * otherwise {@code false} for a {@code NULL} binding
+		 * @return 如果存在值则为 {@code true}，
+		 * 对于 {@code NULL} 绑定则为 {@code false}
 		 */
 		public abstract boolean hasValue();
 
 		/**
 		 * 返回该绑定是否为空。
-		 * @return {@code true} if this is a {@code NULL} binding
+		 * @return 如果这是 {@code NULL} 绑定则返回 {@code true}
 		 */
 		public boolean isNull() {
 			return !hasValue();
@@ -173,15 +173,15 @@ public class Bindings implements Iterable<Bindings.Binding> {
 
 		/**
 		 * 返回绑定值。
-		 * @return the value of this binding
-		 * (can be {@code null} if this is a {@code NULL} binding)
+		 * @return 此绑定的值
+		 * （如果这是 {@code NULL} 绑定，则可以为 {@code null}）
 		 */
 		@Nullable
 		public abstract Object getValue();
 
 		/**
 		 * 将绑定应用到 {@link BindTarget}。
-		 * @param bindTarget the target to apply bindings to
+		 * @param bindTarget 要应用绑定的目标
 		 */
 		public abstract void apply(BindTarget bindTarget);
 	}

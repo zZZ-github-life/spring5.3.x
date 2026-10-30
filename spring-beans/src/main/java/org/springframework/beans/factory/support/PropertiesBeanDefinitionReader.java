@@ -145,8 +145,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 
 	/**
 	 * 为给定 Bean 工厂创建新的 PropertiesBeanDefinitionReader。
-	 * @param registry the BeanFactory to load bean definitions into,
-	 * in the form of a BeanDefinitionRegistry
+	 * @param registry 要将 Bean 定义加载到的 BeanFactory，以 BeanDefinitionRegistry 的形式提供
 	 */
 	public PropertiesBeanDefinitionReader(BeanDefinitionRegistry registry) {
 		super(registry);
@@ -192,9 +191,9 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 
 	/**
 	 * 从指定的 properties 文件加载 Bean 定义，使用所有属性键（即不按前缀过滤）。
-	 * @param resource the resource descriptor for the properties file
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * @param resource properties 文件的资源描述符
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeanDefinitionStoreException 如果发生加载或解析错误
 	 * @see #loadBeanDefinitions(org.springframework.core.io.Resource, String)
 	 */
 	@Override
@@ -204,11 +203,10 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 
 	/**
 	 * 从指定的 properties 文件加载 Bean 定义。
-	 * @param resource the resource descriptor for the properties file
-	 * @param prefix a filter within the keys in the map: e.g. 'beans.'
-	 * (can be empty or {@code null})
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * @param resource properties 文件的资源描述符
+	 * @param prefix 对 Map 中键的过滤器：例如 'beans.'（可以为空或 {@code null}）
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeanDefinitionStoreException 如果发生加载或解析错误
 	 */
 	public int loadBeanDefinitions(Resource resource, @Nullable String prefix) throws BeanDefinitionStoreException {
 		return loadBeanDefinitions(new EncodedResource(resource), prefix);
@@ -216,10 +214,9 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 
 	/**
 	 * 从指定的 properties 文件加载 Bean 定义。
-	 * @param encodedResource the resource descriptor for the properties file,
-	 * allowing to specify an encoding to use for parsing the file
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * @param encodedResource properties 文件的资源描述符，允许指定解析该文件时使用的编码
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeanDefinitionStoreException 如果发生加载或解析错误
 	 */
 	public int loadBeanDefinitions(EncodedResource encodedResource) throws BeanDefinitionStoreException {
 		return loadBeanDefinitions(encodedResource, null);
@@ -227,12 +224,10 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 
 	/**
 	 * 从指定的 properties 文件加载 Bean 定义。
-	 * @param encodedResource the resource descriptor for the properties file,
-	 * allowing to specify an encoding to use for parsing the file
-	 * @param prefix a filter within the keys in the map: e.g. 'beans.'
-	 * (can be empty or {@code null})
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * @param encodedResource properties 文件的资源描述符，允许指定解析该文件时使用的编码
+	 * @param prefix 对 Map 中键的过滤器：例如 'beans.'（可以为空或 {@code null}）
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeanDefinitionStoreException 如果发生加载或解析错误
 	 */
 	public int loadBeanDefinitions(EncodedResource encodedResource, @Nullable String prefix)
 			throws BeanDefinitionStoreException {
@@ -265,9 +260,9 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 
 	/**
 	 * 注册资源包中包含的 Bean 定义，使用所有属性键（即不按前缀过滤）。
-	 * @param rb the ResourceBundle to load from
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * @param rb 要从中加载的 ResourceBundle
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeanDefinitionStoreException 如果发生加载或解析错误
 	 * @see #registerBeanDefinitions(java.util.ResourceBundle, String)
 	 */
 	public int registerBeanDefinitions(ResourceBundle rb) throws BeanDefinitionStoreException {
@@ -277,11 +272,10 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	/**
 	 * 注册 ResourceBundle 中包含的 Bean 定义。
 	 * <p>语法与 Map 类似。此方法有助于启用标准 Java 国际化支持。
-	 * @param rb the ResourceBundle to load from
-	 * @param prefix a filter within the keys in the map: e.g. 'beans.'
-	 * (can be empty or {@code null})
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * @param rb 要从中加载的 ResourceBundle
+	 * @param prefix 对 Map 中键的过滤器：例如 'beans.'（可以为空或 {@code null}）
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeanDefinitionStoreException 如果发生加载或解析错误
 	 */
 	public int registerBeanDefinitions(ResourceBundle rb, @Nullable String prefix) throws BeanDefinitionStoreException {
 		// Simply create a map and call overloaded method.
@@ -297,11 +291,11 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 
 	/**
 	 * 注册 Map 中包含的 Bean 定义，使用所有属性键（即不按前缀过滤）。
-	 * @param map a map of {@code name} to {@code property} (String or Object). Property
-	 * values will be strings if coming from a Properties file etc. Property names
-	 * (keys) <b>must</b> be Strings. Class keys must be Strings.
-	 * @return the number of bean definitions found
-	 * @throws BeansException in case of loading or parsing errors
+	 * @param map 从 {@code name} 到 {@code property}（String 或 Object）的映射。
+	 * 如果来自 Properties 文件等，属性值将是字符串。
+	 * 属性名称（键）<b>必须</b>是 String。类键必须是 String。
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeansException 如果发生加载或解析错误
 	 * @see #registerBeanDefinitions(java.util.Map, String, String)
 	 */
 	public int registerBeanDefinitions(Map<?, ?> map) throws BeansException {
@@ -310,13 +304,12 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 
 	/**
 	 * 注册 Map 中包含的 Bean 定义。忽略不合格的属性。
-	 * @param map a map of {@code name} to {@code property} (String or Object). Property
-	 * values will be strings if coming from a Properties file etc. Property names
-	 * (keys) <b>must</b> be Strings. Class keys must be Strings.
-	 * @param prefix a filter within the keys in the map: e.g. 'beans.'
-	 * (can be empty or {@code null})
-	 * @return the number of bean definitions found
-	 * @throws BeansException in case of loading or parsing errors
+	 * @param map 从 {@code name} 到 {@code property}（String 或 Object）的映射。
+	 * 如果来自 Properties 文件等，属性值将是字符串。
+	 * 属性名称（键）<b>必须</b>是 String。类键必须是 String。
+	 * @param prefix 对 Map 中键的过滤器：例如 'beans.'（可以为空或 {@code null}）
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeansException 如果发生加载或解析错误
 	 */
 	public int registerBeanDefinitions(Map<?, ?> map, @Nullable String prefix) throws BeansException {
 		return registerBeanDefinitions(map, prefix, "Map " + map);
@@ -324,15 +317,13 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 
 	/**
 	 * 注册 Map 中包含的 Bean 定义。忽略不合格的属性。
-	 * @param map a map of {@code name} to {@code property} (String or Object). Property
-	 * values will be strings if coming from a Properties file etc. Property names
-	 * (keys) <b>must</b> be Strings. Class keys must be Strings.
-	 * @param prefix a filter within the keys in the map: e.g. 'beans.'
-	 * (can be empty or {@code null})
-	 * @param resourceDescription description of the resource that the
-	 * Map came from (for logging purposes)
-	 * @return the number of bean definitions found
-	 * @throws BeansException in case of loading or parsing errors
+	 * @param map 从 {@code name} 到 {@code property}（String 或 Object）的映射。
+	 * 如果来自 Properties 文件等，属性值将是字符串。
+	 * 属性名称（键）<b>必须</b>是 String。类键必须是 String。
+	 * @param prefix 对 Map 中键的过滤器：例如 'beans.'（可以为空或 {@code null}）
+	 * @param resourceDescription 该 Map 来源资源的描述（用于日志记录）
+	 * @return 找到的 Bean 定义数量
+	 * @throws BeansException 如果发生加载或解析错误
 	 * @see #registerBeanDefinitions(Map, String)
 	 */
 	public int registerBeanDefinitions(Map<?, ?> map, @Nullable String prefix, String resourceDescription)
@@ -386,12 +377,11 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 
 	/**
 	 * 获取所有属性值（给定前缀将被去除），并将它们定义的 Bean 以给定名称添加到工厂中。
-	 * @param beanName name of the bean to define
-	 * @param map a Map containing string pairs
-	 * @param prefix prefix of each entry, which will be stripped
-	 * @param resourceDescription description of the resource that the
-	 * Map came from (for logging purposes)
-	 * @throws BeansException if the bean definition could not be parsed or registered
+	 * @param beanName 要定义的 Bean 的名称
+	 * @param map 包含字符串对的 Map
+	 * @param prefix 每个条目的前缀，该前缀将被去除
+	 * @param resourceDescription 该 Map 来源资源的描述（用于日志记录）
+	 * @throws BeansException 如果无法解析或注册 Bean 定义
 	 */
 	protected void registerBeanDefinition(String beanName, Map<?, ?> map, String prefix, String resourceDescription)
 			throws BeansException {

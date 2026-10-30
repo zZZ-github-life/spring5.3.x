@@ -37,8 +37,8 @@ public interface ClientHttpRequest extends HttpRequest, HttpOutputMessage {
 
 	/**
 	 * 执行此请求，返回可读取的 {@link ClientHttpResponse}。
-	 * @return the response result of the execution
-	 * @throws IOException in case of I/O errors
+	 * @return 执行的响应结果
+	 * @throws IOException 如果发生 I/O 错误
 	 */
 	ClientHttpResponse execute() throws IOException;
 

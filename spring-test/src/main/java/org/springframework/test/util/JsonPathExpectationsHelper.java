@@ -50,9 +50,9 @@ public class JsonPathExpectationsHelper {
 
 	/**
 	 * 构造一个新的 {@code JsonPathExpectationsHelper}。
-	 * @param expression the {@link JsonPath} expression; never {@code null} or empty
-	 * @param args arguments to parameterize the {@code JsonPath} expression with,
-	 * using formatting specifiers defined in {@link String#format(String, Object...)}
+	 * @param expression {@link JsonPath} 表达式；永不为 {@code null} 或空
+	 * @param args 用于为 {@code JsonPath} 表达式提供参数的参数，
+	 * 使用 {@link String#format(String, Object...)} 中定义的格式说明符
 	 */
 	public JsonPathExpectationsHelper(String expression, Object... args) {
 		Assert.hasText(expression, "expression must not be null or empty");
@@ -63,8 +63,8 @@ public class JsonPathExpectationsHelper {
 
 	/**
 	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并使用给定的 {@code Matcher} 断言结果值。
-	 * @param content the JSON content
-	 * @param matcher the matcher with which to assert the result
+	 * @param content JSON 内容
+	 * @param matcher 用于断言结果的匹配器
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> void assertValue(String content, Matcher<? super T> matcher) {
@@ -74,9 +74,9 @@ public class JsonPathExpectationsHelper {
 
 	/**
 	 * {@link #assertValue(String, Matcher)} 的重载变体，它还接受结果值的目标类型。例如，这可用于可靠地匹配数字，如将整数强制转换为双精度浮点数。
-	 * @param content the JSON content
-	 * @param matcher the matcher with which to assert the result
-	 * @param targetType the expected type of the resulting value
+	 * @param content JSON 内容
+	 * @param matcher 用于断言结果的匹配器
+	 * @param targetType 结果值的期望类型
 	 * @since 4.3.3
 	 */
 	@SuppressWarnings("unchecked")
@@ -87,8 +87,8 @@ public class JsonPathExpectationsHelper {
 
 	/**
 	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言结果等于期望值。
-	 * @param content the JSON content
-	 * @param expectedValue the expected value
+	 * @param content JSON 内容
+	 * @param expectedValue 期望值
 	 */
 	public void assertValue(String content, @Nullable Object expectedValue) {
 		Object actualValue = evaluateJsonPath(content);
@@ -122,7 +122,7 @@ public class JsonPathExpectationsHelper {
 
 	/**
 	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言结果值是 {@link String}。
-	 * @param content the JSON content
+	 * @param content JSON 内容
 	 * @since 4.2.1
 	 */
 	public void assertValueIsString(String content) {
@@ -132,7 +132,7 @@ public class JsonPathExpectationsHelper {
 
 	/**
 	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言结果值是 {@link Boolean}。
-	 * @param content the JSON content
+	 * @param content JSON 内容
 	 * @since 4.2.1
 	 */
 	public void assertValueIsBoolean(String content) {
@@ -142,7 +142,7 @@ public class JsonPathExpectationsHelper {
 
 	/**
 	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言结果值是 {@link Number}。
-	 * @param content the JSON content
+	 * @param content JSON 内容
 	 * @since 4.2.1
 	 */
 	public void assertValueIsNumber(String content) {
@@ -152,7 +152,7 @@ public class JsonPathExpectationsHelper {
 
 	/**
 	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言结果值是一个数组。
-	 * @param content the JSON content
+	 * @param content JSON 内容
 	 */
 	public void assertValueIsArray(String content) {
 		Object value = assertExistsAndReturn(content);
@@ -161,7 +161,7 @@ public class JsonPathExpectationsHelper {
 
 	/**
 	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言结果值是 {@link Map}。
-	 * @param content the JSON content
+	 * @param content JSON 内容
 	 * @since 4.2.1
 	 */
 	public void assertValueIsMap(String content) {
@@ -172,7 +172,7 @@ public class JsonPathExpectationsHelper {
 	/**
 	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言在给定路径处存在非空值（可能是空数组或映射）。
 	 * <p>请注意，如果 JSON 路径表达式不是{@linkplain JsonPath#isDefinite() 确定性的}，则此方法断言给定路径处的值列表不为<em>空</em>。
-	 * @param content the JSON content
+	 * @param content JSON 内容
 	 */
 	public void exists(String content) {
 		assertExistsAndReturn(content);
@@ -181,7 +181,7 @@ public class JsonPathExpectationsHelper {
 	/**
 	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言给定路径处不存在非空值。
 	 * <p>请注意，如果 JSON 路径表达式不是{@linkplain JsonPath#isDefinite() 确定性的}，则此方法断言给定路径处的值列表为<em>空</em>。
-	 * @param content the JSON content
+	 * @param content JSON 内容
 	 */
 	public void doesNotExist(String content) {
 		Object value;
@@ -203,7 +203,7 @@ public class JsonPathExpectationsHelper {
 	/**
 	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言在给定路径处存在空值。
 	 * <p>有关<em>空</em>的语义，请查阅 {@link ObjectUtils#isEmpty(Object)} 的 Javadoc。
-	 * @param content the JSON content
+	 * @param content JSON 内容
 	 */
 	public void assertValueIsEmpty(String content) {
 		Object value = evaluateJsonPath(content);
@@ -213,7 +213,7 @@ public class JsonPathExpectationsHelper {
 	/**
 	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言在给定路径处存在非空值。
 	 * <p>有关<em>空</em>的语义，请查阅 {@link ObjectUtils#isEmpty(Object)} 的 Javadoc。
-	 * @param content the JSON content
+	 * @param content JSON 内容
 	 */
 	public void assertValueIsNotEmpty(String content) {
 		Object value = evaluateJsonPath(content);
@@ -223,7 +223,7 @@ public class JsonPathExpectationsHelper {
 	/**
 	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言存在某个值（可能为 {@code null}）。
 	 * <p>如果 JSON 路径表达式不是{@linkplain JsonPath#isDefinite() 确定性的}，则此方法断言给定路径处的值列表不为<em>空</em>。
-	 * @param content the JSON content
+	 * @param content JSON 内容
 	 * @since 5.0.3
 	 */
 	public void hasJsonPath(String content) {
@@ -237,7 +237,7 @@ public class JsonPathExpectationsHelper {
 	/**
 	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言在给定路径处不存在值（包括 {@code null} 值）。
 	 * <p>如果 JSON 路径表达式不是{@linkplain JsonPath#isDefinite() 确定性的}，则此方法断言给定路径处的值列表为<em>空</em>。
-	 * @param content the JSON content
+	 * @param content JSON 内容
 	 * @since 5.0.3
 	 */
 	public void doesNotHaveJsonPath(String content) {
@@ -263,9 +263,9 @@ public class JsonPathExpectationsHelper {
 
 	/**
 	 * 求值 JSON 路径并返回结果值。
-	 * @param content the content to evaluate against
-	 * @return the result of the evaluation
-	 * @throws AssertionError if the evaluation fails
+	 * @param content 要据此求值的内容
+	 * @return 求值结果
+	 * @throws AssertionError 如果求值失败。
 	 */
 	@Nullable
 	public Object evaluateJsonPath(String content) {
@@ -280,9 +280,9 @@ public class JsonPathExpectationsHelper {
 	/**
 	 * {@link #evaluateJsonPath(String)} 的变体，带有目标类型。
 	 * <p>例如，这可用于可靠地匹配数字，如将整数强制转换为双精度浮点数。
-	 * @param content the content to evaluate against
-	 * @return the result of the evaluation
-	 * @throws AssertionError if the evaluation fails
+	 * @param content 要据此求值的内容
+	 * @return 求值结果
+	 * @throws AssertionError 如果求值失败。
 	 */
 	public Object evaluateJsonPath(String content, Class<?> targetType) {
 		try {

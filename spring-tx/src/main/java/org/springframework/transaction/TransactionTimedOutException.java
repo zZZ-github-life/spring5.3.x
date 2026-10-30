@@ -43,7 +43,7 @@ public class TransactionTimedOutException extends TransactionException {
 
 	/**
 	 * TransactionTimedOutException 的构造函数。
-	 * @param msg the detail message
+	 * @param msg 详细信息
 	 */
 	public TransactionTimedOutException(String msg) {
 		super(msg);
@@ -51,8 +51,8 @@ public class TransactionTimedOutException extends TransactionException {
 
 	/**
 	 * TransactionTimedOutException 的构造函数。
-	 * @param msg the detail message
-	 * @param cause the root cause from the transaction API in use
+	 * @param msg 详细信息
+	 * @param cause 来自所用事务 API 的根本原因
 	 */
 	public TransactionTimedOutException(String msg, Throwable cause) {
 		super(msg, cause);

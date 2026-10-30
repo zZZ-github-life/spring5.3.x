@@ -34,8 +34,8 @@ public class TriggerTask extends Task {
 
 	/**
 	 * 创建一个新的 {@link TriggerTask}。
-	 * @param runnable the underlying task to execute
-	 * @param trigger specifies when the task should be executed
+	 * @param runnable 要执行的底层任务
+	 * @param trigger 指定任务的执行时间
 	 */
 	public TriggerTask(Runnable runnable, Trigger trigger) {
 		super(runnable);

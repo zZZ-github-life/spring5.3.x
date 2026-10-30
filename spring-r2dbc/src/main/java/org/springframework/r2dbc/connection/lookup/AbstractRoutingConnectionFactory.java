@@ -142,8 +142,8 @@ public abstract class AbstractRoutingConnectionFactory implements ConnectionFact
 	 * 映射中所指定）解析为用于与 {@link #determineCurrentLookupKey() 当前查找键}
 	 * 进行匹配的实际查找键。
 	 * <p>默认实现简单地按原样返回给定的键。
-	 * @param lookupKey the lookup key object as specified by the user
-	 * @return the lookup key as needed for matching.
+	 * @param lookupKey 用户指定的查找键对象
+	 * @return 匹配所需的查找键。
 	 */
 	protected Object resolveSpecifiedLookupKey(Object lookupKey) {
 		return lookupKey;
@@ -153,10 +153,10 @@ public abstract class AbstractRoutingConnectionFactory implements ConnectionFact
 	 * 将指定的连接工厂对象解析为 {@link ConnectionFactory} 实例。
 	 * <p>默认实现处理 {@link ConnectionFactory} 实例和连接工厂名称
 	 * （将通过 {@link #setConnectionFactoryLookup ConnectionFactoryLookup} 解析）。
-	 * @param connectionFactory the connection factory value object as specified in the
-	 * {@link #setTargetConnectionFactories targetConnectionFactories} map
-	 * @return the resolved {@link ConnectionFactory} (never {@code null})
-	 * @throws IllegalArgumentException in case of an unsupported value type
+	 * @param connectionFactory {@link #setTargetConnectionFactories targetConnectionFactories}
+	 * 映射中指定的连接工厂值对象
+	 * @return 解析后的 {@link ConnectionFactory}（永不为 {@code null}）
+	 * @throws IllegalArgumentException 在不支持的值类型情况下
 	 */
 	protected ConnectionFactory resolveSpecifiedConnectionFactory(Object connectionFactory)
 			throws IllegalArgumentException {
@@ -193,8 +193,8 @@ public abstract class AbstractRoutingConnectionFactory implements ConnectionFact
 	 * {@link #setTargetConnectionFactories targetConnectionFactories} 映射中执行查找，
 	 * 如有必要则回退到指定的
 	 * {@link #setDefaultTargetConnectionFactory 默认目标 ConnectionFactory}。
-	 * @return {@link Mono} emitting the current {@link ConnectionFactory} as
-	 * per {@link #determineCurrentLookupKey()}
+	 * @return 按 {@link #determineCurrentLookupKey()} 发出
+	 * 当前 {@link ConnectionFactory} 的 {@link Mono}
 	 * @see #determineCurrentLookupKey()
 	 */
 	protected Mono<ConnectionFactory> determineTargetConnectionFactory() {
@@ -220,8 +220,8 @@ public abstract class AbstractRoutingConnectionFactory implements ConnectionFact
 	 * 确定当前的查找键。通常实现为检查订阅者上下文。
 	 * 键可以是任意类型。返回的键需要与所存储的查找键类型匹配，
 	 * 该类型由 {@link #resolveSpecifiedLookupKey} 方法解析。
-	 * @return {@link Mono} emitting the lookup key. May complete without emitting a value
-	 * if no lookup key available
+	 * @return 发出查找键的 {@link Mono}。
+	 * 如果没有可用的查找键，则可能不发出值而完成
 	 */
 	protected abstract Mono<Object> determineCurrentLookupKey();
 

@@ -33,7 +33,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Juergen Hoeller
  * @since 4.3
- * @param <T> the object type
+ * @param <T> 对象类型
  * @see BeanFactory#getBeanProvider
  * @see org.springframework.beans.factory.annotation.Autowired
  */
@@ -42,17 +42,17 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	/**
 	 * 返回此工厂所管理对象的一个实例（可能是共享的，也可能是独立的）。
 	 * <p>允许像 {@link BeanFactory#getBean(String, Object...)} 那样指定显式的构造参数。
-	 * @param args arguments to use when creating a corresponding instance
-	 * @return an instance of the bean
-	 * @throws BeansException in case of creation errors
+	 * @param args 创建相应实例时使用的参数
+	 * @return Bean 的实例
+	 * @throws BeansException 如果发生创建错误
 	 * @see #getObject()
 	 */
 	T getObject(Object... args) throws BeansException;
 
 	/**
 	 * 返回此工厂所管理对象的一个实例（可能是共享的，也可能是独立的）。
-	 * @return an instance of the bean, or {@code null} if not available
-	 * @throws BeansException in case of creation errors
+	 * @return Bean 的实例；若不可用则为 {@code null}
+	 * @throws BeansException 如果发生创建错误
 	 * @see #getObject()
 	 */
 	@Nullable
@@ -60,11 +60,9 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 
 	/**
 	 * 返回此工厂所管理对象的一个实例（可能是共享的，也可能是独立的）。
-	 * @param defaultSupplier a callback for supplying a default object
-	 * if none is present in the factory
-	 * @return an instance of the bean, or the supplied default object
-	 * if no such bean is available
-	 * @throws BeansException in case of creation errors
+	 * @param defaultSupplier 当工厂中不存在对象时用于提供默认对象的回调
+	 * @return Bean 的实例；若没有这样的 Bean 可用则为提供的默认对象
+	 * @throws BeansException 如果发生创建错误
 	 * @since 5.0
 	 * @see #getIfAvailable()
 	 */
@@ -75,9 +73,8 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 
 	/**
 	 * 如果可用，消费此工厂所管理对象的一个实例（可能是共享的，也可能是独立的）。
-	 * @param dependencyConsumer a callback for processing the target object
-	 * if available (not called otherwise)
-	 * @throws BeansException in case of creation errors
+	 * @param dependencyConsumer 用于处理目标对象（若可用）的回调（否则不会被调用）
+	 * @throws BeansException 如果发生创建错误
 	 * @since 5.0
 	 * @see #getIfAvailable()
 	 */
@@ -90,9 +87,9 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 
 	/**
 	 * 返回此工厂所管理对象的一个实例（可能是共享的，也可能是独立的）。
-	 * @return an instance of the bean, or {@code null} if not available or
-	 * not unique (i.e. multiple candidates found with none marked as primary)
-	 * @throws BeansException in case of creation errors
+	 * @return Bean 的实例；若不可用或不唯一
+	 * （即找到多个候选且均未标记为 primary）则为 {@code null}
+	 * @throws BeansException 如果发生创建错误
 	 * @see #getObject()
 	 */
 	@Nullable
@@ -100,12 +97,10 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 
 	/**
 	 * 返回此工厂所管理对象的一个实例（可能是共享的，也可能是独立的）。
-	 * @param defaultSupplier a callback for supplying a default object
-	 * if no unique candidate is present in the factory
-	 * @return an instance of the bean, or the supplied default object
-	 * if no such bean is available or if it is not unique in the factory
-	 * (i.e. multiple candidates found with none marked as primary)
-	 * @throws BeansException in case of creation errors
+	 * @param defaultSupplier 当工厂中不存在唯一候选时用于提供默认对象的回调
+	 * @return Bean 的实例；若没有这样的 Bean 可用或它在工厂中不唯一
+	 * （即找到多个候选且均未标记为 primary）则为提供的默认对象
+	 * @throws BeansException 如果发生创建错误
 	 * @since 5.0
 	 * @see #getIfUnique()
 	 */
@@ -116,9 +111,8 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 
 	/**
 	 * 如果唯一，消费此工厂所管理对象的一个实例（可能是共享的，也可能是独立的）。
-	 * @param dependencyConsumer a callback for processing the target object
-	 * if unique (not called otherwise)
-	 * @throws BeansException in case of creation errors
+	 * @param dependencyConsumer 用于处理目标对象（若唯一）的回调（否则不会被调用）
+	 * @throws BeansException 如果发生创建错误
 	 * @since 5.0
 	 * @see #getIfAvailable()
 	 */

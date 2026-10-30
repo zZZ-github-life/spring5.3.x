@@ -79,8 +79,8 @@ public class ServerEndpointRegistration extends ServerEndpointConfig.Configurato
 	/**
 	 * 从 {@code javax.websocket.Endpoint} 实例创建一个新的
 	 * {@link ServerEndpointRegistration} 实例。
-	 * @param path the endpoint path
-	 * @param endpoint the endpoint instance
+	 * @param path 端点路径
+	 * @param endpoint 端点实例
 	 */
 	public ServerEndpointRegistration(String path, Endpoint endpoint) {
 		Assert.hasText(path, "Path must not be empty");
@@ -93,8 +93,8 @@ public class ServerEndpointRegistration extends ServerEndpointConfig.Configurato
 	/**
 	 * 从 {@code javax.websocket.Endpoint} 类创建一个新的
 	 * {@link ServerEndpointRegistration} 实例。
-	 * @param path the endpoint path
-	 * @param endpointClass the endpoint class
+	 * @param path 端点路径
+	 * @param endpointClass 端点类
 	 */
 	public ServerEndpointRegistration(String path, Class<? extends Endpoint> endpointClass) {
 		Assert.hasText(path, "Path must not be empty");

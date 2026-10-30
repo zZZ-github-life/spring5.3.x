@@ -42,12 +42,12 @@ public interface ContextCustomizerFactory {
 	/**
 	 * 创建应在 {@link org.springframework.context.ConfigurableApplicationContext ConfigurableApplicationContext}
 	 * 刷新之前用于自定义它的 {@link ContextCustomizer}。
-	 * @param testClass the test class
-	 * @param configAttributes the list of context configuration attributes for
-	 * the test class, ordered <em>bottom-up</em> (i.e., as if we were traversing
-	 * up the class hierarchy or enclosing class hierarchy); never {@code null} or empty
-	 * @return a {@link ContextCustomizer} or {@code null} if no customizer should
-	 * be used
+	 * @param testClass 测试类
+	 * @param configAttributes 该测试类的上下文配置属性列表，
+	 * 按 <em>自底向上</em> 排序（即如同沿类层次结构
+	 * 或封闭类层次结构向上遍历）；永不为 {@code null} 或空
+	 * @return {@link ContextCustomizer}，
+	 * 如果不应使用任何定制器则为 {@code null}
 	 */
 	@Nullable
 	ContextCustomizer createContextCustomizer(Class<?> testClass, List<ContextConfigurationAttributes> configAttributes);

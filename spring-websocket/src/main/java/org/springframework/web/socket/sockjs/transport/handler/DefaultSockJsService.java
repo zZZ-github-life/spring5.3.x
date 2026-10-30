@@ -45,10 +45,10 @@ public class DefaultSockJsService extends TransportHandlingSockJsService impleme
 
 	/**
 	 * 使用默认 {@link TransportHandler handler} 类型创建 DefaultSockJsService。
-	 * @param scheduler a task scheduler for heart-beat messages and removing
-	 * timed-out sessions; the provided TaskScheduler should be declared as a
-	 * Spring bean to ensure it is initialized at start up and shut down when the
-	 * application stops.
+	 * @param scheduler 用于心跳消息和移除超时会话的任务调度器；
+	 * 提供的 TaskScheduler 应声明为 Spring Bean，
+	 * 以确保它在启动时初始化，
+	 * 并在应用停止时关闭。
 	 */
 	public DefaultSockJsService(TaskScheduler scheduler) {
 		this(scheduler, getDefaultTransportHandlers(null));
@@ -57,10 +57,10 @@ public class DefaultSockJsService extends TransportHandlingSockJsService impleme
 	/**
 	 * 使用覆盖默认处理器实现的 {@link TransportHandler handler} 类型创建
 	 * DefaultSockJsService。
-	 * @param scheduler a task scheduler for heart-beat messages and removing timed-out sessions;
-	 * the provided TaskScheduler should be declared as a Spring bean to ensure it gets
-	 * initialized at start-up and shuts down when the application stops
-	 * @param handlerOverrides zero or more overrides to the default transport handler types
+	 * @param scheduler 用于心跳消息和移除超时会话的任务调度器；
+	 * 提供的 TaskScheduler 应声明为 Spring Bean，
+	 * 以确保它在启动时初始化并在应用停止时关闭
+	 * @param handlerOverrides 对默认传输处理器类型的零个或多个覆盖
 	 */
 	public DefaultSockJsService(TaskScheduler scheduler, TransportHandler... handlerOverrides) {
 		this(scheduler, Arrays.asList(handlerOverrides));
@@ -69,10 +69,10 @@ public class DefaultSockJsService extends TransportHandlingSockJsService impleme
 	/**
 	 * 使用覆盖默认处理器实现的 {@link TransportHandler handler} 类型创建
 	 * DefaultSockJsService。
-	 * @param scheduler a task scheduler for heart-beat messages and removing timed-out sessions;
-	 * the provided TaskScheduler should be declared as a Spring bean to ensure it gets
-	 * initialized at start-up and shuts down when the application stops
-	 * @param handlerOverrides zero or more overrides to the default transport handler types
+	 * @param scheduler 用于心跳消息和移除超时会话的任务调度器；
+	 * 提供的 TaskScheduler 应声明为 Spring Bean，
+	 * 以确保它在启动时初始化并在应用停止时关闭
+	 * @param handlerOverrides 对默认传输处理器类型的零个或多个覆盖
 	 */
 	public DefaultSockJsService(TaskScheduler scheduler, Collection<TransportHandler> handlerOverrides) {
 		super(scheduler, getDefaultTransportHandlers(handlerOverrides));

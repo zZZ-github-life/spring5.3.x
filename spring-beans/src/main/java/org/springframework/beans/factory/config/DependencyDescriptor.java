@@ -81,8 +81,8 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 
 	/**
 	 * 为方法或构造方法参数创建一个新的描述符。将该依赖视为“eager”。
-	 * @param methodParameter the MethodParameter to wrap
-	 * @param required whether the dependency is required
+	 * @param methodParameter 要包装的 MethodParameter
+	 * @param required 该依赖是否为必需
 	 */
 	public DependencyDescriptor(MethodParameter methodParameter, boolean required) {
 		this(methodParameter, required, true);
@@ -90,10 +90,10 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 
 	/**
 	 * 为方法或构造方法参数创建一个新的描述符。
-	 * @param methodParameter the MethodParameter to wrap
-	 * @param required whether the dependency is required
-	 * @param eager whether this dependency is 'eager' in the sense of
-	 * eagerly resolving potential target beans for type matching
+	 * @param methodParameter 要包装的 MethodParameter
+	 * @param required 该依赖是否为必需
+	 * @param eager 此依赖是否为 'eager'，即
+	 * 尽早解析潜在的目标 Bean 以进行类型匹配
 	 */
 	public DependencyDescriptor(MethodParameter methodParameter, boolean required, boolean eager) {
 		super(methodParameter);
@@ -111,8 +111,8 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 
 	/**
 	 * 为字段创建一个新的描述符。将该依赖视为“eager”。
-	 * @param field the field to wrap
-	 * @param required whether the dependency is required
+	 * @param field 要包装的字段
+	 * @param required 该依赖是否为必需
 	 */
 	public DependencyDescriptor(Field field, boolean required) {
 		this(field, required, true);
@@ -120,10 +120,10 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 
 	/**
 	 * 为字段创建一个新的描述符。
-	 * @param field the field to wrap
-	 * @param required whether the dependency is required
-	 * @param eager whether this dependency is 'eager' in the sense of
-	 * eagerly resolving potential target beans for type matching
+	 * @param field 要包装的字段
+	 * @param required 该依赖是否为必需
+	 * @param eager 此依赖是否为 'eager'，即
+	 * 尽早解析潜在的目标 Bean 以进行类型匹配
 	 */
 	public DependencyDescriptor(Field field, boolean required, boolean eager) {
 		super(field);
@@ -136,7 +136,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 
 	/**
 	 * 复制构造方法。
-	 * @param original the original descriptor to create a copy from
+	 * @param original 要从中创建副本的原始描述符
 	 */
 	public DependencyDescriptor(DependencyDescriptor original) {
 		super(original);
@@ -197,12 +197,12 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	/**
 	 * 解析所指定的非唯一场景：默认情况下抛出 {@link NoUniqueBeanDefinitionException}。
 	 * <p>子类可以重写此方法以选择其中一个实例，或通过返回 {@code null} 选择完全不返回结果。
-	 * @param type the requested bean type
-	 * @param matchingBeans a map of bean names and corresponding bean
-	 * instances which have been pre-selected for the given type
-	 * (qualifiers etc already applied)
-	 * @return a bean instance to proceed with, or {@code null} for none
-	 * @throws BeansException in case of the not-unique scenario being fatal
+	 * @param type 请求的 Bean 类型
+	 * @param matchingBeans Bean 名称与对应 Bean 实例的映射，
+	 * 这些实例已针对给定类型预先选出
+	 * （限定符等已应用）
+	 * @return 要使用的 Bean 实例；如果没有则为 {@code null}
+	 * @throws BeansException 如果不唯一的情况被视为致命错误则抛出
 	 * @since 5.1
 	 */
 	@Nullable
@@ -213,12 +213,12 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	/**
 	 * 解析所指定的非唯一场景：默认情况下抛出 {@link NoUniqueBeanDefinitionException}。
 	 * <p>子类可以重写此方法以选择其中一个实例，或通过返回 {@code null} 选择完全不返回结果。
-	 * @param type the requested bean type
-	 * @param matchingBeans a map of bean names and corresponding bean
-	 * instances which have been pre-selected for the given type
-	 * (qualifiers etc already applied)
-	 * @return a bean instance to proceed with, or {@code null} for none
-	 * @throws BeansException in case of the not-unique scenario being fatal
+	 * @param type 请求的 Bean 类型
+	 * @param matchingBeans Bean 名称与对应 Bean 实例的映射，
+	 * 这些实例已针对给定类型预先选出
+	 * （限定符等已应用）
+	 * @return 要使用的 Bean 实例；如果没有则为 {@code null}
+	 * @throws BeansException 如果不唯一的情况被视为致命错误则抛出
 	 * @since 4.3
 	 * @deprecated as of 5.1, in favor of {@link #resolveNotUnique(ResolvableType, Map)}
 	 */
@@ -232,9 +232,9 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	 * 针对给定的工厂解析此依赖的快捷结果，例如将某些预先解析的信息考虑在内。
 	 * <p>解析算法会先尝试通过此方法解析快捷结果，然后再进入对所有 Bean 的常规类型匹配算法。子类可以重
 	 * 写此方法，以便基于预缓存的信息提升解析性能，同时仍然获得 {@link InjectionPoint} 等的暴露。
-	 * @param beanFactory the associated factory
-	 * @return the shortcut result if any, or {@code null} if none
-	 * @throws BeansException if the shortcut could not be obtained
+	 * @param beanFactory 关联的工厂
+	 * @return 快捷方式结果（如果有）；如果没有则为 {@code null}
+	 * @throws BeansException 如果无法获得快捷方式结果则抛出
 	 * @since 4.3.1
 	 */
 	@Nullable
@@ -245,11 +245,11 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	/**
 	 * 将所指定的 Bean 名称（作为此依赖匹配算法的候选结果）解析为来自给定工厂的 Bean 实例。
 	 * <p>默认实现调用 {@link BeanFactory#getBean(String)}。子类可以提供额外的参数或其他定制。
-	 * @param beanName the bean name, as a candidate result for this dependency
-	 * @param requiredType the expected type of the bean (as an assertion)
-	 * @param beanFactory the associated factory
-	 * @return the bean instance (never {@code null})
-	 * @throws BeansException if the bean could not be obtained
+	 * @param beanName Bean 名称，作为此依赖的候选结果
+	 * @param requiredType 该 Bean 的预期类型（作为断言）
+	 * @param beanFactory 关联的工厂
+	 * @return Bean 实例（永不为 {@code null}）
+	 * @throws BeansException 如果无法获得该 Bean 则抛出
 	 * @since 4.3.2
 	 * @see BeanFactory#getBean(String)
 	 */
@@ -352,7 +352,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 
 	/**
 	 * 确定所包装的参数/字段的名称。
-	 * @return the declared name (may be {@code null} if unresolvable)
+	 * @return 声明的名称（如果无法解析则可能为 {@code null}）
 	 */
 	@Nullable
 	public String getDependencyName() {
@@ -361,7 +361,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 
 	/**
 	 * 确定所包装的参数/字段的声明类型（非泛型）。
-	 * @return the declared type (never {@code null})
+	 * @return 声明的类型（永不为 {@code null}）
 	 */
 	public Class<?> getDependencyType() {
 		if (this.field != null) {

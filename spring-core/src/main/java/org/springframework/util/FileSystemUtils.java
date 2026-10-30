@@ -48,9 +48,9 @@ public abstract class FileSystemUtils {
 	 * <p>注意：与 {@link File#delete()} 一样，此方法不抛出任何异常，而是在发生 I/O 错误时静默返回
 	 * {@code false}。可考虑使用 {@link #deleteRecursively(Path)} 以 NIO 方式处理 I/O 错误，从而明确区
 	 * 分文件不存在与无法删除现有文件。
-	 * @param root the root {@code File} to delete
-	 * @return {@code true} if the {@code File} was successfully deleted,
-	 * otherwise {@code false}
+	 * @param root 要删除的根 {@code File}
+	 * @return 如果 {@code File} 已成功删除，则返回 {@code true}，
+	 * 否则返回 {@code false}
 	 */
 	public static boolean deleteRecursively(@Nullable File root) {
 		if (root == null) {
@@ -67,10 +67,10 @@ public abstract class FileSystemUtils {
 
 	/**
 	 * 删除给定的 {@link File} &mdash; 对于目录，还会递归删除所有嵌套的目录或文件。
-	 * @param root the root {@code File} to delete
-	 * @return {@code true} if the {@code File} existed and was deleted,
-	 * or {@code false} if it did not exist
-	 * @throws IOException in the case of I/O errors
+	 * @param root 要删除的根 {@code File}
+	 * @return 如果该 {@code File} 存在且已删除，则返回 {@code true}；
+	 * 如果不存在则返回 {@code false}
+	 * @throws IOException 发生 I/O 错误时
 	 * @since 5.0
 	 */
 	public static boolean deleteRecursively(@Nullable Path root) throws IOException {
@@ -98,9 +98,9 @@ public abstract class FileSystemUtils {
 
 	/**
 	 * 将 {@code src} 文件/目录的内容递归复制到 {@code dest} 文件/目录。
-	 * @param src the source directory
-	 * @param dest the destination directory
-	 * @throws IOException in the case of I/O errors
+	 * @param src 源目录
+	 * @param dest 目标目录
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	public static void copyRecursively(File src, File dest) throws IOException {
 		Assert.notNull(src, "Source File must not be null");
@@ -110,9 +110,9 @@ public abstract class FileSystemUtils {
 
 	/**
 	 * 将 {@code src} 文件/目录的内容递归复制到 {@code dest} 文件/目录。
-	 * @param src the source directory
-	 * @param dest the destination directory
-	 * @throws IOException in the case of I/O errors
+	 * @param src 源目录
+	 * @param dest 目标目录
+	 * @throws IOException 发生 I/O 错误时
 	 * @since 5.0
 	 */
 	public static void copyRecursively(Path src, Path dest) throws IOException {

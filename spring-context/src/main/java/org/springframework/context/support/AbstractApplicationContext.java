@@ -236,7 +236,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 	/**
 	 * 使用给定的父上下文创建一个新的 AbstractApplicationContext。
-	 * @param parent the parent context
+	 * @param parent 父上下文
 	 */
 	public AbstractApplicationContext(@Nullable ApplicationContext parent) {
 		this();
@@ -252,7 +252,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * 设置此应用上下文的唯一 id。
 	 *
 	 * <p>默认值为上下文实例的对象 id；如果上下文本身被定义为 Bean，则为该上下文 Bean 的名称。
-	 * @param id the unique id of the context
+	 * @param id 上下文的唯一 id
 	 */
 	@Override
 	public void setId(String id) {
@@ -281,7 +281,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 	/**
 	 * 返回此上下文的友好名称。
-	 * @return a display name for this context (never {@code null})
+	 * @return 此上下文的显示名称（永不为 {@code null}）
 	 */
 	@Override
 	public String getDisplayName() {
@@ -354,8 +354,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 *
 	 * <p>注意：监听器在 MessageSource 之后初始化，以便能在监听器实现中访问它。因此，MessageSource 实现
 	 * 无法发布事件。
-	 * @param event the event to publish (may be application-specific or a
-	 * standard framework event)
+	 * @param event 要发布的事件（可以是特定于应用的事件，也可以是标准框架事件）
 	 */
 	@Override
 	public void publishEvent(ApplicationEvent event) {
@@ -367,8 +366,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 *
 	 * <p>注意：监听器在 MessageSource 之后初始化，以便能在监听器实现中访问它。因此，MessageSource 实现
 	 * 无法发布事件。
-	 * @param event the event to publish (may be an {@link ApplicationEvent}
-	 * or a payload object to be turned into a {@link PayloadApplicationEvent})
+	 * @param event 要发布的事件（可以是 {@link ApplicationEvent}，
+	 * 也可以是待转换为 {@link PayloadApplicationEvent} 的负载对象）
 	 */
 	@Override
 	public void publishEvent(Object event) {
@@ -377,9 +376,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 	/**
 	 * 将给定事件发布给所有监听器。
-	 * @param event the event to publish (may be an {@link ApplicationEvent}
-	 * or a payload object to be turned into a {@link PayloadApplicationEvent})
-	 * @param eventType the resolved event type, if known
+	 * @param event 要发布的事件（可以是 {@link ApplicationEvent}，
+	 * 也可以是待转换为 {@link PayloadApplicationEvent} 的负载对象）
+	 * @param eventType 解析后的事件类型（如果已知）
 	 * @since 4.2
 	 */
 	protected void publishEvent(Object event, @Nullable ResolvableType eventType) {
@@ -418,8 +417,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 	/**
 	 * 返回上下文使用的内部 ApplicationEventMulticaster。
-	 * @return the internal ApplicationEventMulticaster (never {@code null})
-	 * @throws IllegalStateException if the context has not been initialized yet
+	 * @return 内部 ApplicationEventMulticaster（永不为 {@code null}）
+	 * @throws IllegalStateException 如果上下文尚未初始化
 	 */
 	ApplicationEventMulticaster getApplicationEventMulticaster() throws IllegalStateException {
 		if (this.applicationEventMulticaster == null) {
@@ -442,8 +441,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 	/**
 	 * 返回上下文使用的内部 LifecycleProcessor。
-	 * @return the internal LifecycleProcessor (never {@code null})
-	 * @throws IllegalStateException if the context has not been initialized yet
+	 * @return 内部 LifecycleProcessor（永不为 {@code null}）
+	 * @throws IllegalStateException 如果上下文尚未初始化
 	 */
 	LifecycleProcessor getLifecycleProcessor() throws IllegalStateException {
 		if (this.lifecycleProcessor == null) {
@@ -462,7 +461,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 *
 	 * <p><b>需要解析位置模式时不要调用此方法。</b>而应调用上下文的 {@code getResources} 方法，它会委托
 	 * 给 ResourcePatternResolver。
-	 * @return the ResourcePatternResolver for this context
+	 * @return 此上下文的 ResourcePatternResolver
 	 * @see #getResources
 	 * @see org.springframework.core.io.support.PathMatchingResourcePatternResolver
 	 */
@@ -733,7 +732,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 	/**
 	 * 指示子类刷新内部 Bean 工厂。
-	 * @return the fresh BeanFactory instance
+	 * @return 新创建的 BeanFactory 实例
 	 * @see #refreshBeanFactory()
 	 * @see #getBeanFactory()
 	 */
@@ -744,7 +743,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 	/**
 	 * 配置工厂的标准上下文特征，例如上下文的 ClassLoader 和后处理器。
-	 * @param beanFactory the BeanFactory to configure
+	 * @param beanFactory 要配置的 BeanFactory
 	 *
 	 * 设置BeanFactory的class loader为当前context的class loader,方便加载bean类。
 	 * 设置BeanExpressionResolver,用于解析Bean中的表达式语言如#{...}。
@@ -818,7 +817,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * 也未注册任何派生的 Bean 定义，最重要的是，尚未实例化任何 Bean。
 	 *
 	 * <p>此模板方法允许在某些 AbstractApplicationContext 子类中注册特殊的 BeanPostProcessor 等。
-	 * @param beanFactory the bean factory used by the application context
+	 * @param beanFactory 应用上下文所使用的 Bean 工厂
 	 */
 	protected void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) {
 	}
@@ -947,7 +946,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * 模板方法，可重写以添加特定于上下文的刷新工作。在初始化特殊 Bean 时、实例化单例之前调用。
 	 *
 	 * <p>此实现为空。
-	 * @throws BeansException in case of errors
+	 * @throws BeansException 如果发生错误
 	 * @see #refresh()
 	 */
 	protected void onRefresh() throws BeansException {
@@ -1080,7 +1079,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 	/**
 	 * 在抛出异常后取消此上下文的刷新尝试，重置 {@code active} 标志。
-	 * @param ex the exception that led to the cancellation
+	 * @param ex 导致取消的异常
 	 */
 	protected void cancelRefresh(BeansException ex) {
 		this.active.set(false);
@@ -1517,8 +1516,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 	/**
 	 * 返回上下文使用的内部 MessageSource。
-	 * @return the internal MessageSource (never {@code null})
-	 * @throws IllegalStateException if the context has not been initialized yet
+	 * @return 内部 MessageSource（永不为 {@code null}）
+	 * @throws IllegalStateException 如果上下文尚未初始化
 	 */
 	private MessageSource getMessageSource() throws IllegalStateException {
 		if (this.messageSource == null) {
@@ -1580,9 +1579,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 *
 	 * <p>子类要么创建一个新的 Bean 工厂并持有对其的引用，要么返回其持有的单个 BeanFactory 实例。在后一
 	 * 种情况下，如果多次刷新上下文，通常会抛出 IllegalStateException。
-	 * @throws BeansException if initialization of the bean factory failed
-	 * @throws IllegalStateException if already initialized and multiple refresh
-	 * attempts are not supported
+	 * @throws BeansException 如果 Bean 工厂初始化失败
+	 * @throws IllegalStateException 如果已初始化且不支持多次刷新尝试
 	 */
 	protected abstract void refreshBeanFactory() throws BeansException, IllegalStateException;
 
@@ -1599,10 +1597,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 *
 	 * <p>注意：子类在返回内部 Bean 工厂之前应检查上下文是否仍处于活动状态。一旦上下文关闭，内部工厂通
 	 * 常应被视为不可用。
-	 * @return this application context's internal bean factory (never {@code null})
-	 * @throws IllegalStateException if the context does not hold an internal bean factory yet
-	 * (usually if {@link #refresh()} has never been called) or if the context has been
-	 * closed already
+	 * @return 此应用上下文的内部 Bean 工厂（永不为 {@code null}）
+	 * @throws IllegalStateException 如果上下文尚未持有内部 Bean 工厂（通常是因为从未调用 {@link #refresh()}），
+	 * 或者上下文已经关闭
 	 * @see #refreshBeanFactory()
 	 * @see #closeBeanFactory()
 	 */

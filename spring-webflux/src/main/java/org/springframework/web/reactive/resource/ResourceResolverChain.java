@@ -33,10 +33,10 @@ public interface ResourceResolverChain {
 
 	/**
 	 * 将提供的请求和请求路径解析为存在于给定资源位置之一下的 {@link Resource}。
-	 * @param exchange the current exchange
-	 * @param requestPath the portion of the request path to use
-	 * @param locations the locations to search in when looking up resources
-	 * @return the resolved resource; or an empty {@code Mono} if unresolved
+	 * @param exchange 当前交换
+	 * @param requestPath 要使用的请求路径部分
+	 * @param locations 查找资源时要搜索的位置
+	 * @return 解析出的资源；如果无法解析则为空的 {@code Mono}
 	 */
 	Mono<Resource> resolveResource(@Nullable ServerWebExchange exchange, String requestPath,
 			List<? extends Resource> locations);
@@ -44,9 +44,9 @@ public interface ResourceResolverChain {
 	/**
 	 * 为客户端解析对外公开的<em>公共</em> URL 路径，以访问位于给定<em>内部</em>资源路径的资源。
 	 * <p>这在向客户端渲染 URL 链接时很有用。
-	 * @param resourcePath the internal resource path
-	 * @param locations the locations to search in when looking up resources
-	 * @return the resolved public URL path; or an empty {@code Mono} if unresolved
+	 * @param resourcePath 内部资源路径
+	 * @param locations 查找资源时要搜索的位置
+	 * @return 解析出的公开 URL 路径；如果无法解析则为空的 {@code Mono}
 	 */
 	Mono<String> resolveUrlPath(String resourcePath, List<? extends Resource> locations);
 

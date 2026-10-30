@@ -52,7 +52,7 @@ public class MutableSortDefinition implements SortDefinition, Serializable {
 
 	/**
 	 * 复制构造函数：创建一个新的 MutableSortDefinition，镜像给定的排序定义。
-	 * @param source the original sort definition
+	 * @param source 原始的排序定义
 	 */
 	public MutableSortDefinition(SortDefinition source) {
 		this.property = source.getProperty();
@@ -62,9 +62,9 @@ public class MutableSortDefinition implements SortDefinition, Serializable {
 
 	/**
 	 * 为给定设置创建一个 MutableSortDefinition。
-	 * @param property the property to compare
-	 * @param ignoreCase whether upper and lower case in String values should be ignored
-	 * @param ascending whether to sort ascending (true) or descending (false)
+	 * @param property 要比较的属性
+	 * @param ignoreCase 是否应忽略 String 值中字母的大小写
+	 * @param ascending 是升序排序（true）还是降序排序（false）
 	 */
 	public MutableSortDefinition(String property, boolean ignoreCase, boolean ascending) {
 		this.property = property;
@@ -74,9 +74,8 @@ public class MutableSortDefinition implements SortDefinition, Serializable {
 
 	/**
 	 * 创建一个新的 MutableSortDefinition。
-	 * @param toggleAscendingOnSameProperty whether to toggle the ascending flag
-	 * if the same property gets set again (that is, {@code setProperty} gets
-	 * called with already set property name again).
+	 * @param toggleAscendingOnSameProperty 如果再次设置相同的属性，是否切换升序标志
+	 * （即再次以已设置的属性名调用 {@code setProperty}）。
 	 */
 	public MutableSortDefinition(boolean toggleAscendingOnSameProperty) {
 		this.toggleAscendingOnProperty = toggleAscendingOnSameProperty;

@@ -84,7 +84,7 @@ public class MockHttpSession implements HttpSession {
 
 	/**
 	 * 创建一个新的 MockHttpSession。
-	 * @param servletContext the ServletContext that the session runs in
+	 * @param servletContext 会话运行所在的 ServletContext
 	 */
 	public MockHttpSession(@Nullable ServletContext servletContext) {
 		this(servletContext, null);
@@ -92,8 +92,8 @@ public class MockHttpSession implements HttpSession {
 
 	/**
 	 * 创建一个新的 MockHttpSession。
-	 * @param servletContext the ServletContext that the session runs in
-	 * @param id a unique identifier for this session
+	 * @param servletContext 会话运行所在的 ServletContext
+	 * @param id 此会话的唯一标识符
 	 */
 	public MockHttpSession(@Nullable ServletContext servletContext, @Nullable String id) {
 		this.servletContext = (servletContext != null ? servletContext : new MockServletContext());
@@ -114,7 +114,7 @@ public class MockHttpSession implements HttpSession {
 
 	/**
 	 * 从 Servlet 3.1 开始，可以更改会话的 id。
-	 * @return the new session id
+	 * @return 新的会话 ID
 	 * @since 4.0.3
 	 */
 	public String changeSessionId() {
@@ -234,7 +234,7 @@ public class MockHttpSession implements HttpSession {
 
 	/**
 	 * 使此会话失效，然后解绑绑定到它的所有对象。
-	 * @throws IllegalStateException if this method is called on an already invalidated session
+	 * @throws IllegalStateException 如果在已失效的会话上调用此方法
 	 */
 	@Override
 	public void invalidate() {
@@ -250,7 +250,7 @@ public class MockHttpSession implements HttpSession {
 	/**
 	 * 用于断言此会话尚未被
 	 * {@linkplain #invalidate() 无效化}的便捷方法。
-	 * @throws IllegalStateException if this session has been invalidated
+	 * @throws IllegalStateException 如果此会话已失效
 	 */
 	private void assertIsValid() {
 		Assert.state(!isInvalid(), "The session has already been invalidated");
@@ -269,7 +269,7 @@ public class MockHttpSession implements HttpSession {
 	/**
 	 * 将此会话的属性序列化为一个对象，该对象可以
 	 * 通过标准 Java 序列化转换为字节数组。
-	 * @return a representation of this session's serialized state
+	 * @return 此会话序列化状态的表示
 	 */
 	public Serializable serializeState() {
 		HashMap<String, Serializable> state = new HashMap<>();
@@ -295,7 +295,7 @@ public class MockHttpSession implements HttpSession {
 	/**
 	 * 从由 {@link #serializeState()} 创建的状态对象中
 	 * 反序列化此会话的属性。
-	 * @param state a representation of this session's serialized state
+	 * @param state 此会话序列化状态的表示
 	 */
 	@SuppressWarnings("unchecked")
 	public void deserializeState(Serializable state) {

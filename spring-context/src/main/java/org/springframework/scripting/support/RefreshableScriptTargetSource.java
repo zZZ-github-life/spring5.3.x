@@ -42,12 +42,11 @@ public class RefreshableScriptTargetSource extends BeanFactoryRefreshableTargetS
 
 	/**
 	 * 创建一个新的 RefreshableScriptTargetSource。
-	 * @param beanFactory the BeanFactory to fetch the scripted bean from
-	 * @param beanName the name of the target bean
-	 * @param scriptFactory the ScriptFactory to delegate to for determining
-	 * whether a refresh is required
-	 * @param scriptSource the ScriptSource for the script definition
-	 * @param isFactoryBean whether the target script defines a FactoryBean
+	 * @param beanFactory 用于获取脚本化 Bean 的 BeanFactory
+	 * @param beanName 目标 Bean 的名称
+	 * @param scriptFactory 用于判断是否需要刷新的委托 ScriptFactory
+	 * @param scriptSource 脚本定义的 ScriptSource
+	 * @param isFactoryBean 目标脚本是否定义了 FactoryBean
 	 */
 	public RefreshableScriptTargetSource(BeanFactory beanFactory, String beanName,
 			ScriptFactory scriptFactory, ScriptSource scriptSource, boolean isFactoryBean) {

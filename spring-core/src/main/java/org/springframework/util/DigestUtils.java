@@ -42,8 +42,8 @@ public abstract class DigestUtils {
 
 	/**
 	 * 计算给定字节的 MD5 摘要。
-	 * @param bytes the bytes to calculate the digest over
-	 * @return the digest
+	 * @param bytes 要计算摘要的字节
+	 * @return 摘要
 	 */
 	public static byte[] md5Digest(byte[] bytes) {
 		return digest(MD5_ALGORITHM_NAME, bytes);
@@ -53,8 +53,8 @@ public abstract class DigestUtils {
 	 * 计算给定流的 MD5 摘要。
 	 *
 	 * <p>此方法<strong>不会</strong>关闭输入流。
-	 * @param inputStream the InputStream to calculate the digest over
-	 * @return the digest
+	 * @param inputStream 要计算摘要的 InputStream
+	 * @return 摘要
 	 * @since 4.2
 	 */
 	public static byte[] md5Digest(InputStream inputStream) throws IOException {
@@ -63,8 +63,8 @@ public abstract class DigestUtils {
 
 	/**
 	 * 返回给定字节的 MD5 摘要的十六进制字符串表示。
-	 * @param bytes the bytes to calculate the digest over
-	 * @return a hexadecimal digest string
+	 * @param bytes 要计算摘要的字节
+	 * @return 十六进制摘要字符串
 	 */
 	public static String md5DigestAsHex(byte[] bytes) {
 		return digestAsHexString(MD5_ALGORITHM_NAME, bytes);
@@ -74,8 +74,8 @@ public abstract class DigestUtils {
 	 * 返回给定流的 MD5 摘要的十六进制字符串表示。
 	 *
 	 * <p>此方法<strong>不会</strong>关闭输入流。
-	 * @param inputStream the InputStream to calculate the digest over
-	 * @return a hexadecimal digest string
+	 * @param inputStream 要计算摘要的 InputStream
+	 * @return 十六进制摘要字符串
 	 * @since 4.2
 	 */
 	public static String md5DigestAsHex(InputStream inputStream) throws IOException {
@@ -84,9 +84,9 @@ public abstract class DigestUtils {
 
 	/**
 	 * 将给定字节的 MD5 摘要的十六进制字符串表示追加到给定的 {@link StringBuilder}。
-	 * @param bytes the bytes to calculate the digest over
-	 * @param builder the string builder to append the digest to
-	 * @return the given string builder
+	 * @param bytes 要计算摘要的字节
+	 * @param builder 用于追加摘要的字符串构建器
+	 * @return 给定的字符串构建器
 	 */
 	public static StringBuilder appendMd5DigestAsHex(byte[] bytes, StringBuilder builder) {
 		return appendDigestAsHex(MD5_ALGORITHM_NAME, bytes, builder);
@@ -96,9 +96,9 @@ public abstract class DigestUtils {
 	 * 将给定 inputStream 的 MD5 摘要的十六进制字符串表示追加到给定的 {@link StringBuilder}。
 	 *
 	 * <p>此方法<strong>不会</strong>关闭输入流。
-	 * @param inputStream the inputStream to calculate the digest over
-	 * @param builder the string builder to append the digest to
-	 * @return the given string builder
+	 * @param inputStream 要计算摘要的 inputStream
+	 * @param builder 用于追加摘要的字符串构建器
+	 * @return 给定的字符串构建器
 	 * @since 4.2
 	 */
 	public static StringBuilder appendMd5DigestAsHex(InputStream inputStream, StringBuilder builder) throws IOException {

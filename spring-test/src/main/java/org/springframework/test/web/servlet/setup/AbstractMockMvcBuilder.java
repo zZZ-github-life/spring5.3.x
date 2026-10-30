@@ -48,7 +48,7 @@ import org.springframework.web.context.WebApplicationContext;
  * @author Stephane Nicoll
  * @author Sam Brannen
  * @since 4.0
- * @param <B> a self reference to the builder type
+ * @param <B> 构建器类型的自引用
  */
 public abstract class AbstractMockMvcBuilder<B extends AbstractMockMvcBuilder<B>>
 		extends MockMvcBuilderSupport implements ConfigurableMockMvcBuilder<B> {
@@ -99,7 +99,7 @@ public abstract class AbstractMockMvcBuilder<B extends AbstractMockMvcBuilder<B>
 
 	/**
 	 * 定义应用于每个响应的默认字符编码。
-	 * @param defaultResponseCharacterEncoding the default response character encoding
+	 * @param defaultResponseCharacterEncoding 默认的响应字符编码
 	 * @since 5.3.10
 	 */
 	@Override

@@ -46,9 +46,8 @@ public interface AsyncServerResponse extends ServerResponse {
 	 * {@link CompletableFuture CompletableFuture&lt;ServerResponse&gt;} 或
 	 * {@link Publisher Publisher&lt;ServerResponse&gt;}（或任何可通过
 	 * {@link ReactiveAdapterRegistry} 适配的单个 {@code ServerResponse} 异步生产者）。
-	 * @param asyncResponse a {@code CompletableFuture<ServerResponse>} or
-	 * {@code Publisher<ServerResponse>}
-	 * @return the asynchronous response
+	 * @param asyncResponse 一个 {@code CompletableFuture<ServerResponse>} 或 {@code Publisher<ServerResponse>}
+	 * @return 异步响应
 	 */
 	static AsyncServerResponse create(Object asyncResponse) {
 		return DefaultAsyncServerResponse.create(asyncResponse, null);
@@ -60,10 +59,9 @@ public interface AsyncServerResponse extends ServerResponse {
 	 * {@link CompletableFuture CompletableFuture&lt;ServerResponse&gt;} 或
 	 * {@link Publisher Publisher&lt;ServerResponse&gt;}（或任何可通过
 	 * {@link ReactiveAdapterRegistry} 适配的单个 {@code ServerResponse} 异步生产者）。
-	 * @param asyncResponse a {@code CompletableFuture<ServerResponse>} or
-	 * {@code Publisher<ServerResponse>}
-	 * @param timeout maximum time period to wait for before timing out
-	 * @return the asynchronous response
+	 * @param asyncResponse 一个 {@code CompletableFuture<ServerResponse>} 或 {@code Publisher<ServerResponse>}
+	 * @param timeout 超时前等待的最长时间
+	 * @return 异步响应
 	 */
 	static AsyncServerResponse create(Object asyncResponse, Duration timeout) {
 		return DefaultAsyncServerResponse.create(asyncResponse, timeout);

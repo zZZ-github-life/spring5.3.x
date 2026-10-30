@@ -41,10 +41,10 @@ public interface TransactionAnnotationParser {
 	 * <p>如果此方法返回{@code false}, 则不会遍历给定类上的方法以进行
 	 * {@code #parseTransactionAnnotation}的内省。因此, 返回{@code false}是对不受影响类的优化,
 	 * 而{@code true}仅意味着需要对该给定类上的每个方法进行完整的内省。
-	 * @param targetClass the class to introspect
-	 * @return {@code false} if the class is known to have no transaction
-	 * annotations at class or method level; {@code true} otherwise. The default
-	 * implementation returns {@code true}, leading to regular introspection.
+	 * @param targetClass 要内省的类
+	 * @return 如果已知该类在类或方法级别没有任何事务注解，
+	 * 则返回 {@code false}；否则返回 {@code true}。
+	 * 默认实现返回 {@code true}，即进行常规内省。
 	 * @since 5.2
 	 */
 	default boolean isCandidateClass(Class<?> targetClass) {
@@ -55,8 +55,8 @@ public interface TransactionAnnotationParser {
 	 * 基于此解析器理解的注解类型, 解析给定方法或类的事务属性。
 	 * <p>这本质上是将已知的事务注解解析为Spring的元数据属性类。
 	 * 如果方法/类不是事务性的, 则返回{@code null}。
-	 * @param element the annotated method or class
-	 * @return the configured transaction attribute, or {@code null} if none found
+	 * @param element 被注解的方法或类
+	 * @return 配置的事务属性；如果未找到，则为 {@code null}
 	 * @see AnnotationTransactionAttributeSource#determineTransactionAttribute
 	 */
 	@Nullable

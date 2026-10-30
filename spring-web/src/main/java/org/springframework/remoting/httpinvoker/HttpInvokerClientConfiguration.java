@@ -38,7 +38,7 @@ public interface HttpInvokerClientConfiguration {
 	/**
 	 * 返回在本地找不到类时用于下载类的 codebase URL。
 	 * 可以由多个 URL 组成，以空格分隔。
-	 * @return the codebase URL, or {@code null} if none
+	 * @return codebase URL；如果没有则为 {@code null}
 	 * @see java.rmi.server.RMIClassLoader
 	 */
 	@Nullable

@@ -72,9 +72,9 @@ public abstract class WebApplicationContextUtils {
 	 * {@link org.springframework.web.context.ContextLoaderListener} 加载。
 	 * <p>会重新抛出根上下文启动时发生的异常，
 	 * 以区分上下文启动失败和根本没有上下文的情况。
-	 * @param sc the ServletContext to find the web application context for
-	 * @return the root WebApplicationContext for this web app
-	 * @throws IllegalStateException if the root WebApplicationContext could not be found
+	 * @param sc 要为其查找 Web 应用上下文的 ServletContext
+	 * @return 此 Web 应用的根 WebApplicationContext
+	 * @throws IllegalStateException 如果找不到根 WebApplicationContext
 	 * @see org.springframework.web.context.WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE
 	 */
 	public static WebApplicationContext getRequiredWebApplicationContext(ServletContext sc) throws IllegalStateException {
@@ -90,8 +90,8 @@ public abstract class WebApplicationContextUtils {
 	 * {@link org.springframework.web.context.ContextLoaderListener} 加载。
 	 * <p>会重新抛出根上下文启动时发生的异常，
 	 * 以区分上下文启动失败和根本没有上下文的情况。
-	 * @param sc the ServletContext to find the web application context for
-	 * @return the root WebApplicationContext for this web app, or {@code null} if none
+	 * @param sc 要为其查找 Web 应用上下文的 ServletContext
+	 * @return 此 Web 应用的根 WebApplicationContext，如果没有则为 {@code null}
 	 * @see org.springframework.web.context.WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE
 	 */
 	@Nullable
@@ -101,9 +101,9 @@ public abstract class WebApplicationContextUtils {
 
 	/**
 	 * 查找此 Web 应用的自定义 {@code WebApplicationContext}。
-	 * @param sc the ServletContext to find the web application context for
-	 * @param attrName the name of the ServletContext attribute to look for
-	 * @return the desired WebApplicationContext for this web app, or {@code null} if none
+	 * @param sc 要为其查找 Web 应用上下文的 ServletContext
+	 * @param attrName 要查找的 ServletContext 属性的名称
+	 * @return 此 Web 应用所需的 WebApplicationContext，如果没有则为 {@code null}
 	 */
 	@Nullable
 	public static WebApplicationContext getWebApplicationContext(ServletContext sc, String attrName) {
@@ -134,8 +134,8 @@ public abstract class WebApplicationContextUtils {
 	 * <p>注意，{@code DispatcherServlet} 是否暴露其上下文可以通过其 {@code publishContext}
 	 * 属性控制，该属性默认为 {@code true}，但即使 Web 应用中注册了多个
 	 * {@code DispatcherServlet}，也可以有选择地切换为只发布单个上下文。
-	 * @param sc the ServletContext to find the web application context for
-	 * @return the desired WebApplicationContext for this web app, or {@code null} if none
+	 * @param sc 要为其查找 Web 应用上下文的 ServletContext
+	 * @return 此 Web 应用所需的 WebApplicationContext，如果没有则为 {@code null}
 	 * @since 4.2
 	 * @see #getWebApplicationContext(ServletContext)
 	 * @see ServletContext#getAttributeNames()
@@ -164,7 +164,7 @@ public abstract class WebApplicationContextUtils {
 	/**
 	 * 向给定的 BeanFactory 注册 Web 特定的作用域（"request"、"session"、"globalSession"），供
 	 * WebApplicationContext 使用。
-	 * @param beanFactory the BeanFactory to configure
+	 * @param beanFactory 要配置的 BeanFactory
 	 */
 	public static void registerWebApplicationScopes(ConfigurableListableBeanFactory beanFactory) {
 		registerWebApplicationScopes(beanFactory, null);
@@ -173,8 +173,8 @@ public abstract class WebApplicationContextUtils {
 	/**
 	 * 向给定的 BeanFactory 注册 Web 特定的作用域（"request"、"session"、"globalSession"、
 	 * "application"），供 WebApplicationContext 使用。
-	 * @param beanFactory the BeanFactory to configure
-	 * @param sc the ServletContext that we're running within
+	 * @param beanFactory 要配置的 BeanFactory
+	 * @param sc 我们运行所在的 ServletContext
 	 */
 	public static void registerWebApplicationScopes(ConfigurableListableBeanFactory beanFactory,
 			@Nullable ServletContext sc) {
@@ -200,8 +200,8 @@ public abstract class WebApplicationContextUtils {
 	/**
 	 * 向给定的 BeanFactory 注册 Web 特定的环境 bean（"contextParameters"、"contextAttributes"），供
 	 * WebApplicationContext 使用。
-	 * @param bf the BeanFactory to configure
-	 * @param sc the ServletContext that we're running within
+	 * @param bf 要配置的 BeanFactory
+	 * @param sc 我们运行所在的 ServletContext
 	 */
 	public static void registerEnvironmentBeans(ConfigurableListableBeanFactory bf, @Nullable ServletContext sc) {
 		registerEnvironmentBeans(bf, sc, null);
@@ -210,9 +210,9 @@ public abstract class WebApplicationContextUtils {
 	/**
 	 * 向给定的 BeanFactory 注册 Web 特定的环境 bean（"contextParameters"、"contextAttributes"），供
 	 * WebApplicationContext 使用。
-	 * @param bf the BeanFactory to configure
-	 * @param servletContext the ServletContext that we're running within
-	 * @param servletConfig the ServletConfig
+	 * @param bf 要配置的 BeanFactory
+	 * @param servletContext 我们运行所在的 ServletContext
+	 * @param servletConfig ServletConfig 实例
 	 */
 	public static void registerEnvironmentBeans(ConfigurableListableBeanFactory bf,
 			@Nullable ServletContext servletContext, @Nullable ServletConfig servletConfig) {
@@ -274,14 +274,13 @@ public abstract class WebApplicationContextUtils {
 	 * 替换基于 {@code Servlet} 的 {@link StubPropertySource 存根属性源}。
 	 * <p>该方法具有幂等性：它可以被调用任意多次，
 	 * 但只会执行一次将存根属性源替换为对应实际属性源的操作。
-	 * @param sources the {@link MutablePropertySources} to initialize (must not
-	 * be {@code null})
-	 * @param servletContext the current {@link ServletContext} (ignored if {@code null}
-	 * or if the {@link StandardServletEnvironment#SERVLET_CONTEXT_PROPERTY_SOURCE_NAME
-	 * servlet context property source} has already been initialized)
-	 * @param servletConfig the current {@link ServletConfig} (ignored if {@code null}
-	 * or if the {@link StandardServletEnvironment#SERVLET_CONFIG_PROPERTY_SOURCE_NAME
-	 * servlet config property source} has already been initialized)
+	 * @param sources 要初始化的 {@link MutablePropertySources}（不能为 {@code null}）
+	 * @param servletContext 当前的 {@link ServletContext}（如果为 {@code null}，或
+	 * {@link StandardServletEnvironment#SERVLET_CONTEXT_PROPERTY_SOURCE_NAME servlet context property source}
+	 * 已初始化，则忽略）
+	 * @param servletConfig 当前的 {@link ServletConfig}（如果为 {@code null}，或
+	 * {@link StandardServletEnvironment#SERVLET_CONFIG_PROPERTY_SOURCE_NAME servlet config property source}
+	 * 已初始化，则忽略）
 	 * @see org.springframework.core.env.PropertySource.StubPropertySource
 	 * @see org.springframework.core.env.ConfigurableEnvironment#getPropertySources()
 	 */

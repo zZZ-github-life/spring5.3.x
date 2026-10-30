@@ -122,7 +122,7 @@ public class AsyncAnnotationBeanPostProcessor extends AbstractBeanFactoryAwareAd
 	 * 3.1 的 {@code javax.ejb.Asynchronous} 注解。
 	 * <p>提供此 setter 属性是为了让开发者可以提供自己的（非 Spring 专有的）注解类型，用于表示某个方法
 	 * （或给定类的所有方法）应异步调用。
-	 * @param asyncAnnotationType the desired annotation type
+	 * @param asyncAnnotationType 所需的注解类型
 	 */
 	public void setAsyncAnnotationType(Class<? extends Annotation> asyncAnnotationType) {
 		Assert.notNull(asyncAnnotationType, "'asyncAnnotationType' must not be null");

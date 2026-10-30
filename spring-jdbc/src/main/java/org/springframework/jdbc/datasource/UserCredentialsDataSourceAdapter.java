@@ -124,8 +124,8 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 	 * 所有 {@code getConnection()} 调用。
 	 * <p>这将覆盖任何静态指定的用户凭据，
 	 * 即 "username" 和 "password" Bean 属性的值。
-	 * @param username the username to apply
-	 * @param password the password to apply
+	 * @param username 要应用的用户名
+	 * @param password 要应用的密码
 	 * @see #removeCredentialsFromCurrentThread
 	 */
 	public void setCredentialsForCurrentThread(String username, String password) {
@@ -177,9 +177,9 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 	 * 此实现委托给目标 DataSource 的 {@code getConnection(username, password)}
 	 * 方法，并传入指定的用户凭据。如果指定的用户名为空，
 	 * 则直接委托给目标 DataSource 的标准 {@code getConnection()} 方法。
-	 * @param username the username to use
-	 * @param password the password to use
-	 * @return the Connection
+	 * @param username 要使用的用户名
+	 * @param password 要使用的密码
+	 * @return 该 Connection
 	 * @see javax.sql.DataSource#getConnection(String, String)
 	 * @see javax.sql.DataSource#getConnection()
 	 */

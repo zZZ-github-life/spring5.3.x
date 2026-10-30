@@ -81,7 +81,7 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 	 * {@link WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE} 属性名
 	 * 注册到 ServletContext 中，并且当在此监听器上调用 {@link #contextDestroyed}
 	 * 生命周期方法时，Spring 应用上下文将被关闭。
-	 * @param context the application context to manage
+	 * @param context 要管理的应用上下文
 	 * @see #contextInitialized(ServletContextEvent)
 	 * @see #contextDestroyed(ServletContextEvent)
 	 */

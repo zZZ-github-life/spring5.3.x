@@ -33,7 +33,7 @@ public interface ConstructorInvocation extends Invocation {
 	/**
 	 * 获取被调用的构造器。
 	 * <p>此方法是 {@link Joinpoint#getStaticPart()} 方法的友好实现（结果相同）。
-	 * @return the constructor being called
+	 * @return 被调用的构造方法
 	 */
 	@Nonnull
 	Constructor<?> getConstructor();

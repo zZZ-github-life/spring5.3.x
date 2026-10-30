@@ -82,7 +82,7 @@ public class CciLocalTransactionManager extends AbstractPlatformTransactionManag
 
 	/**
 	 * 创建新的 CciLocalTransactionManager 实例。
-	 * @param connectionFactory the CCI ConnectionFactory to manage local transactions for
+	 * @param connectionFactory 要为其管理本地事务的 CCI ConnectionFactory
 	 */
 	public CciLocalTransactionManager(ConnectionFactory connectionFactory) {
 		setConnectionFactory(connectionFactory);

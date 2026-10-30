@@ -268,8 +268,8 @@ public class CookieLocaleResolver extends CookieGenerator implements LocaleConte
 
 	/**
 	 * 解析来自传入 cookie 的给定区域设置值。<p>默认实现调用 {@link StringUtils#parseLocale(String)}，接受 {@link Locale#toString} 格式以及 BCP 47 语言标签。
-	 * @param localeValue the locale value to parse
-	 * @return the corresponding {@code Locale} instance
+	 * @param localeValue 要解析的 Locale 值
+	 * @return 对应的 {@code Locale} 实例
 	 * @since 4.3
 	 * @see StringUtils#parseLocale(String)
 	 */
@@ -280,8 +280,8 @@ public class CookieLocaleResolver extends CookieGenerator implements LocaleConte
 
 	/**
 	 * 将给定区域设置渲染为文本值以包含在 cookie 中。<p>默认实现根据 {@link #setLanguageTagCompliant "languageTagCompliant"} 配置属性调用 {@link Locale#toString()} 或 {@link Locale#toLanguageTag()}。
-	 * @param locale the locale to convert to a string
-	 * @return a String representation for the given locale
+	 * @param locale 要转换为字符串的 Locale
+	 * @return 给定 Locale 的字符串表示
 	 * @since 4.3
 	 * @see #isLanguageTagCompliant()
 	 */
@@ -291,8 +291,8 @@ public class CookieLocaleResolver extends CookieGenerator implements LocaleConte
 
 	/**
 	 * 确定给定请求的默认区域设置，在未找到区域设置 cookie 时调用。<p>默认实现返回已配置的默认区域设置（如果有），否则回退到请求的 {@code Accept-Language} 头区域设置或服务器默认区域设置。
-	 * @param request the request to resolve the locale for
-	 * @return the default locale (never {@code null})
+	 * @param request 要为其解析 Locale 的请求
+	 * @return 默认 Locale（永不为 {@code null}）
 	 * @see #setDefaultLocale
 	 * @see javax.servlet.http.HttpServletRequest#getLocale()
 	 */
@@ -306,8 +306,8 @@ public class CookieLocaleResolver extends CookieGenerator implements LocaleConte
 
 	/**
 	 * 确定给定请求的默认时区，在未找到区域设置 cookie 时调用。<p>默认实现返回已配置的默认时区（如果有），否则返回 {@code null}。
-	 * @param request the request to resolve the time zone for
-	 * @return the default time zone (or {@code null} if none defined)
+	 * @param request 要为其解析时区的请求
+	 * @return 默认时区（若未定义则为 {@code null}）
 	 * @see #setDefaultTimeZone
 	 */
 	@Nullable

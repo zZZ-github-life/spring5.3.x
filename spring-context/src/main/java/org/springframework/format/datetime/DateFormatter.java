@@ -101,7 +101,7 @@ public class DateFormatter implements Formatter<Date> {
 	 * {@link DateTimeFormat @DateTimeFormat} 注解配置此 {@code DateFormatter}，则为该注解的实例。
 	 * <p>所提供的来源对象仅通过调用其 {@code toString()} 方法用于描述性目的 &mdash; 例如，在生成异常消
 	 * 息以提供更多上下文时。
-	 * @param source the source of the configuration
+	 * @param source 配置的来源
 	 * @since 5.3.5
 	 */
 	public void setSource(Object source) {
@@ -119,7 +119,7 @@ public class DateFormatter implements Formatter<Date> {
 	/**
 	 * 设置额外的模式，作为所配置 {@linkplain #setPattern pattern}、{@linkplain #setIso ISO 格式}、
 	 * {@linkplain #setStyle style} 或 {@linkplain #setStylePattern 样式模式} 解析失败时的回退。
-	 * @param fallbackPatterns the fallback parsing patterns
+	 * @param fallbackPatterns 回退解析模式
 	 * @since 5.3.5
 	 * @see DateTimeFormat#fallbackPatterns()
 	 */
@@ -129,7 +129,7 @@ public class DateFormatter implements Formatter<Date> {
 
 	/**
 	 * 设置用于格式化日期值的 ISO 格式。
-	 * @param iso the {@link ISO} format
+	 * @param iso {@link ISO} 格式
 	 * @since 3.2
 	 */
 	public void setIso(ISO iso) {
@@ -161,7 +161,7 @@ public class DateFormatter implements Formatter<Date> {
 	 * <li>'-' = Omitted</li>
 	 * </ul>
 	 * 此方法模仿 Joda-Time 支持的样式。
-	 * @param stylePattern two characters from the set {"S", "M", "L", "F", "-"}
+	 * @param stylePattern 取自 {"S", "M", "L", "F", "-"} 集合的两个字符
 	 * @since 3.2
 	 */
 	public void setStylePattern(String stylePattern) {

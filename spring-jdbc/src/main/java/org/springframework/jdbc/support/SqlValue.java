@@ -36,9 +36,9 @@ public interface SqlValue {
 
 	/**
 	 * 在给定的 PreparedStatement 上设置值。
-	 * @param ps the PreparedStatement to work on
-	 * @param paramIndex the index of the parameter for which we need to set the value
-	 * @throws SQLException if an SQLException is encountered while setting parameter values
+	 * @param ps 要进行操作的 PreparedStatement
+	 * @param paramIndex 需要为其设置值的参数索引
+	 * @throws SQLException 在设置参数值时遇到 SQLException
 	 */
 	void setValue(PreparedStatement ps, int paramIndex)	throws SQLException;
 

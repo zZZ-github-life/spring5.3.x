@@ -43,7 +43,7 @@ public class SimpleCacheResolver extends AbstractCacheResolver {
 
 	/**
 	 * 为给定的 {@link CacheManager} 构造一个新的 {@code SimpleCacheResolver}。
-	 * @param cacheManager the CacheManager to use
+	 * @param cacheManager 要使用的 CacheManager
 	 */
 	public SimpleCacheResolver(CacheManager cacheManager) {
 		super(cacheManager);
@@ -58,8 +58,8 @@ public class SimpleCacheResolver extends AbstractCacheResolver {
 
 	/**
 	 * 为给定的 {@link CacheManager} 返回一个 {@code SimpleCacheResolver}。
-	 * @param cacheManager the CacheManager (potentially {@code null})
-	 * @return the SimpleCacheResolver ({@code null} if the CacheManager was {@code null})
+	 * @param cacheManager CacheManager（可能为 {@code null}）
+	 * @return SimpleCacheResolver（如果 CacheManager 为 {@code null}，则为 {@code null}）
 	 * @since 5.1
 	 */
 	@Nullable

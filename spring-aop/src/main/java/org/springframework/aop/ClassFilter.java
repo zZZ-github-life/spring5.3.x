@@ -34,8 +34,8 @@ public interface ClassFilter {
 
 	/**
 	 * 切点是否应应用于给定的接口或目标类？
-	 * @param clazz the candidate target class
-	 * @return whether the advice should apply to the given target class
+	 * @param clazz 候选目标类
+	 * @return 该通知是否应应用于给定的目标类
 	 */
 	boolean matches(Class<?> clazz);
 

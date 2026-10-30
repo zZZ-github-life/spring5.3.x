@@ -60,8 +60,8 @@ public class DefaultDataBufferFactory implements DataBufferFactory {
 	/**
 	 * 创建一个新的 {@code DefaultDataBufferFactory}，并指示 {@link #allocateBuffer()} 和
 	 * {@link #allocateBuffer(int)} 是否应创建直接缓冲区。
-	 * @param preferDirect {@code true} if direct buffers are to be preferred;
-	 * {@code false} otherwise
+	 * @param preferDirect 如果要优先使用直接缓冲区则为 {@code true}；
+	 * 否则为 {@code false}
 	 */
 	public DefaultDataBufferFactory(boolean preferDirect) {
 		this(preferDirect, DEFAULT_INITIAL_CAPACITY);
@@ -70,8 +70,8 @@ public class DefaultDataBufferFactory implements DataBufferFactory {
 	/**
 	 * 创建一个新的 {@code DefaultDataBufferFactory}，并指示 {@link #allocateBuffer()} 和
 	 * {@link #allocateBuffer(int)} 是否应创建直接缓冲区，以及 {@link #allocateBuffer()} 要使用的容量。
-	 * @param preferDirect {@code true} if direct buffers are to be preferred;
-	 * {@code false} otherwise
+	 * @param preferDirect 如果要优先使用直接缓冲区则为 {@code true}；
+	 * 否则为 {@code false}
 	 */
 	public DefaultDataBufferFactory(boolean preferDirect, int defaultInitialCapacity) {
 		Assert.isTrue(defaultInitialCapacity > 0, "'defaultInitialCapacity' should be larger than 0");

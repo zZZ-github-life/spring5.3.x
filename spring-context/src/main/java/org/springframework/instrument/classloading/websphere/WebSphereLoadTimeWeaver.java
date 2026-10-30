@@ -45,7 +45,7 @@ public class WebSphereLoadTimeWeaver implements LoadTimeWeaver {
 
 	/**
 	 * 使用提供的 {@link ClassLoader} 创建 {@link WebSphereLoadTimeWeaver} 类的新实例。
-	 * @param classLoader the {@code ClassLoader} to delegate to for weaving
+	 * @param classLoader 用于织入时委托的 {@code ClassLoader}
 	 */
 	public WebSphereLoadTimeWeaver(@Nullable ClassLoader classLoader) {
 		Assert.notNull(classLoader, "ClassLoader must not be null");

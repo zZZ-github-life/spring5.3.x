@@ -109,7 +109,7 @@ final class SymbolTable {
   /**
    * 为给定的 ClassWriter 构造一个新的空 SymbolTable。
    *
-   * @param classWriter a ClassWriter.
+   * @param classWriter 一个 ClassWriter。
    */
   SymbolTable(final ClassWriter classWriter) {
     this.classWriter = classWriter;
@@ -122,9 +122,8 @@ final class SymbolTable {
   /**
    * 为给定的 ClassWriter 构造一个新的 SymbolTable，并使用给定 ClassReader 的常量池和引导方法初始化。
    *
-   * @param classWriter a ClassWriter.
-   * @param classReader the ClassReader whose constant pool and bootstrap methods must be copied to
-   *     initialize the SymbolTable.
+   * @param classWriter 一个 ClassWriter。
+   * @param classReader 其常量池和引导方法必须被复制以初始化 SymbolTable 的 ClassReader。
    */
   SymbolTable(final ClassWriter classWriter, final ClassReader classReader) {
     this.classWriter = classWriter;
@@ -228,9 +227,8 @@ final class SymbolTable {
    * 读取 BootstrapMethods 的 'bootstrap_methods' 数组二进制内容，并将它们作为条目添加到 SymbolTable
    * 中。
    *
-   * @param classReader the ClassReader whose bootstrap methods must be copied to initialize the
-   *     SymbolTable.
-   * @param charBuffer a buffer used to read strings in the constant pool.
+   * @param classReader 其引导方法必须被复制以初始化 SymbolTable 的 ClassReader。
+   * @param charBuffer 用于读取常量池中字符串的缓冲区。
    */
   private void copyBootstrapMethods(final ClassReader classReader, final char[] charBuffer) {
     // Find attributOffset of the 'bootstrap_methods' array.
@@ -273,8 +271,7 @@ final class SymbolTable {
   /**
    * 返回构造此 SymbolTable 所使用的 ClassReader。
    *
-   * @return the ClassReader from which this SymbolTable was constructed, or {@literal null} if it
-   *     was constructed from scratch.
+   * @return 构造此 SymbolTable 所用的 ClassReader，如果它是从头构造的，则为 {@literal null}。
    */
   ClassReader getSource() {
     return sourceClassReader;
@@ -283,7 +280,7 @@ final class SymbolTable {
   /**
    * 返回此符号表所属类的主版本号。
    *
-   * @return the major version of the class to which this symbol table belongs.
+   * @return 此符号表所属类的主版本号。
    */
   int getMajorVersion() {
     return majorVersion;
@@ -292,7 +289,7 @@ final class SymbolTable {
   /**
    * 返回此符号表所属类的内部名称。
    *
-   * @return the internal name of the class to which this symbol table belongs.
+   * @return 此符号表所属类的内部名称。
    */
   String getClassName() {
     return className;
@@ -301,9 +298,9 @@ final class SymbolTable {
   /**
    * 设置此符号表所属类的主版本号和名称。同时将类名添加到常量池中。
    *
-   * @param majorVersion a major ClassFile version number.
-   * @param className an internal class name.
-   * @return the constant pool index of a new or already existing Symbol with the given class name.
+   * @param majorVersion 一个 ClassFile 主版本号。
+   * @param className 一个内部类名称。
+   * @return 具有给定类名的新 Symbol 或已存在 Symbol 的常量池索引。
    */
   int setMajorVersionAndClassName(final int majorVersion, final String className) {
     this.majorVersion = majorVersion;
@@ -314,7 +311,7 @@ final class SymbolTable {
   /**
    * 返回此符号表 constant_pool 数组中的项数（加 1）。
    *
-   * @return the number of items in this symbol table's constant_pool array (plus 1).
+   * @return 此符号表 constant_pool 数组中的项数（加 1）。
    */
   int getConstantPoolCount() {
     return constantPoolCount;
@@ -323,7 +320,7 @@ final class SymbolTable {
   /**
    * 返回此符号表 constant_pool 数组的字节长度。
    *
-   * @return the length in bytes of this symbol table's constant_pool array.
+   * @return 此符号表 constant_pool 数组的字节长度。
    */
   int getConstantPoolLength() {
     return constantPool.length;
@@ -332,7 +329,7 @@ final class SymbolTable {
   /**
    * 将此符号表的 constant_pool 数组放入给定的 ByteVector，并在其前面加上 constant_pool_count 值。
    *
-   * @param output where the JVMS ClassFile's constant_pool array must be put.
+   * @param output 放置 JVMS ClassFile 的 constant_pool 数组的位置。
    */
   void putConstantPool(final ByteVector output) {
     output.putShort(constantPoolCount).putByteArray(constantPool.data, 0, constantPool.length);
@@ -341,7 +338,7 @@ final class SymbolTable {
   /**
    * 返回此符号表 BootstrapMethods 属性的字节大小。同时将该属性名添加到常量池中。
    *
-   * @return the size in bytes of this symbol table's BootstrapMethods attribute.
+   * @return 此符号表 BootstrapMethods 属性的字节大小。
    */
   int computeBootstrapMethodsSize() {
     if (bootstrapMethods != null) {
@@ -356,7 +353,7 @@ final class SymbolTable {
    * 将此符号表的 BootstrapMethods 属性放入给定的 ByteVector。其中包括 6 个属性头字节和
    * num_bootstrap_methods 值。
    *
-   * @param output where the JVMS BootstrapMethods attribute must be put.
+   * @param output 放置 JVMS BootstrapMethods 属性的位置。
    */
   void putBootstrapMethods(final ByteVector output) {
     if (bootstrapMethods != null) {
@@ -375,9 +372,9 @@ final class SymbolTable {
   /**
    * 返回可能具有给定哈希码的条目列表。
    *
-   * @param hashCode a {@link Entry#hashCode} value.
-   * @return the list of entries which can potentially have the given hash code. The list is stored
-   *     via the {@link Entry#next} field.
+   * @param hashCode 一个 {@link Entry#hashCode} 值。
+   * @return 可能具有给定哈希码的条目列表。该列表
+   * 通过 {@link Entry#next} 字段存储。
    */
   private Entry get(final int hashCode) {
     return entries[hashCode % entries.length];
@@ -388,8 +385,8 @@ final class SymbolTable {
    * 目。必要时会调整 {@link #entries} 的大小，以尽可能避免哈希冲突（多个条目需要存储在同一个
    * {@link #entries} 数组索引处），同时保持合理的内存占用。
    *
-   * @param entry an Entry (which must not already be contained in {@link #entries}).
-   * @return the given entry
+   * @param entry 一个 Entry（必须尚未包含在 {@link #entries} 中）。
+   * @return 给定的条目
    */
   private Entry put(final Entry entry) {
     if (entryCount > (entries.length * 3) / 4) {
@@ -418,7 +415,7 @@ final class SymbolTable {
    * 将给定条目添加到 {@link #entries} 哈希集合。此方法<i>不</i>检查 {@link #entries} 是否已包含类似
    * 条目，也<i>不</i>在必要时调整 {@link #entries} 的大小。
    *
-   * @param entry an Entry (which must not already be contained in {@link #entries}).
+   * @param entry 一个 Entry（必须尚未包含在 {@link #entries} 中）。
    */
   private void add(final Entry entry) {
     entryCount++;
@@ -434,10 +431,10 @@ final class SymbolTable {
   /**
    * 将数字或字符串常量添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param value the value of the constant to be added to the constant pool. This parameter must be
-   *     an {@link Integer}, {@link Byte}, {@link Character}, {@link Short}, {@link Boolean}, {@link
-   *     Float}, {@link Long}, {@link Double}, {@link String}, {@link Type} or {@link Handle}.
-   * @return a new or already existing Symbol with the given value.
+   * @param value 要添加到常量池的常量的值。此参数必须是 {@link Integer}、{@link Byte}、
+   * {@link Character}、{@link Short}、{@link Boolean}、{@link Float}、{@link Long}、
+   * {@link Double}、{@link String}、{@link Type} 或 {@link Handle}。
+   * @return 具有给定值的新 Symbol 或已存在的 Symbol。
    */
   Symbol addConstant(final Object value) {
     if (value instanceof Integer) {
@@ -491,8 +488,8 @@ final class SymbolTable {
   /**
    * 将 CONSTANT_Class_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param value the internal name of a class.
-   * @return a new or already existing Symbol with the given value.
+   * @param value 类的内部名称。
+   * @return 具有给定值的新 Symbol 或已存在的 Symbol。
    */
   Symbol addConstantClass(final String value) {
     return addConstantUtf8Reference(Symbol.CONSTANT_CLASS_TAG, value);
@@ -501,10 +498,10 @@ final class SymbolTable {
   /**
    * 将 CONSTANT_Fieldref_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param owner the internal name of a class.
-   * @param name a field name.
-   * @param descriptor a field descriptor.
-   * @return a new or already existing Symbol with the given value.
+   * @param owner 类的内部名称。
+   * @param name 字段名称。
+   * @param descriptor 字段描述符。
+   * @return 具有给定值的新 Symbol 或已存在的 Symbol。
    */
   Symbol addConstantFieldref(final String owner, final String name, final String descriptor) {
     return addConstantMemberReference(Symbol.CONSTANT_FIELDREF_TAG, owner, name, descriptor);
@@ -514,11 +511,11 @@ final class SymbolTable {
    * 将 CONSTANT_Methodref_info 或 CONSTANT_InterfaceMethodref_info 添加到此符号表的常量池。如果常量
    * 池中已包含类似项，则不做任何操作。
    *
-   * @param owner the internal name of a class.
-   * @param name a method name.
-   * @param descriptor a method descriptor.
-   * @param isInterface whether owner is an interface or not.
-   * @return a new or already existing Symbol with the given value.
+   * @param owner 类的内部名称。
+   * @param name 方法名称。
+   * @param descriptor 方法描述符。
+   * @param isInterface owner 是否为接口。
+   * @return 具有给定值的新 Symbol 或已存在的 Symbol。
    */
   Symbol addConstantMethodref(
       final String owner, final String name, final String descriptor, final boolean isInterface) {
@@ -530,12 +527,12 @@ final class SymbolTable {
    * 将 CONSTANT_Fieldref_info、CONSTANT_Methodref_info 或 CONSTANT_InterfaceMethodref_info 添加到此
    * 符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param tag one of {@link Symbol#CONSTANT_FIELDREF_TAG}, {@link Symbol#CONSTANT_METHODREF_TAG}
-   *     or {@link Symbol#CONSTANT_INTERFACE_METHODREF_TAG}.
-   * @param owner the internal name of a class.
-   * @param name a field or method name.
-   * @param descriptor a field or method descriptor.
-   * @return a new or already existing Symbol with the given value.
+   * @param tag {@link Symbol#CONSTANT_FIELDREF_TAG}、{@link Symbol#CONSTANT_METHODREF_TAG} 或
+   * {@link Symbol#CONSTANT_INTERFACE_METHODREF_TAG} 之一。
+   * @param owner 类的内部名称。
+   * @param name 字段或方法名称。
+   * @param descriptor 字段或方法描述符。
+   * @return 具有给定值的新 Symbol 或已存在的 Symbol。
    */
   private Entry addConstantMemberReference(
       final int tag, final String owner, final String name, final String descriptor) {
@@ -560,12 +557,12 @@ final class SymbolTable {
    * 向此符号表的常量池中新增一个 CONSTANT_Fieldref_info、CONSTANT_Methodref_info 或
    * CONSTANT_InterfaceMethodref_info。
    *
-   * @param index the constant pool index of the new Symbol.
-   * @param tag one of {@link Symbol#CONSTANT_FIELDREF_TAG}, {@link Symbol#CONSTANT_METHODREF_TAG}
-   *     or {@link Symbol#CONSTANT_INTERFACE_METHODREF_TAG}.
-   * @param owner the internal name of a class.
-   * @param name a field or method name.
-   * @param descriptor a field or method descriptor.
+   * @param index 新 Symbol 的常量池索引。
+   * @param tag {@link Symbol#CONSTANT_FIELDREF_TAG}、{@link Symbol#CONSTANT_METHODREF_TAG} 或
+   * {@link Symbol#CONSTANT_INTERFACE_METHODREF_TAG} 之一。
+   * @param owner 类的内部名称。
+   * @param name 字段或方法名称。
+   * @param descriptor 字段或方法描述符。
    */
   private void addConstantMemberReference(
       final int index,
@@ -579,8 +576,8 @@ final class SymbolTable {
   /**
    * 将 CONSTANT_String_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param value a string.
-   * @return a new or already existing Symbol with the given value.
+   * @param value 一个字符串。
+   * @return 具有给定值的新 Symbol 或已存在的 Symbol。
    */
   Symbol addConstantString(final String value) {
     return addConstantUtf8Reference(Symbol.CONSTANT_STRING_TAG, value);
@@ -589,8 +586,8 @@ final class SymbolTable {
   /**
    * 将 CONSTANT_Integer_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param value an int.
-   * @return a new or already existing Symbol with the given value.
+   * @param value 一个 int。
+   * @return 具有给定值的新 Symbol 或已存在的 Symbol。
    */
   Symbol addConstantInteger(final int value) {
     return addConstantIntegerOrFloat(Symbol.CONSTANT_INTEGER_TAG, value);
@@ -599,8 +596,8 @@ final class SymbolTable {
   /**
    * 将 CONSTANT_Float_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param value a float.
-   * @return a new or already existing Symbol with the given value.
+   * @param value 一个 float。
+   * @return 具有给定值的新 Symbol 或已存在的 Symbol。
    */
   Symbol addConstantFloat(final float value) {
     return addConstantIntegerOrFloat(Symbol.CONSTANT_FLOAT_TAG, Float.floatToRawIntBits(value));
@@ -610,9 +607,9 @@ final class SymbolTable {
    * 将 CONSTANT_Integer_info 或 CONSTANT_Float_info 添加到此符号表的常量池。如果常量池中已包含类似项
    * ，则不做任何操作。
    *
-   * @param tag one of {@link Symbol#CONSTANT_INTEGER_TAG} or {@link Symbol#CONSTANT_FLOAT_TAG}.
-   * @param value an int or float.
-   * @return a constant pool constant with the given tag and primitive values.
+   * @param tag {@link Symbol#CONSTANT_INTEGER_TAG} 或 {@link Symbol#CONSTANT_FLOAT_TAG} 之一。
+   * @param value 一个 int 或 float。
+   * @return 具有给定 tag 和原始值的常量池常量。
    */
   private Symbol addConstantIntegerOrFloat(final int tag, final int value) {
     int hashCode = hash(tag, value);
@@ -630,9 +627,9 @@ final class SymbolTable {
   /**
    * 向此符号表的常量池中新增一个 CONSTANT_Integer_info 或 CONSTANT_Float_info。
    *
-   * @param index the constant pool index of the new Symbol.
-   * @param tag one of {@link Symbol#CONSTANT_INTEGER_TAG} or {@link Symbol#CONSTANT_FLOAT_TAG}.
-   * @param value an int or float.
+   * @param index 新 Symbol 的常量池索引。
+   * @param tag {@link Symbol#CONSTANT_INTEGER_TAG} 或 {@link Symbol#CONSTANT_FLOAT_TAG} 之一。
+   * @param value 一个 int 或 float。
    */
   private void addConstantIntegerOrFloat(final int index, final int tag, final int value) {
     add(new Entry(index, tag, value, hash(tag, value)));
@@ -641,8 +638,8 @@ final class SymbolTable {
   /**
    * 将 CONSTANT_Long_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param value a long.
-   * @return a new or already existing Symbol with the given value.
+   * @param value 一个 long。
+   * @return 具有给定值的新 Symbol 或已存在的 Symbol。
    */
   Symbol addConstantLong(final long value) {
     return addConstantLongOrDouble(Symbol.CONSTANT_LONG_TAG, value);
@@ -651,8 +648,8 @@ final class SymbolTable {
   /**
    * 将 CONSTANT_Double_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param value a double.
-   * @return a new or already existing Symbol with the given value.
+   * @param value 一个 double。
+   * @return 具有给定值的新 Symbol 或已存在的 Symbol。
    */
   Symbol addConstantDouble(final double value) {
     return addConstantLongOrDouble(Symbol.CONSTANT_DOUBLE_TAG, Double.doubleToRawLongBits(value));
@@ -662,9 +659,9 @@ final class SymbolTable {
    * 将 CONSTANT_Long_info 或 CONSTANT_Double_info 添加到此符号表的常量池。如果常量池中已包含类似项，
    * 则不做任何操作。
    *
-   * @param tag one of {@link Symbol#CONSTANT_LONG_TAG} or {@link Symbol#CONSTANT_DOUBLE_TAG}.
-   * @param value a long or double.
-   * @return a constant pool constant with the given tag and primitive values.
+   * @param tag {@link Symbol#CONSTANT_LONG_TAG} 或 {@link Symbol#CONSTANT_DOUBLE_TAG} 之一。
+   * @param value 一个 long 或 double。
+   * @return 具有给定 tag 和原始值的常量池常量。
    */
   private Symbol addConstantLongOrDouble(final int tag, final long value) {
     int hashCode = hash(tag, value);
@@ -684,9 +681,9 @@ final class SymbolTable {
   /**
    * 向此符号表的常量池中新增一个 CONSTANT_Long_info 或 CONSTANT_Double_info。
    *
-   * @param index the constant pool index of the new Symbol.
-   * @param tag one of {@link Symbol#CONSTANT_LONG_TAG} or {@link Symbol#CONSTANT_DOUBLE_TAG}.
-   * @param value a long or double.
+   * @param index 新 Symbol 的常量池索引。
+   * @param tag {@link Symbol#CONSTANT_LONG_TAG} 或 {@link Symbol#CONSTANT_DOUBLE_TAG} 之一。
+   * @param value 一个 long 或 double。
    */
   private void addConstantLongOrDouble(final int index, final int tag, final long value) {
     add(new Entry(index, tag, value, hash(tag, value)));
@@ -695,9 +692,9 @@ final class SymbolTable {
   /**
    * 将 CONSTANT_NameAndType_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param name a field or method name.
-   * @param descriptor a field or method descriptor.
-   * @return a new or already existing Symbol with the given value.
+   * @param name 字段或方法名称。
+   * @param descriptor 字段或方法描述符。
+   * @return 具有给定值的新 Symbol 或已存在的 Symbol。
    */
   int addConstantNameAndType(final String name, final String descriptor) {
     final int tag = Symbol.CONSTANT_NAME_AND_TYPE_TAG;
@@ -719,9 +716,9 @@ final class SymbolTable {
   /**
    * 向此符号表的常量池中新增一个 CONSTANT_NameAndType_info。
    *
-   * @param index the constant pool index of the new Symbol.
-   * @param name a field or method name.
-   * @param descriptor a field or method descriptor.
+   * @param index 新 Symbol 的常量池索引。
+   * @param name 字段或方法名称。
+   * @param descriptor 字段或方法描述符。
    */
   private void addConstantNameAndType(final int index, final String name, final String descriptor) {
     final int tag = Symbol.CONSTANT_NAME_AND_TYPE_TAG;
@@ -731,8 +728,8 @@ final class SymbolTable {
   /**
    * 将 CONSTANT_Utf8_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param value a string.
-   * @return a new or already existing Symbol with the given value.
+   * @param value 一个字符串。
+   * @return 具有给定值的新 Symbol 或已存在的 Symbol。
    */
   int addConstantUtf8(final String value) {
     int hashCode = hash(Symbol.CONSTANT_UTF8_TAG, value);
@@ -752,8 +749,8 @@ final class SymbolTable {
   /**
    * 向此符号表的常量池中新增一个 CONSTANT_String_info。
    *
-   * @param index the constant pool index of the new Symbol.
-   * @param value a string.
+   * @param index 新 Symbol 的常量池索引。
+   * @param value 一个字符串。
    */
   private void addConstantUtf8(final int index, final String value) {
     add(new Entry(index, Symbol.CONSTANT_UTF8_TAG, value, hash(Symbol.CONSTANT_UTF8_TAG, value)));
@@ -762,15 +759,15 @@ final class SymbolTable {
   /**
    * 将 CONSTANT_MethodHandle_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param referenceKind one of {@link Opcodes#H_GETFIELD}, {@link Opcodes#H_GETSTATIC}, {@link
-   *     Opcodes#H_PUTFIELD}, {@link Opcodes#H_PUTSTATIC}, {@link Opcodes#H_INVOKEVIRTUAL}, {@link
-   *     Opcodes#H_INVOKESTATIC}, {@link Opcodes#H_INVOKESPECIAL}, {@link
-   *     Opcodes#H_NEWINVOKESPECIAL} or {@link Opcodes#H_INVOKEINTERFACE}.
-   * @param owner the internal name of a class of interface.
-   * @param name a field or method name.
-   * @param descriptor a field or method descriptor.
-   * @param isInterface whether owner is an interface or not.
-   * @return a new or already existing Symbol with the given value.
+   * @param referenceKind {@link Opcodes#H_GETFIELD}、{@link Opcodes#H_GETSTATIC}、{@link Opcodes#H_PUTFIELD}、
+   * {@link Opcodes#H_PUTSTATIC}、{@link Opcodes#H_INVOKEVIRTUAL}、{@link Opcodes#H_INVOKESTATIC}、
+   * {@link Opcodes#H_INVOKESPECIAL}、{@link Opcodes#H_NEWINVOKESPECIAL} 或
+   * {@link Opcodes#H_INVOKEINTERFACE} 之一。
+   * @param owner 类或接口的内部名称。
+   * @param name 字段或方法名称。
+   * @param descriptor 字段或方法描述符。
+   * @param isInterface owner 是否为接口。
+   * @return 具有给定值的新 Symbol 或已存在的 Symbol。
    */
   Symbol addConstantMethodHandle(
       final int referenceKind,
@@ -807,14 +804,14 @@ final class SymbolTable {
   /**
    * 向此符号表的常量池中新增一个 CONSTANT_MethodHandle_info。
    *
-   * @param index the constant pool index of the new Symbol.
-   * @param referenceKind one of {@link Opcodes#H_GETFIELD}, {@link Opcodes#H_GETSTATIC}, {@link
-   *     Opcodes#H_PUTFIELD}, {@link Opcodes#H_PUTSTATIC}, {@link Opcodes#H_INVOKEVIRTUAL}, {@link
-   *     Opcodes#H_INVOKESTATIC}, {@link Opcodes#H_INVOKESPECIAL}, {@link
-   *     Opcodes#H_NEWINVOKESPECIAL} or {@link Opcodes#H_INVOKEINTERFACE}.
-   * @param owner the internal name of a class of interface.
-   * @param name a field or method name.
-   * @param descriptor a field or method descriptor.
+   * @param index 新 Symbol 的常量池索引。
+   * @param referenceKind {@link Opcodes#H_GETFIELD}、{@link Opcodes#H_GETSTATIC}、{@link Opcodes#H_PUTFIELD}、
+   * {@link Opcodes#H_PUTSTATIC}、{@link Opcodes#H_INVOKEVIRTUAL}、{@link Opcodes#H_INVOKESTATIC}、
+   * {@link Opcodes#H_INVOKESPECIAL}、
+   * {@link Opcodes#H_NEWINVOKESPECIAL} 或 {@link Opcodes#H_INVOKEINTERFACE} 之一。
+   * @param owner 类或接口的内部名称。
+   * @param name 字段或方法名称。
+   * @param descriptor 字段或方法描述符。
    */
   private void addConstantMethodHandle(
       final int index,
@@ -830,8 +827,8 @@ final class SymbolTable {
   /**
    * 将 CONSTANT_MethodType_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param methodDescriptor a method descriptor.
-   * @return a new or already existing Symbol with the given value.
+   * @param methodDescriptor 方法描述符。
+   * @return 具有给定值的新的或已存在的 Symbol。
    */
   Symbol addConstantMethodType(final String methodDescriptor) {
     return addConstantUtf8Reference(Symbol.CONSTANT_METHOD_TYPE_TAG, methodDescriptor);
@@ -841,11 +838,11 @@ final class SymbolTable {
    * 将 CONSTANT_Dynamic_info 添加到此符号表的常量池。同时将相关的引导方法添加到此符号表的
    * BootstrapMethods。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param name a method name.
-   * @param descriptor a field descriptor.
-   * @param bootstrapMethodHandle a bootstrap method handle.
-   * @param bootstrapMethodArguments the bootstrap method arguments.
-   * @return a new or already existing Symbol with the given value.
+   * @param name 方法名称。
+   * @param descriptor 字段描述符。
+   * @param bootstrapMethodHandle 引导方法句柄。
+   * @param bootstrapMethodArguments 引导方法参数。
+   * @return 具有给定值的新的或已存在的 Symbol。
    */
   Symbol addConstantDynamic(
       final String name,
@@ -861,11 +858,11 @@ final class SymbolTable {
    * 将 CONSTANT_InvokeDynamic_info 添加到此符号表的常量池。同时将相关的引导方法添加到此符号表的
    * BootstrapMethods。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param name a method name.
-   * @param descriptor a method descriptor.
-   * @param bootstrapMethodHandle a bootstrap method handle.
-   * @param bootstrapMethodArguments the bootstrap method arguments.
-   * @return a new or already existing Symbol with the given value.
+   * @param name 方法名称。
+   * @param descriptor 方法描述符。
+   * @param bootstrapMethodHandle 引导方法句柄。
+   * @param bootstrapMethodArguments 引导方法参数。
+   * @return 具有给定值的新的或已存在的 Symbol。
    */
   Symbol addConstantInvokeDynamic(
       final String name,
@@ -881,13 +878,11 @@ final class SymbolTable {
    * 将 CONSTANT_Dynamic 或 CONSTANT_InvokeDynamic_info 添加到此符号表的常量池。如果常量池中已包含类
    * 似项，则不做任何操作。
    *
-   * @param tag one of {@link Symbol#CONSTANT_DYNAMIC_TAG} or {@link
-   *     Symbol#CONSTANT_INVOKE_DYNAMIC_TAG}.
-   * @param name a method name.
-   * @param descriptor a field descriptor for CONSTANT_DYNAMIC_TAG) or a method descriptor for
-   *     CONSTANT_INVOKE_DYNAMIC_TAG.
-   * @param bootstrapMethodIndex the index of a bootstrap method in the BootstrapMethods attribute.
-   * @return a new or already existing Symbol with the given value.
+   * @param tag {@link Symbol#CONSTANT_DYNAMIC_TAG} 或 {@link Symbol#CONSTANT_INVOKE_DYNAMIC_TAG} 之一。
+   * @param name 方法名称。
+   * @param descriptor CONSTANT_DYNAMIC_TAG 的字段描述符，或 CONSTANT_INVOKE_DYNAMIC_TAG 的方法描述符。
+   * @param bootstrapMethodIndex BootstrapMethods 属性中引导方法的索引。
+   * @return 具有给定值的新的或已存在的 Symbol。
    */
   private Symbol addConstantDynamicOrInvokeDynamicReference(
       final int tag, final String name, final String descriptor, final int bootstrapMethodIndex) {
@@ -912,13 +907,11 @@ final class SymbolTable {
   /**
    * 向此符号表的常量池中新增一个 CONSTANT_Dynamic_info 或 CONSTANT_InvokeDynamic_info。
    *
-   * @param tag one of {@link Symbol#CONSTANT_DYNAMIC_TAG} or {@link
-   *     Symbol#CONSTANT_INVOKE_DYNAMIC_TAG}.
-   * @param index the constant pool index of the new Symbol.
-   * @param name a method name.
-   * @param descriptor a field descriptor for CONSTANT_DYNAMIC_TAG or a method descriptor for
-   *     CONSTANT_INVOKE_DYNAMIC_TAG.
-   * @param bootstrapMethodIndex the index of a bootstrap method in the BootstrapMethods attribute.
+   * @param tag {@link Symbol#CONSTANT_DYNAMIC_TAG} 或 {@link Symbol#CONSTANT_INVOKE_DYNAMIC_TAG} 之一。
+   * @param index 新 Symbol 的常量池索引。
+   * @param name 方法名称。
+   * @param descriptor CONSTANT_DYNAMIC_TAG 的字段描述符或 CONSTANT_INVOKE_DYNAMIC_TAG 的方法描述符。
+   * @param bootstrapMethodIndex BootstrapMethods 属性中引导方法的索引。
    */
   private void addConstantDynamicOrInvokeDynamicReference(
       final int tag,
@@ -933,8 +926,8 @@ final class SymbolTable {
   /**
    * 将 CONSTANT_Module_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param moduleName a fully qualified name (using dots) of a module.
-   * @return a new or already existing Symbol with the given value.
+   * @param moduleName 模块的完全限定名称（使用点号）。
+   * @return 具有给定值的新的或已存在的 Symbol。
    */
   Symbol addConstantModule(final String moduleName) {
     return addConstantUtf8Reference(Symbol.CONSTANT_MODULE_TAG, moduleName);
@@ -943,8 +936,8 @@ final class SymbolTable {
   /**
    * 将 CONSTANT_Package_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param packageName the internal name of a package.
-   * @return a new or already existing Symbol with the given value.
+   * @param packageName 包的内部名称。
+   * @return 具有给定值的新的或已存在的 Symbol。
    */
   Symbol addConstantPackage(final String packageName) {
     return addConstantUtf8Reference(Symbol.CONSTANT_PACKAGE_TAG, packageName);
@@ -954,12 +947,11 @@ final class SymbolTable {
    * 将 CONSTANT_Class_info、CONSTANT_String_info、CONSTANT_MethodType_info、CONSTANT_Module_info 或
    * CONSTANT_Package_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
-   * @param tag one of {@link Symbol#CONSTANT_CLASS_TAG}, {@link Symbol#CONSTANT_STRING_TAG}, {@link
-   *     Symbol#CONSTANT_METHOD_TYPE_TAG}, {@link Symbol#CONSTANT_MODULE_TAG} or {@link
-   *     Symbol#CONSTANT_PACKAGE_TAG}.
-   * @param value an internal class name, an arbitrary string, a method descriptor, a module or a
-   *     package name, depending on tag.
-   * @return a new or already existing Symbol with the given value.
+   * @param tag {@link Symbol#CONSTANT_CLASS_TAG}、{@link Symbol#CONSTANT_STRING_TAG}、
+   * {@link Symbol#CONSTANT_METHOD_TYPE_TAG}、
+   * {@link Symbol#CONSTANT_MODULE_TAG} 或 {@link Symbol#CONSTANT_PACKAGE_TAG} 之一。
+   * @param value 内部类名、任意字符串、方法描述符、模块名或包名，具体取决于 tag。
+   * @return 具有给定值的新的或已存在的 Symbol。
    */
   private Symbol addConstantUtf8Reference(final int tag, final String value) {
     int hashCode = hash(tag, value);
@@ -978,12 +970,11 @@ final class SymbolTable {
    * 向此符号表的常量池中新增一个 CONSTANT_Class_info、CONSTANT_String_info、CONSTANT_MethodType_info
    * 、CONSTANT_Module_info 或 CONSTANT_Package_info。
    *
-   * @param index the constant pool index of the new Symbol.
-   * @param tag one of {@link Symbol#CONSTANT_CLASS_TAG}, {@link Symbol#CONSTANT_STRING_TAG}, {@link
-   *     Symbol#CONSTANT_METHOD_TYPE_TAG}, {@link Symbol#CONSTANT_MODULE_TAG} or {@link
-   *     Symbol#CONSTANT_PACKAGE_TAG}.
-   * @param value an internal class name, an arbitrary string, a method descriptor, a module or a
-   *     package name, depending on tag.
+   * @param index 新 Symbol 的常量池索引。
+   * @param tag {@link Symbol#CONSTANT_CLASS_TAG}、{@link Symbol#CONSTANT_STRING_TAG}、
+   * {@link Symbol#CONSTANT_METHOD_TYPE_TAG}、
+   * {@link Symbol#CONSTANT_MODULE_TAG} 或 {@link Symbol#CONSTANT_PACKAGE_TAG} 之一。
+   * @param value 内部类名、任意字符串、方法描述符、模块名或包名，具体取决于 tag。
    */
   private void addConstantUtf8Reference(final int index, final int tag, final String value) {
     add(new Entry(index, tag, value, hash(tag, value)));
@@ -997,9 +988,9 @@ final class SymbolTable {
    * 将引导方法添加到此符号表的 BootstrapMethods 属性。如果 BootstrapMethods 中已包含类似的引导方法，
    * 则不做任何操作。
    *
-   * @param bootstrapMethodHandle a bootstrap method handle.
-   * @param bootstrapMethodArguments the bootstrap method arguments.
-   * @return a new or already existing Symbol with the given value.
+   * @param bootstrapMethodHandle 引导方法句柄。
+   * @param bootstrapMethodArguments 引导方法参数。
+   * @return 具有给定值的新的或已存在的 Symbol。
    */
   Symbol addBootstrapMethod(
       final Handle bootstrapMethodHandle, final Object... bootstrapMethodArguments) {
@@ -1052,10 +1043,10 @@ final class SymbolTable {
    * 将引导方法添加到此符号表的 BootstrapMethods 属性。如果 BootstrapMethods 中已包含类似的引导方法，
    * 则不做任何操作（更确切地说，会回退 {@link #bootstrapMethods} 的内容以移除最后重复的引导方法）。
    *
-   * @param offset the offset of the last bootstrap method in {@link #bootstrapMethods}, in bytes.
-   * @param length the length of this bootstrap method in {@link #bootstrapMethods}, in bytes.
-   * @param hashCode the hash code of this bootstrap method.
-   * @return a new or already existing Symbol with the given value.
+   * @param offset {@link #bootstrapMethods} 中最后一个引导方法的偏移量，以字节为单位。
+   * @param length {@link #bootstrapMethods} 中此引导方法的长度，以字节为单位。
+   * @param hashCode 此引导方法的哈希码。
+   * @return 具有给定值的新的或已存在的 Symbol。
    */
   private Symbol addBootstrapMethod(final int offset, final int length, final int hashCode) {
     final byte[] bootstrapMethodsData = bootstrapMethods.data;
@@ -1087,8 +1078,8 @@ final class SymbolTable {
   /**
    * 返回索引为给定值的类型表元素。
    *
-   * @param typeIndex a type table index.
-   * @return the type table element whose index is given.
+   * @param typeIndex 类型表索引。
+   * @return 具有给定索引的类型表元素。
    */
   Symbol getType(final int typeIndex) {
     return typeTable[typeIndex];
@@ -1097,8 +1088,8 @@ final class SymbolTable {
   /**
    * 向此符号表的类型表中添加一个类型。如果类型表中已包含类似类型，则不做任何操作。
    *
-   * @param value an internal class name.
-   * @return the index of a new or already existing type Symbol with the given value.
+   * @param value 内部类名。
+   * @return 具有给定值的新的或已存在的类型 Symbol 的索引。
    */
   int addType(final String value) {
     int hashCode = hash(Symbol.TYPE_TAG, value);
@@ -1116,10 +1107,9 @@ final class SymbolTable {
    * 向此符号表的类型表中添加一个 {@link Frame#ITEM_UNINITIALIZED} 类型。如果类型表中已包含类似类型，
    * 则不做任何操作。
    *
-   * @param value an internal class name.
-   * @param bytecodeOffset the bytecode offset of the NEW instruction that created this {@link
-   *     Frame#ITEM_UNINITIALIZED} type value.
-   * @return the index of a new or already existing type Symbol with the given value.
+   * @param value 内部类名。
+   * @param bytecodeOffset 创建此 {@link Frame#ITEM_UNINITIALIZED} 类型值的 NEW 指令的字节码偏移量。
+   * @return 具有给定值的新的或已存在的类型 Symbol 的索引。
    */
   int addUninitializedType(final String value, final int bytecodeOffset) {
     int hashCode = hash(Symbol.UNINITIALIZED_TYPE_TAG, value, bytecodeOffset);
@@ -1140,12 +1130,9 @@ final class SymbolTable {
   /**
    * 向此符号表的类型表中添加一个合并类型。如果类型表中已包含类似类型，则不做任何操作。
    *
-   * @param typeTableIndex1 a {@link Symbol#TYPE_TAG} type, specified by its index in the type
-   *     table.
-   * @param typeTableIndex2 another {@link Symbol#TYPE_TAG} type, specified by its index in the type
-   *     table.
-   * @return the index of a new or already existing {@link Symbol#TYPE_TAG} type Symbol,
-   *     corresponding to the common super class of the given types.
+   * @param typeTableIndex1 一个 {@link Symbol#TYPE_TAG} 类型，通过其在类型表中的索引指定。
+   * @param typeTableIndex2 另一个 {@link Symbol#TYPE_TAG} 类型，通过其在类型表中的索引指定。
+   * @return 对应于给定类型的公共超类的、新的或已存在的 {@link Symbol#TYPE_TAG} 类型 Symbol 的索引。
    */
   int addMergedType(final int typeTableIndex1, final int typeTableIndex2) {
     long data =
@@ -1170,10 +1157,9 @@ final class SymbolTable {
   /**
    * 将给定的类型 Symbol 添加到 {@link #typeTable}。
    *
-   * @param entry a {@link Symbol#TYPE_TAG} or {@link Symbol#UNINITIALIZED_TYPE_TAG} type symbol.
-   *     The index of this Symbol must be equal to the current value of {@link #typeCount}.
-   * @return the index in {@link #typeTable} where the given type was added, which is also equal to
-   *     entry's index by hypothesis.
+   * @param entry 一个 {@link Symbol#TYPE_TAG} 或 {@link Symbol#UNINITIALIZED_TYPE_TAG} 类型符号。
+   * 此 Symbol 的索引必须等于 {@link #typeCount} 的当前值。
+   * @return 给定类型在 {@link #typeTable} 中被添加的索引，按假设也等于 entry 的索引。
    */
   private int addTypeInternal(final Entry entry) {
     if (typeTable == null) {

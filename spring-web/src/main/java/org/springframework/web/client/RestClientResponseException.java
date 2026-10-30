@@ -51,11 +51,11 @@ public class RestClientResponseException extends RestClientException {
 
 	/**
 	 * 使用给定响应数据构造新实例。
-	 * @param statusCode the raw status code value
-	 * @param statusText the status text
-	 * @param responseHeaders the response headers (may be {@code null})
-	 * @param responseBody the response body content (may be {@code null})
-	 * @param responseCharset the response body charset (may be {@code null})
+	 * @param statusCode 原始状态码值
+	 * @param statusText 状态文本
+	 * @param responseHeaders 响应头（可能为 {@code null}）
+	 * @param responseBody 响应体内容（可能为 {@code null}）
+	 * @param responseCharset 响应体字符集（可能为 {@code null}）
 	 */
 	public RestClientResponseException(String message, int statusCode, String statusText,
 			@Nullable HttpHeaders responseHeaders, @Nullable byte[] responseBody, @Nullable Charset responseCharset) {
@@ -109,7 +109,7 @@ public class RestClientResponseException extends RestClientException {
 	/**
 	 * 返回转换为 String 的响应体。所使用的字符集来自响应的 "Content-Type"，
 	 * 否则使用给定字符集。
-	 * @param fallbackCharset the charset to use on if the response doesn't specify.
+	 * @param fallbackCharset 响应未指定时要使用的字符集。
 	 * @since 5.1.11
 	 */
 	public String getResponseBodyAsString(Charset fallbackCharset) {

@@ -29,7 +29,7 @@ package org.springframework.beans.factory;
  *
  * @author Juergen Hoeller
  * @since 2.0.3
- * @param <T> the bean type
+ * @param <T> Bean 类型
  * @see #isPrototype()
  * @see #isSingleton()
  */
@@ -42,7 +42,7 @@ public interface SmartFactoryBean<T> extends FactoryBean<T> {
 	 * <p>该方法应当严格检查独立实例；对于作用域对象或其他非单例、非独立的对象，不应返回 {@code true}。
 	 * 因此，它并不只是 {@link #isSingleton()} 的取反形式。
 	 * <p>默认实现返回 {@code false}。
-	 * @return whether the exposed object is a prototype
+	 * @return 所暴露的对象是否为原型
 	 * @see #getObject()
 	 * @see #isSingleton()
 	 */
@@ -57,7 +57,7 @@ public interface SmartFactoryBean<T> extends FactoryBean<T> {
 	 * 器。对于 {@link #isSingleton() singleton} 对象，这可能是有意义的，特别是当后处理器期望在启动时被
 	 * 应用时。
 	 * <p>默认实现返回 {@code false}。
-	 * @return whether eager initialization applies
+	 * @return 是否适用急切初始化
 	 * @see org.springframework.beans.factory.config.ConfigurableListableBeanFactory#preInstantiateSingletons()
 	 */
 	default boolean isEagerInit() {

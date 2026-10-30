@@ -53,8 +53,8 @@ public class ServerWebExchangeContextFilter implements WebFilter {
 	/**
 	 * 从 Reactor Context 中访问 {@link ServerWebExchange}（如果可用），
 	 * 即配置了 {@link ServerWebExchangeContextFilter} 且给定上下文来自请求处理链时。
-	 * @param context the context in which to access the exchange
-	 * @return the exchange
+	 * @param context 访问交换所在的上下文
+	 * @return 交换
 	 */
 	public static Optional<ServerWebExchange> get(Context context) {
 		return context.getOrEmpty(EXCHANGE_CONTEXT_ATTRIBUTE);

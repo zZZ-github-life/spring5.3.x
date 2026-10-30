@@ -118,9 +118,9 @@ public class SimpleRemoteSlsbInvokerInterceptor extends AbstractRemoteSlsbInvoke
 	/**
 	 * 返回用于委派调用的 EJB 组件实例。
 	 * <p>默认实现委派给 {@link #newSessionBeanInstance}。
-	 * @return the EJB component instance
-	 * @throws NamingException if thrown by JNDI
-	 * @throws InvocationTargetException if thrown by the create method
+	 * @return EJB 组件实例
+	 * @throws NamingException 如果由 JNDI 抛出
+	 * @throws InvocationTargetException 如果由 create 方法抛出
 	 * @see #newSessionBeanInstance
 	 */
 	protected Object getSessionBeanInstance() throws NamingException, InvocationTargetException {
@@ -140,7 +140,7 @@ public class SimpleRemoteSlsbInvokerInterceptor extends AbstractRemoteSlsbInvoke
 	/**
 	 * 释放给定的 EJB 实例。
 	 * <p>默认实现委派给 {@link #removeSessionBeanInstance}。
-	 * @param ejb the EJB component instance to release
+	 * @param ejb 要释放的 EJB 组件实例
 	 * @see #removeSessionBeanInstance
 	 */
 	protected void releaseSessionBeanInstance(EJBObject ejb) {

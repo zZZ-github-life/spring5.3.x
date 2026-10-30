@@ -82,9 +82,8 @@ public class DefaultContextCache implements ContextCache {
 
 	/**
 	 * 使用提供的最大缓存大小创建一个新的 {@code DefaultContextCache}。
-	 * @param maxSize the maximum cache size
-	 * @throws IllegalArgumentException if the supplied {@code maxSize} value
-	 * is not positive
+	 * @param maxSize 最大缓存大小
+	 * @throws IllegalArgumentException 如果提供的 {@code maxSize} 值不是正数
 	 * @since 4.3
 	 * @see #DefaultContextCache()
 	 */
@@ -283,7 +282,7 @@ public class DefaultContextCache implements ContextCache {
 	/**
 	 * 生成包含此缓存实现类型及其统计信息的文本字符串。
 	 * <p>此方法返回的字符串包含满足 {@link #logStatistics()} 契约所需的所有信息。
-	 * @return a string representation of this cache, including statistics
+	 * @return 此缓存的字符串表示形式，包括统计信息
 	 */
 	@Override
 	public String toString() {
@@ -306,8 +305,8 @@ public class DefaultContextCache implements ContextCache {
 
 		/**
 		 * 使用提供的初始容量和负载因子创建一个新的 {@code LruCache}。
-		 * @param initialCapacity the initial capacity
-		 * @param loadFactor the load factor
+		 * @param initialCapacity 初始容量
+		 * @param loadFactor 加载因子
 		 */
 		LruCache(int initialCapacity, float loadFactor) {
 			super(initialCapacity, loadFactor, true);

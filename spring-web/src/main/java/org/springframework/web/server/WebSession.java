@@ -50,9 +50,9 @@ public interface WebSession {
 
 	/**
 	 * 如果存在，返回会话属性值。
-	 * @param name the attribute name
-	 * @param <T> the attribute type
-	 * @return the attribute value
+	 * @param name 属性名称
+	 * @param <T> 属性类型
+	 * @return 属性值
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable
@@ -63,9 +63,9 @@ public interface WebSession {
 	/**
 	 * 返回会话属性值，如果不存在则抛出
 	 * {@link IllegalArgumentException}。
-	 * @param name the attribute name
-	 * @param <T> the attribute type
-	 * @return the attribute value
+	 * @param name 属性名称
+	 * @param <T> 属性类型
+	 * @return 属性值
 	 */
 	@SuppressWarnings("unchecked")
 	default <T> T getRequiredAttribute(String name) {
@@ -76,10 +76,10 @@ public interface WebSession {
 
 	/**
 	 * 返回会话属性值，或返回一个默认的后备值。
-	 * @param name the attribute name
-	 * @param defaultValue a default value to return instead
-	 * @param <T> the attribute type
-	 * @return the attribute value
+	 * @param name 属性名称
+	 * @param defaultValue 作为替代返回的默认值
+	 * @param <T> 属性类型
+	 * @return 属性值
 	 */
 	@SuppressWarnings("unchecked")
 	default <T> T getAttributeOrDefault(String name, T defaultValue) {
@@ -102,13 +102,13 @@ public interface WebSession {
 	/**
 	 * 为会话生成新的 id，并更新底层会话存储以反映新的 id。
 	 * 调用成功后，{@link #getId()} 将反映新的会话 id。
-	 * @return completion notification (success or error)
+	 * @return 完成通知（成功或错误）
 	 */
 	Mono<Void> changeSessionId();
 
 	/**
 	 * 使当前会话失效并清除会话存储。
-	 * @return completion notification (success or error)
+	 * @return 完成通知（成功或错误）
 	 */
 	Mono<Void> invalidate();
 
@@ -123,7 +123,7 @@ public interface WebSession {
 	 * </ul>
 	 * <p>请注意，此方法不打算供应用直接使用。
 	 * 相反，它会在响应提交之前被自动调用。
-	 * @return {@code Mono} to indicate completion with success or error
+	 * @return 用于指示成功或错误完成的 {@code Mono}
 	 */
 	Mono<Void> save();
 

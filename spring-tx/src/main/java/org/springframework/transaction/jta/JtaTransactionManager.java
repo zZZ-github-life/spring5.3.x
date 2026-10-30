@@ -183,7 +183,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 
 	/**
 	 * 创建一个新的JtaTransactionManager实例。
-	 * @param userTransaction the JTA UserTransaction to use as direct reference
+	 * @param userTransaction 用作直接引用的 JTA UserTransaction
 	 */
 	public JtaTransactionManager(UserTransaction userTransaction) {
 		this();
@@ -193,8 +193,8 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 
 	/**
 	 * 创建一个新的JtaTransactionManager实例。
-	 * @param userTransaction the JTA UserTransaction to use as direct reference
-	 * @param transactionManager the JTA TransactionManager to use as direct reference
+	 * @param userTransaction 用作直接引用的 JTA UserTransaction
+	 * @param transactionManager 用作直接引用的 JTA TransactionManager
 	 */
 	public JtaTransactionManager(UserTransaction userTransaction, TransactionManager transactionManager) {
 		this();
@@ -206,7 +206,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 
 	/**
 	 * 创建一个新的JtaTransactionManager实例。
-	 * @param transactionManager the JTA TransactionManager to use as direct reference
+	 * @param transactionManager 用作直接引用的 JTA TransactionManager
 	 */
 	public JtaTransactionManager(TransactionManager transactionManager) {
 		this();
@@ -418,7 +418,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 
 	/**
 	 * 初始化UserTransaction以及TransactionManager句柄。
-	 * @throws TransactionSystemException if initialization failed
+	 * @throws TransactionSystemException 如果初始化失败
 	 */
 	protected void initUserTransactionAndTransactionManager() throws TransactionSystemException {
 		if (this.userTransaction == null) {
@@ -459,7 +459,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 
 	/**
 	 * 检查UserTransaction以及TransactionManager句柄, 假定标准JTA要求。
-	 * @throws IllegalStateException if no sufficient handles are available
+	 * @throws IllegalStateException 如果没有可用的足够句柄
 	 */
 	protected void checkUserTransactionAndTransactionManager() throws IllegalStateException {
 		// We at least need the JTA UserTransaction.
@@ -488,7 +488,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	 * 初始化JTA 1.1 TransactionSynchronizationRegistry(如果可用)。
 	 * <p>应在{@link #initUserTransactionAndTransactionManager()}之后调用,
 	 * 因为它可能会检查UserTransaction和TransactionManager句柄。
-	 * @throws TransactionSystemException if initialization failed
+	 * @throws TransactionSystemException 如果初始化失败
 	 */
 	protected void initTransactionSynchronizationRegistry() {
 		if (this.transactionSynchronizationRegistry == null) {
@@ -518,8 +518,8 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 
 	/**
 	 * 基于给定的TransactionManager构建UserTransaction句柄。
-	 * @param transactionManager the TransactionManager
-	 * @return a corresponding UserTransaction handle
+	 * @param transactionManager 该 TransactionManager
+	 * @return 对应的 UserTransaction 句柄
 	 */
 	protected UserTransaction buildUserTransaction(TransactionManager transactionManager) {
 		if (transactionManager instanceof UserTransaction) {
@@ -534,9 +534,9 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	 * 通过配置的名称在JNDI中查找JTA UserTransaction。
 	 * <p>如果未设置直接的UserTransaction引用, 则由{@code afterPropertiesSet}调用。
 	 * 子类可以重写此方法以提供不同的UserTransaction对象。
-	 * @param userTransactionName the JNDI name of the UserTransaction
-	 * @return the UserTransaction object
-	 * @throws TransactionSystemException if the JNDI lookup failed
+	 * @param userTransactionName UserTransaction 的 JNDI 名称
+	 * @return UserTransaction 对象
+	 * @throws TransactionSystemException 如果 JNDI 查找失败
 	 * @see #setJndiTemplate
 	 * @see #setUserTransactionName
 	 */
@@ -558,9 +558,9 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	 * 通过配置的名称在JNDI中查找JTA TransactionManager。
 	 * <p>如果未设置直接的TransactionManager引用, 则由{@code afterPropertiesSet}调用。
 	 * 子类可以重写此方法以提供不同的TransactionManager对象。
-	 * @param transactionManagerName the JNDI name of the TransactionManager
-	 * @return the UserTransaction object
-	 * @throws TransactionSystemException if the JNDI lookup failed
+	 * @param transactionManagerName TransactionManager 的 JNDI 名称
+	 * @return UserTransaction 对象
+	 * @throws TransactionSystemException 如果 JNDI 查找失败
 	 * @see #setJndiTemplate
 	 * @see #setTransactionManagerName
 	 */
@@ -581,10 +581,9 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	/**
 	 * 通过配置的名称在JNDI中查找JTA 1.1 TransactionSynchronizationRegistry。
 	 * <p>子类可以重写此方法以提供不同的TransactionManager对象。
-	 * @param registryName the JNDI name of the
-	 * TransactionSynchronizationRegistry
-	 * @return the TransactionSynchronizationRegistry object
-	 * @throws TransactionSystemException if the JNDI lookup failed
+	 * @param registryName TransactionSynchronizationRegistry 的 JNDI 名称
+	 * @return TransactionSynchronizationRegistry 对象
+	 * @throws TransactionSystemException 如果 JNDI 查找失败
 	 * @see #setJndiTemplate
 	 * @see #setTransactionSynchronizationRegistryName
 	 */
@@ -605,8 +604,8 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	 * 允许子类以厂商特定的方式检索JTA UserTransaction。
 	 * 仅在未指定"userTransaction"或"userTransactionName"时调用。
 	 * <p>默认实现简单地返回{@code null}。
-	 * @return the JTA UserTransaction handle to use, or {@code null} if none found
-	 * @throws TransactionSystemException in case of errors
+	 * @return 要使用的 JTA UserTransaction 句柄；如果未找到，则为 {@code null}
+	 * @throws TransactionSystemException 发生错误时
 	 * @see #setUserTransaction
 	 * @see #setUserTransactionName
 	 */
@@ -619,8 +618,8 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	 * 允许子类以厂商特定的方式检索JTA TransactionManager。
 	 * 仅在未指定"transactionManager"或"transactionManagerName"时调用。
 	 * <p>默认实现简单地返回{@code null}。
-	 * @return the JTA TransactionManager handle to use, or {@code null} if none found
-	 * @throws TransactionSystemException in case of errors
+	 * @return 要使用的 JTA TransactionManager 句柄；如果未找到，则为 {@code null}
+	 * @throws TransactionSystemException 发生错误时
 	 * @see #setTransactionManager
 	 * @see #setTransactionManagerName
 	 */
@@ -632,9 +631,9 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	/**
 	 * 允许子类以厂商特定的方式检索JTA 1.1 TransactionSynchronizationRegistry。
 	 * <p>默认实现简单地返回{@code null}。
-	 * @return the JTA TransactionSynchronizationRegistry handle to use,
-	 * or {@code null} if none found
-	 * @throws TransactionSystemException in case of errors
+	 * @return 要使用的 JTA TransactionSynchronizationRegistry 句柄，
+	 * 如果未找到则为 {@code null}
+	 * @throws TransactionSystemException 发生错误时
 	 */
 	@Nullable
 	protected TransactionSynchronizationRegistry retrieveTransactionSynchronizationRegistry() throws TransactionSystemException {
@@ -643,7 +642,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 
 	/**
 	 * 通过默认JNDI查找"java:comp/UserTransaction"来查找JTA UserTransaction。
-	 * @return the JTA UserTransaction reference, or {@code null} if not found
+	 * @return JTA UserTransaction 引用；如果未找到，则为 {@code null}
 	 * @see #DEFAULT_USER_TRANSACTION_NAME
 	 */
 	@Nullable
@@ -668,8 +667,8 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	/**
 	 * 通过自动检测查找JTA TransactionManager: 检查UserTransaction对象是否实现了TransactionManager,
 	 * 并检查回退JNDI位置。
-	 * @param ut the JTA UserTransaction object
-	 * @return the JTA TransactionManager reference, or {@code null} if not found
+	 * @param ut JTA UserTransaction 对象
+	 * @return JTA TransactionManager 引用；如果未找到，则为 {@code null}
 	 * @see #FALLBACK_TRANSACTION_MANAGER_NAMES
 	 */
 	@Nullable
@@ -706,11 +705,11 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	 * 检查UserTransaction对象或TransactionManager对象是否实现了它,
 	 * 并检查Java EE 5的标准JNDI位置。
 	 * <p>默认实现简单地返回{@code null}。
-	 * @param ut the JTA UserTransaction object
-	 * @param tm the JTA TransactionManager object
-	 * @return the JTA TransactionSynchronizationRegistry handle to use,
-	 * or {@code null} if none found
-	 * @throws TransactionSystemException in case of errors
+	 * @param ut JTA UserTransaction 对象
+	 * @param tm JTA TransactionManager 对象
+	 * @return 要使用的 JTA TransactionSynchronizationRegistry 句柄，
+	 * 如果未找到则为 {@code null}
+	 * @throws TransactionSystemException 发生错误时
 	 */
 	@Nullable
 	protected TransactionSynchronizationRegistry findTransactionSynchronizationRegistry(
@@ -770,8 +769,8 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	 * 为给定的当前UserTransaction获取JTA事务对象。
 	 * <p>子类可以重写此方法以提供JtaTransactionObject子类,
 	 * 例如持有某些所需的额外JTA句柄。
-	 * @param ut the UserTransaction handle to use for the current transaction
-	 * @return the JtaTransactionObject holding the UserTransaction
+	 * @param ut 用于当前事务的 UserTransaction 句柄
+	 * @return 持有该 UserTransaction 的 JtaTransactionObject
 	 */
 	protected JtaTransactionObject doGetJtaTransaction(UserTransaction ut) {
 		return new JtaTransactionObject(ut);
@@ -821,11 +820,11 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	 * <p>此实现仅支持标准JTA功能: 即不支持每事务隔离级别和事务名称。
 	 * 子类可以针对特定的JTA实现重写此方法。
 	 * <p>在调用UserTransaction的{@code begin}方法之前调用{@code applyIsolationLevel}和{@code applyTimeout}。
-	 * @param txObject the JtaTransactionObject containing the UserTransaction
-	 * @param definition the TransactionDefinition instance, describing propagation
-	 * behavior, isolation level, read-only flag, timeout, and transaction name
-	 * @throws NotSupportedException if thrown by JTA methods
-	 * @throws SystemException if thrown by JTA methods
+	 * @param txObject 包含 UserTransaction 的 JtaTransactionObject
+	 * @param definition TransactionDefinition 实例，描述传播行为、隔离级别、
+	 * 只读标志、超时和事务名称
+	 * @throws NotSupportedException 如果由 JTA 方法抛出
+	 * @throws SystemException 如果由 JTA 方法抛出
 	 * @see #getUserTransaction
 	 * @see #getTransactionManager
 	 * @see #applyIsolationLevel
@@ -846,11 +845,10 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	/**
 	 * 应用给定的事务隔离级别。默认实现对于ISOLATION_DEFAULT以外的任何级别都将抛出异常。
 	 * <p>子类可以针对特定的JTA实现重写此方法, 作为重写完整{@link #doJtaBegin}方法的替代方案。
-	 * @param txObject the JtaTransactionObject containing the UserTransaction
-	 * @param isolationLevel isolation level taken from transaction definition
-	 * @throws InvalidIsolationLevelException if the given isolation level
-	 * cannot be applied
-	 * @throws SystemException if thrown by the JTA implementation
+	 * @param txObject 包含 UserTransaction 的 JtaTransactionObject
+	 * @param isolationLevel 取自事务定义的隔离级别
+	 * @throws InvalidIsolationLevelException 如果给定的隔离级别无法应用
+	 * @throws SystemException 如果由 JTA 实现抛出
 	 * @see #doJtaBegin
 	 * @see JtaTransactionObject#getUserTransaction()
 	 * @see #getTransactionManager()
@@ -867,9 +865,9 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 
 	/**
 	 * 应用给定的事务超时。默认实现对于非默认超时值将调用{@code UserTransaction.setTransactionTimeout}。
-	 * @param txObject the JtaTransactionObject containing the UserTransaction
-	 * @param timeout the timeout value taken from transaction definition
-	 * @throws SystemException if thrown by the JTA implementation
+	 * @param txObject 包含 UserTransaction 的 JtaTransactionObject
+	 * @param timeout 取自事务定义的超时值
+	 * @throws SystemException 如果由 JTA 实现抛出
 	 * @see #doJtaBegin
 	 * @see JtaTransactionObject#getUserTransaction()
 	 * @see javax.transaction.UserTransaction#setTransactionTimeout(int)
@@ -898,9 +896,9 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	/**
 	 * 在JTA TransactionManager上执行JTA suspend操作。
 	 * <p>子类可以针对特定的JTA实现重写此方法。
-	 * @param txObject the JtaTransactionObject containing the UserTransaction
-	 * @return the suspended JTA Transaction object
-	 * @throws SystemException if thrown by JTA methods
+	 * @param txObject 包含 UserTransaction 的 JtaTransactionObject
+	 * @return 被挂起的 JTA Transaction 对象
+	 * @throws SystemException 如果由 JTA 方法抛出
 	 * @see #getTransactionManager()
 	 * @see javax.transaction.TransactionManager#suspend()
 	 */
@@ -933,10 +931,10 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	/**
 	 * 在JTA TransactionManager上执行JTA resume操作。
 	 * <p>子类可以针对特定的JTA实现重写此方法。
-	 * @param txObject the JtaTransactionObject containing the UserTransaction
-	 * @param suspendedTransaction the suspended JTA Transaction object
-	 * @throws InvalidTransactionException if thrown by JTA methods
-	 * @throws SystemException if thrown by JTA methods
+	 * @param txObject 包含 UserTransaction 的 JtaTransactionObject
+	 * @param suspendedTransaction 被挂起的 JTA Transaction 对象
+	 * @throws InvalidTransactionException 如果由 JTA 方法抛出
+	 * @throws SystemException 如果由 JTA 方法抛出
 	 * @see #getTransactionManager()
 	 * @see javax.transaction.TransactionManager#resume(javax.transaction.Transaction)
 	 */
@@ -1091,10 +1089,10 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	 * 或者在JTA TransactionManager的当前Transaction上注册(同样, 如果可用)。
 	 * 如果两者都不可用, 将记录警告日志。
 	 * <p>子类可以针对特定的JTA实现重写此方法。
-	 * @param txObject the current transaction object
-	 * @param synchronizations a List of TransactionSynchronization objects
-	 * @throws RollbackException if thrown by JTA methods
-	 * @throws SystemException if thrown by JTA methods
+	 * @param txObject 当前事务对象
+	 * @param synchronizations TransactionSynchronization 对象的 List
+	 * @throws RollbackException 如果由 JTA 方法抛出
+	 * @throws SystemException 如果由 JTA 方法抛出
 	 * @see #getTransactionManager()
 	 * @see javax.transaction.Transaction#registerSynchronization
 	 * @see javax.transaction.TransactionSynchronizationRegistry#registerInterposedSynchronization

@@ -55,7 +55,7 @@ public class BeanFactoryDataSourceLookup implements DataSourceLookup, BeanFactor
 	 * 因为提供的 {@link BeanFactory} 将被创建它的 {@link BeanFactory} 替换
 	 * （参见 {@link BeanFactoryAware} 契约）。因此，仅在 Spring IoC 容器之外
 	 * 使用本类时才使用此构造函数。
-	 * @param beanFactory the bean factory to be used to lookup {@link DataSource DataSources}
+	 * @param beanFactory 用于查找 {@link DataSource DataSources} 的 Bean 工厂
 	 */
 	public BeanFactoryDataSourceLookup(BeanFactory beanFactory) {
 		Assert.notNull(beanFactory, "BeanFactory is required");

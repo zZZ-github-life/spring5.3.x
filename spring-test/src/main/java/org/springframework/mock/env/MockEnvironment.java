@@ -49,7 +49,7 @@ public class MockEnvironment extends AbstractEnvironment {
 	/**
 	 * {@link #setProperty} 的便捷同义词，返回当前实例。
 	 * 适用于方法链和流式风格的使用。
-	 * @return this {@link MockEnvironment} instance
+	 * @return 该 {@link MockEnvironment} 实例
 	 * @see MockPropertySource#withProperty
 	 */
 	public MockEnvironment withProperty(String key, String value) {

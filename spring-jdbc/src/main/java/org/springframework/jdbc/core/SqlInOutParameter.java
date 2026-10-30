@@ -32,8 +32,8 @@ public class SqlInOutParameter extends SqlOutParameter {
 
 	/**
 	 * 创建新的SqlInOutParameter。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
 	 */
 	public SqlInOutParameter(String name, int sqlType) {
 		super(name, sqlType);
@@ -41,10 +41,9 @@ public class SqlInOutParameter extends SqlOutParameter {
 
 	/**
 	 * 创建新的SqlInOutParameter。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
-	 * @param scale the number of digits after the decimal point
-	 * (for DECIMAL and NUMERIC types)
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param scale 小数点后的位数（用于 DECIMAL 和 NUMERIC 类型）
 	 */
 	public SqlInOutParameter(String name, int sqlType, int scale) {
 		super(name, sqlType, scale);
@@ -52,9 +51,9 @@ public class SqlInOutParameter extends SqlOutParameter {
 
 	/**
 	 * 创建新的SqlInOutParameter。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
-	 * @param typeName the type name of the parameter (optional)
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param typeName 参数的类型名称（可选）
 	 */
 	public SqlInOutParameter(String name, int sqlType, String typeName) {
 		super(name, sqlType, typeName);
@@ -62,10 +61,10 @@ public class SqlInOutParameter extends SqlOutParameter {
 
 	/**
 	 * 创建新的SqlInOutParameter。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
-	 * @param typeName the type name of the parameter (optional)
-	 * @param sqlReturnType custom value handler for complex type (optional)
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param typeName 参数的类型名称（可选）
+	 * @param sqlReturnType 复杂类型的自定义值处理器（可选）
 	 */
 	public SqlInOutParameter(String name, int sqlType, String typeName, SqlReturnType sqlReturnType) {
 		super(name, sqlType, typeName, sqlReturnType);
@@ -73,9 +72,9 @@ public class SqlInOutParameter extends SqlOutParameter {
 
 	/**
 	 * 创建新的SqlInOutParameter。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
-	 * @param rse the {@link ResultSetExtractor} to use for parsing the {@link ResultSet}
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param rse 用于解析 {@link ResultSet} 的 {@link ResultSetExtractor}
 	 */
 	public SqlInOutParameter(String name, int sqlType, ResultSetExtractor<?> rse) {
 		super(name, sqlType, rse);
@@ -83,9 +82,9 @@ public class SqlInOutParameter extends SqlOutParameter {
 
 	/**
 	 * 创建新的SqlInOutParameter。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
-	 * @param rch the {@link RowCallbackHandler} to use for parsing the {@link ResultSet}
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param rch 用于解析 {@link ResultSet} 的 {@link RowCallbackHandler}
 	 */
 	public SqlInOutParameter(String name, int sqlType, RowCallbackHandler rch) {
 		super(name, sqlType, rch);
@@ -93,9 +92,9 @@ public class SqlInOutParameter extends SqlOutParameter {
 
 	/**
 	 * 创建新的SqlInOutParameter。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
-	 * @param rm the {@link RowMapper} to use for parsing the {@link ResultSet}
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param sqlType 根据 {@code java.sql.Types} 的参数 SQL 类型
+	 * @param rm 用于解析 {@link ResultSet} 的 {@link RowMapper}
 	 */
 	public SqlInOutParameter(String name, int sqlType, RowMapper<?> rm) {
 		super(name, sqlType, rm);

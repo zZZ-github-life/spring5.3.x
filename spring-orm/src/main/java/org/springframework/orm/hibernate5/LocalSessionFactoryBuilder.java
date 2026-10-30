@@ -118,8 +118,7 @@ public class LocalSessionFactoryBuilder extends Configuration {
 
 	/**
 	 * 为给定的 DataSource 创建一个新的 LocalSessionFactoryBuilder。
-	 * @param dataSource the JDBC DataSource that the resulting Hibernate SessionFactory should be using
-	 * (may be {@code null})
+	 * @param dataSource 生成的 Hibernate SessionFactory 应使用的 JDBC DataSource（可以为 {@code null}）
 	 */
 	public LocalSessionFactoryBuilder(@Nullable DataSource dataSource) {
 		this(dataSource, new PathMatchingResourcePatternResolver());
@@ -127,9 +126,8 @@ public class LocalSessionFactoryBuilder extends Configuration {
 
 	/**
 	 * 为给定的 DataSource 创建一个新的 LocalSessionFactoryBuilder。
-	 * @param dataSource the JDBC DataSource that the resulting Hibernate SessionFactory should be using
-	 * (may be {@code null})
-	 * @param classLoader the ClassLoader to load application classes from
+	 * @param dataSource 生成的 Hibernate SessionFactory 应使用的 JDBC DataSource（可以为 {@code null}）
+	 * @param classLoader 用于加载应用类的 ClassLoader
 	 */
 	public LocalSessionFactoryBuilder(@Nullable DataSource dataSource, ClassLoader classLoader) {
 		this(dataSource, new PathMatchingResourcePatternResolver(classLoader));
@@ -137,9 +135,8 @@ public class LocalSessionFactoryBuilder extends Configuration {
 
 	/**
 	 * 为给定的 DataSource 创建一个新的 LocalSessionFactoryBuilder。
-	 * @param dataSource the JDBC DataSource that the resulting Hibernate SessionFactory should be using
-	 * (may be {@code null})
-	 * @param resourceLoader the ResourceLoader to load application classes from
+	 * @param dataSource 生成的 Hibernate SessionFactory 应使用的 JDBC DataSource（可以为 {@code null}）
+	 * @param resourceLoader 用于加载应用类的 ResourceLoader
 	 */
 	public LocalSessionFactoryBuilder(@Nullable DataSource dataSource, ResourceLoader resourceLoader) {
 		this(dataSource, resourceLoader, new MetadataSources(
@@ -148,10 +145,9 @@ public class LocalSessionFactoryBuilder extends Configuration {
 
 	/**
 	 * 为给定的 DataSource 创建一个新的 LocalSessionFactoryBuilder。
-	 * @param dataSource the JDBC DataSource that the resulting Hibernate SessionFactory should be using
-	 * (may be {@code null})
-	 * @param resourceLoader the ResourceLoader to load application classes from
-	 * @param metadataSources the Hibernate MetadataSources service to use (e.g. reusing an existing one)
+	 * @param dataSource 生成的 Hibernate SessionFactory 应使用的 JDBC DataSource（可以为 {@code null}）
+	 * @param resourceLoader 用于加载应用类的 ResourceLoader
+	 * @param metadataSources 要使用的 Hibernate MetadataSources 服务（例如复用已有的实例）
 	 * @since 4.3
 	 */
 	public LocalSessionFactoryBuilder(
@@ -305,8 +301,8 @@ public class LocalSessionFactoryBuilder extends Configuration {
 	/**
 	 * 执行基于 Spring 的实体类扫描，将它们作为注解类
 	 * 注册到此 {@code Configuration}。
-	 * @param packagesToScan one or more Java package names
-	 * @throws HibernateException if scanning fails for any reason
+	 * @param packagesToScan 一个或多个 Java 包名
+	 * @throws HibernateException 如果扫描因任何原因失败
 	 */
 	@SuppressWarnings("unchecked")
 	public LocalSessionFactoryBuilder scanPackages(String... packagesToScan) throws HibernateException {

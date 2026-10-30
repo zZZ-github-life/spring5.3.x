@@ -42,7 +42,7 @@ public class NettyDataBufferFactory implements DataBufferFactory {
 
 	/**
 	 * 基于给定工厂创建一个新的 {@code NettyDataBufferFactory}。
-	 * @param byteBufAllocator the factory to use
+	 * @param byteBufAllocator 要使用的工厂
 	 * @see io.netty.buffer.PooledByteBufAllocator
 	 * @see io.netty.buffer.UnpooledByteBufAllocator
 	 */
@@ -85,8 +85,8 @@ public class NettyDataBufferFactory implements DataBufferFactory {
 
 	/**
 	 * 将给定的 Netty {@link ByteBuf} 包装在 {@code NettyDataBuffer} 中。
-	 * @param byteBuf the Netty byte buffer to wrap
-	 * @return the wrapped buffer
+	 * @param byteBuf 要包装的 Netty 字节缓冲区
+	 * @return 包装后的缓冲区
 	 */
 	public NettyDataBuffer wrap(ByteBuf byteBuf) {
 		byteBuf.touch();
@@ -117,8 +117,8 @@ public class NettyDataBufferFactory implements DataBufferFactory {
 	 * <p>如果 {@code buffer} 是 {@link NettyDataBuffer}，则返回
 	 * {@linkplain NettyDataBuffer#getNativeBuffer() native buffer}；否则返回
 	 * {@link Unpooled#wrappedBuffer(ByteBuffer)}。
-	 * @param buffer the {@code DataBuffer} to return a {@code ByteBuf} for
-	 * @return the netty {@code ByteBuf}
+	 * @param buffer 要为其返回 {@code ByteBuf} 的 {@code DataBuffer}
+	 * @return Netty 的 {@code ByteBuf}
 	 */
 	public static ByteBuf toByteBuf(DataBuffer buffer) {
 		if (buffer instanceof NettyDataBuffer) {

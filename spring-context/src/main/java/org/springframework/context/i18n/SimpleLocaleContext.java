@@ -38,7 +38,7 @@ public class SimpleLocaleContext implements LocaleContext {
 	/**
 	 * 创建一个新的 {@code SimpleLocaleContext}，暴露指定的 {@link Locale}。<p>每次调用
 	 * {@link #getLocale()} 都会返回此 locale。
-	 * @param locale the {@code Locale} to expose, or {@code null} for no specific one
+	 * @param locale 要暴露的 {@code Locale}；若无特定值则为 {@code null}
 	 */
 	public SimpleLocaleContext(@Nullable Locale locale) {
 		this.locale = locale;

@@ -47,8 +47,8 @@ public final class Parameter {
 
 	/**
 	 * 根据 {@code value} 创建一个新的 {@link Parameter}。
-	 * @param value the parameter value
-	 * @return the {@link Parameter} value for {@code value}
+	 * @param value 参数值
+	 * @return {@code value} 对应的 {@link Parameter} 值
 	 */
 	public static Parameter from(Object value) {
 		Assert.notNull(value, "Value must not be null");
@@ -57,9 +57,9 @@ public final class Parameter {
 
 	/**
 	 * 根据 {@code value} 和 {@code type} 创建一个新的 {@link Parameter}。
-	 * @param value the parameter value (can be {@code null})
-	 * @param type the parameter type
-	 * @return the {@link Parameter} value for {@code value}
+	 * @param value 参数值（可以为 {@code null}）
+	 * @param type 参数类型
+	 * @return {@code value} 对应的 {@link Parameter} 值
 	 */
 	public static Parameter fromOrEmpty(@Nullable Object value, Class<?> type) {
 		return (value == null ? empty(type) : new Parameter(value, ClassUtils.getUserClass(value)));
@@ -67,7 +67,7 @@ public final class Parameter {
 
 	/**
 	 * 为 {@code type} 创建一个新的空 {@link Parameter}。
-	 * @return the empty {@link Parameter} value for {@code type}
+	 * @return {@code type} 对应的空 {@link Parameter} 值
 	 */
 	public static Parameter empty(Class<?> type) {
 		Assert.notNull(type, "Type must not be null");
@@ -93,7 +93,7 @@ public final class Parameter {
 
 	/**
 	 * 返回此 {@link Parameter} 是否有值。
-	 * @return {@code false} if {@link #getValue()} is {@code null}
+	 * @return 如果 {@link #getValue()} 为 {@code null} 则返回 {@code false}
 	 */
 	public boolean hasValue() {
 		return (this.value != null);
@@ -101,7 +101,7 @@ public final class Parameter {
 
 	/**
 	 * 返回此 {@link Parameter} 是否有空值。
-	 * @return {@code true} if {@link #getValue()} is {@code null}
+	 * @return 如果 {@link #getValue()} 为 {@code null} 则返回 {@code true}
 	 */
 	public boolean isEmpty() {
 		return (this.value == null);

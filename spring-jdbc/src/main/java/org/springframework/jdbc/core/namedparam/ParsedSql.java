@@ -43,7 +43,7 @@ public class ParsedSql {
 
 	/**
 	 * 创建 {@link ParsedSql} 类的新实例。
-	 * @param originalSql the SQL statement that is being (or is to be) parsed
+	 * @param originalSql 正在（或将要）被解析的 SQL 语句
 	 */
 	ParsedSql(String originalSql) {
 		this.originalSql = originalSql;
@@ -59,9 +59,9 @@ public class ParsedSql {
 
 	/**
 	 * 添加从此 SQL 语句中解析出的命名参数。
-	 * @param parameterName the name of the parameter
-	 * @param startIndex the start index in the original SQL String
-	 * @param endIndex the end index in the original SQL String
+	 * @param parameterName 参数的名称
+	 * @param startIndex 原始 SQL String 中的起始索引
+	 * @param endIndex 原始 SQL String 中的结束索引
 	 */
 	void addNamedParameter(String parameterName, int startIndex, int endIndex) {
 		this.parameterNames.add(parameterName);
@@ -78,10 +78,8 @@ public class ParsedSql {
 
 	/**
 	 * 返回指定参数的索引位置。
-	 * @param parameterPosition the position of the parameter
-	 * (as index in the parameter names List)
-	 * @return the start index and end index, combined into
-	 * an int array of length 2
+	 * @param parameterPosition 参数的位置（作为参数名称 List 中的索引）
+	 * @return 起始索引和结束索引，合并为长度为 2 的 int 数组
 	 */
 	int[] getParameterIndexes(int parameterPosition) {
 		return this.parameterIndexes.get(parameterPosition);

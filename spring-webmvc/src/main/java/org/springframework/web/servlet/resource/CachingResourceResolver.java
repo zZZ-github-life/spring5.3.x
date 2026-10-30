@@ -86,7 +86,7 @@ public class CachingResourceResolver extends AbstractResourceResolver {
 	 * {@link EncodedResourceResolver#setContentCodings(List)} 上配置的编码一致。
 	 * <p>默认情况下，此属性基于
 	 * {@link EncodedResourceResolver#DEFAULT_CODINGS} 的值设置为 {@literal ["br", "gzip"]}。
-	 * @param codings one or more supported content codings
+	 * @param codings 一个或多个支持的内容编码
 	 * @since 5.1
 	 */
 	public void setContentCodings(List<String> codings) {

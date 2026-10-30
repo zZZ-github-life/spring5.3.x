@@ -128,9 +128,9 @@ public class SimpAnnotationMethodMessageHandler extends AbstractMethodMessageHan
 
 	/**
 	 * 使用给定消息通道和代理消息模板创建 SimpAnnotationMethodMessageHandler 实例。
-	 * @param clientInboundChannel the channel for receiving messages from clients (e.g. WebSocket clients)
-	 * @param clientOutboundChannel the channel for messages to clients (e.g. WebSocket clients)
-	 * @param brokerTemplate a messaging template to send application messages to the broker
+	 * @param clientInboundChannel 用于接收来自客户端（例如 WebSocket 客户端）消息的通道
+	 * @param clientOutboundChannel 用于向客户端（例如 WebSocket 客户端）发送消息的通道
+	 * @param brokerTemplate 用于向 Broker 发送应用消息的消息模板
 	 */
 	public SimpAnnotationMethodMessageHandler(SubscribableChannel clientInboundChannel,
 			MessageChannel clientOutboundChannel, SimpMessageSendingOperations brokerTemplate) {
@@ -420,7 +420,7 @@ public class SimpAnnotationMethodMessageHandler extends AbstractMethodMessageHan
 
 	/**
 	 * 解析给定目标数组中的占位符值。
-	 * @return a new array with updated destinations
+	 * @return 包含更新后目标地址的新数组
 	 * @since 4.2
 	 */
 	protected String[] resolveEmbeddedValuesInDestinations(String[] destinations) {

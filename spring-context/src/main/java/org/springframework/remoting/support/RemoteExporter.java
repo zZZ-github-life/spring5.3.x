@@ -131,7 +131,7 @@ public abstract class RemoteExporter extends RemotingSupport {
 	 * 获取给定服务对象的代理，该代理实现指定的服务接口。
 	 * <p>用于导出一个不暴露任何内部细节、只暴露专供远程访问的特定接口的代理。此外，（默认情况下）会注
 	 * 册一个 {@link RemoteInvocationTraceInterceptor}。
-	 * @return the proxy
+	 * @return 代理
 	 * @see #setServiceInterface
 	 * @see #setRegisterTraceInterceptor
 	 * @see RemoteInvocationTraceInterceptor

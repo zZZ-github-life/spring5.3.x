@@ -49,8 +49,8 @@ public abstract class PropertyMatches {
 
 	/**
 	 * 为给定的 Bean 属性创建 PropertyMatches。
-	 * @param propertyName the name of the property to find possible matches for
-	 * @param beanClass the bean class to search for matches
+	 * @param propertyName 要为其查找可能匹配项的属性名称
+	 * @param beanClass 要在其中搜索匹配项的 Bean 类
 	 */
 	public static PropertyMatches forProperty(String propertyName, Class<?> beanClass) {
 		return forProperty(propertyName, beanClass, DEFAULT_MAX_DISTANCE);
@@ -58,9 +58,9 @@ public abstract class PropertyMatches {
 
 	/**
 	 * 为给定的 Bean 属性创建 PropertyMatches。
-	 * @param propertyName the name of the property to find possible matches for
-	 * @param beanClass the bean class to search for matches
-	 * @param maxDistance the maximum property distance allowed for matches
+	 * @param propertyName 要为其查找可能匹配项的属性名称
+	 * @param beanClass 要在其中搜索匹配项的 Bean 类
+	 * @param maxDistance 匹配所允许的最大属性距离
 	 */
 	public static PropertyMatches forProperty(String propertyName, Class<?> beanClass, int maxDistance) {
 		return new BeanPropertyMatches(propertyName, beanClass, maxDistance);
@@ -68,8 +68,8 @@ public abstract class PropertyMatches {
 
 	/**
 	 * 为给定的字段属性创建 PropertyMatches。
-	 * @param propertyName the name of the field to find possible matches for
-	 * @param beanClass the bean class to search for matches
+	 * @param propertyName 要为其查找可能匹配项的字段名称
+	 * @param beanClass 要在其中搜索匹配项的 Bean 类
 	 */
 	public static PropertyMatches forField(String propertyName, Class<?> beanClass) {
 		return forField(propertyName, beanClass, DEFAULT_MAX_DISTANCE);
@@ -77,9 +77,9 @@ public abstract class PropertyMatches {
 
 	/**
 	 * 为给定的字段属性创建 PropertyMatches。
-	 * @param propertyName the name of the field to find possible matches for
-	 * @param beanClass the bean class to search for matches
-	 * @param maxDistance the maximum property distance allowed for matches
+	 * @param propertyName 要为其查找可能匹配项的字段名称
+	 * @param beanClass 要在其中搜索匹配项的 Bean 类
+	 * @param maxDistance 匹配所允许的最大属性距离
 	 */
 	public static PropertyMatches forField(String propertyName, Class<?> beanClass, int maxDistance) {
 		return new FieldPropertyMatches(propertyName, beanClass, maxDistance);
@@ -141,9 +141,9 @@ public abstract class PropertyMatches {
 
 	/**
 	 * 根据 Levenshtein 算法计算给定的两个字符串之间的距离。
-	 * @param s1 the first String
-	 * @param s2 the second String
-	 * @return the distance value
+	 * @param s1 第一个 String
+	 * @param s2 第二个 String
+	 * @return 距离值
 	 */
 	private static int calculateStringDistance(String s1, String s2) {
 		if (s1.isEmpty()) {
@@ -192,8 +192,8 @@ public abstract class PropertyMatches {
 		/**
 		 * 为给定的属性和类生成可能的属性备选名称。内部使用 {@code getStringDistance} 方法，该方法进而使用
 		 * Levenshtein 算法确定两个字符串之间的距离。
-		 * @param descriptors the JavaBeans property descriptors to search
-		 * @param maxDistance the maximum distance to accept
+		 * @param descriptors 要搜索的 JavaBeans 属性描述符
+		 * @param maxDistance 可接受的最大距离
 		 */
 		private static String[] calculateMatches(String name, PropertyDescriptor[] descriptors, int maxDistance) {
 			List<String> candidates = new ArrayList<>();

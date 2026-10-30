@@ -57,7 +57,7 @@ public class AsyncSupportConfigurer {
 	 * </ol>
 	 * <p>默认仅使用 {@link SimpleAsyncTaskExecutor}。不过在使用上述两种场景时，
 	 * 建议配置一个基于线程池的执行器，例如 {@link ThreadPoolTaskExecutor}。
-	 * @param taskExecutor the task executor instance to use by default
+	 * @param taskExecutor 默认使用的任务执行器实例
 	 */
 	public AsyncSupportConfigurer setTaskExecutor(AsyncTaskExecutor taskExecutor) {
 		this.taskExecutor = taskExecutor;
@@ -69,7 +69,7 @@ public class AsyncSupportConfigurer {
 	 * 在 Servlet 3 中，超时从主请求处理线程退出后开始，
 	 * 到请求被重新分派以进一步处理并发产生的结果时结束。
 	 * <p>如果未设置此值，则使用底层实现的默认超时时间。
-	 * @param timeout the timeout value in milliseconds
+	 * @param timeout 超时值，单位为毫秒
 	 */
 	public AsyncSupportConfigurer setDefaultTimeout(long timeout) {
 		this.timeout = timeout;
@@ -79,7 +79,7 @@ public class AsyncSupportConfigurer {
 	/**
 	 * 配置生命周期拦截器，在控制器返回
 	 * {@link java.util.concurrent.Callable} 时启动的并发请求执行前后提供回调。
-	 * @param interceptors the interceptors to register
+	 * @param interceptors 要注册的拦截器
 	 */
 	public AsyncSupportConfigurer registerCallableInterceptors(CallableProcessingInterceptor... interceptors) {
 		this.callableInterceptors.addAll(Arrays.asList(interceptors));
@@ -89,7 +89,7 @@ public class AsyncSupportConfigurer {
 	/**
 	 * 配置生命周期拦截器，在控制器返回 {@link DeferredResult} 时
 	 * 启动的并发请求执行前后提供回调。
-	 * @param interceptors the interceptors to register
+	 * @param interceptors 要注册的拦截器
 	 */
 	public AsyncSupportConfigurer registerDeferredResultInterceptors(
 			DeferredResultProcessingInterceptor... interceptors) {

@@ -33,8 +33,8 @@ public class GenericGroovyXmlWebContextLoader extends GenericXmlWebContextLoader
 
 	/**
 	 * 使用 {@link GroovyBeanDefinitionReader}，从所提供的 {@code WebMergedContextConfiguration} 中的位置加载 bean 定义到所提供的 {@link GenericWebApplicationContext context} 中。
-	 * @param context the context into which the bean definitions should be loaded
-	 * @param webMergedConfig the merged context configuration
+	 * @param context 应将 Bean 定义加载到的上下文
+	 * @param webMergedConfig 合并后的上下文配置
 	 * @see AbstractGenericWebContextLoader#loadBeanDefinitions
 	 */
 	@Override
@@ -53,7 +53,7 @@ public class GenericGroovyXmlWebContextLoader extends GenericXmlWebContextLoader
 
 	/**
 	 * {@code GenericGroovyXmlWebContextLoader} 同时支持 Groovy 和 XML 资源类型以检测默认值。因此，不支持此方法。
-	 * @throws UnsupportedOperationException in this implementation
+	 * @throws UnsupportedOperationException 在此实现中
 	 * @see #getResourceSuffixes()
 	 */
 	@Override

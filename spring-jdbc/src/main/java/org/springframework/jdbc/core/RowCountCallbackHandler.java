@@ -89,9 +89,9 @@ public class RowCountCallbackHandler implements RowCallbackHandler {
 	/**
 	 * 子类可以重写此方法以执行自定义的提取或处理。
 	 * 此类的实现什么都不做。
-	 * @param rs the ResultSet to extract data from. This method is
-	 * invoked for each row
-	 * @param rowNum number of the current row (starting from 0)
+	 * @param rs 要从中提取数据的 ResultSet。
+	 * 该方法会针对每一行被调用
+	 * @param rowNum 当前行的编号（从 0 开始）
 	 */
 	protected void processRow(ResultSet rs, int rowNum) throws SQLException {
 	}
@@ -100,8 +100,8 @@ public class RowCountCallbackHandler implements RowCallbackHandler {
 	/**
 	 * 返回列的类型，以java.sql.Types常量表示。
 	 * 在第一次调用processRow后有效。
-	 * @return the types of the columns as java.sql.Types constants.
-	 * <b>Indexed from 0 to n-1.</b>
+	 * @return 各列的类型，以 java.sql.Types 常量表示。
+	 * <b>索引从 0 到 n-1。</b>
 	 */
 	@Nullable
 	public final int[] getColumnTypes() {
@@ -111,8 +111,8 @@ public class RowCountCallbackHandler implements RowCallbackHandler {
 	/**
 	 * 返回列的名称。
 	 * 在第一次调用processRow后有效。
-	 * @return the names of the columns.
-	 * <b>Indexed from 0 to n-1.</b>
+	 * @return 各列的名称。
+	 * <b>索引从 0 到 n-1。</b>
 	 */
 	@Nullable
 	public final String[] getColumnNames() {
@@ -122,7 +122,7 @@ public class RowCountCallbackHandler implements RowCallbackHandler {
 	/**
 	 * 返回此ResultSet的行数。
 	 * 仅在处理完成后有效。
-	 * @return the number of rows in this ResultSet
+	 * @return 此 ResultSet 中的行数
 	 */
 	public final int getRowCount() {
 		return this.rowCount;
@@ -131,7 +131,7 @@ public class RowCountCallbackHandler implements RowCallbackHandler {
 	/**
 	 * 返回此结果集中的列数。
 	 * 在看到第一行后有效，因此子类可以在处理期间使用。
-	 * @return the number of columns in this result set
+	 * @return 此结果集中的列数
 	 */
 	public final int getColumnCount() {
 		return this.columnCount;

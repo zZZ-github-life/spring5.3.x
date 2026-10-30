@@ -151,8 +151,8 @@ public class MvcUriComponentsBuilder {
 	 * 包含多个映射，则仅使用第一个。
 	 * <p><strong>注意：</strong>如果找到 "Forwarded" 和
 	 * "X-Forwarded-*" 头，此方法会从中提取值。请参见类级文档。
-	 * @param controllerType the controller to build a URI for
-	 * @return a UriComponentsBuilder instance (never {@code null})
+	 * @param controllerType 要为其构建 URI 的控制器
+	 * @return UriComponentsBuilder 实例（永不为 {@code null}）
 	 */
 	public static UriComponentsBuilder fromController(Class<?> controllerType) {
 		return fromController(null, controllerType);
@@ -165,10 +165,10 @@ public class MvcUriComponentsBuilder {
 	 * 与当前请求不匹配的自定义 baseUrl 时，这很有用。
 	 * <p><strong>注意：</strong>如果找到 "Forwarded" 和
 	 * "X-Forwarded-*" 头，此方法会从中提取值。请参见类级文档。
-	 * @param builder the builder for the base URL; the builder will be cloned
-	 * and therefore not modified and may be re-used for further calls.
-	 * @param controllerType the controller to build a URI for
-	 * @return a UriComponentsBuilder instance (never {@code null})
+	 * @param builder 基础 URL 的构建器；该构建器将被克隆，
+	 * 因此不会被修改，可复用于后续调用。
+	 * @param controllerType 要为其构建 URI 的控制器
+	 * @return UriComponentsBuilder 实例（永不为 {@code null}）
 	 */
 	public static UriComponentsBuilder fromController(@Nullable UriComponentsBuilder builder,
 			Class<?> controllerType) {
@@ -191,12 +191,11 @@ public class MvcUriComponentsBuilder {
 	 * 给 {@link #fromMethod(Class, Method, Object...)}。
 	 * <p><strong>注意：</strong>如果找到 "Forwarded" 和
 	 * "X-Forwarded-*" 头，此方法会从中提取值。请参见类级文档。
-	 * @param controllerType the controller
-	 * @param methodName the method name
-	 * @param args the argument values
-	 * @return a UriComponentsBuilder instance, never {@code null}
-	 * @throws IllegalArgumentException if there is no matching or
-	 * if there is more than one matching method
+	 * @param controllerType 控制器
+	 * @param methodName 方法名称
+	 * @param args 参数值
+	 * @return UriComponentsBuilder 实例，永不为 {@code null}
+	 * @throws IllegalArgumentException 如果没有匹配的方法或有多个匹配的方法
 	 */
 	public static UriComponentsBuilder fromMethodName(Class<?> controllerType,
 			String methodName, Object... args) {
@@ -212,14 +211,13 @@ public class MvcUriComponentsBuilder {
 	 * 与当前请求不匹配的自定义 baseUrl 时，这很有用。
 	 * <p><strong>注意：</strong>如果找到 "Forwarded" 和
 	 * "X-Forwarded-*" 头，此方法会从中提取值。请参见类级文档。
-	 * @param builder the builder for the base URL; the builder will be cloned
-	 * and therefore not modified and may be re-used for further calls.
-	 * @param controllerType the controller
-	 * @param methodName the method name
-	 * @param args the argument values
-	 * @return a UriComponentsBuilder instance, never {@code null}
-	 * @throws IllegalArgumentException if there is no matching or
-	 * if there is more than one matching method
+	 * @param builder 基础 URL 的构建器；该构建器将被克隆，
+	 * 因此不会被修改，可复用于后续调用。
+	 * @param controllerType 控制器
+	 * @param methodName 方法名称
+	 * @param args 参数值
+	 * @return UriComponentsBuilder 实例，永不为 {@code null}
+	 * @throws IllegalArgumentException 如果没有匹配的方法或有多个匹配的方法
 	 */
 	public static UriComponentsBuilder fromMethodName(UriComponentsBuilder builder,
 			Class<?> controllerType, String methodName, Object... args) {
@@ -237,10 +235,10 @@ public class MvcUriComponentsBuilder {
 	 * 可以为 {@code null}。
 	 * <p><strong>注意：</strong>如果找到 "Forwarded" 和
 	 * "X-Forwarded-*" 头，此方法会从中提取值。请参见类级文档。
-	 * @param controllerType the controller type
-	 * @param method the controller method
-	 * @param args argument values for the controller method
-	 * @return a UriComponentsBuilder instance, never {@code null}
+	 * @param controllerType 控制器类型
+	 * @param method 控制器方法
+	 * @param args 控制器方法的参数值
+	 * @return UriComponentsBuilder 实例，永不为 {@code null}
 	 * @since 4.2
 	 */
 	public static UriComponentsBuilder fromMethod(Class<?> controllerType, Method method, Object... args) {
@@ -255,12 +253,12 @@ public class MvcUriComponentsBuilder {
 	 * 自定义 baseUrl 时，这很有用。
 	 * <p><strong>注意：</strong>如果找到 "Forwarded" 和
 	 * "X-Forwarded-*" 头，此方法会从中提取值。请参见类级文档。
-	 * @param baseUrl the builder for the base URL; the builder will be cloned
-	 * and therefore not modified and may be re-used for further calls.
-	 * @param controllerType the controller type
-	 * @param method the controller method
-	 * @param args argument values for the controller method
-	 * @return a UriComponentsBuilder instance (never {@code null})
+	 * @param baseUrl 基础 URL 的构建器；该构建器将被克隆，
+	 * 因此不会被修改，可复用于后续调用。
+	 * @param controllerType 控制器类型
+	 * @param method 控制器方法
+	 * @param args 控制器方法的参数值
+	 * @return UriComponentsBuilder 实例（永不为 {@code null}）
 	 * @since 4.2
 	 */
 	public static UriComponentsBuilder fromMethod(UriComponentsBuilder baseUrl,
@@ -303,9 +301,9 @@ public class MvcUriComponentsBuilder {
 	 * </pre>
 	 * <p><strong>注意：</strong>如果找到 "Forwarded" 和
 	 * "X-Forwarded-*" 头，此方法会从中提取值。请参见类级文档。
-	 * @param info either the value returned from a "mock" controller
-	 * invocation or the "mock" controller itself after an invocation
-	 * @return a UriComponents instance
+	 * @param info 要么是从 "mock" 控制器调用返回的值，
+	 * 要么是调用后的 "mock" 控制器本身
+	 * @return UriComponents 实例
 	 * @see #on(Class)
 	 * @see #controller(Class)
 	 */
@@ -325,11 +323,11 @@ public class MvcUriComponentsBuilder {
 	 * 与当前请求不匹配的自定义 baseUrl 时，这很有用。
 	 * <p><strong>注意：</strong>如果找到 "Forwarded" 和
 	 * "X-Forwarded-*" 头，此方法会从中提取值。请参见类级文档。
-	 * @param builder the builder for the base URL; the builder will be cloned
-	 * and therefore not modified and may be re-used for further calls.
-	 * @param info either the value returned from a "mock" controller
-	 * invocation or the "mock" controller itself after an invocation
-	 * @return a UriComponents instance
+	 * @param builder 基础 URL 的构建器；该构建器将被克隆，
+	 * 因此不会被修改，可复用于后续调用。
+	 * @param info 要么是从 "mock" 控制器调用返回的值，
+	 * 要么是调用后的 "mock" 控制器本身
+	 * @return UriComponents 实例
 	 */
 	public static UriComponentsBuilder fromMethodCall(UriComponentsBuilder builder, Object info) {
 		Assert.isInstanceOf(MethodInvocationInfo.class, info, "MethodInvocationInfo required");
@@ -352,7 +350,7 @@ public class MvcUriComponentsBuilder {
 	 * </pre>
 	 * <p><strong>注意：</strong>如果找到 "Forwarded" 和
 	 * "X-Forwarded-*" 头，此方法会从中提取值。请参见类级文档。
-	 * @param controllerType the target controller
+	 * @param controllerType 目标控制器
 	 */
 	public static <T> T on(Class<T> controllerType) {
 		return controller(controllerType);
@@ -376,7 +374,7 @@ public class MvcUriComponentsBuilder {
 	 * </pre>
 	 * <p><strong>注意：</strong>如果找到 "Forwarded" 和
 	 * "X-Forwarded-*" 头，此方法会从中提取值。请参见类级文档。
-	 * @param controllerType the target controller
+	 * @param controllerType 目标控制器
 	 */
 	public static <T> T controller(Class<T> controllerType) {
 		Assert.notNull(controllerType, "'controllerType' must not be null");
@@ -420,10 +418,9 @@ public class MvcUriComponentsBuilder {
 	 *
 	 * <p><strong>注意：</strong>如果找到 "Forwarded" 和
 	 * "X-Forwarded-*" 头，此方法会从中提取值。请参见类级文档。
-	 * @param mappingName the mapping name
-	 * @return a builder to prepare the URI String
-	 * @throws IllegalArgumentException if the mapping name is not found or
-	 * if there is no unique match
+	 * @param mappingName 映射名称
+	 * @return 用于准备 URI 字符串的构建器
+	 * @throws IllegalArgumentException 如果未找到该映射名称或没有唯一匹配
 	 * @since 4.1
 	 */
 	public static MethodArgumentBuilder fromMappingName(String mappingName) {
@@ -437,12 +434,11 @@ public class MvcUriComponentsBuilder {
 	 * 与当前请求不匹配的自定义 baseUrl 时，这很有用。
 	 * <p><strong>注意：</strong>如果找到 "Forwarded" 和
 	 * "X-Forwarded-*" 头，此方法会从中提取值。请参见类级文档。
-	 * @param builder the builder for the base URL; the builder will be cloned
-	 * and therefore not modified and may be re-used for further calls.
-	 * @param name the mapping name
-	 * @return a builder to prepare the URI String
-	 * @throws IllegalArgumentException if the mapping name is not found or
-	 * if there is no unique match
+	 * @param builder 基础 URL 的构建器；该构建器将被克隆，
+	 * 因此不会被修改，可复用于后续调用。
+	 * @param name 映射名称
+	 * @return 用于准备 URI 字符串的构建器
+	 * @throws IllegalArgumentException 如果未找到该映射名称或没有唯一匹配
 	 * @since 4.2
 	 */
 	public static MethodArgumentBuilder fromMappingName(@Nullable UriComponentsBuilder builder, String name) {

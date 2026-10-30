@@ -55,14 +55,14 @@ public interface AsyncTaskExecutor extends TaskExecutor {
 
 	/**
 	 * 执行给定的 {@code task}。
-	 * @param task the {@code Runnable} to execute (never {@code null})
-	 * @param startTimeout the time duration (milliseconds) within which the task is
-	 * supposed to start. This is intended as a hint to the executor, allowing for
-	 * preferred handling of immediate tasks. Typical values are {@link #TIMEOUT_IMMEDIATE}
-	 * or {@link #TIMEOUT_INDEFINITE} (the default as used by {@link #execute(Runnable)}).
-	 * @throws TaskTimeoutException in case of the task being rejected because
-	 * of the timeout (i.e. it cannot be started in time)
-	 * @throws TaskRejectedException if the given task was not accepted
+	 * @param task 要执行的 {@code Runnable}（永不为 {@code null}）
+	 * @param startTimeout 任务预计开始的时间期限（毫秒）。
+	 * 这是对执行器的一个提示，便于优先处理即时任务。
+	 * 典型值为 {@link #TIMEOUT_IMMEDIATE} 或 {@link #TIMEOUT_INDEFINITE}
+	 * （即 {@link #execute(Runnable)} 使用的默认值）。
+	 * @throws TaskTimeoutException 如果任务因超时而被拒绝
+	 * （即无法及时启动）
+	 * @throws TaskRejectedException 如果给定的任务未被接受
 	 * @see #execute(Runnable)
 	 * @deprecated as of 5.3.16 since the common executors do not support start timeouts
 	 */
@@ -72,9 +72,9 @@ public interface AsyncTaskExecutor extends TaskExecutor {
 	/**
 	 * 提交一个 Runnable 任务以供执行，并返回代表该任务的 Future。该 Future 在完成时将返回 {@code null}
 	 * 结果。
-	 * @param task the {@code Runnable} to execute (never {@code null})
-	 * @return a Future representing pending completion of the task
-	 * @throws TaskRejectedException if the given task was not accepted
+	 * @param task 要执行的 {@code Runnable}（永不为 {@code null}）
+	 * @return 表示任务待完成状态的 Future
+	 * @throws TaskRejectedException 如果给定的任务未被接受
 	 * @since 3.0
 	 */
 	Future<?> submit(Runnable task);
@@ -82,9 +82,9 @@ public interface AsyncTaskExecutor extends TaskExecutor {
 	/**
 	 * 提交一个 Callable 任务以供执行，并返回代表该任务的 Future。该 Future 在完成时将返回 Callable 的
 	 * 结果。
-	 * @param task the {@code Callable} to execute (never {@code null})
-	 * @return a Future representing pending completion of the task
-	 * @throws TaskRejectedException if the given task was not accepted
+	 * @param task 要执行的 {@code Callable}（永不为 {@code null}）
+	 * @return 表示任务待完成状态的 Future
+	 * @throws TaskRejectedException 如果给定的任务未被接受
 	 * @since 3.0
 	 */
 	<T> Future<T> submit(Callable<T> task);

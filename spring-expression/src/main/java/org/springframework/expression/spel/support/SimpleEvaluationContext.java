@@ -147,7 +147,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 
 	/**
 	 * {@code SimpleEvaluationContext} 不支持使用 Bean 引用。
-	 * @return always {@code null}
+	 * @return 始终为 {@code null}
 	 */
 	@Override
 	@Nullable
@@ -157,8 +157,8 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 
 	/**
 	 * {@code SimpleEvaluationContext} 不支持使用类型引用。
-	 * @return {@code TypeLocator} implementation that raises a
-	 * {@link SpelEvaluationException} with {@link SpelMessage#TYPE_NOT_FOUND}.
+	 * @return {@code TypeLocator} 实现，会抛出
+	 * 带有 {@link SpelMessage#TYPE_NOT_FOUND} 的 {@link SpelEvaluationException}。
 	 */
 	@Override
 	public TypeLocator getTypeLocator() {
@@ -193,7 +193,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 
 	/**
 	 * {@code SimpleEvaluationContext} 不支持在表达式中进行变量赋值。
-	 * @throws SpelEvaluationException with {@link SpelMessage#VARIABLE_ASSIGNMENT_NOT_SUPPORTED}
+	 * @throws SpelEvaluationException 带有 {@link SpelMessage#VARIABLE_ASSIGNMENT_NOT_SUPPORTED} 消息
 	 * @since 5.2.24
 	 */
 	@Override
@@ -217,7 +217,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 	 * 为指定的 {@link PropertyAccessor} 委托创建一个 {@code SimpleEvaluationContext}：通常是针对某个用
 	 * 例的自定义 {@code PropertyAccessor}（例如在自定义数据结构中解析属性），如果还需要属性解引用，也
 	 * 可以与 {@link DataBindingPropertyAccessor} 组合使用。
-	 * @param accessors the accessor delegates to use
+	 * @param accessors 要使用的访问器委托
 	 * @see DataBindingPropertyAccessor#forReadOnlyAccess()
 	 * @see DataBindingPropertyAccessor#forReadWriteAccess()
 	 */
@@ -273,7 +273,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 
 		/**
 		 * 注册指定的 {@link MethodResolver} 委托，以组合属性访问和方法解析。
-		 * @param resolvers the resolver delegates to use
+		 * @param resolvers 要使用的解析器委托
 		 * @see #withInstanceMethods()
 		 * @see SimpleEvaluationContext#forPropertyAccessors
 		 */

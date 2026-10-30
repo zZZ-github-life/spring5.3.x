@@ -38,13 +38,13 @@ public interface HandlerExceptionResolver {
 	 * 并在适当的情况下返回表示特定错误页面的 {@link ModelAndView}。
 	 * <p>返回的 {@code ModelAndView} 可以是 {@linkplain ModelAndView#isEmpty() 空的}，
 	 * 表示异常已成功解析但不应渲染任何视图，例如仅设置状态码。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler, or {@code null} if none chosen at the
-	 * time of the exception (for example, if multipart resolution failed)
-	 * @param ex the exception that got thrown during handler execution
-	 * @return a corresponding {@code ModelAndView} to forward to,
-	 * or {@code null} for default processing in the resolution chain
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器；如果异常发生时尚未选择处理器，则为 {@code null}
+	 * （例如 multipart 解析失败时）
+	 * @param ex 处理器执行期间抛出的异常
+	 * @return 要转发到的对应 {@code ModelAndView}；
+	 * 为 {@code null} 时在解析链中进行默认处理
 	 */
 	@Nullable
 	ModelAndView resolveException(

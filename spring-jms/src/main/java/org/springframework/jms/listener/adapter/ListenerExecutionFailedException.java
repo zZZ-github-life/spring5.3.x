@@ -30,8 +30,8 @@ public class ListenerExecutionFailedException extends JmsException {
 
 	/**
 	 * ListenerExecutionFailedException 的构造函数。
-	 * @param msg the detail message
-	 * @param cause the exception thrown by the listener method
+	 * @param msg 详细消息
+	 * @param cause 监听器方法抛出的异常
 	 */
 	public ListenerExecutionFailedException(String msg, Throwable cause) {
 		super(msg, cause);

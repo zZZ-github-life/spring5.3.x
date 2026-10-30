@@ -71,8 +71,8 @@ public class BatchSqlUpdate extends SqlUpdate {
 
 	/**
 	 * 使用给定的 DataSource 和 SQL 构造更新对象。
-	 * @param ds the DataSource to use to obtain connections
-	 * @param sql the SQL statement to execute
+	 * @param ds 用于获取连接的 DataSource
+	 * @param sql 要执行的 SQL 语句
 	 */
 	public BatchSqlUpdate(DataSource ds, String sql) {
 		super(ds, sql);
@@ -80,10 +80,10 @@ public class BatchSqlUpdate extends SqlUpdate {
 
 	/**
 	 * 使用给定的 DataSource、SQL 和匿名参数构造更新对象。
-	 * @param ds the DataSource to use to obtain connections
-	 * @param sql the SQL statement to execute
-	 * @param types the SQL types of the parameters, as defined in the
-	 * {@code java.sql.Types} class
+	 * @param ds 用于获取连接的 DataSource
+	 * @param sql 要执行的 SQL 语句
+	 * @param types 参数的 SQL 类型，定义于
+	 * {@code java.sql.Types} 类中
 	 * @see java.sql.Types
 	 */
 	public BatchSqlUpdate(DataSource ds, String sql, int[] types) {
@@ -93,12 +93,11 @@ public class BatchSqlUpdate extends SqlUpdate {
 	/**
 	 * 使用给定的 DataSource、SQL、匿名参数构造更新对象，
 	 * 并指定最多可影响的行数。
-	 * @param ds the DataSource to use to obtain connections
-	 * @param sql the SQL statement to execute
-	 * @param types the SQL types of the parameters, as defined in the
-	 * {@code java.sql.Types} class
-	 * @param batchSize the number of statements that will trigger
-	 * an automatic intermediate flush
+	 * @param ds 用于获取连接的 DataSource
+	 * @param sql 要执行的 SQL 语句
+	 * @param types 参数的 SQL 类型，定义于
+	 * {@code java.sql.Types} 类中
+	 * @param batchSize 触发自动中间刷新的语句数量
 	 * @see java.sql.Types
 	 */
 	public BatchSqlUpdate(DataSource ds, String sql, int[] types, int batchSize) {
@@ -141,10 +140,9 @@ public class BatchSqlUpdate extends SqlUpdate {
 	 * 此方法，因此行为类似。
 	 * <p>需要调用 {@code flush} 才能真正执行批次。如果达到指定的批大小，
 	 * 会发生隐式刷新；但最终仍需要调用 {@code flush} 来刷新所有语句。
-	 * @param params array of parameter objects
-	 * @return the number of rows affected by the update (always -1,
-	 * meaning "not applicable", as the statement is not actually
-	 * executed by this method)
+	 * @param params 参数对象数组
+	 * @return 受影响的行数（始终为 -1，表示“不适用”，
+	 * 因为该语句实际上不会由此方法执行）
 	 * @see #flush
 	 */
 	@Override
@@ -164,7 +162,7 @@ public class BatchSqlUpdate extends SqlUpdate {
 
 	/**
 	 * 触发将任何已排队的更新操作作为最终批次添加。
-	 * @return an array of the number of rows affected by each statement
+	 * @return 各语句受影响行数组成的数组
 	 */
 	public int[] flush() {
 		if (this.parameterQueue.isEmpty()) {
@@ -212,7 +210,7 @@ public class BatchSqlUpdate extends SqlUpdate {
 	/**
 	 * 返回所有已执行语句的影响行数。在调用 {@code reset} 之前，
 	 * 会累积所有 {@code flush} 的返回值。
-	 * @return an array of the number of rows affected by each statement
+	 * @return 各语句受影响行数组成的数组
 	 * @see #reset
 	 */
 	public int[] getRowsAffected() {

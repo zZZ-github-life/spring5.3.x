@@ -39,10 +39,10 @@ public interface ResourceTransformerChain {
 
 	/**
 	 * 转换给定资源。
-	 * @param request the current request
-	 * @param resource the candidate resource to transform
-	 * @return the transformed or the same resource, never {@code null}
-	 * @throws IOException if transformation fails
+	 * @param request 当前请求
+	 * @param resource 要转换的候选资源
+	 * @return 转换后的资源或原资源，永不为 {@code null}
+	 * @throws IOException 如果转换失败
 	 */
 	Resource transform(HttpServletRequest request, Resource resource) throws IOException;
 

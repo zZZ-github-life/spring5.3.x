@@ -39,8 +39,8 @@ public class ScheduledMethodRunnable implements Runnable {
 
 	/**
 	 * 为给定目标实例创建一个 {@code ScheduledMethodRunnable}，调用指定的方法。
-	 * @param target the target instance to call the method on
-	 * @param method the target method to call
+	 * @param target 调用方法的目标实例
+	 * @param method 要调用的目标方法
 	 */
 	public ScheduledMethodRunnable(Object target, Method method) {
 		this.target = target;
@@ -49,9 +49,9 @@ public class ScheduledMethodRunnable implements Runnable {
 
 	/**
 	 * 为给定目标实例创建一个 {@code ScheduledMethodRunnable}，按名称调用指定的方法。
-	 * @param target the target instance to call the method on
-	 * @param methodName the name of the target method
-	 * @throws NoSuchMethodException if the specified method does not exist
+	 * @param target 调用方法的目标实例
+	 * @param methodName 目标方法的名称
+	 * @throws NoSuchMethodException 如果指定的方法不存在
 	 */
 	public ScheduledMethodRunnable(Object target, String methodName) throws NoSuchMethodException {
 		this.target = target;

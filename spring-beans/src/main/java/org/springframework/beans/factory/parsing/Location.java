@@ -40,7 +40,7 @@ public class Location {
 
 	/**
 	 * 创建 {@link Location} 类的新实例。
-	 * @param resource the resource with which this location is associated
+	 * @param resource 与此位置关联的资源
 	 */
 	public Location(Resource resource) {
 		this(resource, null);
@@ -48,9 +48,8 @@ public class Location {
 
 	/**
 	 * 创建 {@link Location} 类的新实例。
-	 * @param resource the resource with which this location is associated
-	 * @param source the actual location within the associated resource
-	 * (may be {@code null})
+	 * @param resource 与此位置关联的资源
+	 * @param source 关联资源中的实际位置（可能为 {@code null}）
 	 */
 	public Location(Resource resource, @Nullable Object source) {
 		Assert.notNull(resource, "Resource must not be null");

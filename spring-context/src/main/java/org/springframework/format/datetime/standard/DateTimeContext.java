@@ -81,9 +81,9 @@ public class DateTimeContext {
 
 	/**
 	 * 获取将本上下文的设置应用到基础 {@code formatter} 后的 DateTimeFormatter。
-	 * @param formatter the base formatter that establishes default
-	 * formatting rules, generally context-independent
-	 * @return the contextual DateTimeFormatter
+	 * @param formatter 建立默认格式化规则的基础格式化器，
+	 * 通常与上下文无关
+	 * @return 与上下文相关的 DateTimeFormatter
 	 */
 	public DateTimeFormatter getFormatter(DateTimeFormatter formatter) {
 		if (this.chronology != null) {

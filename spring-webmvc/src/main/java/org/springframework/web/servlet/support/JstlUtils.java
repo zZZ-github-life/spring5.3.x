@@ -40,12 +40,12 @@ public abstract class JstlUtils {
 
 	/**
 	 * 检查 JSTL 的 "javax.servlet.jsp.jstl.fmt.localizationContext" context-param，并创建相应的子消息源，以提供的 Spring 定义的 MessageSource 作为父级。
-	 * @param servletContext the ServletContext we're running in
-	 * (to check JSTL-related context-params in {@code web.xml})
-	 * @param messageSource the MessageSource to expose, typically
-	 * the ApplicationContext of the current DispatcherServlet
-	 * @return the MessageSource to expose to JSTL; first checking the
-	 * JSTL-defined bundle, then the Spring-defined MessageSource
+	 * @param servletContext 我们运行所在的 ServletContext（用于检查 {@code web.xml} 中
+	 * 与 JSTL 相关的 context-param）
+	 * @param messageSource 要暴露的 MessageSource，
+	 * 通常是当前 DispatcherServlet 的 ApplicationContext
+	 * @return 要暴露给 JSTL 的 MessageSource；
+	 * 先检查 JSTL 定义的 bundle，再检查 Spring 定义的 MessageSource
 	 * @see org.springframework.context.ApplicationContext
 	 */
 	public static MessageSource getJstlAwareMessageSource(
@@ -68,9 +68,9 @@ public abstract class JstlUtils {
 
 	/**
 	 * 暴露 JSTL 特定的请求属性，为 JSTL 的格式化标签和消息标签指定区域设置和资源包，使用 Spring 的区域设置和 MessageSource。
-	 * @param request the current HTTP request
-	 * @param messageSource the MessageSource to expose,
-	 * typically the current ApplicationContext (may be {@code null})
+	 * @param request 当前 HTTP 请求
+	 * @param messageSource 要暴露的 MessageSource，
+	 * 通常是当前的 ApplicationContext（可以为 {@code null}）
 	 * @see #exposeLocalizationContext(RequestContext)
 	 */
 	public static void exposeLocalizationContext(HttpServletRequest request, @Nullable MessageSource messageSource) {
@@ -88,8 +88,8 @@ public abstract class JstlUtils {
 
 	/**
 	 * 暴露 JSTL 特定的请求属性，为 JSTL 的格式化标签和消息标签指定区域设置和资源包，使用 Spring 的区域设置和 MessageSource。
-	 * @param requestContext the context for the current HTTP request,
-	 * including the ApplicationContext to expose as MessageSource
+	 * @param requestContext 当前 HTTP 请求的上下文，
+	 * 其中包含要作为 MessageSource 暴露的 ApplicationContext
 	 */
 	public static void exposeLocalizationContext(RequestContext requestContext) {
 		Config.set(requestContext.getRequest(), Config.FMT_LOCALE, requestContext.getLocale());

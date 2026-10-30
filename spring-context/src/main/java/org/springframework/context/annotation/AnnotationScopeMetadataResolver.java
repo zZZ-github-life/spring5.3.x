@@ -53,7 +53,7 @@ public class AnnotationScopeMetadataResolver implements ScopeMetadataResolver {
 
 	/**
 	 * 使用给定的默认 {@link ScopedProxyMode} 构造一个新的 {@code AnnotationScopeMetadataResolver}。
-	 * @param defaultProxyMode the default scoped-proxy mode
+	 * @param defaultProxyMode 默认的作用域代理模式
 	 */
 	public AnnotationScopeMetadataResolver(ScopedProxyMode defaultProxyMode) {
 		Assert.notNull(defaultProxyMode, "'defaultProxyMode' must not be null");
@@ -63,7 +63,7 @@ public class AnnotationScopeMetadataResolver implements ScopeMetadataResolver {
 
 	/**
 	 * 设置此 {@code AnnotationScopeMetadataResolver} 所检查的注解类型。
-	 * @param scopeAnnotationType the target annotation type
+	 * @param scopeAnnotationType 目标注解类型
 	 */
 	public void setScopeAnnotationType(Class<? extends Annotation> scopeAnnotationType) {
 		Assert.notNull(scopeAnnotationType, "'scopeAnnotationType' must not be null");
@@ -73,7 +73,7 @@ public class AnnotationScopeMetadataResolver implements ScopeMetadataResolver {
 
 	/**
 	 * 处理bean的作用域，没有设置则默认为单例
-	 * @param definition the target bean definition
+	 * @param definition 目标 Bean 定义
 	 * @return ScopeMetadata 作用越的相关信息
 	 */
 	@Override

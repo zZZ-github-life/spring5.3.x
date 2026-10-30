@@ -27,7 +27,7 @@ import org.springframework.util.Assert;
  *
  * @author Juergen Hoeller
  * @since 5.0
- * @param <T> the result type returned by this Future's {@code get} method
+ * @param <T> 该 Future 的 {@code get} 方法返回的结果类型
  */
 class DelegatingCompletableFuture<T> extends CompletableFuture<T> {
 

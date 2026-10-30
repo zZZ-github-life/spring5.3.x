@@ -113,10 +113,10 @@ public abstract class HttpAccessor {
 
 	/**
 	 * 通过此模板的 {@link ClientHttpRequestFactory} 创建新的 {@link ClientHttpRequest}。
-	 * @param url the URL to connect to
-	 * @param method the HTTP method to execute (GET, POST, etc)
-	 * @return the created request
-	 * @throws IOException in case of I/O errors
+	 * @param url 要连接的 URL
+	 * @param method 要执行的 HTTP 方法（GET、POST 等）
+	 * @return 所创建的请求
+	 * @throws IOException 如果发生 I/O 错误
 	 * @see #getRequestFactory()
 	 * @see ClientHttpRequestFactory#createRequest(URI, HttpMethod)
 	 */

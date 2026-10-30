@@ -94,8 +94,8 @@ public class SimpleAliasRegistry implements AliasRegistry {
 
 	/**
 	 * 判断给定名称是否注册了给定别名。
-	 * @param name the name to check
-	 * @param alias the alias to look for
+	 * @param name 要检查的名称
+	 * @param alias 要查找的别名
 	 * @since 4.2.1
 	 */
 	public boolean hasAlias(String name, String alias) {
@@ -130,8 +130,8 @@ public class SimpleAliasRegistry implements AliasRegistry {
 
 	/**
 	 * 传递性地获取给定名称的所有别名。
-	 * @param name the target name to find aliases for
-	 * @param result the resulting aliases list
+	 * @param name 要为其查找别名的目标名称
+	 * @param result 结果的别名列表
 	 */
 	private void retrieveAliases(String name, List<String> result) {
 		this.aliasMap.forEach((alias, registeredName) -> {
@@ -145,7 +145,7 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	/**
 	 * 解析此注册表中注册的所有别名目标名称和别名，对其应用给定的 {@link StringValueResolver}。
 	 * <p>例如，值解析器可以解析目标 Bean 名称乃至别名中的占位符。
-	 * @param valueResolver the StringValueResolver to apply
+	 * @param valueResolver 要应用的 StringValueResolver
 	 */
 	public void resolveAliases(StringValueResolver valueResolver) {
 		Assert.notNull(valueResolver, "StringValueResolver must not be null");
@@ -184,8 +184,8 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	/**
 	 * 检查给定名称是否已作为反向别名指回给定别名，从而提前捕获循环引用，并抛出相应的
 	 * IllegalStateException。
-	 * @param name the candidate name
-	 * @param alias the candidate alias
+	 * @param name 候选名称
+	 * @param alias 候选别名
 	 * @see #registerAlias
 	 * @see #hasAlias
 	 */
@@ -199,8 +199,8 @@ public class SimpleAliasRegistry implements AliasRegistry {
 
 	/**
 	 * 确定原始名称，将别名解析为规范名称。
-	 * @param name the user-specified name
-	 * @return the transformed name
+	 * @param name 用户指定的名称
+	 * @return 转换后的名称
 	 */
 	public String canonicalName(String name) {
 		String canonicalName = name;

@@ -193,7 +193,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 
 	/**
 	 * 返回此 Bean 的构造方法参数值。<p>返回的实例可以在 Bean 工厂后处理期间修改。
-	 * @return the ConstructorArgumentValues object (never {@code null})
+	 * @return ConstructorArgumentValues 对象（永不为 {@code null}）
 	 */
 	ConstructorArgumentValues getConstructorArgumentValues();
 
@@ -207,7 +207,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 
 	/**
 	 * 返回要应用到 Bean 新实例的属性值。<p>返回的实例可以在 Bean 工厂后处理期间修改。
-	 * @return the MutablePropertyValues object (never {@code null})
+	 * @return MutablePropertyValues 对象（永不为 {@code null}）
 	 */
 	MutablePropertyValues getPropertyValues();
 
@@ -282,7 +282,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	/**
 	 * 返回此 Bean 定义的可解析类型，基于 Bean 类或其他特定元数据。<p>这通常在运行时合并的 Bean 定义上
 	 * 完全解析，但在配置时的定义实例上不一定如此。
-	 * @return the resolvable type (potentially {@link ResolvableType#NONE})
+	 * @return 可解析类型（可能是 {@link ResolvableType#NONE}）
 	 * @since 5.2
 	 * @see ConfigurableBeanFactory#getMergedBeanDefinition
 	 */

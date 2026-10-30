@@ -79,9 +79,9 @@ public interface HibernateOperations {
 	 * {@link HibernateTransactionManager}。通常，回调代码不得
 	 * 触碰任何 {@code Session} 生命周期方法，如 close、
 	 * disconnect 或 reconnect，以便让模板完成其工作。
-	 * @param action callback object that specifies the Hibernate action
-	 * @return a result object returned by the action, or {@code null}
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param action 指定 Hibernate 操作的回调对象
+	 * @return 由操作返回的结果对象，或 {@code null}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see HibernateTransactionManager
 	 * @see org.hibernate.Session
 	 */
@@ -100,10 +100,10 @@ public interface HibernateOperations {
 	 * {@link org.hibernate.Session#get(Class, Serializable)} 的轻量封装。
 	 * 有关此方法确切语义的说明，请首先参阅
 	 * Hibernate API 文档。
-	 * @param entityClass a persistent class
-	 * @param id the identifier of the persistent instance
-	 * @return the persistent instance, or {@code null} if not found
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityClass 持久化类
+	 * @param id 持久化实例的标识符
+	 * @return 持久化实例；如果未找到则返回 {@code null}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#get(Class, Serializable)
 	 */
 	@Nullable
@@ -117,11 +117,11 @@ public interface HibernateOperations {
 	 * {@link org.hibernate.Session#get(Class, Serializable, LockMode)} 的轻量封装。
 	 * 有关此方法确切语义的说明，请首先参阅
 	 * Hibernate API 文档。
-	 * @param entityClass a persistent class
-	 * @param id the identifier of the persistent instance
-	 * @param lockMode the lock mode to obtain
-	 * @return the persistent instance, or {@code null} if not found
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityClass 持久化类
+	 * @param id 持久化实例的标识符
+	 * @param lockMode 要获取的锁模式
+	 * @return 持久化实例；如果未找到则返回 {@code null}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#get(Class, Serializable, LockMode)
 	 */
 	@Nullable
@@ -134,10 +134,10 @@ public interface HibernateOperations {
 	 * {@link org.hibernate.Session#get(String, Serializable)} 的轻量封装。
 	 * 有关此方法确切语义的说明，请首先参阅
 	 * Hibernate API 文档。
-	 * @param entityName the name of the persistent entity
-	 * @param id the identifier of the persistent instance
-	 * @return the persistent instance, or {@code null} if not found
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityName 持久化实体的名称
+	 * @param id 持久化实例的标识符
+	 * @return 持久化实例；如果未找到则返回 {@code null}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#get(Class, Serializable)
 	 */
 	@Nullable
@@ -151,11 +151,11 @@ public interface HibernateOperations {
 	 * {@link org.hibernate.Session#get(String, Serializable, LockMode)} 的轻量封装。
 	 * 有关此方法确切语义的说明，请首先参阅
 	 * Hibernate API 文档。
-	 * @param entityName the name of the persistent entity
-	 * @param id the identifier of the persistent instance
-	 * @param lockMode the lock mode to obtain
-	 * @return the persistent instance, or {@code null} if not found
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityName 持久化实体的名称
+	 * @param id 持久化实例的标识符
+	 * @param lockMode 要获取的锁模式
+	 * @return 持久化实例；如果未找到则返回 {@code null}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#get(Class, Serializable, LockMode)
 	 */
 	@Nullable
@@ -168,11 +168,11 @@ public interface HibernateOperations {
 	 * {@link org.hibernate.Session#load(Class, Serializable)} 的轻量封装。
 	 * 有关此方法确切语义的说明，请首先参阅
 	 * Hibernate API 文档。
-	 * @param entityClass a persistent class
-	 * @param id the identifier of the persistent instance
-	 * @return the persistent instance
-	 * @throws org.springframework.orm.ObjectRetrievalFailureException if not found
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityClass 持久化类
+	 * @param id 持久化实例的标识符
+	 * @return 持久化实例
+	 * @throws org.springframework.orm.ObjectRetrievalFailureException 如果未找到
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#load(Class, Serializable)
 	 */
 	<T> T load(Class<T> entityClass, Serializable id) throws DataAccessException;
@@ -185,12 +185,12 @@ public interface HibernateOperations {
 	 * {@link org.hibernate.Session#load(Class, Serializable, LockMode)} 的轻量封装。
 	 * 有关此方法确切语义的说明，请首先参阅
 	 * Hibernate API 文档。
-	 * @param entityClass a persistent class
-	 * @param id the identifier of the persistent instance
-	 * @param lockMode the lock mode to obtain
-	 * @return the persistent instance
-	 * @throws org.springframework.orm.ObjectRetrievalFailureException if not found
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityClass 持久化类
+	 * @param id 持久化实例的标识符
+	 * @param lockMode 要获取的锁模式
+	 * @return 持久化实例
+	 * @throws org.springframework.orm.ObjectRetrievalFailureException 如果未找到
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#load(Class, Serializable)
 	 */
 	<T> T load(Class<T> entityClass, Serializable id, LockMode lockMode) throws DataAccessException;
@@ -202,11 +202,11 @@ public interface HibernateOperations {
 	 * {@link org.hibernate.Session#load(String, Serializable)} 的轻量封装。
 	 * 有关此方法确切语义的说明，请首先参阅
 	 * Hibernate API 文档。
-	 * @param entityName the name of the persistent entity
-	 * @param id the identifier of the persistent instance
-	 * @return the persistent instance
-	 * @throws org.springframework.orm.ObjectRetrievalFailureException if not found
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityName 持久化实体的名称
+	 * @param id 持久化实例的标识符
+	 * @return 持久化实例
+	 * @throws org.springframework.orm.ObjectRetrievalFailureException 如果未找到
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#load(Class, Serializable)
 	 */
 	Object load(String entityName, Serializable id) throws DataAccessException;
@@ -219,12 +219,12 @@ public interface HibernateOperations {
 	 * {@link org.hibernate.Session#load(String, Serializable, LockMode)} 的轻量封装。
 	 * 有关此方法确切语义的说明，请首先参阅
 	 * Hibernate API 文档。
-	 * @param entityName the name of the persistent entity
-	 * @param id the identifier of the persistent instance
-	 * @param lockMode the lock mode to obtain
-	 * @return the persistent instance
-	 * @throws org.springframework.orm.ObjectRetrievalFailureException if not found
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityName 持久化实体的名称
+	 * @param id 持久化实例的标识符
+	 * @param lockMode 要获取的锁模式
+	 * @return 持久化实例
+	 * @throws org.springframework.orm.ObjectRetrievalFailureException 如果未找到
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#load(Class, Serializable)
 	 */
 	Object load(String entityName, Serializable id, LockMode lockMode) throws DataAccessException;
@@ -232,9 +232,9 @@ public interface HibernateOperations {
 	/**
 	 * 返回给定实体类的所有持久化实例。
 	 * 注意：如需检索特定子集，请使用查询或条件（criteria）。
-	 * @param entityClass a persistent class
-	 * @return a {@link List} containing 0 or more persistent instances
-	 * @throws DataAccessException if there is a Hibernate error
+	 * @param entityClass 持久化类
+	 * @return 包含 0 个或多个持久化实例的 {@link List}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#createCriteria
 	 */
 	<T> List<T> loadAll(Class<T> entityClass) throws DataAccessException;
@@ -246,18 +246,18 @@ public interface HibernateOperations {
 	 * {@link org.hibernate.Session#load(Object, Serializable)} 的轻量封装。
 	 * 有关此方法确切语义的说明，请首先参阅
 	 * Hibernate API 文档。
-	 * @param entity the object (of the target class) to load into
-	 * @param id the identifier of the persistent instance
-	 * @throws org.springframework.orm.ObjectRetrievalFailureException if not found
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entity 要加载到的（目标类的）对象
+	 * @param id 持久化实例的标识符
+	 * @throws org.springframework.orm.ObjectRetrievalFailureException 如果未找到
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#load(Object, Serializable)
 	 */
 	void load(Object entity, Serializable id) throws DataAccessException;
 
 	/**
 	 * 重新读取给定持久化实例的状态。
-	 * @param entity the persistent instance to re-read
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entity 要重新读取的持久化实例
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#refresh(Object)
 	 */
 	void refresh(Object entity) throws DataAccessException;
@@ -265,35 +265,34 @@ public interface HibernateOperations {
 	/**
 	 * 重新读取给定持久化实例的状态。
 	 * 获取该实例的指定锁模式。
-	 * @param entity the persistent instance to re-read
-	 * @param lockMode the lock mode to obtain
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entity 要重新读取的持久化实例
+	 * @param lockMode 要获取的锁模式
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#refresh(Object, LockMode)
 	 */
 	void refresh(Object entity, LockMode lockMode) throws DataAccessException;
 
 	/**
 	 * 检查给定对象是否在 Session 缓存中。
-	 * @param entity the persistence instance to check
-	 * @return whether the given object is in the Session cache
-	 * @throws DataAccessException if there is a Hibernate error
+	 * @param entity 要检查的持久化实例
+	 * @return 给定对象是否在 Session 缓存中
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#contains
 	 */
 	boolean contains(Object entity) throws DataAccessException;
 
 	/**
 	 * 从 {@link org.hibernate.Session} 缓存中移除给定对象。
-	 * @param entity the persistent instance to evict
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entity 要逐出的持久化实例
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#evict
 	 */
 	void evict(Object entity) throws DataAccessException;
 
 	/**
 	 * 强制初始化 Hibernate 代理或持久化集合。
-	 * @param proxy a proxy for a persistent object or a persistent collection
-	 * @throws DataAccessException if we can't initialize the proxy, for example
-	 * because it is not associated with an active Session
+	 * @param proxy 持久化对象或持久化集合的代理
+	 * @throws DataAccessException 如果无法初始化该代理，例如因为它未与活动的 Session 关联
 	 * @see org.hibernate.Hibernate#initialize
 	 */
 	void initialize(Object proxy) throws DataAccessException;
@@ -301,11 +300,9 @@ public interface HibernateOperations {
 	/**
 	 * 返回给定过滤器名称对应的已启用的 Hibernate {@link Filter}。
 	 * 返回的 {@code Filter} 实例可用于设置过滤器参数。
-	 * @param filterName the name of the filter
-	 * @return the enabled Hibernate {@code Filter} (either already
-	 * enabled or enabled on the fly by this operation)
-	 * @throws IllegalStateException if we are not running within a
-	 * transactional Session (in which case this operation does not make sense)
+	 * @param filterName 过滤器名称
+	 * @return 已启用的 Hibernate {@code Filter}（事先已启用或由本操作即时启用）
+	 * @throws IllegalStateException 如果当前未在事务性 Session 中运行（此时该操作没有意义）
 	 */
 	Filter enableFilter(String filterName) throws IllegalStateException;
 
@@ -317,10 +314,10 @@ public interface HibernateOperations {
 	/**
 	 * 对给定对象获取指定的锁级别，并隐式
 	 * 检查相应的数据库记录是否仍然存在。
-	 * @param entity the persistent instance to lock
-	 * @param lockMode the lock mode to obtain
-	 * @throws org.springframework.orm.ObjectOptimisticLockingFailureException if not found
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entity 要锁定的持久化实例
+	 * @param lockMode 要获取的锁模式
+	 * @throws org.springframework.orm.ObjectOptimisticLockingFailureException 如果未找到
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#lock(Object, LockMode)
 	 */
 	void lock(Object entity, LockMode lockMode) throws DataAccessException;
@@ -328,30 +325,30 @@ public interface HibernateOperations {
 	/**
 	 * 对给定对象获取指定的锁级别，并隐式
 	 * 检查相应的数据库记录是否仍然存在。
-	 * @param entityName the name of the persistent entity
-	 * @param entity the persistent instance to lock
-	 * @param lockMode the lock mode to obtain
-	 * @throws org.springframework.orm.ObjectOptimisticLockingFailureException if not found
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityName 持久化实体的名称
+	 * @param entity 要锁定的持久化实例
+	 * @param lockMode 要获取的锁模式
+	 * @throws org.springframework.orm.ObjectOptimisticLockingFailureException 如果未找到
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#lock(String, Object, LockMode)
 	 */
 	void lock(String entityName, Object entity, LockMode lockMode) throws DataAccessException;
 
 	/**
 	 * 持久化给定的瞬态实例。
-	 * @param entity the transient instance to persist
-	 * @return the generated identifier
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entity 要持久化的瞬态实例
+	 * @return 生成的标识符
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#save(Object)
 	 */
 	Serializable save(Object entity) throws DataAccessException;
 
 	/**
 	 * 持久化给定的瞬态实例。
-	 * @param entityName the name of the persistent entity
-	 * @param entity the transient instance to persist
-	 * @return the generated identifier
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityName 持久化实体的名称
+	 * @param entity 要持久化的瞬态实例
+	 * @return 生成的标识符
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#save(String, Object)
 	 */
 	Serializable save(String entityName, Object entity) throws DataAccessException;
@@ -359,8 +356,8 @@ public interface HibernateOperations {
 	/**
 	 * 更新给定的持久化实例，
 	 * 并将其与当前的 Hibernate {@link org.hibernate.Session} 关联。
-	 * @param entity the persistent instance to update
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entity 要更新的持久化实例
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#update(Object)
 	 */
 	void update(Object entity) throws DataAccessException;
@@ -370,10 +367,10 @@ public interface HibernateOperations {
 	 * 并将其与当前的 Hibernate {@link org.hibernate.Session} 关联。
 	 * <p>如果实例存在，则获取指定的锁模式，并隐式
 	 * 检查相应的数据库记录是否仍然存在。
-	 * @param entity the persistent instance to update
-	 * @param lockMode the lock mode to obtain
-	 * @throws org.springframework.orm.ObjectOptimisticLockingFailureException if not found
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entity 要更新的持久化实例
+	 * @param lockMode 要获取的锁模式
+	 * @throws org.springframework.orm.ObjectOptimisticLockingFailureException 如果未找到
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#update(Object)
 	 */
 	void update(Object entity, LockMode lockMode) throws DataAccessException;
@@ -381,9 +378,9 @@ public interface HibernateOperations {
 	/**
 	 * 更新给定的持久化实例，
 	 * 并将其与当前的 Hibernate {@link org.hibernate.Session} 关联。
-	 * @param entityName the name of the persistent entity
-	 * @param entity the persistent instance to update
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityName 持久化实体的名称
+	 * @param entity 要更新的持久化实例
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#update(String, Object)
 	 */
 	void update(String entityName, Object entity) throws DataAccessException;
@@ -393,11 +390,11 @@ public interface HibernateOperations {
 	 * 并将其与当前的 Hibernate {@link org.hibernate.Session} 关联。
 	 * <p>如果实例存在，则获取指定的锁模式，并隐式
 	 * 检查相应的数据库记录是否仍然存在。
-	 * @param entityName the name of the persistent entity
-	 * @param entity the persistent instance to update
-	 * @param lockMode the lock mode to obtain
-	 * @throws org.springframework.orm.ObjectOptimisticLockingFailureException if not found
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityName 持久化实体的名称
+	 * @param entity 要更新的持久化实例
+	 * @param lockMode 要获取的锁模式
+	 * @throws org.springframework.orm.ObjectOptimisticLockingFailureException 如果未找到
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#update(String, Object)
 	 */
 	void update(String entityName, Object entity, LockMode lockMode) throws DataAccessException;
@@ -406,9 +403,8 @@ public interface HibernateOperations {
 	 * 保存或更新给定的持久化实例，
 	 * 依据其 id（匹配配置的 "unsaved-value"？）。
 	 * 将该实例与当前的 Hibernate {@link org.hibernate.Session} 关联。
-	 * @param entity the persistent instance to save or update
-	 * (to be associated with the Hibernate {@code Session})
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entity 要保存或更新的持久化实例（将被关联到 Hibernate {@code Session}）
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#saveOrUpdate(Object)
 	 */
 	void saveOrUpdate(Object entity) throws DataAccessException;
@@ -417,10 +413,9 @@ public interface HibernateOperations {
 	 * 保存或更新给定的持久化实例，
 	 * 依据其 id（匹配配置的 "unsaved-value"？）。
 	 * 将该实例与当前的 Hibernate {@code Session} 关联。
-	 * @param entityName the name of the persistent entity
-	 * @param entity the persistent instance to save or update
-	 * (to be associated with the Hibernate {@code Session})
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityName 持久化实体的名称
+	 * @param entity 要保存或更新的持久化实例（将被关联到 Hibernate {@code Session}）
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#saveOrUpdate(String, Object)
 	 */
 	void saveOrUpdate(String entityName, Object entity) throws DataAccessException;
@@ -428,9 +423,9 @@ public interface HibernateOperations {
 	/**
 	 * 按照给定的复制模式持久化给定游离实例的状态，
 	 * 并复用当前的标识符值。
-	 * @param entity the persistent object to replicate
-	 * @param replicationMode the Hibernate ReplicationMode
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entity 要复制的持久化对象
+	 * @param replicationMode Hibernate 的 ReplicationMode
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#replicate(Object, ReplicationMode)
 	 */
 	void replicate(Object entity, ReplicationMode replicationMode) throws DataAccessException;
@@ -438,10 +433,10 @@ public interface HibernateOperations {
 	/**
 	 * 按照给定的复制模式持久化给定游离实例的状态，
 	 * 并复用当前的标识符值。
-	 * @param entityName the name of the persistent entity
-	 * @param entity the persistent object to replicate
-	 * @param replicationMode the Hibernate ReplicationMode
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityName 持久化实体的名称
+	 * @param entity 要复制的持久化对象
+	 * @param replicationMode Hibernate 的 ReplicationMode
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#replicate(String, Object, ReplicationMode)
 	 */
 	void replicate(String entityName, Object entity, ReplicationMode replicationMode) throws DataAccessException;
@@ -450,8 +445,8 @@ public interface HibernateOperations {
 	 * 持久化给定的瞬态实例。遵循 JSR-220 语义。
 	 * <p>类似于 {@code save}，将给定对象
 	 * 与当前的 Hibernate {@link org.hibernate.Session} 关联。
-	 * @param entity the persistent instance to persist
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entity 待持久化的持久化实例
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#persist(Object)
 	 * @see #save
 	 */
@@ -461,9 +456,9 @@ public interface HibernateOperations {
 	 * 持久化给定的瞬态实例。遵循 JSR-220 语义。
 	 * <p>类似于 {@code save}，将给定对象
 	 * 与当前的 Hibernate {@link org.hibernate.Session} 关联。
-	 * @param entityName the name of the persistent entity
-	 * @param entity the persistent instance to persist
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityName 持久化实体的名称
+	 * @param entity 待持久化的持久化实例
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#persist(String, Object)
 	 * @see #save
 	 */
@@ -478,9 +473,9 @@ public interface HibernateOperations {
 	 * 传入对象图中的标识符（与 TopLink 不同）！如果
 	 * 你希望新分配的 id 也传输到原始对象图，请考虑
 	 * 注册 Spring 的 {@code IdTransferringMergeEventListener}。
-	 * @param entity the object to merge with the corresponding persistence instance
-	 * @return the updated, registered persistent instance
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entity 要与相应持久化实例合并的对象
+	 * @return 更新后的、已注册的持久化实例
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#merge(Object)
 	 * @see #saveOrUpdate
 	 */
@@ -496,10 +491,10 @@ public interface HibernateOperations {
 	 * 注册 Spring 的 {@code IdTransferringMergeEventListener}，
 	 * 如果你希望新分配的 id 也传输到
 	 * 原始对象图。
-	 * @param entityName the name of the persistent entity
-	 * @param entity the object to merge with the corresponding persistence instance
-	 * @return the updated, registered persistent instance
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityName 持久化实体的名称
+	 * @param entity 要与相应持久化实例合并的对象
+	 * @return 更新后的、已注册的持久化实例
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#merge(String, Object)
 	 * @see #saveOrUpdate
 	 */
@@ -507,8 +502,8 @@ public interface HibernateOperations {
 
 	/**
 	 * 删除给定的持久化实例。
-	 * @param entity the persistent instance to delete
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entity 要删除的持久化实例
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#delete(Object)
 	 */
 	void delete(Object entity) throws DataAccessException;
@@ -517,19 +512,19 @@ public interface HibernateOperations {
 	 * 删除给定的持久化实例。
 	 * <p>如果实例存在，则获取指定的锁模式，并隐式
 	 * 检查相应的数据库记录是否仍然存在。
-	 * @param entity the persistent instance to delete
-	 * @param lockMode the lock mode to obtain
-	 * @throws org.springframework.orm.ObjectOptimisticLockingFailureException if not found
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entity 要删除的持久化实例
+	 * @param lockMode 要获取的锁模式
+	 * @throws org.springframework.orm.ObjectOptimisticLockingFailureException 如果未找到
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#delete(Object)
 	 */
 	void delete(Object entity, LockMode lockMode) throws DataAccessException;
 
 	/**
 	 * 删除给定的持久化实例。
-	 * @param entityName the name of the persistent entity
-	 * @param entity the persistent instance to delete
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityName 持久化实体的名称
+	 * @param entity 要删除的持久化实例
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#delete(Object)
 	 */
 	void delete(String entityName, Object entity) throws DataAccessException;
@@ -538,11 +533,11 @@ public interface HibernateOperations {
 	 * 删除给定的持久化实例。
 	 * <p>如果实例存在，则获取指定的锁模式，并隐式
 	 * 检查相应的数据库记录是否仍然存在。
-	 * @param entityName the name of the persistent entity
-	 * @param entity the persistent instance to delete
-	 * @param lockMode the lock mode to obtain
-	 * @throws org.springframework.orm.ObjectOptimisticLockingFailureException if not found
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityName 持久化实体的名称
+	 * @param entity 要删除的持久化实例
+	 * @param lockMode 要获取的锁模式
+	 * @throws org.springframework.orm.ObjectOptimisticLockingFailureException 如果未找到
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#delete(Object)
 	 */
 	void delete(String entityName, Object entity, LockMode lockMode) throws DataAccessException;
@@ -551,8 +546,8 @@ public interface HibernateOperations {
 	 * 删除所有给定的持久化实例。
 	 * <p>它可以与任意 find 方法结合，用两行代码
 	 * 按查询删除。
-	 * @param entities the persistent instances to delete
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entities 要删除的多个持久化实例
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#delete(Object)
 	 */
 	void deleteAll(Collection<?> entities) throws DataAccessException;
@@ -563,7 +558,7 @@ public interface HibernateOperations {
 	 * JDBC 代码需要在同一事务中看到某些更改时。
 	 * 否则，最好依赖事务完成时的
 	 * 自动刷新。
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#flush
 	 */
 	void flush() throws DataAccessException;
@@ -571,7 +566,7 @@ public interface HibernateOperations {
 	/**
 	 * 从 {@link org.hibernate.Session} 缓存中移除所有对象，并
 	 * 取消所有挂起的保存、更新和删除。
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#clear
 	 */
 	void clear() throws DataAccessException;
@@ -583,26 +578,24 @@ public interface HibernateOperations {
 
 	/**
 	 * 基于给定的 Hibernate 条件对象执行查询。
-	 * @param criteria the detached Hibernate criteria object.
+	 * @param criteria 分离的 Hibernate 条件对象。
 	 * <b>注意：不要重用条件对象！由于 Hibernate 条件设施的设计欠佳，
 	 * 每次执行都需要重新创建它们。</b>
-	 * @return a {@link List} containing 0 or more persistent instances
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @return 包含 0 个或多个持久化实例的 {@link List}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see DetachedCriteria#getExecutableCriteria(org.hibernate.Session)
 	 */
 	List<?> findByCriteria(DetachedCriteria criteria) throws DataAccessException;
 
 	/**
 	 * 基于给定的 Hibernate 条件对象执行查询。
-	 * @param criteria the detached Hibernate criteria object.
+	 * @param criteria 分离的 Hibernate 条件对象。
 	 * <b>注意：不要重用条件对象！由于 Hibernate 条件设施的设计欠佳，
 	 * 每次执行都需要重新创建它们。</b>
-	 * @param firstResult the index of the first result object to be retrieved
-	 * (numbered from 0)
-	 * @param maxResults the maximum number of result objects to retrieve
-	 * (or &lt;=0 for no limit)
-	 * @return a {@link List} containing 0 or more persistent instances
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param firstResult 要检索的第一个结果对象的索引（从 0 开始编号）
+	 * @param maxResults 要检索的结果对象的最大数量（或 &lt;=0 表示不限）
+	 * @return 包含 0 个或多个持久化实例的 {@link List}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see DetachedCriteria#getExecutableCriteria(org.hibernate.Session)
 	 * @see org.hibernate.Criteria#setFirstResult(int)
 	 * @see org.hibernate.Criteria#setMaxResults(int)
@@ -611,35 +604,30 @@ public interface HibernateOperations {
 
 	/**
 	 * 基于给定的示例实体对象执行查询。
-	 * @param exampleEntity an instance of the desired entity,
-	 * serving as example for "query-by-example"
-	 * @return a {@link List} containing 0 or more persistent instances
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param exampleEntity 所需实体的一个实例，用作“query-by-example”的示例
+	 * @return 包含 0 个或多个持久化实例的 {@link List}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.criterion.Example#create(Object)
 	 */
 	<T> List<T> findByExample(T exampleEntity) throws DataAccessException;
 
 	/**
 	 * 基于给定的示例实体对象执行查询。
-	 * @param entityName the name of the persistent entity
-	 * @param exampleEntity an instance of the desired entity,
-	 * serving as example for "query-by-example"
-	 * @return a {@link List} containing 0 or more persistent instances
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityName 持久化实体的名称
+	 * @param exampleEntity 所需实体的一个实例，用作“query-by-example”的示例
+	 * @return 包含 0 个或多个持久化实例的 {@link List}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.criterion.Example#create(Object)
 	 */
 	<T> List<T> findByExample(String entityName, T exampleEntity) throws DataAccessException;
 
 	/**
 	 * 基于一个给定的示例实体对象执行查询。
-	 * @param exampleEntity an instance of the desired entity,
-	 * serving as example for "query-by-example"
-	 * @param firstResult the index of the first result object to be retrieved
-	 * (numbered from 0)
-	 * @param maxResults the maximum number of result objects to retrieve
-	 * (or &lt;=0 for no limit)
-	 * @return a {@link List} containing 0 or more persistent instances
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param exampleEntity 所需实体的一个实例，用作“query-by-example”的示例
+	 * @param firstResult 要检索的第一个结果对象的索引（从 0 开始编号）
+	 * @param maxResults 要检索的结果对象的最大数量（或 &lt;=0 表示不限）
+	 * @return 包含 0 个或多个持久化实例的 {@link List}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.criterion.Example#create(Object)
 	 * @see org.hibernate.Criteria#setFirstResult(int)
 	 * @see org.hibernate.Criteria#setMaxResults(int)
@@ -648,15 +636,12 @@ public interface HibernateOperations {
 
 	/**
 	 * 基于一个给定的示例实体对象执行查询。
-	 * @param entityName the name of the persistent entity
-	 * @param exampleEntity an instance of the desired entity,
-	 * serving as example for "query-by-example"
-	 * @param firstResult the index of the first result object to be retrieved
-	 * (numbered from 0)
-	 * @param maxResults the maximum number of result objects to retrieve
-	 * (or &lt;=0 for no limit)
-	 * @return a {@link List} containing 0 or more persistent instances
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param entityName 持久化实体的名称
+	 * @param exampleEntity 所需实体的一个实例，用作“query-by-example”的示例
+	 * @param firstResult 要检索的第一个结果对象的索引（从 0 开始编号）
+	 * @param maxResults 要检索的结果对象的最大数量（或 &lt;=0 表示不限）
+	 * @return 包含 0 个或多个持久化实例的 {@link List}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.criterion.Example#create(Object)
 	 * @see org.hibernate.Criteria#setFirstResult(int)
 	 * @see org.hibernate.Criteria#setMaxResults(int)
@@ -671,10 +656,10 @@ public interface HibernateOperations {
 
 	/**
 	 * 执行 HQL 查询，将若干值绑定到查询字符串中的 "?" 参数。
-	 * @param queryString a query expressed in Hibernate's query language
-	 * @param values the values of the parameters
-	 * @return a {@link List} containing the results of the query execution
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param queryString 以 Hibernate 查询语言表示的查询
+	 * @param values 各参数的值
+	 * @return 包含查询执行结果的 {@link List}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#createQuery
 	 * @deprecated as of 5.0.4, in favor of a custom {@link HibernateCallback}
 	 * lambda code block passed to the general {@link #execute} method
@@ -684,11 +669,11 @@ public interface HibernateOperations {
 
 	/**
 	 * 执行 HQL 查询，将一个值绑定到查询字符串中的 ":" 命名参数。
-	 * @param queryString a query expressed in Hibernate's query language
-	 * @param paramName the name of the parameter
-	 * @param value the value of the parameter
-	 * @return a {@link List} containing the results of the query execution
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param queryString 以 Hibernate 查询语言表示的查询
+	 * @param paramName 参数名称
+	 * @param value 参数的值
+	 * @return 包含查询执行结果的 {@link List}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#getNamedQuery(String)
 	 * @deprecated as of 5.0.4, in favor of a custom {@link HibernateCallback}
 	 * lambda code block passed to the general {@link #execute} method
@@ -698,11 +683,11 @@ public interface HibernateOperations {
 
 	/**
 	 * 执行 HQL 查询，将若干值绑定到查询字符串中的 ":" 命名参数。
-	 * @param queryString a query expressed in Hibernate's query language
-	 * @param paramNames the names of the parameters
-	 * @param values the values of the parameters
-	 * @return a {@link List} containing the results of the query execution
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param queryString 以 Hibernate 查询语言表示的查询
+	 * @param paramNames 各参数的名称
+	 * @param values 各参数的值
+	 * @return 包含查询执行结果的 {@link List}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#getNamedQuery(String)
 	 * @deprecated as of 5.0.4, in favor of a custom {@link HibernateCallback}
 	 * lambda code block passed to the general {@link #execute} method
@@ -713,10 +698,10 @@ public interface HibernateOperations {
 	/**
 	 * 执行 HQL 查询，将给定 bean 的属性绑定到查询字符串中的
 	 * <i>命名</i>参数。
-	 * @param queryString a query expressed in Hibernate's query language
-	 * @param valueBean the values of the parameters
-	 * @return a {@link List} containing the results of the query execution
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param queryString 以 Hibernate 查询语言表示的查询
+	 * @param valueBean 各参数的值
+	 * @return 包含查询执行结果的 {@link List}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Query#setProperties
 	 * @see org.hibernate.Session#createQuery
 	 * @deprecated as of 5.0.4, in favor of a custom {@link HibernateCallback}
@@ -733,10 +718,10 @@ public interface HibernateOperations {
 	/**
 	 * 执行命名查询，将若干值绑定到查询字符串中的 "?" 参数。
 	 * <p>命名查询在 Hibernate 映射文件中定义。
-	 * @param queryName the name of a Hibernate query in a mapping file
-	 * @param values the values of the parameters
-	 * @return a {@link List} containing the results of the query execution
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param queryName 映射文件中 Hibernate 查询的名称
+	 * @param values 各参数的值
+	 * @return 包含查询执行结果的 {@link List}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#getNamedQuery(String)
 	 * @deprecated as of 5.0.4, in favor of a custom {@link HibernateCallback}
 	 * lambda code block passed to the general {@link #execute} method
@@ -747,11 +732,11 @@ public interface HibernateOperations {
 	/**
 	 * 执行命名查询，将一个值绑定到查询字符串中的 ":" 命名参数。
 	 * <p>命名查询在 Hibernate 映射文件中定义。
-	 * @param queryName the name of a Hibernate query in a mapping file
-	 * @param paramName the name of parameter
-	 * @param value the value of the parameter
-	 * @return a {@link List} containing the results of the query execution
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param queryName 映射文件中 Hibernate 查询的名称
+	 * @param paramName 参数名称
+	 * @param value 参数的值
+	 * @return 包含查询执行结果的 {@link List}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#getNamedQuery(String)
 	 * @deprecated as of 5.0.4, in favor of a custom {@link HibernateCallback}
 	 * lambda code block passed to the general {@link #execute} method
@@ -763,11 +748,11 @@ public interface HibernateOperations {
 	/**
 	 * 执行命名查询，将若干值绑定到查询字符串中的 ":" 命名参数。
 	 * <p>命名查询在 Hibernate 映射文件中定义。
-	 * @param queryName the name of a Hibernate query in a mapping file
-	 * @param paramNames the names of the parameters
-	 * @param values the values of the parameters
-	 * @return a {@link List} containing the results of the query execution
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param queryName 映射文件中 Hibernate 查询的名称
+	 * @param paramNames 各参数的名称
+	 * @param values 各参数的值
+	 * @return 包含查询执行结果的 {@link List}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#getNamedQuery(String)
 	 * @deprecated as of 5.0.4, in favor of a custom {@link HibernateCallback}
 	 * lambda code block passed to the general {@link #execute} method
@@ -780,10 +765,10 @@ public interface HibernateOperations {
 	 * 执行命名查询，将给定 bean 的属性绑定到
 	 * 查询字符串中的 ":" 命名参数。
 	 * <p>命名查询在 Hibernate 映射文件中定义。
-	 * @param queryName the name of a Hibernate query in a mapping file
-	 * @param valueBean the values of the parameters
-	 * @return a {@link List} containing the results of the query execution
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param queryName 映射文件中 Hibernate 查询的名称
+	 * @param valueBean 各参数的值
+	 * @return 包含查询执行结果的 {@link List}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Query#setProperties
 	 * @see org.hibernate.Session#getNamedQuery(String)
 	 * @deprecated as of 5.0.4, in favor of a custom {@link HibernateCallback}
@@ -802,10 +787,10 @@ public interface HibernateOperations {
 	 * 查询字符串中的 "?" 参数。
 	 * <p>以 {@link Iterator} 形式返回结果。返回的实体会
 	 * 按需初始化。详情请参阅 Hibernate API 文档。
-	 * @param queryString a query expressed in Hibernate's query language
-	 * @param values the values of the parameters
-	 * @return an {@link Iterator} containing 0 or more persistent instances
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param queryString 以 Hibernate 查询语言表示的查询
+	 * @param values 各参数的值
+	 * @return 包含 0 个或多个持久化实例的 {@link Iterator}
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#createQuery
 	 * @see org.hibernate.Query#iterate
 	 * @deprecated as of 5.0.4, in favor of a custom {@link HibernateCallback}
@@ -817,8 +802,8 @@ public interface HibernateOperations {
 	/**
 	 * 立即关闭由各种 {@code iterate(..)} 操作创建的 {@link Iterator}，
 	 * 而不是等待会话关闭或断开连接。
-	 * @param it the {@code Iterator} to close
-	 * @throws DataAccessException if the {@code Iterator} could not be closed
+	 * @param it 要关闭的 {@code Iterator}
+	 * @throws DataAccessException 如果无法关闭该 {@code Iterator}
 	 * @see org.hibernate.Hibernate#close
 	 * @deprecated as of 5.0.4, in favor of a custom {@link HibernateCallback}
 	 * lambda code block passed to the general {@link #execute} method
@@ -829,10 +814,10 @@ public interface HibernateOperations {
 	/**
 	 * 根据给定查询更新/删除所有对象，并将若干值
 	 * 绑定到查询字符串中的 "?" 参数。
-	 * @param queryString an update/delete query expressed in Hibernate's query language
-	 * @param values the values of the parameters
-	 * @return the number of instances updated/deleted
-	 * @throws DataAccessException in case of Hibernate errors
+	 * @param queryString 以 Hibernate 查询语言表示的更新/删除查询
+	 * @param values 各参数的值
+	 * @return 更新/删除的实例数量
+	 * @throws DataAccessException 如果发生 Hibernate 错误
 	 * @see org.hibernate.Session#createQuery
 	 * @see org.hibernate.Query#executeUpdate
 	 * @deprecated as of 5.0.4, in favor of a custom {@link HibernateCallback}

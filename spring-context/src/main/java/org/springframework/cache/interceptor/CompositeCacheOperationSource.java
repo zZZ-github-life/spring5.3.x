@@ -40,7 +40,7 @@ public class CompositeCacheOperationSource implements CacheOperationSource, Seri
 
 	/**
 	 * 为给定的源创建新的 CompositeCacheOperationSource。
-	 * @param cacheOperationSources the CacheOperationSource instances to combine
+	 * @param cacheOperationSources 要组合的 CacheOperationSource 实例
 	 */
 	public CompositeCacheOperationSource(CacheOperationSource... cacheOperationSources) {
 		Assert.notEmpty(cacheOperationSources, "CacheOperationSource array must not be empty");

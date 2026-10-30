@@ -142,7 +142,7 @@ public abstract class RdbmsOperation implements InitializingBean {
 
 	/**
 	 * 设置是否使用返回特定类型 ResultSet 的语句。
-	 * @param resultSetType the ResultSet type
+	 * @param resultSetType ResultSet 类型
 	 * @see java.sql.ResultSet#TYPE_FORWARD_ONLY
 	 * @see java.sql.ResultSet#TYPE_SCROLL_INSENSITIVE
 	 * @see java.sql.ResultSet#TYPE_SCROLL_SENSITIVE
@@ -235,7 +235,7 @@ public abstract class RdbmsOperation implements InitializingBean {
 
 	/**
 	 * 解析已配置的 SQL 以供实际使用。
-	 * @return the SQL (never {@code null})
+	 * @return SQL（永不为 {@code null}）
 	 * @since 5.0
 	 */
 	protected String resolveSql() {
@@ -248,9 +248,9 @@ public abstract class RdbmsOperation implements InitializingBean {
 	 * 添加匿名参数，只需指定 {@code java.sql.Types} 类中定义的 SQL 类型。
 	 * <p>参数的顺序很重要。此方法是 {@link #declareParameter} 方法的替代方案，
 	 * 通常应优先使用后者。
-	 * @param types array of SQL types as defined in the
-	 * {@code java.sql.Types} class
-	 * @throws InvalidDataAccessApiUsageException if the operation is already compiled
+	 * @param types SQL 类型数组，定义于
+	 * {@code java.sql.Types} 类中
+	 * @throws InvalidDataAccessApiUsageException 如果操作已编译
 	 */
 	public void setTypes(@Nullable int[] types) throws InvalidDataAccessApiUsageException {
 		if (isCompiled()) {
@@ -268,11 +268,11 @@ public abstract class RdbmsOperation implements InitializingBean {
 	 * <p>使用位置参数时，调用此方法的顺序很重要。在此处通过带名称的
 	 * SqlParameter 对象使用命名参数时，顺序并不重要；但在此处将命名参数
 	 * 与未命名的 SqlParameter 对象结合使用时，顺序仍然重要。
-	 * @param param the SqlParameter to add. This will specify SQL type and (optionally)
-	 * the parameter's name. Note that you typically use the {@link SqlParameter} class
-	 * itself here, not any of its subclasses.
-	 * @throws InvalidDataAccessApiUsageException if the operation is already compiled,
-	 * and hence cannot be configured further
+	 * @param param 要添加的 SqlParameter。
+	 * 它将指定 SQL 类型以及（可选的）参数名称。
+	 * 请注意，此处通常使用 {@link SqlParameter} 类本身，
+	 * 而不是其任何子类。
+	 * @throws InvalidDataAccessApiUsageException 如果操作已编译，因此无法进一步配置
 	 */
 	public void declareParameter(SqlParameter param) throws InvalidDataAccessApiUsageException {
 		if (isCompiled()) {
@@ -284,7 +284,7 @@ public abstract class RdbmsOperation implements InitializingBean {
 	/**
 	 * 添加一个或多个已声明的参数。用于在 bean 工厂中使用时配置此操作。
 	 * 每个参数都会指定 SQL 类型以及（可选的）参数名称。
-	 * @param parameters an array containing the declared {@link SqlParameter} objects
+	 * @param parameters 包含已声明 {@link SqlParameter} 对象的数组
 	 * @see #declaredParameters
 	 */
 	public void setParameters(SqlParameter... parameters) {
@@ -321,8 +321,8 @@ public abstract class RdbmsOperation implements InitializingBean {
 	/**
 	 * 编译此查询。
 	 * 忽略后续的编译尝试。
-	 * @throws InvalidDataAccessApiUsageException if the object hasn't
-	 * been correctly initialized, for example if no DataSource has been provided
+	 * @throws InvalidDataAccessApiUsageException 如果该对象未正确初始化，
+	 * 例如未提供 DataSource
 	 */
 	public final void compile() throws InvalidDataAccessApiUsageException {
 		if (!isCompiled()) {
@@ -349,7 +349,7 @@ public abstract class RdbmsOperation implements InitializingBean {
 	/**
 	 * 此操作是否已“编译”？与 JDO 中的概念类似，编译意味着操作已完全配置
 	 * 并可以使用。编译的确切含义因各个子类而异。
-	 * @return whether this operation is compiled and ready to use
+	 * @return 此操作是否已编译并可使用
 	 */
 	public boolean isCompiled() {
 		return this.compiled;
@@ -371,8 +371,8 @@ public abstract class RdbmsOperation implements InitializingBean {
 	 * 根据声明的参数校验传递给 execute 方法的参数。
 	 * 子类应在每次调用 {@code executeQuery()} 或 {@code update()} 方法之前
 	 * 调用此方法。
-	 * @param parameters the parameters supplied (may be {@code null})
-	 * @throws InvalidDataAccessApiUsageException if the parameters are invalid
+	 * @param parameters 提供的参数（可以为 {@code null}）
+	 * @throws InvalidDataAccessApiUsageException 如果参数无效
 	 */
 	protected void validateParameters(@Nullable Object[] parameters) throws InvalidDataAccessApiUsageException {
 		checkCompiled();
@@ -394,8 +394,8 @@ public abstract class RdbmsOperation implements InitializingBean {
 	 * 根据声明的参数校验传递给 execute 方法的命名参数。
 	 * 子类应在每次调用 {@code executeQuery()} 或 {@code update()} 方法之前
 	 * 调用此方法。
-	 * @param parameters parameter Map supplied (may be {@code null})
-	 * @throws InvalidDataAccessApiUsageException if the parameters are invalid
+	 * @param parameters 提供的参数 Map（可以为 {@code null}）
+	 * @throws InvalidDataAccessApiUsageException 如果参数无效
 	 */
 	protected void validateNamedParameters(@Nullable Map<String, ?> parameters) throws InvalidDataAccessApiUsageException {
 		checkCompiled();
@@ -420,8 +420,8 @@ public abstract class RdbmsOperation implements InitializingBean {
 
 	/**
 	 * 根据给定声明的参数校验给定的参数数量。
-	 * @param suppliedParamCount the number of actual parameters given
-	 * @param declaredInParamCount the number of input parameters declared
+	 * @param suppliedParamCount 实际提供的参数数量
+	 * @param declaredInParamCount 已声明的输入参数数量
 	 */
 	private void validateParameterCount(int suppliedParamCount, int declaredInParamCount) {
 		if (suppliedParamCount < declaredInParamCount) {
@@ -439,8 +439,7 @@ public abstract class RdbmsOperation implements InitializingBean {
 	 * 子类必须实现此模板方法以执行自己的编译逻辑。
 	 * 在基类的编译完成之后调用。
 	 * <p>子类可以假定 SQL 和 DataSource 已提供。
-	 * @throws InvalidDataAccessApiUsageException if the subclass hasn't been
-	 * properly configured
+	 * @throws InvalidDataAccessApiUsageException 如果子类未正确配置
 	 */
 	protected abstract void compileInternal() throws InvalidDataAccessApiUsageException;
 

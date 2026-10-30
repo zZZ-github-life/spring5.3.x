@@ -32,7 +32,7 @@ public class SerializationFailedException extends NestedRuntimeException {
 
 	/**
 	 * 使用指定的详细消息构造一个 {@code SerializationException}。
-	 * @param message the detail message
+	 * @param message 详细消息
 	 */
 	public SerializationFailedException(String message) {
 		super(message);
@@ -40,8 +40,8 @@ public class SerializationFailedException extends NestedRuntimeException {
 
 	/**
 	 * 使用指定的详细消息和嵌套异常构造一个 {@code SerializationException}。
-	 * @param message the detail message
-	 * @param cause the nested exception
+	 * @param message 详细消息
+	 * @param cause 嵌套异常
 	 */
 	public SerializationFailedException(String message, Throwable cause) {
 		super(message, cause);

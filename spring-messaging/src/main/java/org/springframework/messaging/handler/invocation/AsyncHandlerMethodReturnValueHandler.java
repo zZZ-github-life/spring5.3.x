@@ -40,9 +40,9 @@ public interface AsyncHandlerMethodReturnValueHandler extends HandlerMethodRetur
 	 * <p><strong>注意：</strong>只有在调用
 	 * {@link #supportsReturnType(org.springframework.core.MethodParameter)}
 	 * 并返回 {@code true} 后，才会调用此方法。
-	 * @param returnValue the value returned from the handler method
-	 * @param returnType the type of the return value
-	 * @return {@code true} if the return value type represents an async value
+	 * @param returnValue 处理器方法返回的值
+	 * @param returnType 返回值的类型
+	 * @return 如果返回值类型表示异步值则返回 {@code true}
 	 */
 	boolean isAsyncReturnValue(Object returnValue, MethodParameter returnType);
 
@@ -55,10 +55,9 @@ public interface AsyncHandlerMethodReturnValueHandler extends HandlerMethodRetur
 	 * <p><strong>注意：</strong>只有在调用
 	 * {@link #supportsReturnType(org.springframework.core.MethodParameter)}
 	 * 并返回 {@code true} 后，才会调用此方法。
-	 * @param returnValue the value returned from the handler method
-	 * @param returnType the type of the return value
-	 * @return the resulting ListenableFuture, or {@code null} in which case
-	 * no further handling will be performed
+	 * @param returnValue 处理器方法返回的值
+	 * @param returnType 返回值的类型
+	 * @return 生成的 ListenableFuture；如果为 {@code null}，则不执行进一步处理
 	 */
 	@Nullable
 	ListenableFuture<?> toListenableFuture(Object returnValue, MethodParameter returnType);

@@ -28,20 +28,20 @@ import org.springframework.messaging.MessagingException;
  * @author Mark Fisher
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <D> the destination type
+ * @param <D> 目标类型
  */
 public interface MessageSendingOperations<D> {
 
 	/**
 	 * 向默认目标发送消息。
-	 * @param message the message to send
+	 * @param message 要发送的消息
 	 */
 	void send(Message<?> message) throws MessagingException;
 
 	/**
 	 * 向给定目标发送消息。
-	 * @param destination the target destination
-	 * @param message the message to send
+	 * @param destination 目标目的地
+	 * @param message 要发送的消息
 	 */
 	void send(D destination, Message<?> message) throws MessagingException;
 
@@ -49,7 +49,7 @@ public interface MessageSendingOperations<D> {
 	 * 将给定 Object 转换为序列化形式（可能使用
 	 * {@link org.springframework.messaging.converter.MessageConverter}），
 	 * 将其包装为消息并发送到默认目标。
-	 * @param payload the Object to use as payload
+	 * @param payload 用作载荷的对象
 	 */
 	void convertAndSend(Object payload) throws MessagingException;
 
@@ -57,8 +57,8 @@ public interface MessageSendingOperations<D> {
 	 * 将给定 Object 转换为序列化形式（可能使用
 	 * {@link org.springframework.messaging.converter.MessageConverter}），
 	 * 将其包装为消息并发送到给定目标。
-	 * @param destination the target destination
-	 * @param payload the Object to use as payload
+	 * @param destination 目标目的地
+	 * @param payload 用作载荷的对象
 	 */
 	void convertAndSend(D destination, Object payload) throws MessagingException;
 
@@ -66,9 +66,9 @@ public interface MessageSendingOperations<D> {
 	 * 将给定 Object 转换为序列化形式（可能使用
 	 * {@link org.springframework.messaging.converter.MessageConverter}），
 	 * 将其包装为带有给定头的消息并发送到给定目标。
-	 * @param destination the target destination
-	 * @param payload the Object to use as payload
-	 * @param headers the headers for the message to send
+	 * @param destination 目标目的地
+	 * @param payload 用作载荷的对象
+	 * @param headers 要发送的消息的消息头
 	 */
 	void convertAndSend(D destination, Object payload, Map<String, Object> headers) throws MessagingException;
 
@@ -76,8 +76,8 @@ public interface MessageSendingOperations<D> {
 	 * 将给定 Object 转换为序列化形式（可能使用
 	 * {@link org.springframework.messaging.converter.MessageConverter}），
 	 * 将其包装为消息，应用给定的后处理器，并将结果消息发送到默认目标。
-	 * @param payload the Object to use as payload
-	 * @param postProcessor the post processor to apply to the message
+	 * @param payload 用作载荷的对象
+	 * @param postProcessor 要应用到消息的后处理器
 	 */
 	void convertAndSend(Object payload, @Nullable MessagePostProcessor postProcessor) throws MessagingException;
 
@@ -85,9 +85,9 @@ public interface MessageSendingOperations<D> {
 	 * 将给定 Object 转换为序列化形式（可能使用
 	 * {@link org.springframework.messaging.converter.MessageConverter}），
 	 * 将其包装为消息，应用给定的后处理器，并将结果消息发送到给定目标。
-	 * @param destination the target destination
-	 * @param payload the Object to use as payload
-	 * @param postProcessor the post processor to apply to the message
+	 * @param destination 目标目的地
+	 * @param payload 用作载荷的对象
+	 * @param postProcessor 要应用到消息的后处理器
 	 */
 	void convertAndSend(D destination, Object payload, MessagePostProcessor postProcessor) throws MessagingException;
 
@@ -96,10 +96,10 @@ public interface MessageSendingOperations<D> {
 	 * {@link org.springframework.messaging.converter.MessageConverter}），
 	 * 将其包装为带有给定头的消息，应用给定的后处理器，
 	 * 并将结果消息发送到给定目标。
-	 * @param destination the target destination
-	 * @param payload the Object to use as payload
-	 * @param headers the headers for the message to send
-	 * @param postProcessor the post processor to apply to the message
+	 * @param destination 目标目的地
+	 * @param payload 用作载荷的对象
+	 * @param headers 要发送的消息的消息头
+	 * @param postProcessor 要应用到消息的后处理器
 	 */
 	void convertAndSend(D destination, Object payload, @Nullable Map<String, Object> headers,
 			@Nullable MessagePostProcessor postProcessor) throws MessagingException;

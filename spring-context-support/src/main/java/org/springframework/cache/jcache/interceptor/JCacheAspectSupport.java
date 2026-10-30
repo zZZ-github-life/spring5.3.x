@@ -158,8 +158,8 @@ public class JCacheAspectSupport extends AbstractCacheInvoker implements Initial
 	 * 执行底层操作（通常在缓存未命中时），并返回调用的结果。如果发生异常，它将被包装在
 	 * {@code ThrowableWrapper} 中：该异常可以被处理或修改，但也<em>必须</em>包装在
 	 * {@code ThrowableWrapper} 中。
-	 * @param invoker the invoker handling the operation being cached
-	 * @return the result of the invocation
+	 * @param invoker 处理被缓存操作的调用器
+	 * @return 调用的结果
 	 * @see CacheOperationInvoker#invoke()
 	 */
 	@Nullable

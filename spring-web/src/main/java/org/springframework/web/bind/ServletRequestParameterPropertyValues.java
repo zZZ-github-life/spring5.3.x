@@ -44,7 +44,7 @@ public class ServletRequestParameterPropertyValues extends MutablePropertyValues
 
 	/**
 	 * 使用无前缀（因此也没有前缀分隔符）创建新的 ServletRequestPropertyValues。
-	 * @param request the HTTP request
+	 * @param request HTTP 请求
 	 */
 	public ServletRequestParameterPropertyValues(ServletRequest request) {
 		this(request, null, null);
@@ -53,9 +53,8 @@ public class ServletRequestParameterPropertyValues extends MutablePropertyValues
 	/**
 	 * 使用给定前缀和默认前缀分隔符（下划线 "_"）创建新的
 	 * ServletRequestPropertyValues。
-	 * @param request the HTTP request
-	 * @param prefix the prefix for parameters (the full prefix will
-	 * consist of this plus the separator)
+	 * @param request HTTP 请求
+	 * @param prefix 参数前缀（完整前缀由此前缀加分隔符构成）
 	 * @see #DEFAULT_PREFIX_SEPARATOR
 	 */
 	public ServletRequestParameterPropertyValues(ServletRequest request, @Nullable String prefix) {
@@ -64,11 +63,9 @@ public class ServletRequestParameterPropertyValues extends MutablePropertyValues
 
 	/**
 	 * 同时提供前缀和前缀分隔符创建新的 ServletRequestPropertyValues。
-	 * @param request the HTTP request
-	 * @param prefix the prefix for parameters (the full prefix will
-	 * consist of this plus the separator)
-	 * @param prefixSeparator separator delimiting prefix (e.g. "spring")
-	 * and the rest of the parameter name ("param1", "param2")
+	 * @param request HTTP 请求
+	 * @param prefix 参数前缀（完整前缀由此前缀加分隔符构成）
+	 * @param prefixSeparator 分隔前缀（例如 "spring"）与参数名其余部分（"param1"、"param2"）的分隔符
 	 */
 	public ServletRequestParameterPropertyValues(
 			ServletRequest request, @Nullable String prefix, @Nullable String prefixSeparator) {

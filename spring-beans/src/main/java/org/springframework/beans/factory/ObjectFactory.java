@@ -29,7 +29,7 @@ import org.springframework.beans.BeansException;
  *
  * @author Colin Sampaleanu
  * @since 1.0.2
- * @param <T> the object type
+ * @param <T> 对象类型
  * @see FactoryBean
  */
 @FunctionalInterface
@@ -37,8 +37,8 @@ public interface ObjectFactory<T> {
 
 	/**
 	 * 返回此工厂所管理对象的一个实例（可能是共享的，也可能是独立的）。
-	 * @return the resulting instance
-	 * @throws BeansException in case of creation errors
+	 * @return 结果实例
+	 * @throws BeansException 如果发生创建错误
 	 */
 	T getObject() throws BeansException;
 

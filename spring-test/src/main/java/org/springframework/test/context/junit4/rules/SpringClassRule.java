@@ -75,10 +75,10 @@ public class SpringClassRule implements TestRule {
 	 * 将 <em>Spring TestContext Framework</em> 的<em>类级</em>功能应用于所提供的 {@code base} 语句。
 	 * <p>具体而言，此方法获取此规则及其关联的 {@link SpringMethodRule} 所使用的 {@link TestContextManager}，并在该 {@code TestContextManager} 上调用 {@link TestContextManager#beforeTestClass() beforeTestClass()} 和 {@link TestContextManager#afterTestClass() afterTestClass()} 方法。
 	 * <p>此外，此方法会检查测试在当前执行环境中是否启用。这可防止带有不匹配的 {@code @IfProfileValue} 注解的类完全运行，甚至跳过 {@code TestExecutionListeners} 中 {@code beforeTestClass()} 方法的执行。
-	 * @param base the base {@code Statement} that this rule should be applied to
-	 * @param description a {@code Description} of the current test execution
-	 * @return a statement that wraps the supplied {@code base} with class-level
-	 * features of the Spring TestContext Framework
+	 * @param base 此规则应应用到的基本 {@code Statement}
+	 * @param description 当前测试执行的 {@code Description}
+	 * @return 一个语句，它用 Spring TestContext Framework 的
+	 * 类级特性包装所提供的 {@code base}
 	 * @see #getTestContextManager
 	 * @see #withBeforeTestClassCallbacks
 	 * @see #withAfterTestClassCallbacks
@@ -135,7 +135,7 @@ public class SpringClassRule implements TestRule {
 
 	/**
 	 * 获取与所提供的测试类关联的 {@link TestContextManager}。
-	 * @param testClass the test class to be managed; never {@code null}
+	 * @param testClass 要管理的测试类；从不为 {@code null}
 	 */
 	static TestContextManager getTestContextManager(Class<?> testClass) {
 		Assert.notNull(testClass, "Test Class must not be null");

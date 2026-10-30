@@ -78,8 +78,8 @@ public class TestSocketUtils {
 
 	/**
 	 * 从范围 [1024, 65535] 中随机选择一个可用 TCP 端口。
-	 * @return an available TCP port number
-	 * @throws IllegalStateException if no available port could be found
+	 * @return 一个可用的 TCP 端口号
+	 * @throws IllegalStateException 如果找不到可用端口。
 	 */
 	public static int findAvailableTcpPort() {
 		return INSTANCE.findAvailableTcpPortInternal();

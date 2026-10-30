@@ -113,8 +113,9 @@ public abstract class StatementCreatorUtils {
 
 	/**
 	 * 从给定的Java类型推导默认的SQL类型。
-	 * @param javaType the Java type to translate
-	 * @return the corresponding SQL type, or {@link SqlTypeValue#TYPE_UNKNOWN} if none found
+	 * @param javaType 要转换的 Java 类型
+	 * @return 对应的 SQL 类型，如果未找到则为
+	 * {@link SqlTypeValue#TYPE_UNKNOWN}
 	 */
 	public static int javaTypeToSqlParameterType(@Nullable Class<?> javaType) {
 		if (javaType == null) {
@@ -139,11 +140,11 @@ public abstract class StatementCreatorUtils {
 	/**
 	 * 设置参数的值。使用的方法基于参数的SQL类型，
 	 * 我们可以处理复杂类型如数组和LOB。
-	 * @param ps the prepared statement or callable statement
-	 * @param paramIndex index of the parameter we are setting
-	 * @param param the parameter as it is declared including type
-	 * @param inValue the value to set
-	 * @throws SQLException if thrown by PreparedStatement methods
+	 * @param ps 预编译语句或可调用语句
+	 * @param paramIndex 正在设置的参数索引
+	 * @param param 按声明形式给出的参数（包括类型）
+	 * @param inValue 要设置的值
+	 * @throws SQLException 如果由 PreparedStatement 方法抛出
 	 */
 	public static void setParameterValue(PreparedStatement ps, int paramIndex, SqlParameter param,
 			@Nullable Object inValue) throws SQLException {
@@ -154,11 +155,11 @@ public abstract class StatementCreatorUtils {
 	/**
 	 * 设置参数的值。使用的方法基于参数的SQL类型，
 	 * 我们可以处理复杂类型如数组和LOB。
-	 * @param ps the prepared statement or callable statement
-	 * @param paramIndex index of the parameter we are setting
-	 * @param sqlType the SQL type of the parameter
-	 * @param inValue the value to set (plain value or an SqlTypeValue)
-	 * @throws SQLException if thrown by PreparedStatement methods
+	 * @param ps 预编译语句或可调用语句
+	 * @param paramIndex 正在设置的参数索引
+	 * @param sqlType 参数的 SQL 类型
+	 * @param inValue 要设置的值（普通值或 SqlTypeValue）
+	 * @throws SQLException 如果由 PreparedStatement 方法抛出
 	 * @see SqlTypeValue
 	 */
 	public static void setParameterValue(PreparedStatement ps, int paramIndex, int sqlType,
@@ -170,13 +171,13 @@ public abstract class StatementCreatorUtils {
 	/**
 	 * 设置参数的值。使用的方法基于参数的SQL类型，
 	 * 我们可以处理复杂类型如数组和LOB。
-	 * @param ps the prepared statement or callable statement
-	 * @param paramIndex index of the parameter we are setting
-	 * @param sqlType the SQL type of the parameter
-	 * @param typeName the type name of the parameter
-	 * (optional, only used for SQL NULL and SqlTypeValue)
-	 * @param inValue the value to set (plain value or an SqlTypeValue)
-	 * @throws SQLException if thrown by PreparedStatement methods
+	 * @param ps 预编译语句或可调用语句
+	 * @param paramIndex 正在设置的参数索引
+	 * @param sqlType 参数的 SQL 类型
+	 * @param typeName 参数的类型名称
+	 * （可选，仅用于 SQL NULL 和 SqlTypeValue）
+	 * @param inValue 要设置的值（普通值或 SqlTypeValue）
+	 * @throws SQLException 如果由 PreparedStatement 方法抛出
 	 * @see SqlTypeValue
 	 */
 	public static void setParameterValue(PreparedStatement ps, int paramIndex, int sqlType, String typeName,
@@ -188,15 +189,14 @@ public abstract class StatementCreatorUtils {
 	/**
 	 * 设置参数的值。使用的方法基于参数的SQL类型，
 	 * 我们可以处理复杂类型如数组和LOB。
-	 * @param ps the prepared statement or callable statement
-	 * @param paramIndex index of the parameter we are setting
-	 * @param sqlType the SQL type of the parameter
-	 * @param typeName the type name of the parameter
-	 * (optional, only used for SQL NULL and SqlTypeValue)
-	 * @param scale the number of digits after the decimal point
-	 * (for DECIMAL and NUMERIC types)
-	 * @param inValue the value to set (plain value or an SqlTypeValue)
-	 * @throws SQLException if thrown by PreparedStatement methods
+	 * @param ps 预编译语句或可调用语句
+	 * @param paramIndex 正在设置的参数索引
+	 * @param sqlType 参数的 SQL 类型
+	 * @param typeName 参数的类型名称
+	 * （可选，仅用于 SQL NULL 和 SqlTypeValue）
+	 * @param scale 小数点后的位数（用于 DECIMAL 和 NUMERIC 类型）
+	 * @param inValue 要设置的值（普通值或 SqlTypeValue）
+	 * @throws SQLException 如果由 PreparedStatement 方法抛出
 	 * @see SqlTypeValue
 	 */
 	private static void setParameterValueInternal(PreparedStatement ps, int paramIndex, int sqlType,
@@ -443,7 +443,7 @@ public abstract class StatementCreatorUtils {
 	/**
 	 * 清理传递给execute方法的参数值所持有的所有资源。
 	 * 例如，这对于关闭LOB值很重要。
-	 * @param paramValues parameter values supplied. May be {@code null}.
+	 * @param paramValues 提供的参数值。可以为 {@code null}。
 	 * @see DisposableSqlTypeValue#cleanup()
 	 * @see org.springframework.jdbc.core.support.SqlLobValue#cleanup()
 	 */
@@ -456,7 +456,7 @@ public abstract class StatementCreatorUtils {
 	/**
 	 * 清理传递给execute方法的参数值所持有的所有资源。
 	 * 例如，这对于关闭LOB值很重要。
-	 * @param paramValues parameter values supplied. May be {@code null}.
+	 * @param paramValues 提供的参数值。可以为 {@code null}。
 	 * @see DisposableSqlTypeValue#cleanup()
 	 * @see org.springframework.jdbc.core.support.SqlLobValue#cleanup()
 	 */

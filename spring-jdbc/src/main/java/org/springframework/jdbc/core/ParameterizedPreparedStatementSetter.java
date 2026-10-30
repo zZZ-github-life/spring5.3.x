@@ -32,7 +32,7 @@ import java.sql.SQLException;
  * @author Nicolas Fabre
  * @author Thomas Risberg
  * @since 3.1
- * @param <T> the argument type
+ * @param <T> 参数类型
  * @see JdbcTemplate#batchUpdate(String, java.util.Collection, int, ParameterizedPreparedStatementSetter)
  */
 @FunctionalInterface
@@ -40,9 +40,9 @@ public interface ParameterizedPreparedStatementSetter<T> {
 
 	/**
 	 * 在给定的PreparedStatement上设置参数值。
-	 * @param ps the PreparedStatement to invoke setter methods on
-	 * @param argument the object containing the values to be set
-	 * @throws SQLException if an SQLException is encountered (i.e. there is no need to catch SQLException)
+	 * @param ps 要调用其 setter 方法的 PreparedStatement
+	 * @param argument 包含要设置值的对象
+	 * @throws SQLException 如果遇到 SQLException（即无需捕获 SQLException）
 	 */
 	void setValues(PreparedStatement ps, T argument) throws SQLException;
 

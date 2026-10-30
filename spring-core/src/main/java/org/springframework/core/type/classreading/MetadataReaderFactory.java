@@ -32,17 +32,17 @@ public interface MetadataReaderFactory {
 
 	/**
 	 * 获取给定类名的 MetadataReader。
-	 * @param className the class name (to be resolved to a ".class" file)
-	 * @return a holder for the ClassReader instance (never {@code null})
-	 * @throws IOException in case of I/O failure
+	 * @param className 类名（将被解析为 ".class" 文件）
+	 * @return ClassReader 实例的持有者（永不为 {@code null}）
+	 * @throws IOException 如果发生 I/O 失败
 	 */
 	MetadataReader getMetadataReader(String className) throws IOException;
 
 	/**
 	 * 获取给定资源的 MetadataReader。
-	 * @param resource the resource (pointing to a ".class" file)
-	 * @return a holder for the ClassReader instance (never {@code null})
-	 * @throws IOException in case of I/O failure
+	 * @param resource 资源（指向 ".class" 文件）
+	 * @return ClassReader 实例的持有者（永不为 {@code null}）
+	 * @throws IOException 如果发生 I/O 失败
 	 */
 	MetadataReader getMetadataReader(Resource resource) throws IOException;
 

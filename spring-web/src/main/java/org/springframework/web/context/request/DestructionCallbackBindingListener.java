@@ -37,8 +37,7 @@ public class DestructionCallbackBindingListener implements HttpSessionBindingLis
 
 	/**
 	 * 为给定的回调创建一个新的 DestructionCallbackBindingListener。
-	 * @param destructionCallback the Runnable to execute when this listener
-	 * object gets unbound from the session
+	 * @param destructionCallback 此监听器对象从会话解除绑定时要执行的 Runnable
 	 */
 	public DestructionCallbackBindingListener(Runnable destructionCallback) {
 		this.destructionCallback = destructionCallback;

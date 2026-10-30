@@ -36,16 +36,16 @@ import org.springframework.web.method.HandlerMethod;
  *
  * @author Rossen Stoyanchev
  * @since 4.1
- * @param <T> the mapping type
+ * @param <T> 映射类型
  */
 @FunctionalInterface
 public interface HandlerMethodMappingNamingStrategy<T> {
 
 	/**
 	 * 确定给定 HandlerMethod 和映射的名称。
-	 * @param handlerMethod the handler method
-	 * @param mapping the mapping
-	 * @return the name
+	 * @param handlerMethod 处理器方法
+	 * @param mapping 映射
+	 * @return 名称
 	 */
 	String getName(HandlerMethod handlerMethod, T mapping);
 

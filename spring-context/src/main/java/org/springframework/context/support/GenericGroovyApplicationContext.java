@@ -130,7 +130,7 @@ public class GenericGroovyApplicationContext extends GenericApplicationContext i
 
 	/**
 	 * 创建一个新的 GenericGroovyApplicationContext，从给定的资源加载 Bean 定义并自动刷新上下文。
-	 * @param resources the resources to load from
+	 * @param resources 要从中加载的资源
 	 */
 	public GenericGroovyApplicationContext(Resource... resources) {
 		load(resources);
@@ -139,7 +139,7 @@ public class GenericGroovyApplicationContext extends GenericApplicationContext i
 
 	/**
 	 * 创建一个新的 GenericGroovyApplicationContext，从给定的资源位置加载 Bean 定义并自动刷新上下文。
-	 * @param resourceLocations the resources to load from
+	 * @param resourceLocations 要从中加载的资源
 	 */
 	public GenericGroovyApplicationContext(String... resourceLocations) {
 		load(resourceLocations);
@@ -148,9 +148,8 @@ public class GenericGroovyApplicationContext extends GenericApplicationContext i
 
 	/**
 	 * 创建一个新的 GenericGroovyApplicationContext，从给定的资源位置加载 Bean 定义并自动刷新上下文。
-	 * @param relativeClass class whose package will be used as a prefix when
-	 * loading each specified resource name
-	 * @param resourceNames relatively-qualified names of resources to load
+	 * @param relativeClass 其包将用作加载每个指定资源名称时前缀的类
+	 * @param resourceNames 要加载的资源的相对限定名称
 	 */
 	public GenericGroovyApplicationContext(Class<?> relativeClass, String... resourceNames) {
 		load(relativeClass, resourceNames);
@@ -180,7 +179,7 @@ public class GenericGroovyApplicationContext extends GenericApplicationContext i
 	/**
 	 * 从给定的 Groovy 脚本或 XML 文件加载 Bean 定义。<p>请注意，".xml" 文件将作为 XML 内容解析；所有其
 	 * 他类型的资源将作为 Groovy 脚本解析。
-	 * @param resources one or more resources to load from
+	 * @param resources 要从中加载的一个或多个资源
 	 */
 	public void load(Resource... resources) {
 		this.reader.loadBeanDefinitions(resources);
@@ -189,7 +188,7 @@ public class GenericGroovyApplicationContext extends GenericApplicationContext i
 	/**
 	 * 从给定的 Groovy 脚本或 XML 文件加载 Bean 定义。<p>请注意，".xml" 文件将作为 XML 内容解析；所有其
 	 * 他类型的资源将作为 Groovy 脚本解析。
-	 * @param resourceLocations one or more resource locations to load from
+	 * @param resourceLocations 要从中加载的一个或多个资源位置
 	 */
 	public void load(String... resourceLocations) {
 		this.reader.loadBeanDefinitions(resourceLocations);
@@ -198,9 +197,8 @@ public class GenericGroovyApplicationContext extends GenericApplicationContext i
 	/**
 	 * 从给定的 Groovy 脚本或 XML 文件加载 Bean 定义。<p>请注意，".xml" 文件将作为 XML 内容解析；所有其
 	 * 他类型的资源将作为 Groovy 脚本解析。
-	 * @param relativeClass class whose package will be used as a prefix when
-	 * loading each specified resource name
-	 * @param resourceNames relatively-qualified names of resources to load
+	 * @param relativeClass 其包将用作加载每个指定资源名称时前缀的类
+	 * @param resourceNames 要加载的资源的相对限定名称
 	 */
 	public void load(Class<?> relativeClass, String... resourceNames) {
 		Resource[] resources = new Resource[resourceNames.length];

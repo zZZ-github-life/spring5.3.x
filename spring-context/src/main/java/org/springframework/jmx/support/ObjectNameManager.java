@@ -37,10 +37,9 @@ public final class ObjectNameManager {
 
 	/**
 	 * 检索与所提供名称对应的 {@code ObjectName} 实例。
-	 * @param objectName the {@code ObjectName} in {@code ObjectName} or
-	 * {@code String} format
-	 * @return the {@code ObjectName} instance
-	 * @throws MalformedObjectNameException in case of an invalid object name specification
+	 * @param objectName {@code ObjectName} 或 {@code String} 格式的 {@code ObjectName}
+	 * @return 该 {@code ObjectName} 实例
+	 * @throws MalformedObjectNameException 在对象名规范无效的情况下
 	 * @see ObjectName#ObjectName(String)
 	 * @see ObjectName#getInstance(String)
 	 */
@@ -57,9 +56,9 @@ public final class ObjectNameManager {
 
 	/**
 	 * 检索与所提供名称对应的 {@code ObjectName} 实例。
-	 * @param objectName the {@code ObjectName} in {@code String} format
-	 * @return the {@code ObjectName} instance
-	 * @throws MalformedObjectNameException in case of an invalid object name specification
+	 * @param objectName {@code String} 格式的 {@code ObjectName}
+	 * @return 该 {@code ObjectName} 实例
+	 * @throws MalformedObjectNameException 在对象名规范无效的情况下
 	 * @see ObjectName#ObjectName(String)
 	 * @see ObjectName#getInstance(String)
 	 */
@@ -69,11 +68,11 @@ public final class ObjectNameManager {
 
 	/**
 	 * 为指定的域以及一个具有所提供键和值的属性检索 {@code ObjectName} 实例。
-	 * @param domainName the domain name for the {@code ObjectName}
-	 * @param key the key for the single property in the {@code ObjectName}
-	 * @param value the value for the single property in the {@code ObjectName}
-	 * @return the {@code ObjectName} instance
-	 * @throws MalformedObjectNameException in case of an invalid object name specification
+	 * @param domainName {@code ObjectName} 的域名
+	 * @param key {@code ObjectName} 中单个属性的键
+	 * @param value {@code ObjectName} 中单个属性的值
+	 * @return 该 {@code ObjectName} 实例
+	 * @throws MalformedObjectNameException 在对象名规范无效的情况下
 	 * @see ObjectName#ObjectName(String, String, String)
 	 * @see ObjectName#getInstance(String, String, String)
 	 */
@@ -85,10 +84,10 @@ public final class ObjectNameManager {
 
 	/**
 	 * 检索具有指定域名和所提供键/名称属性的 {@code ObjectName} 实例。
-	 * @param domainName the domain name for the {@code ObjectName}
-	 * @param properties the properties for the {@code ObjectName}
-	 * @return the {@code ObjectName} instance
-	 * @throws MalformedObjectNameException in case of an invalid object name specification
+	 * @param domainName {@code ObjectName} 的域名
+	 * @param properties {@code ObjectName} 的属性
+	 * @return 该 {@code ObjectName} 实例
+	 * @throws MalformedObjectNameException 在对象名规范无效的情况下
 	 * @see ObjectName#ObjectName(String, java.util.Hashtable)
 	 * @see ObjectName#getInstance(String, java.util.Hashtable)
 	 */

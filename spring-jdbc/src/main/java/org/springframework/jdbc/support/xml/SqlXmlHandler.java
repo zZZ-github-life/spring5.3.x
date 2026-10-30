@@ -55,10 +55,10 @@ public interface SqlXmlHandler {
 	 * 从给定的 ResultSet 中检索指定列的 String 值。
 	 * <p>可能只是简单地调用 {@code ResultSet.getString}，也可能根据
 	 * 数据库和驱动使用 {@code SQLXML} 或数据库特定的类。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnName the column name to use
-	 * @return the content as String, or {@code null} in case of SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnName 要使用的列名
+	 * @return 以 String 表示的内容，遇到 SQL NULL 时为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getString
 	 * @see java.sql.ResultSet#getSQLXML
 	 */
@@ -69,10 +69,10 @@ public interface SqlXmlHandler {
 	 * 从给定的 ResultSet 中检索指定列的 String 值。
 	 * <p>可能只是简单地调用 {@code ResultSet.getString}，也可能根据
 	 * 数据库和驱动使用 {@code SQLXML} 或数据库特定的类。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnIndex the column index to use
-	 * @return the content as String, or {@code null} in case of SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnIndex 要使用的列索引
+	 * @return 以 String 表示的内容，遇到 SQL NULL 时为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getString
 	 * @see java.sql.ResultSet#getSQLXML
 	 */
@@ -83,10 +83,10 @@ public interface SqlXmlHandler {
 	 * 从给定的 ResultSet 中检索指定列的二进制流。
 	 * <p>可能只是简单地调用 {@code ResultSet.getAsciiStream}，也可能根据
 	 * 数据库和驱动使用 {@code SQLXML} 或数据库特定的类。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnName the column name to use
-	 * @return the content as a binary stream, or {@code null} in case of SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnName 要使用的列名
+	 * @return 以二进制流表示的内容，遇到 SQL NULL 时为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getSQLXML
 	 * @see java.sql.SQLXML#getBinaryStream
 	 */
@@ -97,10 +97,10 @@ public interface SqlXmlHandler {
 	 * 从给定的 ResultSet 中检索指定列的二进制流。
 	 * <p>可能只是简单地调用 {@code ResultSet.getAsciiStream}，也可能根据
 	 * 数据库和驱动使用 {@code SQLXML} 或数据库特定的类。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnIndex the column index to use
-	 * @return the content as binary stream, or {@code null} in case of SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnIndex 要使用的列索引
+	 * @return 以二进制流表示的内容，遇到 SQL NULL 时为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getSQLXML
 	 * @see java.sql.SQLXML#getBinaryStream
 	 */
@@ -111,10 +111,10 @@ public interface SqlXmlHandler {
 	 * 从给定的 ResultSet 中检索指定列的字符流。
 	 * <p>可能只是简单地调用 {@code ResultSet.getCharacterStream}，也可能根据
 	 * 数据库和驱动使用 {@code SQLXML} 或数据库特定的类。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnName the column name to use
-	 * @return the content as character stream, or {@code null} in case of SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnName 要使用的列名
+	 * @return 以字符流表示的内容，遇到 SQL NULL 时为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getSQLXML
 	 * @see java.sql.SQLXML#getCharacterStream
 	 */
@@ -125,10 +125,10 @@ public interface SqlXmlHandler {
 	 * 从给定的 ResultSet 中检索指定列的字符流。
 	 * <p>可能只是简单地调用 {@code ResultSet.getCharacterStream}，也可能根据
 	 * 数据库和驱动使用 {@code SQLXML} 或数据库特定的类。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnIndex the column index to use
-	 * @return the content as character stream, or {@code null} in case of SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnIndex 要使用的列索引
+	 * @return 以字符流表示的内容，遇到 SQL NULL 时为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getSQLXML
 	 * @see java.sql.SQLXML#getCharacterStream
 	 */
@@ -139,11 +139,11 @@ public interface SqlXmlHandler {
 	 * 从给定的 ResultSet 中检索指定列的 Source，
 	 * 该 Source 使用指定的 source 类实现。
 	 * <p>可能根据数据库和驱动使用 {@code SQLXML} 或数据库特定的类。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnName the column name to use
-	 * @param sourceClass the implementation class to be used
-	 * @return the content as character stream, or {@code null} in case of SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnName 要使用的列名
+	 * @param sourceClass 要使用的实现类
+	 * @return 以字符流表示的内容，遇到 SQL NULL 时为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getSQLXML
 	 * @see java.sql.SQLXML#getSource
 	 */
@@ -154,11 +154,11 @@ public interface SqlXmlHandler {
 	 * 从给定的 ResultSet 中检索指定列的 Source，
 	 * 该 Source 使用指定的 source 类实现。
 	 * <p>可能根据数据库和驱动使用 {@code SQLXML} 或数据库特定的类。
-	 * @param rs the ResultSet to retrieve the content from
-	 * @param columnIndex the column index to use
-	 * @param sourceClass the implementation class to be used
-	 * @return the content as character stream, or {@code null} in case of SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 要从中获取内容的 ResultSet
+	 * @param columnIndex 要使用的列索引
+	 * @param sourceClass 要使用的实现类
+	 * @return 以字符流表示的内容，遇到 SQL NULL 时为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.ResultSet#getSQLXML
 	 * @see java.sql.SQLXML#getSource
 	 */
@@ -173,8 +173,8 @@ public interface SqlXmlHandler {
 	/**
 	 * 为给定的 XML 数据创建 {@code SqlXmlValue} 实例，
 	 * 具体取决于底层 JDBC 驱动所支持的方式。
-	 * @param value the XML String value providing XML data
-	 * @return the implementation specific instance
+	 * @param value 提供 XML 数据的 XML String 值
+	 * @return 特定于实现的实例
 	 * @see SqlXmlValue
 	 * @see java.sql.SQLXML#setString(String)
 	 */
@@ -183,8 +183,8 @@ public interface SqlXmlHandler {
 	/**
 	 * 为给定的 XML 数据创建 {@code SqlXmlValue} 实例，
 	 * 具体取决于底层 JDBC 驱动所支持的方式。
-	 * @param provider the {@code XmlBinaryStreamProvider} providing XML data
-	 * @return the implementation specific instance
+	 * @param provider 提供 XML 数据的 {@code XmlBinaryStreamProvider}
+	 * @return 特定于实现的实例
 	 * @see SqlXmlValue
 	 * @see java.sql.SQLXML#setBinaryStream()
 	 */
@@ -193,8 +193,8 @@ public interface SqlXmlHandler {
 	/**
 	 * 为给定的 XML 数据创建 {@code SqlXmlValue} 实例，
 	 * 具体取决于底层 JDBC 驱动所支持的方式。
-	 * @param provider the {@code XmlCharacterStreamProvider} providing XML data
-	 * @return the implementation specific instance
+	 * @param provider 提供 XML 数据的 {@code XmlCharacterStreamProvider}
+	 * @return 特定于实现的实例
 	 * @see SqlXmlValue
 	 * @see java.sql.SQLXML#setCharacterStream()
 	 */
@@ -203,9 +203,9 @@ public interface SqlXmlHandler {
 	/**
 	 * 为给定的 XML 数据创建 {@code SqlXmlValue} 实例，
 	 * 具体取决于底层 JDBC 驱动所支持的方式。
-	 * @param resultClass the Result implementation class to be used
-	 * @param provider the {@code XmlResultProvider} that will provide the XML data
-	 * @return the implementation specific instance
+	 * @param resultClass 要使用的 Result 实现类
+	 * @param provider 将提供 XML 数据的 {@code XmlResultProvider}
+	 * @return 特定于实现的实例
 	 * @see SqlXmlValue
 	 * @see java.sql.SQLXML#setResult(Class)
 	 */
@@ -214,8 +214,8 @@ public interface SqlXmlHandler {
 	/**
 	 * 为给定的 XML 数据创建 {@code SqlXmlValue} 实例，
 	 * 具体取决于底层 JDBC 驱动所支持的方式。
-	 * @param doc the XML Document to be used
-	 * @return the implementation specific instance
+	 * @param doc 要使用的 XML Document
+	 * @return 特定于实现的实例
 	 * @see SqlXmlValue
 	 */
 	SqlXmlValue newSqlXmlValue(Document doc);

@@ -105,7 +105,7 @@ public class MappingMediaTypeFileExtensionResolver implements MediaTypeFileExten
 
 	/**
 	 * 使用此方法进行从扩展名到 MediaType 的反向查找。
-	 * @return a MediaType for the extension, or {@code null} if none found
+	 * @return 该扩展名对应的 MediaType；如果未找到则为 {@code null}
 	 */
 	@Nullable
 	protected MediaType lookupMediaType(String extension) {

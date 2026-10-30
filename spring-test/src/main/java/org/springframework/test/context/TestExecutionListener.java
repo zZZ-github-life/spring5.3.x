@@ -49,8 +49,8 @@ public interface TestExecutionListener {
 	 * 在类中所有测试执行<em>之前</em>预处理测试类。
 	 * <p>此方法应在特定于框架的 <em>before class</em> 生命周期回调之前立即调用。
 	 * <p>默认实现为<em>空</em>。具体类可根据需要重写。
-	 * @param testContext the test context for the test; never {@code null}
-	 * @throws Exception allows any exception to propagate
+	 * @param testContext 测试的测试上下文；永不为 {@code null}
+	 * @throws Exception 允许任何异常传播
 	 * @since 3.0
 	 */
 	default void beforeTestClass(TestContext testContext) throws Exception {
@@ -60,8 +60,8 @@ public interface TestExecutionListener {
 	 * 准备所提供{@linkplain TestContext 测试上下文}的{@linkplain Object 测试实例}，例如用于注入依赖。
 	 * <p>此方法应在测试类实例化之后立即调用，或尽可能在实例化之后尽快调用（{@link org.springframework.test.context.junit4.rules.SpringMethodRule SpringMethodRule} 就是如此）。无论如何，此方法必须在任何特定于框架的生命周期回调之前调用。
 	 * <p>默认实现为<em>空</em>。具体类可根据需要重写。
-	 * @param testContext the test context for the test; never {@code null}
-	 * @throws Exception allows any exception to propagate
+	 * @param testContext 测试的测试上下文；永不为 {@code null}
+	 * @throws Exception 允许任何异常传播
 	 */
 	default void prepareTestInstance(TestContext testContext) throws Exception {
 	}
@@ -70,9 +70,9 @@ public interface TestExecutionListener {
 	 * 在底层测试框架的 <em>before</em> 生命周期回调执行<em>之前</em>预处理测试，例如通过设置测试夹具。
 	 * <p>此方法<strong>必须</strong>在特定于框架的 <em>before</em> 生命周期回调之前立即调用。由于历史原因，此方法被命名为 {@code beforeTestMethod}。自引入 {@link #beforeTestExecution} 以来，此方法更合适的名称也许是 {@code beforeTestSetUp} 或 {@code beforeEach}；然而，出于向后兼容性方面的顾虑，遗憾的是无法重命名此方法。
 	 * <p>默认实现为<em>空</em>。具体类可根据需要重写。
-	 * @param testContext the test context in which the test method will be
-	 * executed; never {@code null}
-	 * @throws Exception allows any exception to propagate
+	 * @param testContext 将执行测试方法的测试上下文；
+	 * 永不为 {@code null}
+	 * @throws Exception 允许任何异常传播
 	 * @see #afterTestMethod
 	 * @see #beforeTestExecution
 	 * @see #afterTestExecution
@@ -84,9 +84,8 @@ public interface TestExecutionListener {
 	 * 在所提供的{@linkplain TestContext 测试上下文}中{@linkplain java.lang.reflect.Method 测试方法}执行<em>之前一刻</em>预处理测试，例如用于计时或日志记录。
 	 * <p>此方法<strong>必须</strong>在特定于框架的 <em>before</em> 生命周期回调之后调用。
 	 * <p>默认实现为<em>空</em>。具体类可根据需要重写。
-	 * @param testContext the test context in which the test method will be
-	 * executed; never {@code null}
-	 * @throws Exception allows any exception to propagate
+	 * @param testContext 将要执行该测试方法的测试上下文；从不为 {@code null}
+	 * @throws Exception 允许任何异常传播
 	 * @since 5.0
 	 * @see #beforeTestMethod
 	 * @see #afterTestMethod
@@ -99,9 +98,8 @@ public interface TestExecutionListener {
 	 * 在所提供的{@linkplain TestContext 测试上下文}中{@linkplain java.lang.reflect.Method 测试方法}执行<em>之后一刻</em>后处理测试，例如用于计时或日志记录。
 	 * <p>此方法<strong>必须</strong>在特定于框架的 <em>after</em> 生命周期回调之前调用。
 	 * <p>默认实现为<em>空</em>。具体类可根据需要重写。
-	 * @param testContext the test context in which the test method will be
-	 * executed; never {@code null}
-	 * @throws Exception allows any exception to propagate
+	 * @param testContext 将要执行该测试方法的测试上下文；从不为 {@code null}
+	 * @throws Exception 允许任何异常传播
 	 * @since 5.0
 	 * @see #beforeTestMethod
 	 * @see #afterTestMethod
@@ -114,9 +112,8 @@ public interface TestExecutionListener {
 	 * 在底层测试框架的 <em>after</em> 生命周期回调执行<em>之后</em>后处理测试，例如通过拆除测试夹具。
 	 * <p>此方法<strong>必须</strong>在特定于框架的 <em>after</em> 生命周期回调之后立即调用。由于历史原因，此方法被命名为 {@code afterTestMethod}。自引入 {@link #afterTestExecution} 以来，此方法更合适的名称也许是 {@code afterTestTearDown} 或 {@code afterEach}；然而，出于向后兼容性方面的顾虑，遗憾的是无法重命名此方法。
 	 * <p>默认实现为<em>空</em>。具体类可根据需要重写。
-	 * @param testContext the test context in which the test method was
-	 * executed; never {@code null}
-	 * @throws Exception allows any exception to propagate
+	 * @param testContext 已执行该测试方法的测试上下文；从不为 {@code null}
+	 * @throws Exception 允许任何异常传播
 	 * @see #beforeTestMethod
 	 * @see #beforeTestExecution
 	 * @see #afterTestExecution
@@ -128,8 +125,8 @@ public interface TestExecutionListener {
 	 * 在类中所有测试执行<em>之后</em>后处理测试类。
 	 * <p>此方法应在特定于框架的 <em>after class</em> 生命周期回调之后立即调用。
 	 * <p>默认实现为<em>空</em>。具体类可根据需要重写。
-	 * @param testContext the test context for the test; never {@code null}
-	 * @throws Exception allows any exception to propagate
+	 * @param testContext 该测试的测试上下文；从不为 {@code null}
+	 * @throws Exception 允许任何异常传播
 	 * @since 3.0
 	 */
 	default void afterTestClass(TestContext testContext) throws Exception {

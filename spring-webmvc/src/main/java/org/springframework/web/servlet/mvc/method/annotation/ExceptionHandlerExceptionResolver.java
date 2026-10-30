@@ -459,9 +459,9 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 	 * 如果未找到，则在假定检测到某些 {@linkplain ControllerAdvice @ControllerAdvice}
 	 * Spring 管理的 bean 的情况下，继续搜索其他 {@code @ExceptionHandler}
 	 * 方法。
-	 * @param handlerMethod the method where the exception was raised (may be {@code null})
-	 * @param exception the raised exception
-	 * @return a method to handle the exception, or {@code null} if none
+	 * @param handlerMethod 引发异常的方法（可能为 {@code null}）
+	 * @param exception 引发的异常
+	 * @return 用于处理该异常的方法，若无则为 {@code null}
 	 */
 	@Nullable
 	protected ServletInvocableHandlerMethod getExceptionHandlerMethod(

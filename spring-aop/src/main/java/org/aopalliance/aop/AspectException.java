@@ -29,7 +29,7 @@ public class AspectException extends RuntimeException {
 
 	/**
 	 * AspectException 的构造器。
-	 * @param message the exception message
+	 * @param message 异常消息
 	 */
 	public AspectException(String message) {
 		super(message);
@@ -37,8 +37,8 @@ public class AspectException extends RuntimeException {
 
 	/**
 	 * AspectException 的构造器。
-	 * @param message the exception message
-	 * @param cause the root cause, if any
+	 * @param message 异常消息
+	 * @param cause 根本原因（如果有）
 	 */
 	public AspectException(String message, Throwable cause) {
 		super(message, cause);

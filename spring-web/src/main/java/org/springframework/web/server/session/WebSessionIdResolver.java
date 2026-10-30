@@ -32,21 +32,21 @@ public interface WebSessionIdResolver {
 
 	/**
 	 * 解析与请求关联的会话 ID。
-	 * @param exchange the current exchange
-	 * @return the session IDs or an empty list
+	 * @param exchange 当前交换
+	 * @return 会话 ID 或空列表
 	 */
 	List<String> resolveSessionIds(ServerWebExchange exchange);
 
 	/**
 	 * 将给定的会话 ID 发送给客户端。
-	 * @param exchange the current exchange
-	 * @param sessionId the session ID
+	 * @param exchange 当前交换
+	 * @param sessionId 会话 ID
 	 */
 	void setSessionId(ServerWebExchange exchange, String sessionId);
 
 	/**
 	 * 指示客户端结束当前会话。
-	 * @param exchange the current exchange
+	 * @param exchange 当前交换
 	 */
 	void expireSession(ServerWebExchange exchange);
 

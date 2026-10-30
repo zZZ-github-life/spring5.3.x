@@ -39,7 +39,7 @@ public class DispatcherServletWebRequest extends ServletWebRequest {
 
 	/**
 	 * 为给定请求创建新的 DispatcherServletWebRequest 实例。
-	 * @param request current HTTP request
+	 * @param request 当前 HTTP 请求
 	 */
 	public DispatcherServletWebRequest(HttpServletRequest request) {
 		super(request);
@@ -47,8 +47,8 @@ public class DispatcherServletWebRequest extends ServletWebRequest {
 
 	/**
 	 * 为给定请求和响应创建新的 DispatcherServletWebRequest 实例。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
 	 */
 	public DispatcherServletWebRequest(HttpServletRequest request, HttpServletResponse response) {
 		super(request, response);

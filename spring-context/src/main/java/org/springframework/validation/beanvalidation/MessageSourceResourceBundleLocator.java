@@ -41,7 +41,7 @@ public class MessageSourceResourceBundleLocator implements ResourceBundleLocator
 
 	/**
 	 * 为给定 MessageSource 构建一个 MessageSourceResourceBundleLocator。
-	 * @param messageSource the Spring MessageSource to wrap
+	 * @param messageSource 要包装的 Spring MessageSource。
 	 */
 	public MessageSourceResourceBundleLocator(MessageSource messageSource) {
 		Assert.notNull(messageSource, "MessageSource must not be null");

@@ -30,7 +30,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Stephane Nicoll
  * @since 4.1
- * @param <T> type of the instance to and from which headers will be mapped
+ * @param <T> 进行消息头映射的实例类型
  */
 public abstract class AbstractHeaderMapper<T> implements HeaderMapper<T> {
 

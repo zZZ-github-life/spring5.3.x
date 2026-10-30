@@ -111,9 +111,9 @@ public class JodaDateTimeFormatAnnotationFormatterFactory extends EmbeddedValueR
 
 	/**
 	 * 用于创建 {@link DateTimeFormatter} 的工厂方法。
-	 * @param annotation the format annotation for the field
-	 * @param fieldType the type of field
-	 * @return a {@link DateTimeFormatter} instance
+	 * @param annotation 该字段的格式注解
+	 * @param fieldType 字段类型
+	 * @return {@link DateTimeFormatter} 实例
 	 * @since 3.2
 	 */
 	protected DateTimeFormatter getFormatter(DateTimeFormat annotation, Class<?> fieldType) {

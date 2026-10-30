@@ -29,7 +29,7 @@ import java.util.function.Consumer;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
- * @param <E> the specific {@code ApplicationEvent} subclass to listen to
+ * @param <E> 要监听的具体 {@code ApplicationEvent} 子类
  * @see org.springframework.context.ApplicationEvent
  * @see org.springframework.context.event.ApplicationEventMulticaster
  * @see org.springframework.context.event.SmartApplicationListener
@@ -41,16 +41,16 @@ public interface ApplicationListener<E extends ApplicationEvent> extends EventLi
 
 	/**
 	 * 处理应用事件。
-	 * @param event the event to respond to
+	 * @param event 要响应的事件
 	 */
 	void onApplicationEvent(E event);
 
 
 	/**
 	 * 为给定的 payload 消费者创建一个新的 {@code ApplicationListener}。
-	 * @param consumer the event payload consumer
-	 * @param <T> the type of the event payload
-	 * @return a corresponding {@code ApplicationListener} instance
+	 * @param consumer 事件负载消费者
+	 * @param <T> 事件负载的类型
+	 * @return 相应的 {@code ApplicationListener} 实例
 	 * @since 5.3
 	 * @see PayloadApplicationEvent
 	 */

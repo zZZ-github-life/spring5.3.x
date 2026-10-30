@@ -106,7 +106,7 @@ public class HandshakeWebSocketService implements WebSocketService, Lifecycle {
 
 	/**
 	 * 指定要使用的 {@link RequestUpgradeStrategy} 的备用构造函数。
-	 * @param upgradeStrategy the strategy to use
+	 * @param upgradeStrategy 要使用的策略
 	 */
 	public HandshakeWebSocketService(RequestUpgradeStrategy upgradeStrategy) {
 		Assert.notNull(upgradeStrategy, "RequestUpgradeStrategy is required");
@@ -159,7 +159,7 @@ public class HandshakeWebSocketService implements WebSocketService, Lifecycle {
 	 * {@link org.springframework.web.server.WebSession WebSession} 属性，并用这些属性
 	 * 初始化 WebSocket 会话。
 	 * <p>默认不设置，此时不传递任何属性。
-	 * @param predicate the predicate
+	 * @param predicate 该断言
 	 * @since 5.1
 	 */
 	public void setSessionAttributePredicate(@Nullable Predicate<String> predicate) {

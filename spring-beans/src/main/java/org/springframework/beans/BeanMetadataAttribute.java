@@ -39,8 +39,8 @@ public class BeanMetadataAttribute implements BeanMetadataElement {
 
 	/**
 	 * 创建一个新的 AttributeValue 实例。
-	 * @param name the name of the attribute (never {@code null})
-	 * @param value the value of the attribute (possibly before type conversion)
+	 * @param name 属性的名称（永远不为 {@code null}）
+	 * @param value 属性的值（可能尚未进行类型转换）
 	 */
 	public BeanMetadataAttribute(String name, @Nullable Object value) {
 		Assert.notNull(name, "Name must not be null");

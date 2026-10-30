@@ -45,19 +45,18 @@ public interface WebRequestInterceptor {
 	/**
 	 * 在请求处理器被调用<i>之前</i>拦截其执行。
 	 * <p>可用于准备上下文资源（例如 Hibernate Session），并将其暴露为请求属性或线程本地对象。
-	 * @param request the current web request
-	 * @throws Exception in case of errors
+	 * @param request 当前 Web 请求
+	 * @throws Exception 发生错误时
 	 */
 	void preHandle(WebRequest request) throws Exception;
 
 	/**
 	 * 在请求处理器成功调用<i>之后</i>、渲染视图（如果有）之前拦截其执行。
 	 * <p>可用于在处理器成功执行后修改上下文资源（例如刷新 Hibernate Session）。
-	 * @param request the current web request
-	 * @param model the map of model objects that will be exposed to the view
-	 * (may be {@code null}). Can be used to analyze the exposed model
-	 * and/or to add further model attributes, if desired.
-	 * @throws Exception in case of errors
+	 * @param request 当前 Web 请求
+	 * @param model 将暴露给视图的模型对象映射（可能为 {@code null}）。
+	 * 如有需要，可用于分析所暴露的模型和/或添加更多模型属性。
+	 * @throws Exception 发生错误时
 	 */
 	void postHandle(WebRequest request, @Nullable ModelMap model) throws Exception;
 
@@ -65,9 +64,9 @@ public interface WebRequestInterceptor {
 	 * 请求处理完成后的回调，即在渲染视图之后调用。无论处理器执行结果如何都会调用，因此可用于正确清理
 	 * 资源。
 	 * <p>注意：仅当此拦截器的 {@code preHandle} 方法成功完成后才会调用！
-	 * @param request the current web request
-	 * @param ex exception thrown on handler execution, if any
-	 * @throws Exception in case of errors
+	 * @param request 当前 Web 请求
+	 * @param ex 处理器执行时抛出的异常（如果有）
+	 * @throws Exception 发生错误时
 	 */
 	void afterCompletion(WebRequest request, @Nullable Exception ex) throws Exception;
 

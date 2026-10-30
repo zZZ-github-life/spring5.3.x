@@ -42,7 +42,7 @@ public class FactoryBeanNotInitializedException extends FatalBeanException {
 
 	/**
 	 * 使用给定消息创建一个新的 FactoryBeanNotInitializedException。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public FactoryBeanNotInitializedException(String msg) {
 		super(msg);

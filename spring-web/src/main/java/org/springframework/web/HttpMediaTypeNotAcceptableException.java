@@ -31,7 +31,7 @@ public class HttpMediaTypeNotAcceptableException extends HttpMediaTypeException 
 
 	/**
 	 * 创建一个新的 HttpMediaTypeNotAcceptableException。
-	 * @param message the exception message
+	 * @param message 异常消息
 	 */
 	public HttpMediaTypeNotAcceptableException(String message) {
 		super(message);
@@ -39,7 +39,7 @@ public class HttpMediaTypeNotAcceptableException extends HttpMediaTypeException 
 
 	/**
 	 * 创建一个新的 HttpMediaTypeNotSupportedException。
-	 * @param supportedMediaTypes the list of supported media types
+	 * @param supportedMediaTypes 支持的媒体类型列表
 	 */
 	public HttpMediaTypeNotAcceptableException(List<MediaType> supportedMediaTypes) {
 		super("Could not find acceptable representation", supportedMediaTypes);

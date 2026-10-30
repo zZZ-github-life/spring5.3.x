@@ -45,9 +45,9 @@ public interface BeanInfoFactory {
 
 	/**
 	 * 如果支持，返回给定类的 Bean 信息。
-	 * @param beanClass the bean class
-	 * @return the BeanInfo, or {@code null} if the given class is not supported
-	 * @throws IntrospectionException in case of exceptions
+	 * @param beanClass Bean 类
+	 * @return BeanInfo，如果给定的类不受支持则为 {@code null}
+	 * @throws IntrospectionException 如果发生异常
 	 */
 	@Nullable
 	BeanInfo getBeanInfo(Class<?> beanClass) throws IntrospectionException;

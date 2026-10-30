@@ -28,9 +28,8 @@ public interface HierarchicalMessageSource extends MessageSource {
 
 	/**
 	 * 设置父级，当此对象无法解析消息时，将尝试用该父级来解析。
-	 * @param parent the parent MessageSource that will be used to
-	 * resolve messages that this object can't resolve.
-	 * May be {@code null}, in which case no further resolution is possible.
+	 * @param parent 父 MessageSource，用于解析此对象无法解析的消息。
+	 * 可以为 {@code null}，此时无法进行进一步解析。
 	 */
 	void setParentMessageSource(@Nullable MessageSource parent);
 

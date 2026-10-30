@@ -29,7 +29,7 @@ public class DataSourceLookupFailureException extends NonTransientDataAccessExce
 
 	/**
 	 * DataSourceLookupFailureException 的构造函数。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public DataSourceLookupFailureException(String msg) {
 		super(msg);
@@ -37,9 +37,8 @@ public class DataSourceLookupFailureException extends NonTransientDataAccessExce
 
 	/**
 	 * DataSourceLookupFailureException 的构造函数。
-	 * @param msg the detail message
-	 * @param cause the root cause (usually from using an underlying
-	 * lookup API such as JNDI)
+	 * @param msg 详细消息
+	 * @param cause 根本原因（通常来自使用 JNDI 等底层查找 API）
 	 */
 	public DataSourceLookupFailureException(String msg, Throwable cause) {
 		super(msg, cause);

@@ -35,8 +35,8 @@ public class CronTask extends TriggerTask {
 
 	/**
 	 * 创建一个新的 {@code CronTask}。
-	 * @param runnable the underlying task to execute
-	 * @param expression the cron expression defining when the task should be executed
+	 * @param runnable 要执行的底层任务
+	 * @param expression 定义任务执行时间的 cron 表达式
 	 */
 	public CronTask(Runnable runnable, String expression) {
 		this(runnable, new CronTrigger(expression));
@@ -44,8 +44,8 @@ public class CronTask extends TriggerTask {
 
 	/**
 	 * 创建一个新的 {@code CronTask}。
-	 * @param runnable the underlying task to execute
-	 * @param cronTrigger the cron trigger defining when the task should be executed
+	 * @param runnable 要执行的底层任务
+	 * @param cronTrigger 定义任务执行时间的 cron 触发器
 	 */
 	public CronTask(Runnable runnable, CronTrigger cronTrigger) {
 		super(runnable, cronTrigger);

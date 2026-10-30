@@ -36,16 +36,16 @@ public interface ExchangeFilterFunction {
 	 * <p>给定的 {@linkplain ExchangeFunction} 表示链中的下一个实体，可通过 {@linkplain ExchangeFunction#exchange(ClientRequest) 调用}它来继续交换，或不调用它以短路该链。
 	 *
 	 * <p><strong>注意：</strong>当过滤器在调用 {@link ExchangeFunction#exchange} 之后处理响应时，必须格外小心，始终消费其内容，或以其他方式将其向下游传播以供进一步处理（例如由 {@link WebClient} 处理）。详情请参阅参考文档。
-	 * @param request the current request
-	 * @param next the next exchange function in the chain
-	 * @return the filtered response
+	 * @param request 当前请求
+	 * @param next 链中的下一个交换函数
+	 * @return 过滤后的响应
 	 */
 	Mono<ClientResponse> filter(ClientRequest request, ExchangeFunction next);
 
 	/**
 	 * 返回组合过滤器函数，先应用此过滤器，然后应用给定的 {@code "after"} 过滤器。
-	 * @param afterFilter the filter to apply after this filter
-	 * @return the composed filter
+	 * @param afterFilter 在此过滤器之后应用的过滤器
+	 * @return 组合后的过滤器
 	 */
 	default ExchangeFilterFunction andThen(ExchangeFilterFunction afterFilter) {
 		Assert.notNull(afterFilter, "ExchangeFilterFunction must not be null");
@@ -55,8 +55,8 @@ public interface ExchangeFilterFunction {
 
 	/**
 	 * 将此过滤器应用于给定的 {@linkplain ExchangeFunction}，生成过滤后的交换函数。
-	 * @param exchange the exchange function to filter
-	 * @return the filtered exchange function
+	 * @param exchange 要过滤的交换函数
+	 * @return 过滤后的交换函数
 	 */
 	default ExchangeFunction apply(ExchangeFunction exchange) {
 		Assert.notNull(exchange, "ExchangeFunction must not be null");
@@ -65,8 +65,8 @@ public interface ExchangeFilterFunction {
 
 	/**
 	 * 将给定的请求处理器函数适配为仅对 {@code ClientRequest} 操作的过滤器函数。
-	 * @param processor the request processor
-	 * @return the resulting filter adapter
+	 * @param processor 请求处理器
+	 * @return 生成的过滤器适配器
 	 */
 	static ExchangeFilterFunction ofRequestProcessor(Function<ClientRequest, Mono<ClientRequest>> processor) {
 		Assert.notNull(processor, "ClientRequest Function must not be null");
@@ -75,8 +75,8 @@ public interface ExchangeFilterFunction {
 
 	/**
 	 * 将给定的响应处理器函数适配为仅对 {@code ClientResponse} 操作的过滤器函数。
-	 * @param processor the response processor
-	 * @return the resulting filter adapter
+	 * @param processor 响应处理器
+	 * @return 生成的过滤器适配器
 	 */
 	static ExchangeFilterFunction ofResponseProcessor(Function<ClientResponse, Mono<ClientResponse>> processor) {
 		Assert.notNull(processor, "ClientResponse Function must not be null");

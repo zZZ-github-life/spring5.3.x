@@ -150,7 +150,7 @@ public class MutablePropertySources implements PropertySources {
 
 	/**
 	 * 移除并返回具有给定名称的属性源，如果未找到则返回 {@code null}。
-	 * @param name the name of the property source to find and remove
+	 * @param name 要查找并移除的属性源的名称
 	 */
 	@Nullable
 	public PropertySource<?> remove(String name) {
@@ -162,9 +162,9 @@ public class MutablePropertySources implements PropertySources {
 
 	/**
 	 * 用给定的属性源对象替换具有给定名称的属性源。
-	 * @param name the name of the property source to find and replace
-	 * @param propertySource the replacement property source
-	 * @throws IllegalArgumentException if no property source with the given name is present
+	 * @param name 要查找并替换的属性源的名称
+	 * @param propertySource 替换用的属性源
+	 * @throws IllegalArgumentException 如果不存在具有给定名称的属性源
 	 * @see #contains
 	 */
 	public void replace(String name, PropertySource<?> propertySource) {
@@ -215,8 +215,8 @@ public class MutablePropertySources implements PropertySources {
 
 	/**
 	 * 断言指定的属性源存在并返回其索引。
-	 * @param name {@linkplain PropertySource#getName() name of the property source} to find
-	 * @throws IllegalArgumentException if the named property source is not present
+	 * @param name 要查找的{@linkplain PropertySource#getName() name of the property source}
+	 * @throws IllegalArgumentException 如果指定名称的属性源不存在
 	 */
 	private int assertPresentAndGetIndex(String name) {
 		int index = this.propertySourceList.indexOf(PropertySource.named(name));

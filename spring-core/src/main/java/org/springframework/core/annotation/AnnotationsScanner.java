@@ -61,12 +61,11 @@ abstract class AnnotationsScanner {
 
 	/**
 	 * 扫描指定元素的层次结构以查找相关注解，并按需调用处理器。
-	 * @param context an optional context object that will be passed back to the
-	 * processor
-	 * @param source the source element to scan
-	 * @param searchStrategy the search strategy to use
-	 * @param processor the processor that receives the annotations
-	 * @return the result of {@link AnnotationsProcessor#finish(Object)}
+	 * @param context 可选的上下文对象，它会被传回处理器
+	 * @param source 要扫描的源元素
+	 * @param searchStrategy 要使用的搜索策略
+	 * @param processor 接收注解的处理器
+	 * @return {@link AnnotationsProcessor#finish(Object)} 的结果
 	 */
 	@Nullable
 	static <C, R> R scan(C context, AnnotatedElement source, SearchStrategy searchStrategy,

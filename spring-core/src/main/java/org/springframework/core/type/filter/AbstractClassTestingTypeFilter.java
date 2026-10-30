@@ -43,8 +43,8 @@ public abstract class AbstractClassTestingTypeFilter implements TypeFilter {
 
 	/**
 	 * 根据给定的 ClassMetadata 对象确定是否匹配。
-	 * @param metadata the ClassMetadata object
-	 * @return whether this filter matches on the specified type
+	 * @param metadata ClassMetadata 对象
+	 * @return 此过滤器是否匹配指定的类型
 	 */
 	protected abstract boolean match(ClassMetadata metadata);
 

@@ -71,7 +71,7 @@ public class EncodedResourceResolver extends AbstractResourceResolver {
 	 * 按首选项顺序配置受支持的内容编码。将使用在给定请求的 {@literal "Accept-Encoding"} 头中出现的第一个编码，并且该编码存在具有关联扩展名的文件。
 	 * <p><strong>注意：</strong>每种编码都必须通过 {@link #registerExtension} 或 {@link #setExtensions} 与文件扩展名关联。此外，对此处编码列表的自定义应与 {@link CachingResourceResolver} 中相同列表的自定义相匹配，以确保资源的编码变体缓存在单独的键下。
 	 * <p>默认情况下，此属性设置为 {@literal ["br", "gzip"]}。
-	 * @param codings one or more supported content codings
+	 * @param codings 一个或多个受支持的内容编码
 	 */
 	public void setContentCodings(List<String> codings) {
 		Assert.notEmpty(codings, "At least one content coding expected");
@@ -89,7 +89,7 @@ public class EncodedResourceResolver extends AbstractResourceResolver {
 	/**
 	 * 配置内容编码到文件扩展名的映射。如果扩展名值前没有点 "."，则会添加一个点。
 	 * <p>默认配置为 {@literal ["br" -> ".br"]} 和 {@literal ["gzip" -> ".gz"]}。
-	 * @param extensions the extensions to use.
+	 * @param extensions 要使用的扩展名。
 	 * @see #registerExtension(String, String)
 	 */
 	public void setExtensions(Map<String, String> extensions) {
@@ -105,8 +105,8 @@ public class EncodedResourceResolver extends AbstractResourceResolver {
 
 	/**
 	 * 对 Java 配置友好的 {@link #setExtensions(Map)} 替代方法。
-	 * @param coding the content coding
-	 * @param extension the associated file extension
+	 * @param coding 内容编码
+	 * @param extension 关联的文件扩展名
 	 */
 	public void registerExtension(String coding, String extension) {
 		this.extensions.put(coding, (extension.startsWith(".") ? extension : "." + extension));

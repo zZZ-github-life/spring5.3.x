@@ -50,15 +50,15 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 检索元数据，即此行集中各列的数量、类型和属性。
-	 * @return a corresponding SqlRowSetMetaData instance
+	 * @return 对应的 SqlRowSetMetaData 实例
 	 * @see java.sql.ResultSet#getMetaData()
 	 */
 	SqlRowSetMetaData getMetaData();
 
 	/**
 	 * 将给定的列标签映射到其列索引。
-	 * @param columnLabel the name of the column
-	 * @return the column index for the given column label
+	 * @param columnLabel 列名
+	 * @return 给定列标签对应的列索引
 	 * @see java.sql.ResultSet#findColumn(String)
 	 */
 	int findColumn(String columnLabel) throws InvalidResultSetAccessException;
@@ -68,8 +68,8 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 BigDecimal 对象形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @return an BigDecimal object representing the column value
+	 * @param columnIndex 列索引
+	 * @return 表示列值的 BigDecimal 对象
 	 * @see java.sql.ResultSet#getBigDecimal(int)
 	 */
 	@Nullable
@@ -77,8 +77,8 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 BigDecimal 对象形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @return an BigDecimal object representing the column value
+	 * @param columnLabel 列标签
+	 * @return 表示列值的 BigDecimal 对象
 	 * @see java.sql.ResultSet#getBigDecimal(String)
 	 */
 	@Nullable
@@ -86,40 +86,40 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 boolean 形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @return a boolean representing the column value
+	 * @param columnIndex 列索引
+	 * @return 表示列值的 boolean
 	 * @see java.sql.ResultSet#getBoolean(int)
 	 */
 	boolean getBoolean(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
 	 * 以 boolean 形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @return a boolean representing the column value
+	 * @param columnLabel 列标签
+	 * @return 表示列值的 boolean
 	 * @see java.sql.ResultSet#getBoolean(String)
 	 */
 	boolean getBoolean(String columnLabel) throws InvalidResultSetAccessException;
 
 	/**
 	 * 以 byte 形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @return a byte representing the column value
+	 * @param columnIndex 列索引
+	 * @return 表示列值的 byte
 	 * @see java.sql.ResultSet#getByte(int)
 	 */
 	byte getByte(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
 	 * 以 byte 形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @return a byte representing the column value
+	 * @param columnLabel 列标签
+	 * @return 表示列值的 byte
 	 * @see java.sql.ResultSet#getByte(String)
 	 */
 	byte getByte(String columnLabel) throws InvalidResultSetAccessException;
 
 	/**
 	 * 以 Date 对象形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @return a Date object representing the column value
+	 * @param columnIndex 列索引
+	 * @return 表示列值的 Date 对象
 	 * @see java.sql.ResultSet#getDate(int)
 	 */
 	@Nullable
@@ -127,8 +127,8 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Date 对象形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @return a Date object representing the column value
+	 * @param columnLabel 列标签
+	 * @return 表示列值的 Date 对象
 	 * @see java.sql.ResultSet#getDate(String)
 	 */
 	@Nullable
@@ -136,9 +136,9 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Date 对象形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @param cal the Calendar to use in constructing the Date
-	 * @return a Date object representing the column value
+	 * @param columnIndex 列索引
+	 * @param cal 构造 Date 时使用的 Calendar
+	 * @return 表示列值的 Date 对象
 	 * @see java.sql.ResultSet#getDate(int, Calendar)
 	 */
 	@Nullable
@@ -146,9 +146,9 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Date 对象形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @param cal the Calendar to use in constructing the Date
-	 * @return a Date object representing the column value
+	 * @param columnLabel 列标签
+	 * @param cal 构造 Date 时使用的 Calendar
+	 * @return 表示列值的 Date 对象
 	 * @see java.sql.ResultSet#getDate(String, Calendar)
 	 */
 	@Nullable
@@ -156,64 +156,64 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Double 对象形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @return a Double object representing the column value
+	 * @param columnIndex 列索引
+	 * @return 表示列值的 Double 对象
 	 * @see java.sql.ResultSet#getDouble(int)
 	 */
 	double getDouble(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
 	 * 以 Double 对象形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @return a Double object representing the column value
+	 * @param columnLabel 列标签
+	 * @return 表示列值的 Double 对象
 	 * @see java.sql.ResultSet#getDouble(String)
 	 */
 	double getDouble(String columnLabel) throws InvalidResultSetAccessException;
 
 	/**
 	 * 以 float 形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @return a float representing the column value
+	 * @param columnIndex 列索引
+	 * @return 表示列值的 float
 	 * @see java.sql.ResultSet#getFloat(int)
 	 */
 	float getFloat(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
 	 * 以 float 形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @return a float representing the column value
+	 * @param columnLabel 列标签
+	 * @return 表示列值的 float
 	 * @see java.sql.ResultSet#getFloat(String)
 	 */
 	float getFloat(String columnLabel) throws InvalidResultSetAccessException;
 
 	/**
 	 * 以 int 形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @return an int representing the column value
+	 * @param columnIndex 列索引
+	 * @return 表示列值的 int
 	 * @see java.sql.ResultSet#getInt(int)
 	 */
 	int getInt(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
 	 * 以 int 形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @return an int representing the column value
+	 * @param columnLabel 列标签
+	 * @return 表示列值的 int
 	 * @see java.sql.ResultSet#getInt(String)
 	 */
 	int getInt(String columnLabel) throws InvalidResultSetAccessException;
 
 	/**
 	 * 以 long 形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @return a long representing the column value
+	 * @param columnIndex 列索引
+	 * @return 表示列值的 long
 	 * @see java.sql.ResultSet#getLong(int)
 	 */
 	long getLong(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
 	 * 以 long 形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @return a long representing the column value
+	 * @param columnLabel 列标签
+	 * @return 表示列值的 long
 	 * @see java.sql.ResultSet#getLong(String)
 	 */
 	long getLong(String columnLabel) throws InvalidResultSetAccessException;
@@ -221,8 +221,8 @@ public interface SqlRowSet extends Serializable {
 	/**
 	 * 以 String 形式检索当前行中指定列的值
 	 * （适用于 NCHAR、NVARCHAR、LONGNVARCHAR 列）。
-	 * @param columnIndex the column index
-	 * @return a String representing the column value
+	 * @param columnIndex 列索引
+	 * @return 表示列值的 String
 	 * @since 4.1.3
 	 * @see java.sql.ResultSet#getNString(int)
 	 */
@@ -232,8 +232,8 @@ public interface SqlRowSet extends Serializable {
 	/**
 	 * 以 String 形式检索当前行中指定列的值
 	 * （适用于 NCHAR、NVARCHAR、LONGNVARCHAR 列）。
-	 * @param columnLabel the column label
-	 * @return a String representing the column value
+	 * @param columnLabel 列标签
+	 * @return 表示列值的 String
 	 * @since 4.1.3
 	 * @see java.sql.ResultSet#getNString(String)
 	 */
@@ -242,8 +242,8 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Object 形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @return an Object representing the column value
+	 * @param columnIndex 列索引
+	 * @return 表示列值的 Object
 	 * @see java.sql.ResultSet#getObject(int)
 	 */
 	@Nullable
@@ -251,8 +251,8 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Object 形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @return an Object representing the column value
+	 * @param columnLabel 列标签
+	 * @return 表示列值的 Object
 	 * @see java.sql.ResultSet#getObject(String)
 	 */
 	@Nullable
@@ -260,9 +260,9 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Object 形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @param map a Map object containing the mapping from SQL types to Java types
-	 * @return an Object representing the column value
+	 * @param columnIndex 列索引
+	 * @param map 包含 SQL 类型到 Java 类型映射的 Map 对象
+	 * @return 表示列值的 Object
 	 * @see java.sql.ResultSet#getObject(int, Map)
 	 */
 	@Nullable
@@ -270,9 +270,9 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Object 形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @param map a Map object containing the mapping from SQL types to Java types
-	 * @return an Object representing the column value
+	 * @param columnLabel 列标签
+	 * @param map 包含 SQL 类型到 Java 类型映射的 Map 对象
+	 * @return 表示列值的 Object
 	 * @see java.sql.ResultSet#getObject(String, Map)
 	 */
 	@Nullable
@@ -280,9 +280,9 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Object 形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @param type the Java type to convert the designated column to
-	 * @return an Object representing the column value
+	 * @param columnIndex 列索引
+	 * @param type 要将指定列转换成的 Java 类型
+	 * @return 表示列值的 Object
 	 * @since 4.1.3
 	 * @see java.sql.ResultSet#getObject(int, Class)
 	 */
@@ -291,9 +291,9 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Object 形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @param type the Java type to convert the designated column to
-	 * @return an Object representing the column value
+	 * @param columnLabel 列标签
+	 * @param type 要将指定列转换成的 Java 类型
+	 * @return 表示列值的 Object
 	 * @since 4.1.3
 	 * @see java.sql.ResultSet#getObject(String, Class)
 	 */
@@ -302,24 +302,24 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 short 形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @return a short representing the column value
+	 * @param columnIndex 列索引
+	 * @return 表示列值的 short
 	 * @see java.sql.ResultSet#getShort(int)
 	 */
 	short getShort(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
 	 * 以 short 形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @return a short representing the column value
+	 * @param columnLabel 列标签
+	 * @return 表示列值的 short
 	 * @see java.sql.ResultSet#getShort(String)
 	 */
 	short getShort(String columnLabel) throws InvalidResultSetAccessException;
 
 	/**
 	 * 以 String 形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @return a String representing the column value
+	 * @param columnIndex 列索引
+	 * @return 表示列值的 String
 	 * @see java.sql.ResultSet#getString(int)
 	 */
 	@Nullable
@@ -327,8 +327,8 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 String 形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @return a String representing the column value
+	 * @param columnLabel 列标签
+	 * @return 表示列值的 String
 	 * @see java.sql.ResultSet#getString(String)
 	 */
 	@Nullable
@@ -336,8 +336,8 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Time 对象形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @return a Time object representing the column value
+	 * @param columnIndex 列索引
+	 * @return 表示列值的 Time 对象
 	 * @see java.sql.ResultSet#getTime(int)
 	 */
 	@Nullable
@@ -345,8 +345,8 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Time 对象形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @return a Time object representing the column value
+	 * @param columnLabel 列标签
+	 * @return 表示列值的 Time 对象
 	 * @see java.sql.ResultSet#getTime(String)
 	 */
 	@Nullable
@@ -354,9 +354,9 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Time 对象形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @param cal the Calendar to use in constructing the Date
-	 * @return a Time object representing the column value
+	 * @param columnIndex 列索引
+	 * @param cal 构造 Date 时使用的 Calendar
+	 * @return 表示列值的 Time 对象
 	 * @see java.sql.ResultSet#getTime(int, Calendar)
 	 */
 	@Nullable
@@ -364,9 +364,9 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Time 对象形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @param cal the Calendar to use in constructing the Date
-	 * @return a Time object representing the column value
+	 * @param columnLabel 列标签
+	 * @param cal 构造 Date 时使用的 Calendar
+	 * @return 表示列值的 Time 对象
 	 * @see java.sql.ResultSet#getTime(String, Calendar)
 	 */
 	@Nullable
@@ -374,8 +374,8 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Timestamp 对象形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @return a Timestamp object representing the column value
+	 * @param columnIndex 列索引
+	 * @return 表示列值的 Timestamp 对象
 	 * @see java.sql.ResultSet#getTimestamp(int)
 	 */
 	@Nullable
@@ -383,8 +383,8 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Timestamp 对象形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @return a Timestamp object representing the column value
+	 * @param columnLabel 列标签
+	 * @return 表示列值的 Timestamp 对象
 	 * @see java.sql.ResultSet#getTimestamp(String)
 	 */
 	@Nullable
@@ -392,9 +392,9 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Timestamp 对象形式检索当前行中指定列的值。
-	 * @param columnIndex the column index
-	 * @param cal the Calendar to use in constructing the Date
-	 * @return a Timestamp object representing the column value
+	 * @param columnIndex 列索引
+	 * @param cal 构造 Date 时使用的 Calendar
+	 * @return 表示列值的 Timestamp 对象
 	 * @see java.sql.ResultSet#getTimestamp(int, Calendar)
 	 */
 	@Nullable
@@ -402,9 +402,9 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 以 Timestamp 对象形式检索当前行中指定列的值。
-	 * @param columnLabel the column label
-	 * @param cal the Calendar to use in constructing the Date
-	 * @return a Timestamp object representing the column value
+	 * @param columnLabel 列标签
+	 * @param cal 构造 Date 时使用的 Calendar
+	 * @return 表示列值的 Timestamp 对象
 	 * @see java.sql.ResultSet#getTimestamp(String, Calendar)
 	 */
 	@Nullable
@@ -415,8 +415,8 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 将游标移动到行集中给定的行号，即最后一行的后面。
-	 * @param row the number of the row where the cursor should move
-	 * @return {@code true} if the cursor is on the row set, {@code false} otherwise
+	 * @param row 游标应移动到的行号
+	 * @return 如果游标位于行集上则返回 {@code true}，否则返回 {@code false}
 	 * @see java.sql.ResultSet#absolute(int)
 	 */
 	boolean absolute(int row) throws InvalidResultSetAccessException;
@@ -435,70 +435,70 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * 将游标移动到此行集的第一行。
-	 * @return {@code true} if the cursor is on a valid row, {@code false} otherwise
+	 * @return 如果游标位于有效行上则返回 {@code true}，否则返回 {@code false}
 	 * @see java.sql.ResultSet#first()
 	 */
 	boolean first() throws InvalidResultSetAccessException;
 
 	/**
 	 * 检索当前行号。
-	 * @return the current row number
+	 * @return 当前行号
 	 * @see java.sql.ResultSet#getRow()
 	 */
 	int getRow() throws InvalidResultSetAccessException;
 
 	/**
 	 * 检索游标是否位于此行集最后一行之后。
-	 * @return {@code true} if the cursor is after the last row, {@code false} otherwise
+	 * @return 如果游标位于最后一行之后则返回 {@code true}，否则返回 {@code false}
 	 * @see java.sql.ResultSet#isAfterLast()
 	 */
 	boolean isAfterLast() throws InvalidResultSetAccessException;
 
 	/**
 	 * 检索游标是否位于此行集第一行之前。
-	 * @return {@code true} if the cursor is before the first row, {@code false} otherwise
+	 * @return 如果游标位于第一行之前则返回 {@code true}，否则返回 {@code false}
 	 * @see java.sql.ResultSet#isBeforeFirst()
 	 */
 	boolean isBeforeFirst() throws InvalidResultSetAccessException;
 
 	/**
 	 * 检索游标是否位于此行集的第一行。
-	 * @return {@code true} if the cursor is after the first row, {@code false} otherwise
+	 * @return 如果游标位于第一行之后则返回 {@code true}，否则返回 {@code false}
 	 * @see java.sql.ResultSet#isFirst()
 	 */
 	boolean isFirst() throws InvalidResultSetAccessException;
 
 	/**
 	 * 检索游标是否位于此行集的最后一行。
-	 * @return {@code true} if the cursor is after the last row, {@code false} otherwise
+	 * @return 如果游标位于最后一行之后则返回 {@code true}，否则返回 {@code false}
 	 * @see java.sql.ResultSet#isLast()
 	 */
 	boolean isLast() throws InvalidResultSetAccessException;
 
 	/**
 	 * 将游标移动到此行集的最后一行。
-	 * @return {@code true} if the cursor is on a valid row, {@code false} otherwise
+	 * @return 如果游标位于有效行上则返回 {@code true}，否则返回 {@code false}
 	 * @see java.sql.ResultSet#last()
 	 */
 	boolean last() throws InvalidResultSetAccessException;
 
 	/**
 	 * 将游标移动到下一行。
-	 * @return {@code true} if the new row is valid, {@code false} if there are no more rows
+	 * @return 如果新行有效则返回 {@code true}，如果没有更多行则返回 {@code false}
 	 * @see java.sql.ResultSet#next()
 	 */
 	boolean next() throws InvalidResultSetAccessException;
 
 	/**
 	 * 将游标移动到上一行。
-	 * @return {@code true} if the new row is valid, {@code false} if it is off the row set
+	 * @return 如果新行有效则返回 {@code true}，如果已超出该行集则返回 {@code false}
 	 * @see java.sql.ResultSet#previous()
 	 */
 	boolean previous() throws InvalidResultSetAccessException;
 
 	/**
 	 * 将游标相对移动若干行，可以是正数或负数。
-	 * @return {@code true} if the cursor is on a row, {@code false} otherwise
+	 * @return 如果游标位于某一行上则返回 {@code true}，否则返回 {@code false}
 	 * @see java.sql.ResultSet#relative(int)
 	 */
 	boolean relative(int rows) throws InvalidResultSetAccessException;
@@ -507,8 +507,8 @@ public interface SqlRowSet extends Serializable {
 	 * 报告最后读取的列是否为 SQL {@code NULL} 值。
 	 * <p>注意，必须先调用某个 getter 方法，然后再调用
 	 * {@code wasNull()} 方法。
-	 * @return {@code true} if the most recent column retrieved was
-	 * SQL {@code NULL}, {@code false} otherwise
+	 * @return 如果最近获取的列为 SQL {@code NULL} 则返回 {@code true}，
+	 * 否则返回 {@code false}
 	 * @see java.sql.ResultSet#wasNull()
 	 */
 	boolean wasNull() throws InvalidResultSetAccessException;

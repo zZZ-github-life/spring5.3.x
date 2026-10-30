@@ -32,8 +32,8 @@ public abstract class TestAnnotationUtils {
 	 * 获取通过提供的 {@code method} 上的 {@link Timed @Timed}
 	 * 注解配置的 {@code timeout}。
 	 * <p>配置的负值将转换为 {@code 0}。
-	 * @return the configured timeout, or {@code 0} if the method is not
-	 * annotated with {@code @Timed}
+	 * @return 配置的超时时间，
+	 * 如果该方法未标注 {@code @Timed}，则为 {@code 0}
 	 */
 	public static long getTimeout(Method method) {
 		Timed timed = AnnotatedElementUtils.findMergedAnnotation(method, Timed.class);
@@ -44,8 +44,8 @@ public abstract class TestAnnotationUtils {
 	 * 获取通过提供的 {@code method} 上的 {@link Repeat @Repeat}
 	 * 注解配置的重复次数。
 	 * <p>配置的非负值将转换为 {@code 1}。
-	 * @return the configured repeat count, or {@code 1} if the method is
-	 * not annotated with {@code @Repeat}
+	 * @return 配置的重复次数，
+	 * 如果该方法未标注 {@code @Repeat}，则为 {@code 1}
 	 */
 	public static int getRepeatCount(Method method) {
 		Repeat repeat = AnnotatedElementUtils.findMergedAnnotation(method, Repeat.class);

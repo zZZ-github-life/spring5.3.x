@@ -105,7 +105,7 @@ public class XmlEventDecoder extends AbstractDecoder<XMLEvent> {
 	 * 一个顶层 XML 树的大小。超过限制时会抛出
 	 * {@link DataBufferLimitException}。
 	 * <p>默认设置为 256K。
-	 * @param byteCount the max number of bytes to buffer, or -1 for unlimited
+	 * @param byteCount 要缓冲的最大字节数，-1 表示不限
 	 * @since 5.1.11
 	 */
 	public void setMaxInMemorySize(int byteCount) {

@@ -350,9 +350,9 @@ public class MessageTag extends HtmlEscapingAwareTag implements ArgumentAware {
 
 	/**
 	 * 将给定的 arguments Object 解析为 arguments 数组。
-	 * @param arguments the specified arguments Object
-	 * @return the resolved arguments as array
-	 * @throws JspException if argument conversion failed
+	 * @param arguments 指定的参数对象
+	 * @return 解析后的参数数组
+	 * @throws JspException 如果参数转换失败
 	 * @see #setArguments
 	 */
 	@Nullable
@@ -378,8 +378,8 @@ public class MessageTag extends HtmlEscapingAwareTag implements ArgumentAware {
 	/**
 	 * 将消息写入页面。
 	 * <p>可在子类中重写，例如用于测试目的。
-	 * @param msg the message to write
-	 * @throws IOException if writing failed
+	 * @param msg 要写入的消息
+	 * @throws IOException 如果写入失败
 	 */
 	protected void writeMessage(String msg) throws IOException {
 		this.pageContext.getOut().write(msg);

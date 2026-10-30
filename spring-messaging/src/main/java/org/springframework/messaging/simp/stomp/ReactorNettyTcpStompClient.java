@@ -43,8 +43,8 @@ public class ReactorNettyTcpStompClient extends StompClientSupport {
 
 	/**
 	 * 使用给定主机和端口创建实例。
-	 * @param host the host
-	 * @param port the port
+	 * @param host 主机
+	 * @param port 端口
 	 */
 	public ReactorNettyTcpStompClient(String host, int port) {
 		this.tcpClient = initTcpClient(host, port);
@@ -52,7 +52,7 @@ public class ReactorNettyTcpStompClient extends StompClientSupport {
 
 	/**
 	 * 使用预配置的 TCP 客户端创建实例。
-	 * @param tcpClient the client to use
+	 * @param tcpClient 要使用的客户端
 	 */
 	public ReactorNettyTcpStompClient(TcpOperations<byte[]> tcpClient) {
 		Assert.notNull(tcpClient, "'tcpClient' is required");
@@ -68,8 +68,8 @@ public class ReactorNettyTcpStompClient extends StompClientSupport {
 
 	/**
 	 * 连接并在 STOMP 层面上连接成功后通知给定的 {@link StompSessionHandler}。
-	 * @param handler the handler for the STOMP session
-	 * @return a ListenableFuture for access to the session when ready for use
+	 * @param handler STOMP 会话的处理器
+	 * @return 用于在会话可用时访问该会话的 ListenableFuture
 	 */
 	public ListenableFuture<StompSession> connect(StompSessionHandler handler) {
 		return connect(null, handler);
@@ -78,9 +78,9 @@ public class ReactorNettyTcpStompClient extends StompClientSupport {
 	/**
 	 * {@link #connect(StompSessionHandler)} 的重载版本，
 	 * 接受用于 STOMP CONNECT 帧的头。
-	 * @param connectHeaders headers to add to the CONNECT frame
-	 * @param handler the handler for the STOMP session
-	 * @return a ListenableFuture for access to the session when ready for use
+	 * @param connectHeaders 要添加到 CONNECT 帧的消息头
+	 * @param handler STOMP 会话的处理器
+	 * @return 用于在会话可用时访问该会话的 ListenableFuture
 	 */
 	public ListenableFuture<StompSession> connect(@Nullable StompHeaders connectHeaders, StompSessionHandler handler) {
 		ConnectionHandlingStompSession session = createSession(connectHeaders, handler);

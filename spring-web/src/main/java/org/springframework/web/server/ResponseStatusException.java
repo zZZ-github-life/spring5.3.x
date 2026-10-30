@@ -44,7 +44,7 @@ public class ResponseStatusException extends NestedRuntimeException {
 
 	/**
 	 * 带有响应状态的构造函数。
-	 * @param status the HTTP status (required)
+	 * @param status HTTP 状态（必需）
 	 */
 	public ResponseStatusException(HttpStatus status) {
 		this(status, null);
@@ -52,8 +52,8 @@ public class ResponseStatusException extends NestedRuntimeException {
 
 	/**
 	 * 带有响应状态以及添加到异常消息中作为说明的原因的构造函数。
-	 * @param status the HTTP status (required)
-	 * @param reason the associated reason (optional)
+	 * @param status HTTP 状态（必需）
+	 * @param reason 关联的原因（可选）
 	 */
 	public ResponseStatusException(HttpStatus status, @Nullable String reason) {
 		super("");
@@ -65,9 +65,9 @@ public class ResponseStatusException extends NestedRuntimeException {
 	/**
 	 * 带有响应状态、添加到异常消息中作为说明的原因，
 	 * 以及嵌套异常的构造函数。
-	 * @param status the HTTP status (required)
-	 * @param reason the associated reason (optional)
-	 * @param cause a nested exception (optional)
+	 * @param status HTTP 状态（必需）
+	 * @param reason 关联的原因（可选）
+	 * @param cause 嵌套异常（可选）
 	 */
 	public ResponseStatusException(HttpStatus status, @Nullable String reason, @Nullable Throwable cause) {
 		super(null, cause);
@@ -79,9 +79,9 @@ public class ResponseStatusException extends NestedRuntimeException {
 	/**
 	 * 带有响应状态、添加到异常消息中作为说明的原因，
 	 * 以及嵌套异常的构造函数。
-	 * @param rawStatusCode the HTTP status code value
-	 * @param reason the associated reason (optional)
-	 * @param cause a nested exception (optional)
+	 * @param rawStatusCode HTTP 状态码值
+	 * @param reason 关联的原因（可选）
+	 * @param cause 嵌套异常（可选）
 	 * @since 5.3
 	 */
 	public ResponseStatusException(int rawStatusCode, @Nullable String reason, @Nullable Throwable cause) {
@@ -93,7 +93,7 @@ public class ResponseStatusException extends NestedRuntimeException {
 
 	/**
 	 * 返回与此异常关联的 HTTP 状态。
-	 * @throws IllegalArgumentException in case of an unknown HTTP status code
+	 * @throws IllegalArgumentException 如果 HTTP 状态码未知
 	 * @since #getRawStatusCode()
 	 * @see HttpStatus#valueOf(int)
 	 */
@@ -104,7 +104,7 @@ public class ResponseStatusException extends NestedRuntimeException {
 	/**
 	 * 以整数形式返回 HTTP 状态码（可能是非标准状态码，
 	 * 无法通过 {@link HttpStatus} 枚举解析）。
-	 * @return the HTTP status as an integer value
+	 * @return 以整数值表示的 HTTP 状态
 	 * @since 5.3
 	 * @see #getStatus()
 	 * @see HttpStatus#resolve(int)

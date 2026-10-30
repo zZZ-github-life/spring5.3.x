@@ -50,7 +50,7 @@ public abstract class AbstractMultipartHttpServletRequest extends HttpServletReq
 
 	/**
 	 * 将给定的 HttpServletRequest 包装为 MultipartHttpServletRequest。
-	 * @param request the request to wrap
+	 * @param request 要包装的请求
 	 */
 	protected AbstractMultipartHttpServletRequest(HttpServletRequest request) {
 		super(request);
@@ -111,9 +111,9 @@ public abstract class AbstractMultipartHttpServletRequest extends HttpServletReq
 
 	/**
 	 * 确定底层 multipart 请求是否已被解析。
-	 * @return {@code true} when eagerly initialized or lazily triggered,
-	 * {@code false} in case of a lazy-resolution request that got aborted
-	 * before any parameters or multipart files have been accessed
+	 * @return 已立即初始化或被延迟触发时返回 {@code true}；
+	 * 如果延迟解析请求在任何参数或 multipart 文件被访问之前就已中止，
+	 * 则返回 {@code false}
 	 * @since 4.3.15
 	 * @see #getMultipartFiles()
 	 */

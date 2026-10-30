@@ -41,8 +41,8 @@ public abstract class LangNamespaceUtils {
 	/**
 	 * 如果尚未注册 {@link ScriptFactoryPostProcessor}，则在提供的 {@link BeanDefinitionRegistry} 中注
 	 * 册其 Bean 定义。
-	 * @param registry the {@link BeanDefinitionRegistry} to register the script processor with
-	 * @return the {@link ScriptFactoryPostProcessor} bean definition (new or already registered)
+	 * @param registry 用于注册脚本处理器的 {@link BeanDefinitionRegistry}
+	 * @return {@link ScriptFactoryPostProcessor} Bean 定义（新建的或已注册的）
 	 */
 	public static BeanDefinition registerScriptFactoryPostProcessorIfNecessary(BeanDefinitionRegistry registry) {
 		BeanDefinition beanDefinition;

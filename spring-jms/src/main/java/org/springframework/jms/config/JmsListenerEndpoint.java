@@ -38,7 +38,7 @@ public interface JmsListenerEndpoint {
 	 * <p>此端点必须提供指定容器所缺少的必需选项，使其可用。
 	 * 通常，这涉及设置要使用的 {@code destination} 和 {@code messageListener}，
 	 * 但实现也可以覆盖任何已设置的默认设置。
-	 * @param listenerContainer the listener container to configure
+	 * @param listenerContainer 要配置的监听器容器
 	 */
 	void setupListenerContainer(MessageListenerContainer listenerContainer);
 

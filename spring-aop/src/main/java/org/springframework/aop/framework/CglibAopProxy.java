@@ -117,9 +117,9 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 	/**
 	 * 为给定的 AOP 配置创建新的 CglibAopProxy。
-	 * @param config the AOP configuration as AdvisedSupport object
-	 * @throws AopConfigException if the config is invalid. We try to throw an informative
-	 * exception in this case, rather than let a mysterious failure happen later.
+	 * @param config 以 AdvisedSupport 对象表示的 AOP 配置
+	 * @throws AopConfigException 如果配置无效。在这种情况下我们会尽量抛出信息丰富的异常，
+	 * 而不是让神秘的失败在之后发生。
 	 */
 	public CglibAopProxy(AdvisedSupport config) throws AopConfigException {
 		Assert.notNull(config, "AdvisedSupport must not be null");
@@ -132,8 +132,8 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 	/**
 	 * 设置创建代理时使用的构造方法参数。
-	 * @param constructorArgs the constructor argument values
-	 * @param constructorArgTypes the constructor argument types
+	 * @param constructorArgs 构造方法参数值
+	 * @param constructorArgTypes 构造方法参数类型
 	 */
 	public void setConstructorArguments(@Nullable Object[] constructorArgs, @Nullable Class<?>[] constructorArgTypes) {
 		if (constructorArgs == null || constructorArgTypes == null) {

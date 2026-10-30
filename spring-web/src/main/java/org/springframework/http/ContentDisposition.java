@@ -310,9 +310,8 @@ public final class ContentDisposition {
 
 	/**
 	 * 返回 {@code ContentDisposition} 的构建器。
-	 * @param type the disposition type like for example {@literal inline},
-	 * {@literal attachment}, or {@literal form-data}
-	 * @return the builder
+	 * @param type 处置类型，例如 {@literal inline}、{@literal attachment} 或 {@literal form-data}
+	 * @return 该构建器
 	 */
 	public static Builder builder(String type) {
 		return new BuilderImpl(type);
@@ -327,8 +326,8 @@ public final class ContentDisposition {
 
 	/**
 	 * 解析按 RFC 2183 定义的 {@literal Content-Disposition} 头值。
-	 * @param contentDisposition the {@literal Content-Disposition} header value
-	 * @return the parsed content disposition
+	 * @param contentDisposition {@literal Content-Disposition} 标头值
+	 * @return 解析后的内容处置
 	 * @see #toString()
 	 */
 	public static ContentDisposition parse(String contentDisposition) {
@@ -457,9 +456,9 @@ public final class ContentDisposition {
 	/**
 	 * 按照 RFC 5987 的描述解码给定的头字段参数。
 	 * <p>仅支持 US-ASCII、UTF-8 和 ISO-8859-1 字符集。
-	 * @param filename the filename
-	 * @param charset the charset for the filename
-	 * @return the encoded header field param
+	 * @param filename 文件名
+	 * @param charset 文件名的字符集
+	 * @return 编码后的标头字段参数
 	 * @see <a href="https://tools.ietf.org/html/rfc5987">RFC 5987</a>
 	 */
 	private static String decodeFilename(String filename, Charset charset) {
@@ -523,10 +522,9 @@ public final class ContentDisposition {
 
 	/**
 	 * 按照 RFC 5987 的描述编码给定的头字段参数。
-	 * @param input the header field param
-	 * @param charset the charset of the header field param string,
-	 * only the US-ASCII, UTF-8 and ISO-8859-1 charsets are supported
-	 * @return the encoded header field param
+	 * @param input 标头字段参数
+	 * @param charset 标头字段参数字符串的字符集，仅支持 US-ASCII、UTF-8 和 ISO-8859-1 字符集
+	 * @return 编码后的标头字段参数
 	 * @see <a href="https://tools.ietf.org/html/rfc5987">RFC 5987</a>
 	 */
 	private static String encodeFilename(String input, Charset charset) {

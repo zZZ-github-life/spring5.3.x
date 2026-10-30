@@ -73,9 +73,9 @@ public class AspectJAroundAdvice extends AbstractAspectJAdvice implements Method
 
 	/**
 	 * 返回当前调用的 ProceedingJoinPoint，如果尚未绑定到线程，则以延迟方式实例化它。
-	 * @param rmi the current Spring AOP ReflectiveMethodInvocation,
-	 * which we'll use for attribute binding
-	 * @return the ProceedingJoinPoint to make available to advice methods
+	 * @param rmi 当前的 Spring AOP ReflectiveMethodInvocation，
+	 * 我们将用它进行属性绑定
+	 * @return 提供给通知方法使用的 ProceedingJoinPoint
 	 */
 	protected ProceedingJoinPoint lazyGetProceedingJoinPoint(ProxyMethodInvocation rmi) {
 		return new MethodInvocationProceedingJoinPoint(rmi);

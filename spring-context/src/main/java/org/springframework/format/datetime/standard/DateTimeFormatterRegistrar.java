@@ -113,7 +113,7 @@ public class DateTimeFormatterRegistrar implements FormatterRegistrar {
 	 * 设置用于表示日期值的对象的格式化器。
 	 * <p>此格式化器将用于 {@link LocalDate} 类型。指定后，{@link #setDateStyle dateStyle} 和
 	 * {@link #setUseIsoFormat useIsoFormat} 属性将被忽略。
-	 * @param formatter the formatter to use
+	 * @param formatter 要使用的格式化器
 	 * @see #setTimeFormatter
 	 * @see #setDateTimeFormatter
 	 */
@@ -125,7 +125,7 @@ public class DateTimeFormatterRegistrar implements FormatterRegistrar {
 	 * 设置用于表示时间值的对象的格式化器。
 	 * <p>此格式化器将用于 {@link LocalTime} 和 {@link OffsetTime} 类型。指定后，
 	 * {@link #setTimeStyle timeStyle} 和 {@link #setUseIsoFormat useIsoFormat} 属性将被忽略。
-	 * @param formatter the formatter to use
+	 * @param formatter 要使用的格式化器
 	 * @see #setDateFormatter
 	 * @see #setDateTimeFormatter
 	 */
@@ -138,7 +138,7 @@ public class DateTimeFormatterRegistrar implements FormatterRegistrar {
 	 * <p>此格式化器将用于 {@link LocalDateTime}、{@link ZonedDateTime} 和 {@link OffsetDateTime} 类型。
 	 * 指定后，{@link #setDateTimeStyle dateTimeStyle} 和 {@link #setUseIsoFormat useIsoFormat} 属性
 	 * 将被忽略。
-	 * @param formatter the formatter to use
+	 * @param formatter 要使用的格式化器
 	 * @see #setDateFormatter
 	 * @see #setTimeFormatter
 	 */

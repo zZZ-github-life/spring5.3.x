@@ -46,7 +46,7 @@ public interface BackOff {
 
 	/**
 	 * 开始一次新的退避执行。
-	 * @return a fresh {@link BackOffExecution} ready to be used
+	 * @return 一个可直接使用的全新 {@link BackOffExecution}
 	 */
 	BackOffExecution start();
 

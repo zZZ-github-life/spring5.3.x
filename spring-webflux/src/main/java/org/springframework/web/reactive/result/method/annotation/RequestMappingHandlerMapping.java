@@ -70,7 +70,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	 * 配置要应用于控制器方法的路径前缀。
 	 * <p>前缀用于丰富每个 {@code @RequestMapping} 方法的映射，这些方法的控制器类型与映射中对应的 {@code Predicate} 匹配。假定输入映射具有可预测的顺序，将使用第一个匹配谓词的前缀。
 	 * <p>考虑使用 {@link org.springframework.web.method.HandlerTypePredicate HandlerTypePredicate} 对控制器进行分组。
-	 * @param prefixes a map with path prefixes as key
+	 * @param prefixes 以路径前缀为键的映射
 	 * @since 5.1
 	 * @see org.springframework.web.method.HandlerTypePredicate
 	 */
@@ -131,8 +131,8 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 
 	/**
 	 * 使用方法级和类型级 @{@link RequestMapping} 注解创建 RequestMappingInfo。
-	 * @return the created RequestMappingInfo, or {@code null} if the method
-	 * does not have a {@code @RequestMapping} annotation.
+	 * @return 创建的 RequestMappingInfo；如果该方法没有 {@code @RequestMapping}
+	 * 注解，则为 {@code null}。
 	 * @see #getCustomMethodCondition(Method)
 	 * @see #getCustomTypeCondition(Class)
 	 */
@@ -175,8 +175,8 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	/**
 	 * 提供自定义类型级请求条件。自定义 {@link RequestCondition} 可以是任何类型，只要对此方法的所有调用返回相同的条件类型，以确保自定义请求条件可以组合和比较。
 	 * <p>考虑为自定义条件类型扩展 {@link org.springframework.web.reactive.result.condition.AbstractRequestCondition AbstractRequestCondition}，并使用 {@link org.springframework.web.reactive.result.condition.CompositeRequestCondition CompositeRequestCondition} 提供多个自定义条件。
-	 * @param handlerType the handler type for which to create the condition
-	 * @return the condition, or {@code null}
+	 * @param handlerType 要为其创建条件的处理器类型
+	 * @return 条件，或 {@code null}
 	 */
 	@SuppressWarnings("UnusedParameters")
 	@Nullable
@@ -187,8 +187,8 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	/**
 	 * 提供自定义方法级请求条件。自定义 {@link RequestCondition} 可以是任何类型，只要对此方法的所有调用返回相同的条件类型，以确保自定义请求条件可以组合和比较。
 	 * <p>考虑为自定义条件类型扩展 {@link org.springframework.web.reactive.result.condition.AbstractRequestCondition AbstractRequestCondition}，并使用 {@link org.springframework.web.reactive.result.condition.CompositeRequestCondition CompositeRequestCondition} 提供多个自定义条件。
-	 * @param method the handler method for which to create the condition
-	 * @return the condition, or {@code null}
+	 * @param method 要为其创建条件的处理器方法
+	 * @return 条件，或 {@code null}
 	 */
 	@SuppressWarnings("UnusedParameters")
 	@Nullable
@@ -218,7 +218,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 
 	/**
 	 * 解析给定模式数组中的占位符值。
-	 * @return a new array with updated patterns
+	 * @return 包含更新后模式的新数组
 	 */
 	protected String[] resolveEmbeddedValuesInPatterns(String[] patterns) {
 		if (this.embeddedValueResolver == null) {

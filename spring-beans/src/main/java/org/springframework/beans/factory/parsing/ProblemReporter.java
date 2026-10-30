@@ -29,21 +29,21 @@ public interface ProblemReporter {
 	/**
 	 * 在解析过程中遇到致命错误时调用。
 	 * <p>实现必须将给定的问题视为致命错误，即它们最终必须抛出异常。
-	 * @param problem the source of the error (never {@code null})
+	 * @param problem 错误来源（永不为 {@code null}）
 	 */
 	void fatal(Problem problem);
 
 	/**
 	 * 在解析过程中遇到错误时调用。
 	 * <p>实现可以选择将错误视为致命错误。
-	 * @param problem the source of the error (never {@code null})
+	 * @param problem 错误来源（永不为 {@code null}）
 	 */
 	void error(Problem problem);
 
 	/**
 	 * 在解析过程中出现警告时调用。
 	 * <p>警告<strong>绝不会</strong>被视为致命错误。
-	 * @param problem the source of the warning (never {@code null})
+	 * @param problem 警告来源（永不为 {@code null}）
 	 */
 	void warning(Problem problem);
 

@@ -68,7 +68,7 @@ abstract class TransactionSynchronizationUtils {
 	/**
 	 * 实际调用给定Spring TransactionSynchronization对象的
 	 * {@code triggerBeforeCommit}方法。
-	 * @param synchronizations a List of TransactionSynchronization objects
+	 * @param synchronizations TransactionSynchronization 对象的 List
 	 * @see TransactionSynchronization#beforeCommit(boolean)
 	 */
 	public static Mono<Void> triggerBeforeCommit(Collection<TransactionSynchronization> synchronizations, boolean readOnly) {
@@ -78,7 +78,7 @@ abstract class TransactionSynchronizationUtils {
 	/**
 	 * 实际调用给定Spring TransactionSynchronization对象的
 	 * {@code beforeCompletion}方法。
-	 * @param synchronizations a List of TransactionSynchronization objects
+	 * @param synchronizations TransactionSynchronization 对象的 List
 	 * @see TransactionSynchronization#beforeCompletion()
 	 */
 	public static Mono<Void> triggerBeforeCompletion(Collection<TransactionSynchronization> synchronizations) {
@@ -90,7 +90,7 @@ abstract class TransactionSynchronizationUtils {
 	/**
 	 * 实际调用给定Spring TransactionSynchronization对象的
 	 * {@code afterCommit}方法。
-	 * @param synchronizations a List of TransactionSynchronization objects
+	 * @param synchronizations TransactionSynchronization 对象的 List
 	 * @see TransactionSynchronization#afterCommit()
 	 */
 	public static Mono<Void> invokeAfterCommit(Collection<TransactionSynchronization> synchronizations) {
@@ -102,9 +102,9 @@ abstract class TransactionSynchronizationUtils {
 	/**
 	 * 实际调用给定Spring TransactionSynchronization对象的
 	 * {@code afterCompletion}方法。
-	 * @param synchronizations a List of TransactionSynchronization objects
-	 * @param completionStatus the completion status according to the
-	 * constants in the TransactionSynchronization interface
+	 * @param synchronizations TransactionSynchronization 对象的 List
+	 * @param completionStatus 根据 TransactionSynchronization 接口中的常量
+	 * 表示的完成状态
 	 * @see TransactionSynchronization#afterCompletion(int)
 	 * @see TransactionSynchronization#STATUS_COMMITTED
 	 * @see TransactionSynchronization#STATUS_ROLLED_BACK

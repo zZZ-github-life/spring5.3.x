@@ -39,19 +39,19 @@ public interface DatabasePopulator {
 
 	/**
 	 * 使用提供的 R2DBC {@link Connection} 填充、初始化或清理数据库。
-	 * @param connection the R2DBC connection to use to populate the db;
-	 * already configured and ready to use, must not be {@code null}
-	 * @return {@link Mono} that initiates script execution and is
-	 * notified upon completion
-	 * @throws ScriptException in all other error cases
+	 * @param connection 用于填充数据库的 R2DBC 连接；
+	 * 已配置并可直接使用，且不得为 {@code null}
+	 * @return 启动脚本执行并在完成时收到通知的
+	 * {@link Mono}
+	 * @throws ScriptException 在所有其他错误情况下
 	 */
 	Mono<Void> populate(Connection connection) throws ScriptException;
 
 	/**
 	 * 针对给定的 {@link ConnectionFactory} 执行当前 {@link DatabasePopulator}。
-	 * @param connectionFactory the {@link ConnectionFactory} to execute against
-	 * @return {@link Mono} that initiates {@link DatabasePopulator#populate(Connection)}
-	 * and is notified upon completion
+	 * @param connectionFactory 要对其执行操作的 {@link ConnectionFactory}
+	 * @return 启动 {@link DatabasePopulator#populate(Connection)}
+	 * 并在完成时收到通知的 {@link Mono}
 	 */
 	default Mono<Void> populate(ConnectionFactory connectionFactory) throws DataAccessException {
 		Assert.notNull(connectionFactory, "ConnectionFactory must not be null");

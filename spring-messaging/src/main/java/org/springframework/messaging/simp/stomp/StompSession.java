@@ -50,9 +50,9 @@ public interface StompSession {
 	 * 向指定目标发送消息，借助
 	 * {@link org.springframework.messaging.converter.MessageConverter MessageConverter}
 	 * 将载荷转换为 {@code byte[]}。
-	 * @param destination the destination to send a message to
-	 * @param payload the message payload
-	 * @return a Receiptable for tracking receipts
+	 * @param destination 发送消息的目标地址
+	 * @param payload 消息负载
+	 * @return 用于跟踪回执的 Receiptable
 	 */
 	Receiptable send(String destination, Object payload);
 
@@ -61,27 +61,27 @@ public interface StompSession {
 	 * 而不仅仅是目标。头中必须包含目标，还可以包含其他头，
 	 * 例如 "content-type" 或供代理传播给订阅者的自定义头，
 	 * 或代理特定的非标准头。
-	 * @param headers the message headers
-	 * @param payload the message payload
-	 * @return a Receiptable for tracking receipts
+	 * @param headers 消息头
+	 * @param payload 消息负载
+	 * @return 用于跟踪回执的 Receiptable
 	 */
 	Receiptable send(StompHeaders headers, Object payload);
 
 	/**
 	 * 通过发送 SUBSCRIBE 帧订阅给定目标，并使用指定的
 	 * {@link StompFrameHandler} 处理接收到的消息。
-	 * @param destination the destination to subscribe to
-	 * @param handler the handler for received messages
-	 * @return a handle to use to unsubscribe and/or track receipts
+	 * @param destination 要订阅的目标地址
+	 * @param handler 接收消息的处理器
+	 * @return 用于取消订阅和/或跟踪回执的句柄
 	 */
 	Subscription subscribe(String destination, StompFrameHandler handler);
 
 	/**
 	 * {@link #subscribe(String, StompFrameHandler)} 的重载版本，
 	 * 使用完整的 {@link StompHeaders} 而不仅仅是目标。
-	 * @param headers the headers for the subscribed message frame
-	 * @param handler the handler for received messages
-	 * @return a handle to use to unsubscribe and/or track receipts
+	 * @param headers 订阅消息帧的消息头
+	 * @param handler 接收消息的处理器
+	 * @return 用于取消订阅和/或跟踪回执的句柄
 	 */
 	Subscription subscribe(StompHeaders headers, StompFrameHandler handler);
 
@@ -90,9 +90,9 @@ public interface StompSession {
 	 * <p><strong>注意：</strong>订阅时若要使用此功能，必须将
 	 * {@link StompHeaders#setAck(String) ack} 头设置为 "client" 或
 	 * "client-individual"。
-	 * @param messageId the id of the message
-	 * @param consumed whether the message was consumed or not
-	 * @return a Receiptable for tracking receipts
+	 * @param messageId 消息的 id
+	 * @param consumed 消息是否已被消费
+	 * @return 用于跟踪回执的 Receiptable
 	 * @since 4.3
 	 */
 	Receiptable acknowledge(String messageId, boolean consumed);
@@ -100,9 +100,9 @@ public interface StompSession {
 	/**
 	 * {@link #acknowledge(String, boolean)} 的重载版本，
 	 * 使用完整的 {@link StompHeaders} 而不仅仅是 {@code messageId}。
-	 * @param headers the headers for the ACK or NACK message frame
-	 * @param consumed whether the message was consumed or not
-	 * @return a Receiptable for tracking receipts
+	 * @param headers ACK 或 NACK 消息帧的消息头
+	 * @param consumed 消息是否已被消费
+	 * @return 用于跟踪回执的 Receiptable
 	 * @since 5.0.5
 	 */
 	Receiptable acknowledge(StompHeaders headers, boolean consumed);
@@ -114,7 +114,7 @@ public interface StompSession {
 
 	/**
 	 * 带头的 {@link #disconnect()} 变体。
-	 * @param headers the headers for the disconnect message frame
+	 * @param headers 断开连接消息帧的消息头
 	 * @since 5.2.2
 	 */
 	void disconnect(StompHeaders headers);
@@ -134,24 +134,24 @@ public interface StompSession {
 
 		/**
 		 * 收到回执时要调用的任务。
-		 * @param task the task to invoke
-		 * @throws java.lang.IllegalArgumentException if the receiptId is {@code null}
+		 * @param task 要调用的任务
+		 * @throws java.lang.IllegalArgumentException 如果 receiptId 为 {@code null}
 		 */
 		void addReceiptTask(Runnable task);
 
 		/**
 		 * {@link #addReceiptTask(Runnable)} 的变体，使用来自 {@code RECEIPT} 帧头的
 		 * {@link Consumer}。
-		 * @param task the consumer to invoke
-		 * @throws java.lang.IllegalArgumentException if the receiptId is {@code null}
+		 * @param task 要调用的消费者
+		 * @throws java.lang.IllegalArgumentException 如果 receiptId 为 {@code null}
 		 * @since 5.3.23
 		 */
 		void addReceiptTask(Consumer<StompHeaders> task);
 
 		/**
 		 * 在配置的时间内未收到回执时要调用的任务。
-		 * @param task the task to invoke
-		 * @throws java.lang.IllegalArgumentException if the receiptId is {@code null}
+		 * @param task 要调用的任务
+		 * @throws java.lang.IllegalArgumentException 如果 receiptId 为 {@code null}
 		 * @see org.springframework.messaging.simp.stomp.StompClientSupport#setReceiptTimeLimit(long)
 		 */
 		void addReceiptLostTask(Runnable task);
@@ -183,7 +183,7 @@ public interface StompSession {
 		/**
 	 * {@link #unsubscribe()} 的替代方法，可以附加要发送到服务器的自定义头。
 	 * <p><strong>注意：</strong>无需设置订阅 ID。
-	 * @param headers the custom headers, if any
+	 * @param headers 自定义消息头（如果有）
 	 * @since 5.0
 	 */
 		void unsubscribe(@Nullable StompHeaders headers);

@@ -48,7 +48,7 @@ public class ProxyCreatorSupport extends AdvisedSupport {
 
 	/**
 	 * 创建一个新的 ProxyCreatorSupport 实例。
-	 * @param aopProxyFactory the AopProxyFactory to use
+	 * @param aopProxyFactory 要使用的 AopProxyFactory
 	 */
 	public ProxyCreatorSupport(AopProxyFactory aopProxyFactory) {
 		Assert.notNull(aopProxyFactory, "AopProxyFactory must not be null");
@@ -74,7 +74,7 @@ public class ProxyCreatorSupport extends AdvisedSupport {
 
 	/**
 	 * 将给定的 AdvisedSupportListener 添加到此代理配置中。
-	 * @param listener the listener to register
+	 * @param listener 要注册的监听器
 	 */
 	public void addListener(AdvisedSupportListener listener) {
 		Assert.notNull(listener, "AdvisedSupportListener must not be null");
@@ -83,7 +83,7 @@ public class ProxyCreatorSupport extends AdvisedSupport {
 
 	/**
 	 * 从该代理配置中移除给定的 AdvisedSupportListener。
-	 * @param listener the listener to deregister
+	 * @param listener 要注销的监听器
 	 */
 	public void removeListener(AdvisedSupportListener listener) {
 		Assert.notNull(listener, "AdvisedSupportListener must not be null");

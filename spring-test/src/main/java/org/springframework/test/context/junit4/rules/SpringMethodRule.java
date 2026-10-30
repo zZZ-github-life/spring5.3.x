@@ -74,11 +74,11 @@ public class SpringMethodRule implements MethodRule {
 	 * 将 <em>Spring TestContext Framework</em> 的<em>实例级</em>和<em>方法级</em>功能应用于所提供的 {@code base} 语句。
 	 * <p>具体而言，此方法在 {@code TestContextManager} 上调用 {@link TestContextManager#prepareTestInstance prepareTestInstance()}、{@link TestContextManager#beforeTestMethod beforeTestMethod()} 和 {@link TestContextManager#afterTestMethod afterTestMethod()} 方法，并可能应用 Spring 超时和重复。
 	 * <p>此外，此方法会检查测试在当前执行环境中是否启用。这可防止带有不匹配的 {@code @IfProfileValue} 注解的方法完全运行，甚至跳过 {@code TestExecutionListeners} 中 {@code prepareTestInstance()} 方法的执行。
-	 * @param base the base {@code Statement} that this rule should be applied to
-	 * @param frameworkMethod the method which is about to be invoked on the test instance
-	 * @param testInstance the current test instance
-	 * @return a statement that wraps the supplied {@code base} with instance-level
-	 * and method-level features of the Spring TestContext Framework
+	 * @param base 此规则应应用到的基本 {@code Statement}
+	 * @param frameworkMethod 即将在测试实例上被调用的方法
+	 * @param testInstance 当前的测试实例
+	 * @return 一个语句，它用 Spring TestContext Framework 的实例级
+	 * 与方法级特性包装所提供的 {@code base}
 	 * @see #withBeforeTestMethodCallbacks
 	 * @see #withAfterTestMethodCallbacks
 	 * @see #withPotentialRepeat

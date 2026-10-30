@@ -32,31 +32,30 @@ public interface MimeContainer {
 
 	/**
 	 * 指示此容器是否为 XOP 包。
-	 * @return {@code true} when the constraints specified in
-	 * <a href="https://www.w3.org/TR/2005/REC-xop10-20050125/#identifying_xop_documents">Identifying XOP Documents</a>
-	 * are met
+	 * @return 当满足 <a href="https://www.w3.org/TR/2005/REC-xop10-20050125/#identifying_xop_documents">
+	 * Identifying XOP Documents</a> 中指定的约束时返回 {@code true}
 	 * @see <a href="https://www.w3.org/TR/2005/REC-xop10-20050125/#xop_packages">XOP Packages</a>
 	 */
 	boolean isXopPackage();
 
 	/**
 	 * 将此消息转换为 XOP 包。
-	 * @return {@code true} when the message actually is a XOP package
+	 * @return 当消息实际上是 XOP 包时返回 {@code true}
 	 * @see <a href="https://www.w3.org/TR/2005/REC-xop10-20050125/#xop_packages">XOP Packages</a>
 	 */
 	boolean convertToXopPackage();
 
 	/**
 	 * 将给定的数据处理器作为附件添加到此容器中。
-	 * @param contentId  the content id of the attachment
-	 * @param dataHandler the data handler containing the data of the attachment
+	 * @param contentId 附件的 content id
+	 * @param dataHandler 包含附件数据的 data handler
 	 */
 	void addAttachment(String contentId, DataHandler dataHandler);
 
 	/**
 	 * 返回具有给定内容 ID 的附件，如果未找到则返回 {@code null}。
-	 * @param contentId the content id
-	 * @return the attachment, as a data handler
+	 * @param contentId 内容的 id
+	 * @return 附件，作为 data handler
 	 */
 	@Nullable
 	DataHandler getAttachment(String contentId);

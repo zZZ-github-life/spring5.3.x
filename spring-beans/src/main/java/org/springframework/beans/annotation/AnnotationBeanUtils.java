@@ -43,9 +43,9 @@ public abstract class AnnotationBeanUtils {
 	/**
 	 * 将所提供 {@link Annotation} 的属性复制到所提供目标 Bean。在 {@code excludedProperties} 中定义的
 	 * 任何属性都不会被复制。
-	 * @param ann the annotation to copy from
-	 * @param bean the bean instance to copy to
-	 * @param excludedProperties the names of excluded properties, if any
+	 * @param ann 要从中复制的注解
+	 * @param bean 要复制到的 Bean 实例
+	 * @param excludedProperties 被排除的属性名称（如果有）
 	 * @see org.springframework.beans.BeanWrapper
 	 */
 	public static void copyPropertiesToBean(Annotation ann, Object bean, String... excludedProperties) {
@@ -56,10 +56,10 @@ public abstract class AnnotationBeanUtils {
 	 * 将所提供 {@link Annotation} 的属性复制到所提供目标 Bean。在 {@code excludedProperties} 中定义的
 	 * 任何属性都不会被复制。
 	 * <p>例如，指定的值解析器可以解析属性值中的占位符。
-	 * @param ann the annotation to copy from
-	 * @param bean the bean instance to copy to
-	 * @param valueResolver a resolve to post-process String property values (may be {@code null})
-	 * @param excludedProperties the names of excluded properties, if any
+	 * @param ann 要从中复制的注解
+	 * @param bean 要复制到的 Bean 实例
+	 * @param valueResolver 用于对 String 属性值进行后处理的解析器（可能为 {@code null}）
+	 * @param excludedProperties 被排除的属性名称（如果有）
 	 * @see org.springframework.beans.BeanWrapper
 	 */
 	public static void copyPropertiesToBean(Annotation ann, Object bean, @Nullable StringValueResolver valueResolver,

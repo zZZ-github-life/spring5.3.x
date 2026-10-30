@@ -27,22 +27,22 @@ import org.springframework.messaging.Message;
  *
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <T> the kind of condition that this condition can be combined with or compared to
+ * @param <T> 此条件可以与之组合或比较的条件类型
  */
 public interface MessageCondition<T> {
 
 	/**
 	 * 定义将此条件与另一个条件组合的规则。
 	 * 例如组合类型级和方法级条件。
-	 * @param other the condition to combine with
-	 * @return the resulting message condition
+	 * @param other 要与之组合的条件
+	 * @return 生成的消息条件
 	 */
 	T combine(T other);
 
 	/**
 	 * 检查此条件是否匹配给定 Message，并返回一个内容针对当前消息定制的新条件
 	 * （可能是新实例）。例如，包含目标模式的条件可能返回一个仅包含排序后匹配模式的新条件。
-	 * @return a condition instance in case of a match; or {@code null} if there is no match.
+	 * @return 匹配时返回条件实例；如果没有匹配则返回 {@code null}。
 	 */
 	@Nullable
 	T getMatchingCondition(Message<?> message);

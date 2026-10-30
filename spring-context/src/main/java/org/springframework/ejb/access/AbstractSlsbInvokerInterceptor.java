@@ -106,7 +106,7 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 
 	/**
 	 * 如适用，刷新缓存的 home 对象。还会缓存 home 对象上的 create 方法。
-	 * @throws NamingException if thrown by the JNDI lookup
+	 * @throws NamingException 如果由 JNDI 查找抛出
 	 * @see #lookup
 	 * @see #getCreateMethod
 	 */
@@ -122,9 +122,9 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 
 	/**
 	 * 确定给定 EJB home 对象的 create 方法。
-	 * @param home the EJB home object
-	 * @return the create method
-	 * @throws EjbAccessException if the method couldn't be retrieved
+	 * @param home EJB home 对象
+	 * @return create 方法
+	 * @throws EjbAccessException 如果无法获取该方法
 	 */
 	@Nullable
 	protected Method getCreateMethod(Object home) throws EjbAccessException {
@@ -141,8 +141,8 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 	 * 返回要使用的 EJB home 对象。每次调用时都会调用此方法。
 	 * <p>默认实现返回初始化时创建的 home（如果有）；否则，它会调用 lookup 为每次调用获取一个新的代理。
 	 * <p>可在子类中覆盖，例如在重新创建 home 对象之前将其缓存一段时间，或检测 home 对象是否仍存活。
-	 * @return the EJB home object to use for an invocation
-	 * @throws NamingException if proxy creation failed
+	 * @return 用于调用的 EJB home 对象
+	 * @throws NamingException 如果代理创建失败
 	 * @see #lookup
 	 * @see #getCreateMethod
 	 */
@@ -186,9 +186,9 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 
 	/**
 	 * 在相应准备好的线程上下文中，在当前 EJB home 上执行给定调用。由子类实现的模板方法。
-	 * @param invocation the AOP method invocation
-	 * @return the invocation result, if any
-	 * @throws Throwable in case of invocation failure
+	 * @param invocation AOP 方法调用
+	 * @return 调用结果（如果有）
+	 * @throws Throwable 如果调用失败
 	 */
 	@Nullable
 	protected abstract Object invokeInContext(MethodInvocation invocation) throws Throwable;
@@ -196,9 +196,9 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 
 	/**
 	 * 在缓存的 EJB home 对象上调用 {@code create()} 方法。
-	 * @return a new EJBObject or EJBLocalObject
-	 * @throws NamingException if thrown by JNDI
-	 * @throws InvocationTargetException if thrown by the create method
+	 * @return 新的 EJBObject 或 EJBLocalObject
+	 * @throws NamingException 如果由 JNDI 抛出
+	 * @throws InvocationTargetException 如果由 create 方法抛出
 	 */
 	protected Object create() throws NamingException, InvocationTargetException {
 		try {

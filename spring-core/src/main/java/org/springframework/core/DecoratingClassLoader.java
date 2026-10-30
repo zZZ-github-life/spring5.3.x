@@ -61,7 +61,7 @@ public abstract class DecoratingClassLoader extends ClassLoader {
 	/**
 	 * 添加要从装饰（例如覆盖）中排除的包名。
 	 * <p>任何完全限定名以此处注册的名称开头的类，都将由父 ClassLoader 按常规方式处理。
-	 * @param packageName the package name to exclude
+	 * @param packageName 要排除的包名
 	 */
 	public void excludePackage(String packageName) {
 		Assert.notNull(packageName, "Package name must not be null");
@@ -71,7 +71,7 @@ public abstract class DecoratingClassLoader extends ClassLoader {
 	/**
 	 * 添加要从装饰（例如覆盖）中排除的类名。
 	 * <p>此处注册的任何类名都将由父 ClassLoader 按常规方式处理。
-	 * @param className the class name to exclude
+	 * @param className 要排除的类名
 	 */
 	public void excludeClass(String className) {
 		Assert.notNull(className, "Class name must not be null");
@@ -81,8 +81,8 @@ public abstract class DecoratingClassLoader extends ClassLoader {
 	/**
 	 * 判断指定的类是否被此类加载器排除在装饰之外。
 	 * <p>默认实现会检查排除的包和类。
-	 * @param className the class name to check
-	 * @return whether the specified class is eligible
+	 * @param className 要检查的类名
+	 * @return 指定的类是否符合条件
 	 * @see #excludePackage
 	 * @see #excludeClass
 	 */

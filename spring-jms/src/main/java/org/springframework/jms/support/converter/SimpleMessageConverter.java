@@ -112,10 +112,10 @@ public class SimpleMessageConverter implements MessageConverter {
 
 	/**
 	 * 为给定的 String 创建 JMS TextMessage。
-	 * @param text the String to convert
-	 * @param session current JMS session
-	 * @return the resulting message
-	 * @throws JMSException if thrown by JMS methods
+	 * @param text 要转换的 String
+	 * @param session 当前的 JMS Session
+	 * @return 生成的消息
+	 * @throws JMSException 如果由 JMS 方法抛出
 	 * @see javax.jms.Session#createTextMessage
 	 */
 	protected TextMessage createMessageForString(String text, Session session) throws JMSException {
@@ -124,10 +124,10 @@ public class SimpleMessageConverter implements MessageConverter {
 
 	/**
 	 * 为给定的字节数组创建 JMS BytesMessage。
-	 * @param bytes the byte array to convert
-	 * @param session current JMS session
-	 * @return the resulting message
-	 * @throws JMSException if thrown by JMS methods
+	 * @param bytes 要转换的字节数组
+	 * @param session 当前的 JMS Session
+	 * @return 生成的消息
+	 * @throws JMSException 如果由 JMS 方法抛出
 	 * @see javax.jms.Session#createBytesMessage
 	 */
 	protected BytesMessage createMessageForByteArray(byte[] bytes, Session session) throws JMSException {
@@ -138,10 +138,10 @@ public class SimpleMessageConverter implements MessageConverter {
 
 	/**
 	 * 为给定的 Map 创建 JMS MapMessage。
-	 * @param map the Map to convert
-	 * @param session current JMS session
-	 * @return the resulting message
-	 * @throws JMSException if thrown by JMS methods
+	 * @param map 要转换的 Map
+	 * @param session 当前的 JMS Session
+	 * @return 生成的消息
+	 * @throws JMSException 如果由 JMS 方法抛出
 	 * @see javax.jms.Session#createMapMessage
 	 */
 	protected MapMessage createMessageForMap(Map<?, ?> map, Session session) throws JMSException {
@@ -159,10 +159,10 @@ public class SimpleMessageConverter implements MessageConverter {
 
 	/**
 	 * 为给定的 Serializable 对象创建 JMS ObjectMessage。
-	 * @param object the Serializable object to convert
-	 * @param session current JMS session
-	 * @return the resulting message
-	 * @throws JMSException if thrown by JMS methods
+	 * @param object 要转换的 Serializable 对象
+	 * @param session 当前的 JMS Session
+	 * @return 生成的消息
+	 * @throws JMSException 如果由 JMS 方法抛出
 	 * @see javax.jms.Session#createObjectMessage
 	 */
 	protected ObjectMessage createMessageForSerializable(Serializable object, Session session) throws JMSException {
@@ -172,9 +172,9 @@ public class SimpleMessageConverter implements MessageConverter {
 
 	/**
 	 * 从给定的 TextMessage 中提取 String。
-	 * @param message the message to convert
-	 * @return the resulting String
-	 * @throws JMSException if thrown by JMS methods
+	 * @param message 要转换的消息
+	 * @return 生成的 String
+	 * @throws JMSException 如果由 JMS 方法抛出
 	 */
 	protected String extractStringFromMessage(TextMessage message) throws JMSException {
 		return message.getText();
@@ -182,9 +182,9 @@ public class SimpleMessageConverter implements MessageConverter {
 
 	/**
 	 * 从给定的 {@link BytesMessage} 中提取字节数组。
-	 * @param message the message to convert
-	 * @return the resulting byte array
-	 * @throws JMSException if thrown by JMS methods
+	 * @param message 要转换的消息
+	 * @return 生成的字节数组
+	 * @throws JMSException 如果由 JMS 方法抛出
 	 */
 	protected byte[] extractByteArrayFromMessage(BytesMessage message) throws JMSException {
 		byte[] bytes = new byte[(int) message.getBodyLength()];
@@ -194,9 +194,9 @@ public class SimpleMessageConverter implements MessageConverter {
 
 	/**
 	 * 从给定的 {@link MapMessage} 中提取 Map。
-	 * @param message the message to convert
-	 * @return the resulting Map
-	 * @throws JMSException if thrown by JMS methods
+	 * @param message 要转换的消息
+	 * @return 生成的 Map
+	 * @throws JMSException 如果由 JMS 方法抛出
 	 */
 	@SuppressWarnings("unchecked")
 	protected Map<String, Object> extractMapFromMessage(MapMessage message) throws JMSException {
@@ -211,9 +211,9 @@ public class SimpleMessageConverter implements MessageConverter {
 
 	/**
 	 * 从给定的 {@link ObjectMessage} 中提取 Serializable 对象。
-	 * @param message the message to convert
-	 * @return the resulting Serializable object
-	 * @throws JMSException if thrown by JMS methods
+	 * @param message 要转换的消息
+	 * @return 生成的 Serializable 对象
+	 * @throws JMSException 如果由 JMS 方法抛出
 	 */
 	protected Serializable extractSerializableFromMessage(ObjectMessage message) throws JMSException {
 		return message.getObject();

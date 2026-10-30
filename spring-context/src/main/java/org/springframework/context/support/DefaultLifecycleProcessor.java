@@ -159,8 +159,8 @@ public class DefaultLifecycleProcessor implements LifecycleProcessor, BeanFactor
 
 	/**
 	 * 在给定的一组 Lifecycle Bean 中启动指定的 Bean，确保它所依赖的任何 Bean 都先启动。
-	 * @param lifecycleBeans a Map with bean name as key and Lifecycle instance as value
-	 * @param beanName the name of the bean to start
+	 * @param lifecycleBeans 以 Bean 名称为键、Lifecycle 实例为值的 Map
+	 * @param beanName 要启动的 Bean 的名称
 	 */
 	private void doStart(Map<String, ? extends Lifecycle> lifecycleBeans, String beanName, boolean autoStartupOnly) {
 		Lifecycle bean = lifecycleBeans.remove(beanName);
@@ -210,8 +210,8 @@ public class DefaultLifecycleProcessor implements LifecycleProcessor, BeanFactor
 
 	/**
 	 * 在给定的一组 Lifecycle Bean 中停止指定的 Bean，确保依赖它的任何 Bean 都先停止。
-	 * @param lifecycleBeans a Map with bean name as key and Lifecycle instance as value
-	 * @param beanName the name of the bean to stop
+	 * @param lifecycleBeans 以 Bean 名称为键、Lifecycle 实例为值的 Map
+	 * @param beanName 要停止的 Bean 的名称
 	 */
 	private void doStop(Map<String, ? extends Lifecycle> lifecycleBeans, final String beanName,
 			final CountDownLatch latch, final Set<String> countDownBeanNames) {
@@ -268,7 +268,7 @@ public class DefaultLifecycleProcessor implements LifecycleProcessor, BeanFactor
 	/**
 	 * 获取所有适用的 Lifecycle Bean：所有已经创建的单例，以及所有 SmartLifecycle Bean（即使它们被标记
 	 * 为 lazy-init）。
-	 * @return the Map of applicable beans, with bean names as keys and bean instances as values
+	 * @return 适用的 Bean 的 Map，以 Bean 名称为键、Bean 实例为值
 	 */
 	protected Map<String, Lifecycle> getLifecycleBeans() {
 		ConfigurableListableBeanFactory beanFactory = getBeanFactory();
@@ -298,8 +298,8 @@ public class DefaultLifecycleProcessor implements LifecycleProcessor, BeanFactor
 	/**
 	 * 确定给定 Bean 的生命周期阶段。<p>默认实现检查 {@link Phased} 接口，否则默认为 0。可以覆盖以应用
 	 * 其他策略或更多策略。
-	 * @param bean the bean to introspect
-	 * @return the phase (an integer value)
+	 * @param bean 要内省的 Bean
+	 * @return 阶段（整数值）
 	 * @see Phased#getPhase()
 	 * @see SmartLifecycle
 	 */

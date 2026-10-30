@@ -107,9 +107,9 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	 * <p>注意：在重新初始化上下文时<i>不会</i>调用，而只在此对象的上下文引用首次初始化时调用。
 	 *
 	 * <p>默认实现调用不带 ApplicationContext 引用的重载 {@link #initApplicationContext()} 方法。
-	 * @param context the containing ApplicationContext
-	 * @throws ApplicationContextException in case of initialization errors
-	 * @throws BeansException if thrown by ApplicationContext methods
+	 * @param context 包含它的 ApplicationContext
+	 * @throws ApplicationContextException 如果发生初始化错误
+	 * @throws BeansException 如果由 ApplicationContext 的方法抛出
 	 * @see #setApplicationContext
 	 */
 	protected void initApplicationContext(ApplicationContext context) throws BeansException {
@@ -121,8 +121,8 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	 *
 	 * <p>默认实现为空。由
 	 * {@link #initApplicationContext(org.springframework.context.ApplicationContext)} 调用。
-	 * @throws ApplicationContextException in case of initialization errors
-	 * @throws BeansException if thrown by ApplicationContext methods
+	 * @throws ApplicationContextException 如果发生初始化错误
+	 * @throws BeansException 如果由 ApplicationContext 的方法抛出
 	 * @see #setApplicationContext
 	 */
 	protected void initApplicationContext() throws BeansException {
@@ -131,7 +131,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 
 	/**
 	 * 返回此对象所关联的 ApplicationContext。
-	 * @throws IllegalStateException if not running in an ApplicationContext
+	 * @throws IllegalStateException 如果未运行在 ApplicationContext 中
 	 */
 	@Nullable
 	public final ApplicationContext getApplicationContext() throws IllegalStateException {
@@ -144,8 +144,8 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 
 	/**
 	 * 获取供实际使用的 ApplicationContext。
-	 * @return the ApplicationContext (never {@code null})
-	 * @throws IllegalStateException in case of no ApplicationContext set
+	 * @return ApplicationContext（永不为 {@code null}）
+	 * @throws IllegalStateException 如果未设置 ApplicationContext
 	 * @since 5.0
 	 */
 	protected final ApplicationContext obtainApplicationContext() {
@@ -156,7 +156,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 
 	/**
 	 * 返回此对象使用的应用上下文的 MessageSourceAccessor，以便轻松访问消息。
-	 * @throws IllegalStateException if not running in an ApplicationContext
+	 * @throws IllegalStateException 如果未运行在 ApplicationContext 中
 	 */
 	@Nullable
 	protected final MessageSourceAccessor getMessageSourceAccessor() throws IllegalStateException {

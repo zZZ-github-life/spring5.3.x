@@ -36,7 +36,7 @@ public class GenericPropertiesContextLoader extends AbstractGenericContextLoader
 
 	/**
 	 * 创建一个新的 {@link org.springframework.beans.factory.support.PropertiesBeanDefinitionReader}。
-	 * @return a new PropertiesBeanDefinitionReader
+	 * @return 新的 PropertiesBeanDefinitionReader
 	 * @see org.springframework.beans.factory.support.PropertiesBeanDefinitionReader
 	 */
 	@Override

@@ -79,7 +79,7 @@ public abstract class AbstractJackson2Decoder extends Jackson2CodecSupport imple
 	 * 输入的大小，也可以是 JSON 流中单个顶层 JSON 对象的大小。
 	 * 超过限制时会抛出 {@link DataBufferLimitException}。
 	 * <p>默认设置为 256K。
-	 * @param byteCount the max number of bytes to buffer, or -1 for unlimited
+	 * @param byteCount 要缓冲的最大字节数，-1 表示不限
 	 * @since 5.1.11
 	 */
 	public void setMaxInMemorySize(int byteCount) {
@@ -157,11 +157,11 @@ public abstract class AbstractJackson2Decoder extends Jackson2CodecSupport imple
 	 * 将输入的发布者处理为 Flux。默认实现返回
 	 * {@link Flux#from(Publisher)}，但子类可以选择自定义
 	 * 此行为。
-	 * @param input the {@code DataBuffer} input stream to process
-	 * @param elementType the expected type of elements in the output stream
-	 * @param mimeType the MIME type associated with the input stream (optional)
-	 * @param hints additional information about how to do encode
-	 * @return the processed flux
+	 * @param input 要处理的 {@code DataBuffer} 输入流
+	 * @param elementType 输出流中元素的预期类型
+	 * @param mimeType 与输入流关联的 MIME 类型（可选）
+	 * @param hints 关于如何编码的附加信息
+	 * @return 处理后的 Flux
 	 * @since 5.1.14
 	 */
 	protected Flux<DataBuffer> processInput(Publisher<DataBuffer> input, ResolvableType elementType,

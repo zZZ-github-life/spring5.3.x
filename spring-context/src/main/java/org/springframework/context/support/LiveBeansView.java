@@ -139,7 +139,7 @@ public class LiveBeansView implements LiveBeansViewMBean, ApplicationContextAwar
 	/**
 	 * 查找当前应用程序所有适用的 ApplicationContext。<p>如果未为此 LiveBeansView 设置特定的
 	 * ApplicationContext，则会调用此方法。
-	 * @return the set of ApplicationContexts
+	 * @return ApplicationContext 的集合
 	 */
 	protected Set<ConfigurableApplicationContext> findApplicationContexts() {
 		synchronized (applicationContexts) {
@@ -152,8 +152,8 @@ public class LiveBeansView implements LiveBeansViewMBean, ApplicationContextAwar
 	 * 三方库依赖。它生成一个上下文描述对象数组，每个对象包含 context 和 parent 属性，以及带有嵌套 Bean
 	 * 描述对象的 beans 属性。每个 Bean 对象包含 bean、scope、type 和 resource 属性，以及一个
 	 * dependencies 属性，其中嵌套了当前 Bean 所依赖的 Bean 名称数组。
-	 * @param contexts the set of ApplicationContexts
-	 * @return the JSON document
+	 * @param contexts ApplicationContext 的集合
+	 * @return JSON 文档
 	 */
 	protected String generateJson(Set<ConfigurableApplicationContext> contexts) {
 		StringBuilder result = new StringBuilder("[\n");
@@ -211,10 +211,10 @@ public class LiveBeansView implements LiveBeansViewMBean, ApplicationContextAwar
 
 	/**
 	 * 确定指定的 Bean 是否有资格包含在 LiveBeansView JSON 快照中。
-	 * @param beanName the name of the bean
-	 * @param bd the corresponding bean definition
-	 * @param bf the containing bean factory
-	 * @return {@code true} if the bean is to be included; {@code false} otherwise
+	 * @param beanName Bean 的名称
+	 * @param bd 相应的 Bean 定义
+	 * @param bf 包含它的 Bean 工厂
+	 * @return 如果要包含该 Bean，则为 {@code true}；否则为 {@code false}
 	 */
 	protected boolean isBeanEligible(String beanName, BeanDefinition bd, ConfigurableBeanFactory bf) {
 		return (bd.getRole() != BeanDefinition.ROLE_INFRASTRUCTURE &&
@@ -223,8 +223,8 @@ public class LiveBeansView implements LiveBeansViewMBean, ApplicationContextAwar
 
 	/**
 	 * 确定给定 Bean 定义的资源描述，并对其应用基本的 JSON 转义（反斜杠、双引号）。
-	 * @param bd the bean definition to build the resource description for
-	 * @return the JSON-escaped resource description
+	 * @param bd 要为其构建资源描述的 Bean 定义
+	 * @return 经 JSON 转义的资源描述
 	 */
 	@Nullable
 	protected String getEscapedResourceDescription(BeanDefinition bd) {

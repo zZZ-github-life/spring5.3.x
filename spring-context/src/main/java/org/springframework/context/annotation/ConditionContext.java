@@ -33,8 +33,8 @@ public interface ConditionContext {
 
 	/**
 	 * 如果条件匹配，返回将持有 Bean 定义的 {@link BeanDefinitionRegistry}。
-	 * @throws IllegalStateException if no registry is available (which is unusual:
-	 * only the case with a plain {@link ClassPathScanningCandidateComponentProvider})
+	 * @throws IllegalStateException 如果注册表不可用（这不常见：
+	 * 仅在直接使用 {@link ClassPathScanningCandidateComponentProvider} 时出现）
 	 */
 	BeanDefinitionRegistry getRegistry();
 

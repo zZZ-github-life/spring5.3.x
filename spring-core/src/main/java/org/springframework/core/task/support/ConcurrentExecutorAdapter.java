@@ -40,7 +40,7 @@ public class ConcurrentExecutorAdapter implements Executor {
 
 	/**
 	 * 为给定的 Spring TaskExecutor 创建一个新的 ConcurrentExecutorAdapter。
-	 * @param taskExecutor the Spring TaskExecutor to wrap
+	 * @param taskExecutor 要包装的 Spring TaskExecutor
 	 */
 	public ConcurrentExecutorAdapter(TaskExecutor taskExecutor) {
 		Assert.notNull(taskExecutor, "TaskExecutor must not be null");

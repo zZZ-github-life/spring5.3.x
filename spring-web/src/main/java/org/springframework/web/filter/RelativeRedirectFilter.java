@@ -48,7 +48,7 @@ public class RelativeRedirectFilter extends OncePerRequestFilter {
 	/**
 	 * 设置用于重定向的默认 HTTP 状态。
 	 * <p>默认值为 {@link HttpStatus#SEE_OTHER}。
-	 * @param status the 3xx redirect status to use
+	 * @param status 要使用的 3xx 重定向状态
 	 */
 	public void setRedirectStatus(HttpStatus status) {
 		Assert.notNull(status, "Property 'redirectStatus' is required");

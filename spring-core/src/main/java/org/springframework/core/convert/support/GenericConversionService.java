@@ -150,11 +150,11 @@ public class GenericConversionService implements ConfigurableConversionService {
 	 * 返回源类型与目标类型之间的转换是否可以绕过。
 	 * <p>更准确地说，如果源类型的对象可以通过直接返回源对象而不做任何更改来转换为目标类型，
 	 * 则此方法返回 true。
-	 * @param sourceType context about the source type to convert from
-	 * (may be {@code null} if source is {@code null})
-	 * @param targetType context about the target type to convert to (required)
-	 * @return {@code true} if conversion can be bypassed; {@code false} otherwise
-	 * @throws IllegalArgumentException if targetType is {@code null}
+	 * @param sourceType 关于要转换的源类型的上下文
+	 * （如果源为 {@code null}，则可为 {@code null}）
+	 * @param targetType 关于要转换到的目标类型的上下文（必需）
+	 * @return 如果可以绕过转换则返回 {@code true}；否则返回 {@code false}
+	 * @throws IllegalArgumentException 如果 targetType 为 {@code null}
 	 * @since 3.2
 	 */
 	public boolean canBypassConvert(@Nullable TypeDescriptor sourceType, TypeDescriptor targetType) {
@@ -199,12 +199,12 @@ public class GenericConversionService implements ConfigurableConversionService {
 	 * 其中目标类型是一个提供额外转换上下文的描述符。
 	 * 简单地委托给 {@link #convert(Object, TypeDescriptor, TypeDescriptor)}，
 	 * 并通过 {@link TypeDescriptor#forObject(Object)} 封装源类型描述符的构建。
-	 * @param source the source object
-	 * @param targetType the target type
-	 * @return the converted value
-	 * @throws ConversionException if a conversion exception occurred
-	 * @throws IllegalArgumentException if targetType is {@code null},
-	 * or sourceType is {@code null} but source is not {@code null}
+	 * @param source 源对象
+	 * @param targetType 目标类型
+	 * @return 转换后的值
+	 * @throws ConversionException 如果发生转换异常
+	 * @throws IllegalArgumentException 如果 targetType 为 {@code null}，或 sourceType 为 {@code null}
+	 * 但 source 不为 {@code null}
 	 */
 	@Nullable
 	public Object convert(@Nullable Object source, TypeDescriptor targetType) {
@@ -224,9 +224,9 @@ public class GenericConversionService implements ConfigurableConversionService {
 	 * <p>默认实现返回 {@code null}，或者当目标类型为
 	 * {@code java.util.Optional} 时返回 {@link java.util.Optional#empty()} 实例。
 	 * 子类可以覆盖此方法以针对特定目标类型返回自定义的 {@code null} 对象。
-	 * @param sourceType the source type to convert from
-	 * @param targetType the target type to convert to
-	 * @return the converted null object
+	 * @param sourceType 要转换的源类型
+	 * @param targetType 要转换到的目标类型
+	 * @return 转换后的 null 对象
 	 */
 	@Nullable
 	protected Object convertNullSource(@Nullable TypeDescriptor sourceType, TypeDescriptor targetType) {
@@ -241,10 +241,10 @@ public class GenericConversionService implements ConfigurableConversionService {
 	 * 首先查询此 ConversionService 的转换器缓存。
 	 * 若缓存未命中，则对匹配的转换器进行穷举搜索。
 	 * 如果没有匹配的转换器，则返回默认转换器。
-	 * @param sourceType the source type to convert from
-	 * @param targetType the target type to convert to
-	 * @return the generic converter that will perform the conversion,
-	 * or {@code null} if no suitable converter was found
+	 * @param sourceType 要转换的源类型
+	 * @param targetType 要转换到的目标类型
+	 * @return 将执行转换的通用转换器；
+	 * 如果未找到合适的转换器，则为 {@code null}
 	 * @see #getDefaultConverter(TypeDescriptor, TypeDescriptor)
 	 */
 	@Nullable
@@ -273,9 +273,9 @@ public class GenericConversionService implements ConfigurableConversionService {
 	 * 当未找到给定源类型/目标类型对的转换器时，返回默认转换器。
 	 * <p>如果源类型可赋值给目标类型，则返回一个 NO_OP 转换器。
 	 * 否则返回 {@code null}，表示未找到合适的转换器。
-	 * @param sourceType the source type to convert from
-	 * @param targetType the target type to convert to
-	 * @return the default generic converter that will perform the conversion
+	 * @param sourceType 要转换的源类型
+	 * @param targetType 要转换到的目标类型
+	 * @return 将执行转换的默认通用转换器
 	 */
 	@Nullable
 	protected GenericConverter getDefaultConverter(TypeDescriptor sourceType, TypeDescriptor targetType) {
@@ -526,9 +526,9 @@ public class GenericConversionService implements ConfigurableConversionService {
 		/**
 		 * 根据源类型和目标类型查找 {@link GenericConverter}。
 		 * <p>此方法将遍历类型的类和接口层次结构，尝试匹配所有可能的转换器。
-		 * @param sourceType the source type
-		 * @param targetType the target type
-		 * @return a matching {@link GenericConverter}, or {@code null} if none found
+		 * @param sourceType 源类型
+		 * @param targetType 目标类型
+		 * @return 匹配的 {@link GenericConverter}；如果未找到，则为 {@code null}
 		 */
 		@Nullable
 		public GenericConverter find(TypeDescriptor sourceType, TypeDescriptor targetType) {
@@ -570,8 +570,8 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 		/**
 		 * 返回给定类型的有序类层次结构。
-		 * @param type the type
-		 * @return an ordered list of all classes that the given type extends or implements
+		 * @param type 类型
+		 * @return 给定类型所继承或实现的所有类的有序列表
 		 */
 		private List<Class<?>> getClassHierarchy(Class<?> type) {
 			List<Class<?>> hierarchy = new ArrayList<>(20);

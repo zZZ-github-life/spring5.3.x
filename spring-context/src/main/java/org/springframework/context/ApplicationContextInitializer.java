@@ -31,7 +31,7 @@ package org.springframework.context;
  *
  * @author Chris Beams
  * @since 3.1
- * @param <C> the application context type
+ * @param <C> 应用上下文类型
  * @see org.springframework.web.context.ContextLoader#customizeContext
  * @see org.springframework.web.context.ContextLoader#CONTEXT_INITIALIZER_CLASSES_PARAM
  * @see org.springframework.web.servlet.FrameworkServlet#setContextInitializerClasses
@@ -42,7 +42,7 @@ public interface ApplicationContextInitializer<C extends ConfigurableApplication
 
 	/**
 	 * 初始化给定的应用上下文。
-	 * @param applicationContext the application to configure
+	 * @param applicationContext 要配置的应用程序
 	 */
 	void initialize(C applicationContext);
 

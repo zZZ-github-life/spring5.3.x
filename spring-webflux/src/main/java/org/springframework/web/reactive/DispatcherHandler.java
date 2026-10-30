@@ -77,7 +77,7 @@ public class DispatcherHandler implements WebHandler, PreFlightRequestHandler, A
 
 	/**
 	 * 为给定的 {@link ApplicationContext} 创建一个新的 {@code DispatcherHandler}。
-	 * @param applicationContext the application context to find the handler beans in
+	 * @param applicationContext 用于查找处理器 Bean 的应用上下文
 	 */
 	public DispatcherHandler(ApplicationContext applicationContext) {
 		initStrategies(applicationContext);
@@ -87,7 +87,7 @@ public class DispatcherHandler implements WebHandler, PreFlightRequestHandler, A
 	/**
 	 * 返回在{@link #setApplicationContext 注入的上下文}中按类型检测到的所有 {@link HandlerMapping} bean，并已通过 {@link AnnotationAwareOrderComparator#sort(List)} 排序。
 	 * <p><strong>注意：</strong>如果在 {@link #setApplicationContext(ApplicationContext)} 之前调用，此方法可能返回 {@code null}。
-	 * @return immutable list with the configured mappings or {@code null}
+	 * @return 包含所配置映射的不可变列表，或 {@code null}
 	 */
 	@Nullable
 	public final List<HandlerMapping> getHandlerMappings() {

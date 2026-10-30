@@ -197,7 +197,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 
 	/**
 	 * 为指定的{@linkplain TestContext 测试上下文}运行所有 {@link BeforeTransaction @BeforeTransaction} 方法。但是，如果其中一个方法失败，捕获的异常将以包装的 {@link RuntimeException} 形式重新抛出，其余方法<strong>不会</strong>有机会执行。
-	 * @param testContext the current test context
+	 * @param testContext 当前的测试上下文
 	 */
 	protected void runBeforeTransactionMethods(TestContext testContext) throws Exception {
 		try {
@@ -222,7 +222,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 
 	/**
 	 * 为指定的{@linkplain TestContext 测试上下文}运行所有 {@link AfterTransaction @AfterTransaction} 方法。如果其中一个方法失败，捕获的异常将作为错误记录，其余方法仍将有机会执行。在所有方法执行完毕后，将重新抛出第一个捕获的异常（如果有）。
-	 * @param testContext the current test context
+	 * @param testContext 当前的测试上下文
 	 */
 	protected void runAfterTransactionMethods(TestContext testContext) throws Exception {
 		Throwable afterTransactionException = null;
@@ -261,12 +261,11 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	/**
 	 * 获取要用于所提供的{@linkplain TestContext 测试上下文}和 {@code qualifier} 的{@linkplain PlatformTransactionManager 事务管理器}。
 	 * <p>如果提供的 {@code qualifier} 为 {@code null} 或空，则委托给 {@link #getTransactionManager(TestContext)}。
-	 * @param testContext the test context for which the transaction manager
-	 * should be retrieved
-	 * @param qualifier the qualifier for selecting between multiple bean matches;
-	 * may be {@code null} or empty
-	 * @return the transaction manager to use, or {@code null} if not found
-	 * @throws BeansException if an error occurs while retrieving the transaction manager
+	 * @param testContext 应为其检索事务管理器的测试上下文
+	 * @param qualifier 用于在多个 Bean 匹配之间进行选择的限定符；
+	 * 可以为 {@code null} 或空
+	 * @return 要使用的事务管理器；如果未找到，则为 {@code null}
+	 * @throws BeansException 如果检索事务管理器时发生错误
 	 * @see #getTransactionManager(TestContext)
 	 */
 	@Nullable
@@ -297,13 +296,10 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	/**
 	 * 获取要用于所提供的{@linkplain TestContext 测试上下文}的{@linkplain PlatformTransactionManager 事务管理器}。
 	 * <p>默认实现仅委托给 {@link TestContextTransactionUtils#retrieveTransactionManager}。
-	 * @param testContext the test context for which the transaction manager
-	 * should be retrieved
-	 * @return the transaction manager to use, or {@code null} if not found
-	 * @throws BeansException if an error occurs while retrieving an explicitly
-	 * named transaction manager
-	 * @throws IllegalStateException if more than one TransactionManagementConfigurer
-	 * exists in the ApplicationContext
+	 * @param testContext 应为其检索事务管理器的测试上下文
+	 * @return 要使用的事务管理器；如果未找到，则为 {@code null}
+	 * @throws BeansException 如果检索显式命名的事务管理器时发生错误
+	 * @throws IllegalStateException 如果 ApplicationContext 中存在多个 TransactionManagementConfigurer
 	 * @see #getTransactionManager(TestContext, String)
 	 */
 	@Nullable
@@ -314,10 +310,9 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	/**
 	 * 确定对于所提供的{@linkplain TestContext 测试上下文}，默认是否应回滚事务。
 	 * <p>支持类级别的 {@link Rollback @Rollback} 或 {@link Commit @Commit}。
-	 * @param testContext the test context for which the default rollback flag
-	 * should be retrieved
-	 * @return the <em>default rollback</em> flag for the supplied test context
-	 * @throws Exception if an error occurs while determining the default rollback flag
+	 * @param testContext 应为其检索默认回滚标志的测试上下文
+	 * @return 所提供测试上下文的<em>默认回滚</em>标志
+	 * @throws Exception 如果确定默认回滚标志时发生错误
 	 */
 	protected final boolean isDefaultRollback(TestContext testContext) throws Exception {
 		Class<?> testClass = testContext.getTestClass();
@@ -339,10 +334,9 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 
 	/**
 	 * 通过考虑{@linkplain #isDefaultRollback(TestContext) 默认回滚}标志以及通过 {@link Rollback @Rollback} 注解在方法级别可能的覆盖，确定对于所提供的{@linkplain TestContext 测试上下文}是否应回滚事务。
-	 * @param testContext the test context for which the rollback flag
-	 * should be retrieved
-	 * @return the <em>rollback</em> flag for the supplied test context
-	 * @throws Exception if an error occurs while determining the rollback flag
+	 * @param testContext 应为其检索回滚标志的测试上下文
+	 * @return 所提供测试上下文的<em>回滚</em>标志
+	 * @throws Exception 如果确定回滚标志时发生错误
 	 */
 	protected final boolean isRollback(TestContext testContext) throws Exception {
 		boolean rollback = isDefaultRollback(testContext);
@@ -370,10 +364,10 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	/**
 	 * 获取所提供的 {@link Class 类}及其超类中所有标注了所提供的 {@code annotationType} 但未被子类中重写方法<em>遮蔽</em>的方法。
 	 * <p>接口上的默认方法也会被检测到。
-	 * @param clazz the class for which to retrieve the annotated methods
-	 * @param annotationType the annotation type for which to search
-	 * @return all annotated methods in the supplied class and its superclasses
-	 * as well as annotated interface default methods
+	 * @param clazz 要为其检索注解方法的类
+	 * @param annotationType 要搜索的注解类型
+	 * @return 所提供类及其超类中的所有注解方法，
+	 * 以及注解的接口默认方法
 	 */
 	private List<Method> getAnnotatedMethods(Class<?> clazz, Class<? extends Annotation> annotationType) {
 		MethodFilter methodFilter = ReflectionUtils.USER_DECLARED_METHODS

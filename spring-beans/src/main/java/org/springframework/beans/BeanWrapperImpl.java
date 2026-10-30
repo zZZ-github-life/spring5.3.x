@@ -80,8 +80,8 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 
 	/**
 	 * 创建一个新的空 BeanWrapperImpl。之后需要设置被包装的实例。
-	 * @param registerDefaultEditors whether to register default editors
-	 * (can be suppressed if the BeanWrapper won't need any type conversion)
+	 * @param registerDefaultEditors 是否注册默认编辑器
+	 * （如果该 BeanWrapper 不需要任何类型转换，可以禁用）
 	 * @see #setWrappedInstance
 	 */
 	public BeanWrapperImpl(boolean registerDefaultEditors) {
@@ -90,7 +90,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 
 	/**
 	 * 为给定对象创建一个新的 BeanWrapperImpl。
-	 * @param object the object wrapped by this BeanWrapper
+	 * @param object 该 BeanWrapper 所包装的对象
 	 */
 	public BeanWrapperImpl(Object object) {
 		super(object);
@@ -98,7 +98,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 
 	/**
 	 * 创建一个新的 BeanWrapperImpl，包装指定类的新实例。
-	 * @param clazz class to instantiate and wrap
+	 * @param clazz 要实例化并包装的类
 	 */
 	public BeanWrapperImpl(Class<?> clazz) {
 		super(clazz);
@@ -106,9 +106,9 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 
 	/**
 	 * 为给定对象创建一个新的 BeanWrapperImpl，并注册该对象所处的嵌套路径。
-	 * @param object the object wrapped by this BeanWrapper
-	 * @param nestedPath the nested path of the object
-	 * @param rootObject the root object at the top of the path
+	 * @param object 该 BeanWrapper 所包装的对象
+	 * @param nestedPath 该对象的嵌套路径
+	 * @param rootObject 路径顶部的根对象
 	 */
 	public BeanWrapperImpl(Object object, String nestedPath, Object rootObject) {
 		super(object, nestedPath, rootObject);
@@ -116,9 +116,9 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 
 	/**
 	 * 为给定对象创建一个新的 BeanWrapperImpl，并注册该对象所处的嵌套路径。
-	 * @param object the object wrapped by this BeanWrapper
-	 * @param nestedPath the nested path of the object
-	 * @param parent the containing BeanWrapper (must not be {@code null})
+	 * @param object 该 BeanWrapper 所包装的对象
+	 * @param nestedPath 该对象的嵌套路径
+	 * @param parent 包含该对象的 BeanWrapper（不能为 {@code null}）
 	 */
 	private BeanWrapperImpl(Object object, String nestedPath, BeanWrapperImpl parent) {
 		super(object, nestedPath, parent);
@@ -128,7 +128,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 
 	/**
 	 * 设置要持有的 Bean 实例，不对 {@link java.util.Optional} 做任何解包。
-	 * @param object the actual target object
+	 * @param object 实际的目标对象
 	 * @since 4.3
 	 * @see #setWrappedInstance(Object)
 	 */
@@ -147,7 +147,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 
 	/**
 	 * 设置要内省的类。目标对象更改时需要调用。
-	 * @param clazz the class to introspect
+	 * @param clazz 要内省的类
 	 */
 	protected void setIntrospectionClass(Class<?> clazz) {
 		if (this.cachedIntrospectionResults != null && this.cachedIntrospectionResults.getBeanClass() != clazz) {
@@ -184,11 +184,11 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	/**
 	 * 将指定属性的给定值转换为该属性的类型。<p>此方法仅用于 BeanFactory 中的优化。对于编程式转换，请使
 	 * 用 {@code convertIfNecessary} 方法。
-	 * @param value the value to convert
-	 * @param propertyName the target property
-	 * (note that nested or indexed properties are not supported here)
-	 * @return the new value, possibly the result of type conversion
-	 * @throws TypeMismatchException if type conversion failed
+	 * @param value 要转换的值
+	 * @param propertyName 目标属性
+	 * （注意此处不支持嵌套属性或索引属性）
+	 * @return 新值，可能是类型转换的结果
+	 * @throws TypeMismatchException 如果类型转换失败
 	 */
 	@Nullable
 	public Object convertForProperty(@Nullable Object value, String propertyName) throws TypeMismatchException {

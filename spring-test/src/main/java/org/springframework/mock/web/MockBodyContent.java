@@ -41,8 +41,8 @@ public class MockBodyContent extends BodyContent {
 
 	/**
 	 * 为给定响应创建一个 MockBodyContent。
-	 * @param content the body content to expose
-	 * @param response the servlet response to wrap
+	 * @param content 要暴露的正文内容
+	 * @param response 要包装的 Servlet 响应
 	 */
 	public MockBodyContent(String content, HttpServletResponse response) {
 		this(content, response, null);
@@ -50,8 +50,8 @@ public class MockBodyContent extends BodyContent {
 
 	/**
 	 * 为给定响应创建一个 MockBodyContent。
-	 * @param content the body content to expose
-	 * @param targetWriter the target Writer to wrap
+	 * @param content 要暴露的正文内容
+	 * @param targetWriter 要包装的目标 Writer
 	 */
 	public MockBodyContent(String content, Writer targetWriter) {
 		this(content, null, targetWriter);
@@ -59,9 +59,9 @@ public class MockBodyContent extends BodyContent {
 
 	/**
 	 * 为给定响应创建一个 MockBodyContent。
-	 * @param content the body content to expose
-	 * @param response the servlet response to wrap
-	 * @param targetWriter the target Writer to wrap
+	 * @param content 要暴露的正文内容
+	 * @param response 要包装的 Servlet 响应
+	 * @param targetWriter 要包装的目标 Writer
 	 */
 	public MockBodyContent(String content, @Nullable HttpServletResponse response, @Nullable Writer targetWriter) {
 		super(adaptJspWriter(targetWriter, response));

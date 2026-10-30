@@ -31,15 +31,15 @@ public interface StompFrameHandler {
 	/**
 	 * 在 {@link #handleFrame(StompHeaders, Object)} 之前调用，
 	 * 以确定载荷应转换为的对象类型。
-	 * @param headers the headers of a message
+	 * @param headers 消息的消息头
 	 */
 	Type getPayloadType(StompHeaders headers);
 
 	/**
 	 * 处理 STOMP 帧，其载荷已转换为
 	 * {@link #getPayloadType(StompHeaders)} 返回的目标类型。
-	 * @param headers the headers of the frame
-	 * @param payload the payload, or {@code null} if there was no payload
+	 * @param headers 帧的消息头
+	 * @param payload 负载，如果没有负载则为 {@code null}
 	 */
 	void handleFrame(StompHeaders headers, @Nullable Object payload);
 

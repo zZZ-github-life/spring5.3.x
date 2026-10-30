@@ -50,8 +50,8 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 
 	/**
 	 * 为给定的通知创建一个 DefaultIntroductionAdvisor。
-	 * @param advice the Advice to apply (may implement the
-	 * {@link org.springframework.aop.IntroductionInfo} interface)
+	 * @param advice 要应用的通知（可实现
+	 * {@link org.springframework.aop.IntroductionInfo} 接口）
 	 * @see #addInterface
 	 */
 	public DefaultIntroductionAdvisor(Advice advice) {
@@ -60,9 +60,8 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 
 	/**
 	 * 为给定的通知创建一个 DefaultIntroductionAdvisor。
-	 * @param advice the Advice to apply
-	 * @param introductionInfo the IntroductionInfo that describes
-	 * the interface to introduce (may be {@code null})
+	 * @param advice 要应用的通知
+	 * @param introductionInfo 描述要引介的接口的 IntroductionInfo（可能为 {@code null}）
 	 */
 	public DefaultIntroductionAdvisor(Advice advice, @Nullable IntroductionInfo introductionInfo) {
 		Assert.notNull(advice, "Advice must not be null");
@@ -81,8 +80,8 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 
 	/**
 	 * 为给定的通知创建一个 DefaultIntroductionAdvisor。
-	 * @param advice the Advice to apply
-	 * @param ifc the interface to introduce
+	 * @param advice 要应用的通知
+	 * @param ifc 要引介的接口
 	 */
 	public DefaultIntroductionAdvisor(DynamicIntroductionAdvice advice, Class<?> ifc) {
 		Assert.notNull(advice, "Advice must not be null");
@@ -93,7 +92,7 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 
 	/**
 	 * 将指定的接口添加到要引入的接口列表中。
-	 * @param ifc the interface to introduce
+	 * @param ifc 要引介的接口
 	 */
 	public void addInterface(Class<?> ifc) {
 		Assert.notNull(ifc, "Interface must not be null");

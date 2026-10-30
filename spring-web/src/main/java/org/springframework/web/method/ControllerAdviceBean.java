@@ -83,7 +83,7 @@ public class ControllerAdviceBean implements Ordered {
 
 	/**
 	 * 使用给定的 Bean 实例创建 {@code ControllerAdviceBean}。
-	 * @param bean the bean instance
+	 * @param bean Bean 实例
 	 */
 	public ControllerAdviceBean(Object bean) {
 		Assert.notNull(bean, "Bean must not be null");
@@ -97,9 +97,9 @@ public class ControllerAdviceBean implements Ordered {
 
 	/**
 	 * 使用给定的 Bean 名称和 {@code BeanFactory} 创建 {@code ControllerAdviceBean}。
-	 * @param beanName the name of the bean
-	 * @param beanFactory a {@code BeanFactory} to retrieve the bean type initially
-	 * and later to resolve the actual bean
+	 * @param beanName Bean 的名称
+	 * @param beanFactory 用于最初获取 Bean 类型、
+	 * 之后解析实际 Bean 的 {@code BeanFactory}
 	 */
 	public ControllerAdviceBean(String beanName, BeanFactory beanFactory) {
 		this(beanName, beanFactory, null);
@@ -108,11 +108,11 @@ public class ControllerAdviceBean implements Ordered {
 	/**
 	 * 使用给定的 Bean 名称、{@code BeanFactory} 以及
 	 * {@link ControllerAdvice @ControllerAdvice} 注解创建 {@code ControllerAdviceBean}。
-	 * @param beanName the name of the bean
-	 * @param beanFactory a {@code BeanFactory} to retrieve the bean type initially
-	 * and later to resolve the actual bean
-	 * @param controllerAdvice the {@code @ControllerAdvice} annotation for the
-	 * bean, or {@code null} if not yet retrieved
+	 * @param beanName Bean 的名称
+	 * @param beanFactory 用于最初获取 Bean 类型、
+	 * 之后解析实际 Bean 的 {@code BeanFactory}
+	 * @param controllerAdvice 该 Bean 的 {@code @ControllerAdvice} 注解，
+	 * 如果尚未获取则为 {@code null}
 	 * @since 5.2
 	 */
 	public ControllerAdviceBean(String beanName, BeanFactory beanFactory, @Nullable ControllerAdvice controllerAdvice) {
@@ -237,7 +237,7 @@ public class ControllerAdviceBean implements Ordered {
 
 	/**
 	 * 检查给定的 Bean 类型是否应由此 {@code ControllerAdviceBean} 提供通知。
-	 * @param beanType the type of the bean to check
+	 * @param beanType 要检查的 Bean 类型
 	 * @since 4.0
 	 * @see ControllerAdvice
 	 */

@@ -73,7 +73,7 @@ public class ExtractingResponseErrorHandler extends DefaultResponseErrorHandler 
 	/**
 	 * 使用给定的 {@link HttpMessageConverter} 实例创建一个新的
 	 * {@code ExtractingResponseErrorHandler}。
-	 * @param messageConverters the message converters to use
+	 * @param messageConverters 要使用的消息转换器
 	 */
 	public ExtractingResponseErrorHandler(List<HttpMessageConverter<?>> messageConverters) {
 		this.messageConverters = messageConverters;

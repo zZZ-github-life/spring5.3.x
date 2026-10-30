@@ -30,17 +30,17 @@ public interface EventListenerFactory {
 
 	/**
 	 * 指定此工厂是否支持指定的 {@link Method}。
-	 * @param method an {@link EventListener} annotated method
-	 * @return {@code true} if this factory supports the specified method
+	 * @param method 标有 {@link EventListener} 注解的方法
+	 * @return 如果该工厂支持指定的方法，则返回 {@code true}
 	 */
 	boolean supportsMethod(Method method);
 
 	/**
 	 * 为指定方法创建一个 {@link ApplicationListener}。
-	 * @param beanName the name of the bean
-	 * @param type the target type of the instance
-	 * @param method the {@link EventListener} annotated method
-	 * @return an application listener, suitable to invoke the specified method
+	 * @param beanName Bean 的名称
+	 * @param type 实例的目标类型
+	 * @param method 标有 {@link EventListener} 注解的方法
+	 * @return 适用于调用指定方法的应用监听器
 	 */
 	ApplicationListener<?> createApplicationListener(String beanName, Class<?> type, Method method);
 

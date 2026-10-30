@@ -26,29 +26,28 @@ import org.springframework.util.concurrent.ListenableFuture;
  *
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <P> the type of payload for outbound {@link Message Messages}
+ * @param <P> 出站 {@link Message Messages} 的负载类型
  */
 public interface TcpConnection<P> extends Closeable {
 
 	/**
 	 * 发送给定的消息。
-	 * @param message the message
-	 * @return a ListenableFuture that can be used to determine when and if the
-	 * message was successfully sent
+	 * @param message 消息
+	 * @return 可用于确定消息何时发送成功以及是否发送成功的 ListenableFuture
 	 */
 	ListenableFuture<Void> send(Message<P> message);
 
 	/**
 	 * 注册一个在读取空闲一段时间后调用的任务。
-	 * @param runnable the task to invoke
-	 * @param duration the amount of inactive time in milliseconds
+	 * @param runnable 要调用的任务
+	 * @param duration 非活动时间量，单位为毫秒
 	 */
 	void onReadInactivity(Runnable runnable, long duration);
 
 	/**
 	 * 注册一个在写入空闲一段时间后调用的任务。
-	 * @param runnable the task to invoke
-	 * @param duration the amount of inactive time in milliseconds
+	 * @param runnable 要调用的任务
+	 * @param duration 非活动时间量，单位为毫秒
 	 */
 	void onWriteInactivity(Runnable runnable, long duration);
 

@@ -90,7 +90,7 @@ public class SpelExpression implements Expression {
 
 	/**
 	 * 设置求值调用中未指定时使用的求值上下文。
-	 * @param evaluationContext the evaluation context to use
+	 * @param evaluationContext 要使用的求值上下文
 	 */
 	public void setEvaluationContext(EvaluationContext evaluationContext) {
 		this.evaluationContext = evaluationContext;
@@ -98,7 +98,7 @@ public class SpelExpression implements Expression {
 
 	/**
 	 * 返回求值调用中未提供时使用的默认求值上下文。
-	 * @return the default evaluation context
+	 * @return 默认的求值上下文
 	 */
 	public EvaluationContext getEvaluationContext() {
 		if (this.evaluationContext == null) {
@@ -479,7 +479,7 @@ public class SpelExpression implements Expression {
 
 	/**
 	 * 如果表达式求值次数超过触发编译的阈值，则编译该表达式。
-	 * @param expressionState the expression state used to determine compilation mode
+	 * @param expressionState 用于确定编译模式的表达式状态
 	 */
 	private void checkCompile(ExpressionState expressionState) {
 		this.interpretedCount.incrementAndGet();
@@ -502,7 +502,7 @@ public class SpelExpression implements Expression {
 	/**
 	 * 执行表达式编译。仅当所有节点的出口类型描述符都已确定时才会成功。如果编译失败且失败次数超过 100
 	 * 次，则该表达式将不再被视为适合编译。
-	 * @return whether this expression has been successfully compiled
+	 * @return 该表达式是否已成功编译
 	 */
 	public boolean compileExpression() {
 		CompiledExpression compiledAst = this.compiledAst;
@@ -572,7 +572,7 @@ public class SpelExpression implements Expression {
 	/**
 	 * 生成该表达式抽象语法树的字符串表示。理想情况下它应看起来像输入的表达式，但要格式良好，因为在解析
 	 * 表达式期间会丢弃任何不必要的空白。
-	 * @return the string representation of the AST
+	 * @return AST 的字符串表示形式
 	 */
 	public String toStringAST() {
 		return this.ast.toStringAST();

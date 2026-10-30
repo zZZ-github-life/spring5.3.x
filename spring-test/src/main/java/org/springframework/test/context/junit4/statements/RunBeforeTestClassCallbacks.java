@@ -37,9 +37,8 @@ public class RunBeforeTestClassCallbacks extends Statement {
 
 	/**
 	 * 构造一个新的 {@code RunBeforeTestClassCallbacks} 语句。
-	 * @param next the next {@code Statement} in the execution chain
-	 * @param testContextManager the TestContextManager upon which to call
-	 * {@code beforeTestClass()}
+	 * @param next 执行链中的下一个 {@code Statement}
+	 * @param testContextManager 要在其上调用 {@code beforeTestClass()} 的 TestContextManager
 	 */
 	public RunBeforeTestClassCallbacks(Statement next, TestContextManager testContextManager) {
 		this.next = next;

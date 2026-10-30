@@ -89,8 +89,8 @@ public class JmsListenerEndpointRegistry implements DisposableBean, SmartLifecyc
 	/**
 	 * 返回具有指定 id 的 {@link MessageListenerContainer}，
 	 * 如果不存在此类容器则返回 {@code null}。
-	 * @param id the id of the container
-	 * @return the container or {@code null} if no container with that id exists
+	 * @param id 容器的 id
+	 * @return 该容器；如果不存在具有该 id 的容器，则为 {@code null}
 	 * @see JmsListenerEndpoint#getId()
 	 * @see #getListenerContainerIds()
 	 */
@@ -120,9 +120,9 @@ public class JmsListenerEndpointRegistry implements DisposableBean, SmartLifecyc
 	 * 为给定的 {@link JmsListenerEndpoint} 创建消息监听器容器。
 	 * <p>这会创建必要的基础设施，以根据其配置来落实该端点。
 	 * <p>{@code startImmediately} 标志决定容器是否应立即启动。
-	 * @param endpoint the endpoint to add
-	 * @param factory the listener factory to use
-	 * @param startImmediately start the container immediately if necessary
+	 * @param endpoint 要添加的端点
+	 * @param factory 要使用的监听器工厂
+	 * @param startImmediately 必要时立即启动容器
 	 * @see #getListenerContainers()
 	 * @see #getListenerContainer(String)
 	 */
@@ -149,8 +149,8 @@ public class JmsListenerEndpointRegistry implements DisposableBean, SmartLifecyc
 	/**
 	 * 为给定的 {@link JmsListenerEndpoint} 创建消息监听器容器。
 	 * <p>这会创建必要的基础设施，以根据其配置来落实该端点。
-	 * @param endpoint the endpoint to add
-	 * @param factory the listener factory to use
+	 * @param endpoint 要添加的端点
+	 * @param factory 要使用的监听器工厂
 	 * @see #registerListenerContainer(JmsListenerEndpoint, JmsListenerContainerFactory, boolean)
 	 */
 	public void registerListenerContainer(JmsListenerEndpoint endpoint, JmsListenerContainerFactory<?> factory) {

@@ -32,19 +32,19 @@ public interface ParserContext {
 	 *     Hello #{name.firstName}!
 	 *     #{3 + 4}
 	 * </pre>
-	 * @return true if the expression is a template, false otherwise
+	 * @return 如果表达式是模板则返回 true，否则返回 false
 	 */
 	boolean isTemplate();
 
 	/**
 	 * 对于模板表达式，返回用于标识字符串中表达式块起始位置的前缀。例如："${"
-	 * @return the prefix that identifies the start of an expression
+	 * @return 标识表达式起始位置的前缀
 	 */
 	String getExpressionPrefix();
 
 	/**
 	 * 对于模板表达式，返回用于标识字符串中表达式块结束位置的前缀。例如："}"
-	 * @return the suffix that identifies the end of an expression
+	 * @return 标识表达式结束位置的后缀
 	 */
 	String getExpressionSuffix();
 

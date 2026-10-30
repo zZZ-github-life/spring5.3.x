@@ -32,21 +32,20 @@ public interface PooledDataBuffer extends DataBuffer {
 
 	/**
 	 * 将此缓冲区的引用计数增加一。
-	 * @return this buffer
+	 * @return 此缓冲区
 	 */
 	PooledDataBuffer retain();
 
 	/**
 	 * 将给定的提示与数据缓冲区关联，用于调试目的。
-	 * @return this buffer
+	 * @return 此缓冲区
 	 * @since 5.3.2
 	 */
 	PooledDataBuffer touch(Object hint);
 
 	/**
 	 * 将此缓冲区的引用计数减少一，并在计数达到零时释放它。
-	 * @return {@code true} if the buffer was deallocated;
-	 * {@code false} otherwise
+	 * @return 如果缓冲区已释放则返回 {@code true}；否则返回 {@code false}
 	 */
 	boolean release();
 

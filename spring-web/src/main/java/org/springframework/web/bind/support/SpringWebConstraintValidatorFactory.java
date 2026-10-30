@@ -53,7 +53,7 @@ public class SpringWebConstraintValidatorFactory implements ConstraintValidatorF
 	/**
 	 * 检索要使用的 Spring {@link WebApplicationContext}。
 	 * 默认实现返回为线程上下文类加载器注册的当前 {@link WebApplicationContext}。
-	 * @return the current WebApplicationContext (never {@code null})
+	 * @return 当前的 WebApplicationContext（永不为 {@code null}）
 	 * @see ContextLoader#getCurrentWebApplicationContext()
 	 */
 	protected WebApplicationContext getWebApplicationContext() {

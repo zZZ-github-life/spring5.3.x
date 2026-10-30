@@ -286,8 +286,8 @@ public abstract class AbstractFileResolvingResource extends AbstractResource {
 	 * 在获取资源之前定制给定的 {@link URLConnection}。
 	 * <p>调用 {@link ResourceUtils#useCachesIfNecessary(URLConnection)}，并在可能时委托给
 	 * {@link #customizeConnection(HttpURLConnection)}。可在子类中覆盖。
-	 * @param con the URLConnection to customize
-	 * @throws IOException if thrown from URLConnection methods
+	 * @param con 要定制的 URLConnection
+	 * @throws IOException 如果由 URLConnection 方法抛出
 	 */
 	protected void customizeConnection(URLConnection con) throws IOException {
 		ResourceUtils.useCachesIfNecessary(con);
@@ -299,8 +299,8 @@ public abstract class AbstractFileResolvingResource extends AbstractResource {
 	/**
 	 * 在获取资源之前定制给定的 {@link HttpURLConnection}。
 	 * <p>可在子类中覆盖，以配置请求头和超时时间。
-	 * @param con the HttpURLConnection to customize
-	 * @throws IOException if thrown from HttpURLConnection methods
+	 * @param con 要定制的 HttpURLConnection
+	 * @throws IOException 如果由 HttpURLConnection 方法抛出
 	 */
 	protected void customizeConnection(HttpURLConnection con) throws IOException {
 	}

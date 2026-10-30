@@ -34,10 +34,9 @@ public interface MessageConverter {
 	 * 将 {@link Message} 的载荷从序列化形式转换为指定目标类的类型化对象。
 	 * {@link MessageHeaders#CONTENT_TYPE} 头应指明要转换的 MIME 类型。
 	 * <p>如果转换器不支持指定的媒体类型或无法执行转换，则应返回 {@code null}。
-	 * @param message the input message
-	 * @param targetClass the target class for the conversion
-	 * @return the result of the conversion, or {@code null} if the converter cannot
-	 * perform the conversion
+	 * @param message 输入消息
+	 * @param targetClass 转换的目标类
+	 * @return 转换结果；如果转换器无法执行转换则返回 {@code null}
 	 */
 	@Nullable
 	Object fromMessage(Message<?> message, Class<?> targetClass);
@@ -47,10 +46,10 @@ public interface MessageConverter {
 	 * 可选的 {@link MessageHeaders} 参数可以包含 {@link MessageHeaders#CONTENT_TYPE} 头，
 	 * 用于指定转换的目标媒体类型，也可以包含要添加到消息中的其他头。
 	 * <p>如果转换器不支持指定的媒体类型或无法执行转换，则应返回 {@code null}。
-	 * @param payload the Object to convert
-	 * @param headers optional headers for the message (may be {@code null})
-	 * @return the new message, or {@code null} if the converter does not support the
-	 * Object type or the target media type
+	 * @param payload 要转换的对象
+	 * @param headers 消息的可选消息头（可以为 {@code null}）
+	 * @return 新的消息；如果转换器不支持该对象类型或目标媒体类型，
+	 * 则返回 {@code null}
 	 */
 	@Nullable
 	Message<?> toMessage(Object payload, @Nullable MessageHeaders headers);

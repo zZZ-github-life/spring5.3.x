@@ -75,7 +75,7 @@ public class HandlerFunctionAdapter implements HandlerAdapter, Ordered {
 	 * 以进一步处理并发产生的结果时结束。
 	 * <p>如果未设置此值，则使用底层实现的
 	 * 默认超时时间。
-	 * @param timeout the timeout value in milliseconds
+	 * @param timeout 以毫秒为单位的超时值
 	 */
 	public void setAsyncRequestTimeout(long timeout) {
 		this.asyncRequestTimeout = timeout;

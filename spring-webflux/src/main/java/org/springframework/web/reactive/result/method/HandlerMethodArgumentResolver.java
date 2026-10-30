@@ -31,16 +31,16 @@ public interface HandlerMethodArgumentResolver {
 
 	/**
 	 * 此解析器是否支持给定的方法参数。
-	 * @param parameter the method parameter
+	 * @param parameter 方法参数
 	 */
 	boolean supportsParameter(MethodParameter parameter);
 
 	/**
 	 * 解析方法参数的值。
-	 * @param parameter the method parameter
-	 * @param bindingContext the binding context to use
-	 * @param exchange the current exchange
-	 * @return {@code Mono} for the argument value, possibly empty
+	 * @param parameter 方法参数
+	 * @param bindingContext 要使用的绑定上下文
+	 * @param exchange 当前交换
+	 * @return 参数值的 {@code Mono}，可能为空
 	 */
 	Mono<Object> resolveArgument(
 			MethodParameter parameter, BindingContext bindingContext, ServerWebExchange exchange);

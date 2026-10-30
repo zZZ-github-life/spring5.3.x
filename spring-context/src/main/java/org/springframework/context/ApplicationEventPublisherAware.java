@@ -34,7 +34,7 @@ public interface ApplicationEventPublisherAware extends Aware {
 	 *
 	 * <p>在填充常规 Bean 属性之后、但在诸如 InitializingBean 的 afterPropertiesSet 之类的初始化回调或
 	 * 自定义 init-method 之前调用。在 ApplicationContextAware 的 setApplicationContext 之前调用。
-	 * @param applicationEventPublisher event publisher to be used by this object
+	 * @param applicationEventPublisher 此对象要使用的事件发布器
 	 */
 	void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher);
 

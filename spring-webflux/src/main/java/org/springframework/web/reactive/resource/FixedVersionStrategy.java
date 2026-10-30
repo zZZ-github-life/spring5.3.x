@@ -36,7 +36,7 @@ public class FixedVersionStrategy extends AbstractPrefixVersionStrategy {
 
 	/**
 	 * 使用给定版本字符串创建新的 FixedVersionStrategy。
-	 * @param version the fixed version string to use
+	 * @param version 要使用的固定版本字符串
 	 */
 	public FixedVersionStrategy(String version) {
 		super(version);

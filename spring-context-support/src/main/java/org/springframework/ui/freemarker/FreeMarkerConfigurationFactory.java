@@ -241,9 +241,9 @@ public class FreeMarkerConfigurationFactory {
 
 	/**
 	 * 准备 FreeMarker Configuration 并返回。
-	 * @return the FreeMarker Configuration object
-	 * @throws IOException if the config file wasn't found
-	 * @throws TemplateException on FreeMarker initialization failure
+	 * @return FreeMarker Configuration 对象
+	 * @throws IOException 如果未找到配置文件
+	 * @throws TemplateException FreeMarker 初始化失败时
 	 */
 	public Configuration createConfiguration() throws IOException, TemplateException {
 		Configuration config = newConfiguration();
@@ -310,9 +310,9 @@ public class FreeMarkerConfigurationFactory {
 	 * （例如，指定 FreeMarker 兼容性级别，这是 FreeMarker 2.3.21 中的新特性），
 	 * 或用于测试的模拟对象。
 	 * <p>由 {@code createConfiguration()} 调用。
-	 * @return the Configuration object
-	 * @throws IOException if a config file wasn't found
-	 * @throws TemplateException on FreeMarker initialization failure
+	 * @return Configuration 对象
+	 * @throws IOException 如果未找到配置文件
+	 * @throws TemplateException FreeMarker 初始化失败时
 	 * @see #createConfiguration()
 	 */
 	protected Configuration newConfiguration() throws IOException, TemplateException {
@@ -322,8 +322,8 @@ public class FreeMarkerConfigurationFactory {
 	/**
 	 * 确定给定路径的 FreeMarker TemplateLoader。
 	 * <p>默认实现创建 FileTemplateLoader 或 SpringTemplateLoader。
-	 * @param templateLoaderPath the path to load templates from
-	 * @return an appropriate TemplateLoader
+	 * @param templateLoaderPath 从中加载模板的路径
+	 * @return 合适的 TemplateLoader
 	 * @see freemarker.cache.FileTemplateLoader
 	 * @see SpringTemplateLoader
 	 */
@@ -361,8 +361,7 @@ public class FreeMarkerConfigurationFactory {
 	 * <p>由 {@code createConfiguration()} 调用。注意指定的
 	 * "postTemplateLoaders" 将在由此回调注册的任何加载器<i>之后</i>注册；
 	 * 因此，它们<i>不</i>包含在给定的 List 中。
-	 * @param templateLoaders the current List of TemplateLoader instances,
-	 * to be modified by a subclass
+	 * @param templateLoaders 当前的 TemplateLoader 实例列表，可由子类修改
 	 * @see #createConfiguration()
 	 * @see #setPostTemplateLoaders
 	 */
@@ -372,8 +371,8 @@ public class FreeMarkerConfigurationFactory {
 	/**
 	 * 基于给定的 TemplateLoader 列表返回一个 TemplateLoader。
 	 * 如果注册了多个 TemplateLoader，则需要创建 FreeMarker MultiTemplateLoader。
-	 * @param templateLoaders the final List of TemplateLoader instances
-	 * @return the aggregate TemplateLoader
+	 * @param templateLoaders TemplateLoader 实例的最终列表
+	 * @return 聚合的 TemplateLoader
 	 */
 	@Nullable
 	protected TemplateLoader getAggregateTemplateLoader(List<TemplateLoader> templateLoaders) {
@@ -393,9 +392,9 @@ public class FreeMarkerConfigurationFactory {
 	 * 由子类覆盖，用于在此工厂执行默认初始化之后
 	 * 对 Configuration 对象进行自定义后处理。
 	 * <p>由 {@code createConfiguration()} 调用。
-	 * @param config the current Configuration object
-	 * @throws IOException if a config file wasn't found
-	 * @throws TemplateException on FreeMarker initialization failure
+	 * @param config 当前的 Configuration 对象
+	 * @throws IOException 如果未找到配置文件
+	 * @throws TemplateException FreeMarker 初始化失败时
 	 * @see #createConfiguration()
 	 */
 	protected void postProcessConfiguration(Configuration config) throws IOException, TemplateException {

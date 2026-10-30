@@ -37,9 +37,9 @@ public interface FlashMapManager {
 	 * <p>与 {@link #saveOutputFlashMap} 不同（后者仅在有需要保存的
 	 * flash 属性时调用 —— 即重定向之前），此方法在每个请求的
 	 * 开始时都会被调用。
-	 * @param request the current request
-	 * @param response the current response
-	 * @return a FlashMap matching the current request or {@code null}
+	 * @param request 当前请求
+	 * @param response 当前响应
+	 * @return 与当前请求匹配的 FlashMap，或 {@code null}
 	 */
 	@Nullable
 	FlashMap retrieveAndUpdate(HttpServletRequest request, HttpServletResponse response);
@@ -48,9 +48,9 @@ public interface FlashMapManager {
 	 * 将给定的 FlashMap 保存到某个底层存储中，并设置其过期计时的开始时间。
 	 * <p><strong>注意：</strong>请在重定向之前调用此方法，
 	 * 以便在响应提交之前将 FlashMap 保存到 HTTP 会话或响应 Cookie 中。
-	 * @param flashMap the FlashMap to save
-	 * @param request the current request
-	 * @param response the current response
+	 * @param flashMap 要保存的 FlashMap
+	 * @param request 当前请求
+	 * @param response 当前响应
 	 */
 	void saveOutputFlashMap(FlashMap flashMap, HttpServletRequest request, HttpServletResponse response);
 

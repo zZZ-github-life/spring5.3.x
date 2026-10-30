@@ -43,7 +43,7 @@ public class PerformanceMonitorInterceptor extends AbstractMonitoringInterceptor
 
 	/**
 	 * 根据给定标志，使用动态或静态日志器创建一个新的 PerformanceMonitorInterceptor。
-	 * @param useDynamicLogger whether to use a dynamic logger or a static logger
+	 * @param useDynamicLogger 使用动态 logger 还是静态 logger
 	 * @see #setUseDynamicLogger
 	 */
 	public PerformanceMonitorInterceptor(boolean useDynamicLogger) {

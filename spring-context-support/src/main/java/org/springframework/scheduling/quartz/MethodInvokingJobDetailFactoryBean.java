@@ -188,7 +188,7 @@ public class MethodInvokingJobDetailFactoryBean extends ArgumentConvertingMethod
 	/**
 	 * 对此 FactoryBean 要暴露的 JobDetail 进行后处理的回调。
 	 * <p>默认实现为空。可以在子类中重写。
-	 * @param jobDetail the JobDetail prepared by this FactoryBean
+	 * @param jobDetail 由此 FactoryBean 准备的 JobDetail
 	 */
 	protected void postProcessJobDetail(JobDetail jobDetail) {
 	}

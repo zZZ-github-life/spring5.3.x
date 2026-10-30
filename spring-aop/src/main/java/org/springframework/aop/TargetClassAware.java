@@ -32,7 +32,7 @@ public interface TargetClassAware {
 
 	/**
 	 * 返回实现对象背后的目标类（通常是代理配置或实际代理）。
-	 * @return the target Class, or {@code null} if not known
+	 * @return 目标 Class，如果未知则为 {@code null}
 	 */
 	@Nullable
 	Class<?> getTargetClass();

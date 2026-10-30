@@ -29,7 +29,7 @@ public abstract class MailException extends NestedRuntimeException {
 
 	/**
 	 * MailException 的构造方法。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public MailException(String msg) {
 		super(msg);
@@ -37,8 +37,8 @@ public abstract class MailException extends NestedRuntimeException {
 
 	/**
 	 * MailException 的构造方法。
-	 * @param msg the detail message
-	 * @param cause the root cause from the mail API in use
+	 * @param msg 详细消息
+	 * @param cause 所用邮件 API 的根本原因
 	 */
 	public MailException(@Nullable String msg, @Nullable Throwable cause) {
 		super(msg, cause);

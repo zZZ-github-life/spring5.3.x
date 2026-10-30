@@ -76,7 +76,7 @@ public class ServerSentEventHttpMessageWriter implements HttpMessageWriter<Objec
 	/**
 	 * 带 JSON {@code Encoder} 的构造函数，用于编码对象。
 	 * 内置了对 {@code String} 事件数据的支持。
-	 * @param encoder the Encoder to use (may be {@code null})
+	 * @param encoder 要使用的 Encoder（可以为 {@code null}）
 	 */
 	public ServerSentEventHttpMessageWriter(@Nullable Encoder<?> encoder) {
 		this.encoder = encoder;

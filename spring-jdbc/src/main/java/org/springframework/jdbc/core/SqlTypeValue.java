@@ -53,11 +53,11 @@ public interface SqlTypeValue {
 
 	/**
 	 * 在给定的PreparedStatement上设置类型值。
-	 * @param ps the PreparedStatement to work on
-	 * @param paramIndex the index of the parameter for which we need to set the value
-	 * @param sqlType the SQL type of the parameter we are setting
-	 * @param typeName the type name of the parameter (optional)
-	 * @throws SQLException if an SQLException is encountered while setting parameter values
+	 * @param ps 要操作的 PreparedStatement
+	 * @param paramIndex 需要为其设置值的参数索引
+	 * @param sqlType 正在设置的参数的 SQL 类型
+	 * @param typeName 参数的类型名称（可选）
+	 * @throws SQLException 如果在设置参数值时遇到 SQLException
 	 * @see java.sql.Types
 	 * @see java.sql.PreparedStatement#setObject
 	 */

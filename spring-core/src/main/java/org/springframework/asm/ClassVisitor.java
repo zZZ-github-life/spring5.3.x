@@ -49,8 +49,7 @@ public abstract class ClassVisitor {
   /**
    * 构造一个新的 {@link ClassVisitor}。
    *
-   * @param api the ASM API version implemented by this visitor. Must be one of the {@code
-   *     ASM}<i>x</i> values in {@link Opcodes}.
+   * @param api 此访问器实现的 ASM API 版本，必须是 {@link Opcodes} 中 {@code ASM}<i>x</i> 值之一。
    */
   protected ClassVisitor(final int api) {
     this(api, null);
@@ -59,10 +58,8 @@ public abstract class ClassVisitor {
   /**
    * 构造一个新的 {@link ClassVisitor}。
    *
-   * @param api the ASM API version implemented by this visitor. Must be one of the {@code
-   *     ASM}<i>x</i> values in {@link Opcodes}.
-   * @param classVisitor the class visitor to which this visitor must delegate method calls. May be
-   *     null.
+   * @param api 此访问器实现的 ASM API 版本，必须是 {@link Opcodes} 中 {@code ASM}<i>x</i> 值之一。
+   * @param classVisitor 此访问器必须将方法调用委托给的类访问器。可以为 null。
    */
   protected ClassVisitor(final int api, final ClassVisitor classVisitor) {
     if (api != Opcodes.ASM9
@@ -82,7 +79,7 @@ public abstract class ClassVisitor {
   /**
    * 此访问器必须将方法调用委托给它的类访问器。可以为 {@literal null}。
    *
-   * @return the class visitor to which this visitor must delegate method calls, or {@literal null}.
+   * @return 此访问器必须将方法调用委托给的类访问器，或 {@literal null}。
    */
   public ClassVisitor getDelegate() {
     return cv;
@@ -91,19 +88,15 @@ public abstract class ClassVisitor {
   /**
    * 访问类的头部。
    *
-   * @param version the class version. The minor version is stored in the 16 most significant bits,
-   *     and the major version in the 16 least significant bits.
-   * @param access the class's access flags (see {@link Opcodes}). This parameter also indicates if
-   *     the class is deprecated {@link Opcodes#ACC_DEPRECATED} or a record {@link
-   *     Opcodes#ACC_RECORD}.
-   * @param name the internal name of the class (see {@link Type#getInternalName()}).
-   * @param signature the signature of this class. May be {@literal null} if the class is not a
-   *     generic one, and does not extend or implement generic classes or interfaces.
-   * @param superName the internal of name of the super class (see {@link Type#getInternalName()}).
-   *     For interfaces, the super class is {@link Object}. May be {@literal null}, but only for the
-   *     {@link Object} class.
-   * @param interfaces the internal names of the class's interfaces (see {@link
-   *     Type#getInternalName()}). May be {@literal null}.
+   * @param version 类版本。次版本存储在最高的 16 位中，主版本存储在最低的 16 位中。
+   * @param access 类的访问标志（参见 {@link Opcodes}）。此参数还指示该类是否已废弃
+   * （{@link Opcodes#ACC_DEPRECATED}）或是否为记录类（{@link Opcodes#ACC_RECORD}）。
+   * @param name 类的内部名（参见 {@link Type#getInternalName()}）。
+   * @param signature 此类的签名。如果该类不是泛型类，且不继承或实现泛型类或接口，则可以为
+   * {@literal null}。
+   * @param superName 超类的内部名（参见 {@link Type#getInternalName()}）。对于接口，超类是
+   * {@link Object}。可以为 {@literal null}，但仅对 {@link Object} 类成立。
+   * @param interfaces 该类各接口的内部名（参见 {@link Type#getInternalName()}）。可以为 {@literal null}。
    */
   public void visit(
       final int version,
@@ -123,10 +116,9 @@ public abstract class ClassVisitor {
   /**
    * 访问类的源信息。
    *
-   * @param source the name of the source file from which the class was compiled. May be {@literal
-   *     null}.
-   * @param debug additional debug information to compute the correspondence between source and
-   *     compiled elements of the class. May be {@literal null}.
+   * @param source 编译该类所用源文件的名称。可以为 {@literal null}。
+   * @param debug 用于计算该类的源代码元素与编译后元素之间对应关系的附加调试信息。可以为
+   * {@literal null}。
    */
   public void visitSource(final String source, final String debug) {
     if (cv != null) {
@@ -137,12 +129,10 @@ public abstract class ClassVisitor {
   /**
    * 访问与此类对应的模块。
    *
-   * @param name the fully qualified name (using dots) of the module.
-   * @param access the module access flags, among {@code ACC_OPEN}, {@code ACC_SYNTHETIC} and {@code
-   *     ACC_MANDATED}.
-   * @param version the module version, or {@literal null}.
-   * @return a visitor to visit the module values, or {@literal null} if this visitor is not
-   *     interested in visiting this module.
+   * @param name 模块的完全限定名（使用点分隔）。
+   * @param access 模块访问标志，取 {@code ACC_OPEN}、{@code ACC_SYNTHETIC} 和 {@code ACC_MANDATED} 之一。
+   * @param version 模块版本，或 {@literal null}。
+   * @return 用于访问模块值的访问器；如果此访问器不关心访问该模块，则为 {@literal null}。
    */
   public ModuleVisitor visitModule(final String name, final int access, final String version) {
     if (api < Opcodes.ASM6) {
@@ -160,8 +150,7 @@ public abstract class ClassVisitor {
    * 访问的类是某个嵌套的非宿主成员时才调用。类隐式地就是自身的嵌套，因此以被访问类的名称作为参数调用
    * 此方法是无效的。
    *
-   * @param nestHost the internal name of the host class of the nest (see {@link
-   *     Type#getInternalName()}).
+   * @param nestHost 嵌套（nest）宿主类的内部名（参见 {@link Type#getInternalName()}）。
    */
   public void visitNestHost(final String nestHost) {
     if (api < Opcodes.ASM7) {
@@ -175,16 +164,11 @@ public abstract class ClassVisitor {
   /**
    * 访问此类的封闭类。仅当此类是局部类或匿名类时才必须调用此方法。更多细节请参见 JVMS 4.7.7 节。
    *
-   * @param owner internal name of the enclosing class of the class (see {@link
-   *     Type#getInternalName()}).
-   * @param name the name of the method that contains the class, or {@literal null} if the class is
-   *     not enclosed in a method or constructor of its enclosing class (e.g. if it is enclosed in
-   *     an instance initializer, static initializer, instance variable initializer, or class
-   *     variable initializer).
-   * @param descriptor the descriptor of the method that contains the class, or {@literal null} if
-   *     the class is not enclosed in a method or constructor of its enclosing class (e.g. if it is
-   *     enclosed in an instance initializer, static initializer, instance variable initializer, or
-   *     class variable initializer).
+   * @param owner 该类的封闭类的内部名（参见 {@link Type#getInternalName()}）。
+   * @param name 包含该类的方法名称；如果该类未封闭在其封闭类的某个方法或构造器中（例如封闭在
+   * 实例初始化块、静态初始化块、实例变量初始化或类变量初始化中），则为 {@literal null}。
+   * @param descriptor 包含该类的方法描述符；如果该类未封闭在其封闭类的某个方法或构造器中（例如封闭在
+   * 实例初始化块、静态初始化块、实例变量初始化或类变量初始化中），则为 {@literal null}。
    */
   public void visitOuterClass(final String owner, final String name, final String descriptor) {
     if (cv != null) {
@@ -195,10 +179,9 @@ public abstract class ClassVisitor {
   /**
    * 访问类的一个注解。
    *
-   * @param descriptor the class descriptor of the annotation class.
-   * @param visible {@literal true} if the annotation is visible at runtime.
-   * @return a visitor to visit the annotation values, or {@literal null} if this visitor is not
-   *     interested in visiting this annotation.
+   * @param descriptor 注解类的类描述符。
+   * @param visible 如果该注解在运行时可见，则为 {@literal true}。
+   * @return 用于访问注解值的访问器；如果此访问器不关心访问该注解，则为 {@literal null}。
    */
   public AnnotationVisitor visitAnnotation(final String descriptor, final boolean visible) {
     if (cv != null) {
@@ -210,17 +193,15 @@ public abstract class ClassVisitor {
   /**
    * 访问类签名中某个类型上的注解。
    *
-   * @param typeRef a reference to the annotated type. The sort of this type reference must be
-   *     {@link TypeReference#CLASS_TYPE_PARAMETER}, {@link
-   *     TypeReference#CLASS_TYPE_PARAMETER_BOUND} or {@link TypeReference#CLASS_EXTENDS}. See
-   *     {@link TypeReference}.
-   * @param typePath the path to the annotated type argument, wildcard bound, array element type, or
-   *     static inner type within 'typeRef'. May be {@literal null} if the annotation targets
-   *     'typeRef' as a whole.
-   * @param descriptor the class descriptor of the annotation class.
-   * @param visible {@literal true} if the annotation is visible at runtime.
-   * @return a visitor to visit the annotation values, or {@literal null} if this visitor is not
-   *     interested in visiting this annotation.
+   * @param typeRef 对被注解类型的引用。此类型引用的种类必须是
+   * {@link TypeReference#CLASS_TYPE_PARAMETER}、
+   * {@link TypeReference#CLASS_TYPE_PARAMETER_BOUND} 或 {@link TypeReference#CLASS_EXTENDS}。
+   * 参见 {@link TypeReference}。
+   * @param typePath 指向 'typeRef' 中被注解的类型参数、通配符边界、数组元素类型或静态内部类型的路径。
+   * 如果注解以整个 'typeRef' 为目标，则可以为 {@literal null}。
+   * @param descriptor 注解类的类描述符。
+   * @param visible 如果该注解在运行时可见，则为 {@literal true}。
+   * @return 用于访问注解值的访问器；如果此访问器不关心访问该注解，则为 {@literal null}。
    */
   public AnnotationVisitor visitTypeAnnotation(
       final int typeRef, final TypePath typePath, final String descriptor, final boolean visible) {
@@ -236,7 +217,7 @@ public abstract class ClassVisitor {
   /**
    * 访问类的一个非标准属性。
    *
-   * @param attribute an attribute.
+   * @param attribute 一个属性。
    */
   public void visitAttribute(final Attribute attribute) {
     if (cv != null) {
@@ -250,7 +231,7 @@ public abstract class ClassVisitor {
    * 主时才必须调用此方法。嵌套宿主隐式地就是其自身嵌套的成员，因此以被访问类的名称作为参数调用此方法
    * 是无效的。
    *
-   * @param nestMember the internal name of a nest member (see {@link Type#getInternalName()}).
+   * @param nestMember 嵌套成员的内部名（参见 {@link Type#getInternalName()}）。
    */
   public void visitNestMember(final String nestMember) {
     if (api < Opcodes.ASM7) {
@@ -264,8 +245,7 @@ public abstract class ClassVisitor {
   /**
    * 访问允许的子类。允许的子类是当前类所允许的子类之一。
    *
-   * @param permittedSubclass the internal name of a permitted subclass (see {@link
-   *     Type#getInternalName()}).
+   * @param permittedSubclass 被允许的子类的内部名（参见 {@link Type#getInternalName()}）。
    */
   public void visitPermittedSubclass(final String permittedSubclass) {
     if (api < Opcodes.ASM9) {
@@ -281,13 +261,11 @@ public abstract class ClassVisitor {
    * 或接口 C 都必须用此方法访问。此类必须引用其嵌套类或接口成员，以及其封闭类（如果有）。更多细节请
    * 参见 JVMS 4.7.6 节。
    *
-   * @param name the internal name of C (see {@link Type#getInternalName()}).
-   * @param outerName the internal name of the class or interface C is a member of (see {@link
-   *     Type#getInternalName()}). Must be {@literal null} if C is not the member of a class or
-   *     interface (e.g. for local or anonymous classes).
-   * @param innerName the (simple) name of C. Must be {@literal null} for anonymous inner classes.
-   * @param access the access flags of C originally declared in the source code from which this
-   *     class was compiled.
+   * @param name C 的内部名（参见 {@link Type#getInternalName()}）。
+   * @param outerName C 作为其成员的类或接口的内部名（参见 {@link Type#getInternalName()}）。如果 C 不是
+   * 某个类或接口的成员（例如局部类或匿名类），则必须为 {@literal null}。
+   * @param innerName C 的（简单）名称。对于匿名内部类，必须为 {@literal null}。
+   * @param access 在编译此类的源代码中最初声明的 C 的访问标志。
    */
   public void visitInnerClass(
       final String name, final String outerName, final String innerName, final int access) {
@@ -299,12 +277,11 @@ public abstract class ClassVisitor {
   /**
    * 访问类的一个记录组件。
    *
-   * @param name the record component name.
-   * @param descriptor the record component descriptor (see {@link Type}).
-   * @param signature the record component signature. May be {@literal null} if the record component
-   *     type does not use generic types.
-   * @return a visitor to visit this record component annotations and attributes, or {@literal null}
-   *     if this class visitor is not interested in visiting these annotations and attributes.
+   * @param name 记录组件的名称。
+   * @param descriptor 记录组件的描述符（参见 {@link Type}）。
+   * @param signature 记录组件的签名。如果该记录组件的类型不使用泛型类型，则可以为 {@literal null}。
+   * @return 用于访问该记录组件注解和属性的访问器；如果此类型访问器不关心访问这些注解和属性，
+   * 则为 {@literal null}。
    */
   public RecordComponentVisitor visitRecordComponent(
       final String name, final String descriptor, final String signature) {
@@ -320,20 +297,18 @@ public abstract class ClassVisitor {
   /**
    * 访问类的一个字段。
    *
-   * @param access the field's access flags (see {@link Opcodes}). This parameter also indicates if
-   *     the field is synthetic and/or deprecated.
-   * @param name the field's name.
-   * @param descriptor the field's descriptor (see {@link Type}).
-   * @param signature the field's signature. May be {@literal null} if the field's type does not use
-   *     generic types.
-   * @param value the field's initial value. This parameter, which may be {@literal null} if the
-   *     field does not have an initial value, must be an {@link Integer}, a {@link Float}, a {@link
-   *     Long}, a {@link Double} or a {@link String} (for {@code int}, {@code float}, {@code long}
-   *     or {@code String} fields respectively). <i>This parameter is only used for static
-   *     fields</i>. Its value is ignored for non static fields, which must be initialized through
-   *     bytecode instructions in constructors or methods.
-   * @return a visitor to visit field annotations and attributes, or {@literal null} if this class
-   *     visitor is not interested in visiting these annotations and attributes.
+   * @param access 字段的访问标志（参见 {@link Opcodes}）。此参数还指示该字段是否为合成字段和/或
+   * 已废弃字段。
+   * @param name 字段的名称。
+   * @param descriptor 字段的描述符（参见 {@link Type}）。
+   * @param signature 字段的签名。如果该字段的类型不使用泛型类型，则可以为 {@literal null}。
+   * @param value 字段的初始值。如果字段没有初始值，此参数可以为 {@literal null}；否则它必须是
+   * {@link Integer}、{@link Float}、{@link Long}、{@link Double} 或 {@link String}
+   * （分别对应 {@code int}、{@code float}、{@code long} 或 {@code String} 字段）。
+   * <i>此参数仅用于静态字段</i>。对于非静态字段，其值会被忽略，这类字段必须通过
+   * 构造器或方法中的字节码指令进行初始化。
+   * @return 用于访问字段注解和属性的访问器；如果此类型访问器不关心访问这些注解和属性，
+   * 则为 {@literal null}。
    */
   public FieldVisitor visitField(
       final int access,
@@ -351,16 +326,16 @@ public abstract class ClassVisitor {
    * 访问类的一个方法。此方法在每次被调用时<i>必须</i>返回一个新的 {@link MethodVisitor} 实例（或
    * {@literal null}），即它不应返回之前返回过的访问器。
    *
-   * @param access the method's access flags (see {@link Opcodes}). This parameter also indicates if
-   *     the method is synthetic and/or deprecated.
-   * @param name the method's name.
-   * @param descriptor the method's descriptor (see {@link Type}).
-   * @param signature the method's signature. May be {@literal null} if the method parameters,
-   *     return type and exceptions do not use generic types.
-   * @param exceptions the internal names of the method's exception classes (see {@link
-   *     Type#getInternalName()}). May be {@literal null}.
-   * @return an object to visit the byte code of the method, or {@literal null} if this class
-   *     visitor is not interested in visiting the code of this method.
+   * @param access 方法的访问标志（参见 {@link Opcodes}）。此参数还指示该方法是否为合成方法和/或
+   * 已废弃方法。
+   * @param name 方法的名称。
+   * @param descriptor 方法的描述符（参见 {@link Type}）。
+   * @param signature 方法的签名。如果方法参数、返回类型和异常都不使用泛型类型，则可以为
+   * {@literal null}。
+   * @param exceptions 方法各异常类的内部名（参见 {@link Type#getInternalName()}）。可以为
+   * {@literal null}。
+   * @return 用于访问该方法字节码的对象；如果此类型访问器不关心访问该方法的代码，则为
+   * {@literal null}。
    */
   public MethodVisitor visitMethod(
       final int access,

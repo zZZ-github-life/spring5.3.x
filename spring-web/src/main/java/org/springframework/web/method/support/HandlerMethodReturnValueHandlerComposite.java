@@ -66,7 +66,7 @@ public class HandlerMethodReturnValueHandlerComposite implements HandlerMethodRe
 	/**
 	 * 遍历已注册的 {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}，
 	 * 并调用支持该返回值的那个处理器。
-	 * @throws IllegalStateException if no suitable {@link HandlerMethodReturnValueHandler} is found.
+	 * @throws IllegalStateException 如果找不到合适的 {@link HandlerMethodReturnValueHandler}。
 	 */
 	@Override
 	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,

@@ -49,7 +49,7 @@ public class DataSourceInitializer implements InitializingBean, DisposableBean {
 	/**
 	 * 此组件初始化时要填充、关闭时要清理的数据库的 {@link DataSource}。
 	 * <p>此属性是必需的，没有提供默认值。
-	 * @param dataSource the DataSource
+	 * @param dataSource 该 DataSource
 	 */
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -57,7 +57,7 @@ public class DataSourceInitializer implements InitializingBean, DisposableBean {
 
 	/**
 	 * 设置要在 Bean 初始化阶段执行的 {@link DatabasePopulator}。
-	 * @param databasePopulator the {@code DatabasePopulator} to use during initialization
+	 * @param databasePopulator 初始化期间要使用的 {@code DatabasePopulator}
 	 * @see #setDatabaseCleaner
 	 */
 	public void setDatabasePopulator(DatabasePopulator databasePopulator) {
@@ -67,7 +67,7 @@ public class DataSourceInitializer implements InitializingBean, DisposableBean {
 	/**
 	 * 设置要在 Bean 销毁阶段执行的 {@link DatabasePopulator}，
 	 * 用于清理数据库并为其他使用者留下已知状态。
-	 * @param databaseCleaner the {@code DatabasePopulator} to use during destruction
+	 * @param databaseCleaner 销毁期间要使用的 {@code DatabasePopulator}
 	 * @see #setDatabasePopulator
 	 */
 	public void setDatabaseCleaner(DatabasePopulator databaseCleaner) {
@@ -77,8 +77,8 @@ public class DataSourceInitializer implements InitializingBean, DisposableBean {
 	/**
 	 * 是否显式启用或禁用{@linkplain #setDatabasePopulator 数据库填充器}
 	 * 和{@linkplain #setDatabaseCleaner 数据库清理器}。
-	 * @param enabled {@code true} if the database populator and database cleaner
-	 * should be called on startup and shutdown, respectively
+	 * @param enabled 如果应在启动和关闭时分别调用数据库填充器和数据库清理器，
+	 * 则返回 {@code true}。
 	 */
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;

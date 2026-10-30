@@ -44,7 +44,7 @@ import org.springframework.web.reactive.function.BodyInserters;
  * @author Arjen Poutsma
  * @author Juergen Hoeller
  * @since 5.0
- * @param <T> the entity type
+ * @param <T> 实体类型
  */
 public interface EntityResponse<T> extends ServerResponse {
 
@@ -63,9 +63,9 @@ public interface EntityResponse<T> extends ServerResponse {
 
 	/**
 	 * 使用给定对象创建构建器。
-	 * @param body the object that represents the body of the response
-	 * @param <T> the type of the body
-	 * @return the created builder
+	 * @param body 表示响应正文的对象
+	 * @param <T> 响应正文的类型
+	 * @return 创建的构建器
 	 */
 	static <T> Builder<T> fromObject(T body) {
 		return new DefaultEntityResponseBuilder<>(body, BodyInserters.fromValue(body));
@@ -73,9 +73,9 @@ public interface EntityResponse<T> extends ServerResponse {
 
 	/**
 	 * 使用给定生产者创建构建器。
-	 * @param producer the producer that represents the body of the response
-	 * @param elementClass the class of elements contained in the publisher
-	 * @return the created builder
+	 * @param producer 表示响应正文的生产者
+	 * @param elementClass 发布者中所含元素的类
+	 * @return 创建的构建器
 	 * @since 5.2
 	 */
 	static <T> Builder<T> fromProducer(T producer, Class<?> elementClass) {
@@ -85,9 +85,9 @@ public interface EntityResponse<T> extends ServerResponse {
 
 	/**
 	 * 使用给定生产者创建构建器。
-	 * @param producer the producer that represents the body of the response
-	 * @param typeReference the type of elements contained in the producer
-	 * @return the created builder
+	 * @param producer 表示响应正文的生产者
+	 * @param typeReference 生产者中所含元素的类型
+	 * @return 创建的构建器
 	 * @since 5.2
 	 */
 	static <T> Builder<T> fromProducer(T producer, ParameterizedTypeReference<?> typeReference) {
@@ -97,11 +97,11 @@ public interface EntityResponse<T> extends ServerResponse {
 
 	/**
 	 * 使用给定发布者创建构建器。
-	 * @param publisher the publisher that represents the body of the response
-	 * @param elementClass the class of elements contained in the publisher
-	 * @param <T> the type of the elements contained in the publisher
-	 * @param <P> the type of the {@code Publisher}
-	 * @return the created builder
+	 * @param publisher 表示响应正文的发布者
+	 * @param elementClass 发布者中所含元素的类
+	 * @param <T> 发布者中所含元素的类型
+	 * @param <P> {@code Publisher} 的类型
+	 * @return 创建的构建器
 	 */
 	static <T, P extends Publisher<T>> Builder<P> fromPublisher(P publisher, Class<T> elementClass) {
 		return new DefaultEntityResponseBuilder<>(publisher,
@@ -110,11 +110,11 @@ public interface EntityResponse<T> extends ServerResponse {
 
 	/**
 	 * 使用给定发布者创建构建器。
-	 * @param publisher the publisher that represents the body of the response
-	 * @param typeReference the type of elements contained in the publisher
-	 * @param <T> the type of the elements contained in the publisher
-	 * @param <P> the type of the {@code Publisher}
-	 * @return the created builder
+	 * @param publisher 表示响应正文的发布者
+	 * @param typeReference 发布者中所含元素的类型
+	 * @param <T> 发布者中所含元素的类型
+	 * @param <P> {@code Publisher} 的类型
+	 * @return 创建的构建器
 	 */
 	static <T, P extends Publisher<T>> Builder<P> fromPublisher(P publisher,
 			ParameterizedTypeReference<T> typeReference) {
@@ -126,76 +126,76 @@ public interface EntityResponse<T> extends ServerResponse {
 
 	/**
 	 * 定义 {@code EntityResponse} 的构建器。
-	 * @param <T> a self reference to the builder type
+	 * @param <T> 对构建器类型的自引用
 	 */
 	interface Builder<T> {
 
 		/**
 		 * 在给定名称下添加给定的头值。
-		 * @param headerName   the header name
-		 * @param headerValues the header value(s)
-		 * @return this builder
+		 * @param headerName 头名称
+		 * @param headerValues 头值
+		 * @return 该构建器
 		 * @see HttpHeaders#add(String, String)
 		 */
 		Builder<T> header(String headerName, String... headerValues);
 
 		/**
 		 * 将给定的头复制到实体的头映射中。
-		 * @param headers the existing HttpHeaders to copy from
-		 * @return this builder
+		 * @param headers 要从中复制的现有 HttpHeaders
+		 * @return 该构建器
 		 * @see HttpHeaders#add(String, String)
 		 */
 		Builder<T> headers(HttpHeaders headers);
 
 		/**
 		 * 设置 HTTP 状态。
-		 * @param status the response status
-		 * @return this builder
+		 * @param status 响应状态
+		 * @return 该构建器
 		 */
 		Builder<T> status(HttpStatus status);
 
 		/**
 		 * 设置 HTTP 状态。
-		 * @param status the response status
-		 * @return this builder
+		 * @param status 响应状态
+		 * @return 该构建器
 		 * @since 5.0.3
 		 */
 		Builder<T> status(int status);
 
 		/**
 		 * 将给定 cookie 添加到响应中。
-		 * @param cookie the cookie to add
-		 * @return this builder
+		 * @param cookie 要添加的 cookie
+		 * @return 该构建器
 		 */
 		Builder<T> cookie(ResponseCookie cookie);
 
 		/**
 		 * 使用给定的消费者操作此响应的 cookie。提供给消费者的 cookie 是“实时”的，因此消费者可用于{@linkplain MultiValueMap#set(Object, Object) 覆盖}现有 cookie、{@linkplain MultiValueMap#remove(Object) 删除} cookie，或使用任何其他 {@link MultiValueMap} 方法。
-		 * @param cookiesConsumer a function that consumes the cookies
-		 * @return this builder
+		 * @param cookiesConsumer 消费 cookie 的函数
+		 * @return 该构建器
 		 */
 		Builder<T> cookies(Consumer<MultiValueMap<String, ResponseCookie>> cookiesConsumer);
 
 		/**
 		 * 设置允许的 {@link HttpMethod HTTP 方法}集合，由 {@code Allow} 头指定。
-		 * @param allowedMethods the allowed methods
-		 * @return this builder
+		 * @param allowedMethods 允许的方法
+		 * @return 该构建器
 		 * @see HttpHeaders#setAllow(Set)
 		 */
 		Builder<T> allow(HttpMethod... allowedMethods);
 
 		/**
 		 * 设置允许的 {@link HttpMethod HTTP 方法}集合，由 {@code Allow} 头指定。
-		 * @param allowedMethods the allowed methods
-		 * @return this builder
+		 * @param allowedMethods 允许的方法
+		 * @return 该构建器
 		 * @see HttpHeaders#setAllow(Set)
 		 */
 		Builder<T> allow(Set<HttpMethod> allowedMethods);
 
 		/**
 		 * 设置正文的实体标签，由 {@code ETag} 头指定。
-		 * @param etag the new entity tag
-		 * @return this builder
+		 * @param etag 新的实体标签
+		 * @return 该构建器
 		 * @see HttpHeaders#setETag(String)
 		 */
 		Builder<T> eTag(String etag);
@@ -203,8 +203,8 @@ public interface EntityResponse<T> extends ServerResponse {
 		/**
 		 * 设置资源的最后修改时间，由 {@code Last-Modified} 头指定。
 		 * <p>日期应指定为自格林威治标准时间 1970 年 1 月 1 日以来的毫秒数。
-		 * @param lastModified the last modified date
-		 * @return this builder
+		 * @param lastModified 最后修改时间
+		 * @return 该构建器
 		 * @see HttpHeaders#setLastModified(long)
 		 */
 		Builder<T> lastModified(ZonedDateTime lastModified);
@@ -212,8 +212,8 @@ public interface EntityResponse<T> extends ServerResponse {
 		/**
 		 * 设置资源的最后修改时间，由 {@code Last-Modified} 头指定。
 		 * <p>日期应指定为自格林威治标准时间 1970 年 1 月 1 日以来的毫秒数。
-		 * @param lastModified the last modified date
-		 * @return this builder
+		 * @param lastModified 最后修改时间
+		 * @return 该构建器
 		 * @since 5.1.4
 		 * @see HttpHeaders#setLastModified(long)
 		 */
@@ -221,8 +221,8 @@ public interface EntityResponse<T> extends ServerResponse {
 
 		/**
 		 * 设置资源的位置，由 {@code Location} 头指定。
-		 * @param location the location
-		 * @return this builder
+		 * @param location 位置
+		 * @return 该构建器
 		 * @see HttpHeaders#setLocation(URI)
 		 */
 		Builder<T> location(URI location);
@@ -230,53 +230,53 @@ public interface EntityResponse<T> extends ServerResponse {
 		/**
 		 * 设置资源的缓存指令，由 HTTP 1.1 的 {@code Cache-Control} 头指定。
 		 * <p>{@code CacheControl} 实例可以这样构建：{@code CacheControl.maxAge(3600).cachePublic().noTransform()}。
-		 * @param cacheControl a builder for cache-related HTTP response headers
-		 * @return this builder
+		 * @param cacheControl 用于缓存相关 HTTP 响应头的构建器
+		 * @return 该构建器
 		 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2">RFC-7234 Section 5.2</a>
 		 */
 		Builder<T> cacheControl(CacheControl cacheControl);
 
 		/**
 		 * 配置一个或多个请求头名称（例如 "Accept-Language"），将其添加到 "Vary" 响应头，以告知客户端响应会受到内容协商影响，并会因给定请求头的值而变化。仅当响应 "Vary" 头中尚不存在时，才会添加所配置的请求头名称。
-		 * @param requestHeaders request header names
-		 * @return this builder
+		 * @param requestHeaders 请求头名称
+		 * @return 该构建器
 		 */
 		Builder<T> varyBy(String... requestHeaders);
 
 		/**
 		 * 设置正文的字节长度，由 {@code Content-Length} 头指定。
-		 * @param contentLength the content length
-		 * @return this builder
+		 * @param contentLength 内容长度
+		 * @return 该构建器
 		 * @see HttpHeaders#setContentLength(long)
 		 */
 		Builder<T> contentLength(long contentLength);
 
 		/**
 		 * 设置正文的{@linkplain MediaType 媒体类型}，由 {@code Content-Type} 头指定。
-		 * @param contentType the content type
-		 * @return this builder
+		 * @param contentType 内容类型
+		 * @return 该构建器
 		 * @see HttpHeaders#setContentType(MediaType)
 		 */
 		Builder<T> contentType(MediaType contentType);
 
 		/**
 		 * 添加序列化提示（例如 {@link Jackson2CodecSupport#JSON_VIEW_HINT}）以自定义正文的序列化方式。
-		 * @param key the hint key
-		 * @param value the hint value
+		 * @param key 提示键
+		 * @param value 提示值
 		 */
 		Builder<T> hint(String key, Object value);
 
 		/**
 		 * 使用给定的消费者自定义序列化提示。
-		 * @param hintsConsumer a function that consumes the hints
-		 * @return this builder
+		 * @param hintsConsumer 消费提示的函数
+		 * @return 该构建器
 		 * @since 5.1.6
 		 */
 		Builder<T> hints(Consumer<Map<String, Object>> hintsConsumer);
 
 		/**
 		 * 构建响应。
-		 * @return the built response
+		 * @return 构建后的响应
 		 */
 		Mono<EntityResponse<T>> build();
 	}

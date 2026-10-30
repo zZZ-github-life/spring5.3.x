@@ -33,19 +33,19 @@ public interface ValueRef {
 
 	/**
 	 * 返回此 ValueRef 指向的值，不应需要重新求值表达式组件。
-	 * @return the value
+	 * @return 值
 	 */
 	TypedValue getValue();
 
 	/**
 	 * 设置此 ValueRef 指向的值，不应需要重新求值表达式组件。
-	 * @param newValue the new value
+	 * @param newValue 新值
 	 */
 	void setValue(@Nullable Object newValue);
 
 	/**
 	 * 指示是否支持调用 setValue(Object)。
-	 * @return true if setValue() is supported for this value reference.
+	 * @return 如果此值引用支持 setValue() 则返回 true。
 	 */
 	boolean isWritable();
 

@@ -34,8 +34,7 @@ public class DefaultDataBinderFactory implements WebDataBinderFactory {
 
 	/**
 	 * 创建一个新的 {@code DefaultDataBinderFactory} 实例。
-	 * @param initializer for global data binder initialization
-	 * (or {@code null} if none)
+	 * @param initializer 用于全局数据绑定器初始化（如果没有则为 {@code null}）
 	 */
 	public DefaultDataBinderFactory(@Nullable WebBindingInitializer initializer) {
 		this.initializer = initializer;
@@ -45,7 +44,7 @@ public class DefaultDataBinderFactory implements WebDataBinderFactory {
 	/**
 	 * 为给定目标对象创建新的 {@link WebDataBinder}，并通过
 	 * {@link WebBindingInitializer} 对其进行初始化。
-	 * @throws Exception in case of invalid state or arguments
+	 * @throws Exception 状态或参数无效时
 	 */
 	@Override
 	@SuppressWarnings("deprecation")
@@ -62,10 +61,10 @@ public class DefaultDataBinderFactory implements WebDataBinderFactory {
 
 	/**
 	 * 用于创建 WebDataBinder 实例的扩展点。默认情况下为 {@code WebRequestDataBinder}。
-	 * @param target the binding target or {@code null} for type conversion only
-	 * @param objectName the binding target object name
-	 * @param webRequest the current request
-	 * @throws Exception in case of invalid state or arguments
+	 * @param target 绑定目标；如果仅用于类型转换则为 {@code null}
+	 * @param objectName 绑定目标对象名称
+	 * @param webRequest 当前请求
+	 * @throws Exception 状态或参数无效时
 	 */
 	protected WebDataBinder createBinderInstance(
 			@Nullable Object target, String objectName, NativeWebRequest webRequest) throws Exception {
@@ -76,9 +75,9 @@ public class DefaultDataBinderFactory implements WebDataBinderFactory {
 	/**
 	 * 扩展点，用于在通过 {@link WebBindingInitializer} 完成 "全局" 初始化之后
 	 * 进一步初始化所创建的数据绑定器实例（例如使用 {@code @InitBinder} 方法）。
-	 * @param dataBinder the data binder instance to customize
-	 * @param webRequest the current request
-	 * @throws Exception if initialization fails
+	 * @param dataBinder 要定制的数据绑定器实例
+	 * @param webRequest 当前请求
+	 * @throws Exception 初始化失败时
 	 */
 	protected void initBinder(WebDataBinder dataBinder, NativeWebRequest webRequest)
 			throws Exception {

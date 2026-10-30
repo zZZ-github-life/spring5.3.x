@@ -65,8 +65,8 @@ public class ReactorClientHttpConnector implements ClientHttpConnector {
 	 * 建议这样做，因为固定、共享的资源更适合事件循环并发。不过，
 	 * 可以考虑声明一个 {@code globalResources=true} 的 {@link ReactorResourceFactory} bean，
 	 * 以确保在 Spring ApplicationContext 关闭时关闭 Reactor Netty 全局资源。
-	 * @param factory the resource factory to obtain the resources from
-	 * @param mapper a mapper for further initialization of the created client
+	 * @param factory 从中获取资源的资源工厂
+	 * @param mapper 用于进一步初始化所创建客户端的映射函数
 	 * @since 5.1
 	 */
 	public ReactorClientHttpConnector(ReactorResourceFactory factory, Function<HttpClient, HttpClient> mapper) {
@@ -87,7 +87,7 @@ public class ReactorClientHttpConnector implements ClientHttpConnector {
 
 	/**
 	 * 使用预配置的 {@code HttpClient} 实例的构造函数。
-	 * @param httpClient the client to use
+	 * @param httpClient 要使用的客户端
 	 * @since 5.1
 	 */
 	public ReactorClientHttpConnector(HttpClient httpClient) {

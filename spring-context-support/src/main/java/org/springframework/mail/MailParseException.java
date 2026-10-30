@@ -27,7 +27,7 @@ public class MailParseException extends MailException {
 
 	/**
 	 * MailParseException 的构造函数。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public MailParseException(String msg) {
 		super(msg);
@@ -35,8 +35,8 @@ public class MailParseException extends MailException {
 
 	/**
 	 * MailParseException 的构造函数。
-	 * @param msg the detail message
-	 * @param cause the root cause from the mail API in use
+	 * @param msg 详细消息
+	 * @param cause 所用邮件 API 的根本原因
 	 */
 	public MailParseException(String msg, Throwable cause) {
 		super(msg, cause);
@@ -44,7 +44,7 @@ public class MailParseException extends MailException {
 
 	/**
 	 * MailParseException 的构造函数。
-	 * @param cause the root cause from the mail API in use
+	 * @param cause 所用邮件 API 的根本原因
 	 */
 	public MailParseException(Throwable cause) {
 		super("Could not parse mail", cause);

@@ -56,9 +56,9 @@ public interface NamespaceHandler {
 	 * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}。<p>如果实现希望被嵌套
 	 * 使用（例如）在 {@code <property>} 标签内，则应返回解析阶段产生的主 {@code BeanDefinition}。<p>如
 	 * 果实现<strong>不会</strong>用于嵌套场景，则可以返回 {@code null}。
-	 * @param element the element that is to be parsed into one or more {@code BeanDefinitions}
-	 * @param parserContext the object encapsulating the current state of the parsing process
-	 * @return the primary {@code BeanDefinition} (can be {@code null} as explained above)
+	 * @param element 要解析为一个或多个 {@code BeanDefinitions} 的元素
+	 * @param parserContext 封装解析过程当前状态的对象
+	 * @return 主 {@code BeanDefinition}（如上所述可以为 {@code null}）
 	 */
 	@Nullable
 	BeanDefinition parse(Element element, ParserContext parserContext);
@@ -69,13 +69,13 @@ public interface NamespaceHandler {
 	 * <p>实现可以选择返回一个全新的定义，它将替换
 	 * {@link org.springframework.beans.factory.BeanFactory} 中的原始定义。<p>所提供的
 	 * {@link ParserContext} 可用于注册支持主定义所需的任何附加 bean。
-	 * @param source the source element or attribute that is to be parsed
-	 * @param definition the current bean definition
-	 * @param parserContext the object encapsulating the current state of the parsing process
-	 * @return the decorated definition (to be registered in the BeanFactory),
-	 * or simply the original bean definition if no decoration is required.
-	 * A {@code null} value is strictly speaking invalid, but will be leniently
-	 * treated like the case where the original bean definition gets returned.
+	 * @param source 要解析的源元素或属性
+	 * @param definition 当前 Bean 定义
+	 * @param parserContext 封装解析过程当前状态的对象
+	 * @return 装饰后的定义（将注册到 BeanFactory 中），
+	 * 如果不需要装饰，则就是原始的 Bean 定义。
+	 * {@code null} 值严格来说无效，
+	 * 但会被宽松地视为返回原始 Bean 定义的情形。
 	 */
 	@Nullable
 	BeanDefinitionHolder decorate(Node source, BeanDefinitionHolder definition, ParserContext parserContext);

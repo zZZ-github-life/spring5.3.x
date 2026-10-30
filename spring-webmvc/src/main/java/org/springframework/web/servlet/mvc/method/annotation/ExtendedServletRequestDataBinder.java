@@ -44,8 +44,7 @@ public class ExtendedServletRequestDataBinder extends ServletRequestDataBinder {
 
 	/**
 	 * 使用默认对象名称创建一个新实例。
-	 * @param target the target object to bind onto (or {@code null}
-	 * if the binder is just used to convert a plain parameter value)
+	 * @param target 要绑定到的目标对象（如果绑定器仅用于转换普通参数值，则可为 {@code null}）
 	 * @see #DEFAULT_OBJECT_NAME
 	 */
 	public ExtendedServletRequestDataBinder(@Nullable Object target) {
@@ -54,9 +53,8 @@ public class ExtendedServletRequestDataBinder extends ServletRequestDataBinder {
 
 	/**
 	 * 创建一个新实例。
-	 * @param target the target object to bind onto (or {@code null}
-	 * if the binder is just used to convert a plain parameter value)
-	 * @param objectName the name of the target object
+	 * @param target 要绑定到的目标对象（如果绑定器仅用于转换普通参数值，则可为 {@code null}）
+	 * @param objectName 目标对象的名称
 	 * @see #DEFAULT_OBJECT_NAME
 	 */
 	public ExtendedServletRequestDataBinder(@Nullable Object target, String objectName) {

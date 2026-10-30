@@ -83,7 +83,7 @@ public class DefaultDataBuffer implements DataBuffer {
 	/**
 	 * 直接暴露此缓冲区所基于的原生 {@code ByteBuffer}，同时更新 {@code ByteBuffer's} 的位置和限制，以
 	 * 匹配当前的 {@link #readPosition()} 和 {@link #readableByteCount()}。
-	 * @return the wrapped byte buffer
+	 * @return 包装后的字节缓冲区
 	 */
 	public ByteBuffer getNativeBuffer() {
 		this.byteBuffer.position(this.readPosition);

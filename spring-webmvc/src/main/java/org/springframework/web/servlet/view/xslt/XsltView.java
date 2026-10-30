@@ -192,8 +192,8 @@ public class XsltView extends AbstractUrlBasedView {
 	 * 如果显式指定了 {@link #setTransformerFactoryClass "transformerFactoryClass"}，
 	 * 则将改为调用指定类的默认构造器。
 	 * <p>可以在子类中重写。
-	 * @param transformerFactoryClass the specified factory class (if any)
-	 * @return the new TransactionFactory instance
+	 * @param transformerFactoryClass 指定的工厂类（如果有）
+	 * @return 新的 TransactionFactory 实例
 	 * @see #setTransformerFactoryClass
 	 * @see #getTransformerFactory()
 	 */
@@ -215,7 +215,7 @@ public class XsltView extends AbstractUrlBasedView {
 
 	/**
 	 * 返回此 XsltView 使用的 TransformerFactory。
-	 * @return the TransformerFactory (never {@code null})
+	 * @return TransformerFactory（从不为 {@code null}）
 	 */
 	protected final TransformerFactory getTransformerFactory() {
 		Assert.state(this.transformerFactory != null, "No TransformerFactory available");
@@ -254,9 +254,9 @@ public class XsltView extends AbstractUrlBasedView {
 	 * <p>默认实现创建一个 {@link StreamResult}，
 	 * 其中包装了所提供的 HttpServletResponse 的
 	 * {@link HttpServletResponse#getOutputStream() OutputStream}。
-	 * @param response current HTTP response
-	 * @return the XSLT Result to use
-	 * @throws Exception if the Result cannot be built
+	 * @param response 当前 HTTP 响应
+	 * @return 要使用的 XSLT Result
+	 * @throws Exception 如果无法构建 Result
 	 */
 	protected Result createResult(HttpServletResponse response) throws Exception {
 		return new StreamResult(response.getOutputStream());
@@ -268,9 +268,9 @@ public class XsltView extends AbstractUrlBasedView {
 	 * 默认实现会首先尝试在已配置的
 	 * {@link #setSourceKey source key}（如果有）下查找，
 	 * 然后再尝试定位 {@link #getSourceTypes() 受支持类型}的对象。
-	 * @param model the merged model Map
-	 * @return the XSLT Source object (or {@code null} if none found)
-	 * @throws Exception if an error occurred during locating the source
+	 * @param model 合并后的模型 Map
+	 * @return XSLT Source 对象（如果未找到则为 {@code null}）
+	 * @throws Exception 如果定位源时发生错误
 	 * @see #setSourceKey
 	 * @see #convertSource
 	 */
@@ -288,7 +288,7 @@ public class XsltView extends AbstractUrlBasedView {
 	 * {@link Class Classes} 数组。
 	 * <p>目前支持 {@link Source}、{@link Document}、{@link Node}、
 	 * {@link Reader}、{@link InputStream} 和 {@link Resource}。
-	 * @return the supported source types
+	 * @return 受支持的源类型
 	 */
 	protected Class<?>[] getSourceTypes() {
 		return new Class<?>[] {Source.class, Document.class, Node.class, Reader.class, InputStream.class, Resource.class};
@@ -297,9 +297,9 @@ public class XsltView extends AbstractUrlBasedView {
 	/**
 	 * 如果提供的 {@link Object} 类型是{@link #getSourceTypes() 受支持的类型}，
 	 * 则将其转换为 XSLT {@link Source}。
-	 * @param source the original source object
-	 * @return the adapted XSLT Source
-	 * @throws IllegalArgumentException if the given Object is not of a supported type
+	 * @param source 原始源对象
+	 * @return 适配后的 XSLT Source
+	 * @throws IllegalArgumentException 如果给定的 Object 不是受支持的类型
 	 */
 	protected Source convertSource(Object source) throws Exception {
 		if (source instanceof Source) {
@@ -334,9 +334,9 @@ public class XsltView extends AbstractUrlBasedView {
 	 * 复制到 {@link Transformer} 的
 	 * {@link Transformer#setOutputProperty 输出属性}中。
 	 * 同时也会设置缩进属性。
-	 * @param model merged output Map (never {@code null})
-	 * @param response current HTTP response
-	 * @param transformer the target transformer
+	 * @param model 合并后的输出 Map（从不为 {@code null}）
+	 * @param response 当前 HTTP 响应
+	 * @param transformer 目标转换器
 	 * @see #copyModelParameters(Map, Transformer)
 	 * @see #copyOutputProperties(Transformer)
 	 * @see #configureIndentation(Transformer)
@@ -351,7 +351,7 @@ public class XsltView extends AbstractUrlBasedView {
 
 	/**
 	 * 为提供的 {@link Transformer} 配置缩进设置。
-	 * @param transformer the target transformer
+	 * @param transformer 目标转换器
 	 * @see org.springframework.util.xml.TransformerUtils#enableIndenting(javax.xml.transform.Transformer)
 	 * @see org.springframework.util.xml.TransformerUtils#disableIndenting(javax.xml.transform.Transformer)
 	 */
@@ -368,7 +368,7 @@ public class XsltView extends AbstractUrlBasedView {
 	 * 将已配置的输出 {@link Properties}（如果有）复制到
 	 * 所提供的 {@link Transformer} 的
 	 * {@link Transformer#setOutputProperty 输出属性集合}中。
-	 * @param transformer the target transformer
+	 * @param transformer 目标转换器
 	 */
 	protected final void copyOutputProperties(Transformer transformer) {
 		if (this.outputProperties != null) {
@@ -384,8 +384,8 @@ public class XsltView extends AbstractUrlBasedView {
 	 * 将所提供的 Map 中的所有条目复制到
 	 * 所提供的 {@link Transformer} 的
 	 * {@link Transformer#setParameter(String, Object) 参数集合}中。
-	 * @param model merged output Map (never {@code null})
-	 * @param transformer the target transformer
+	 * @param model 合并后的输出 Map（从不为 {@code null}）
+	 * @param transformer 目标转换器
 	 */
 	protected final void copyModelParameters(Map<String, Object> model, Transformer transformer) {
 		model.forEach(transformer::setParameter);
@@ -397,9 +397,9 @@ public class XsltView extends AbstractUrlBasedView {
 	 * "media-type" 和 "encoding" 输出属性，
 	 * 设置 {@link HttpServletResponse#setContentType content type}
 	 * 和 {@link HttpServletResponse#setCharacterEncoding encoding}。
-	 * @param model merged output Map (never {@code null})
-	 * @param response current HTTP response
-	 * @param transformer the target transformer
+	 * @param model 合并后的输出 Map（从不为 {@code null}）
+	 * @param response 当前 HTTP 响应
+	 * @param transformer 目标转换器
 	 */
 	protected void configureResponse(Map<String, Object> model, HttpServletResponse response, Transformer transformer) {
 		String contentType = getContentType();
@@ -438,9 +438,9 @@ public class XsltView extends AbstractUrlBasedView {
 	 * 创建用于执行 XSLT 转换的 {@link Transformer} 实例。
 	 * <p>默认实现只是调用 {@link Templates#newTransformer()}，
 	 * 如果指定了自定义 {@link URIResolver}，则用它来配置 {@link Transformer}。
-	 * @param templates the XSLT Templates instance to create a Transformer for
-	 * @return the Transformer object
-	 * @throws TransformerConfigurationException in case of creation failure
+	 * @param templates 要为其创建 Transformer 的 XSLT Templates 实例
+	 * @return Transformer 对象
+	 * @throws TransformerConfigurationException 如果创建失败
 	 */
 	protected Transformer createTransformer(Templates templates) throws TransformerConfigurationException {
 		Transformer transformer = templates.newTransformer();
@@ -452,7 +452,7 @@ public class XsltView extends AbstractUrlBasedView {
 
 	/**
 	 * 获取 {@link #setUrl 已配置 URL} 下 XSLT 模板对应的 XSLT {@link Source}。
-	 * @return the Source object
+	 * @return Source 对象
 	 */
 	protected Source getStylesheetSource() {
 		String url = getUrl();
@@ -473,7 +473,7 @@ public class XsltView extends AbstractUrlBasedView {
 	/**
 	 * 如果适用，关闭所提供的 {@link Source} 管理的底层资源。
 	 * <p>仅适用于 {@link StreamSource StreamSources}。
-	 * @param source the XSLT Source to close (may be {@code null})
+	 * @param source 要关闭的 XSLT Source（可能为 {@code null}）
 	 */
 	private void closeSourceIfNecessary(@Nullable Source source) {
 		if (source instanceof StreamSource) {

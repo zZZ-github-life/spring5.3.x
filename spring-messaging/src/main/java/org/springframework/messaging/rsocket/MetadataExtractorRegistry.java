@@ -37,10 +37,10 @@ public interface MetadataExtractorRegistry {
 	/**
 	 * 将给定 {@link MimeType} 的元数据条目解码为指定的目标类，并将解码后的值
 	 * 以给定名称存储在输出映射中。
-	 * @param mimeType the mime type of metadata entries to extract
-	 * @param targetType the target value type to decode to
-	 * @param name assign a name for the decoded value; if not provided, then
-	 * the mime type is used as the key
+	 * @param mimeType 要提取的元数据条目的 MIME 类型
+	 * @param targetType 解码的目标值类型
+	 * @param name 为解码后的值指定名称；如果未提供，
+	 * 则将 MIME 类型用作键
 	 */
 	default void metadataToExtract(MimeType mimeType, Class<?> targetType, @Nullable String name) {
 		String key = name != null ? name : mimeType.toString();
@@ -51,8 +51,8 @@ public interface MetadataExtractorRegistry {
 	 * {@link #metadataToExtract(MimeType, Class, String)} 的变体，接受
 	 * {@link ParameterizedTypeReference} 而不是 {@link Class}，
 	 * 用于指定带泛型参数的目标类型。
-	 * @param mimeType the mime type of metadata entries to extract
-	 * @param targetType the target value type to decode to
+	 * @param mimeType 要提取的元数据条目的 MIME 类型
+	 * @param targetType 解码的目标值类型
 	 */
 	default void metadataToExtract(
 			MimeType mimeType, ParameterizedTypeReference<?> targetType, @Nullable String name) {
@@ -64,10 +64,10 @@ public interface MetadataExtractorRegistry {
 	/**
 	 * {@link #metadataToExtract(MimeType, Class, String)} 的变体，允许使用
 	 * 自定义逻辑将解码后的值映射为输出映射中的任意数量的值。
-	 * @param mimeType the mime type of metadata entries to extract
-	 * @param targetType the target value type to decode to
-	 * @param mapper custom logic to add the decoded value to the output map
-	 * @param <T> the target value type
+	 * @param mimeType 要提取的元数据条目的 MIME 类型
+	 * @param targetType 解码的目标值类型
+	 * @param mapper 将解码后的值添加到输出映射中的自定义逻辑
+	 * @param <T> 目标值类型
 	 */
 	<T> void metadataToExtract(
 			MimeType mimeType, Class<T> targetType, BiConsumer<T, Map<String, Object>> mapper);
@@ -76,10 +76,10 @@ public interface MetadataExtractorRegistry {
 	 * {@link #metadataToExtract(MimeType, Class, BiConsumer)} 的变体，接受
 	 * {@link ParameterizedTypeReference} 而不是 {@link Class}，
 	 * 用于指定带泛型参数的目标类型。
-	 * @param mimeType the mime type of metadata entries to extract
-	 * @param type the target value type to decode to
-	 * @param mapper custom logic to add the decoded value to the output map
-	 * @param <T> the target value type
+	 * @param mimeType 要提取的元数据条目的 MIME 类型
+	 * @param type 解码的目标值类型
+	 * @param mapper 将解码后的值添加到输出映射中的自定义逻辑
+	 * @param <T> 目标值类型
 	 */
 	<T> void metadataToExtract(
 			MimeType mimeType, ParameterizedTypeReference<T> type, BiConsumer<T, Map<String, Object>> mapper);

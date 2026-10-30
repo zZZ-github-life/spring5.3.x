@@ -80,7 +80,7 @@ public class SimpleAsyncTaskExecutor extends CustomizableThreadCreator
 
 	/**
 	 * 使用给定的线程名前缀创建一个新的 SimpleAsyncTaskExecutor。
-	 * @param threadNamePrefix the prefix to use for the names of newly created threads
+	 * @param threadNamePrefix 新建线程名称使用的前缀
 	 */
 	public SimpleAsyncTaskExecutor(String threadNamePrefix) {
 		super(threadNamePrefix);
@@ -88,7 +88,7 @@ public class SimpleAsyncTaskExecutor extends CustomizableThreadCreator
 
 	/**
 	 * 使用给定的外部线程工厂创建一个新的 SimpleAsyncTaskExecutor。
-	 * @param threadFactory the factory to use for creating new Threads
+	 * @param threadFactory 用于创建新 Thread 的工厂
 	 */
 	public SimpleAsyncTaskExecutor(ThreadFactory threadFactory) {
 		this.threadFactory = threadFactory;
@@ -151,7 +151,7 @@ public class SimpleAsyncTaskExecutor extends CustomizableThreadCreator
 
 	/**
 	 * 返回当前是否启用了此节流。
-	 * @return {@code true} if the concurrency limit for this instance is active
+	 * @return 如果此实例的并发限制处于活动状态，则返回 {@code true}
 	 * @see #getConcurrencyLimit()
 	 * @see #setConcurrencyLimit
 	 */
@@ -226,7 +226,7 @@ public class SimpleAsyncTaskExecutor extends CustomizableThreadCreator
 	/**
 	 * 用于实际执行任务的模板方法。
 	 * <p>默认实现会创建一个新 Thread 并启动它。
-	 * @param task the Runnable to execute
+	 * @param task 要执行的 Runnable
 	 * @see #setThreadFactory
 	 * @see #createThread
 	 * @see java.lang.Thread#start()

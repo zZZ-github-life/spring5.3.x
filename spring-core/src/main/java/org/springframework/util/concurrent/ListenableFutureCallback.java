@@ -22,7 +22,7 @@ package org.springframework.util.concurrent;
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
  * @since 4.0
- * @param <T> the result type
+ * @param <T> 结果类型
  */
 public interface ListenableFutureCallback<T> extends SuccessCallback<T>, FailureCallback {
 

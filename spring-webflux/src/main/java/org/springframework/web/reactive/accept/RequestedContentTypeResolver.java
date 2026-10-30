@@ -41,10 +41,10 @@ public interface RequestedContentTypeResolver {
 
 	/**
 	 * 将给定请求解析为所请求媒体类型的列表。返回的列表首先按特异性排序，其次按质量参数排序。
-	 * @param exchange the current exchange
-	 * @return the requested media types, or {@link #MEDIA_TYPE_ALL_LIST} if none
-	 * were requested.
-	 * @throws NotAcceptableStatusException if the requested media type is invalid
+	 * @param exchange 当前的交换
+	 * @return 请求的媒体类型；如果未请求任何类型，则为
+	 * {@link #MEDIA_TYPE_ALL_LIST}。
+	 * @throws NotAcceptableStatusException 如果请求的媒体类型无效
 	 */
 	List<MediaType> resolveMediaTypes(ServerWebExchange exchange);
 

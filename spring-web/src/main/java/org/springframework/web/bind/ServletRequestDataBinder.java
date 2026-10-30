@@ -70,8 +70,7 @@ public class ServletRequestDataBinder extends WebDataBinder {
 
 	/**
 	 * 创建一个新的 ServletRequestDataBinder 实例，使用默认对象名称。
-	 * @param target the target object to bind onto (or {@code null}
-	 * if the binder is just used to convert a plain parameter value)
+	 * @param target 要绑定的目标对象（如果绑定器仅用于转换普通参数值，则可为 {@code null}）
 	 * @see #DEFAULT_OBJECT_NAME
 	 */
 	public ServletRequestDataBinder(@Nullable Object target) {
@@ -80,9 +79,8 @@ public class ServletRequestDataBinder extends WebDataBinder {
 
 	/**
 	 * 创建一个新的 ServletRequestDataBinder 实例。
-	 * @param target the target object to bind onto (or {@code null}
-	 * if the binder is just used to convert a plain parameter value)
-	 * @param objectName the name of the target object
+	 * @param target 要绑定的目标对象（如果绑定器仅用于转换普通参数值，则可为 {@code null}）
+	 * @param objectName 目标对象的名称
 	 */
 	public ServletRequestDataBinder(@Nullable Object target, String objectName) {
 		super(target, objectName);
@@ -100,7 +98,7 @@ public class ServletRequestDataBinder extends WebDataBinder {
 	 * <p>multipart 文件目标属性的类型可以是 MultipartFile、byte[] 或 String。
 	 * 当请求尚未通过 MultipartResolver 解析为 MultipartRequest 时，
 	 * 也支持 Servlet Part 绑定。
-	 * @param request the request with parameters to bind (can be multipart)
+	 * @param request 带有要绑定参数的请求（可能为 multipart）
 	 * @see org.springframework.web.multipart.MultipartHttpServletRequest
 	 * @see org.springframework.web.multipart.MultipartRequest
 	 * @see org.springframework.web.multipart.MultipartFile
@@ -126,8 +124,8 @@ public class ServletRequestDataBinder extends WebDataBinder {
 	/**
 	 * 扩展点，子类可用它为请求添加额外的绑定值。在
 	 * {@link #doBind(MutablePropertyValues)} 之前调用。默认实现为空。
-	 * @param mpvs the property values that will be used for data binding
-	 * @param request the current request
+	 * @param mpvs 将用于数据绑定的属性值
+	 * @param request 当前请求
 	 */
 	protected void addBindValues(MutablePropertyValues mpvs, ServletRequest request) {
 	}
@@ -136,7 +134,7 @@ public class ServletRequestDataBinder extends WebDataBinder {
 	 * 将错误视为致命错误。
 	 * <p>仅在输入无效属于错误的情况下使用此方法。例如，如果所有输入都来自下拉列表，
 	 * 这可能适用。
-	 * @throws ServletRequestBindingException subclass of ServletException on any binding problem
+	 * @throws ServletRequestBindingException 任何绑定问题对应的 ServletException 子类
 	 */
 	public void closeNoCatch() throws ServletRequestBindingException {
 		if (getBindingResult().hasErrors()) {

@@ -125,8 +125,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	/**
 	 * 将给定单例对象添加到此工厂的单例缓存中。<p>用于单例的急切注册。
-	 * @param beanName the name of the bean
-	 * @param singletonObject the singleton object
+	 * @param beanName Bean 的名称
+	 * @param singletonObject 单例对象
 	 */
 	protected void addSingleton(String beanName, Object singletonObject) {
 		synchronized (this.singletonObjects) {
@@ -139,8 +139,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	/**
 	 * 如有必要，添加给定单例工厂以构建指定的单例。<p>用于单例的急切注册，例如为了能够解析循环引用。
-	 * @param beanName the name of the bean
-	 * @param singletonFactory the factory for the singleton object
+	 * @param beanName Bean 的名称
+	 * @param singletonFactory 单例对象的工厂
 	 */
 	protected void addSingletonFactory(String beanName, ObjectFactory<?> singletonFactory) {
 		Assert.notNull(singletonFactory, "Singleton factory must not be null");
@@ -162,9 +162,9 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	/**
 	 * 返回以给定名称注册的（原始）单例对象。<p>检查已实例化的单例，也允许对当前正在创建的单例进行早期
 	 * 引用（解析循环引用）。
-	 * @param beanName the name of the bean to look for
-	 * @param allowEarlyReference whether early references should be created or not
-	 * @return the registered singleton object, or {@code null} if none found
+	 * @param beanName 要查找的 Bean 的名称
+	 * @param allowEarlyReference 是否应创建提前引用
+	 * @return 已注册的单例对象，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
@@ -198,10 +198,9 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 *
 	 * 返回指定beanName的单例对象，如果不存在就创建
 	 *
-	 * @param beanName the name of the bean
-	 * @param singletonFactory the ObjectFactory to lazily create the singleton
-	 * with, if necessary
-	 * @return the registered singleton object
+	 * @param beanName Bean 的名称
+	 * @param singletonFactory 必要时用于延迟创建该单例的 ObjectFactory
+	 * @return 已注册的单例对象
 	 */
 	public Object getSingleton(String beanName, ObjectFactory<?> singletonFactory) {
 		Assert.notNull(beanName, "Bean name must not be null");
@@ -272,7 +271,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * 注册在创建单例 bean 实例期间被抑制的异常，例如临时的循环引用解析问题。<p>默认实现会在此注册表的
 	 * 被抑制异常集合中保留任何给定异常，上限为 100 个异常，并将它们作为相关原因添加到最终顶层
 	 * {@link BeanCreationException}。
-	 * @param ex the Exception to register
+	 * @param ex 要注册的 Exception
 	 * @see BeanCreationException#getRelatedCauses()
 	 */
 	protected void onSuppressedException(Exception ex) {
@@ -285,7 +284,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	/**
 	 * 从工厂的单例缓存中移除给定名称的 bean，以便在创建失败时清理单例的急切注册。
-	 * @param beanName the name of the bean
+	 * @param beanName Bean 的名称
 	 * @see #getSingletonMutex()
 	 */
 	protected void removeSingleton(String beanName) {
@@ -338,7 +337,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	/**
 	 * 返回指定的单例 bean（在整个工厂范围内）当前是否正在创建中。
-	 * @param beanName the name of the bean
+	 * @param beanName Bean 的名称
 	 */
 	public boolean isSingletonCurrentlyInCreation(String beanName) {
 		return this.singletonsCurrentlyInCreation.contains(beanName);
@@ -346,7 +345,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	/**
 	 * 单例创建之前的回调。<p>默认实现将该单例注册为当前正在创建中。
-	 * @param beanName the name of the singleton about to be created
+	 * @param beanName 即将创建的单例的名称
 	 * @see #isSingletonCurrentlyInCreation
 	 */
 	protected void beforeSingletonCreation(String beanName) {
@@ -357,7 +356,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	/**
 	 * 单例创建之后的回调。<p>默认实现将该单例标记为不再处于创建中。
-	 * @param beanName the name of the singleton that has been created
+	 * @param beanName 已创建的单例的名称
 	 * @see #isSingletonCurrentlyInCreation
 	 */
 	protected void afterSingletonCreation(String beanName) {
@@ -371,8 +370,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * 将给定 bean 添加到此注册表中的可销毁 bean 列表中。<p>可销毁 bean 通常与已注册的单例对应，bean 名
 	 * 称相同但可能是不同的实例（例如，对于不直接实现 Spring 的 DisposableBean 接口的单例，对应的是一个
 	 * DisposableBean 适配器）。
-	 * @param beanName the name of the bean
-	 * @param bean the bean instance
+	 * @param beanName Bean 的名称
+	 * @param bean Bean 实例
 	 */
 	public void registerDisposableBean(String beanName, DisposableBean bean) {
 		synchronized (this.disposableBeans) {
@@ -383,8 +382,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	/**
 	 * 注册两个 bean 之间的包含关系，例如内部 bean 与其所属外部 bean 之间的关系。<p>还会按销毁顺序将包
 	 * 含方 bean 注册为依赖于被包含的 bean。
-	 * @param containedBeanName the name of the contained (inner) bean
-	 * @param containingBeanName the name of the containing (outer) bean
+	 * @param containedBeanName 被包含（内部）Bean 的名称
+	 * @param containingBeanName 包含（外部）Bean 的名称
 	 * @see #registerDependentBean
 	 */
 	public void registerContainedBean(String containedBeanName, String containingBeanName) {
@@ -400,8 +399,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	/**
 	 * 为给定 bean 注册一个依赖 bean，使其在给定 bean 被销毁之前销毁。
-	 * @param beanName the name of the bean
-	 * @param dependentBeanName the name of the dependent bean
+	 * @param beanName Bean 的名称
+	 * @param dependentBeanName 依赖 Bean 的名称
 	 */
 	public void registerDependentBean(String beanName, String dependentBeanName) {
 		String canonicalName = canonicalName(beanName);
@@ -428,8 +427,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	/**
 	 * 确定指定的依赖 bean 是否已注册为依赖于给定 bean 或其任何传递依赖。
-	 * @param beanName the name of the bean to check
-	 * @param dependentBeanName the name of the dependent bean
+	 * @param beanName 要检查的 Bean 的名称
+	 * @param dependentBeanName 依赖 Bean 的名称
 	 * @since 4.0
 	 */
 	protected boolean isDependent(String beanName, String dependentBeanName) {
@@ -464,7 +463,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	/**
 	 * 确定是否为给定名称注册了依赖 bean。
-	 * @param beanName the name of the bean to check
+	 * @param beanName 要检查的 Bean 的名称
 	 */
 	protected boolean hasDependentBean(String beanName) {
 		return this.dependentBeanMap.containsKey(beanName);
@@ -472,8 +471,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	/**
 	 * 返回所有依赖于指定 bean 的 bean 的名称（如果有）。
-	 * @param beanName the name of the bean
-	 * @return the array of dependent bean names, or an empty array if none
+	 * @param beanName Bean 的名称
+	 * @return 依赖 Bean 名称的数组，如果没有则为空数组
 	 */
 	public String[] getDependentBeans(String beanName) {
 		Set<String> dependentBeans = this.dependentBeanMap.get(beanName);
@@ -487,9 +486,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	/**
 	 * 返回指定 bean 所依赖的所有 bean 的名称（如果有）。
-	 * @param beanName the name of the bean
-	 * @return the array of names of beans which the bean depends on,
-	 * or an empty array if none
+	 * @param beanName Bean 的名称
+	 * @return 该 Bean 所依赖的 Bean 名称的数组，如果没有则为空数组
 	 */
 	public String[] getDependenciesForBean(String beanName) {
 		Set<String> dependenciesForBean = this.dependenciesForBeanMap.get(beanName);
@@ -540,7 +538,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	/**
 	 * 销毁给定 bean。如果找到相应的可销毁 bean 实例，则委托给 {@code destroyBean}。
-	 * @param beanName the name of the bean
+	 * @param beanName Bean 的名称
 	 * @see #destroyBean
 	 */
 	public void destroySingleton(String beanName) {
@@ -557,8 +555,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	/**
 	 * 销毁给定 bean。必须先销毁依赖于给定 bean 的 bean，然后再销毁该 bean 本身。不应抛出任何异常。
-	 * @param beanName the name of the bean
-	 * @param bean the bean instance to destroy
+	 * @param beanName Bean 的名称
+	 * @param bean 要销毁的 Bean 实例
 	 */
 	protected void destroyBean(String beanName, @Nullable DisposableBean bean) {
 		// Trigger destruction of dependent beans first...

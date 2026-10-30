@@ -32,8 +32,8 @@ public interface DynamicPropertyRegistry {
 
 	/**
 	 * 为此注册表中的给定属性名添加一个 {@link Supplier}。
-	 * @param name the name of the property for which the supplier should be added
-	 * @param valueSupplier a supplier that will provide the property value on demand
+	 * @param name 应为其添加供应商的属性名称
+	 * @param valueSupplier 按需提供属性值的供应商
 	 */
 	void add(String name, Supplier<Object> valueSupplier);
 

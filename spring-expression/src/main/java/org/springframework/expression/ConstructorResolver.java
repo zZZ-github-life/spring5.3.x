@@ -34,10 +34,10 @@ public interface ConstructorResolver {
 	/**
 	 * 在提供的上下文中，在提供的类型上确定一个能够处理指定参数的合适构造器。返回一个可用于调用该构造器
 	 * 的 ConstructorExecutor（如果找不到构造器，则返回 {@code null}）。
-	 * @param context the current evaluation context
-	 * @param typeName the type upon which to look for the constructor
-	 * @param argumentTypes the arguments that the constructor must be able to handle
-	 * @return a ConstructorExecutor that can invoke the constructor, or null if non found
+	 * @param context 当前的求值上下文
+	 * @param typeName 要在其上查找构造器的类型
+	 * @param argumentTypes 构造器必须能够处理的参数
+	 * @return 可调用该构造器的 ConstructorExecutor，如果未找到则为 null
 	 */
 	@Nullable
 	ConstructorExecutor resolve(EvaluationContext context, String typeName, List<TypeDescriptor> argumentTypes)

@@ -46,7 +46,7 @@ public class SimpMessageTypeMessageCondition extends AbstractMessageCondition<Si
 
 	/**
 	 * 接受消息类型的构造函数。
-	 * @param messageType the message type to match messages to
+	 * @param messageType 用于匹配消息的消息类型
 	 */
 	public SimpMessageTypeMessageCondition(SimpMessageType messageType) {
 		Assert.notNull(messageType, "MessageType must not be null");

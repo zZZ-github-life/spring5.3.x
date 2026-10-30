@@ -62,7 +62,7 @@ public abstract class AbstractHtmlElementBodyTag extends AbstractHtmlElementTag 
 	 * 如果{@link #shouldRender 需要渲染}，则刷新任何缓冲的
 	 * {@link BodyContent}；如果未提供 {@link BodyContent}，
 	 * 则{@link #renderDefaultContent 渲染默认内容}。
-	 * @return a {@link javax.servlet.jsp.tagext.Tag#EVAL_PAGE} result
+	 * @return 一个 {@link javax.servlet.jsp.tagext.Tag#EVAL_PAGE} 结果
 	 */
 	@Override
 	public int doEndTag() throws JspException {

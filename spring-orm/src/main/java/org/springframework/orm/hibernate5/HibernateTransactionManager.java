@@ -150,7 +150,7 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 
 	/**
 	 * 创建一个新的 HibernateTransactionManager 实例。
-	 * @param sessionFactory the SessionFactory to manage transactions for
+	 * @param sessionFactory 要为其管理事务的 SessionFactory
 	 */
 	public HibernateTransactionManager(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
@@ -175,8 +175,8 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 
 	/**
 	 * 获取实际使用的 SessionFactory。
-	 * @return the SessionFactory (never {@code null})
-	 * @throws IllegalStateException in case of no SessionFactory set
+	 * @return SessionFactory（永不为 {@code null}）
+	 * @throws IllegalStateException 如果未设置 SessionFactory
 	 * @since 5.0
 	 */
 	protected final SessionFactory obtainSessionFactory() {
@@ -322,8 +322,7 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	 * 即每个 Session 一个拦截器实例。
 	 * <p>也可用于共享拦截器实例，但在这种场景下
 	 * 建议直接设置拦截器引用。
-	 * @param entityInterceptorBeanName the name of the entity interceptor in
-	 * the bean factory
+	 * @param entityInterceptorBeanName Bean 工厂中实体拦截器的名称
 	 * @see #setBeanFactory
 	 * @see #setEntityInterceptor
 	 */
@@ -347,8 +346,8 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	/**
 	 * 返回当前的 Hibernate 实体拦截器，如果没有则返回 {@code null}。
 	 * 如有必要，通过 bean 工厂解析实体拦截器的 bean 名称。
-	 * @throws IllegalStateException if bean name specified but no bean factory set
-	 * @throws BeansException if bean name resolution via the bean factory failed
+	 * @throws IllegalStateException 如果指定了 Bean 名称但未设置 Bean 工厂
+	 * @throws BeansException 如果通过 Bean 工厂解析 Bean 名称失败
 	 * @see #setEntityInterceptor
 	 * @see #setEntityInterceptorBeanName
 	 * @see #setBeanFactory
@@ -761,7 +760,7 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	 * 返回其数据库连接但保留其实体状态。
 	 * <p>默认实现仅调用 {@link Session#disconnect()}。
 	 * 子类可以重写此方法以执行空操作或精细调整的断开连接逻辑。
-	 * @param session the Hibernate Session to disconnect
+	 * @param session 要断开的 Hibernate Session
 	 * @see Session#disconnect()
 	 */
 	protected void disconnectOnCompletion(Session session) {
@@ -773,8 +772,8 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	 * 相应的异常。
 	 * <p>会自动将指定的 SQLExceptionTranslator 应用于
 	 * Hibernate JDBCException，否则依赖 Hibernate 的默认转换。
-	 * @param ex the HibernateException that occurred
-	 * @return a corresponding DataAccessException
+	 * @param ex 发生的 HibernateException
+	 * @return 相应的 DataAccessException
 	 * @see SessionFactoryUtils#convertHibernateAccessException
 	 */
 	protected DataAccessException convertHibernateAccessException(HibernateException ex) {

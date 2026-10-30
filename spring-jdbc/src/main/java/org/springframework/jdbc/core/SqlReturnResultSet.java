@@ -31,8 +31,8 @@ public class SqlReturnResultSet extends ResultSetSupportingSqlParameter {
 
 	/**
 	 * 创建{@link SqlReturnResultSet}类的新实例。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param extractor the {@link ResultSetExtractor} to use for parsing the {@link java.sql.ResultSet}
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param extractor 用于解析 {@link java.sql.ResultSet} 的 {@link ResultSetExtractor}
 	 */
 	public SqlReturnResultSet(String name, ResultSetExtractor<?> extractor) {
 		super(name, 0, extractor);
@@ -40,8 +40,8 @@ public class SqlReturnResultSet extends ResultSetSupportingSqlParameter {
 
 	/**
 	 * 创建{@link SqlReturnResultSet}类的新实例。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param handler the {@link RowCallbackHandler} to use for parsing the {@link java.sql.ResultSet}
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param handler 用于解析 {@link java.sql.ResultSet} 的 {@link RowCallbackHandler}
 	 */
 	public SqlReturnResultSet(String name, RowCallbackHandler handler) {
 		super(name, 0, handler);
@@ -49,8 +49,8 @@ public class SqlReturnResultSet extends ResultSetSupportingSqlParameter {
 
 	/**
 	 * 创建{@link SqlReturnResultSet}类的新实例。
-	 * @param name the name of the parameter, as used in input and output maps
-	 * @param mapper the {@link RowMapper} to use for parsing the {@link java.sql.ResultSet}
+	 * @param name 参数名称，用于输入和输出 Map 中
+	 * @param mapper 用于解析 {@link java.sql.ResultSet} 的 {@link RowMapper}
 	 */
 	public SqlReturnResultSet(String name, RowMapper<?> mapper) {
 		super(name, 0, mapper);

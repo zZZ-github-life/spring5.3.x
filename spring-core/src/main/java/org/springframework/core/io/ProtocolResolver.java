@@ -33,10 +33,10 @@ public interface ProtocolResolver {
 
 	/**
 	 * 如果此实现的协议匹配，则针对给定的资源加载器解析给定位置。
-	 * @param location the user-specified resource location
-	 * @param resourceLoader the associated resource loader
-	 * @return a corresponding {@code Resource} handle if the given location
-	 * matches this resolver's protocol, or {@code null} otherwise
+	 * @param location 用户指定的资源位置
+	 * @param resourceLoader 关联的资源加载器
+	 * @return 如果给定位置匹配此解析器的协议，则返回对应的
+	 * {@code Resource} 句柄，否则返回 {@code null}
 	 */
 	@Nullable
 	Resource resolve(String location, ResourceLoader resourceLoader);

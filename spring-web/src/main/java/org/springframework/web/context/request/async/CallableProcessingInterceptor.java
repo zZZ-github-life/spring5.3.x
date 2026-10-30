@@ -62,9 +62,9 @@ public interface CallableProcessingInterceptor {
 	 * {@link #preProcess(NativeWebRequest, Callable)} 中将其转移到新的 {@link Thread}。捕获 Spring
 	 * Security 的 SecurityContextHolder 状态并将其迁移到新线程就是一个具体用例。
 	 * <p>默认实现为空。
-	 * @param request the current request
-	 * @param task the task for the current async request
-	 * @throws Exception in case of errors
+	 * @param request 当前请求
+	 * @param task 当前异步请求的任务
+	 * @throws Exception 发生错误时
 	 */
 	default <T> void beforeConcurrentHandling(NativeWebRequest request, Callable<T> task) throws Exception {
 	}
@@ -73,9 +73,9 @@ public interface CallableProcessingInterceptor {
 	 * 在并发处理开始<em>之后</em>、实际调用 {@code Callable} <em>之前</em>调用，所在线程为执行
 	 * {@code Callable} 的异步线程。
 	 * <p>默认实现为空。
-	 * @param request the current request
-	 * @param task the task for the current async request
-	 * @throws Exception in case of errors
+	 * @param request 当前请求
+	 * @param task 当前异步请求的任务
+	 * @throws Exception 发生错误时
 	 */
 	default <T> void preProcess(NativeWebRequest request, Callable<T> task) throws Exception {
 	}
@@ -84,11 +84,11 @@ public interface CallableProcessingInterceptor {
 	 * 在 {@code Callable} 于执行它的异步线程中产生结果<em>之后</em>调用。根据 {@code Callable} 完成
 	 * 处理的时间，此方法可能在 {@code afterTimeout} 或 {@code afterCompletion} 之后被调用。
 	 * <p>默认实现为空。
-	 * @param request the current request
-	 * @param task the task for the current async request
-	 * @param concurrentResult the result of concurrent processing, which could
-	 * be a {@link Throwable} if the {@code Callable} raised an exception
-	 * @throws Exception in case of errors
+	 * @param request 当前请求
+	 * @param task 当前异步请求的任务
+	 * @param concurrentResult 并发处理的结果；如果 {@code Callable} 抛出异常，
+	 * 则可能是 {@link Throwable}
+	 * @throws Exception 发生错误时
 	 */
 	default <T> void postProcess(NativeWebRequest request, Callable<T> task,
 			Object concurrentResult) throws Exception {
@@ -98,12 +98,12 @@ public interface CallableProcessingInterceptor {
 	 * 当异步请求在 {@code Callable} 任务完成之前超时时，从容器线程调用。实现可以返回一个值（包括
 	 * {@link Exception}），用以替代 {@link Callable} 未能及时返回的值。
 	 * <p>默认实现始终返回 {@link #RESULT_NONE}。
-	 * @param request the current request
-	 * @param task the task for the current async request
-	 * @return a concurrent result value; if the value is anything other than
-	 * {@link #RESULT_NONE} or {@link #RESPONSE_HANDLED}, concurrent processing
-	 * is resumed and subsequent interceptors are not invoked
-	 * @throws Exception in case of errors
+	 * @param request 当前请求
+	 * @param task 当前异步请求的任务
+	 * @return 并发结果值；如果该值不是 {@link #RESULT_NONE} 或
+	 * {@link #RESPONSE_HANDLED}，则恢复并发处理，
+	 * 并且不调用后续拦截器
+	 * @throws Exception 发生错误时
 	 */
 	default <T> Object handleTimeout(NativeWebRequest request, Callable<T> task) throws Exception {
 		return RESULT_NONE;
@@ -113,13 +113,13 @@ public interface CallableProcessingInterceptor {
 	 * 当异步请求在 {@code Callable} 任务完成之前处理出错时，从容器线程调用。实现可以返回一个值（包括
 	 * {@link Exception}），用以替代 {@link Callable} 未能及时返回的值。
 	 * <p>默认实现始终返回 {@link #RESULT_NONE}。
-	 * @param request the current request
-	 * @param task the task for the current async request
-	 * @param t the error that occurred while request processing
-	 * @return a concurrent result value; if the value is anything other than
-	 * {@link #RESULT_NONE} or {@link #RESPONSE_HANDLED}, concurrent processing
-	 * is resumed and subsequent interceptors are not invoked
-	 * @throws Exception in case of errors
+	 * @param request 当前请求
+	 * @param task 当前异步请求的任务
+	 * @param t 请求处理期间发生的错误
+	 * @return 并发结果值；如果该值不是 {@link #RESULT_NONE} 或
+	 * {@link #RESPONSE_HANDLED}，则恢复并发处理，
+	 * 并且不调用后续拦截器
+	 * @throws Exception 发生错误时
 	 * @since 5.0
 	 */
 	default <T> Object handleError(NativeWebRequest request, Callable<T> task, Throwable t) throws Exception {
@@ -129,9 +129,9 @@ public interface CallableProcessingInterceptor {
 	/**
 	 * 当异步处理因任何原因（包括超时或网络错误）完成时，从容器线程调用。
 	 * <p>默认实现为空。
-	 * @param request the current request
-	 * @param task the task for the current async request
-	 * @throws Exception in case of errors
+	 * @param request 当前请求
+	 * @param task 当前异步请求的任务
+	 * @throws Exception 发生错误时
 	 */
 	default <T> void afterCompletion(NativeWebRequest request, Callable<T> task) throws Exception {
 	}

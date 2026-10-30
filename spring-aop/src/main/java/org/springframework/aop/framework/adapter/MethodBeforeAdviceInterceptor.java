@@ -42,7 +42,7 @@ public class MethodBeforeAdviceInterceptor implements MethodInterceptor, BeforeA
 
 	/**
 	 * 为给定 advice 创建一个新的 MethodBeforeAdviceInterceptor。
-	 * @param advice the MethodBeforeAdvice to wrap
+	 * @param advice 要包装的 MethodBeforeAdvice
 	 */
 	public MethodBeforeAdviceInterceptor(MethodBeforeAdvice advice) {
 		Assert.notNull(advice, "Advice must not be null");

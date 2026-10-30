@@ -32,8 +32,8 @@ public interface AsyncWebRequest extends NativeWebRequest {
 	/**
 	 * 设置并发处理完成所需的时间。在并发处理进行中（即 {@link #isAsyncStarted()} 为 {@code true}）时
 	 * 不应设置此属性。
-	 * @param timeout amount of time in milliseconds; {@code null} means no
-	 * 	timeout, i.e. rely on the default timeout of the container.
+	 * @param timeout 时间量，单位为毫秒；{@code null} 表示无超时，
+	 * 即依赖容器的默认超时。
 	 */
 	void setTimeout(@Nullable Long timeout);
 
@@ -55,7 +55,7 @@ public interface AsyncWebRequest extends NativeWebRequest {
 
 	/**
 	 * 标记异步请求处理的开始，以便主处理线程退出时响应仍保持打开，供其他线程继续处理。
-	 * @throws IllegalStateException if async processing has completed or is not supported
+	 * @throws IllegalStateException 如果异步处理已完成或不受支持
 	 */
 	void startAsync();
 

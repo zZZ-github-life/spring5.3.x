@@ -154,8 +154,8 @@ public abstract class PropertiesLoaderSupport {
 
 	/**
 	 * 将属性加载到给定的实例中。
-	 * @param props the Properties instance to load into
-	 * @throws IOException in case of I/O errors
+	 * @param props 要加载到的 Properties 实例
+	 * @throws IOException 在出现 I/O 错误时
 	 * @see #setLocations
 	 */
 	protected void loadProperties(Properties props) throws IOException {

@@ -32,7 +32,7 @@ public interface SelfNaming {
 
 	/**
 	 * 返回实现对象的 {@code ObjectName}。
-	 * @throws MalformedObjectNameException if thrown by the ObjectName constructor
+	 * @throws MalformedObjectNameException 如果由 ObjectName 构造函数抛出
 	 * @see javax.management.ObjectName#ObjectName(String)
 	 * @see javax.management.ObjectName#getInstance(String)
 	 * @see org.springframework.jmx.support.ObjectNameManager#getInstance(String)

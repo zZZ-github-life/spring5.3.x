@@ -160,11 +160,11 @@ public abstract class AbstractHandlerExceptionResolver implements HandlerExcepti
 	 * <p>默认实现会检查所配置的
 	 * {@linkplain #setMappedHandlers 处理器}和
 	 * {@linkplain #setMappedHandlerClasses 处理器类}（如果有）。
-	 * @param request current HTTP request
-	 * @param handler the executed handler, or {@code null} if none chosen
-	 * at the time of the exception (for example, if multipart resolution failed)
-	 * @return whether this resolved should proceed with resolving the exception
-	 * for the given request and handler
+	 * @param request 当前 HTTP 请求
+	 * @param handler 已执行的处理器；如果在异常发生时尚未选择任何处理器
+	 * （例如 multipart 解析失败），则为 {@code null}
+	 * @return 此解析器是否应继续为给定请求和处理器
+	 * 解析该异常
 	 * @see #setMappedHandlers
 	 * @see #setMappedHandlerClasses
 	 */
@@ -197,8 +197,8 @@ public abstract class AbstractHandlerExceptionResolver implements HandlerExcepti
 	 * 在警告级别记录给定异常，前提是已通过
 	 * {@link #setWarnLogCategory "warnLogCategory"} 属性激活警告日志。
 	 * <p>调用 {@link #buildLogMessage} 以确定要记录的具体消息。
-	 * @param ex the exception that got thrown during handler execution
-	 * @param request current HTTP request (useful for obtaining metadata)
+	 * @param ex 处理器执行期间抛出的异常
+	 * @param request 当前 HTTP 请求（可用于获取元数据）
 	 * @see #setWarnLogCategory
 	 * @see #buildLogMessage
 	 * @see org.apache.commons.logging.Log#warn(Object, Throwable)
@@ -211,9 +211,9 @@ public abstract class AbstractHandlerExceptionResolver implements HandlerExcepti
 
 	/**
 	 * 为处理给定请求期间发生的给定异常构建日志消息。
-	 * @param ex the exception that got thrown during handler execution
-	 * @param request current HTTP request (useful for obtaining metadata)
-	 * @return the log message to use
+	 * @param ex 处理器执行期间抛出的异常
+	 * @param request 当前 HTTP 请求（可用于获取元数据）
+	 * @return 要使用的日志消息
 	 */
 	protected String buildLogMessage(Exception ex, HttpServletRequest request) {
 		return "Resolved [" + LogFormatUtils.formatValue(ex, -1, true) + "]";
@@ -224,8 +224,8 @@ public abstract class AbstractHandlerExceptionResolver implements HandlerExcepti
 	 * <p>如果已将
 	 * {@link #setPreventResponseCaching "preventResponseCaching"} 属性
 	 * 设置为 "true"，则默认实现会阻止对响应进行缓存。
-	 * @param ex the exception that got thrown during handler execution
-	 * @param response current HTTP response
+	 * @param ex 处理器执行期间抛出的异常
+	 * @param response 当前 HTTP 响应
 	 * @see #preventCaching
 	 */
 	protected void prepareResponse(Exception ex, HttpServletResponse response) {
@@ -237,7 +237,7 @@ public abstract class AbstractHandlerExceptionResolver implements HandlerExcepti
 	/**
 	 * 通过设置相应的 HTTP {@code Cache-Control: no-store} 响应头，
 	 * 阻止对响应进行缓存。
-	 * @param response current HTTP response
+	 * @param response 当前 HTTP 响应
 	 */
 	protected void preventCaching(HttpServletResponse response) {
 		response.addHeader(HEADER_CACHE_CONTROL, "no-store");
@@ -251,13 +251,13 @@ public abstract class AbstractHandlerExceptionResolver implements HandlerExcepti
 	 * 请注意，此模板方法会在检查此解析器是否适用（"mappedHandlers" 等）
 	 * <i>之后</i>被调用，因此实现可以简单地继续执行
 	 * 实际的异常处理。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler, or {@code null} if none chosen at the time
-	 * of the exception (for example, if multipart resolution failed)
-	 * @param ex the exception that got thrown during handler execution
-	 * @return a corresponding {@code ModelAndView} to forward to,
-	 * or {@code null} for default processing in the resolution chain
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器；如果在异常发生时尚未选择任何处理器
+	 * （例如 multipart 解析失败），则为 {@code null}
+	 * @param ex 处理器执行期间抛出的异常
+	 * @return 要转发到的相应 {@code ModelAndView}；
+	 * 如果要在解析链中进行默认处理，则为 {@code null}
 	 */
 	@Nullable
 	protected abstract ModelAndView doResolveException(

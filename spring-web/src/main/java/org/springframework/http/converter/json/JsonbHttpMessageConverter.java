@@ -57,7 +57,7 @@ public class JsonbHttpMessageConverter extends AbstractJsonHttpMessageConverter 
 
 	/**
 	 * 使用给定配置构造一个新的 {@code JsonbHttpMessageConverter}。
-	 * @param config the {@code JsonbConfig} for the underlying delegate
+	 * @param config 底层委托的 {@code JsonbConfig}
 	 */
 	public JsonbHttpMessageConverter(JsonbConfig config) {
 		this.jsonb = JsonbBuilder.create(config);
@@ -65,7 +65,7 @@ public class JsonbHttpMessageConverter extends AbstractJsonHttpMessageConverter 
 
 	/**
 	 * 使用给定的委托构造一个新的 {@code JsonbHttpMessageConverter}。
-	 * @param jsonb the Jsonb instance to use
+	 * @param jsonb 要使用的 Jsonb 实例
 	 */
 	public JsonbHttpMessageConverter(Jsonb jsonb) {
 		Assert.notNull(jsonb, "A Jsonb instance is required");

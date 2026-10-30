@@ -43,8 +43,8 @@ public final class ParamsRequestCondition extends AbstractRequestCondition<Param
 
 	/**
 	 * 根据给定的参数表达式创建一个新实例。
-	 * @param params expressions with syntax defined in {@link RequestMapping#params()};
-	 * 	if 0, the condition will match to every request.
+	 * @param params 使用 {@link RequestMapping#params()} 中定义语法的表达式；
+	 * 如果为 0，则该条件将匹配每个请求。
 	 */
 	public ParamsRequestCondition(String... params) {
 		this.expressions = parseExpressions(params);

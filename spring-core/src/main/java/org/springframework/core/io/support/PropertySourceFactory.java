@@ -32,12 +32,12 @@ public interface PropertySourceFactory {
 
 	/**
 	 * 创建一个包装给定资源的 {@link PropertySource}。
-	 * @param name the name of the property source
-	 * (can be {@code null} in which case the factory implementation
-	 * will have to generate a name based on the given resource)
-	 * @param resource the resource (potentially encoded) to wrap
-	 * @return the new {@link PropertySource} (never {@code null})
-	 * @throws IOException if resource resolution failed
+	 * @param name 属性源的名称
+	 * （可以为 {@code null}，此时工厂实现
+	 * 必须根据给定的资源生成名称）
+	 * @param resource 要包装的资源（可能已编码）
+	 * @return 新的 {@link PropertySource}（永不为 {@code null}）
+	 * @throws IOException 如果资源解析失败
 	 */
 	PropertySource<?> createPropertySource(@Nullable String name, EncodedResource resource) throws IOException;
 

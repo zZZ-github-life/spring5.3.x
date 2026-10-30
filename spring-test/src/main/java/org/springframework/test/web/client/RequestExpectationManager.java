@@ -36,8 +36,8 @@ public interface RequestExpectationManager {
 	/**
 	 * 设置新的请求预期。返回的 {@link ResponseActions} 用于添加更多预期并定义响应。
 	 * <p>这是 {@link MockRestServiceServer#expect(ExpectedCount, RequestMatcher)} 的委托。
-	 * @param requestMatcher a request expectation
-	 * @return for setting up further expectations and define a response
+	 * @param requestMatcher 一个请求期望
+	 * @return 用于设置更多期望并定义响应
 	 * @see MockRestServiceServer#expect(RequestMatcher)
 	 * @see MockRestServiceServer#expect(ExpectedCount, RequestMatcher)
 	 */
@@ -46,7 +46,7 @@ public interface RequestExpectationManager {
 	/**
 	 * 验证所有预期都已满足。
 	 * <p>这是 {@link MockRestServiceServer#verify()} 的委托。
-	 * @throws AssertionError if not all expectations are met
+	 * @throws AssertionError 如果并非所有期望都得到满足。
 	 * @see MockRestServiceServer#verify()
 	 */
 	void verify();
@@ -54,9 +54,9 @@ public interface RequestExpectationManager {
 	/**
 	 * {@link #verify()} 的变体，最多等待指定时间直到所有预期都得到满足。
 	 * 这对于涉及异步请求的测试很有用。
-	 * @param timeout how long to wait for all expectations to be met
-	 * @throws AssertionError if not all expectations are met by the specified
-	 * timeout, or if any expectation fails at any time before that.
+	 * @param timeout 等待所有期望得到满足的时间
+	 * @throws AssertionError 如果在指定超时时间内并非所有期望都得到满足，
+	 * 或在此之前任何时刻有期望失败。
 	 * @since 5.3.4
 	 */
 	void verify(Duration timeout);
@@ -72,10 +72,10 @@ public interface RequestExpectationManager {
 	/**
 	 * 根据已声明的预期验证给定的实际请求。如果验证成功，则返回要使用的模拟响应，否则抛出错误。
 	 * <p>在 {@link MockRestServiceServer} 中用于处理实际请求。
-	 * @param request the request
-	 * @return the response to return if the request was validated.
-	 * @throws AssertionError when some expectations were not met
-	 * @throws IOException in case of any validation errors
+	 * @param request 请求
+	 * @return 如果请求校验通过，则返回响应。
+	 * @throws AssertionError 当某些期望未得到满足时。
+	 * @throws IOException 发生任何校验错误时。
 	 */
 	ClientHttpResponse validateRequest(ClientHttpRequest request) throws IOException;
 }

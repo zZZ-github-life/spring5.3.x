@@ -266,7 +266,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * 如果上下文已被刷新，或者未实现 {@code ConfigurableWebApplicationContext}，
 	 * 则上述操作都不会执行，因为假定用户已根据其具体需求完成了（或未完成）这些操作。
 	 * <p>用法示例请参见 {@link org.springframework.web.WebApplicationInitializer}。
-	 * @param webApplicationContext the context to use
+	 * @param webApplicationContext 要使用的上下文
 	 * @see #initWebApplicationContext
 	 * @see #configureAndRefreshWebApplicationContext
 	 * @see org.springframework.web.WebApplicationInitializer
@@ -457,7 +457,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * 是否在 DEBUG 级别记录请求参数、在 TRACE 级别记录请求头。
 	 * 二者都可能包含敏感信息。
 	 * <p>默认设置为 {@code false}，以便不显示请求细节。
-	 * @param enable whether to enable or not
+	 * @param enable 是否启用
 	 * @since 5.1
 	 */
 	public void setEnableLoggingRequestDetails(boolean enable) {
@@ -527,7 +527,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * 初始化并发布此 Servlet 的 WebApplicationContext。
 	 * <p>实际的上下文创建委托给 {@link #createWebApplicationContext}。
 	 * 可以在子类中重写。
-	 * @return the WebApplicationContext instance
+	 * @return WebApplicationContext 实例
 	 * @see #FrameworkServlet(WebApplicationContext)
 	 * @see #setContextClass
 	 * @see #setContextConfigLocation
@@ -590,7 +590,8 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * 该 {@code WebApplicationContext} 必须在此 Servlet 初始化（或被调用）之前
 	 * 已经加载并存储在 {@code ServletContext} 中。
 	 * <p>子类可以重写此方法以提供不同的 {@code WebApplicationContext} 获取策略。
-	 * @return the WebApplicationContext for this servlet, or {@code null} if not found
+	 * @return 此 Servlet 的 WebApplicationContext；
+	 * 如果未找到则为 {@code null}
 	 * @see #getContextAttribute()
 	 */
 	@Nullable
@@ -617,8 +618,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * <p>不要忘记将此 Servlet 实例注册为所创建上下文的应用监听器
 	 * （用于触发其 {@link #onRefresh 回调}），并在返回上下文实例之前
 	 * 调用 {@link org.springframework.context.ConfigurableApplicationContext#refresh()}。
-	 * @param parent the parent ApplicationContext to use, or {@code null} if none
-	 * @return the WebApplicationContext for this servlet
+	 * @param parent 要使用的父 ApplicationContext；
+	 * 如果没有则为 {@code null}
+	 * @return 此 Servlet 的 WebApplicationContext
 	 * @see org.springframework.web.context.support.XmlWebApplicationContext
 	 */
 	protected WebApplicationContext createWebApplicationContext(@Nullable ApplicationContext parent) {
@@ -680,8 +682,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * {@link org.springframework.web.context.support.XmlWebApplicationContext}，
 	 * 也可以是{@link #setContextClass 自定义上下文类}（如果已设置）。
 	 * 委托给 #createWebApplicationContext(ApplicationContext)。
-	 * @param parent the parent WebApplicationContext to use, or {@code null} if none
-	 * @return the WebApplicationContext for this servlet
+	 * @param parent 要使用的父 WebApplicationContext；
+	 * 如果没有则为 {@code null}
+	 * @return 此 Servlet 的 WebApplicationContext
 	 * @see org.springframework.web.context.support.XmlWebApplicationContext
 	 * @see #createWebApplicationContext(ApplicationContext)
 	 */
@@ -696,7 +699,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * <p>请注意，此方法旨在允许子类修改应用上下文，而
 	 * {@link #initWebApplicationContext} 则旨在允许最终用户
 	 * 通过使用 {@link ApplicationContextInitializer ApplicationContextInitializers} 修改上下文。
-	 * @param wac the configured WebApplicationContext (not refreshed yet)
+	 * @param wac 已配置的 WebApplicationContext（尚未刷新）
 	 * @see #createWebApplicationContext
 	 * @see #initWebApplicationContext
 	 * @see ConfigurableWebApplicationContext#refresh()
@@ -710,7 +713,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * {@link ApplicationContextInitializer} 实例。
 	 * <p>另请参见 {@link #postProcessWebApplicationContext}，它旨在允许子类
 	 * （而非最终用户）修改应用上下文，并且紧接在此方法之前调用。
-	 * @param wac the configured WebApplicationContext (not refreshed yet)
+	 * @param wac 已配置的 WebApplicationContext（尚未刷新）
 	 * @see #createWebApplicationContext
 	 * @see #postProcessWebApplicationContext
 	 * @see ConfigurableApplicationContext#refresh()
@@ -779,7 +782,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	/**
 	 * 此方法会在所有 bean 属性设置完成且 WebApplicationContext 加载完成后被调用。
 	 * 默认实现为空；子类可以重写此方法以执行所需的任何初始化。
-	 * @throws ServletException in case of an initialization exception
+	 * @throws ServletException 如果发生初始化异常
 	 */
 	protected void initFrameworkServlet() throws ServletException {
 	}
@@ -801,7 +804,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * 接收来自此 Servlet 的 WebApplicationContext 的刷新事件的回调。
 	 * <p>默认实现调用 {@link #onRefresh}，
 	 * 触发此 Servlet 依赖上下文的状态的刷新。
-	 * @param event the incoming ApplicationContext event
+	 * @param event 传入的 ApplicationContext 事件
 	 */
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		this.refreshEventReceived = true;
@@ -814,7 +817,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * 模板方法，可以被重写以添加特定于 Servlet 的刷新工作。
 	 * 在上下文刷新成功后调用。
 	 * <p>此实现为空。
-	 * @param context the current WebApplicationContext
+	 * @param context 当前的 WebApplicationContext
 	 * @see #refresh()
 	 */
 	protected void onRefresh(ApplicationContext context) {
@@ -992,8 +995,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 
 	/**
 	 * 为给定请求构建一个 LocaleContext，将请求的主区域设置作为当前区域设置暴露。
-	 * @param request current HTTP request
-	 * @return the corresponding LocaleContext, or {@code null} if none to bind
+	 * @param request 当前 HTTP 请求
+	 * @return 对应的 LocaleContext；如果没有要绑定的对象
+	 * 则为 {@code null}
 	 * @see LocaleContextHolder#setLocaleContext
 	 */
 	@Nullable
@@ -1004,11 +1008,12 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	/**
 	 * 为给定请求构建 ServletRequestAttributes（可能还持有对响应的引用），
 	 * 同时考虑预先绑定的属性（及其类型）。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param previousAttributes pre-bound RequestAttributes instance, if any
-	 * @return the ServletRequestAttributes to bind, or {@code null} to preserve
-	 * the previously bound instance (or not binding any, if none bound before)
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param previousAttributes 先前绑定的 RequestAttributes 实例（如果有）
+	 * @return 要绑定的 ServletRequestAttributes；
+	 * 为 {@code null} 时保留先前绑定的实例
+	 * （如果之前未绑定任何实例，则不进行绑定）
 	 * @see RequestContextHolder#setRequestAttributes
 	 */
 	@Nullable
@@ -1115,8 +1120,8 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * 确定给定请求的用户名。
 	 * <p>默认实现采用 UserPrincipal 的名称（如果有）。
 	 * 可以在子类中重写。
-	 * @param request current HTTP request
-	 * @return the username, or {@code null} if none found
+	 * @param request 当前 HTTP 请求
+	 * @return 用户名；如果未找到则为 {@code null}
 	 * @see javax.servlet.http.HttpServletRequest#getUserPrincipal()
 	 */
 	@Nullable
@@ -1131,9 +1136,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * 它将作为 GET、POST、PUT 和 DELETE 请求的集中式回调。
 	 * <p>该约定与常用的 HttpServlet {@code doGet} 或 {@code doPost} 重写方法基本相同。
 	 * <p>本类会拦截这些调用，以确保执行异常处理和事件发布。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @throws Exception in case of any kind of processing failure
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @throws Exception 如果发生任何类型的处理失败
 	 * @see javax.servlet.http.HttpServlet#doGet
 	 * @see javax.servlet.http.HttpServlet#doPost
 	 */

@@ -48,14 +48,12 @@ public class RequestParamMethodArgumentResolver extends AbstractNamedValueSyncAr
 
 	/**
 	 * 带默认解析模式标志的类构造函数。
-	 * @param factory a bean factory used for resolving  ${...} placeholder
-	 * and #{...} SpEL expressions in default values, or {@code null} if default
-	 * values are not expected to contain expressions
-	 * @param registry for checking reactive type wrappers
-	 * @param useDefaultResolution in default resolution mode a method argument
-	 * that is a simple type, as defined in {@link BeanUtils#isSimpleProperty},
-	 * is treated as a request parameter even if it isn't annotated, the
-	 * request parameter name is derived from the method parameter name.
+	 * @param factory 用于解析默认值中的 ${...} 占位符和 #{...} SpEL 表达式的
+	 * Bean 工厂；如果默认值预计不包含表达式则为 {@code null}
+	 * @param registry 用于检查响应式类型包装
+	 * @param useDefaultResolution 在默认解析模式下，属于 {@link BeanUtils#isSimpleProperty} 中定义的
+	 * 简单类型的方法参数即使没有注解也会被视为请求参数，
+	 * 请求参数名称由方法参数名称推导。
 	 */
 	public RequestParamMethodArgumentResolver(
 			@Nullable ConfigurableBeanFactory factory, ReactiveAdapterRegistry registry, boolean useDefaultResolution) {

@@ -33,9 +33,9 @@ public interface DataSourceLookup {
 
 	/**
 	 * 获取由给定名称标识的 DataSource。
-	 * @param dataSourceName the name of the DataSource
-	 * @return the DataSource (never {@code null})
-	 * @throws DataSourceLookupFailureException if the lookup failed
+	 * @param dataSourceName DataSource 的名称
+	 * @return DataSource（永不为 {@code null}）
+	 * @throws DataSourceLookupFailureException 如果查找失败
 	 */
 	DataSource getDataSource(String dataSourceName) throws DataSourceLookupFailureException;
 

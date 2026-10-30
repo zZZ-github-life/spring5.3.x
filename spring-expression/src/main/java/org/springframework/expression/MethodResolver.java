@@ -33,10 +33,10 @@ public interface MethodResolver {
 	/**
 	 * 在提供的上下文中，在提供的对象上确定一个能够处理指定参数的合适方法。返回一个可用于调用该方法的
 	 * {@link MethodExecutor}，如果找不到方法则返回 {@code null}。
-	 * @param context the current evaluation context
-	 * @param targetObject the object upon which the method is being called
-	 * @param argumentTypes the arguments that the constructor must be able to handle
-	 * @return a MethodExecutor that can invoke the method, or null if the method cannot be found
+	 * @param context 当前的求值上下文
+	 * @param targetObject 调用该方法所针对的对象
+	 * @param argumentTypes 构造器必须能够处理的参数
+	 * @return 可调用该方法的 MethodExecutor，如果找不到该方法则为 null
 	 */
 	@Nullable
 	MethodExecutor resolve(EvaluationContext context, Object targetObject, String name,

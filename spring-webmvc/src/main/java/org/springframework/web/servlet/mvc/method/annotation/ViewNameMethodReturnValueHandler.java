@@ -94,9 +94,9 @@ public class ViewNameMethodReturnValueHandler implements HandlerMethodReturnValu
 	 * 给定的视图名称是否为重定向视图引用。
 	 * 默认实现会检查已配置的重定向模式，
 	 * 以及视图名称是否以 "redirect:" 前缀开头。
-	 * @param viewName the view name to check, never {@code null}
-	 * @return "true" if the given view name is recognized as a redirect view
-	 * reference; "false" otherwise.
+	 * @param viewName 要检查的视图名称，永不为 {@code null}
+	 * @return 如果给定的视图名称被识别为重定向视图引用，
+	 * 则返回 “true”；否则返回 “false”。
 	 */
 	protected boolean isRedirectViewName(String viewName) {
 		return (PatternMatchUtils.simpleMatch(this.redirectPatterns, viewName) || viewName.startsWith("redirect:"));

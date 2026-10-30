@@ -36,11 +36,11 @@ public class UnknownHttpStatusCodeException extends RestClientResponseException 
 	/**
 	 * 基于 {@link HttpStatus}、状态文本和响应体内容构造一个
 	 * {@code HttpStatusCodeException} 新实例。
-	 * @param rawStatusCode the raw status code value
-	 * @param statusText the status text
-	 * @param responseHeaders the response headers (may be {@code null})
-	 * @param responseBody the response body content (may be {@code null})
-	 * @param responseCharset the response body charset (may be {@code null})
+	 * @param rawStatusCode 原始状态码值
+	 * @param statusText 状态文本
+	 * @param responseHeaders 响应头（可能为 {@code null}）
+	 * @param responseBody 响应体内容（可能为 {@code null}）
+	 * @param responseCharset 响应体字符集（可能为 {@code null}）
 	 */
 	public UnknownHttpStatusCodeException(int rawStatusCode, String statusText, @Nullable HttpHeaders responseHeaders,
 			@Nullable byte[] responseBody, @Nullable Charset responseCharset) {
@@ -52,11 +52,11 @@ public class UnknownHttpStatusCodeException extends RestClientResponseException 
 	/**
 	 * 基于 {@link HttpStatus}、状态文本和响应体内容构造一个
 	 * {@code HttpStatusCodeException} 新实例。
-	 * @param rawStatusCode the raw status code value
-	 * @param statusText the status text
-	 * @param responseHeaders the response headers (may be {@code null})
-	 * @param responseBody the response body content (may be {@code null})
-	 * @param responseCharset the response body charset (may be {@code null})
+	 * @param rawStatusCode 原始状态码值
+	 * @param statusText 状态文本
+	 * @param responseHeaders 响应头（可能为 {@code null}）
+	 * @param responseBody 响应体内容（可能为 {@code null}）
+	 * @param responseCharset 响应体字符集（可能为 {@code null}）
 	 * @since 5.2.2
 	 */
 	public UnknownHttpStatusCodeException(String message, int rawStatusCode, String statusText,

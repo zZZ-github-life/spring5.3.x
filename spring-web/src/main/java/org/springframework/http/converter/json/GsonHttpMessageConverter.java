@@ -58,7 +58,7 @@ public class GsonHttpMessageConverter extends AbstractJsonHttpMessageConverter {
 
 	/**
 	 * 使用给定的委托构造一个新的 {@code GsonHttpMessageConverter}。
-	 * @param gson the Gson instance to use
+	 * @param gson 要使用的 Gson 实例
 	 * @since 5.0
 	 */
 	public GsonHttpMessageConverter(Gson gson) {

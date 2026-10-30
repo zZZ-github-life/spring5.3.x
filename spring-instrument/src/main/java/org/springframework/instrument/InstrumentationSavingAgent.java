@@ -55,10 +55,9 @@ public final class InstrumentationSavingAgent {
 	 * 据 agent 是否可用进行条件检查，请考虑改用
 	 * {@link org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver#getInstrumentation()}，
 	 * 它在 classpath 中没有 agent 类时同样可以工作。
-	 * @return the {@code Instrumentation} instance previously saved when
-	 * the {@link #premain} or {@link #agentmain} methods was called by the JVM;
-	 * will be {@code null} if this class was not used as Java agent when this
-	 * JVM was started or it wasn't installed as agent using the Attach API.
+	 * @return JVM 调用 {@link #premain} 或 {@link #agentmain} 方法时先前保存的
+	 * {@code Instrumentation} 实例；如果启动此 JVM 时未将该类用作 Java 代理，
+	 * 或未通过 Attach API 将其安装为代理，则为 {@code null}。
 	 * @see org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver#getInstrumentation()
 	 */
 	public static Instrumentation getInstrumentation() {

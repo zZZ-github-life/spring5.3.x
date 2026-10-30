@@ -107,8 +107,7 @@ public class HandlerMethodArgumentResolverComposite implements HandlerMethodArgu
 	 * 遍历已注册的
 	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}，
 	 * 并调用支持该参数的那个。
-	 * @throws IllegalStateException if no suitable
-	 * {@link HandlerMethodArgumentResolver} is found.
+	 * @throws IllegalStateException 如果找不到合适的 {@link HandlerMethodArgumentResolver}。
 	 */
 	@Override
 	public Mono<Object> resolveArgument(MethodParameter parameter, Message<?> message) {

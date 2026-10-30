@@ -23,18 +23,18 @@ package org.springframework.core.convert.converter;
  *
  * @author Keith Donald
  * @since 3.0
- * @param <S> the source type converters created by this factory can convert from
- * @param <R> the target range (or base) type converters created by this factory can convert to;
- * for example {@link Number} for a set of number subtypes.
+ * @param <S> 本工厂创建的转换器可从中转换的源类型
+ * @param <R> 本工厂创建的转换器可转换到的目标范围（或基础）类型；
+ * 例如对于一组数字子类型，为 {@link Number}。
  * @see ConditionalConverter
  */
 public interface ConverterFactory<S, R> {
 
 	/**
 	 * 获取用于从 S 转换为目标类型 T 的转换器，其中 T 也是 R 的实例。
-	 * @param <T> the target type
-	 * @param targetType the target type to convert to
-	 * @return a converter from S to T
+	 * @param <T> 目标类型
+	 * @param targetType 要转换到的目标类型
+	 * @return 从 S 到 T 的转换器
 	 */
 	<T extends R> Converter<S, T> getConverter(Class<T> targetType);
 

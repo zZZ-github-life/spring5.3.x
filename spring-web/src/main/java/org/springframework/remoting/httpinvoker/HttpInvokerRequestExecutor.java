@@ -48,13 +48,12 @@ public interface HttpInvokerRequestExecutor {
 
 	/**
 	 * 执行请求以发送给定的远程调用。
-	 * @param config the HTTP invoker configuration that specifies the
-	 * target service
-	 * @param invocation the RemoteInvocation to execute
-	 * @return the RemoteInvocationResult object
-	 * @throws IOException if thrown by I/O operations
-	 * @throws ClassNotFoundException if thrown during deserialization
-	 * @throws Exception in case of general errors
+	 * @param config 指定目标服务的 HTTP invoker 配置
+	 * @param invocation 要执行的 RemoteInvocation
+	 * @return RemoteInvocationResult 对象
+	 * @throws IOException 如果由 I/O 操作抛出则传播
+	 * @throws ClassNotFoundException 如果在反序列化期间抛出则传播
+	 * @throws Exception 发生一般错误时抛出
 	 */
 	RemoteInvocationResult executeRequest(HttpInvokerClientConfiguration config, RemoteInvocation invocation)
 			throws Exception;

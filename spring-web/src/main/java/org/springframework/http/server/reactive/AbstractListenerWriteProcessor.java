@@ -41,7 +41,7 @@ import org.springframework.util.StringUtils;
  * @author Violeta Georgieva
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <T> the type of element signaled to the {@link Subscriber}
+ * @param <T> 向 {@link Subscriber} 发出信号元素的类型
  */
 public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, Void> {
 
@@ -237,10 +237,10 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 	 * 写入给定的项。
 	 * <p><strong>注意：</strong>如果底层容器使用池化缓冲区，
 	 * 子类负责在完全写入后释放与该数据项关联的任何数据缓冲区。
-	 * @param data the item to write
-	 * @return {@code true} if the current data item was written completely and
-	 * a new item requested, or {@code false} if it was written partially and
-	 * we'll need more write callbacks before it is fully written
+	 * @param data 要写入的项
+	 * @return 如果当前数据项已完全写入并请求了新项则返回 {@code true}，
+	 * 如果只写入了部分、在完全写入之前还需要更多写入回调，
+	 * 则返回 {@code false}
 	 */
 	protected abstract boolean write(T data) throws IOException;
 
@@ -274,7 +274,7 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 	 * 在发生任何错误（来自上游写入 Publisher 或对底层服务器的 I/O 操作）
 	 * 以及取消之后调用，用于丢弃错误发生时正在写入的
 	 * 在途数据。
-	 * @param data the data to be released
+	 * @param data 要释放的数据
 	 * @since 5.0.11
 	 */
 	protected abstract void discardData(T data);

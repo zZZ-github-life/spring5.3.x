@@ -101,7 +101,7 @@ public @interface TestConstructor {
 	 * <p>设置此标志将覆盖全局默认值。有关
 	 * 如何更改全局默认值的详细信息，请参见
 	 * {@link #TEST_CONSTRUCTOR_AUTOWIRE_MODE_PROPERTY_NAME}。
-	 * @return an {@link AutowireMode} to take precedence over the global default
+	 * @return 优先于全局默认值的 {@link AutowireMode}
 	 * @see #TEST_CONSTRUCTOR_AUTOWIRE_MODE_PROPERTY_NAME
 	 * @see org.springframework.beans.factory.annotation.Autowired @Autowired
 	 * @see AutowireMode#ALL
@@ -140,8 +140,8 @@ public @interface TestConstructor {
 		/**
 		 * 获取具有提供名称的 {@code AutowireMode} 枚举常量，
 		 * 忽略大小写。
-		 * @param name the name of the enum constant to retrieve
-		 * @return the corresponding enum constant or {@code null} if not found
+		 * @param name 要检索的枚举常量的名称
+		 * @return 对应的枚举常量，如果未找到则为 {@code null}
 		 * @since 5.3
 		 * @see AutowireMode#valueOf(String)
 		 */

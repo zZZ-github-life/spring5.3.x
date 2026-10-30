@@ -178,7 +178,7 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	 * 配置一个谓词，用于在 {@link #setIncludeHeaders(boolean)} 设置为
 	 * {@code true} 时选择应记录哪些请求头。
 	 * <p>默认情况下不设置此属性，此时会记录所有请求头。
-	 * @param headerPredicate the predicate to use
+	 * @param headerPredicate 要使用的断言
 	 * @since 5.2
 	 */
 	public void setHeaderPredicate(@Nullable Predicate<String> headerPredicate) {
@@ -385,9 +385,9 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	 * 确定是否要为当前请求调用 {@link #beforeRequest}/{@link #afterRequest}
 	 * 方法，即当前是否启用了日志记录（以及是否值得构建日志消息）。
 	 * <p>默认实现始终返回 {@code true}。子类可以通过日志级别检查来重写此方法。
-	 * @param request current HTTP request
-	 * @return {@code true} if the before/after method should get called;
-	 * {@code false} otherwise
+	 * @param request 当前的 HTTP 请求
+	 * @return 如果应调用 before/after 方法则返回 {@code true}；
+	 * 否则返回 {@code false}
 	 * @since 4.1.5
 	 */
 	protected boolean shouldLog(HttpServletRequest request) {
@@ -396,15 +396,15 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 
 	/**
 	 * 具体子类应实现此方法，以在请求处理<i>之前</i>写入日志消息。
-	 * @param request current HTTP request
-	 * @param message the message to log
+	 * @param request 当前的 HTTP 请求
+	 * @param message 要记录的消息
 	 */
 	protected abstract void beforeRequest(HttpServletRequest request, String message);
 
 	/**
 	 * 具体子类应实现此方法，以在请求处理<i>之后</i>写入日志消息。
-	 * @param request current HTTP request
-	 * @param message the message to log
+	 * @param request 当前的 HTTP 请求
+	 * @param message 要记录的消息
 	 */
 	protected abstract void afterRequest(HttpServletRequest request, String message);
 

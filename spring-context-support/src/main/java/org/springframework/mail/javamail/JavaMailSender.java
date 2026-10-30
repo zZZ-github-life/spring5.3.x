@@ -62,7 +62,7 @@ public interface JavaMailSender extends MailSender {
 	 * 为此发送器的底层 JavaMail Session 创建一个新的 JavaMail MimeMessage。
 	 * 需要调用此方法来创建可由客户端准备并传递给 send(MimeMessage) 的
 	 * MimeMessage 实例。
-	 * @return the new MimeMessage instance
+	 * @return 新的 MimeMessage 实例
 	 * @see #send(MimeMessage)
 	 * @see #send(MimeMessage[])
 	 */
@@ -71,21 +71,18 @@ public interface JavaMailSender extends MailSender {
 	/**
 	 * 为此发送器的底层 JavaMail Session 创建一个新的 JavaMail MimeMessage，
 	 * 使用给定的输入流作为消息源。
-	 * @param contentStream the raw MIME input stream for the message
-	 * @return the new MimeMessage instance
-	 * @throws org.springframework.mail.MailParseException
-	 * in case of message creation failure
+	 * @param contentStream 消息的原始 MIME 输入流
+	 * @return 新的 MimeMessage 实例
+	 * @throws org.springframework.mail.MailParseException 消息创建失败时
 	*/
 	MimeMessage createMimeMessage(InputStream contentStream) throws MailException;
 
 	/**
 	 * 发送给定的 JavaMail MIME 消息。
 	 * 该消息需要通过 {@link #createMimeMessage()} 创建。
-	 * @param mimeMessage message to send
-	 * @throws org.springframework.mail.MailAuthenticationException
-	 * in case of authentication failure
-	 * @throws org.springframework.mail.MailSendException
-	 * in case of failure when sending the message
+	 * @param mimeMessage 要发送的消息
+	 * @throws org.springframework.mail.MailAuthenticationException 认证失败时
+	 * @throws org.springframework.mail.MailSendException 发送消息失败时
 	 * @see #createMimeMessage
 	 */
 	void send(MimeMessage mimeMessage) throws MailException;
@@ -93,11 +90,9 @@ public interface JavaMailSender extends MailSender {
 	/**
 	 * 批量发送给定的 JavaMail MIME 消息数组。
 	 * 这些消息需要通过 {@link #createMimeMessage()} 创建。
-	 * @param mimeMessages messages to send
-	 * @throws org.springframework.mail.MailAuthenticationException
-	 * in case of authentication failure
-	 * @throws org.springframework.mail.MailSendException
-	 * in case of failure when sending a message
+	 * @param mimeMessages 要发送的消息
+	 * @throws org.springframework.mail.MailAuthenticationException 认证失败时
+	 * @throws org.springframework.mail.MailSendException 发送消息失败时
 	 * @see #createMimeMessage
 	 */
 	void send(MimeMessage... mimeMessages) throws MailException;
@@ -106,15 +101,11 @@ public interface JavaMailSender extends MailSender {
 	 * 发送由给定 MimeMessagePreparator 准备的 JavaMail MIME 消息。
 	 * <p>替代 {@link #createMimeMessage()} 和 {@link #send(MimeMessage)} 调用
 	 * 的另一种方式来准备 MimeMessage 实例。负责进行正确的异常转换。
-	 * @param mimeMessagePreparator the preparator to use
-	 * @throws org.springframework.mail.MailPreparationException
-	 * in case of failure when preparing the message
-	 * @throws org.springframework.mail.MailParseException
-	 * in case of failure when parsing the message
-	 * @throws org.springframework.mail.MailAuthenticationException
-	 * in case of authentication failure
-	 * @throws org.springframework.mail.MailSendException
-	 * in case of failure when sending the message
+	 * @param mimeMessagePreparator 要使用的准备器
+	 * @throws org.springframework.mail.MailPreparationException 准备消息失败时
+	 * @throws org.springframework.mail.MailParseException 解析消息失败时
+	 * @throws org.springframework.mail.MailAuthenticationException 认证失败时
+	 * @throws org.springframework.mail.MailSendException 发送消息失败时
 	 */
 	void send(MimeMessagePreparator mimeMessagePreparator) throws MailException;
 
@@ -122,15 +113,11 @@ public interface JavaMailSender extends MailSender {
 	 * 发送由给定 MimeMessagePreparators 准备的 JavaMail MIME 消息。
 	 * <p>替代 {@link #createMimeMessage()} 和 {@link #send(MimeMessage[])} 调用
 	 * 的另一种方式来准备 MimeMessage 实例。负责进行正确的异常转换。
-	 * @param mimeMessagePreparators the preparator to use
-	 * @throws org.springframework.mail.MailPreparationException
-	 * in case of failure when preparing a message
-	 * @throws org.springframework.mail.MailParseException
-	 * in case of failure when parsing a message
-	 * @throws org.springframework.mail.MailAuthenticationException
-	 * in case of authentication failure
-	 * @throws org.springframework.mail.MailSendException
-	 * in case of failure when sending a message
+	 * @param mimeMessagePreparators 要使用的准备器
+	 * @throws org.springframework.mail.MailPreparationException 准备消息失败时
+	 * @throws org.springframework.mail.MailParseException 解析消息失败时
+	 * @throws org.springframework.mail.MailAuthenticationException 认证失败时
+	 * @throws org.springframework.mail.MailSendException 发送消息失败时
 	 */
 	void send(MimeMessagePreparator... mimeMessagePreparators) throws MailException;
 

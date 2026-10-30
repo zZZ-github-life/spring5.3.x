@@ -67,7 +67,7 @@ public class ServerEndpointExporter extends WebApplicationObjectSupport
 	 * 显式列出应在启动时注册的被注解端点类型。如果你希望关闭 Servlet 容器
 	 * 对端点的扫描（该扫描会遍历类路径中的所有第三方 jar），
 	 * 转而依赖 Spring 配置，则可以使用此方法。
-	 * @param annotatedEndpointClasses {@link ServerEndpoint}-annotated types
+	 * @param annotatedEndpointClasses 带有 {@link ServerEndpoint} 注解的类型
 	 */
 	public void setAnnotatedEndpointClasses(Class<?>... annotatedEndpointClasses) {
 		this.annotatedEndpointClasses = Arrays.asList(annotatedEndpointClasses);

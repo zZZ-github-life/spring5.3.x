@@ -54,8 +54,8 @@ public interface BeanFactoryPostProcessor {
 	/**
 	 * 在标准初始化之后修改应用上下文的内部 Bean 工厂。此时所有 Bean 定义都已加载，但尚未实例化任何
 	 * Bean。这允许覆盖或添加属性，甚至对预先初始化的 Bean 也是如此。
-	 * @param beanFactory the bean factory used by the application context
-	 * @throws org.springframework.beans.BeansException in case of errors
+	 * @param beanFactory 应用上下文使用的 Bean 工厂
+	 * @throws org.springframework.beans.BeansException 如果出错则抛出
 	 */
 	void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException;
 

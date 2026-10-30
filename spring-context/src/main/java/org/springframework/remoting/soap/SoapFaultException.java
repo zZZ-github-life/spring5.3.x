@@ -33,8 +33,8 @@ public abstract class SoapFaultException extends RemoteInvocationFailureExceptio
 
 	/**
 	 * SoapFaultException 的构造函数。
-	 * @param msg the detail message
-	 * @param cause the root cause from the SOAP API in use
+	 * @param msg 详细信息
+	 * @param cause 来自所用 SOAP API 的根本原因
 	 */
 	protected SoapFaultException(String msg, Throwable cause) {
 		super(msg, cause);

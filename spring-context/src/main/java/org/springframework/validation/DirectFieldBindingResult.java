@@ -46,8 +46,8 @@ public class DirectFieldBindingResult extends AbstractPropertyBindingResult {
 
 	/**
 	 * 创建一个新的 DirectFieldBindingResult 实例。
-	 * @param target the target object to bind onto
-	 * @param objectName the name of the target object
+	 * @param target 要绑定到的目标对象。
+	 * @param objectName 目标对象的名称。
 	 */
 	public DirectFieldBindingResult(@Nullable Object target, String objectName) {
 		this(target, objectName, true);
@@ -55,9 +55,9 @@ public class DirectFieldBindingResult extends AbstractPropertyBindingResult {
 
 	/**
 	 * 创建一个新的 DirectFieldBindingResult 实例。
-	 * @param target the target object to bind onto
-	 * @param objectName the name of the target object
-	 * @param autoGrowNestedPaths whether to "auto-grow" a nested path that contains a null value
+	 * @param target 要绑定到的目标对象。
+	 * @param objectName 目标对象的名称。
+	 * @param autoGrowNestedPaths 是否“自动增长”包含 null 值的嵌套路径。
 	 */
 	public DirectFieldBindingResult(@Nullable Object target, String objectName, boolean autoGrowNestedPaths) {
 		super(objectName);

@@ -46,7 +46,7 @@ import org.springframework.util.Assert;
  *
  * @author Stephane Nicoll
  * @since 4.2
- * @param <T> the type of the response
+ * @param <T> 响应的类型
  * @see org.springframework.jms.annotation.JmsListener
  * @see org.springframework.messaging.handler.annotation.SendTo
  */
@@ -59,8 +59,8 @@ public class JmsResponse<T> {
 
 	/**
 	 * 创建一个新的 {@link JmsResponse} 实例。
-	 * @param response the content of the result
-	 * @param destination the destination
+	 * @param response 结果的内容
+	 * @param destination 目标
 	 */
 	protected JmsResponse(T response, Object destination) {
 		Assert.notNull(response, "Result must not be null");
@@ -79,10 +79,10 @@ public class JmsResponse<T> {
 	/**
 	 * 解析此实例要使用的 {@link Destination}。
 	 * 可以在运行时使用 {@link DestinationResolver} 和 {@link Session} 解析目的地。
-	 * @param destinationResolver the destination resolver to use if necessary
-	 * @param session the session to use, if necessary
-	 * @return the {@link Destination} to use
-	 * @throws JMSException if the DestinationResolver failed to resolve the destination
+	 * @param destinationResolver 必要时使用的目标解析器
+	 * @param session 必要时使用的 Session
+	 * @return 要使用的 {@link Destination}
+	 * @throws JMSException 如果 DestinationResolver 未能解析目标
 	 */
 	@Nullable
 	public Destination resolveDestination(DestinationResolver destinationResolver, Session session)

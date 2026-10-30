@@ -35,8 +35,8 @@ public interface InitializingBean {
 	 * 在设置完所有 Bean 属性并满足 {@link BeanFactoryAware}、{@code ApplicationContextAware} 等之后，
 	 * 由包含它的 {@code BeanFactory} 调用。<p>此方法允许 Bean 实例在所有 Bean 属性都已设置时对其整体配
 	 * 置进行校验并进行最终初始化。
-	 * @throws Exception in the event of misconfiguration (such as failure to set an
-	 * essential property) or if initialization fails for any other reason
+	 * @throws Exception 在配置错误（例如未能设置必需的属性）时，
+	 * 或初始化因任何其他原因失败时
 	 */
 	void afterPropertiesSet() throws Exception;
 

@@ -25,7 +25,7 @@ import org.springframework.util.ObjectUtils;
  *
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <T> the payload type
+ * @param <T> 负载类型
  */
 public abstract class AbstractWebSocketMessage<T> implements WebSocketMessage<T> {
 
@@ -36,7 +36,7 @@ public abstract class AbstractWebSocketMessage<T> implements WebSocketMessage<T>
 
 	/**
 	 * 使用给定的负载创建一个新的 WebSocket 消息。
-	 * @param payload the non-null payload
+	 * @param payload 非 null 的负载
 	 */
 	AbstractWebSocketMessage(T payload) {
 		this(payload, true);
@@ -47,8 +47,8 @@ public abstract class AbstractWebSocketMessage<T> implements WebSocketMessage<T>
 	 * 当 {@code isLast} 布尔标志设置为 {@code false} 时，
 	 * 该消息将作为部分内容发送，并且会预期收到更多部分消息，
 	 * 直到该布尔标志设置为 {@code true} 为止。
-	 * @param payload the non-null payload
-	 * @param isLast if the message is the last of a series of partial messages
+	 * @param payload 非 null 的负载
+	 * @param isLast 消息是否为一系列部分消息中的最后一条
 	 */
 	AbstractWebSocketMessage(T payload, boolean isLast) {
 		Assert.notNull(payload, "payload must not be null");

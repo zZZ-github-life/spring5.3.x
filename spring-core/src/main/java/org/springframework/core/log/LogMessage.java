@@ -77,7 +77,7 @@ public abstract class LogMessage implements CharSequence {
 
 	/**
 	 * 根据给定的 supplier 构建一条延迟解析的消息。
-	 * @param supplier the supplier (typically bound to a lambda expression)
+	 * @param supplier Supplier（通常绑定到 lambda 表达式）
 	 * @see #toString()
 	 */
 	public static LogMessage of(Supplier<? extends CharSequence> supplier) {
@@ -86,8 +86,8 @@ public abstract class LogMessage implements CharSequence {
 
 	/**
 	 * 根据给定的格式字符串和参数构建一条延迟格式化的消息。
-	 * @param format the format string (following {@link String#format} rules)
-	 * @param arg1 the argument (can be {@code null})
+	 * @param format 格式字符串（遵循 {@link String#format} 规则）
+	 * @param arg1 参数（可以为 {@code null}）
 	 * @see String#format(String, Object...)
 	 */
 	public static LogMessage format(String format, @Nullable Object arg1) {
@@ -96,9 +96,9 @@ public abstract class LogMessage implements CharSequence {
 
 	/**
 	 * 根据给定的格式字符串和参数构建一条延迟格式化的消息。
-	 * @param format the format string (following {@link String#format} rules)
-	 * @param arg1 the first argument (can be {@code null})
-	 * @param arg2 the second argument (can be {@code null})
+	 * @param format 格式字符串（遵循 {@link String#format} 规则）
+	 * @param arg1 第一个参数（可以为 {@code null}）
+	 * @param arg2 第二个参数（可以为 {@code null}）
 	 * @see String#format(String, Object...)
 	 */
 	public static LogMessage format(String format, @Nullable Object arg1, @Nullable Object arg2) {
@@ -107,10 +107,10 @@ public abstract class LogMessage implements CharSequence {
 
 	/**
 	 * 根据给定的格式字符串和参数构建一条延迟格式化的消息。
-	 * @param format the format string (following {@link String#format} rules)
-	 * @param arg1 the first argument (can be {@code null})
-	 * @param arg2 the second argument (can be {@code null})
-	 * @param arg3 the third argument (can be {@code null})
+	 * @param format 格式字符串（遵循 {@link String#format} 规则）
+	 * @param arg1 第一个参数（可以为 {@code null}）
+	 * @param arg2 第二个参数（可以为 {@code null}）
+	 * @param arg3 第三个参数（可以为 {@code null}）
 	 * @see String#format(String, Object...)
 	 */
 	public static LogMessage format(String format, @Nullable Object arg1, @Nullable Object arg2, @Nullable Object arg3) {
@@ -119,11 +119,11 @@ public abstract class LogMessage implements CharSequence {
 
 	/**
 	 * 根据给定的格式字符串和参数构建一条延迟格式化的消息。
-	 * @param format the format string (following {@link String#format} rules)
-	 * @param arg1 the first argument (can be {@code null})
-	 * @param arg2 the second argument (can be {@code null})
-	 * @param arg3 the third argument (can be {@code null})
-	 * @param arg4 the fourth argument (can be {@code null})
+	 * @param format 格式字符串（遵循 {@link String#format} 规则）
+	 * @param arg1 第一个参数（可以为 {@code null}）
+	 * @param arg2 第二个参数（可以为 {@code null}）
+	 * @param arg3 第三个参数（可以为 {@code null}）
+	 * @param arg4 第四个参数（可以为 {@code null}）
 	 * @see String#format(String, Object...)
 	 */
 	public static LogMessage format(String format, @Nullable Object arg1, @Nullable Object arg2, @Nullable Object arg3,
@@ -136,9 +136,9 @@ public abstract class LogMessage implements CharSequence {
 	 * <p>这个可变参数形式的 {@code format()} 可能开销较大。因此，
 	 * 应尽可能使用单独的参数变体：
 	 * {@link #format(String, Object)}、{@link #format(String, Object, Object)} 等。
-	 * @param format the format string (following {@link String#format} rules)
-	 * @param args the varargs array (can be {@code null} and can contain {@code null}
-	 * elements)
+	 * @param format 格式字符串（遵循 {@link String#format} 规则）
+	 * @param args 可变参数数组（可以为 {@code null}，
+	 * 也可以包含 {@code null} 元素）
 	 * @see String#format(String, Object...)
 	 */
 	public static LogMessage format(String format, @Nullable Object... args) {

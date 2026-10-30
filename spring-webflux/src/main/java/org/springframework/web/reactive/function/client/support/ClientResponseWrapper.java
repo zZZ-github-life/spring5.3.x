@@ -49,7 +49,7 @@ public class ClientResponseWrapper implements ClientResponse {
 
 	/**
 	 * 创建一个包装给定响应的新 {@code ClientResponseWrapper}。
-	 * @param delegate the response to wrap
+	 * @param delegate 要包装的响应
 	 */
 	public ClientResponseWrapper(ClientResponse delegate) {
 		Assert.notNull(delegate, "Delegate is required");
@@ -164,7 +164,7 @@ public class ClientResponseWrapper implements ClientResponse {
 
 		/**
 		 * 创建一个包装给定响应的新 {@code HeadersWrapper}。
-		 * @param headers the headers to wrap
+		 * @param headers 要包装的头
 		 */
 		public HeadersWrapper(Headers headers) {
 			this.headers = headers;

@@ -50,8 +50,8 @@ public interface ClientResponse {
 
 	/**
 	 * 以 {@link HttpStatus} 枚举值形式返回 HTTP 状态码。
-	 * @return the HTTP status as an HttpStatus enum value (never {@code null})
-	 * @throws IllegalArgumentException in case of an unknown HTTP status code
+	 * @return HTTP 状态，以 HttpStatus 枚举值表示（永不为 {@code null}）
+	 * @throws IllegalArgumentException 在 HTTP 状态码未知的情况下
 	 * @since #getRawStatusCode()
 	 * @see HttpStatus#valueOf(int)
 	 */
@@ -59,7 +59,7 @@ public interface ClientResponse {
 
 	/**
 	 * 返回此响应的（可能非标准的）状态码。
-	 * @return the HTTP status as an integer value
+	 * @return HTTP 状态，以整数值表示
 	 * @since 5.1
 	 * @see #statusCode()
 	 * @see HttpStatus#resolve(int)
@@ -83,47 +83,47 @@ public interface ClientResponse {
 
 	/**
 	 * 使用给定的 {@code BodyExtractor} 提取正文。
-	 * @param extractor the {@code BodyExtractor} that reads from the response
-	 * @param <T> the type of the body returned
-	 * @return the extracted body
+	 * @param extractor 从响应读取的 {@code BodyExtractor}
+	 * @param <T> 返回的主体的类型
+	 * @return 提取的主体
 	 */
 	<T> T body(BodyExtractor<T, ? super ClientHttpResponse> extractor);
 
 	/**
 	 * 将正文提取为 {@code Mono}。
-	 * @param elementClass the class of element in the {@code Mono}
-	 * @param <T> the element type
-	 * @return a mono containing the body of the given type {@code T}
+	 * @param elementClass {@code Mono} 中元素的类
+	 * @param <T> 元素类型
+	 * @return 包含给定类型 {@code T} 的主体的 mono
 	 */
 	<T> Mono<T> bodyToMono(Class<? extends T> elementClass);
 
 	/**
 	 * 将正文提取为 {@code Mono}。
-	 * @param elementTypeRef the type reference of element in the {@code Mono}
-	 * @param <T> the element type
-	 * @return a mono containing the body of the given type {@code T}
+	 * @param elementTypeRef {@code Mono} 中元素的类型引用
+	 * @param <T> 元素类型
+	 * @return 包含给定类型 {@code T} 的主体的 mono
 	 */
 	<T> Mono<T> bodyToMono(ParameterizedTypeReference<T> elementTypeRef);
 
 	/**
 	 * 将正文提取为 {@code Flux}。
-	 * @param elementClass the class of elements in the {@code Flux}
-	 * @param <T> the element type
-	 * @return a flux containing the body of the given type {@code T}
+	 * @param elementClass {@code Flux} 中元素的类
+	 * @param <T> 元素类型
+	 * @return 包含给定类型 {@code T} 的主体的 flux
 	 */
 	<T> Flux<T> bodyToFlux(Class<? extends T> elementClass);
 
 	/**
 	 * 将正文提取为 {@code Flux}。
-	 * @param elementTypeRef the type reference of elements in the {@code Flux}
-	 * @param <T> the element type
-	 * @return a flux containing the body of the given type {@code T}
+	 * @param elementTypeRef {@code Flux} 中元素的类型引用
+	 * @param <T> 元素类型
+	 * @return 包含给定类型 {@code T} 的主体的 flux
 	 */
 	<T> Flux<T> bodyToFlux(ParameterizedTypeReference<T> elementTypeRef);
 
 	/**
 	 * 释放此响应的正文。
-	 * @return a completion signal
+	 * @return 完成信号
 	 * @since 5.2
 	 * @see org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer)
 	 */
@@ -131,46 +131,46 @@ public interface ClientResponse {
 
 	/**
 	 * 将此响应返回为延迟的 {@code ResponseEntity}。
-	 * @param bodyClass the expected response body type
-	 * @param <T> response body type
-	 * @return {@code Mono} with the {@code ResponseEntity}
+	 * @param bodyClass 预期的响应主体类型
+	 * @param <T> 响应主体类型
+	 * @return 包含 {@code ResponseEntity} 的 {@code Mono}
 	 */
 	<T> Mono<ResponseEntity<T>> toEntity(Class<T> bodyClass);
 
 	/**
 	 * 将此响应返回为延迟的 {@code ResponseEntity}。
-	 * @param bodyTypeReference a type reference describing the expected response body type
-	 * @param <T> response body type
-	 * @return {@code Mono} with the {@code ResponseEntity}
+	 * @param bodyTypeReference 描述预期响应主体类型的类型引用
+	 * @param <T> 响应主体类型
+	 * @return 包含 {@code ResponseEntity} 的 {@code Mono}
 	 */
 	<T> Mono<ResponseEntity<T>> toEntity(ParameterizedTypeReference<T> bodyTypeReference);
 
 	/**
 	 * 将此响应返回为延迟的 {@code ResponseEntity} 列表。
-	 * @param elementClass the expected response body list element class
-	 * @param <T> the type of elements in the list
-	 * @return {@code Mono} with the list of {@code ResponseEntity}s
+	 * @param elementClass 预期的响应主体列表元素类
+	 * @param <T> 列表中元素的类型
+	 * @return 包含 {@code ResponseEntity} 列表的 {@code Mono}
 	 */
 	<T> Mono<ResponseEntity<List<T>>> toEntityList(Class<T> elementClass);
 
 	/**
 	 * 将此响应返回为延迟的 {@code ResponseEntity} 列表。
-	 * @param elementTypeRef the expected response body list element reference type
-	 * @param <T> the type of elements in the list
-	 * @return {@code Mono} with the list of {@code ResponseEntity}s
+	 * @param elementTypeRef 预期的响应主体列表元素的引用类型
+	 * @param <T> 列表中元素的类型
+	 * @return 包含 {@code ResponseEntity} 列表的 {@code Mono}
 	 */
 	<T> Mono<ResponseEntity<List<T>>> toEntityList(ParameterizedTypeReference<T> elementTypeRef);
 
 	/**
 	 * 将此响应返回为包含状态和头但没有正文的延迟 {@code ResponseEntity}。调用此方法将{@linkplain #releaseBody() 释放}响应正文。
-	 * @return {@code Mono} with the bodiless {@code ResponseEntity}
+	 * @return 包含无主体 {@code ResponseEntity} 的 {@code Mono}
 	 * @since 5.2
 	 */
 	Mono<ResponseEntity<Void>> toBodilessEntity();
 
 	/**
 	 * 创建包含响应状态、头、正文以及原始请求的 {@link WebClientResponseException}。
-	 * @return a {@code Mono} with the created exception
+	 * @return 包含所创建异常的 {@code Mono}
 	 * @since 5.2
 	 */
 	Mono<WebClientResponseException> createException();
@@ -178,15 +178,15 @@ public interface ClientResponse {
 	/**
 	 * 返回用于关联此交换消息的日志消息前缀。
 	 * <p>该前缀基于 {@linkplain ClientRequest#logPrefix()}，而后者又基于 {@link ClientRequest#LOG_ID_ATTRIBUTE LOG_ID_ATTRIBUTE} 请求属性的值，并进一步用 "[" 和 "]" 包围。
-	 * @return the log message prefix or an empty String if the
-	 * {@link ClientRequest#LOG_ID_ATTRIBUTE LOG_ID_ATTRIBUTE} is not set
+	 * @return 日志消息前缀；如果未设置
+	 * {@link ClientRequest#LOG_ID_ATTRIBUTE LOG_ID_ATTRIBUTE}，则为空字符串
 	 * @since 5.2.3
 	 */
 	String logPrefix();
 
 	/**
 	 * 返回用于修改此响应的构建器，例如更改状态、头、cookie，以及替换或转换正文。
-	 * @return a builder to mutate the response with
+	 * @return 用于修改响应的构建器
 	 * @since 5.3
 	 */
 	default Builder mutate() {
@@ -199,8 +199,8 @@ public interface ClientResponse {
 	/**
 	 * 使用给定响应的状态、头和 cookie 创建构建器。
 	 * <p><strong>注意：</strong>返回的构建器中的正文默认为 {@link Flux#empty()}。要沿用原始响应的正文，请使用 {@code otherResponse.bodyToFlux(DataBuffer.class)}，或直接使用基于实例的 {@link #mutate()} 方法。
-	 * @param other the response to copy the status, headers, and cookies from
-	 * @return the created builder
+	 * @param other 要从中复制状态、头和 Cookie 的响应
+	 * @return 创建的构建器
 	 * @deprecated as of 5.3 in favor of the instance based {@link #mutate()}.
 	 */
 	@Deprecated
@@ -210,8 +210,8 @@ public interface ClientResponse {
 
 	/**
 	 * 使用给定状态码并采用默认正文读取策略创建响应构建器。
-	 * @param statusCode the status code
-	 * @return the created builder
+	 * @param statusCode 状态码
+	 * @return 创建的构建器
 	 */
 	static Builder create(HttpStatus statusCode) {
 		return create(statusCode, ExchangeStrategies.withDefaults());
@@ -219,9 +219,9 @@ public interface ClientResponse {
 
 	/**
 	 * 使用给定状态码和正文读取策略创建响应构建器。
-	 * @param statusCode the status code
-	 * @param strategies the strategies
-	 * @return the created builder
+	 * @param statusCode 状态码
+	 * @param strategies 策略
+	 * @return 创建的构建器
 	 */
 	static Builder create(HttpStatus statusCode, ExchangeStrategies strategies) {
 		return new DefaultClientResponseBuilder(strategies).statusCode(statusCode);
@@ -229,9 +229,9 @@ public interface ClientResponse {
 
 	/**
 	 * 使用给定原始状态码和正文读取策略创建响应构建器。
-	 * @param statusCode the status code
-	 * @param strategies the strategies
-	 * @return the created builder
+	 * @param statusCode 状态码
+	 * @param strategies 策略
+	 * @return 创建的构建器
 	 * @since 5.1.9
 	 */
 	static Builder create(int statusCode, ExchangeStrategies strategies) {
@@ -240,9 +240,9 @@ public interface ClientResponse {
 
 	/**
 	 * 使用给定状态码和消息正文读取器创建响应构建器。
-	 * @param statusCode the status code
-	 * @param messageReaders the message readers
-	 * @return the created builder
+	 * @param statusCode 状态码
+	 * @param messageReaders 消息读取器
+	 * @return 创建的构建器
 	 */
 	static Builder create(HttpStatus statusCode, List<HttpMessageReader<?>> messageReaders) {
 		return create(statusCode, new ExchangeStrategies() {
@@ -278,7 +278,7 @@ public interface ClientResponse {
 		/**
 		 * 返回给定名称头的头值（如果有）。
 		 * <p>如果未找到头值，则返回空列表。
-		 * @param headerName the header name
+		 * @param headerName 头名称
 		 */
 		List<String> header(String headerName);
 
@@ -296,24 +296,24 @@ public interface ClientResponse {
 
 		/**
 		 * 设置响应的状态码。
-		 * @param statusCode the new status code
-		 * @return this builder
+		 * @param statusCode 新的状态码
+		 * @return 此构建器
 		 */
 		Builder statusCode(HttpStatus statusCode);
 
 		/**
 		 * 设置响应的原始状态码。
-		 * @param statusCode the new status code
-		 * @return this builder
+		 * @param statusCode 新的状态码
+		 * @return 此构建器
 		 * @since 5.1.9
 		 */
 		Builder rawStatusCode(int statusCode);
 
 		/**
 		 * 在给定名称下添加给定的头值。
-		 * @param headerName the header name
-		 * @param headerValues the header value(s)
-		 * @return this builder
+		 * @param headerName 头名称
+		 * @param headerValues 头值
+		 * @return 此构建器
 		 * @see HttpHeaders#add(String, String)
 		 */
 		Builder header(String headerName, String... headerValues);
@@ -321,31 +321,31 @@ public interface ClientResponse {
 		/**
 		 * 使用给定的消费者操作此响应的头。
 		 * <p>提供给消费者的头是“实时”的，因此消费者可用于{@linkplain HttpHeaders#set(String, String) 覆盖}现有头值、{@linkplain HttpHeaders#remove(Object) 删除}值，或使用任何其他 {@link HttpHeaders} 方法。
-		 * @param headersConsumer a function that consumes the {@code HttpHeaders}
-		 * @return this builder
+		 * @param headersConsumer 消费 {@code HttpHeaders} 的函数
+		 * @return 此构建器
 		 */
 		Builder headers(Consumer<HttpHeaders> headersConsumer);
 
 		/**
 		 * 添加具有给定名称和值的 cookie。
-		 * @param name the cookie name
-		 * @param values the cookie value(s)
-		 * @return this builder
+		 * @param name Cookie 名称
+		 * @param values Cookie 值
+		 * @return 此构建器
 		 */
 		Builder cookie(String name, String... values);
 
 		/**
 		 * 使用给定的消费者操作此响应的 cookie。
 		 * <p>提供给消费者的映射是“实时”的，因此消费者可用于{@linkplain MultiValueMap#set(Object, Object) 覆盖}现有 cookie 值、{@linkplain MultiValueMap#remove(Object) 删除}值，或使用任何其他 {@link MultiValueMap} 方法。
-		 * @param cookiesConsumer a function that consumes the cookies map
-		 * @return this builder
+		 * @param cookiesConsumer 消费 Cookie 映射的函数
+		 * @return 此构建器
 		 */
 		Builder cookies(Consumer<MultiValueMap<String, ResponseCookie>> cookiesConsumer);
 
 		/**
 		 * 如果构建器中已设置正文，则转换响应正文。
-		 * @param transformer the transformation function to use
-		 * @return this builder
+		 * @param transformer 要使用的转换函数
+		 * @return 此构建器
 		 * @since 5.3
 		 */
 		Builder body(Function<Flux<DataBuffer>, Flux<DataBuffer>> transformer);
@@ -353,23 +353,23 @@ public interface ClientResponse {
 		/**
 		 * 设置响应正文。
 		 * <p><strong>注意：</strong>此方法将排空构建器中已设置的现有正文。
-		 * @param body the new body to use
-		 * @return this builder
+		 * @param body 要使用的新主体
+		 * @return 此构建器
 		 */
 		Builder body(Flux<DataBuffer> body);
 
 		/**
 		 * 将响应正文设置为给定字符串的 UTF-8 编码字节。
 		 * <p><strong>注意：</strong>此方法将排空构建器中已设置的现有正文。
-		 * @param body the new body.
-		 * @return this builder
+		 * @param body 新的主体。
+		 * @return 此构建器
 		 */
 		Builder body(String body);
 
 		/**
 		 * 设置与响应关联的请求。
-		 * @param request the request
-		 * @return this builder
+		 * @param request 请求
+		 * @return 此构建器
 		 * @since 5.2
 		 */
 		Builder request(HttpRequest request);

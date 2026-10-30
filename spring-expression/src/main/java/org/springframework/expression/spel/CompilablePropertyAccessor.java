@@ -40,9 +40,9 @@ public interface CompilablePropertyAccessor extends PropertyAccessor, Opcodes {
 
 	/**
 	 * 在必要时使用 codeflow 中的上下文信息，将执行访问操作的字节码生成到指定的 MethodVisitor 中。
-	 * @param propertyName the name of the property
-	 * @param mv the Asm method visitor into which code should be generated
-	 * @param cf the current state of the expression compiler
+	 * @param propertyName 属性名称
+	 * @param mv 生成代码的目标 Asm 方法访问器
+	 * @param cf 表达式编译器的当前状态
 	 */
 	void generateCode(String propertyName, MethodVisitor mv, CodeFlow cf);
 

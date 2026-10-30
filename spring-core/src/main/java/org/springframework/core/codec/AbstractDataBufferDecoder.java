@@ -40,7 +40,7 @@ import org.springframework.util.MimeType;
  *
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <T> the element type
+ * @param <T> 元素类型
  */
 @SuppressWarnings("deprecation")
 public abstract class AbstractDataBufferDecoder<T> extends AbstractDecoder<T> {
@@ -59,7 +59,7 @@ public abstract class AbstractDataBufferDecoder<T> extends AbstractDecoder<T> {
 	 * {@link org.springframework.core.io.Resource Resource}、{@code String} 等而产生的。在拆分输入流时
 	 * （例如分隔文本）也可能出现这种情况，此时该限制适用于分隔符之间缓冲的数据。
 	 * <p>默认设置为 256K。
-	 * @param byteCount the max number of bytes to buffer, or -1 for unlimited
+	 * @param byteCount 要缓冲的最大字节数；-1 表示不限制
 	 * @since 5.1.11
 	 */
 	public void setMaxInMemorySize(int byteCount) {

@@ -31,10 +31,10 @@ public interface KeyGenerator {
 
 	/**
 	 * 为给定的方法及其参数生成键。
-	 * @param target the target instance
-	 * @param method the method being called
-	 * @param params the method parameters (with any var-args expanded)
-	 * @return a generated key
+	 * @param target 目标实例
+	 * @param method 被调用的方法
+	 * @param params 方法参数（所有可变参数均已展开）
+	 * @return 生成的键
 	 */
 	Object generate(Object target, Method method, Object... params);
 

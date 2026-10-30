@@ -179,8 +179,8 @@ public abstract class AbstractMessageEndpointFactory implements MessageEndpointF
 
 	/**
 	 * 创建实际的端点实例，作为此工厂内部类 {@link AbstractMessageEndpoint} 的子类。
-	 * @return the actual endpoint instance (never {@code null})
-	 * @throws UnavailableException if no endpoint is available at present
+	 * @return 实际的端点实例（永不为 {@code null}）
+	 * @throws UnavailableException 如果当前没有可用的端点
 	 */
 	protected abstract AbstractMessageEndpoint createEndpointInternal() throws UnavailableException;
 
@@ -200,7 +200,7 @@ public abstract class AbstractMessageEndpointFactory implements MessageEndpointF
 
 		/**
 		 * 初始化此端点的 TransactionDelegate。
-		 * @param xaResource the XAResource for this endpoint
+		 * @param xaResource 此端点的 XAResource
 		 */
 		void initXAResource(XAResource xaResource) {
 			this.transactionDelegate = new TransactionDelegate(xaResource);
@@ -232,7 +232,7 @@ public abstract class AbstractMessageEndpointFactory implements MessageEndpointF
 		/**
 		 * 用于暴露端点 ClassLoader 的模板方法
 		 * （通常是加载消息监听器类的 ClassLoader）。
-		 * @return the endpoint ClassLoader (never {@code null})
+		 * @return 端点 ClassLoader（永不为 {@code null}）
 		 */
 		protected abstract ClassLoader getEndpointClassLoader();
 
@@ -246,7 +246,7 @@ public abstract class AbstractMessageEndpointFactory implements MessageEndpointF
 		/**
 		 * 通知端点基类具体端点调用导致异常的回调方法。
 		 * <p>由子类在具体端点抛出异常时调用。
-		 * @param ex the exception thrown from the concrete endpoint
+		 * @param ex 具体端点抛出的异常
 		 */
 		protected void onEndpointException(Throwable ex) {
 			Assert.state(this.transactionDelegate != null, "Not initialized");

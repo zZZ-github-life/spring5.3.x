@@ -63,9 +63,8 @@ public final class BridgeMethodResolver {
 	 * <p>传入非桥接的 {@link Method} 实例来调用此方法是安全的。在这种情况下，
 	 * 提供的 {@link Method} 实例会直接返回给调用者。
 	 * 调用者<strong>无需</strong>在调用此方法之前检查是否存在桥接。
-	 * @param bridgeMethod the method to introspect
-	 * @return the original method (either the bridged method or the passed-in method
-	 * if no more specific one could be found)
+	 * @param bridgeMethod 要内省的方法
+	 * @return 原始方法（桥接方法，或在找不到更具体的方法时传入的方法）
 	 */
 	public static Method findBridgedMethod(Method bridgeMethod) {
 		if (!bridgeMethod.isBridge()) {
@@ -106,9 +105,9 @@ public final class BridgeMethodResolver {
 
 	/**
 	 * 在给定的候选中搜索被桥接的方法。
-	 * @param candidateMethods the List of candidate Methods
-	 * @param bridgeMethod the bridge method
-	 * @return the bridged method, or {@code null} if none found
+	 * @param candidateMethods 候选 Method 的列表
+	 * @param bridgeMethod 桥接方法
+	 * @return 被桥接的方法，若未找到则为 {@code null}
 	 */
 	@Nullable
 	private static Method searchCandidates(List<Method> candidateMethods, Method bridgeMethod) {
@@ -172,7 +171,7 @@ public final class BridgeMethodResolver {
 
 	/**
 	 * 搜索擦除后签名与提供的桥接方法相匹配的泛型 {@link Method} 声明。
-	 * @throws IllegalStateException if the generic declaration cannot be found
+	 * @throws IllegalStateException 如果找不到泛型声明
 	 */
 	@Nullable
 	private static Method findGenericDeclaration(Method bridgeMethod) {
@@ -227,7 +226,7 @@ public final class BridgeMethodResolver {
 	 * 那么它就是 Java 6 中为修复 https://bugs.openjdk.org/browse/JDK-6342411.
 	 * 而引入的“可见性”桥接方法。
 	 * 另请参见 https://stas-blogspot.blogspot.com/2010/03/java-bridge-methods-explained.html
-	 * @return whether signatures match as described
+	 * @return 签名是否如所述那样匹配
 	 */
 	public static boolean isVisibilityBridgeMethodPair(Method bridgeMethod, Method bridgedMethod) {
 		if (bridgeMethod == bridgedMethod) {

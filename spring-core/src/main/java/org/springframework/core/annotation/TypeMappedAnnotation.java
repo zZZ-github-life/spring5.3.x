@@ -58,7 +58,7 @@ import org.springframework.util.ClassUtils;
  * @author Juergen Hoeller
  * @author Sam Brannen
  * @since 5.2
- * @param <A> the annotation type
+ * @param <A> 注解类型
  * @see TypeMappedAnnotations
  */
 final class TypeMappedAnnotation<A extends Annotation> extends AbstractMergedAnnotation<A> {
@@ -335,7 +335,7 @@ final class TypeMappedAnnotation<A extends Annotation> extends AbstractMergedAnn
 
 	/**
 	 * 判断所提供的对象是否为所需{@linkplain #getType() type}的注解。
-	 * @param obj the object to check
+	 * @param obj 要检查的对象
 	 * @since 5.3.22
 	 */
 	private boolean isTargetAnnotation(@Nullable Object obj) {
@@ -345,7 +345,7 @@ final class TypeMappedAnnotation<A extends Annotation> extends AbstractMergedAnn
 	/**
 	 * 判断所提供的注解是否尚未被合成，<strong>并且</strong>判断映射的注解是否为需要合并其属性的组合注
 	 * 解，或者映射的注解是否通常{@linkplain AnnotationTypeMapping#isSynthesizable() synthesizable}。
-	 * @param annotation the annotation to check
+	 * @param annotation 要检查的注解
 	 * @since 5.3.22
 	 */
 	private boolean isSynthesizable(Annotation annotation) {

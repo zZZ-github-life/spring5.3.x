@@ -44,7 +44,7 @@ import org.springframework.util.Assert;
  * @author Violeta Georgieva
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <T> the type of element signaled
+ * @param <T> 所发出信号元素的类型
  */
 public abstract class AbstractListenerReadPublisher<T> implements Publisher<T> {
 
@@ -153,7 +153,7 @@ public abstract class AbstractListenerReadPublisher<T> implements Publisher<T> {
 
 	/**
 	 * 如果可能，从输入中读取一次。
-	 * @return the item that was read; or {@code null}
+	 * @return 已读取的项；或者 {@code null}
 	 */
 	@Nullable
 	protected abstract T read() throws IOException;
@@ -181,8 +181,8 @@ public abstract class AbstractListenerReadPublisher<T> implements Publisher<T> {
 	/**
 	 * 一次读取并发布一条数据，直到没有更多数据、没有更多需求，
 	 * 或者在此期间已经完成。
-	 * @return {@code true} if there is more demand; {@code false} if there is
-	 * no more demand or we have completed.
+	 * @return 如果还有更多需求则返回 {@code true}；如果没有更多需求
+	 * 或已完成则返回 {@code false}。
 	 */
 	private boolean readAndPublish() throws IOException {
 		long r;

@@ -75,8 +75,8 @@ public abstract class EntityManagerFactoryAccessor implements BeanFactoryAware {
 
 	/**
 	 * 获取供实际使用的 EntityManagerFactory。
-	 * @return the EntityManagerFactory (never {@code null})
-	 * @throws IllegalStateException in case of no EntityManagerFactory set
+	 * @return EntityManagerFactory（永不为 {@code null}）
+	 * @throws IllegalStateException 如果未设置 EntityManagerFactory
 	 * @since 5.0
 	 */
 	protected final EntityManagerFactory obtainEntityManagerFactory() {
@@ -158,8 +158,8 @@ public abstract class EntityManagerFactoryAccessor implements BeanFactoryAware {
 	/**
 	 * 从此访问器的 EntityManagerFactory 获取一个新的 EntityManager。
 	 * <p>可以在子类中重写，以创建特定的 EntityManager 变体。
-	 * @return a new EntityManager
-	 * @throws IllegalStateException if this accessor is not configured with an EntityManagerFactory
+	 * @return 新的 EntityManager
+	 * @throws IllegalStateException 如果此访问器未配置 EntityManagerFactory
 	 * @see javax.persistence.EntityManagerFactory#createEntityManager()
 	 * @see javax.persistence.EntityManagerFactory#createEntityManager(java.util.Map)
 	 */
@@ -171,8 +171,8 @@ public abstract class EntityManagerFactoryAccessor implements BeanFactoryAware {
 
 	/**
 	 * 获取此访问器的 EntityManagerFactory 的事务性 EntityManager（如果有）。
-	 * @return the transactional EntityManager, or {@code null} if none
-	 * @throws IllegalStateException if this accessor is not configured with an EntityManagerFactory
+	 * @return 事务性 EntityManager；如果没有则返回 {@code null}
+	 * @throws IllegalStateException 如果此访问器未配置 EntityManagerFactory
 	 * @see EntityManagerFactoryUtils#getTransactionalEntityManager(javax.persistence.EntityManagerFactory)
 	 * @see EntityManagerFactoryUtils#getTransactionalEntityManager(javax.persistence.EntityManagerFactory, java.util.Map)
 	 */

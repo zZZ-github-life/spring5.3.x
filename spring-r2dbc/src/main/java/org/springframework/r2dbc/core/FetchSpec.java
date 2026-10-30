@@ -21,7 +21,7 @@ package org.springframework.r2dbc.core;
  *
  * @author Mark Paluch
  * @since 5.3
- * @param <T> the row result type
+ * @param <T> 行结果类型
  * @see RowsFetchSpec
  * @see UpdatedRowsFetchSpec
  */

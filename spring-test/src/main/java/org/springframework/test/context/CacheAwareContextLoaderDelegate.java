@@ -60,9 +60,9 @@ public interface CacheAwareContextLoaderDelegate {
 	 * 因此，强烈建议自定义 {@code CacheAwareContextLoaderDelegate} 实现
 	 * 覆写此方法并提供更有意义的实现。请注意，Spring 中标准的
 	 * {@code CacheAwareContextLoaderDelegate} 实现已适当地覆写了此方法。
-	 * @param mergedContextConfiguration the merged context configuration used
-	 * to load the application context; never {@code null}
-	 * @return {@code true} if the application context has been loaded
+	 * @param mergedContextConfiguration 用于加载应用上下文的合并上下文配置；
+	 * 永不为 {@code null}
+	 * @return 如果应用上下文已加载，则返回 {@code true}。
 	 * @since 5.2
 	 * @see #loadContext
 	 * @see #closeContext
@@ -79,11 +79,10 @@ public interface CacheAwareContextLoaderDelegate {
 	 * 返回；否则，将加载它、存储到缓存中并返回。
 	 * <p>应通过调用
 	 * {@link org.springframework.test.context.cache.ContextCache#logStatistics()} 来记录缓存统计信息。
-	 * @param mergedContextConfiguration the merged context configuration to use
-	 * to load the application context; never {@code null}
-	 * @return the application context (never {@code null})
-	 * @throws IllegalStateException if an error occurs while retrieving or loading
-	 * the application context
+	 * @param mergedContextConfiguration 用于加载应用上下文的合并上下文配置；
+	 * 永不为 {@code null}
+	 * @return 应用上下文（永不为 {@code null}）
+	 * @throws IllegalStateException 在检索或加载应用上下文时发生错误
 	 * @see #isContextLoaded
 	 * @see #closeContext
 	 */
@@ -98,10 +97,10 @@ public interface CacheAwareContextLoaderDelegate {
 	 * 详情请参见 {@link HierarchyMode} 的 Javadoc。
 	 * <p>一般而言，仅当单例 Bean 的状态已更改（可能影响未来与
 	 * 上下文的交互）或需要提前从缓存中移除上下文时，才应调用此方法。
-	 * @param mergedContextConfiguration the merged context configuration for the
-	 * application context to close; never {@code null}
-	 * @param hierarchyMode the hierarchy mode; may be {@code null} if the context
-	 * is not part of a hierarchy
+	 * @param mergedContextConfiguration 要关闭的应用上下文的合并上下文配置；
+	 * 永不为 {@code null}
+	 * @param hierarchyMode 层次模式；如果该上下文不属于层次结构，
+	 * 则可为 {@code null}
 	 * @since 4.1
 	 * @see #isContextLoaded
 	 * @see #loadContext

@@ -49,7 +49,7 @@ public class BooleanComparator implements Comparator<Boolean>, Serializable {
 	 *
 	 * <p>或者，也可以使用默认的共享实例：{@code BooleanComparator.TRUE_LOW} 和
 	 * {@code BooleanComparator.TRUE_HIGH}。
-	 * @param trueLow whether to treat true as lower or higher than false
+	 * @param trueLow 是否将 true 视为低于还是高于 false
 	 * @see #TRUE_LOW
 	 * @see #TRUE_HIGH
 	 */

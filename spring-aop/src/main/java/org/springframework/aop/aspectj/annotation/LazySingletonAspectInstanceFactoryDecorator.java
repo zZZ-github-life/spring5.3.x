@@ -39,7 +39,7 @@ public class LazySingletonAspectInstanceFactoryDecorator implements MetadataAwar
 
 	/**
 	 * 为给定的 AspectInstanceFactory 创建一个新的延迟初始化装饰器。
-	 * @param maaif the MetadataAwareAspectInstanceFactory to decorate
+	 * @param maaif 要装饰的 MetadataAwareAspectInstanceFactory
 	 */
 	public LazySingletonAspectInstanceFactoryDecorator(MetadataAwareAspectInstanceFactory maaif) {
 		Assert.notNull(maaif, "AspectInstanceFactory must not be null");

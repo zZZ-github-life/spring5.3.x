@@ -66,7 +66,7 @@ public class PrintingResultHandler implements ResultHandler {
 
 	/**
 	 * 受保护的构造函数。
-	 * @param printer a {@link ResultValuePrinter} to do the actual writing
+	 * @param printer 用于执行实际写入的 {@link ResultValuePrinter}
 	 */
 	protected PrintingResultHandler(ResultValuePrinter printer) {
 		this.printer = printer;
@@ -74,7 +74,7 @@ public class PrintingResultHandler implements ResultHandler {
 
 	/**
 	 * 返回结果值打印器。
-	 * @return the printer
+	 * @return 该打印机
 	 */
 	protected ResultValuePrinter getPrinter() {
 		return this.printer;

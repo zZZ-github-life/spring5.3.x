@@ -92,8 +92,8 @@ public final class CollectionFactory {
 	/**
 	 * 判断给定的集合类型是否为<em>可近似</em>类型，
 	 * 即 {@link #createApproximateCollection} 能够近似创建的类型。
-	 * @param collectionType the collection type to check
-	 * @return {@code true} if the type is <em>approximable</em>
+	 * @param collectionType 要检查的集合类型
+	 * @return 如果该类型是 <em>approximable</em> 则返回 {@code true}
 	 */
 	public static boolean isApproximableCollectionType(@Nullable Class<?> collectionType) {
 		return (collectionType != null && approximableCollectionTypes.contains(collectionType));
@@ -106,9 +106,9 @@ public final class CollectionFactory {
 	 * 因此如果提供的 {@code collection} 是 {@link EnumSet}，则无法保证类型安全。在此类场景中，
 	 * 调用者需负责确保提供的 {@code collection} 的元素类型是与类型 {@code E} 匹配的枚举类型。
 	 * 作为替代方案，调用者可以将返回值视为原始集合或 {@link Object} 的集合。
-	 * @param collection the original collection object, potentially {@code null}
-	 * @param capacity the initial capacity
-	 * @return a new, empty collection instance
+	 * @param collection 原始集合对象，可能为 {@code null}
+	 * @param capacity 初始容量
+	 * @return 新的空集合实例
 	 * @see #isApproximableCollectionType
 	 * @see java.util.LinkedList
 	 * @see java.util.ArrayList
@@ -141,11 +141,10 @@ public final class CollectionFactory {
 	/**
 	 * 为给定的集合类型创建最合适的集合。
 	 * <p>以 {@code null} 元素类型委托给 {@link #createCollection(Class, Class, int)}。
-	 * @param collectionType the desired type of the target collection (never {@code null})
-	 * @param capacity the initial capacity
-	 * @return a new collection instance
-	 * @throws IllegalArgumentException if the supplied {@code collectionType}
-	 * is {@code null} or of type {@link EnumSet}
+	 * @param collectionType 目标集合的期望类型（永不为 {@code null}）
+	 * @param capacity 初始容量
+	 * @return 新的集合实例
+	 * @throws IllegalArgumentException 如果提供的 {@code collectionType} 为 {@code null} 或类型为 {@link EnumSet}
 	 */
 	public static <E> Collection<E> createCollection(Class<?> collectionType, int capacity) {
 		return createCollection(collectionType, null, capacity);
@@ -158,14 +157,13 @@ public final class CollectionFactory {
 	 * 在此类场景中，
 	 * 调用者需负责确保提供的 {@code elementType} 是与类型 {@code E} 匹配的枚举类型。
 	 * 作为替代方案，调用者可以将返回值视为原始集合或 {@link Object} 的集合。
-	 * @param collectionType the desired type of the target collection (never {@code null})
-	 * @param elementType the collection's element type, or {@code null} if unknown
-	 * (note: only relevant for {@link EnumSet} creation)
-	 * @param capacity the initial capacity
-	 * @return a new collection instance
-	 * @throws IllegalArgumentException if the supplied {@code collectionType} is
-	 * {@code null}; or if the desired {@code collectionType} is {@link EnumSet} and
-	 * the supplied {@code elementType} is not a subtype of {@link Enum}
+	 * @param collectionType 目标集合的期望类型（永不为 {@code null}）
+	 * @param elementType 集合的元素类型，未知时为 {@code null}（注意：仅与 {@link EnumSet} 的创建相关）
+	 * @param capacity 初始容量
+	 * @return 新的集合实例
+	 * @throws IllegalArgumentException 如果提供的 {@code collectionType} 为 {@code null}；
+	 * 或者期望的 {@code collectionType} 为 {@link EnumSet}，
+	 * 且提供的 {@code elementType} 不是 {@link Enum} 的子类型
 	 * @since 4.1.3
 	 * @see java.util.LinkedHashSet
 	 * @see java.util.ArrayList
@@ -211,8 +209,8 @@ public final class CollectionFactory {
 	/**
 	 * 判断给定的映射类型是否为<em>可近似</em>类型，
 	 * 即 {@link #createApproximateMap} 能够近似创建的类型。
-	 * @param mapType the map type to check
-	 * @return {@code true} if the type is <em>approximable</em>
+	 * @param mapType 要检查的映射类型
+	 * @return 如果该类型是 <em>approximable</em> 则返回 {@code true}
 	 */
 	public static boolean isApproximableMapType(@Nullable Class<?> mapType) {
 		return (mapType != null && approximableMapTypes.contains(mapType));
@@ -225,9 +223,9 @@ public final class CollectionFactory {
 	 * 因此如果提供的 {@code map} 是 {@link EnumMap}，则无法保证类型安全。在此类场景中，
 	 * 调用者需负责确保提供的 {@code map} 中的键类型是与类型 {@code K} 匹配的枚举类型。
 	 * 作为替代方案，调用者可以将返回值视为原始映射或以 {@link Object} 为键的映射。
-	 * @param map the original map object, potentially {@code null}
-	 * @param capacity the initial capacity
-	 * @return a new, empty map instance
+	 * @param map 原始映射对象，可能为 {@code null}
+	 * @param capacity 初始容量
+	 * @return 新的空映射实例
 	 * @see #isApproximableMapType
 	 * @see java.util.EnumMap
 	 * @see java.util.TreeMap
@@ -251,11 +249,10 @@ public final class CollectionFactory {
 	/**
 	 * 为给定的映射类型创建最合适的映射。
 	 * <p>以 {@code null} 键类型委托给 {@link #createMap(Class, Class, int)}。
-	 * @param mapType the desired type of the target map
-	 * @param capacity the initial capacity
-	 * @return a new map instance
-	 * @throws IllegalArgumentException if the supplied {@code mapType} is
-	 * {@code null} or of type {@link EnumMap}
+	 * @param mapType 目标映射的期望类型
+	 * @param capacity 初始容量
+	 * @return 新的映射实例
+	 * @throws IllegalArgumentException 如果提供的 {@code mapType} 为 {@code null} 或类型为 {@link EnumMap}
 	 */
 	public static <K, V> Map<K, V> createMap(Class<?> mapType, int capacity) {
 		return createMap(mapType, null, capacity);
@@ -268,14 +265,12 @@ public final class CollectionFactory {
 	 * 调用者需负责确保 {@code keyType} 是与类型 {@code K} 匹配的枚举类型。作为替代方案，
 	 * 调用者可以将返回值视为原始映射或以 {@link Object} 为键的映射。同样，
 	 * 如果期望的 {@code mapType} 是 {@link MultiValueMap}，也无法强制保证类型安全。
-	 * @param mapType the desired type of the target map (never {@code null})
-	 * @param keyType the map's key type, or {@code null} if unknown
-	 * (note: only relevant for {@link EnumMap} creation)
-	 * @param capacity the initial capacity
-	 * @return a new map instance
-	 * @throws IllegalArgumentException if the supplied {@code mapType} is
-	 * {@code null}; or if the desired {@code mapType} is {@link EnumMap} and
-	 * the supplied {@code keyType} is not a subtype of {@link Enum}
+	 * @param mapType 目标映射的期望类型（永不为 {@code null}）
+	 * @param keyType 映射的键类型，未知时为 {@code null}（注意：仅与 {@link EnumMap} 的创建相关）
+	 * @param capacity 初始容量
+	 * @return 新的映射实例
+	 * @throws IllegalArgumentException 如果提供的 {@code mapType} 为 {@code null}；或者期望的 {@code mapType} 为 {@link EnumMap}，
+	 * 且提供的 {@code keyType} 不是 {@link Enum} 的子类型
 	 * @since 4.1.3
 	 * @see java.util.LinkedHashMap
 	 * @see java.util.TreeMap
@@ -320,7 +315,7 @@ public final class CollectionFactory {
 	 * 创建 {@link java.util.Properties} 的一个变体，
 	 * 它会在 {@link Properties#getProperty} 中自动将非 String 值适配为 String 表示形式。
 	 * <p>此外，返回的 {@code Properties} 实例会根据键按字母数字顺序对属性排序。
-	 * @return a new {@code Properties} instance
+	 * @return 新的 {@code Properties} 实例
 	 * @since 4.3.4
 	 * @see #createSortedProperties(boolean)
 	 * @see #createSortedProperties(Properties, boolean)
@@ -342,9 +337,8 @@ public final class CollectionFactory {
 	 * <p>当把 {@link Properties} 实例存储到 properties 文件时，这可能很有用，
 	 * 因为它允许以可重复的方式生成此类文件，并保持属性顺序一致。
 	 * 生成的 properties 文件中的注释也可以选择省略。
-	 * @param omitComments {@code true} if comments should be omitted when
-	 * storing properties in a file
-	 * @return a new {@code Properties} instance
+	 * @param omitComments 如果将属性存储到文件时应省略注释则返回 {@code true}
+	 * @return 新的 {@code Properties} 实例
 	 * @since 5.2
 	 * @see #createStringAdaptingProperties()
 	 * @see #createSortedProperties(Properties, boolean)
@@ -360,11 +354,9 @@ public final class CollectionFactory {
 	 * 生成的 properties 文件中的注释也可以选择省略。
 	 * <p>返回的 {@code Properties} 实例将使用提供的 {@code properties} 对象中的属性填充，
 	 * 但提供的 {@code properties} 对象中的默认属性不会被复制。
-	 * @param properties the {@code Properties} object from which to copy the
-	 * initial properties
-	 * @param omitComments {@code true} if comments should be omitted when
-	 * storing properties in a file
-	 * @return a new {@code Properties} instance
+	 * @param properties 要从中复制初始属性的 {@code Properties} 对象
+	 * @param omitComments 如果将属性存储到文件时应省略注释则返回 {@code true}
+	 * @return 新的 {@code Properties} 实例
 	 * @since 5.2
 	 * @see #createStringAdaptingProperties()
 	 * @see #createSortedProperties(boolean)
@@ -375,9 +367,9 @@ public final class CollectionFactory {
 
 	/**
 	 * 将给定类型转换为 {@link Enum} 的子类型。
-	 * @param enumType the enum type, never {@code null}
-	 * @return the given type as subtype of {@link Enum}
-	 * @throws IllegalArgumentException if the given type is not a subtype of {@link Enum}
+	 * @param enumType 枚举类型，永不为 {@code null}
+	 * @return 作为 {@link Enum} 子类型的给定类型
+	 * @throws IllegalArgumentException 如果给定类型不是 {@link Enum} 的子类型
 	 */
 	@SuppressWarnings("rawtypes")
 	private static Class<? extends Enum> asEnumType(Class<?> enumType) {

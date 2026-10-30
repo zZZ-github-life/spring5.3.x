@@ -84,7 +84,7 @@ public final class StringDecoder extends AbstractDataBufferDecoder<String> {
 	/**
 	 * 设置当 MimeType 未指定字符集时回退使用的默认字符集。
 	 * <p>默认值为 {@code UTF-8}。
-	 * @param defaultCharset the charset to fall back on
+	 * @param defaultCharset 备用的字符集
 	 * @since 5.2.9
 	 */
 	public void setDefaultCharset(Charset defaultCharset) {
@@ -206,7 +206,7 @@ public final class StringDecoder extends AbstractDataBufferDecoder<String> {
 
 	/**
 	 * 为 {@code "text/plain"} 创建一个 {@code StringDecoder}。
-	 * @param stripDelimiter this flag is ignored
+	 * @param stripDelimiter 此标志被忽略
 	 * @deprecated as of Spring 5.0.4, in favor of {@link #textPlainOnly()} or
 	 * {@link #textPlainOnly(List, boolean)}
 	 */
@@ -224,9 +224,8 @@ public final class StringDecoder extends AbstractDataBufferDecoder<String> {
 
 	/**
 	 * 为 {@code "text/plain"} 创建一个 {@code StringDecoder}。
-	 * @param delimiters delimiter strings to use to split the input stream
-	 * @param stripDelimiter whether to remove delimiters from the resulting
-	 * input strings
+	 * @param delimiters 用于拆分输入流的分隔符字符串
+	 * @param stripDelimiter 是否从结果输入字符串中移除分隔符
 	 */
 	public static StringDecoder textPlainOnly(List<String> delimiters, boolean stripDelimiter) {
 		return new StringDecoder(delimiters, stripDelimiter, new MimeType("text", "plain", DEFAULT_CHARSET));
@@ -234,7 +233,7 @@ public final class StringDecoder extends AbstractDataBufferDecoder<String> {
 
 	/**
 	 * 创建一个支持所有 MIME 类型的 {@code StringDecoder}。
-	 * @param stripDelimiter this flag is ignored
+	 * @param stripDelimiter 此标志被忽略
 	 * @deprecated as of Spring 5.0.4, in favor of {@link #allMimeTypes()} or
 	 * {@link #allMimeTypes(List, boolean)}
 	 */
@@ -252,9 +251,8 @@ public final class StringDecoder extends AbstractDataBufferDecoder<String> {
 
 	/**
 	 * 创建一个支持所有 MIME 类型的 {@code StringDecoder}。
-	 * @param delimiters delimiter strings to use to split the input stream
-	 * @param stripDelimiter whether to remove delimiters from the resulting
-	 * input strings
+	 * @param delimiters 用于拆分输入流的分隔符字符串
+	 * @param stripDelimiter 是否从结果输入字符串中移除分隔符
 	 */
 	public static StringDecoder allMimeTypes(List<String> delimiters, boolean stripDelimiter) {
 		return new StringDecoder(delimiters, stripDelimiter,

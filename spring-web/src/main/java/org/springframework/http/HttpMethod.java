@@ -44,8 +44,8 @@ public enum HttpMethod {
 
 	/**
 	 * 将给定的方法值解析为 {@code HttpMethod}。
-	 * @param method the method value as a String
-	 * @return the corresponding {@code HttpMethod}, or {@code null} if not found
+	 * @param method 以 String 表示的方法值
+	 * @return 对应的 {@code HttpMethod}，如果未找到则为 {@code null}
 	 * @since 4.2.4
 	 */
 	@Nullable
@@ -56,8 +56,8 @@ public enum HttpMethod {
 
 	/**
 	 * 确定此 {@code HttpMethod} 是否与给定的方法值匹配。
-	 * @param method the HTTP method as a String
-	 * @return {@code true} if it matches, {@code false} otherwise
+	 * @param method 以 String 表示的 HTTP 方法
+	 * @return 如果匹配则返回 {@code true}，否则返回 {@code false}
 	 * @since 4.2.4
 	 */
 	public boolean matches(String method) {

@@ -49,7 +49,7 @@ public abstract class AbstractUriTemplateHandler implements UriTemplateHandler {
 	 * scheme 和 host，但可选地包含端口和路径。
 	 * 基础 URL 必须完全展开并编码，这可以通过
 	 * {@link UriComponentsBuilder} 完成。
-	 * @param baseUrl the base URL.
+	 * @param baseUrl 基础 URL。
 	 */
 	public void setBaseUrl(@Nullable String baseUrl) {
 		if (baseUrl != null) {
@@ -74,7 +74,7 @@ public abstract class AbstractUriTemplateHandler implements UriTemplateHandler {
 	 * 配置用于每个展开 URI 模板的默认 URI 变量值。这些默认值
 	 * 仅在通过 Map 展开时适用，而不适用于数组；使用 Map 时，
 	 * 提供给 {@link #expand(String, Map)} 的 Map 可以覆盖默认值。
-	 * @param defaultUriVariables the default URI variable values
+	 * @param defaultUriVariables 默认 URI 变量值
 	 * @since 4.3
 	 */
 	public void setDefaultUriVariables(@Nullable Map<String, ?> defaultUriVariables) {

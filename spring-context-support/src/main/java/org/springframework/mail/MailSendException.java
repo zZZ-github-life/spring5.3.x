@@ -42,7 +42,7 @@ public class MailSendException extends MailException {
 
 	/**
 	 * MailSendException 的构造函数。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public MailSendException(String msg) {
 		this(msg, null);
@@ -50,8 +50,8 @@ public class MailSendException extends MailException {
 
 	/**
 	 * MailSendException 的构造函数。
-	 * @param msg the detail message
-	 * @param cause the root cause from the mail API in use
+	 * @param msg 详细消息
+	 * @param cause 所用邮件 API 的根本原因
 	 */
 	public MailSendException(String msg, @Nullable Throwable cause) {
 		super(msg, cause);
@@ -63,10 +63,9 @@ public class MailSendException extends MailException {
 	 * 用于注册失败消息的构造方法，
 	 * 以失败的消息作为键，抛出的异常作为值。
 	 * <p>这些消息应与最初传递给所调用的 send 方法的消息相同。
-	 * @param msg the detail message
-	 * @param cause the root cause from the mail API in use
-	 * @param failedMessages a Map of failed messages as keys and thrown
-	 * exceptions as values
+	 * @param msg 详细消息
+	 * @param cause 所用邮件 API 的根本原因
+	 * @param failedMessages 以失败消息为键、以抛出的异常为值的 Map
 	 */
 	public MailSendException(@Nullable String msg, @Nullable Throwable cause, Map<Object, Exception> failedMessages) {
 		super(msg, cause);
@@ -78,8 +77,7 @@ public class MailSendException extends MailException {
 	 * 用于注册失败消息的构造方法，
 	 * 以失败的消息作为键，抛出的异常作为值。
 	 * <p>这些消息应与最初传递给所调用的 send 方法的消息相同。
-	 * @param failedMessages a Map of failed messages as keys and thrown
-	 * exceptions as values
+	 * @param failedMessages 以失败消息为键、以抛出的异常为值的 Map
 	 */
 	public MailSendException(Map<Object, Exception> failedMessages) {
 		this(null, null, failedMessages);
@@ -96,7 +94,7 @@ public class MailSendException extends MailException {
 	 * 消息的类型将为 {@code MimeMessage}。
 	 * <p><b>注意：</b>此 Map 在序列化后将不可用。
 	 * 在这种场景下请使用 {@link #getMessageExceptions()}，它在序列化后同样可用。
-	 * @return the Map of failed messages as keys and thrown exceptions as values
+	 * @return 以失败消息为键、以抛出的异常为值的 Map
 	 * @see SimpleMailMessage
 	 * @see javax.mail.internet.MimeMessage
 	 */
@@ -108,8 +106,7 @@ public class MailSendException extends MailException {
 	 * 返回抛出的消息异常数组。
 	 * <p>请注意，常规的邮件服务器连接失败不会导致此处返回失败的消息：
 	 * 只有在实际尝试发送但失败的消息才会包含在此处。
-	 * @return the array of thrown message exceptions,
-	 * or an empty array if no failed messages
+	 * @return 抛出的消息异常数组；如果没有失败消息，则为空数组
 	 */
 	public final Exception[] getMessageExceptions() {
 		return (this.messageExceptions != null ? this.messageExceptions : new Exception[0]);

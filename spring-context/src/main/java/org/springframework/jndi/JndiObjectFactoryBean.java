@@ -210,8 +210,8 @@ public class JndiObjectFactoryBean extends JndiObjectLocator
 
 	/**
 	 * 查找的变体，在查找失败时返回指定的 "defaultObject"（如果有）。
-	 * @return the located object, or the "defaultObject" as fallback
-	 * @throws NamingException in case of lookup failure without fallback
+	 * @return 定位到的对象；如果无法定位则回退到 "defaultObject"
+	 * @throws NamingException 在没有回退的情况下查找失败时
 	 * @see #setDefaultObject
 	 */
 	protected Object lookupWithFallback() throws NamingException {
@@ -280,8 +280,8 @@ public class JndiObjectFactoryBean extends JndiObjectLocator
 	/**
 	 * 为给定的接口创建一个组合接口 Class，在单个 Class 中实现给定的接口。
 	 * <p>默认实现会为给定的接口构建一个 JDK 代理类。
-	 * @param interfaces the interfaces to merge
-	 * @return the merged interface as Class
+	 * @param interfaces 要合并的接口
+	 * @return 以 Class 表示的合并后接口
 	 * @see java.lang.reflect.Proxy#getProxyClass
 	 */
 	protected Class<?> createCompositeInterface(Class<?>[] interfaces) {

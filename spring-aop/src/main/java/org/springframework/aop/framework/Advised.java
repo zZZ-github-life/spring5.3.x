@@ -52,14 +52,14 @@ public interface Advised extends TargetClassAware {
 
 	/**
 	 * 确定给定的接口是否被代理。
-	 * @param intf the interface to check
+	 * @param intf 要检查的接口
 	 */
 	boolean isInterfaceProxied(Class<?> intf);
 
 	/**
 	 * 更改此 {@code Advised} 对象使用的 {@code TargetSource}。
 	 * <p>仅在配置未 {@linkplain #isFrozen 冻结} 时有效。
-	 * @param targetSource new TargetSource to use
+	 * @param targetSource 要使用的新 TargetSource
 	 */
 	void setTargetSource(TargetSource targetSource);
 
@@ -100,7 +100,7 @@ public interface Advised extends TargetClassAware {
 
 	/**
 	 * 返回应用于此代理的 advisor。
-	 * @return a list of Advisors applying to this proxy (never {@code null})
+	 * @return 应用于此代理的 Advisor 列表（永不为 {@code null}）
 	 */
 	Advisor[] getAdvisors();
 
@@ -117,39 +117,39 @@ public interface Advised extends TargetClassAware {
 	 * 在 advisor 链的末尾添加一个 advisor。
 	 * <p>该 Advisor 可以是 {@link org.springframework.aop.IntroductionAdvisor}，此时当再次从相关工厂获
 	 * 取代理时，新的接口将可用。
-	 * @param advisor the advisor to add to the end of the chain
-	 * @throws AopConfigException in case of invalid advice
+	 * @param advisor 要添加到链末尾的通知器
+	 * @throws AopConfigException 如果通知无效
 	 */
 	void addAdvisor(Advisor advisor) throws AopConfigException;
 
 	/**
 	 * 在链中的指定位置添加一个 Advisor。
-	 * @param advisor the advisor to add at the specified position in the chain
-	 * @param pos position in chain (0 is head). Must be valid.
-	 * @throws AopConfigException in case of invalid advice
+	 * @param advisor 要添加到链中指定位置的通知器
+	 * @param pos 链中的位置（0 为头部）。必须有效。
+	 * @throws AopConfigException 如果通知无效
 	 */
 	void addAdvisor(int pos, Advisor advisor) throws AopConfigException;
 
 	/**
 	 * 移除给定的 advisor。
-	 * @param advisor the advisor to remove
-	 * @return {@code true} if the advisor was removed; {@code false}
-	 * if the advisor was not found and hence could not be removed
+	 * @param advisor 要移除的通知器
+	 * @return 如果通知器已被移除，则返回 {@code true}；如果未找到该通知器
+	 * 因而无法移除，则返回 {@code false}
 	 */
 	boolean removeAdvisor(Advisor advisor);
 
 	/**
 	 * 移除给定索引处的 advisor。
-	 * @param index the index of advisor to remove
-	 * @throws AopConfigException if the index is invalid
+	 * @param index 要移除的通知器的索引
+	 * @throws AopConfigException 如果索引无效
 	 */
 	void removeAdvisor(int index) throws AopConfigException;
 
 	/**
 	 * 返回给定 advisor 的索引（从 0 开始），如果没有此类 advisor 应用于此代理，则返回 -1。
 	 * <p>该方法的返回值可用作 advisors 数组的索引。
-	 * @param advisor the advisor to search for
-	 * @return index from 0 of this advisor, or -1 if there's no such advisor
+	 * @param advisor 要搜索的通知器
+	 * @return 该通知器的索引（从 0 开始），如果没有该通知器则为 -1
 	 */
 	int indexOf(Advisor advisor);
 
@@ -157,11 +157,11 @@ public interface Advised extends TargetClassAware {
 	 * 替换给定的 advisor。
 	 * <p><b>Note:</b> 如果该 advisor 是 {@link org.springframework.aop.IntroductionAdvisor}，而替换者
 	 * 不是该类型或实现了不同的接口，则需要重新获取代理，否则旧接口将不再受支持，新接口也不会被实现。
-	 * @param a the advisor to replace
-	 * @param b the advisor to replace it with
-	 * @return whether it was replaced. If the advisor wasn't found in the
-	 * list of advisors, this method returns {@code false} and does nothing.
-	 * @throws AopConfigException in case of invalid advice
+	 * @param a 要替换的通知器
+	 * @param b 用于替换它的通知器
+	 * @return 是否已替换。如果在通知器列表中未找到该通知器，
+	 * 此方法返回 {@code false} 且不做任何操作。
+	 * @throws AopConfigException 如果通知无效
 	 */
 	boolean replaceAdvisor(Advisor a, Advisor b) throws AopConfigException;
 
@@ -171,8 +171,8 @@ public interface Advised extends TargetClassAware {
 	 * {@code getAdvisors()} 方法返回。
 	 * <p>注意，给定的通知将应用于代理上的所有调用，甚至包括 {@code toString()} 方法！请使用适当的通知
 	 * 实现或指定适当的切点，以应用于更窄的方法集合。
-	 * @param advice the advice to add to the tail of the chain
-	 * @throws AopConfigException in case of invalid advice
+	 * @param advice 要添加到链尾部的通知
+	 * @throws AopConfigException 如果通知无效
 	 * @see #addAdvice(int, Advice)
 	 * @see org.springframework.aop.support.DefaultPointcutAdvisor
 	 */
@@ -185,31 +185,31 @@ public interface Advised extends TargetClassAware {
 	 * {@link #getAdvisors()} 方法返回。
 	 * <p>注意：给定的通知将应用于代理上的所有调用，甚至包括 {@code toString()} 方法！请使用适当的通知
 	 * 实现或指定适当的切点，以应用于更窄的方法集合。
-	 * @param pos index from 0 (head)
-	 * @param advice the advice to add at the specified position in the advice chain
-	 * @throws AopConfigException in case of invalid advice
+	 * @param pos 索引，从 0 开始（头部）
+	 * @param advice 要添加到通知链中指定位置的通知
+	 * @throws AopConfigException 如果通知无效
 	 */
 	void addAdvice(int pos, Advice advice) throws AopConfigException;
 
 	/**
 	 * 移除包含给定通知的 Advisor。
-	 * @param advice the advice to remove
-	 * @return {@code true} of the advice was found and removed;
-	 * {@code false} if there was no such advice
+	 * @param advice 要移除的通知
+	 * @return 如果找到并移除了该通知，则返回 {@code true}；如果没有该通知，
+	 * 则返回 {@code false}
 	 */
 	boolean removeAdvice(Advice advice);
 
 	/**
 	 * 返回给定 AOP Alliance Advice 的索引（从 0 开始），如果没有此类通知作为此代理的通知，则返回 -1。
 	 * <p>该方法的返回值可用作 advisors 数组的索引。
-	 * @param advice the AOP Alliance advice to search for
-	 * @return index from 0 of this advice, or -1 if there's no such advice
+	 * @param advice 要搜索的 AOP Alliance 通知
+	 * @return 该通知的索引（从 0 开始），如果没有该通知则为 -1
 	 */
 	int indexOf(Advice advice);
 
 	/**
 	 * 由于 {@code toString()} 通常会委托给目标，此方法返回 AOP 代理的对应结果。
-	 * @return a string description of the proxy configuration
+	 * @return 代理配置的字符串描述
 	 */
 	String toProxyConfigString();
 

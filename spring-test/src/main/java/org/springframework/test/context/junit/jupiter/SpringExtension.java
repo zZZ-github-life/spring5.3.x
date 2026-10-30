@@ -253,9 +253,9 @@ public class SpringExtension implements BeforeAllCallback, AfterAllCallback, Tes
 
 	/**
 	 * 获取与所提供的 {@code ExtensionContext} 关联的 {@link ApplicationContext}。
-	 * @param context the current {@code ExtensionContext} (never {@code null})
-	 * @return the application context
-	 * @throws IllegalStateException if an error occurs while retrieving the application context
+	 * @param context 当前的 {@code ExtensionContext}（从不为 {@code null}）
+	 * @return 应用上下文
+	 * @throws IllegalStateException 如果检索应用上下文时发生错误
 	 * @see org.springframework.test.context.TestContext#getApplicationContext()
 	 */
 	public static ApplicationContext getApplicationContext(ExtensionContext context) {
@@ -264,7 +264,7 @@ public class SpringExtension implements BeforeAllCallback, AfterAllCallback, Tes
 
 	/**
 	 * 获取与所提供的 {@code ExtensionContext} 关联的 {@link TestContextManager}。
-	 * @return the {@code TestContextManager} (never {@code null})
+	 * @return 该 {@code TestContextManager}（从不为 {@code null}）
 	 */
 	static TestContextManager getTestContextManager(ExtensionContext context) {
 		Assert.notNull(context, "ExtensionContext must not be null");

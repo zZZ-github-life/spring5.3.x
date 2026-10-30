@@ -27,7 +27,7 @@ public class EvaluationException extends ExpressionException {
 
 	/**
 	 * 创建一个新的表达式求值异常。
-	 * @param message description of the problem that occurred
+	 * @param message 所发生问题的描述
 	 */
 	public EvaluationException(String message) {
 		super(message);
@@ -35,8 +35,8 @@ public class EvaluationException extends ExpressionException {
 
 	/**
 	 * 创建一个新的表达式求值异常。
-	 * @param message description of the problem that occurred
-	 * @param cause the underlying cause of this exception
+	 * @param message 所发生问题的描述
+	 * @param cause 此异常的根本原因
 	 */
 	public EvaluationException(String message, Throwable cause) {
 		super(message,cause);
@@ -44,8 +44,8 @@ public class EvaluationException extends ExpressionException {
 
 	/**
 	 * 创建一个新的表达式求值异常。
-	 * @param position the position in the expression where the problem occurred
-	 * @param message description of the problem that occurred
+	 * @param position 问题在表达式中出现的位置
+	 * @param message 所发生问题的描述
 	 */
 	public EvaluationException(int position, String message) {
 		super(position, message);
@@ -53,8 +53,8 @@ public class EvaluationException extends ExpressionException {
 
 	/**
 	 * 创建一个新的表达式求值异常。
-	 * @param expressionString the expression that could not be evaluated
-	 * @param message description of the problem that occurred
+	 * @param expressionString 无法求值的表达式
+	 * @param message 所发生问题的描述
 	 */
 	public EvaluationException(String expressionString, String message) {
 		super(expressionString, message);
@@ -62,9 +62,9 @@ public class EvaluationException extends ExpressionException {
 
 	/**
 	 * 创建一个新的表达式求值异常。
-	 * @param position the position in the expression where the problem occurred
-	 * @param message description of the problem that occurred
-	 * @param cause the underlying cause of this exception
+	 * @param position 问题在表达式中出现的位置
+	 * @param message 所发生问题的描述
+	 * @param cause 此异常的根本原因
 	 */
 	public EvaluationException(int position, String message, Throwable cause) {
 		super(position, message, cause);

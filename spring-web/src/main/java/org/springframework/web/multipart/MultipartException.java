@@ -33,7 +33,7 @@ public class MultipartException extends NestedRuntimeException {
 
 	/**
 	 * MultipartException 的构造函数。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public MultipartException(String msg) {
 		super(msg);
@@ -41,8 +41,8 @@ public class MultipartException extends NestedRuntimeException {
 
 	/**
 	 * MultipartException 的构造函数。
-	 * @param msg the detail message
-	 * @param cause the root cause from the multipart parsing API in use
+	 * @param msg 详细消息
+	 * @param cause 所使用的 multipart 解析 API 的根本原因
 	 */
 	public MultipartException(String msg, @Nullable Throwable cause) {
 		super(msg, cause);

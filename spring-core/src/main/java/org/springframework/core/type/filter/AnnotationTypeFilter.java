@@ -51,7 +51,7 @@ public class AnnotationTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 	 * <p>该过滤器还会匹配元注解。要禁用元注解匹配，请使用接受 '{@code considerMetaAnnotations}' 参数的
 	 * 构造函数。
 	 * <p>该过滤器不会匹配接口。
-	 * @param annotationType the annotation type to match
+	 * @param annotationType 要匹配的注解类型
 	 */
 	public AnnotationTypeFilter(Class<? extends Annotation> annotationType) {
 		this(annotationType, true, false);
@@ -60,8 +60,8 @@ public class AnnotationTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 	/**
 	 * 为给定的注解类型创建一个新的 {@code AnnotationTypeFilter}。
 	 * <p>该过滤器不会匹配接口。
-	 * @param annotationType the annotation type to match
-	 * @param considerMetaAnnotations whether to also match on meta-annotations
+	 * @param annotationType 要匹配的注解类型
+	 * @param considerMetaAnnotations 是否还匹配元注解
 	 */
 	public AnnotationTypeFilter(Class<? extends Annotation> annotationType, boolean considerMetaAnnotations) {
 		this(annotationType, considerMetaAnnotations, false);
@@ -69,9 +69,9 @@ public class AnnotationTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 
 	/**
 	 * 为给定的注解类型创建一个新的 {@code AnnotationTypeFilter}。
-	 * @param annotationType the annotation type to match
-	 * @param considerMetaAnnotations whether to also match on meta-annotations
-	 * @param considerInterfaces whether to also match interfaces
+	 * @param annotationType 要匹配的注解类型
+	 * @param considerMetaAnnotations 是否还匹配元注解
+	 * @param considerInterfaces 是否还匹配接口
 	 */
 	public AnnotationTypeFilter(
 			Class<? extends Annotation> annotationType, boolean considerMetaAnnotations, boolean considerInterfaces) {

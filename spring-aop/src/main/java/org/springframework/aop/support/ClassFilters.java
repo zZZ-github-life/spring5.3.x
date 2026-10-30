@@ -39,10 +39,9 @@ public abstract class ClassFilters {
 
 	/**
 	 * 匹配给定 ClassFilters 中<i>任一</i>（或两者）都能匹配的所有类。
-	 * @param cf1 the first ClassFilter
-	 * @param cf2 the second ClassFilter
-	 * @return a distinct ClassFilter that matches all classes that either
-	 * of the given ClassFilter matches
+	 * @param cf1 第一个 ClassFilter
+	 * @param cf2 第二个 ClassFilter
+	 * @return 一个独立的 ClassFilter，匹配给定 ClassFilter 中任一者所匹配的所有类
 	 */
 	public static ClassFilter union(ClassFilter cf1, ClassFilter cf2) {
 		Assert.notNull(cf1, "First ClassFilter must not be null");
@@ -52,9 +51,8 @@ public abstract class ClassFilters {
 
 	/**
 	 * 匹配给定 ClassFilters 中<i>任一</i>（或全部）都能匹配的所有类。
-	 * @param classFilters the ClassFilters to match
-	 * @return a distinct ClassFilter that matches all classes that either
-	 * of the given ClassFilter matches
+	 * @param classFilters 要匹配的 ClassFilter
+	 * @return 一个独立的 ClassFilter，匹配给定 ClassFilter 中任一者所匹配的所有类
 	 */
 	public static ClassFilter union(ClassFilter[] classFilters) {
 		Assert.notEmpty(classFilters, "ClassFilter array must not be empty");
@@ -63,10 +61,9 @@ public abstract class ClassFilters {
 
 	/**
 	 * 匹配给定两个 ClassFilters 都匹配的所有类。
-	 * @param cf1 the first ClassFilter
-	 * @param cf2 the second ClassFilter
-	 * @return a distinct ClassFilter that matches all classes that both
-	 * of the given ClassFilter match
+	 * @param cf1 第一个 ClassFilter
+	 * @param cf2 第二个 ClassFilter
+	 * @return 一个独立的 ClassFilter，匹配给定 ClassFilter 共同匹配的所有类
 	 */
 	public static ClassFilter intersection(ClassFilter cf1, ClassFilter cf2) {
 		Assert.notNull(cf1, "First ClassFilter must not be null");
@@ -76,9 +73,8 @@ public abstract class ClassFilters {
 
 	/**
 	 * 匹配给定 ClassFilters 中<i>全部</i>都能匹配的所有类。
-	 * @param classFilters the ClassFilters to match
-	 * @return a distinct ClassFilter that matches all classes that both
-	 * of the given ClassFilter match
+	 * @param classFilters 要匹配的 ClassFilter
+	 * @return 一个独立的 ClassFilter，匹配给定 ClassFilter 共同匹配的所有类
 	 */
 	public static ClassFilter intersection(ClassFilter[] classFilters) {
 		Assert.notEmpty(classFilters, "ClassFilter array must not be empty");

@@ -41,7 +41,7 @@ public class ImportDefinition implements BeanMetadataElement {
 
 	/**
 	 * 创建一个新的 ImportDefinition。
-	 * @param importedResource the location of the imported resource
+	 * @param importedResource 被导入资源的位置
 	 */
 	public ImportDefinition(String importedResource) {
 		this(importedResource, null, null);
@@ -49,8 +49,8 @@ public class ImportDefinition implements BeanMetadataElement {
 
 	/**
 	 * 创建一个新的 ImportDefinition。
-	 * @param importedResource the location of the imported resource
-	 * @param source the source object (may be {@code null})
+	 * @param importedResource 被导入资源的位置
+	 * @param source 源对象（可能为 {@code null}）
 	 */
 	public ImportDefinition(String importedResource, @Nullable Object source) {
 		this(importedResource, null, source);
@@ -58,8 +58,8 @@ public class ImportDefinition implements BeanMetadataElement {
 
 	/**
 	 * 创建一个新的 ImportDefinition。
-	 * @param importedResource the location of the imported resource
-	 * @param source the source object (may be {@code null})
+	 * @param importedResource 被导入资源的位置
+	 * @param source 源对象（可能为 {@code null}）
 	 */
 	public ImportDefinition(String importedResource, @Nullable Resource[] actualResources, @Nullable Object source) {
 		Assert.notNull(importedResource, "Imported resource must not be null");

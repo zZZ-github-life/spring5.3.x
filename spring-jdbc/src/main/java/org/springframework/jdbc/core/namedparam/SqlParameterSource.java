@@ -49,25 +49,24 @@ public interface SqlParameterSource {
 
 	/**
 	 * 判断指定的命名参数是否有值。
-	 * @param paramName the name of the parameter
-	 * @return whether there is a value defined
+	 * @param paramName 参数的名称
+	 * @return 是否定义了值
 	 */
 	boolean hasValue(String paramName);
 
 	/**
 	 * 返回所请求的命名参数的参数值。
-	 * @param paramName the name of the parameter
-	 * @return the value of the specified parameter
-	 * @throws IllegalArgumentException if there is no value for the requested parameter
+	 * @param paramName 参数的名称
+	 * @return 指定参数的值
+	 * @throws IllegalArgumentException 如果所请求的参数没有值
 	 */
 	@Nullable
 	Object getValue(String paramName) throws IllegalArgumentException;
 
 	/**
 	 * 确定指定命名参数的 SQL 类型。
-	 * @param paramName the name of the parameter
-	 * @return the SQL type of the specified parameter,
-	 * or {@code TYPE_UNKNOWN} if not known
+	 * @param paramName 参数的名称
+	 * @return 指定参数的 SQL 类型，如果未知则为 {@code TYPE_UNKNOWN}
 	 * @see #TYPE_UNKNOWN
 	 */
 	default int getSqlType(String paramName) {
@@ -76,9 +75,8 @@ public interface SqlParameterSource {
 
 	/**
 	 * 确定指定命名参数的类型名。
-	 * @param paramName the name of the parameter
-	 * @return the type name of the specified parameter,
-	 * or {@code null} if not known
+	 * @param paramName 参数的名称
+	 * @return 指定参数的类型名称，如果未知则为 {@code null}
 	 */
 	@Nullable
 	default String getTypeName(String paramName) {
@@ -90,7 +88,7 @@ public interface SqlParameterSource {
 	 * <p>这是一个可选操作，主要用于
 	 * {@link org.springframework.jdbc.core.simple.SimpleJdbcInsert}
 	 * 和 {@link org.springframework.jdbc.core.simple.SimpleJdbcCall}。
-	 * @return the array of parameter names, or {@code null} if not determinable
+	 * @return 参数名称数组，如果无法确定则为 {@code null}
 	 * @since 5.0.3
 	 * @see SqlParameterSourceUtils#extractCaseInsensitiveParameterNames
 	 */

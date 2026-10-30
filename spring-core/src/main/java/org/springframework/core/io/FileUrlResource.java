@@ -52,7 +52,7 @@ public class FileUrlResource extends UrlResource implements WritableResource {
 	 * 基于给定的 URL 对象创建一个新的 {@code FileUrlResource}。
 	 * <p>请注意，这并不强制要求 "file" 作为 URL 协议。如果某个协议已知可解析为文件，那么用于此目的是可
 	 * 以接受的。
-	 * @param url a URL
+	 * @param url 一个 URL
 	 * @see ResourceUtils#isFileURL(URL)
 	 * @see #getFile()
 	 */
@@ -63,8 +63,8 @@ public class FileUrlResource extends UrlResource implements WritableResource {
 	/**
 	 * 基于给定的文件位置创建一个新的 {@code FileUrlResource}，使用 URL 协议 "file"。
 	 * <p>给定的各部分将在必要时自动进行编码。
-	 * @param location the location (i.e. the file path within that protocol)
-	 * @throws MalformedURLException if the given URL specification is not valid
+	 * @param location 位置（即该协议内的文件路径）
+	 * @throws MalformedURLException 如果给定的 URL 规范无效
 	 * @see UrlResource#UrlResource(String, String)
 	 * @see ResourceUtils#URL_PROTOCOL_FILE
 	 */

@@ -34,12 +34,11 @@ public interface SmartMessageConverter extends MessageConverter {
 	/**
 	 * {@link #fromMessage(Message, Class)} 的一个变体，接受额外的转换上下文作为参数，
 	 * 从而可以考虑例如载荷参数上的注解。
-	 * @param message the input message
-	 * @param targetClass the target class for the conversion
-	 * @param conversionHint an extra object passed to the {@link MessageConverter},
-	 * e.g. the associated {@code MethodParameter} (may be {@code null}}
-	 * @return the result of the conversion, or {@code null} if the converter cannot
-	 * perform the conversion
+	 * @param message 输入消息
+	 * @param targetClass 转换的目标类
+	 * @param conversionHint 传递给 {@link MessageConverter} 的额外对象，
+	 * 例如关联的 {@code MethodParameter}（可以为 {@code null}）
+	 * @return 转换结果；如果转换器无法执行转换则返回 {@code null}
 	 * @see #fromMessage(Message, Class)
 	 */
 	@Nullable
@@ -48,12 +47,12 @@ public interface SmartMessageConverter extends MessageConverter {
 	/**
 	 * {@link #toMessage(Object, MessageHeaders)} 的一个变体，接受额外的转换上下文作为参数，
 	 * 从而可以考虑例如返回类型上的注解。
-	 * @param payload the Object to convert
-	 * @param headers optional headers for the message (may be {@code null})
-	 * @param conversionHint an extra object passed to the {@link MessageConverter},
-	 * e.g. the associated {@code MethodParameter} (may be {@code null}}
-	 * @return the new message, or {@code null} if the converter does not support the
-	 * Object type or the target media type
+	 * @param payload 要转换的对象
+	 * @param headers 消息的可选消息头（可以为 {@code null}）
+	 * @param conversionHint 传递给 {@link MessageConverter} 的额外对象，
+	 * 例如关联的 {@code MethodParameter}（可以为 {@code null}）
+	 * @return 新的消息；如果转换器不支持该对象类型或目标媒体类型，
+	 * 则返回 {@code null}
 	 * @see #toMessage(Object, MessageHeaders)
 	 */
 	@Nullable

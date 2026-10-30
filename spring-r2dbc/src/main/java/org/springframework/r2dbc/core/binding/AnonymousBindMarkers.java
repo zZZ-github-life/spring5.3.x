@@ -45,7 +45,7 @@ class AnonymousBindMarkers implements BindMarkers {
 
 	/**
 	 * 根据 {@code placeholder} 创建一个新的 {@link AnonymousBindMarkers} 实例。
-	 * @param placeholder parameter bind marker
+	 * @param placeholder 参数绑定标记
 	 */
 	AnonymousBindMarkers(String placeholder) {
 		this.placeholder = placeholder;

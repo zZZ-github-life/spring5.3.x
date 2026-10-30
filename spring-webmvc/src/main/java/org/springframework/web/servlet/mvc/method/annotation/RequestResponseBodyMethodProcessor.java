@@ -119,9 +119,8 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 
 	/**
 	 * 如果校验失败，则抛出 MethodArgumentNotValidException。
-	 * @throws HttpMessageNotReadableException if {@link RequestBody#required()}
-	 * is {@code true} and there is no body content or if there is no suitable
-	 * converter to read the content with.
+	 * @throws HttpMessageNotReadableException 如果 {@link RequestBody#required()} 为 {@code true} 且没有请求体内容，
+	 * 或没有合适的转换器可读取内容。
 	 */
 	@Override
 	public Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,

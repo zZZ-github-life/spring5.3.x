@@ -119,9 +119,8 @@ public class SpringServletContainerInitializer implements ServletContainerInitia
 	 * 方法，委托 {@code ServletContext}，以便每个实例可以注册和配置 Servlet
 	 * （如 Spring 的 {@code DispatcherServlet}）、监听器（如 Spring 的
 	 * {@code ContextLoaderListener}）或任何其他 Servlet API 组件（如过滤器）。
-	 * @param webAppInitializerClasses all implementations of
-	 * {@link WebApplicationInitializer} found on the application classpath
-	 * @param servletContext the servlet context to be initialized
+	 * @param webAppInitializerClasses 在应用类路径上找到的所有 {@link WebApplicationInitializer} 实现
+	 * @param servletContext 要初始化的 Servlet 上下文
 	 * @see WebApplicationInitializer#onStartup(ServletContext)
 	 * @see AnnotationAwareOrderComparator
 	 */

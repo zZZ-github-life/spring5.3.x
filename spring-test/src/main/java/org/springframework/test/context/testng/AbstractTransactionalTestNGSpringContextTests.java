@@ -107,8 +107,8 @@ public abstract class AbstractTransactionalTestNGSpringContextTests extends Abst
 
 	/**
 	 * 用于统计给定表中行数的便捷方法。
-	 * @param tableName table name to count rows in
-	 * @return the number of rows in the table
+	 * @param tableName 要统计行数的表名
+	 * @return 表中的行数
 	 * @see JdbcTestUtils#countRowsInTable
 	 */
 	protected int countRowsInTable(String tableName) {
@@ -118,10 +118,9 @@ public abstract class AbstractTransactionalTestNGSpringContextTests extends Abst
 	/**
 	 * 使用提供的 {@code WHERE} 子句统计给定表中行数的便捷方法。
 	 * <p>有关详情，请参见 {@link JdbcTestUtils#countRowsInTableWhere} 的 Javadoc。
-	 * @param tableName the name of the table to count rows in
-	 * @param whereClause the {@code WHERE} clause to append to the query
-	 * @return the number of rows in the table that match the provided
-	 * {@code WHERE} clause
+	 * @param tableName 要统计行数的表的名称
+	 * @param whereClause 要追加到查询中的 {@code WHERE} 子句
+	 * @return 表中与所提供的 {@code WHERE} 子句匹配的行数
 	 * @since 3.2
 	 * @see JdbcTestUtils#countRowsInTableWhere
 	 */
@@ -132,8 +131,8 @@ public abstract class AbstractTransactionalTestNGSpringContextTests extends Abst
 	/**
 	 * 从指定表中删除所有行的便捷方法。
 	 * <p>在事务外使用时请谨慎！
-	 * @param names the names of the tables from which to delete
-	 * @return the total number of rows deleted from all specified tables
+	 * @param names 要从中删除记录的表名
+	 * @return 从所有指定表中删除的行总数
 	 * @see JdbcTestUtils#deleteFromTables
 	 */
 	protected int deleteFromTables(String... names) {
@@ -144,14 +143,12 @@ public abstract class AbstractTransactionalTestNGSpringContextTests extends Abst
 	 * 使用提供的 {@code WHERE} 子句从给定表中删除所有行的便捷方法。
 	 * <p>在事务外使用时请谨慎！
 	 * <p>有关详情，请参见 {@link JdbcTestUtils#deleteFromTableWhere} 的 Javadoc。
-	 * @param tableName the name of the table to delete rows from
-	 * @param whereClause the {@code WHERE} clause to append to the query
-	 * @param args arguments to bind to the query (leaving it to the {@code
-	 * PreparedStatement} to guess the corresponding SQL type); may also contain
-	 * {@link org.springframework.jdbc.core.SqlParameterValue SqlParameterValue}
-	 * objects which indicate not only the argument value but also the SQL type
-	 * and optionally the scale.
-	 * @return the number of rows deleted from the table
+	 * @param tableName 要从中删除记录的表名
+	 * @param whereClause 要追加到查询中的 {@code WHERE} 子句
+	 * @param args 要绑定到查询的参数（由 {@code PreparedStatement} 猜测对应的 SQL 类型）；
+	 * 还可以包含 {@link org.springframework.jdbc.core.SqlParameterValue SqlParameterValue}
+	 * 对象，这些对象不仅指示参数值，还指示 SQL 类型以及可选的标度。
+	 * @return 从表中删除的行数
 	 * @since 4.0
 	 * @see JdbcTestUtils#deleteFromTableWhere
 	 */
@@ -162,7 +159,7 @@ public abstract class AbstractTransactionalTestNGSpringContextTests extends Abst
 	/**
 	 * 删除所有指定表的便捷方法。
 	 * <p>在事务外使用时请谨慎！
-	 * @param names the names of the tables to drop
+	 * @param names 要删除的表名
 	 * @since 3.2
 	 * @see JdbcTestUtils#dropTables
 	 */
@@ -175,10 +172,9 @@ public abstract class AbstractTransactionalTestNGSpringContextTests extends Abst
 	 * <p>在事务外使用时请谨慎！
 	 * <p>脚本通常会从类路径加载。
 	 * <p><b>如果期望回滚，请不要使用此方法执行 DDL。</b>
-	 * @param sqlResourcePath the Spring resource path for the SQL script
-	 * @param continueOnError whether to continue without throwing an
-	 * exception in the event of an error
-	 * @throws DataAccessException if there is an error executing a statement
+	 * @param sqlResourcePath SQL 脚本的 Spring 资源路径
+	 * @param continueOnError 发生错误时是否继续而不抛出异常
+	 * @throws DataAccessException 如果执行语句时出错
 	 * @see ResourceDatabasePopulator
 	 * @see #setSqlScriptEncoding
 	 */

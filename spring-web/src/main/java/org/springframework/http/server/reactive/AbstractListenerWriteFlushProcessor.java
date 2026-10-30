@@ -38,7 +38,7 @@ import org.springframework.util.Assert;
  * @author Violeta Georgieva
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <T> the type of element signaled to the {@link Subscriber}
+ * @param <T> 向 {@link Subscriber} 发出信号元素的类型
  */
 public abstract class AbstractListenerWriteFlushProcessor<T> implements Processor<Publisher<? extends T>, Void> {
 

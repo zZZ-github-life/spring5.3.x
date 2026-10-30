@@ -83,9 +83,9 @@ public abstract class AbstractBrokerMessageHandler
 
 	/**
 	 * 不带目标前缀（匹配所有目标）的构造函数。
-	 * @param inboundChannel the channel for receiving messages from clients (e.g. WebSocket clients)
-	 * @param outboundChannel the channel for sending messages to clients (e.g. WebSocket clients)
-	 * @param brokerChannel the channel for the application to send messages to the broker
+	 * @param inboundChannel 用于接收来自客户端（例如 WebSocket 客户端）消息的通道
+	 * @param outboundChannel 用于向客户端（例如 WebSocket 客户端）发送消息的通道
+	 * @param brokerChannel 供应用向 Broker 发送消息的通道
 	 */
 	public AbstractBrokerMessageHandler(SubscribableChannel inboundChannel, MessageChannel outboundChannel,
 			SubscribableChannel brokerChannel) {
@@ -95,10 +95,10 @@ public abstract class AbstractBrokerMessageHandler
 
 	/**
 	 * 带目标前缀（用于匹配消息目标）的构造函数。
-	 * @param inboundChannel the channel for receiving messages from clients (e.g. WebSocket clients)
-	 * @param outboundChannel the channel for sending messages to clients (e.g. WebSocket clients)
-	 * @param brokerChannel the channel for the application to send messages to the broker
-	 * @param destinationPrefixes prefixes to use to filter out messages
+	 * @param inboundChannel 用于接收来自客户端（例如 WebSocket 客户端）消息的通道
+	 * @param outboundChannel 用于向客户端（例如 WebSocket 客户端）发送消息的通道
+	 * @param brokerChannel 供应用向 Broker 发送消息的通道
+	 * @param destinationPrefixes 用于过滤消息的前缀
 	 */
 	public AbstractBrokerMessageHandler(SubscribableChannel inboundChannel, MessageChannel outboundChannel,
 			SubscribableChannel brokerChannel, @Nullable Collection<String> destinationPrefixes) {
@@ -143,8 +143,7 @@ public abstract class AbstractBrokerMessageHandler
 	 * 需要在到达代理之前由
 	 * {@link org.springframework.messaging.simp.user.UserDestinationMessageHandler}
 	 * 预处理的用户目标消息。
-	 * @param predicate the predicate to identify user messages with a non-null
-	 * destination as messages with a user destinations.
+	 * @param predicate 用于将带有非 null 目标地址的用户消息识别为用户目标地址消息的谓词。
 	 * @since 5.3.4
 	 */
 	public void setUserDestinationPredicate(@Nullable Predicate<String> predicate) {
@@ -158,7 +157,7 @@ public abstract class AbstractBrokerMessageHandler
 	 * <p>当此标志设置为 {@code true} 时，同一会话内的消息将逐个发送到
 	 * {@code "clientOutboundChannel"}，以保持发布顺序。仅在需要时启用此选项，
 	 * 因为保持消息顺序会带来一定的性能开销。
-	 * @param preservePublishOrder whether to publish in order
+	 * @param preservePublishOrder 是否按顺序发布
 	 * @since 5.1
 	 */
 	public void setPreservePublishOrder(boolean preservePublishOrder) {
@@ -284,8 +283,8 @@ public abstract class AbstractBrokerMessageHandler
 	 * {@link #setUserDestinationPredicate(Predicate) userDestinationPredicate}。
 	 * <li>消息没有目标。
 	 * </ol>
-	 * @param destination the destination to check
-	 * @return whether to process (true) or skip (false) the destination
+	 * @param destination 要检查的目标地址
+	 * @return 是处理（true）还是跳过（false）该目标地址
 	 */
 	protected boolean checkDestinationPrefix(@Nullable String destination) {
 		if (destination == null) {

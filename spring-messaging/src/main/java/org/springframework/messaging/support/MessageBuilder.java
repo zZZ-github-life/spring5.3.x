@@ -32,7 +32,7 @@ import org.springframework.util.Assert;
  * @author Mark Fisher
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <T> the message payload type
+ * @param <T> 消息负载类型
  * @see GenericMessage
  * @see ErrorMessage
  */
@@ -64,7 +64,7 @@ public final class MessageBuilder<T> {
 
 	/**
 	 * 通过提供 {@code MessageHeaderAccessor} 来设置要使用的消息头部。
-	 * @param accessor the headers to use
+	 * @param accessor 要使用的消息头
 	 */
 	public MessageBuilder<T> setHeaders(MessageHeaderAccessor accessor) {
 		Assert.notNull(accessor, "MessageHeaderAccessor must not be null");
@@ -170,7 +170,7 @@ public final class MessageBuilder<T> {
 	 * 所提供 Message 的负载也将用作新消息的负载。
 	 * <p>如果提供的消息是 {@link ErrorMessage}，则其中包含的
 	 * {@link ErrorMessage#getOriginalMessage() originalMessage} 将传递给新实例。
-	 * @param message the Message from which the payload and all headers will be copied
+	 * @param message 将从中复制负载和所有消息头的 Message
 	 */
 	public static <T> MessageBuilder<T> fromMessage(Message<T> message) {
 		return new MessageBuilder<>(message);
@@ -178,7 +178,7 @@ public final class MessageBuilder<T> {
 
 	/**
 	 * 使用给定负载为消息创建新的构建器。
-	 * @param payload the payload
+	 * @param payload 负载
 	 */
 	public static <T> MessageBuilder<T> withPayload(T payload) {
 		return new MessageBuilder<>(payload, new MessageHeaderAccessor());
@@ -188,9 +188,9 @@ public final class MessageBuilder<T> {
 	 * 使用给定负载和 {@code MessageHeaders} 创建消息的快捷工厂方法。
 	 * <p><strong>注意：</strong>给定的 {@code MessageHeaders} 实例会直接用于
 	 * 新消息中，即不会被复制。
-	 * @param payload the payload to use (never {@code null})
-	 * @param messageHeaders the headers to use (never {@code null})
-	 * @return the created message
+	 * @param payload 要使用的负载（永不为 {@code null}）
+	 * @param messageHeaders 要使用的消息头（永不为 {@code null}）
+	 * @return 创建的消息
 	 * @since 4.1
 	 */
 	@SuppressWarnings("unchecked")

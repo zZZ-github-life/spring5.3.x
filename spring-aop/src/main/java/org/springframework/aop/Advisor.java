@@ -40,7 +40,7 @@ public interface Advisor {
 
 	/**
 	 * 返回此切面中的通知部分。通知可以是拦截器、前置通知、抛出通知等。
-	 * @return the advice that should apply if the pointcut matches
+	 * @return 如果切点匹配则应应用的通知
 	 * @see org.aopalliance.intercept.MethodInterceptor
 	 * @see BeforeAdvice
 	 * @see ThrowsAdvice
@@ -53,7 +53,7 @@ public interface Advisor {
 	 * 实例共享。
 	 * <p><b>请注意，此方法目前未被框架使用。</b>典型的 Advisor 实现始终返回 {@code true}。请使用单例/
 	 * 原型 Bean 定义或适当的编程式代理创建，以确保 Advisor 具有正确的生命周期模型。
-	 * @return whether this advice is associated with a particular target instance
+	 * @return 该通知是否与特定的目标实例相关联
 	 */
 	boolean isPerInstance();
 

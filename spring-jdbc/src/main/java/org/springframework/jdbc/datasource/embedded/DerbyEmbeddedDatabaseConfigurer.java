@@ -45,7 +45,7 @@ final class DerbyEmbeddedDatabaseConfigurer implements EmbeddedDatabaseConfigure
 
 	/**
 	 * 获取单例 {@link DerbyEmbeddedDatabaseConfigurer} 实例。
-	 * @return the configurer instance
+	 * @return 配置器实例
 	 */
 	public static synchronized DerbyEmbeddedDatabaseConfigurer getInstance() {
 		if (instance == null) {

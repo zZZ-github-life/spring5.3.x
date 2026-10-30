@@ -184,7 +184,7 @@ public abstract class GenericFilterBean implements Filter, BeanNameAware, Enviro
 	 * 子类可以调用此方法来指定某个属性（必须与其公开的 JavaBean 属性匹配）为必需属性，
 	 * 且必须作为配置参数提供。应在子类的构造函数中调用此方法。
 	 * <p>此方法仅在由 FilterConfig 实例驱动的传统初始化场景中才有意义。
-	 * @param property name of the required property
+	 * @param property 必需属性的名称
 	 */
 	protected final void addRequiredProperty(String property) {
 		this.requiredProperties.add(property);
@@ -193,9 +193,9 @@ public abstract class GenericFilterBean implements Filter, BeanNameAware, Enviro
 	/**
 	 * 初始化此过滤器的标准方式。
 	 * 将配置参数映射到此过滤器的 Bean 属性，并调用子类初始化逻辑。
-	 * @param filterConfig the configuration for this filter
-	 * @throws ServletException if bean properties are invalid (or required
-	 * properties are missing), or if subclass initialization fails.
+	 * @param filterConfig 此过滤器的配置
+	 * @throws ServletException 如果 Bean 属性无效（或缺少必需属性），
+	 * 或子类初始化失败。
 	 * @see #initFilterBean
 	 */
 	@Override
@@ -237,8 +237,8 @@ public abstract class GenericFilterBean implements Filter, BeanNameAware, Enviro
 	/**
 	 * 为此 GenericFilterBean 初始化 BeanWrapper，可能还会使用自定义编辑器。
 	 * <p>此默认实现为空。
-	 * @param bw the BeanWrapper to initialize
-	 * @throws BeansException if thrown by BeanWrapper methods
+	 * @param bw 要初始化的 BeanWrapper
+	 * @throws BeansException 如果由 BeanWrapper 方法抛出
 	 * @see org.springframework.beans.BeanWrapper#registerCustomEditor
 	 */
 	protected void initBeanWrapper(BeanWrapper bw) throws BeansException {
@@ -250,7 +250,7 @@ public abstract class GenericFilterBean implements Filter, BeanNameAware, Enviro
 	 * <p>注意：此方法会在标准过滤器初始化以及 Spring 应用上下文中的过滤器 Bean
 	 * 初始化时被调用。在这两种情况下都可以获取过滤器名称和 ServletContext。
 	 * <p>此默认实现为空。
-	 * @throws ServletException if subclass initialization fails
+	 * @throws ServletException 如果子类初始化失败
 	 * @see #getFilterName()
 	 * @see #getServletContext()
 	 */
@@ -262,7 +262,7 @@ public abstract class GenericFilterBean implements Filter, BeanNameAware, Enviro
 	 * 类似于 GenericServlet 的 {@code getServletConfig()}。
 	 * <p>将其声明为 public 是为了与 WebLogic 6.1 附带的 Servlet Filter 版本中的
 	 * {@code getFilterConfig()} 方法保持一致。
-	 * @return the FilterConfig instance, or {@code null} if none available
+	 * @return FilterConfig 实例，如果不可用则为 {@code null}
 	 * @see javax.servlet.GenericServlet#getServletConfig()
 	 */
 	@Nullable
@@ -275,7 +275,7 @@ public abstract class GenericFilterBean implements Filter, BeanNameAware, Enviro
 	 * 类似于 GenericServlet 的 {@code getServletName()}。
 	 * <p>默认采用 FilterConfig 的过滤器名称。
 	 * 如果在 Spring 应用上下文中作为 Bean 初始化，则回退到 Bean 工厂中定义的 Bean 名称。
-	 * @return the filter name, or {@code null} if none available
+	 * @return 过滤器名称，如果不可用则为 {@code null}
 	 * @see javax.servlet.GenericServlet#getServletName()
 	 * @see javax.servlet.FilterConfig#getFilterName()
 	 * @see #setBeanName
@@ -291,8 +291,8 @@ public abstract class GenericFilterBean implements Filter, BeanNameAware, Enviro
 	 * <p>默认采用 FilterConfig 的 ServletContext。
 	 * 如果在 Spring 应用上下文中作为 Bean 初始化，则回退到 Bean 工厂运行所在的
 	 * ServletContext。
-	 * @return the ServletContext instance
-	 * @throws IllegalStateException if no ServletContext is available
+	 * @return ServletContext 实例
+	 * @throws IllegalStateException 如果没有可用的 ServletContext
 	 * @see javax.servlet.GenericServlet#getServletContext()
 	 * @see javax.servlet.FilterConfig#getServletContext()
 	 * @see #setServletContext
@@ -318,10 +318,10 @@ public abstract class GenericFilterBean implements Filter, BeanNameAware, Enviro
 
 		/**
 		 * 创建新的 FilterConfigPropertyValues。
-		 * @param config the FilterConfig we'll use to take PropertyValues from
-		 * @param requiredProperties set of property names we need, where
-		 * we can't accept default values
-		 * @throws ServletException if any required properties are missing
+		 * @param config 我们将从中获取 PropertyValues 的 FilterConfig
+		 * @param requiredProperties 我们需要的属性名称集合，
+		 * 这些属性不能接受默认值
+		 * @throws ServletException 如果缺少任何必需属性
 		 */
 		public FilterConfigPropertyValues(FilterConfig config, Set<String> requiredProperties)
 				throws ServletException {

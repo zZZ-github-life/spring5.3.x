@@ -75,8 +75,8 @@ public class ResourceHandlerRegistry {
 
 	/**
 	 * 为给定的应用上下文创建新的资源处理器注册表。
-	 * @param applicationContext the Spring application context
-	 * @param servletContext the corresponding Servlet context
+	 * @param applicationContext Spring 应用上下文
+	 * @param servletContext 对应的 Servlet 上下文
 	 */
 	public ResourceHandlerRegistry(ApplicationContext applicationContext, ServletContext servletContext) {
 		this(applicationContext, servletContext, null);
@@ -84,9 +84,9 @@ public class ResourceHandlerRegistry {
 
 	/**
 	 * 为给定的应用上下文创建新的资源处理器注册表。
-	 * @param applicationContext the Spring application context
-	 * @param servletContext the corresponding Servlet context
-	 * @param contentNegotiationManager the content negotiation manager to use
+	 * @param applicationContext Spring 应用上下文
+	 * @param servletContext 对应的 Servlet 上下文
+	 * @param contentNegotiationManager 要使用的内容协商管理器
 	 * @since 4.3
 	 */
 	public ResourceHandlerRegistry(ApplicationContext applicationContext, ServletContext servletContext,

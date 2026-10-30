@@ -36,7 +36,7 @@ public interface DecoratingProxy {
 	/**
 	 * 返回此代理背后的（最终）被装饰类。
 	 * <p>对于 AOP 代理，这将是最终目标类，而不仅仅是直接目标（在存在多层嵌套代理的情况下）。
-	 * @return the decorated class (never {@code null})
+	 * @return 被装饰的类（永不为 {@code null}）
 	 */
 	Class<?> getDecoratedClass();
 

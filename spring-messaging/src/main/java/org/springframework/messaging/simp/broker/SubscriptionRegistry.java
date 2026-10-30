@@ -29,13 +29,13 @@ public interface SubscriptionRegistry {
 
 	/**
 	 * 注册由给定消息表示的订阅。
-	 * @param subscribeMessage the subscription request
+	 * @param subscribeMessage 订阅请求
 	 */
 	void registerSubscription(Message<?> subscribeMessage);
 
 	/**
 	 * 取消注册订阅。
-	 * @param unsubscribeMessage the request to unsubscribe
+	 * @param unsubscribeMessage 取消订阅的请求
 	 */
 	void unregisterSubscription(Message<?> unsubscribeMessage);
 
@@ -47,9 +47,8 @@ public interface SubscriptionRegistry {
 	/**
 	 * 查找应接收给定消息的所有订阅。
 	 * 返回的映射可以安全地迭代，并且永远不会被修改。
-	 * @param message the message
-	 * @return a {@code MultiValueMap} with sessionId-subscriptionId pairs
-	 * (possibly empty)
+	 * @param message 消息
+	 * @return 包含 sessionId 与 subscriptionId 对的 {@code MultiValueMap}（可能为空）
 	 */
 	MultiValueMap<String, String> findSubscriptions(Message<?> message);
 

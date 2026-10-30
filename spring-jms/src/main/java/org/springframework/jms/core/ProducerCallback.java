@@ -33,7 +33,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Mark Pollack
  * @since 1.1
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see JmsTemplate#execute(ProducerCallback)
  * @see JmsTemplate#execute(javax.jms.Destination, ProducerCallback)
  * @see JmsTemplate#execute(String, ProducerCallback)
@@ -44,11 +44,11 @@ public interface ProducerCallback<T> {
 	/**
 	 * 对给定的 {@link Session} 和 {@link MessageProducer} 执行操作。
 	 * <p>除非在 JmsTemplate 调用中指定，否则消息生产者不与任何目标关联。
-	 * @param session the JMS {@code Session} object to use
-	 * @param producer the JMS {@code MessageProducer} object to use
-	 * @return a result object from working with the {@code Session}, if any
-	 * (or {@code null} if none)
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
+	 * @param session 要使用的 JMS {@code Session} 对象
+	 * @param producer 要使用的 JMS {@code MessageProducer} 对象
+	 * @return 使用 {@code Session} 得到的结果对象（如果存在），
+	 * 否则为 {@code null}
+	 * @throws javax.jms.JMSException 如果由 JMS API 方法抛出
 	 */
 	@Nullable
 	T doInJms(Session session, MessageProducer producer) throws JMSException;

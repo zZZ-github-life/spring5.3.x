@@ -45,9 +45,9 @@ public class AnnotationBeanWiringInfoResolver implements BeanWiringInfoResolver 
 
 	/**
 	 * 为给定的 {@link Configurable} 注解构建 {@link BeanWiringInfo}。
-	 * @param beanInstance the bean instance
-	 * @param annotation the Configurable annotation found on the bean class
-	 * @return the resolved BeanWiringInfo
+	 * @param beanInstance Bean 实例
+	 * @param annotation 在 Bean 类上找到的 Configurable 注解
+	 * @return 解析出的 BeanWiringInfo
 	 */
 	protected BeanWiringInfo buildWiringInfo(Object beanInstance, Configurable annotation) {
 		if (!Autowire.NO.equals(annotation.autowire())) {
@@ -67,8 +67,8 @@ public class AnnotationBeanWiringInfoResolver implements BeanWiringInfoResolver 
 	/**
 	 * 确定指定 Bean 实例的默认 Bean 名称。
 	 * <p>默认实现对于 CGLIB 代理返回其超类名称，否则返回普通 Bean 类的名称。
-	 * @param beanInstance the bean instance to build a default name for
-	 * @return the default bean name to use
+	 * @param beanInstance 要为其构建默认名称的 Bean 实例
+	 * @return 要使用的默认 Bean 名称
 	 * @see org.springframework.util.ClassUtils#getUserClass(Class)
 	 */
 	protected String getDefaultBeanName(Object beanInstance) {

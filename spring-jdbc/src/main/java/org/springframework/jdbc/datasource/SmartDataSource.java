@@ -41,8 +41,8 @@ public interface SmartDataSource extends DataSource {
 	 * 在调用 {@code close()} 之前通过此方法进行检查。
 	 * <p>请注意，'jdbc.core' 包中的 JdbcTemplate 类负责
 	 * 释放 JDBC Connection，从而免除了应用程序代码的这一职责。
-	 * @param con the Connection to check
-	 * @return whether the given Connection should be closed
+	 * @param con 要检查的 Connection
+	 * @return 给定的 Connection 是否应关闭
 	 * @see java.sql.Connection#close()
 	 */
 	boolean shouldClose(Connection con);

@@ -35,36 +35,36 @@ public interface RequestDataValueProcessor {
 
 	/**
 	 * 在渲染新的表单 action 时调用。
-	 * @param request the current request
-	 * @param action the form action
-	 * @param httpMethod the form HTTP method
-	 * @return the action to use, possibly modified
+	 * @param request 当前请求
+	 * @param action 表单的 action
+	 * @param httpMethod 表单的 HTTP 方法
+	 * @return 要使用的 action，可能已被修改
 	 */
 	String processAction(HttpServletRequest request, String action, String httpMethod);
 
 	/**
 	 * 在渲染表单字段值时调用。
-	 * @param request the current request
-	 * @param name the form field name (if any)
-	 * @param value the form field value
-	 * @param type the form field type ("text", "hidden", etc.)
-	 * @return the form field value to use, possibly modified
+	 * @param request 当前请求
+	 * @param name 表单字段名称（如果有）
+	 * @param value 表单字段值
+	 * @param type 表单字段类型（"text"、"hidden" 等）
+	 * @return 要使用的表单字段值，可能已被修改
 	 */
 	String processFormFieldValue(HttpServletRequest request, @Nullable String name, String value, String type);
 
 	/**
 	 * 在所有表单字段渲染完成后调用。
-	 * @param request the current request
-	 * @return additional hidden form fields to be added, or {@code null} if none
+	 * @param request 当前请求
+	 * @return 要添加的其他隐藏表单字段；如果没有则为 {@code null}
 	 */
 	@Nullable
 	Map<String, String> getExtraHiddenFields(HttpServletRequest request);
 
 	/**
 	 * 在即将渲染 URL 或重定向到 URL 时调用。
-	 * @param request the current request
-	 * @param url the URL value
-	 * @return the URL to use, possibly modified
+	 * @param request 当前请求
+	 * @param url URL 值
+	 * @return 要使用的 URL，可能已被修改
 	 */
 	String processUrl(HttpServletRequest request, String url);
 

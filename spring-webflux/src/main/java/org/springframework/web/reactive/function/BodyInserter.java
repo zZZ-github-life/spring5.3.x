@@ -30,8 +30,8 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
  * 可填充 {@link ReactiveHttpOutputMessage} 正文的函数的组合。
  * @author Arjen Poutsma
  * @since 5.0
- * @param <T> the type of data to insert
- * @param <M> the type of {@link ReactiveHttpOutputMessage} this inserter can be applied to
+ * @param <T> 要插入的数据的类型
+ * @param <M> 此插入器可应用于的 {@link ReactiveHttpOutputMessage} 类型
  * @see BodyInserters
  */
 @FunctionalInterface
@@ -39,9 +39,9 @@ public interface BodyInserter<T, M extends ReactiveHttpOutputMessage> {
 
 	/**
 	 * 插入到给定的输出消息中。
-	 * @param outputMessage the response to insert into
-	 * @param context the context to use
-	 * @return a {@code Mono} that indicates completion or error
+	 * @param outputMessage 要插入到的响应
+	 * @param context 要使用的上下文
+	 * @return 指示完成或错误的 {@code Mono}
 	 */
 	Mono<Void> insert(M outputMessage, Context context);
 
@@ -53,7 +53,7 @@ public interface BodyInserter<T, M extends ReactiveHttpOutputMessage> {
 
 		/**
 		 * 返回用于响应正文转换的 {@link HttpMessageWriter HttpMessageWriters}。
-		 * @return the stream of message writers
+		 * @return 消息写入器流
 		 */
 		List<HttpMessageWriter<?>> messageWriters();
 

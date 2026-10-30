@@ -46,8 +46,8 @@ public interface NotificationPublisher {
 	 * {@link javax.management.NotificationListener NotificationListeners}。受管资源<strong>不</strong>
 	 * 负责管理已注册的 {@link javax.management.NotificationListener NotificationListeners} 列表；这一
 	 * 工作会自动完成。
-	 * @param notification the JMX Notification to send
-	 * @throws UnableToSendNotificationException if sending failed
+	 * @param notification 要发送的 JMX Notification
+	 * @throws UnableToSendNotificationException 如果发送失败
 	 */
 	void sendNotification(Notification notification) throws UnableToSendNotificationException;
 

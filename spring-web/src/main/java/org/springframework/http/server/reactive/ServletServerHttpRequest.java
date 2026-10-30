@@ -235,9 +235,9 @@ class ServletServerHttpRequest extends AbstractServerHttpRequest {
 	/**
 	 * 从请求体 InputStream 读取并返回 DataBuffer。
 	 * 仅在 {@link ServletInputStream#isReady()} 返回 "true" 时调用。
-	 * @return a DataBuffer with data read, or
-	 * {@link AbstractListenerReadPublisher#EMPTY_BUFFER} if 0 bytes were read,
-	 * or {@link #EOF_BUFFER} if the input stream returned -1.
+	 * @return 读取到数据的 DataBuffer；如果读取了 0 个字节则为
+	 * {@link AbstractListenerReadPublisher#EMPTY_BUFFER}；
+	 * 如果输入流返回 -1 则为 {@link #EOF_BUFFER}。
 	 */
 	DataBuffer readFromInputStream() throws IOException {
 		int read = this.request.getInputStream().read(this.buffer);

@@ -127,9 +127,9 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 
 	/**
 	 * 使用给定设置创建一个新的 AspectJExpressionPointcut。
-	 * @param declarationScope the declaration scope for the pointcut
-	 * @param paramNames the parameter names for the pointcut
-	 * @param paramTypes the parameter types for the pointcut
+	 * @param declarationScope 该切点的声明作用域
+	 * @param paramNames 该切点的参数名称
+	 * @param paramTypes 该切点的参数类型
 	 */
 	public AspectJExpressionPointcut(Class<?> declarationScope, String[] paramNames, Class<?>[] paramTypes) {
 		this.pointcutDeclarationScope = declarationScope;

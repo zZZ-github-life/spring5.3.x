@@ -69,8 +69,8 @@ public class ContextConfigurationAttributes {
 
 	/**
 	 * 使用默认值构造一个新的 {@link ContextConfigurationAttributes} 实例。
-	 * @param declaringClass the test class that declared {@code @ContextConfiguration},
-	 * either explicitly or implicitly
+	 * @param declaringClass 声明 {@code @ContextConfiguration} 的测试类，
+	 * 显式或隐式声明
 	 * @since 4.3
 	 */
 	@SuppressWarnings("unchecked")
@@ -81,8 +81,8 @@ public class ContextConfigurationAttributes {
 	/**
 	 * 为提供的 {@link ContextConfiguration @ContextConfiguration} 注解及其
 	 * 声明它的 {@linkplain Class 测试类}构造一个新的 {@link ContextConfigurationAttributes} 实例。
-	 * @param declaringClass the test class that declared {@code @ContextConfiguration}
-	 * @param contextConfiguration the annotation from which to retrieve the attributes
+	 * @param declaringClass 声明 {@code @ContextConfiguration} 的测试类
+	 * @param contextConfiguration 从中检索属性的注解
 	 */
 	public ContextConfigurationAttributes(Class<?> declaringClass, ContextConfiguration contextConfiguration) {
 		this(declaringClass, contextConfiguration.locations(), contextConfiguration.classes(),
@@ -94,8 +94,8 @@ public class ContextConfigurationAttributes {
 	 * 为提供的 {@link AnnotationAttributes}（从
 	 * {@link ContextConfiguration @ContextConfiguration} 注解解析而来）及其
 	 * 声明它们的 {@linkplain Class 测试类}构造一个新的 {@link ContextConfigurationAttributes} 实例。
-	 * @param declaringClass the test class that declared {@code @ContextConfiguration}
-	 * @param annAttrs the annotation attributes from which to retrieve the attributes
+	 * @param declaringClass 声明 {@code @ContextConfiguration} 的测试类
+	 * @param annAttrs 从中检索属性的注解属性
 	 */
 	@SuppressWarnings("unchecked")
 	public ContextConfigurationAttributes(Class<?> declaringClass, AnnotationAttributes annAttrs) {
@@ -109,15 +109,14 @@ public class ContextConfigurationAttributes {
 	 * 为声明 {@link ContextConfiguration @ContextConfiguration} 注解及其
 	 * 对应属性的 {@linkplain Class 测试类}构造一个新的 {@link ContextConfigurationAttributes}
 	 * 实例。
-	 * @param declaringClass the test class that declared {@code @ContextConfiguration}
-	 * @param locations the resource locations declared via {@code @ContextConfiguration}
-	 * @param classes the annotated classes declared via {@code @ContextConfiguration}
-	 * @param inheritLocations the {@code inheritLocations} flag declared via {@code @ContextConfiguration}
-	 * @param initializers the context initializers declared via {@code @ContextConfiguration}
-	 * @param inheritInitializers the {@code inheritInitializers} flag declared via {@code @ContextConfiguration}
-	 * @param contextLoaderClass the {@code ContextLoader} class declared via {@code @ContextConfiguration}
-	 * @throws IllegalArgumentException if the {@code declaringClass} or {@code contextLoaderClass} is
-	 * {@code null}
+	 * @param declaringClass 声明 {@code @ContextConfiguration} 的测试类
+	 * @param locations 通过 {@code @ContextConfiguration} 声明的资源位置
+	 * @param classes 通过 {@code @ContextConfiguration} 声明的注解类
+	 * @param inheritLocations 通过 {@code @ContextConfiguration} 声明的 {@code inheritLocations} 标志
+	 * @param initializers 通过 {@code @ContextConfiguration} 声明的上下文初始化器
+	 * @param inheritInitializers 通过 {@code @ContextConfiguration} 声明的 {@code inheritInitializers} 标志
+	 * @param contextLoaderClass 通过 {@code @ContextConfiguration} 声明的 {@code ContextLoader} 类
+	 * @throws IllegalArgumentException 如果 {@code declaringClass} 或 {@code contextLoaderClass} 为 {@code null}
 	 */
 	public ContextConfigurationAttributes(
 			Class<?> declaringClass, String[] locations, Class<?>[] classes, boolean inheritLocations,
@@ -132,16 +131,16 @@ public class ContextConfigurationAttributes {
 	 * 为声明 {@link ContextConfiguration @ContextConfiguration} 注解及其
 	 * 对应属性的 {@linkplain Class 测试类}构造一个新的 {@link ContextConfigurationAttributes}
 	 * 实例。
-	 * @param declaringClass the test class that declared {@code @ContextConfiguration}
-	 * @param locations the resource locations declared via {@code @ContextConfiguration}
-	 * @param classes the annotated classes declared via {@code @ContextConfiguration}
-	 * @param inheritLocations the {@code inheritLocations} flag declared via {@code @ContextConfiguration}
-	 * @param initializers the context initializers declared via {@code @ContextConfiguration}
-	 * @param inheritInitializers the {@code inheritInitializers} flag declared via {@code @ContextConfiguration}
-	 * @param name the name of level in the context hierarchy, or {@code null} if not applicable
-	 * @param contextLoaderClass the {@code ContextLoader} class declared via {@code @ContextConfiguration}
-	 * @throws IllegalArgumentException if the {@code declaringClass} or {@code contextLoaderClass} is
-	 * {@code null}
+	 * @param declaringClass 声明 {@code @ContextConfiguration} 的测试类
+	 * @param locations 通过 {@code @ContextConfiguration} 声明的资源位置
+	 * @param classes 通过 {@code @ContextConfiguration} 声明的注解类
+	 * @param inheritLocations 通过 {@code @ContextConfiguration} 声明的 {@code inheritLocations} 标志
+	 * @param initializers 通过 {@code @ContextConfiguration} 声明的上下文初始化器
+	 * @param inheritInitializers 通过 {@code @ContextConfiguration} 声明的 {@code inheritInitializers} 标志
+	 * @param name 上下文层次中该级别的名称，
+	 * 如果不适用则为 {@code null}
+	 * @param contextLoaderClass 通过 {@code @ContextConfiguration} 声明的 {@code ContextLoader} 类
+	 * @throws IllegalArgumentException 如果 {@code declaringClass} 或 {@code contextLoaderClass} 为 {@code null}
 	 */
 	public ContextConfigurationAttributes(
 			Class<?> declaringClass, String[] locations, Class<?>[] classes, boolean inheritLocations,
@@ -174,7 +173,7 @@ public class ContextConfigurationAttributes {
 	/**
 	 * 获取显式或隐式声明
 	 * {@link ContextConfiguration @ContextConfiguration} 注解的 {@linkplain Class 类}。
-	 * @return the declaring class (never {@code null})
+	 * @return 声明类（永不为 {@code null}）
 	 */
 	public Class<?> getDeclaringClass() {
 		return this.declaringClass;
@@ -195,7 +194,7 @@ public class ContextConfigurationAttributes {
 	 * <p>注意：这是一个可变属性。因此，返回的值可能
 	 * 表示<em>处理后的</em>值，与通过
 	 * {@link ContextConfiguration @ContextConfiguration} 声明的原始值不匹配。
-	 * @return the annotated classes (potentially {<em>empty</em>)
+	 * @return 注解类（可能为{<em>空</em>）
 	 * @see ContextConfiguration#classes
 	 * @see #setClasses(Class[])
 	 */
@@ -206,7 +205,8 @@ public class ContextConfigurationAttributes {
 	/**
 	 * 确定此 {@code ContextConfigurationAttributes} 实例是否具有
 	 * 基于类的资源。
-	 * @return {@code true} if the {@link #getClasses() classes} array is not empty
+	 * @return 如果 {@link #getClasses() classes} 数组不为空，
+	 * 则返回 {@code true}。
 	 * @see #hasResources()
 	 * @see #hasLocations()
 	 */
@@ -229,7 +229,7 @@ public class ContextConfigurationAttributes {
 	 * <p>注意：这是一个可变属性。因此，返回的值可能
 	 * 表示<em>处理后的</em>值，与通过
 	 * {@link ContextConfiguration @ContextConfiguration} 声明的原始值不匹配。
-	 * @return the resource locations (potentially <em>empty</em>)
+	 * @return 资源位置（可能为<em>空</em>）
 	 * @see ContextConfiguration#value
 	 * @see ContextConfiguration#locations
 	 * @see #setLocations
@@ -241,7 +241,8 @@ public class ContextConfigurationAttributes {
 	/**
 	 * 确定此 {@code ContextConfigurationAttributes} 实例是否具有
 	 * 基于路径的资源位置。
-	 * @return {@code true} if the {@link #getLocations() locations} array is not empty
+	 * @return 如果 {@link #getLocations() locations} 数组不为空，
+	 * 则返回 {@code true}。
 	 * @see #hasResources()
 	 * @see #hasClasses()
 	 */
@@ -252,8 +253,9 @@ public class ContextConfigurationAttributes {
 	/**
 	 * 确定此 {@code ContextConfigurationAttributes} 实例是否具有
 	 * 基于路径的资源位置或基于类的资源。
-	 * @return {@code true} if either the {@link #getLocations() locations}
-	 * or the {@link #getClasses() classes} array is not empty
+	 * @return 如果 {@link #getLocations() locations}
+	 * 或 {@link #getClasses() classes} 数组不为空，
+	 * 则返回 {@code true}。
 	 * @see #hasLocations()
 	 * @see #hasClasses()
 	 */
@@ -264,7 +266,7 @@ public class ContextConfigurationAttributes {
 	/**
 	 * 获取通过
 	 * {@link ContextConfiguration @ContextConfiguration} 声明的 {@code inheritLocations} 标志。
-	 * @return the {@code inheritLocations} flag
+	 * @return {@code inheritLocations} 标志
 	 * @see ContextConfiguration#inheritLocations
 	 */
 	public boolean isInheritLocations() {
@@ -274,7 +276,7 @@ public class ContextConfigurationAttributes {
 	/**
 	 * 获取通过
 	 * {@link ContextConfiguration @ContextConfiguration} 声明的 {@code ApplicationContextInitializer} 类。
-	 * @return the {@code ApplicationContextInitializer} classes
+	 * @return {@code ApplicationContextInitializer} 类
 	 * @since 3.2
 	 */
 	public Class<? extends ApplicationContextInitializer<?>>[] getInitializers() {
@@ -284,7 +286,7 @@ public class ContextConfigurationAttributes {
 	/**
 	 * 获取通过
 	 * {@link ContextConfiguration @ContextConfiguration} 声明的 {@code inheritInitializers} 标志。
-	 * @return the {@code inheritInitializers} flag
+	 * @return {@code inheritInitializers} 标志
 	 * @since 3.2
 	 */
 	public boolean isInheritInitializers() {
@@ -294,7 +296,7 @@ public class ContextConfigurationAttributes {
 	/**
 	 * 获取通过
 	 * {@link ContextConfiguration @ContextConfiguration} 声明的上下文层次结构级别的名称。
-	 * @return the name of the context hierarchy level or {@code null} if not applicable
+	 * @return 上下文层次级别的名称，如果不适用则为 {@code null}
 	 * @since 3.2.2
 	 * @see ContextConfiguration#name()
 	 */
@@ -306,7 +308,7 @@ public class ContextConfigurationAttributes {
 	/**
 	 * 获取通过
 	 * {@link ContextConfiguration @ContextConfiguration} 声明的 {@code ContextLoader} 类。
-	 * @return the {@code ContextLoader} class
+	 * @return {@code ContextLoader} 类
 	 * @see ContextConfiguration#loader
 	 */
 	public Class<? extends ContextLoader> getContextLoaderClass() {

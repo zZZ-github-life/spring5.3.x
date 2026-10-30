@@ -53,7 +53,7 @@ public class SockJsFrame {
 
 	/**
 	 * 使用给定帧内容创建新的实例帧。
-	 * @param content the content (must be a non-empty and represent a valid SockJS frame)
+	 * @param content 内容（必须非空，并表示有效的 SockJS 帧）
 	 */
 	public SockJsFrame(String content) {
 		Assert.hasText(content, "Content must not be empty");

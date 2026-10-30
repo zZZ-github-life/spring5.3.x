@@ -42,7 +42,7 @@ public class EhCacheCache implements Cache {
 
 	/**
 	 * 创建一个 {@link EhCacheCache} 实例。
-	 * @param ehcache the backing Ehcache instance
+	 * @param ehcache 底层 Ehcache 实例
 	 */
 	public EhCacheCache(Ehcache ehcache) {
 		Assert.notNull(ehcache, "Ehcache must not be null");

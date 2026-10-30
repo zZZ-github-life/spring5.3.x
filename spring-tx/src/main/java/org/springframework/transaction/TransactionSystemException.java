@@ -34,7 +34,7 @@ public class TransactionSystemException extends TransactionException {
 
 	/**
 	 * TransactionSystemException 的构造函数。
-	 * @param msg the detail message
+	 * @param msg 详细信息
 	 */
 	public TransactionSystemException(String msg) {
 		super(msg);
@@ -42,8 +42,8 @@ public class TransactionSystemException extends TransactionException {
 
 	/**
 	 * TransactionSystemException 的构造函数。
-	 * @param msg the detail message
-	 * @param cause the root cause from the transaction API in use
+	 * @param msg 详细信息
+	 * @param cause 来自所用事务 API 的根本原因
 	 */
 	public TransactionSystemException(String msg, Throwable cause) {
 		super(msg, cause);
@@ -53,9 +53,9 @@ public class TransactionSystemException extends TransactionException {
 	/**
 	 * 设置在此事务异常之前抛出的应用程序异常，
 	 * 尽管有覆盖性的 TransactionSystemException，仍保留原始异常。
-	 * @param ex the application exception
-	 * @throws IllegalStateException if this TransactionSystemException already holds an
-	 * application exception
+	 * @param ex 应用程序异常
+	 * @throws IllegalStateException 如果此 TransactionSystemException
+	 * 已经持有应用程序异常
 	 */
 	public void initApplicationException(Throwable ex) {
 		Assert.notNull(ex, "Application exception must not be null");
@@ -67,7 +67,7 @@ public class TransactionSystemException extends TransactionException {
 
 	/**
 	 * 返回在此事务异常之前抛出的应用程序异常（如果有）。
-	 * @return the application exception, or {@code null} if none set
+	 * @return 应用程序异常；如果未设置则为 {@code null}
 	 */
 	@Nullable
 	public final Throwable getApplicationException() {
@@ -77,7 +77,7 @@ public class TransactionSystemException extends TransactionException {
 	/**
 	 * 返回在失败的事务中第一个被抛出的异常：
 	 * 即应用程序异常（如果有），或 TransactionSystemException 本身的根原因。
-	 * @return the original exception, or {@code null} if there was none
+	 * @return 原始异常；如果不存在则为 {@code null}
 	 */
 	@Nullable
 	public Throwable getOriginalException() {

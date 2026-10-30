@@ -52,8 +52,8 @@ public class BeanPropertyBindingResult extends AbstractPropertyBindingResult imp
 
 	/**
 	 * 创建 {@link BeanPropertyBindingResult} 类的新实例。
-	 * @param target the target bean to bind onto
-	 * @param objectName the name of the target object
+	 * @param target 要绑定到的目标 Bean
+	 * @param objectName 目标对象的名称
 	 */
 	public BeanPropertyBindingResult(@Nullable Object target, String objectName) {
 		this(target, objectName, true, Integer.MAX_VALUE);
@@ -61,10 +61,10 @@ public class BeanPropertyBindingResult extends AbstractPropertyBindingResult imp
 
 	/**
 	 * 创建 {@link BeanPropertyBindingResult} 类的新实例。
-	 * @param target the target bean to bind onto
-	 * @param objectName the name of the target object
-	 * @param autoGrowNestedPaths whether to "auto-grow" a nested path that contains a null value
-	 * @param autoGrowCollectionLimit the limit for array and collection auto-growing
+	 * @param target 要绑定到的目标 Bean
+	 * @param objectName 目标对象的名称
+	 * @param autoGrowNestedPaths 是否对包含 null 值的嵌套路径进行“自动增长”
+	 * @param autoGrowCollectionLimit 数组和集合自动增长的限值
 	 */
 	public BeanPropertyBindingResult(@Nullable Object target, String objectName,
 			boolean autoGrowNestedPaths, int autoGrowCollectionLimit) {

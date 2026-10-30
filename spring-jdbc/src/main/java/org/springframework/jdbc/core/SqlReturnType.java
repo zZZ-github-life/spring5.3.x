@@ -49,13 +49,13 @@ public interface SqlReturnType {
 
 	/**
 	 * 从特定对象获取类型值。
-	 * @param cs the CallableStatement to operate on
-	 * @param paramIndex the index of the parameter for which we need to set the value
-	 * @param sqlType the SQL type of the parameter we are setting
-	 * @param typeName the type name of the parameter (optional)
-	 * @return the target value
-	 * @throws SQLException if an SQLException is encountered setting parameter values
-	 * (that is, there's no need to catch SQLException)
+	 * @param cs 要操作的 CallableStatement
+	 * @param paramIndex 需要为其设置值的参数索引
+	 * @param sqlType 正在设置的参数的 SQL 类型
+	 * @param typeName 参数的类型名称（可选）
+	 * @return 目标值
+	 * @throws SQLException 如果在设置参数值时遇到 SQLException
+	 * （也就是说，无需捕获 SQLException）
 	 * @see java.sql.Types
 	 * @see java.sql.CallableStatement#getObject
 	 */

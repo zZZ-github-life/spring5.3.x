@@ -85,10 +85,10 @@ public class FunctionReference extends SpelNodeImpl {
 
 	/**
 	 * 执行以 {@code java.lang.reflect.Method} 表示的函数。
-	 * @param state the expression evaluation state
-	 * @param method the method to invoke
-	 * @return the return value of the invoked Java method
-	 * @throws EvaluationException if there is any problem invoking the method
+	 * @param state 表达式求值状态
+	 * @param method 要调用的方法
+	 * @return 所调用 Java 方法的返回值
+	 * @throws EvaluationException 如果调用该方法时出现任何问题
 	 */
 	private TypedValue executeFunctionJLRMethod(ExpressionState state, Method method) throws EvaluationException {
 		Object[] functionArgs = getArguments(state);
@@ -147,7 +147,7 @@ public class FunctionReference extends SpelNodeImpl {
 
 	/**
 	 * 计算函数的参数，它们是此表达式节点的子节点。
-	 * @return an array of argument values for the function call
+	 * @return 函数调用的参数值数组
 	 */
 	private Object[] getArguments(ExpressionState state) throws EvaluationException {
 		// Compute arguments to the function

@@ -55,10 +55,9 @@ abstract class ActiveProfilesUtils {
 	/**
 	 * 为所提供的 {@link Class} 解析<em>活动 Bean 定义配置文件</em>。
 	 * <p>请注意，将考虑 {@link ActiveProfiles @ActiveProfiles} 的 {@link ActiveProfiles#inheritProfiles inheritProfiles} 标志。具体而言，如果 {@code inheritProfiles} 标志设置为 {@code true}，则测试类中定义的配置文件将与父类和外围类中定义的配置文件合并。
-	 * @param testClass the class for which to resolve the active profiles (must not be
-	 * {@code null})
-	 * @return the set of active profiles for the specified class, including active
-	 * profiles from superclasses and enclosing classes if appropriate (never {@code null})
+	 * @param testClass 要为其解析活动 profile 的类（不能为 {@code null}）
+	 * @return 指定类的活动 profile 集合，若适用则包括超类和外围类的
+	 * 活动 profile（从不为 {@code null}）
 	 * @see ActiveProfiles
 	 * @see ActiveProfilesResolver
 	 * @see org.springframework.context.annotation.Profile

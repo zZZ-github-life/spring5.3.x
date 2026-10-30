@@ -34,7 +34,7 @@ import org.springframework.util.ErrorHandler;
  *
  * @author Stephane Nicoll
  * @since 4.1
- * @param <C> the container type
+ * @param <C> 容器类型
  * @see AbstractMessageListenerContainer
  */
 public abstract class AbstractJmsListenerContainerFactory<C extends AbstractMessageListenerContainer>

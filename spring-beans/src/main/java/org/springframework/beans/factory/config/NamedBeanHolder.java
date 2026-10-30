@@ -24,7 +24,7 @@ import org.springframework.util.Assert;
  *
  * @author Juergen Hoeller
  * @since 4.3.3
- * @param <T> the bean type
+ * @param <T> 该 Bean 的类型
  * @see AutowireCapableBeanFactory#resolveNamedBean(Class)
  */
 public class NamedBeanHolder<T> implements NamedBean {
@@ -36,8 +36,8 @@ public class NamedBeanHolder<T> implements NamedBean {
 
 	/**
 	 * 为给定的 Bean 名称及实例创建一个新的持有者。
-	 * @param beanName the name of the bean
-	 * @param beanInstance the corresponding bean instance
+	 * @param beanName 该 Bean 的名称
+	 * @param beanInstance 对应的 Bean 实例
 	 */
 	public NamedBeanHolder(String beanName, T beanInstance) {
 		Assert.notNull(beanName, "Bean name must not be null");

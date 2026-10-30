@@ -36,10 +36,10 @@ public interface ClientHttpRequestExecution {
 	/**
 	 * 使用给定的请求属性和正文执行请求，
 	 * 并返回响应。
-	 * @param request the request, containing method, URI, and headers
-	 * @param body the body of the request to execute
-	 * @return the response
-	 * @throws IOException in case of I/O errors
+	 * @param request 请求，包含方法、URI 和头信息
+	 * @param body 要执行的请求体
+	 * @return 响应
+	 * @throws IOException 如果发生 I/O 错误
 	 */
 	ClientHttpResponse execute(HttpRequest request, byte[] body) throws IOException;
 

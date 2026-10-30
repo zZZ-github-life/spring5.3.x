@@ -34,7 +34,7 @@ import org.springframework.util.Assert;
  * @author Mark Fisher
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <D> the destination type
+ * @param <D> 目标类型
  */
 public abstract class AbstractDestinationResolvingMessagingTemplate<D> extends AbstractMessagingTemplate<D>
 		implements DestinationResolvingMessageSendingOperations<D>,
@@ -50,7 +50,7 @@ public abstract class AbstractDestinationResolvingMessagingTemplate<D> extends A
 	 * {@link DestinationResolver}。
 	 * <p>此字段没有默认设置。如果未配置，需要解析目标名称的方法
 	 * 将抛出 {@link IllegalArgumentException}。
-	 * @param destinationResolver the destination resolver to use
+	 * @param destinationResolver 要使用的目标解析器
 	 */
 	public void setDestinationResolver(@Nullable DestinationResolver<D> destinationResolver) {
 		this.destinationResolver = destinationResolver;

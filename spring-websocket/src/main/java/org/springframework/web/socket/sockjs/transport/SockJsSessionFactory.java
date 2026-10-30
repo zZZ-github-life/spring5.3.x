@@ -31,10 +31,10 @@ public interface SockJsSessionFactory {
 
 	/**
 	 * 创建一个新的 SockJS 会话。
-	 * @param sessionId the ID of the session
-	 * @param handler the underlying {@link WebSocketHandler}
-	 * @param attributes handshake request specific attributes
-	 * @return a new session, never {@code null}
+	 * @param sessionId 会话的 ID
+	 * @param handler 底层的 {@link WebSocketHandler}
+	 * @param attributes 握手请求特有的属性
+	 * @return 新的会话，永不为 {@code null}
 	 */
 	SockJsSession createSession(String sessionId, WebSocketHandler handler, Map<String, Object> attributes);
 

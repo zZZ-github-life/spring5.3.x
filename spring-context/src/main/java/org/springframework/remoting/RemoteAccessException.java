@@ -45,7 +45,7 @@ public class RemoteAccessException extends NestedRuntimeException {
 
 	/**
 	 * RemoteAccessException 的构造器。
-	 * @param msg the detail message
+	 * @param msg 详细信息
 	 */
 	public RemoteAccessException(String msg) {
 		super(msg);
@@ -53,9 +53,8 @@ public class RemoteAccessException extends NestedRuntimeException {
 
 	/**
 	 * RemoteAccessException 的构造器。
-	 * @param msg the detail message
-	 * @param cause the root cause (usually from using an underlying
-	 * remoting API such as RMI)
+	 * @param msg 详细信息
+	 * @param cause 根本原因（通常来自使用 RMI 等底层远程调用 API）
 	 */
 	public RemoteAccessException(String msg, Throwable cause) {
 		super(msg, cause);

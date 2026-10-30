@@ -101,8 +101,8 @@ public abstract class SharedEntityManagerCreator {
 
 	/**
 	 * 为给定的 EntityManagerFactory 创建一个事务性 EntityManager 代理。
-	 * @param emf the EntityManagerFactory to delegate to.
-	 * @return a shareable transaction EntityManager proxy
+	 * @param emf 要委托的 EntityManagerFactory。
+	 * @return 可共享的事务性 EntityManager 代理
 	 */
 	public static EntityManager createSharedEntityManager(EntityManagerFactory emf) {
 		return createSharedEntityManager(emf, null, true);
@@ -110,10 +110,10 @@ public abstract class SharedEntityManagerCreator {
 
 	/**
 	 * 为给定的 EntityManagerFactory 创建一个事务性 EntityManager 代理。
-	 * @param emf the EntityManagerFactory to delegate to.
-	 * @param properties the properties to be passed into the
-	 * {@code createEntityManager} call (may be {@code null})
-	 * @return a shareable transaction EntityManager proxy
+	 * @param emf 要委托的 EntityManagerFactory。
+	 * @param properties 要传入 {@code createEntityManager} 调用的属性
+	 * （可能为 {@code null}）
+	 * @return 可共享的事务性 EntityManager 代理
 	 */
 	public static EntityManager createSharedEntityManager(EntityManagerFactory emf, @Nullable Map<?, ?> properties) {
 		return createSharedEntityManager(emf, properties, true);
@@ -121,12 +121,12 @@ public abstract class SharedEntityManagerCreator {
 
 	/**
 	 * 为给定的 EntityManagerFactory 创建一个事务性 EntityManager 代理。
-	 * @param emf the EntityManagerFactory to delegate to.
-	 * @param properties the properties to be passed into the
-	 * {@code createEntityManager} call (may be {@code null})
-	 * @param synchronizedWithTransaction whether to automatically join ongoing
-	 * transactions (according to the JPA 2.1 SynchronizationType rules)
-	 * @return a shareable transaction EntityManager proxy
+	 * @param emf 要委托的 EntityManagerFactory。
+	 * @param properties 要传入 {@code createEntityManager} 调用的属性
+	 * （可能为 {@code null}）
+	 * @param synchronizedWithTransaction 是否自动加入正在进行的事务
+	 * （依据 JPA 2.1 SynchronizationType 规则）
+	 * @return 可共享的事务性 EntityManager 代理
 	 * @since 4.0
 	 */
 	public static EntityManager createSharedEntityManager(
@@ -140,12 +140,11 @@ public abstract class SharedEntityManagerCreator {
 
 	/**
 	 * 为给定的 EntityManagerFactory 创建一个事务性 EntityManager 代理。
-	 * @param emf the EntityManagerFactory to obtain EntityManagers from as needed
-	 * @param properties the properties to be passed into the
-	 * {@code createEntityManager} call (may be {@code null})
-	 * @param entityManagerInterfaces the interfaces to be implemented by the
-	 * EntityManager. Allows the addition or specification of proprietary interfaces.
-	 * @return a shareable transactional EntityManager proxy
+	 * @param emf 按需从中获取 EntityManager 的 EntityManagerFactory
+	 * @param properties 要传入 {@code createEntityManager} 调用的属性
+	 * （可能为 {@code null}）
+	 * @param entityManagerInterfaces EntityManager 要实现的其他接口。允许添加或指定专有接口。
+	 * @return 可共享的事务性 EntityManager 代理
 	 */
 	public static EntityManager createSharedEntityManager(
 			EntityManagerFactory emf, @Nullable Map<?, ?> properties, Class<?>... entityManagerInterfaces) {
@@ -155,14 +154,13 @@ public abstract class SharedEntityManagerCreator {
 
 	/**
 	 * 为给定的 EntityManagerFactory 创建一个事务性 EntityManager 代理。
-	 * @param emf the EntityManagerFactory to obtain EntityManagers from as needed
-	 * @param properties the properties to be passed into the
-	 * {@code createEntityManager} call (may be {@code null})
-	 * @param synchronizedWithTransaction whether to automatically join ongoing
-	 * transactions (according to the JPA 2.1 SynchronizationType rules)
-	 * @param entityManagerInterfaces the interfaces to be implemented by the
-	 * EntityManager. Allows the addition or specification of proprietary interfaces.
-	 * @return a shareable transactional EntityManager proxy
+	 * @param emf 按需从中获取 EntityManager 的 EntityManagerFactory
+	 * @param properties 要传入 {@code createEntityManager} 调用的属性
+	 * （可能为 {@code null}）
+	 * @param synchronizedWithTransaction 是否自动加入正在进行的事务
+	 * （依据 JPA 2.1 SynchronizationType 规则）
+	 * @param entityManagerInterfaces EntityManager 要实现的其他接口。允许添加或指定专有接口。
+	 * @return 可共享的事务性 EntityManager 代理
 	 * @since 4.0
 	 */
 	public static EntityManager createSharedEntityManager(EntityManagerFactory emf, @Nullable Map<?, ?> properties,

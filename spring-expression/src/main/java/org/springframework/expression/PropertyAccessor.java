@@ -39,50 +39,50 @@ public interface PropertyAccessor {
 	/**
 	 * 返回应调用此解析器的类数组。
 	 * <p>返回 {@code null} 表示这是一个通用解析器，可被调用以尝试解析任何类型上的属性。
-	 * @return an array of classes that this resolver is suitable for
-	 * (or {@code null} if a general resolver)
+	 * @return 此解析器适用的类数组
+	 * （如果是通用解析器则为 {@code null}）
 	 */
 	@Nullable
 	Class<?>[] getSpecificTargetClasses();
 
 	/**
 	 * 调用以判断解析器实例是否能够访问指定目标对象上的指定属性。
-	 * @param context the evaluation context in which the access is being attempted
-	 * @param target the target object upon which the property is being accessed
-	 * @param name the name of the property being accessed
-	 * @return true if this resolver is able to read the property
-	 * @throws AccessException if there is any problem determining whether the property can be read
+	 * @param context 尝试进行访问所在的求值上下文
+	 * @param target 访问属性所针对的目标对象
+	 * @param name 所访问属性的名称
+	 * @return 如果此解析器能够读取该属性则返回 true
+	 * @throws AccessException 如果确定该属性是否可读时出现任何问题
 	 */
 	boolean canRead(EvaluationContext context, @Nullable Object target, String name) throws AccessException;
 
 	/**
 	 * 调用以从指定目标对象读取属性。仅当 {@link #canRead} 也返回 {@code true} 时才应成功。
-	 * @param context the evaluation context in which the access is being attempted
-	 * @param target the target object upon which the property is being accessed
-	 * @param name the name of the property being accessed
-	 * @return a TypedValue object wrapping the property value read and a type descriptor for it
-	 * @throws AccessException if there is any problem accessing the property value
+	 * @param context 尝试进行访问所在的求值上下文
+	 * @param target 访问属性所针对的目标对象
+	 * @param name 所访问属性的名称
+	 * @return 包装所读取属性值的 TypedValue 对象
+	 * 以及该值的类型描述符
+	 * @throws AccessException 如果访问属性值时出现任何问题
 	 */
 	TypedValue read(EvaluationContext context, @Nullable Object target, String name) throws AccessException;
 
 	/**
 	 * 调用以判断解析器实例是否能够写入指定目标对象上的指定属性。
-	 * @param context the evaluation context in which the access is being attempted
-	 * @param target the target object upon which the property is being accessed
-	 * @param name the name of the property being accessed
-	 * @return true if this resolver is able to write to the property
-	 * @throws AccessException if there is any problem determining whether the
-	 * property can be written to
+	 * @param context 尝试进行访问所在的求值上下文
+	 * @param target 访问属性所针对的目标对象
+	 * @param name 所访问属性的名称
+	 * @return 如果此解析器能够写入该属性则返回 true
+	 * @throws AccessException 如果确定该属性是否可写时出现任何问题
 	 */
 	boolean canWrite(EvaluationContext context, @Nullable Object target, String name) throws AccessException;
 
 	/**
 	 * 调用以写入指定目标对象上的属性。仅当 {@link #canWrite} 也返回 {@code true} 时才应成功。
-	 * @param context the evaluation context in which the access is being attempted
-	 * @param target the target object upon which the property is being accessed
-	 * @param name the name of the property being accessed
-	 * @param newValue the new value for the property
-	 * @throws AccessException if there is any problem writing to the property value
+	 * @param context 尝试进行访问所在的求值上下文
+	 * @param target 访问属性所针对的目标对象
+	 * @param name 所访问属性的名称
+	 * @param newValue 属性的新值
+	 * @throws AccessException 如果写入属性值时出现任何问题
 	 */
 	void write(EvaluationContext context, @Nullable Object target, String name, @Nullable Object newValue)
 			throws AccessException;

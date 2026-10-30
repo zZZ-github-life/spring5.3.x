@@ -45,8 +45,8 @@ public abstract class EhCacheManagerUtils {
 	 * <p>CacheManager 将从类路径根目录下的 "ehcache.xml" 进行配置
 	 * （即默认 EhCache 初始化——如 EhCache 文档中所定义——将生效）。
 	 * 如果找不到配置文件，将使用故障安全的回退配置。
-	 * @return the new EhCache CacheManager
-	 * @throws CacheException in case of configuration parsing failure
+	 * @return 新的 EhCache CacheManager
+	 * @throws CacheException 配置解析失败时
 	 */
 	public static CacheManager buildCacheManager() throws CacheException {
 		return new CacheManager(ConfigurationFactory.parseConfiguration());
@@ -57,9 +57,9 @@ public abstract class EhCacheManagerUtils {
 	 * <p>CacheManager 将从类路径根目录下的 "ehcache.xml" 进行配置
 	 * （即默认 EhCache 初始化——如 EhCache 文档中所定义——将生效）。
 	 * 如果找不到配置文件，将使用故障安全的回退配置。
-	 * @param name the desired name of the cache manager
-	 * @return the new EhCache CacheManager
-	 * @throws CacheException in case of configuration parsing failure
+	 * @param name 所需的缓存管理器名称
+	 * @return 新的 EhCache CacheManager
+	 * @throws CacheException 配置解析失败时
 	 */
 	public static CacheManager buildCacheManager(String name) throws CacheException {
 		Configuration configuration = ConfigurationFactory.parseConfiguration();
@@ -69,9 +69,9 @@ public abstract class EhCacheManagerUtils {
 
 	/**
 	 * 从给定的配置资源构建一个 EhCache {@link CacheManager}。
-	 * @param configLocation the location of the configuration file (as a Spring resource)
-	 * @return the new EhCache CacheManager
-	 * @throws CacheException in case of configuration parsing failure
+	 * @param configLocation 配置文件的位置（作为 Spring 资源）
+	 * @return 新的 EhCache CacheManager
+	 * @throws CacheException 配置解析失败时
 	 */
 	public static CacheManager buildCacheManager(Resource configLocation) throws CacheException {
 		return new CacheManager(parseConfiguration(configLocation));
@@ -79,10 +79,10 @@ public abstract class EhCacheManagerUtils {
 
 	/**
 	 * 从给定的配置资源构建一个 EhCache {@link CacheManager}。
-	 * @param name the desired name of the cache manager
-	 * @param configLocation the location of the configuration file (as a Spring resource)
-	 * @return the new EhCache CacheManager
-	 * @throws CacheException in case of configuration parsing failure
+	 * @param name 所需的缓存管理器名称
+	 * @param configLocation 配置文件的位置（作为 Spring 资源）
+	 * @return 新的 EhCache CacheManager
+	 * @throws CacheException 配置解析失败时
 	 */
 	public static CacheManager buildCacheManager(String name, Resource configLocation) throws CacheException {
 		Configuration configuration = parseConfiguration(configLocation);
@@ -92,9 +92,9 @@ public abstract class EhCacheManagerUtils {
 
 	/**
 	 * 从给定资源解析 EhCache 配置，用于自定义 {@link CacheManager} 创建。
-	 * @param configLocation the location of the configuration file (as a Spring resource)
-	 * @return the EhCache Configuration handle
-	 * @throws CacheException in case of configuration parsing failure
+	 * @param configLocation 配置文件的位置（作为 Spring 资源）
+	 * @return EhCache Configuration 句柄
+	 * @throws CacheException 配置解析失败时
 	 * @see CacheManager#CacheManager(Configuration)
 	 * @see CacheManager#create(Configuration)
 	 */

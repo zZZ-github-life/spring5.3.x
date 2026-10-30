@@ -68,14 +68,14 @@ class CacheOperationExpressionEvaluator extends CachedExpressionEvaluator {
 
 	/**
 	 * 创建一个 {@link EvaluationContext}。
-	 * @param caches the current caches
-	 * @param method the method
-	 * @param args the method arguments
-	 * @param target the target object
-	 * @param targetClass the target class
-	 * @param result the return value (can be {@code null}) or
-	 * {@link #NO_RESULT} if there is no return at this time
-	 * @return the evaluation context
+	 * @param caches 当前缓存
+	 * @param method 方法
+	 * @param args 方法参数
+	 * @param target 目标对象
+	 * @param targetClass 目标类
+	 * @param result 返回值（可以为 {@code null}），
+	 * 如果此时没有返回值，则为 {@link #NO_RESULT}
+	 * @return 求值上下文
 	 */
 	public EvaluationContext createEvaluationContext(Collection<? extends Cache> caches,
 			Method method, Object[] args, Object target, Class<?> targetClass, Method targetMethod,

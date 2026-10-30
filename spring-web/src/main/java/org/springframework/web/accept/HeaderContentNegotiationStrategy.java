@@ -37,7 +37,7 @@ public class HeaderContentNegotiationStrategy implements ContentNegotiationStrat
 
 	/**
 	 * {@inheritDoc}
-	 * @throws HttpMediaTypeNotAcceptableException if the 'Accept' header cannot be parsed
+	 * @throws HttpMediaTypeNotAcceptableException 如果 'Accept' 头无法解析
 	 */
 	@Override
 	public List<MediaType> resolveMediaTypes(NativeWebRequest request)

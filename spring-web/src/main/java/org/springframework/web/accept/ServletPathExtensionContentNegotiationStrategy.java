@@ -94,8 +94,8 @@ public class ServletPathExtensionContentNegotiationStrategy extends PathExtensio
 	 * 扩展基类
 	 * {@link PathExtensionContentNegotiationStrategy#getMediaTypeForResource}，
 	 * 使其还能通过 ServletContext 进行查找。
-	 * @param resource the resource to look up
-	 * @return the MediaType for the extension, or {@code null} if none found
+	 * @param resource 要查找的资源
+	 * @return 该扩展名对应的 MediaType；如果未找到则为 {@code null}
 	 * @since 4.3
 	 */
 	@Override

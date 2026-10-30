@@ -52,10 +52,9 @@ public abstract class AbstractDirtiesContextTestExecutionListener extends Abstra
 
 	/**
 	 * 将所提供的 {@linkplain TestContext 测试上下文}的{@linkplain ApplicationContext 应用上下文}标记为{@linkplain TestContext#markApplicationContextDirty(DirtiesContext.HierarchyMode) 脏}，并将测试上下文中的 {@link DependencyInjectionTestExecutionListener#REINJECT_DEPENDENCIES_ATTRIBUTE REINJECT_DEPENDENCIES_ATTRIBUTE} 设置为 {@code true}。
-	 * @param testContext the test context whose application context should
-	 * be marked as dirty
-	 * @param hierarchyMode the context cache clearing mode to be applied if the
-	 * context is part of a hierarchy; may be {@code null}
+	 * @param testContext 应将其应用上下文标记为脏的测试上下文
+	 * @param hierarchyMode 如果上下文属于某个层次结构，则要应用的上下文缓存清理模式；
+	 * 可以为 {@code null}
 	 * @since 3.2.2
 	 */
 	protected void dirtyContext(TestContext testContext, @Nullable HierarchyMode hierarchyMode) {
@@ -65,13 +64,10 @@ public abstract class AbstractDirtiesContextTestExecutionListener extends Abstra
 
 	/**
 	 * 通过按需（即根据所需的模式）将上下文标记为脏，执行 {@link #beforeTestMethod} 和 {@link #afterTestMethod} 的实际工作。
-	 * @param testContext the test context whose application context should
-	 * potentially be marked as dirty; never {@code null}
-	 * @param requiredMethodMode the method mode required for a context to
-	 * be marked dirty in the current phase; never {@code null}
-	 * @param requiredClassMode the class mode required for a context to
-	 * be marked dirty in the current phase; never {@code null}
-	 * @throws Exception allows any exception to propagate
+	 * @param testContext 其应用上下文可能被标记为脏的测试上下文；从不为 {@code null}
+	 * @param requiredMethodMode 在当前阶段中上下文被标记为脏所需的方法模式；从不为 {@code null}
+	 * @param requiredClassMode 在当前阶段中上下文被标记为脏所需的类模式；从不为 {@code null}
+	 * @throws Exception 允许任何异常传播
 	 * @since 4.2
 	 * @see #dirtyContext
 	 */
@@ -109,11 +105,9 @@ public abstract class AbstractDirtiesContextTestExecutionListener extends Abstra
 
 	/**
 	 * 通过按需（即根据所需的模式）将上下文标记为脏，执行 {@link #beforeTestClass} 和 {@link #afterTestClass} 的实际工作。
-	 * @param testContext the test context whose application context should
-	 * potentially be marked as dirty; never {@code null}
-	 * @param requiredClassMode the class mode required for a context to
-	 * be marked dirty in the current phase; never {@code null}
-	 * @throws Exception allows any exception to propagate
+	 * @param testContext 其应用上下文可能被标记为脏的测试上下文；从不为 {@code null}
+	 * @param requiredClassMode 在当前阶段中上下文被标记为脏所需的类模式；从不为 {@code null}
+	 * @throws Exception 允许任何异常传播
 	 * @since 4.2
 	 * @see #dirtyContext
 	 */

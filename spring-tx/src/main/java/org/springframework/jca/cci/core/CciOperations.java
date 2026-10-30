@@ -45,9 +45,9 @@ public interface CciOperations {
 	 * 即参与 Spring 管理的事务并将 JCA ResourceException 转换为
 	 * Spring 的 DataAccessException 层次结构。
 	 * <p>回调操作可以返回结果对象，例如领域对象或领域对象的集合。
-	 * @param action the callback object that specifies the action
-	 * @return the result object returned by the action, if any
-	 * @throws DataAccessException if there is any problem
+	 * @param action 指定该操作的回调对象
+	 * @return 该操作返回的结果对象（如果有）
+	 * @throws DataAccessException 如果出现任何问题
 	 */
 	@Nullable
 	<T> T execute(ConnectionCallback<T> action) throws DataAccessException;
@@ -58,52 +58,52 @@ public interface CciOperations {
 	 * 即参与 Spring 管理的事务并将 JCA ResourceException 转换为
 	 * Spring 的 DataAccessException 层次结构。
 	 * <p>回调操作可以返回结果对象，例如领域对象或领域对象的集合。
-	 * @param action the callback object that specifies the action
-	 * @return the result object returned by the action, if any
-	 * @throws DataAccessException if there is any problem
+	 * @param action 指定该操作的回调对象
+	 * @return 该操作返回的结果对象（如果有）
+	 * @throws DataAccessException 如果出现任何问题
 	 */
 	@Nullable
 	<T> T execute(InteractionCallback<T> action) throws DataAccessException;
 
 	/**
 	 * 使用 CCI 在 EIS 上执行指定的交互。
-	 * @param spec the CCI InteractionSpec instance that defines
-	 * the interaction (connector-specific)
-	 * @param inputRecord the input record
-	 * @return the output record
-	 * @throws DataAccessException if there is any problem
+	 * @param spec 定义该交互的 CCI InteractionSpec 实例
+	 * （特定于连接器）
+	 * @param inputRecord 输入记录
+	 * @return 输出记录
+	 * @throws DataAccessException 如果出现任何问题
 	 */
 	@Nullable
 	Record execute(InteractionSpec spec, Record inputRecord) throws DataAccessException;
 
 	/**
 	 * 使用 CCI 在 EIS 上执行指定的交互。
-	 * @param spec the CCI InteractionSpec instance that defines
-	 * the interaction (connector-specific)
-	 * @param inputRecord the input record
-	 * @param outputRecord the output record
-	 * @throws DataAccessException if there is any problem
+	 * @param spec 定义该交互的 CCI InteractionSpec 实例
+	 * （特定于连接器）
+	 * @param inputRecord 输入记录
+	 * @param outputRecord 输出记录
+	 * @throws DataAccessException 如果出现任何问题
 	 */
 	void execute(InteractionSpec spec, Record inputRecord, Record outputRecord) throws DataAccessException;
 
 	/**
 	 * 使用 CCI 在 EIS 上执行指定的交互。
-	 * @param spec the CCI InteractionSpec instance that defines
-	 * the interaction (connector-specific)
-	 * @param inputCreator object that creates the input record to use
-	 * @return the output record
-	 * @throws DataAccessException if there is any problem
+	 * @param spec 定义该交互的 CCI InteractionSpec 实例
+	 * （特定于连接器）
+	 * @param inputCreator 创建要使用的输入记录的对象
+	 * @return 输出记录
+	 * @throws DataAccessException 如果出现任何问题
 	 */
 	Record execute(InteractionSpec spec, RecordCreator inputCreator) throws DataAccessException;
 
 	/**
 	 * 使用 CCI 在 EIS 上执行指定的交互。
-	 * @param spec the CCI InteractionSpec instance that defines
-	 * the interaction (connector-specific)
-	 * @param inputRecord the input record
-	 * @param outputExtractor object to convert the output record to a result object
-	 * @return the output data extracted with the RecordExtractor object
-	 * @throws DataAccessException if there is any problem
+	 * @param spec 定义该交互的 CCI InteractionSpec 实例
+	 * （特定于连接器）
+	 * @param inputRecord 输入记录
+	 * @param outputExtractor 将输出记录转换为结果对象的对象
+	 * @return 使用 RecordExtractor 对象提取的输出数据
+	 * @throws DataAccessException 如果出现任何问题
 	 */
 	@Nullable
 	<T> T execute(InteractionSpec spec, Record inputRecord, RecordExtractor<T> outputExtractor)
@@ -111,12 +111,12 @@ public interface CciOperations {
 
 	/**
 	 * 使用 CCI 在 EIS 上执行指定的交互。
-	 * @param spec the CCI InteractionSpec instance that defines
-	 * the interaction (connector-specific)
-	 * @param inputCreator object that creates the input record to use
-	 * @param outputExtractor object to convert the output record to a result object
-	 * @return the output data extracted with the RecordExtractor object
-	 * @throws DataAccessException if there is any problem
+	 * @param spec 定义该交互的 CCI InteractionSpec 实例
+	 * （特定于连接器）
+	 * @param inputCreator 创建要使用的输入记录的对象
+	 * @param outputExtractor 将输出记录转换为结果对象的对象
+	 * @return 使用 RecordExtractor 对象提取的输出数据
+	 * @throws DataAccessException 如果出现任何问题
 	 */
 	@Nullable
 	<T> T execute(InteractionSpec spec, RecordCreator inputCreator, RecordExtractor<T> outputExtractor)

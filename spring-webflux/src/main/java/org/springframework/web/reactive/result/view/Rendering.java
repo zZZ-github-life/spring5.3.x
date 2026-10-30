@@ -60,8 +60,8 @@ public interface Rendering {
 
 	/**
 	 * 基于给定视图名称创建用于响应渲染的新构建器。
-	 * @param name the view name to be resolved to a {@link View}
-	 * @return the builder
+	 * @param name 要解析为 {@link View} 的视图名称
+	 * @return 构建器
 	 */
 	static Builder<?> view(String name) {
 		return new DefaultRenderingBuilder(name);
@@ -69,8 +69,8 @@ public interface Rendering {
 
 	/**
 	 * 创建用于通过 {@link RedirectView} 重定向的新构建器。
-	 * @param url the redirect URL
-	 * @return the builder
+	 * @param url 重定向 URL
+	 * @return 构建器
 	 */
 	static RedirectBuilder redirectTo(String url) {
 		return new DefaultRenderingBuilder(new RedirectView(url));
@@ -79,7 +79,7 @@ public interface Rendering {
 
 	/**
 	 * 定义 {@link Rendering} 的构建器。
-	 * @param <B> a self reference to the builder type
+	 * @param <B> 对构建器类型的自引用
 	 */
 	interface Builder<B extends Builder<B>> {
 

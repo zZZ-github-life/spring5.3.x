@@ -111,8 +111,8 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 
 	/**
 	 * 使用给定的异步和同步请求工厂创建一个新的 {@code AsyncRestTemplate} 实例。
-	 * @param asyncRequestFactory the asynchronous request factory
-	 * @param syncRequestFactory the synchronous request factory
+	 * @param asyncRequestFactory 异步请求工厂
+	 * @param syncRequestFactory 同步请求工厂
 	 */
 	public AsyncRestTemplate(org.springframework.http.client.AsyncClientHttpRequestFactory asyncRequestFactory,
 			ClientHttpRequestFactory syncRequestFactory) {
@@ -123,8 +123,8 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 	/**
 	 * 使用给定的 {@link org.springframework.http.client.AsyncClientHttpRequestFactory}
 	 * 和同步 {@link RestTemplate} 创建一个新的 {@code AsyncRestTemplate} 实例。
-	 * @param requestFactory the asynchronous request factory to use
-	 * @param restTemplate the synchronous template to use
+	 * @param requestFactory 要使用的异步请求工厂
+	 * @param restTemplate 要使用的同步模板
 	 */
 	public AsyncRestTemplate(org.springframework.http.client.AsyncClientHttpRequestFactory requestFactory,
 			RestTemplate restTemplate) {
@@ -160,7 +160,7 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 	 * AsyncRestTemplate restTemplate = new AsyncRestTemplate();
 	 * restTemplate.setUriTemplateHandler(handler);
 	 * </pre>
-	 * @param defaultUriVariables the default URI variable values
+	 * @param defaultUriVariables 默认 URI 变量值
 	 * @since 4.3
 	 */
 	@SuppressWarnings("deprecation")
@@ -182,7 +182,7 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 	/**
 	 * 此属性与 {@code RestTemplate} 上的对应属性具有相同的用途。
 	 * 更多详情请参见 {@link RestTemplate#setUriTemplateHandler}。
-	 * @param handler the URI template handler to use
+	 * @param handler 要使用的 URI 模板处理器
 	 */
 	public void setUriTemplateHandler(UriTemplateHandler handler) {
 		this.syncTemplate.setUriTemplateHandler(handler);
@@ -517,12 +517,11 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 	 * {@link org.springframework.http.client.ClientHttpRequest}
 	 * 使用 {@link RequestCallback} 进行处理；响应则使用
 	 * {@link ResponseExtractor} 进行处理。
-	 * @param url the fully-expanded URL to connect to
-	 * @param method the HTTP method to execute (GET, POST, etc.)
-	 * @param requestCallback object that prepares the request (can be {@code null})
-	 * @param responseExtractor object that extracts the return value from the response (can
-	 * be {@code null})
-	 * @return an arbitrary object, as returned by the {@link ResponseExtractor}
+	 * @param url 要连接的完全展开的 URL
+	 * @param method 要执行的 HTTP 方法（GET、POST 等）
+	 * @param requestCallback 准备请求的对象（可为 {@code null}）
+	 * @param responseExtractor 从响应中提取返回值的对象（可为 {@code null}）
+	 * @return 任意对象，由 {@link ResponseExtractor} 返回
 	 */
 	protected <T> ListenableFuture<T> doExecute(URI url, HttpMethod method,
 			@Nullable AsyncRequestCallback requestCallback,
@@ -667,7 +666,7 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 		/**
 		 * 根据给定的 {@link RequestCallback} 创建一个新的
 		 * {@code AsyncRequestCallbackAdapter}。
-		 * @param requestCallback the callback to base this adapter on
+		 * @param requestCallback 此适配器所基于的回调
 		 */
 		public AsyncRequestCallbackAdapter(RequestCallback requestCallback) {
 			this.adaptee = requestCallback;

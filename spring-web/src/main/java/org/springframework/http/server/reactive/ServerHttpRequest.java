@@ -89,7 +89,7 @@ public interface ServerHttpRequest extends HttpRequest, ReactiveHttpInputMessage
 	/**
 	 * 如果请求是通过安全协议传输的，返回 SSL 会话信息，
 	 * 包括 SSL 证书（如果可用）。
-	 * @return the session information, or {@code null} if none available
+	 * @return 会话信息，如果没有可用会话则为 {@code null}
 	 * @since 5.0.2
 	 */
 	@Nullable
@@ -153,8 +153,8 @@ public interface ServerHttpRequest extends HttpRequest, ReactiveHttpInputMessage
 		 * 设置或覆盖给定名称下指定的头值。
 		 * <p>如果需要添加头值、删除头等，请使用
 		 * {@link #headers(Consumer)} 以获得更强的控制能力。
-		 * @param headerName the header name
-		 * @param headerValues the header values
+		 * @param headerName 头名称
+		 * @param headerValues 头值
 		 * @since 5.1.9
 		 * @see #headers(Consumer)
 		 */

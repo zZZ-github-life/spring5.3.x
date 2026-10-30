@@ -60,7 +60,7 @@ abstract class FileStorage {
 
 	/**
 	 * 基于临时目录创建新的 {@code FileStorage}。
-	 * @param scheduler the scheduler to use for blocking operations
+	 * @param scheduler 用于阻塞操作的调度器
 	 */
 	public static FileStorage tempDirectory(Supplier<Scheduler> scheduler) {
 		return new TempFileStorage(scheduler);

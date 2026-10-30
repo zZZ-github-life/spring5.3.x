@@ -187,8 +187,8 @@ public class DefaultPersistenceUnitManager
 	 * 指定要加载的 {@code persistence.xml} 文件的多个位置。
 	 * 这些位置可以指定为 Spring 资源位置和/或位置模式。
 	 * <p>默认是 "classpath*:META-INF/persistence.xml"。
-	 * @param persistenceXmlLocations an array of Spring resource Strings
-	 * identifying the location of the {@code persistence.xml} files to read
+	 * @param persistenceXmlLocations Spring 资源字符串数组，
+	 * 标识要读取的 {@code persistence.xml} 文件位置
 	 */
 	public void setPersistenceXmlLocations(String... persistenceXmlLocations) {
 		this.persistenceXmlLocations = persistenceXmlLocations;
@@ -610,7 +610,7 @@ public class DefaultPersistenceUnitManager
 	/**
 	 * 尝试根据给定的 "defaultPersistenceUnitRootLocation"
 	 * 确定持久化单元根 URL。
-	 * @return the persistence unit root URL to pass to the JPA PersistenceProvider
+	 * @return 要传递给 JPA PersistenceProvider 的持久化单元根 URL
 	 * @see #setDefaultPersistenceUnitRootLocation
 	 */
 	@Nullable
@@ -657,8 +657,8 @@ public class DefaultPersistenceUnitManager
 	 * 并将其保留在缓存中（即不是为使用而"获取"它，而只是为后处理而访问它）。
 	 * <p>这可用于 {@link #postProcessPersistenceUnitInfo} 实现中，
 	 * 检测已存在的同名持久化单元，并可能将它们合并。
-	 * @param persistenceUnitName the name of the desired persistence unit
-	 * @return the PersistenceUnitInfo in mutable form, or {@code null} if not available
+	 * @param persistenceUnitName 所需持久化单元的名称
+	 * @return 可变形式的 PersistenceUnitInfo；如果不可用，则为 {@code null}
 	 */
 	@Nullable
 	protected final MutablePersistenceUnitInfo getPersistenceUnitInfo(String persistenceUnitName) {
@@ -671,8 +671,8 @@ public class DefaultPersistenceUnitManager
 	 * <p>默认实现委托给所有已注册的 PersistenceUnitPostProcessors。
 	 * 通常最好在那里注册更多的实体类、jar 文件等，
 	 * 而不是在此管理器的子类中，以便能够复用这些后处理器。
-	 * @param pui the chosen PersistenceUnitInfo, as read from {@code persistence.xml}.
-	 * Passed in as MutablePersistenceUnitInfo.
+	 * @param pui 选定的 PersistenceUnitInfo，读取自 {@code persistence.xml}。
+	 * 以 MutablePersistenceUnitInfo 形式传入。
 	 * @see #setPersistenceUnitPostProcessors
 	 */
 	protected void postProcessPersistenceUnitInfo(MutablePersistenceUnitInfo pui) {

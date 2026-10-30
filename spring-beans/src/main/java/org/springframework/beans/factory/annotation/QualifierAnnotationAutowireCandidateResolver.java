@@ -81,7 +81,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 
 	/**
 	 * 为给定的限定符注解类型创建一个新的 QualifierAnnotationAutowireCandidateResolver。
-	 * @param qualifierType the qualifier annotation to look for
+	 * @param qualifierType 要查找的限定符注解
 	 */
 	public QualifierAnnotationAutowireCandidateResolver(Class<? extends Annotation> qualifierType) {
 		Assert.notNull(qualifierType, "'qualifierType' must not be null");
@@ -90,7 +90,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 
 	/**
 	 * 为给定的限定符注解类型创建一个新的 QualifierAnnotationAutowireCandidateResolver。
-	 * @param qualifierTypes the qualifier annotations to look for
+	 * @param qualifierTypes 要查找的限定符注解
 	 */
 	public QualifierAnnotationAutowireCandidateResolver(Set<Class<? extends Annotation>> qualifierTypes) {
 		Assert.notNull(qualifierTypes, "'qualifierTypes' must not be null");
@@ -103,7 +103,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	 * 数和构造方法参数），也可标识为元注解，这些元注解又进一步标识实际的限定符注解。<p>此实现仅支持将
 	 * 注解作为限定符类型。默认是 Spring 的 {@link Qualifier} 注解，它既可作为直接使用的限定符，也可作
 	 * 为元注解。
-	 * @param qualifierType the annotation type to register
+	 * @param qualifierType 要注册的注解类型
 	 */
 	public void addQualifierType(Class<? extends Annotation> qualifierType) {
 		this.qualifierTypes.add(qualifierType);

@@ -37,7 +37,7 @@ import org.springframework.lang.Nullable;
  * @author Thierry Templier
  * @author Juergen Hoeller
  * @since 1.2
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see CciTemplate#execute(javax.resource.cci.InteractionSpec, Record, RecordExtractor)
  * @see CciTemplate#execute(javax.resource.cci.InteractionSpec, RecordCreator, RecordExtractor)
  * @see javax.resource.cci.ResultSet
@@ -50,15 +50,15 @@ public interface RecordExtractor<T> {
 
 	/**
 	 * 处理给定 Record 中的数据，创建相应的结果对象。
-	 * @param record the Record to extract data from
-	 * (possibly a CCI ResultSet)
-	 * @return an arbitrary result object, or {@code null} if none
-	 * (the extractor will typically be stateful in the latter case)
-	 * @throws ResourceException if thrown by a CCI method, to be auto-converted
-	 * to a DataAccessException
-	 * @throws SQLException if thrown by a ResultSet method, to be auto-converted
-	 * to a DataAccessException
-	 * @throws DataAccessException in case of custom exceptions
+	 * @param record 要从中提取数据的 Record
+	 * （可能是 CCI ResultSet）
+	 * @return 任意结果对象；如果没有则为 {@code null}
+	 * （在后一种情况下，提取器通常是有状态的）
+	 * @throws ResourceException 如果由 CCI 方法抛出，
+	 * 将自动转换为 DataAccessException
+	 * @throws SQLException 如果由 ResultSet 方法抛出，
+	 * 将自动转换为 DataAccessException
+	 * @throws DataAccessException 在出现自定义异常的情况下
 	 * @see javax.resource.cci.ResultSet
 	 */
 	@Nullable

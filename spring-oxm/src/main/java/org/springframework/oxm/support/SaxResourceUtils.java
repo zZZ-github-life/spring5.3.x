@@ -35,9 +35,9 @@ public abstract class SaxResourceUtils {
 	/**
 	 * 根据给定资源创建一个 SAX {@code InputSource}。
 	 * <p>如果可用，将系统标识符设置为该资源的 {@code URL}。
-	 * @param resource the resource
-	 * @return the input source created from the resource
-	 * @throws IOException if an I/O exception occurs
+	 * @param resource 资源
+	 * @return 根据该资源创建的输入源
+	 * @throws IOException 如果发生 I/O 异常
 	 * @see InputSource#setSystemId(String)
 	 * @see #getSystemId(org.springframework.core.io.Resource)
 	 */

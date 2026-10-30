@@ -35,7 +35,7 @@ public class CommonsLogWriter extends Writer {
 
 	/**
 	 * 为给定的 Commons Logging 日志器创建一个新的 CommonsLogWriter。
-	 * @param logger the Commons Logging logger to write to
+	 * @param logger 要写入的 Commons Logging logger
 	 */
 	public CommonsLogWriter(Log logger) {
 		Assert.notNull(logger, "Logger must not be null");

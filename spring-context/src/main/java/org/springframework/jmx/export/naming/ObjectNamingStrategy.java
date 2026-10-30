@@ -36,12 +36,10 @@ public interface ObjectNamingStrategy {
 
 	/**
 	 * 为提供的 Bean 获取一个 {@code ObjectName}。
-	 * @param managedBean the bean that will be exposed under the
-	 * returned {@code ObjectName}
-	 * @param beanKey the key associated with this bean in the beans map
-	 * passed to the {@code MBeanExporter}
-	 * @return the {@code ObjectName} instance
-	 * @throws MalformedObjectNameException if the resulting {@code ObjectName} is invalid
+	 * @param managedBean 将在返回的 {@code ObjectName} 下暴露的 Bean
+	 * @param beanKey 传递给 {@code MBeanExporter} 的 Bean 映射中与该 Bean 关联的键
+	 * @return 该 {@code ObjectName} 实例
+	 * @throws MalformedObjectNameException 如果得到的 {@code ObjectName} 无效
 	 */
 	ObjectName getObjectName(Object managedBean, @Nullable String beanKey) throws MalformedObjectNameException;
 

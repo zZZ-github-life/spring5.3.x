@@ -105,7 +105,7 @@ public class HandlerMethodArgumentResolverComposite implements HandlerMethodArgu
 	 * 遍历已注册的
 	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}，
 	 * 并调用支持该参数的那个。
-	 * @throws IllegalArgumentException if no suitable argument resolver is found
+	 * @throws IllegalArgumentException 如果找不到合适的参数解析器
 	 */
 	@Override
 	@Nullable

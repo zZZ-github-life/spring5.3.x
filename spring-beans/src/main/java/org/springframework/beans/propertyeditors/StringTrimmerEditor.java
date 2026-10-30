@@ -39,8 +39,8 @@ public class StringTrimmerEditor extends PropertyEditorSupport {
 
 	/**
 	 * 创建一个新的 StringTrimmerEditor。
-	 * @param emptyAsNull {@code true} if an empty String is to be
-	 * transformed into {@code null}
+	 * @param emptyAsNull 如果要将空 String 转换为 {@code null}，
+	 * 则为 {@code true}
 	 */
 	public StringTrimmerEditor(boolean emptyAsNull) {
 		this.charsToDelete = null;
@@ -49,11 +49,11 @@ public class StringTrimmerEditor extends PropertyEditorSupport {
 
 	/**
 	 * 创建一个新的 StringTrimmerEditor。
-	 * @param charsToDelete a set of characters to delete, in addition to
-	 * trimming an input String. Useful for deleting unwanted line breaks:
-	 * e.g. "\r\n\f" will delete all new lines and line feeds in a String.
-	 * @param emptyAsNull {@code true} if an empty String is to be
-	 * transformed into {@code null}
+	 * @param charsToDelete 除去除输入 String 的首尾空白外还要删除的一组字符。
+	 * 适用于删除不需要的换行符：
+	 * 例如 "\r\n\f" 会删除 String 中的所有换行符和换页符。
+	 * @param emptyAsNull 如果要将空 String 转换为 {@code null}，
+	 * 则为 {@code true}
 	 */
 	public StringTrimmerEditor(String charsToDelete, boolean emptyAsNull) {
 		this.charsToDelete = charsToDelete;

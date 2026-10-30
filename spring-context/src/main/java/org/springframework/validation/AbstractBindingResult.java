@@ -60,7 +60,7 @@ public abstract class AbstractBindingResult extends AbstractErrors implements Bi
 
 	/**
 	 * 创建新的 AbstractBindingResult 实例。
-	 * @param objectName the name of the target object
+	 * @param objectName 目标对象的名称
 	 * @see DefaultMessageCodesResolver
 	 */
 	protected AbstractBindingResult(String objectName) {
@@ -380,18 +380,18 @@ public abstract class AbstractBindingResult extends AbstractErrors implements Bi
 
 	/**
 	 * 提取给定字段的实际字段值。
-	 * @param field the field to check
-	 * @return the current value of the field
+	 * @param field 要检查的字段
+	 * @return 字段的当前值
 	 */
 	@Nullable
 	protected abstract Object getActualFieldValue(String field);
 
 	/**
 	 * 为指定字段格式化给定值。<p>默认实现直接原样返回字段值。
-	 * @param field the field to check
-	 * @param value the value of the field (either a rejected value
-	 * other than from a binding error, or an actual field value)
-	 * @return the formatted value
+	 * @param field 要检查的字段
+	 * @param value 字段的值（可以是并非来自绑定错误的被拒绝值，
+	 * 或实际的字段值）
+	 * @return 格式化后的值
 	 */
 	@Nullable
 	protected Object formatFieldValue(String field, @Nullable Object value) {

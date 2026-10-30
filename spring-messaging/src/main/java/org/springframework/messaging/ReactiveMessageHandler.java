@@ -30,8 +30,8 @@ public interface ReactiveMessageHandler {
 
 	/**
 	 * 处理给定消息。
-	 * @param message the message to be handled
-	 * @return a completion {@link Mono} for the result of the message handling
+	 * @param message 要处理的消息
+	 * @return 用于表示消息处理结果的完成 {@link Mono}
 	 */
 	Mono<Void> handleMessage(Message<?> message);
 

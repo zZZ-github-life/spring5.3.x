@@ -36,7 +36,7 @@ public class HttpMediaTypeNotSupportedException extends HttpMediaTypeException {
 
 	/**
 	 * 创建一个新的 HttpMediaTypeNotSupportedException。
-	 * @param message the exception message
+	 * @param message 异常消息
 	 */
 	public HttpMediaTypeNotSupportedException(String message) {
 		super(message);
@@ -45,8 +45,8 @@ public class HttpMediaTypeNotSupportedException extends HttpMediaTypeException {
 
 	/**
 	 * 创建一个新的 HttpMediaTypeNotSupportedException。
-	 * @param contentType the unsupported content type
-	 * @param supportedMediaTypes the list of supported media types
+	 * @param contentType 不受支持的内容类型
+	 * @param supportedMediaTypes 支持的媒体类型列表
 	 */
 	public HttpMediaTypeNotSupportedException(@Nullable MediaType contentType, List<MediaType> supportedMediaTypes) {
 		this(contentType, supportedMediaTypes, "Content type '" +
@@ -55,9 +55,9 @@ public class HttpMediaTypeNotSupportedException extends HttpMediaTypeException {
 
 	/**
 	 * 创建一个新的 HttpMediaTypeNotSupportedException。
-	 * @param contentType the unsupported content type
-	 * @param supportedMediaTypes the list of supported media types
-	 * @param msg the detail message
+	 * @param contentType 不受支持的内容类型
+	 * @param supportedMediaTypes 支持的媒体类型列表
+	 * @param msg 详细消息
 	 */
 	public HttpMediaTypeNotSupportedException(@Nullable MediaType contentType,
 			List<MediaType> supportedMediaTypes, String msg) {

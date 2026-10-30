@@ -41,7 +41,7 @@ public class MockExpressionEvaluator extends javax.servlet.jsp.el.ExpressionEval
 
 	/**
 	 * 为给定 PageContext 创建一个新的 MockExpressionEvaluator。
-	 * @param pageContext the JSP PageContext to run in
+	 * @param pageContext 要在其中运行的 JSP PageContext
 	 */
 	public MockExpressionEvaluator(PageContext pageContext) {
 		this.pageContext = pageContext;

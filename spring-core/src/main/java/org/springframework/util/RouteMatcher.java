@@ -35,41 +35,41 @@ public interface RouteMatcher {
 
 	/**
 	 * 返回给定路由的已解析表示。
-	 * @param routeValue the route to parse
-	 * @return the parsed representation of the route
+	 * @param routeValue 要解析的路由
+	 * @return 路由的解析后表示形式
 	 */
 	Route parseRoute(String routeValue);
 
 	/**
 	 * 给定的 {@code route} 是否包含需要 {@link #match(String, Route)} 方法的模式语法，或者它是否是可直
 	 * 接与其他字符串比较的常规字符串。
-	 * @param route the route to check
-	 * @return {@code true} if the given {@code route} represents a pattern
+	 * @param route 要检查的路由
+	 * @return 如果给定的 {@code route} 表示模式，则返回 {@code true}
 	 */
 	boolean isPattern(String route);
 
 	/**
 	 * 将两个模式合并为单个模式。
-	 * @param pattern1 the first pattern
-	 * @param pattern2 the second pattern
-	 * @return the combination of the two patterns
-	 * @throws IllegalArgumentException when the two patterns cannot be combined
+	 * @param pattern1 第一个模式
+	 * @param pattern2 第二个模式
+	 * @return 两个模式的组合
+	 * @throws IllegalArgumentException 当两个模式无法组合时
 	 */
 	String combine(String pattern1, String pattern2);
 
 	/**
 	 * 将给定的路由与给定的模式进行匹配。
-	 * @param pattern the pattern to try to match
-	 * @param route the route to test against
-	 * @return {@code true} if there is a match, {@code false} otherwise
+	 * @param pattern 要尝试匹配的模式
+	 * @param route 要与之测试的路由
+	 * @return 如果匹配则返回 {@code true}，否则返回 {@code false}
 	 */
 	boolean match(String pattern, Route route);
 
 	/**
 	 * 将模式与路由进行匹配并提取模板变量。
-	 * @param pattern the pattern, possibly containing templates variables
-	 * @param route the route to extract template variables from
-	 * @return a map with template variables and values
+	 * @param pattern 模式，可能包含模板变量
+	 * @param route 要从中提取模板变量的路由
+	 * @return 包含模板变量及其值的映射
 	 */
 	@Nullable
 	Map<String, String> matchAndExtract(String pattern, Route route);
@@ -77,8 +77,8 @@ public interface RouteMatcher {
 	/**
 	 * 给定路由，返回一个适合按该路由的明确程度对模式排序的 {@link Comparator}，使更具体的模式排在更通
 	 * 用的模式之前。
-	 * @param route the full path to use for comparison
-	 * @return a comparator capable of sorting patterns in order of explicitness
+	 * @param route 用于比较的完整路径
+	 * @return 一个能够按明确程度对模式排序的比较器
 	 */
 	Comparator<String> getPatternComparator(Route route);
 

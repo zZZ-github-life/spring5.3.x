@@ -33,7 +33,7 @@ public interface ServerHttpResponse extends HttpOutputMessage, Flushable, Closea
 
 	/**
 	 * 设置响应的 HTTP 状态码。
-	 * @param status the HTTP status as an HttpStatus enum value
+	 * @param status 作为 HttpStatus 枚举值的 HTTP 状态
 	 */
 	void setStatusCode(HttpStatus status);
 

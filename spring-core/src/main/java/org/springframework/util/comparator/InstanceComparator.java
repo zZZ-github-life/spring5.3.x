@@ -30,7 +30,7 @@ import org.springframework.util.Assert;
  *
  * @author Phillip Webb
  * @since 3.2
- * @param <T> the type of objects that may be compared by this comparator
+ * @param <T> 该比较器可以比较的对象类型
  * @see Comparator#thenComparing(Comparator)
  */
 public class InstanceComparator<T> implements Comparator<T> {
@@ -40,8 +40,8 @@ public class InstanceComparator<T> implements Comparator<T> {
 
 	/**
 	 * 创建一个新的 {@link InstanceComparator} 实例。
-	 * @param instanceOrder the ordered list of classes that should be used when comparing
-	 * objects. Classes earlier in the list will be given a higher priority.
+	 * @param instanceOrder 比较对象时应使用的有序类列表。
+	 * 列表中靠前的类具有更高的优先级。
 	 */
 	public InstanceComparator(Class<?>... instanceOrder) {
 		Assert.notNull(instanceOrder, "'instanceOrder' array must not be null");

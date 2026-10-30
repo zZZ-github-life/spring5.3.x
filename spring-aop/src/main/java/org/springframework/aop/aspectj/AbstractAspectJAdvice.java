@@ -71,8 +71,7 @@ public abstract class AbstractAspectJAdvice implements Advice, AspectJPrecedence
 	/**
 	 * 为当前调用延迟实例化连接点。要求 MethodInvocation 已通过 ExposeInvocationInterceptor 绑定。<p>如
 	 * 果可以访问当前的 ReflectiveMethodInvocation（在环绕通知中），则不要使用。
-	 * @return current AspectJ joinpoint, or through an exception if we're not in a
-	 * Spring AOP invocation.
+	 * @return 当前的 AspectJ 连接点；如果我们不在 Spring AOP 调用中，则抛出异常。
 	 */
 	public static JoinPoint currentJoinPoint() {
 		MethodInvocation mi = ExposeInvocationInterceptor.currentInvocation();
@@ -153,9 +152,9 @@ public abstract class AbstractAspectJAdvice implements Advice, AspectJPrecedence
 
 	/**
 	 * 为给定的通知方法创建一个新的 AbstractAspectJAdvice。
-	 * @param aspectJAdviceMethod the AspectJ-style advice method
-	 * @param pointcut the AspectJ expression pointcut
-	 * @param aspectInstanceFactory the factory for aspect instances
+	 * @param aspectJAdviceMethod AspectJ 风格的通知方法
+	 * @param pointcut AspectJ 表达式切点
+	 * @param aspectInstanceFactory 切面实例的工厂
 	 */
 	public AbstractAspectJAdvice(
 			Method aspectJAdviceMethod, AspectJExpressionPointcut pointcut, AspectInstanceFactory aspectInstanceFactory) {
@@ -187,7 +186,7 @@ public abstract class AbstractAspectJAdvice implements Advice, AspectJPrecedence
 
 	/**
 	 * 构建一个“安全”的切点，排除 AspectJ 通知方法本身。
-	 * @return a composable pointcut that builds on the original AspectJ expression pointcut
+	 * @return 在原 AspectJ 表达式切点基础上构建的可组合切点
 	 * @see #getPointcut()
 	 */
 	public final Pointcut buildSafePointcut() {
@@ -245,7 +244,7 @@ public abstract class AbstractAspectJAdvice implements Advice, AspectJPrecedence
 	/**
 	 * 如果已知参数名称，则由该通知对象的创建者设置。<p>例如，这可能是因为它们在 XML 或通知注解中被显式
 	 * 指定。
-	 * @param argNames comma delimited list of arg names
+	 * @param argNames 以逗号分隔的参数名列表
 	 */
 	public void setArgumentNames(String argNames) {
 		String[] tokens = StringUtils.commaDelimitedListToStringArray(argNames);
@@ -529,11 +528,11 @@ public abstract class AbstractAspectJAdvice implements Advice, AspectJPrecedence
 
 	/**
 	 * 获取方法执行连接点处的参数，并输出一组用于通知方法的参数。
-	 * @param jp the current JoinPoint
-	 * @param jpMatch the join point match that matched this execution join point
-	 * @param returnValue the return value from the method execution (may be null)
-	 * @param ex the exception thrown by the method execution (may be null)
-	 * @return the empty array if there are no arguments
+	 * @param jp 当前的 JoinPoint
+	 * @param jpMatch 与此执行连接点匹配的连接点匹配对象
+	 * @param returnValue 方法执行的返回值（可能为 null）
+	 * @param ex 方法执行抛出的异常（可能为 null）
+	 * @return 如果没有参数，则为空数组
 	 */
 	protected Object[] argBinding(JoinPoint jp, @Nullable JoinPointMatch jpMatch,
 			@Nullable Object returnValue, @Nullable Throwable ex) {
@@ -590,11 +589,11 @@ public abstract class AbstractAspectJAdvice implements Advice, AspectJPrecedence
 
 	/**
 	 * 调用该通知方法。
-	 * @param jpMatch the JoinPointMatch that matched this execution join point
-	 * @param returnValue the return value from the method execution (may be null)
-	 * @param ex the exception thrown by the method execution (may be null)
-	 * @return the invocation result
-	 * @throws Throwable in case of invocation failure
+	 * @param jpMatch 与此执行连接点匹配的 JoinPointMatch
+	 * @param returnValue 方法执行的返回值（可能为 null）
+	 * @param ex 方法执行抛出的异常（可能为 null）
+	 * @return 调用结果
+	 * @throws Throwable 如果调用失败
 	 */
 	protected Object invokeAdviceMethod(
 			@Nullable JoinPointMatch jpMatch, @Nullable Object returnValue, @Nullable Throwable ex)

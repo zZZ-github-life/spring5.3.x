@@ -62,8 +62,8 @@ public final class MockMvcBuilders {
 	 * XML 中使用 MVC 命名空间或使用 MVC Java 配置 &mdash; 那么使用此构建器
 	 * 可能是测试大多数控制器的一个不错选择。在这种情况下，可以使用
 	 * 更少的测试来专注于测试和验证实际的 Spring MVC 配置。
-	 * @param controllers one or more {@code @Controller} instances to test
-	 * (specified {@code Class} will be turned into instance)
+	 * @param controllers 一个或多个要测试的 {@code @Controller} 实例
+	 * （指定的 {@code Class} 将被转换为实例）
 	 */
 	public static StandaloneMockMvcBuilder standaloneSetup(Object... controllers) {
 		return new StandaloneMockMvcBuilder(controllers);

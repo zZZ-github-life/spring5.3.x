@@ -47,8 +47,8 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 
 	/**
 	 * 创建一个新的 BeanDefinitionHolder。
-	 * @param beanDefinition the BeanDefinition to wrap
-	 * @param beanName the name of the bean, as specified for the bean definition
+	 * @param beanDefinition 要包装的 BeanDefinition
+	 * @param beanName 该 Bean 的名称，与为 Bean 定义指定的名称一致
 	 */
 	public BeanDefinitionHolder(BeanDefinition beanDefinition, String beanName) {
 		this(beanDefinition, beanName, null);
@@ -56,9 +56,9 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 
 	/**
 	 * 创建一个新的 BeanDefinitionHolder。
-	 * @param beanDefinition the BeanDefinition to wrap
-	 * @param beanName the name of the bean, as specified for the bean definition
-	 * @param aliases alias names for the bean, or {@code null} if none
+	 * @param beanDefinition 要包装的 BeanDefinition
+	 * @param beanName 该 Bean 的名称，与为 Bean 定义指定的名称一致
+	 * @param aliases 该 Bean 的别名；如果没有则为 {@code null}
 	 */
 	public BeanDefinitionHolder(BeanDefinition beanDefinition, String beanName, @Nullable String[] aliases) {
 		Assert.notNull(beanDefinition, "BeanDefinition must not be null");
@@ -71,7 +71,7 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 	/**
 	 * 复制构造方法：创建一个新的 BeanDefinitionHolder，其内容与给定的 BeanDefinitionHolder 实例相同。
 	 * <p>注意：所包装的 BeanDefinition 引用按原样获取；它 {@code not} 会被深拷贝。
-	 * @param beanDefinitionHolder the BeanDefinitionHolder to copy
+	 * @param beanDefinitionHolder 要复制的 BeanDefinitionHolder
 	 */
 	public BeanDefinitionHolder(BeanDefinitionHolder beanDefinitionHolder) {
 		Assert.notNull(beanDefinitionHolder, "BeanDefinitionHolder must not be null");
@@ -97,7 +97,7 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 
 	/**
 	 * 返回 Bean 的别名，即直接为 Bean 定义指定的别名。
-	 * @return the array of alias names, or {@code null} if none
+	 * @return 别名数组；如果没有则为 {@code null}
 	 */
 	@Nullable
 	public String[] getAliases() {

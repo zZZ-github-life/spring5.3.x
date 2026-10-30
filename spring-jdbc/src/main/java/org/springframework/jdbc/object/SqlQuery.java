@@ -47,7 +47,7 @@ import org.springframework.lang.Nullable;
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @author Thomas Risberg
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see SqlUpdate
  */
 public abstract class SqlQuery<T> extends SqlOperation {
@@ -65,9 +65,9 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * 使用 {@code DataSource} 和 SQL 字符串的便捷构造函数。
-	 * @param ds the {@code DataSource} to use to get connections
-	 * @param sql the SQL to execute; SQL can also be supplied at runtime
-	 * by overriding the {@link #getSql()} method.
+	 * @param ds 用于获取连接的 {@code DataSource}
+	 * @param sql 要执行的 SQL；也可以在运行时通过重写
+	 * {@link #getSql()} 方法提供 SQL。
 	 */
 	public SqlQuery(DataSource ds, String sql) {
 		setDataSource(ds);
@@ -93,14 +93,15 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * 核心执行方法。所有未命名参数的执行都经过此方法。
-	 * @param params parameters, similar to JDO query parameters.
-	 * Primitive parameters must be represented by their Object wrapper type.
-	 * The ordering of parameters is significant.
-	 * @param context the contextual information passed to the {@code mapRow}
-	 * callback method. The JDBC operation itself doesn't rely on this parameter,
-	 * but it can be useful for creating the objects of the result list.
-	 * @return a List of objects, one per row of the ResultSet. Normally all these
-	 * will be of the same class, although it is possible to use different types.
+	 * @param params 参数，类似于 JDO 查询参数。
+	 * 基本类型参数必须用其 Object 包装类型表示。
+	 * 参数的顺序很重要。
+	 * @param context 传递给 {@code mapRow} 回调方法的上下文信息。
+	 * JDBC 操作本身不依赖此参数，
+	 * 但它在创建结果列表的对象时可能有用。
+	 * @return 对象列表，ResultSet 的每一行对应一个对象。
+	 * 通常所有这些对象都属于同一个类，
+	 * 不过也可以使用不同的类型。
 	 */
 	public List<T> execute(@Nullable Object[] params, @Nullable Map<?, ?> context) throws DataAccessException {
 		validateParameters(params);
@@ -110,9 +111,8 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * 不带上下文执行的便捷方法。
-	 * @param params parameters for the query. Primitive parameters must
-	 * be represented by their Object wrapper type. The ordering of parameters is
-	 * significant.
+	 * @param params 查询的参数。基本类型参数必须用其 Object 包装类型表示。
+	 * 参数的顺序很重要。
 	 */
 	public List<T> execute(Object... params) throws DataAccessException {
 		return execute(params, null);
@@ -120,7 +120,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * 不带参数执行的便捷方法。
-	 * @param context the contextual information for object creation
+	 * @param context 用于创建对象的上下文信息
 	 */
 	public List<T> execute(Map<?, ?> context) throws DataAccessException {
 		return execute((Object[]) null, context);
@@ -135,8 +135,8 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * 使用单个 int 参数和上下文执行的便捷方法。
-	 * @param p1 single int parameter
-	 * @param context the contextual information for object creation
+	 * @param p1 单个 int 参数
+	 * @param context 用于创建对象的上下文信息
 	 */
 	public List<T> execute(int p1, @Nullable Map<?, ?> context) throws DataAccessException {
 		return execute(new Object[] {p1}, context);
@@ -144,7 +144,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * 使用单个 int 参数执行的便捷方法。
-	 * @param p1 single int parameter
+	 * @param p1 单个 int 参数
 	 */
 	public List<T> execute(int p1) throws DataAccessException {
 		return execute(p1, null);
@@ -152,9 +152,9 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * 使用两个 int 参数和上下文执行的便捷方法。
-	 * @param p1 first int parameter
-	 * @param p2 second int parameter
-	 * @param context the contextual information for object creation
+	 * @param p1 第一个 int 参数
+	 * @param p2 第二个 int 参数
+	 * @param context 用于创建对象的上下文信息
 	 */
 	public List<T> execute(int p1, int p2, @Nullable Map<?, ?> context) throws DataAccessException {
 		return execute(new Object[] {p1, p2}, context);
@@ -162,8 +162,8 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * 使用两个 int 参数执行的便捷方法。
-	 * @param p1 first int parameter
-	 * @param p2 second int parameter
+	 * @param p1 第一个 int 参数
+	 * @param p2 第二个 int 参数
 	 */
 	public List<T> execute(int p1, int p2) throws DataAccessException {
 		return execute(p1, p2, null);
@@ -171,8 +171,8 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * 使用单个 long 参数和上下文执行的便捷方法。
-	 * @param p1 single long parameter
-	 * @param context the contextual information for object creation
+	 * @param p1 单个 long 参数
+	 * @param context 用于创建对象的上下文信息
 	 */
 	public List<T> execute(long p1, @Nullable Map<?, ?> context) throws DataAccessException {
 		return execute(new Object[] {p1}, context);
@@ -180,7 +180,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * 使用单个 long 参数执行的便捷方法。
-	 * @param p1 single long parameter
+	 * @param p1 单个 long 参数
 	 */
 	public List<T> execute(long p1) throws DataAccessException {
 		return execute(p1, null);
@@ -188,8 +188,8 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * 使用单个 String 参数和上下文执行的便捷方法。
-	 * @param p1 single String parameter
-	 * @param context the contextual information for object creation
+	 * @param p1 单个 String 参数
+	 * @param context 用于创建对象的上下文信息
 	 */
 	public List<T> execute(String p1, @Nullable Map<?, ?> context) throws DataAccessException {
 		return execute(new Object[] {p1}, context);
@@ -197,7 +197,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * 使用单个 String 参数执行的便捷方法。
-	 * @param p1 single String parameter
+	 * @param p1 单个 String 参数
 	 */
 	public List<T> execute(String p1) throws DataAccessException {
 		return execute(p1, null);
@@ -205,15 +205,16 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * 核心执行方法。所有命名参数的执行都经过此方法。
-	 * @param paramMap parameters associated with the name specified while declaring
-	 * the SqlParameters. Primitive parameters must be represented by their Object wrapper
-	 * type. The ordering of parameters is not significant since they are supplied in a
-	 * SqlParameterMap which is an implementation of the Map interface.
-	 * @param context the contextual information passed to the {@code mapRow}
-	 * callback method. The JDBC operation itself doesn't rely on this parameter,
-	 * but it can be useful for creating the objects of the result list.
-	 * @return a List of objects, one per row of the ResultSet. Normally all these
-	 * will be of the same class, although it is possible to use different types.
+	 * @param paramMap 与声明 SqlParameters 时指定的名称相关联的参数。
+	 * 基本类型参数必须用其 Object 包装类型表示。
+	 * 参数的顺序不重要，因为它们是在
+	 * SqlParameterMap（Map 接口的一个实现）中提供的。
+	 * @param context 传递给 {@code mapRow} 回调方法的上下文信息。
+	 * JDBC 操作本身不依赖此参数，
+	 * 但它在创建结果列表的对象时可能有用。
+	 * @return 对象列表，ResultSet 的每一行对应一个对象。
+	 * 通常所有这些对象都属于同一个类，
+	 * 不过也可以使用不同的类型。
 	 */
 	public List<T> executeByNamedParam(Map<String, ?> paramMap, @Nullable Map<?, ?> context) throws DataAccessException {
 		validateNamedParameters(paramMap);
@@ -227,9 +228,9 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * 不带上下文执行的便捷方法。
-	 * @param paramMap parameters associated with the name specified while declaring
-	 * the SqlParameters. Primitive parameters must be represented by their Object wrapper
-	 * type. The ordering of parameters is not significant.
+	 * @param paramMap 与声明 SqlParameters 时指定的名称相关联的参数。
+	 * 基本类型参数必须用其 Object 包装类型表示。
+	 * 参数的顺序不重要。
 	 */
 	public List<T> executeByNamedParam(Map<String, ?> paramMap) throws DataAccessException {
 		return executeByNamedParam(paramMap, null);
@@ -240,8 +241,8 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	 * 通用对象查找方法，被所有其他 {@code findObject} 方法使用。
 	 * 对象查找方法类似于 EJB 实体 bean 的查找器，如果返回多个结果，
 	 * 则被视为错误。
-	 * @return the result object, or {@code null} if not found. Subclasses may
-	 * choose to treat this as an error and throw an exception.
+	 * @return 结果对象，如果未找到则为 {@code null}。
+	 * 子类可以选择将其视为错误并抛出异常。
 	 * @see org.springframework.dao.support.DataAccessUtils#singleResult
 	 */
 	@Nullable
@@ -324,14 +325,14 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * 针对命名参数的通用对象查找方法。
-	 * @param paramMap a Map of parameter name to parameter object,
-	 * matching named parameters specified in the SQL statement.
-	 * Ordering is not significant.
-	 * @param context the contextual information passed to the {@code mapRow}
-	 * callback method. The JDBC operation itself doesn't rely on this parameter,
-	 * but it can be useful for creating the objects of the result list.
-	 * @return a List of objects, one per row of the ResultSet. Normally all these
-	 * will be of the same class, although it is possible to use different types.
+	 * @param paramMap 参数名到参数对象的 Map，
+	 * 与 SQL 语句中指定的命名参数相匹配。排序不重要。
+	 * @param context 传递给 {@code mapRow} 回调方法的上下文信息。
+	 * JDBC 操作本身不依赖此参数，
+	 * 但它在创建结果列表的对象时可能有用。
+	 * @return 对象列表，ResultSet 的每一行对应一个对象。
+	 * 通常所有这些对象都属于同一个类，
+	 * 不过也可以使用不同的类型。
 	 */
 	@Nullable
 	public T findObjectByNamedParam(Map<String, ?> paramMap, @Nullable Map<?, ?> context) throws DataAccessException {
@@ -341,9 +342,8 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * 不带上下文执行的便捷方法。
-	 * @param paramMap a Map of parameter name to parameter object,
-	 * matching named parameters specified in the SQL statement.
-	 * Ordering is not significant.
+	 * @param paramMap 参数名到参数对象的 Map，
+	 * 与 SQL 语句中指定的命名参数相匹配。排序不重要。
 	 */
 	@Nullable
 	public T findObjectByNamedParam(Map<String, ?> paramMap) throws DataAccessException {
@@ -354,12 +354,11 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	/**
 	 * 子类必须实现此方法以提取每行的对象，由 {@code execute} 方法以聚合的
 	 * {@link List} 形式返回。
-	 * @param parameters the parameters to the {@code execute()} method,
-	 * in case subclass is interested; may be {@code null} if there
-	 * were no parameters.
-	 * @param context the contextual information passed to the {@code mapRow}
-	 * callback method. The JDBC operation itself doesn't rely on this parameter,
-	 * but it can be useful for creating the objects of the result list.
+	 * @param parameters 传递给 {@code execute()} 方法的参数，以备子类需要；
+	 * 如果没有参数，则可以为 {@code null}。
+	 * @param context 传递给 {@code mapRow} 回调方法的上下文信息。
+	 * JDBC 操作本身不依赖此参数，
+	 * 但它在创建结果列表的对象时可能有用。
 	 * @see #execute
 	 */
 	protected abstract RowMapper<T> newRowMapper(@Nullable Object[] parameters, @Nullable Map<?, ?> context);

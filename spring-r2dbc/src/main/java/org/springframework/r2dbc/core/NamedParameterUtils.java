@@ -86,8 +86,9 @@ abstract class NamedParameterUtils {
 	/**
 	 * 解析 SQL 语句并定位任何占位符或命名参数。
 	 * 命名参数会被替换为 R2DBC 占位符。
-	 * @param sql the SQL statement
-	 * @return the parsed statement, represented as {@link ParsedSql} instance
+	 * @param sql SQL 语句
+	 * @return 解析后的语句，
+	 * 以 {@link ParsedSql} 实例表示
 	 */
 	public static ParsedSql parseSqlStatement(String sql) {
 		Assert.notNull(sql, "SQL must not be null");
@@ -206,9 +207,9 @@ abstract class NamedParameterUtils {
 
 	/**
 	 * 跳过 SQL 语句中出现的注释和带引号的名称。
-	 * @param statement character array containing SQL statement
-	 * @param position current position of statement
-	 * @return next position to process after any comments or quotes are skipped
+	 * @param statement 包含 SQL 语句的字符数组
+	 * @param position 语句的当前位置
+	 * @return 跳过所有注释或引号后要处理的下一个位置
 	 */
 	private static int skipCommentsAndQuotes(char[] statement, int position) {
 		for (int i = 0; i < START_SKIP.length; i++) {
@@ -260,11 +261,11 @@ abstract class NamedParameterUtils {
 	 * <p>传入的参数值用于确定选择列表要使用的占位符数量。
 	 * 选择列表应限制为 100 个或更少的元素。数据库不保证支持更多元素，
 	 * 并且这严格取决于数据库供应商。
-	 * @param parsedSql the parsed representation of the SQL statement
-	 * @param bindMarkersFactory the bind marker factory.
-	 * @param paramSource the source for named parameters
-	 * @return the expanded query that accepts bind parameters and allows for execution
-	 * without further translation
+	 * @param parsedSql SQL 语句的解析表示
+	 * @param bindMarkersFactory 绑定标记工厂。
+	 * @param paramSource 命名参数的来源
+	 * @return 展开后的查询，接受绑定参数并可直接执行，
+	 * 无需进一步转换
 	 * @see #parseSqlStatement
 	 */
 	public static PreparedOperation<String> substituteNamedParameters(ParsedSql parsedSql,
@@ -347,11 +348,11 @@ abstract class NamedParameterUtils {
 	 * 解析 SQL 语句并定位任何占位符或命名参数。
 	 * 命名参数会被替换为原生占位符，任何选择列表都会被展开为
 	 * 所需数量的占位符。
-	 * @param sql the SQL statement
-	 * @param bindMarkersFactory the bind marker factory
-	 * @param paramSource the source for named parameters
-	 * @return the expanded query that accepts bind parameters and allows for execution
-	 * without further translation
+	 * @param sql SQL 语句
+	 * @param bindMarkersFactory 绑定标记工厂
+	 * @param paramSource 命名参数的来源
+	 * @return 展开后的查询，接受绑定参数并可直接执行，
+	 * 无需进一步转换
 	 */
 	public static PreparedOperation<String> substituteNamedParameters(String sql,
 			BindMarkersFactory bindMarkersFactory, BindParameterSource paramSource) {
@@ -426,8 +427,8 @@ abstract class NamedParameterUtils {
 		/**
 		 * 获取由 {@code namedParameter} 标识的 {@link NamedParameter}。
 		 * 如果参数对象尚不存在，则会创建它们。
-		 * @param namedParameter the parameter name
-		 * @return the named parameter
+		 * @param namedParameter 参数名称
+		 * @return 命名参数
 		 */
 		NamedParameter getOrCreate(String namedParameter) {
 			List<NamedParameter> reference = this.references.computeIfAbsent(
@@ -464,7 +465,7 @@ abstract class NamedParameterUtils {
 			/**
 			 * 创建一个占位符，用于将单个值转换为可绑定的参数。
 			 * <p>可以多次调用以为数组/集合创建占位符。
-			 * @return the placeholder to be used in the SQL statement
+			 * @return 要在 SQL 语句中使用的占位符
 			 */
 			String addPlaceholder() {
 				BindMarker bindMarker = NamedParameters.this.bindMarkers.next(this.namedParameter);

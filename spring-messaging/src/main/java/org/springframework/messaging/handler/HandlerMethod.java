@@ -91,7 +91,7 @@ public class HandlerMethod {
 
 	/**
 	 * 从 Bean 实例、方法名称和参数类型创建实例。
-	 * @throws NoSuchMethodException when the method cannot be found
+	 * @throws NoSuchMethodException 当找不到该方法时
 	 */
 	public HandlerMethod(Object bean, String methodName, Class<?>... parameterTypes) throws NoSuchMethodException {
 		Assert.notNull(bean, "Bean is required");
@@ -169,7 +169,7 @@ public class HandlerMethod {
 
 	/**
 	 * 设置替代日志记录器，以代替基于类名的日志记录器。
-	 * @param logger the logger to use
+	 * @param logger 要使用的日志记录器
 	 * @since 5.1
 	 */
 	public void setLogger(Log logger) {
@@ -246,8 +246,8 @@ public class HandlerMethod {
 	 * 返回底层方法上的单个注解；如果给定方法本身上找不到注解，
 	 * 则遍历其父方法查找。
 	 * <p>从 Spring Framework 4.3 开始，还支持带属性覆盖的<em>合并</em>组合注解。
-	 * @param annotationType the type of annotation to introspect the method for
-	 * @return the annotation, or {@code null} if none found
+	 * @param annotationType 要在方法上内省查找的注解类型
+	 * @return 该注解；如果未找到则返回 {@code null}
 	 * @see AnnotatedElementUtils#findMergedAnnotation
 	 */
 	@Nullable
@@ -257,7 +257,7 @@ public class HandlerMethod {
 
 	/**
 	 * 返回参数是否使用给定注解类型声明。
-	 * @param annotationType the annotation type to look for
+	 * @param annotationType 要查找的注解类型
 	 * @since 4.3
 	 * @see AnnotatedElementUtils#hasAnnotation
 	 */

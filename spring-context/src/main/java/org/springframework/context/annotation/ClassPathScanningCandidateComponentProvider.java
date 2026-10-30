@@ -120,10 +120,9 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	/**
 	 * 使用 {@link StandardEnvironment} 创建一个 ClassPathScanningCandidateComponentProvider。
-	 * @param useDefaultFilters whether to register the default filters for the
-	 * {@link Component @Component}, {@link Repository @Repository},
-	 * {@link Service @Service}, and {@link Controller @Controller}
-	 * stereotype annotations
+	 * @param useDefaultFilters 是否注册以下构造型注解的默认过滤器：
+	 * {@link Component @Component}、{@link Repository @Repository}、
+	 * {@link Service @Service} 和 {@link Controller @Controller}
 	 * @see #registerDefaultFilters()
 	 */
 	public ClassPathScanningCandidateComponentProvider(boolean useDefaultFilters) {
@@ -132,11 +131,10 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	/**
 	 * 使用给定的 {@link Environment} 创建一个 ClassPathScanningCandidateComponentProvider。
-	 * @param useDefaultFilters whether to register the default filters for the
-	 * {@link Component @Component}, {@link Repository @Repository},
-	 * {@link Service @Service}, and {@link Controller @Controller}
-	 * stereotype annotations
-	 * @param environment the Environment to use
+	 * @param useDefaultFilters 是否注册以下构造型注解的默认过滤器：
+	 * {@link Component @Component}、{@link Repository @Repository}、
+	 * {@link Service @Service} 和 {@link Controller @Controller}
+	 * @param environment 要使用的 Environment
 	 * @see #registerDefaultFilters()
 	 */
 	public ClassPathScanningCandidateComponentProvider(boolean useDefaultFilters, Environment environment) {
@@ -174,10 +172,9 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	/**
 	 * 重置已配置的类型过滤器。
-	 * @param useDefaultFilters whether to re-register the default filters for
-	 * the {@link Component @Component}, {@link Repository @Repository},
-	 * {@link Service @Service}, and {@link Controller @Controller}
-	 * stereotype annotations
+	 * @param useDefaultFilters 是否重新注册以下构造型注解的默认过滤器：
+	 * {@link Component @Component}、{@link Repository @Repository}、
+	 * {@link Service @Service} 和 {@link Controller @Controller}
 	 * @see #registerDefaultFilters()
 	 */
 	public void resetFilters(boolean useDefaultFilters) {
@@ -227,7 +224,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	/**
 	 * 设置解析占位符和评估标注了 {@link Conditional @Conditional} 的组件类时使用的 Environment。<p>默
 	 * 认是 {@link StandardEnvironment}。
-	 * @param environment the Environment to use
+	 * @param environment 要使用的 Environment
 	 */
 	public void setEnvironment(Environment environment) {
 		Assert.notNull(environment, "Environment must not be null");
@@ -315,8 +312,8 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	/**
 	 * 在类路径中扫描候选组件。
-	 * @param basePackage the package to check for annotated classes
-	 * @return a corresponding Set of autodetected bean definitions
+	 * @param basePackage 要检查注解类的包
+	 * @return 相应的自动检测到的 Bean 定义 Set
 	 */
 	public Set<BeanDefinition> findCandidateComponents(String basePackage) {
 		if (this.componentsIndex != null && indexSupportsIncludeFilters()) {
@@ -329,8 +326,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	/**
 	 * 确定此实例是否可以使用索引。
-	 * @return {@code true} if the index is available and the configuration of this
-	 * instance is supported by it, {@code false} otherwise
+	 * @return 如果索引可用且其支持此实例的配置，则返回 {@code true}，否则返回 {@code false}
 	 * @since 5.0
 	 */
 	private boolean indexSupportsIncludeFilters() {
@@ -344,8 +340,8 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	/**
 	 * 确定索引是否支持指定的包含 {@link TypeFilter}。
-	 * @param filter the filter to check
-	 * @return whether the index supports this include filter
+	 * @param filter 要检查的过滤器
+	 * @return 索引是否支持此包含过滤器
 	 * @since 5.0
 	 * @see #extractStereotype(TypeFilter)
 	 */
@@ -364,8 +360,8 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	/**
 	 * 提取用于指定兼容过滤器的构造型。
-	 * @param filter the filter to handle
-	 * @return the stereotype in the index matching this filter
+	 * @param filter 要处理的过滤器
+	 * @return 索引中与该过滤器匹配的构造型
 	 * @since 5.0
 	 * @see #indexSupportsIncludeFilter(TypeFilter)
 	 */
@@ -493,8 +489,8 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	/**
 	 * 将指定的基础包解析为用于包搜索路径的模式规范。<p>默认实现会针对系统属性解析占位符，并将基于 “.”
 	 * 的包路径转换为基于 “/” 的资源路径。
-	 * @param basePackage the base package as specified by the user
-	 * @return the pattern specification to be used for package searching
+	 * @param basePackage 用户指定的基础包
+	 * @return 用于包搜索的模式规范
 	 */
 	protected String resolveBasePackage(String basePackage) {
 		return ClassUtils.convertClassNameToResourcePath(getEnvironment().resolveRequiredPlaceholders(basePackage));
@@ -502,8 +498,8 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	/**
 	 * 确定给定类是否不匹配任何排除过滤器，并且至少匹配一个包含过滤器。
-	 * @param metadataReader the ASM ClassReader for the class
-	 * @return whether the class qualifies as a candidate component
+	 * @param metadataReader 该类的 ASM ClassReader
+	 * @return 该类是否符合候选组件
 	 */
 	protected boolean isCandidateComponent(MetadataReader metadataReader) throws IOException {
 		for (TypeFilter tf : this.excludeFilters) {
@@ -521,8 +517,8 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	/**
 	 * 根据任何 {@code @Conditional} 注解确定给定类是否为候选组件。
-	 * @param metadataReader the ASM ClassReader for the class
-	 * @return whether the class qualifies as a candidate component
+	 * @param metadataReader 该类的 ASM ClassReader
+	 * @return 该类是否符合候选组件
 	 */
 	private boolean isConditionMatch(MetadataReader metadataReader) {
 		if (this.conditionEvaluator == null) {
@@ -535,8 +531,8 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	/**
 	 * 确定给定的 Bean 定义是否符合候选条件。<p>默认实现检查该类不是接口且不依赖于外围类。<p>可以在子类
 	 * 中覆盖。
-	 * @param beanDefinition the bean definition to check
-	 * @return whether the bean definition qualifies as a candidate component
+	 * @param beanDefinition 要检查的 Bean 定义
+	 * @return 该 Bean 定义是否符合候选组件
 	 */
 	protected boolean isCandidateComponent(AnnotatedBeanDefinition beanDefinition) {
 		AnnotationMetadata metadata = beanDefinition.getMetadata();

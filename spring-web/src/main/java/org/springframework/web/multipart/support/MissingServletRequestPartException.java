@@ -37,7 +37,7 @@ public class MissingServletRequestPartException extends ServletException {
 
 	/**
 	 * MissingServletRequestPartException 的构造函数。
-	 * @param requestPartName the name of the missing part of the multipart request
+	 * @param requestPartName multipart 请求中缺失的 part 的名称
 	 */
 	public MissingServletRequestPartException(String requestPartName) {
 		super("Required request part '" + requestPartName + "' is not present");

@@ -37,8 +37,8 @@ public interface PropertyEditorRegistrar {
 	 * {@link org.springframework.validation.DataBinder DataBinder}。
 	 * <p>预期实现会在每次调用此方法时创建全新的 {@code PropertyEditors} 实例（因为
 	 * {@code PropertyEditors} 不是线程安全的）。
-	 * @param registry the {@code PropertyEditorRegistry} to register the
-	 * custom {@code PropertyEditors} with
+	 * @param registry 用于注册自定义 {@code PropertyEditors} 的
+	 * {@code PropertyEditorRegistry}
 	 */
 	void registerCustomEditors(PropertyEditorRegistry registry);
 

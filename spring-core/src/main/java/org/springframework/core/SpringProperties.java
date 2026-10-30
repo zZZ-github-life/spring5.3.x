@@ -77,8 +77,8 @@ public final class SpringProperties {
 
 	/**
 	 * 以编程方式设置本地属性，覆盖 {@code spring.properties} 文件中的条目（如果有）。
-	 * @param key the property key
-	 * @param value the associated property value, or {@code null} to reset it
+	 * @param key 属性键
+	 * @param value 关联的属性值，或为 {@code null} 以重置
 	 */
 	public static void setProperty(String key, @Nullable String value) {
 		if (value != null) {
@@ -91,8 +91,8 @@ public final class SpringProperties {
 
 	/**
 	 * 获取给定键的属性值，先检查本地 Spring 属性，然后回退到 JVM 级别的系统属性。
-	 * @param key the property key
-	 * @return the associated property value, or {@code null} if none found
+	 * @param key 属性键
+	 * @return 关联的属性值，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public static String getProperty(String key) {
@@ -110,7 +110,7 @@ public final class SpringProperties {
 
 	/**
 	 * 以编程方式将本地标志设置为 "true"，覆盖 {@code spring.properties} 文件中的条目（如果有）。
-	 * @param key the property key
+	 * @param key 属性键
 	 */
 	public static void setFlag(String key) {
 		localProperties.put(key, Boolean.TRUE.toString());
@@ -118,9 +118,8 @@ public final class SpringProperties {
 
 	/**
 	 * 获取给定属性键的标志。
-	 * @param key the property key
-	 * @return {@code true} if the property is set to "true",
-	 * {@code} false otherwise
+	 * @param key 属性键
+	 * @return 如果属性设置为 "true" 则返回 {@code true}，否则返回 {@code false}
 	 */
 	public static boolean getFlag(String key) {
 		return Boolean.parseBoolean(getProperty(key));

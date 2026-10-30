@@ -184,8 +184,8 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	/**
 	 * 创建一个新的 PathMatchingResourcePatternResolver。
 	 * <p>ClassLoader 访问将通过线程上下文类加载器进行。
-	 * @param resourceLoader the ResourceLoader to load root directories and
-	 * actual resources with
+	 * @param resourceLoader 用于加载根目录和
+	 * 实际资源的 ResourceLoader
 	 */
 	public PathMatchingResourcePatternResolver(ResourceLoader resourceLoader) {
 		Assert.notNull(resourceLoader, "ResourceLoader must not be null");
@@ -194,9 +194,9 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 
 	/**
 	 * 使用 DefaultResourceLoader 创建一个新的 PathMatchingResourcePatternResolver。
-	 * @param classLoader the ClassLoader to load classpath resources with,
-	 * or {@code null} for using the thread context class loader
-	 * at the time of actual resource access
+	 * @param classLoader 用于加载类路径资源的 ClassLoader；
+	 * 若为 {@code null}，则在实际访问资源时
+	 * 使用线程上下文类加载器
 	 * @see org.springframework.core.io.DefaultResourceLoader
 	 */
 	public PathMatchingResourcePatternResolver(@Nullable ClassLoader classLoader) {
@@ -272,9 +272,9 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	/**
 	 * 通过 ClassLoader 查找具有给定位置的所有类位置资源。委托给
 	 * {@link #doFindAllClassPathResources(String)}。
-	 * @param location the absolute path within the classpath
-	 * @return the result as Resource array
-	 * @throws IOException in case of I/O errors
+	 * @param location 类路径内的绝对路径
+	 * @return 作为 Resource 数组的结果
+	 * @throws IOException 在出现 I/O 错误时
 	 * @see java.lang.ClassLoader#getResources
 	 * @see #convertClassLoaderURL
 	 */
@@ -293,8 +293,8 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	/**
 	 * 通过 ClassLoader 查找具有给定路径的所有类位置资源。由 {@link #findAllClassPathResources(String)}
 	 * 调用。
-	 * @param path the absolute path within the classpath (never a leading slash)
-	 * @return a mutable Set of matching Resource instances
+	 * @param path 类路径内的绝对路径（不含前导斜杠）
+	 * @return 匹配的 Resource 实例的可变 Set
 	 * @since 4.1.1
 	 */
 	protected Set<Resource> doFindAllClassPathResources(String path) throws IOException {
@@ -316,8 +316,8 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	/**
 	 * 将从 ClassLoader 返回的给定 URL 转换为 {@link Resource}。
 	 * <p>默认实现只是创建一个 {@link UrlResource} 实例。
-	 * @param url a URL as returned from the ClassLoader
-	 * @return the corresponding Resource object
+	 * @param url 由 ClassLoader 返回的 URL
+	 * @return 对应的 Resource 对象
 	 * @see java.lang.ClassLoader#getResources
 	 * @see org.springframework.core.io.Resource
 	 */
@@ -328,8 +328,8 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	/**
 	 * 搜索所有 {@link URLClassLoader} URL 中的 jar 文件引用，并以指向 jar 文件内容根部的指针形式将它们
 	 * 添加到给定的资源集合中。
-	 * @param classLoader the ClassLoader to search (including its ancestors)
-	 * @param result the set of resources to add jar roots to
+	 * @param classLoader 要搜索的 ClassLoader（包括其祖先）
+	 * @param result 用于添加 jar 根的资源集合
 	 * @since 4.1.1
 	 */
 	protected void addAllClassLoaderJarRoots(@Nullable ClassLoader classLoader, Set<Resource> result) {
@@ -382,7 +382,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	/**
 	 * 从 "java.class.path." 清单属性中确定 jar 文件引用，并以指向 jar 文件内容根部的指针形式将它们添加
 	 * 到给定的资源集合中。
-	 * @param result the set of resources to add jar roots to
+	 * @param result 用于添加 jar 根的资源集合
 	 * @since 4.3
 	 */
 	protected void addClassPathManifestEntries(Set<Resource> result) {
@@ -424,10 +424,10 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 
 	/**
 	 * 检查给定的文件路径在现有结果中是否已有重复但结构不同的条目，即有或没有前导斜杠。
-	 * @param filePath the file path (with or without a leading slash)
-	 * @param result the current result
-	 * @return {@code true} if there is a duplicate (i.e. to ignore the given file path),
-	 * {@code false} to proceed with adding a corresponding resource to the current result
+	 * @param filePath 文件路径（可带或不带前导斜杠）
+	 * @param result 当前结果
+	 * @return 如果存在重复项（即忽略给定的文件路径）则返回 {@code true}，
+	 * 如果继续将对应的资源添加到当前结果则返回 {@code false}
 	 */
 	private boolean hasDuplicate(String filePath, Set<Resource> result) {
 		if (result.isEmpty()) {
@@ -447,9 +447,9 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	/**
 	 * 通过 Ant 风格 PathMatcher 查找与给定位置模式匹配的所有资源。支持 jar 文件、zip 文件以及文件系统
 	 * 中的资源。
-	 * @param locationPattern the location pattern to match
-	 * @return the result as Resource array
-	 * @throws IOException in case of I/O errors
+	 * @param locationPattern 要匹配的位置模式
+	 * @return 作为 Resource 数组的结果
+	 * @throws IOException 在出现 I/O 错误时
 	 * @see #doFindPathMatchingJarResources
 	 * @see #doFindPathMatchingFileResources
 	 * @see org.springframework.util.PathMatcher
@@ -490,8 +490,8 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	 * <p>用于确定文件匹配的起点，将根目录位置解析为 {@code java.io.File} 并传入
 	 * {@code retrieveMatchingFiles}，其余部分作为模式。
 	 * <p>例如，对于模式 "/WEB-INF/*.xml"，将返回 "/WEB-INF/"。
-	 * @param location the location to check
-	 * @return the part of the location that denotes the root directory
+	 * @param location 要检查的位置
+	 * @return 位置中表示根目录的部分
 	 * @see #retrieveMatchingFiles
 	 */
 	protected String determineRootDir(String location) {
@@ -511,9 +511,9 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	 * <p>默认情况下，Equinox OSGi 的 "bundleresource:" / "bundleentry:" URL 将被解析为标准的 jar 文件
 	 * URL，以便使用 Spring 的标准 jar 文件遍历算法进行遍历。对于任何前置的自定义解析，请重写此方法并相
 	 * 应地替换资源句柄。
-	 * @param original the resource to resolve
-	 * @return the resolved resource (may be identical to the passed-in resource)
-	 * @throws IOException in case of resolution failure
+	 * @param original 要解析的资源
+	 * @return 解析后的资源（可能与传入的资源相同）
+	 * @throws IOException 在解析失败时
 	 */
 	protected Resource resolveRootDirResource(Resource original) throws IOException {
 		return original;
@@ -523,8 +523,8 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	 * 返回给定资源句柄是否表示 {@code doFindPathMatchingJarResources} 方法可以处理的 jar 资源。
 	 * <p>默认情况下，URL 协议 "jar"、"zip"、"vfszip" 和 "wsjar" 将被视为 jar 资源。此模板方法允许检测
 	 * 更多种类的类 jar 资源，例如通过对资源句柄类型进行 {@code instanceof} 检查。
-	 * @param resource the resource handle to check
-	 * (usually the root directory to start path matching from)
+	 * @param resource 要检查的资源句柄
+	 * （通常是要开始路径匹配的根目录）
 	 * @see #doFindPathMatchingJarResources
 	 * @see org.springframework.util.ResourceUtils#isJarURL
 	 */
@@ -534,11 +534,11 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 
 	/**
 	 * 通过 Ant 风格 PathMatcher 查找 jar 文件中与给定位置模式匹配的所有资源。
-	 * @param rootDirResource the root directory as Resource
-	 * @param rootDirURL the pre-resolved root directory URL
-	 * @param subPattern the sub pattern to match (below the root directory)
-	 * @return a mutable Set of matching Resource instances
-	 * @throws IOException in case of I/O errors
+	 * @param rootDirResource 作为 Resource 的根目录
+	 * @param rootDirURL 预先解析的根目录 URL
+	 * @param subPattern 要匹配的子模式（位于根目录之下）
+	 * @return 匹配的 Resource 实例的可变 Set
+	 * @throws IOException 在出现 I/O 错误时
 	 * @since 4.3
 	 * @see java.net.JarURLConnection
 	 * @see org.springframework.util.PathMatcher
@@ -642,10 +642,10 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 
 	/**
 	 * 通过 Ant 风格 PathMatcher 查找文件系统中与给定位置模式匹配的所有资源。
-	 * @param rootDirResource the root directory as Resource
-	 * @param subPattern the sub pattern to match (below the root directory)
-	 * @return a mutable Set of matching Resource instances
-	 * @throws IOException in case of I/O errors
+	 * @param rootDirResource 作为 Resource 的根目录
+	 * @param subPattern 要匹配的子模式（位于根目录之下）
+	 * @return 匹配的 Resource 实例的可变 Set
+	 * @throws IOException 在出现 I/O 错误时
 	 * @see #retrieveMatchingFiles
 	 * @see org.springframework.util.PathMatcher
 	 */
@@ -674,10 +674,10 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 
 	/**
 	 * 通过 Ant 风格 PathMatcher 查找文件系统中与给定位置模式匹配的所有资源。
-	 * @param rootDir the root directory in the file system
-	 * @param subPattern the sub pattern to match (below the root directory)
-	 * @return a mutable Set of matching Resource instances
-	 * @throws IOException in case of I/O errors
+	 * @param rootDir 文件系统中的根目录
+	 * @param subPattern 要匹配的子模式（位于根目录之下）
+	 * @return 匹配的 Resource 实例的可变 Set
+	 * @throws IOException 在出现 I/O 错误时
 	 * @see #retrieveMatchingFiles
 	 * @see org.springframework.util.PathMatcher
 	 */
@@ -695,11 +695,10 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 
 	/**
 	 * 检索与给定路径模式匹配的文件，检查给定目录及其子目录。
-	 * @param rootDir the directory to start from
-	 * @param pattern the pattern to match against,
-	 * relative to the root directory
-	 * @return a mutable Set of matching Resource instances
-	 * @throws IOException if directory contents could not be retrieved
+	 * @param rootDir 起始目录
+	 * @param pattern 要匹配的模式，相对于根目录
+	 * @return 匹配的 Resource 实例的可变 Set
+	 * @throws IOException 如果无法获取目录内容
 	 */
 	protected Set<File> retrieveMatchingFiles(File rootDir, String pattern) throws IOException {
 		if (!rootDir.exists()) {
@@ -735,11 +734,10 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 
 	/**
 	 * 递归检索与给定模式匹配的文件，并将其添加到给定的结果列表中。
-	 * @param fullPattern the pattern to match against,
-	 * with prepended root directory path
-	 * @param dir the current directory
-	 * @param result the Set of matching File instances to add to
-	 * @throws IOException if directory contents could not be retrieved
+	 * @param fullPattern 要匹配的模式，前面附加根目录路径
+	 * @param dir 当前目录
+	 * @param result 要添加到的匹配 File 实例的 Set
+	 * @throws IOException 如果无法获取目录内容
 	 */
 	protected void doRetrieveMatchingFiles(String fullPattern, File dir, Set<File> result) throws IOException {
 		if (logger.isTraceEnabled()) {
@@ -767,8 +765,8 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 
 	/**
 	 * 确定给定目录中文件的排序列表。
-	 * @param dir the directory to introspect
-	 * @return the sorted list of files (by default in alphabetical order)
+	 * @param dir 要检查的目录
+	 * @return 排序后的文件列表（默认按字母顺序）
 	 * @since 5.1
 	 * @see File#listFiles()
 	 */

@@ -66,10 +66,10 @@ public class HandshakeInfo {
 
 	/**
 	 * 使用有关握手的基本信息构造。
-	 * @param uri the endpoint URL
-	 * @param headers request headers for server or response headers or client
-	 * @param principal the principal for the session
-	 * @param protocol the negotiated sub-protocol (may be {@code null})
+	 * @param uri 端点 URL
+	 * @param headers 服务器的请求头或客户端的响应头
+	 * @param principal 会话的 principal
+	 * @param protocol 协商的子协议（可能为 {@code null}）
 	 */
 	public HandshakeInfo(URI uri, HttpHeaders headers, Mono<Principal> principal, @Nullable String protocol) {
 		this(uri, headers, EMPTY_COOKIES, principal, protocol, null, Collections.emptyMap(), null);
@@ -77,13 +77,13 @@ public class HandshakeInfo {
 
 	/**
 	 * 针对服务器端使用的构造函数，包含远程地址、属性和日志前缀等额外信息。
-	 * @param uri the endpoint URL
-	 * @param headers server request headers
-	 * @param principal the principal for the session
-	 * @param protocol the negotiated sub-protocol (may be {@code null})
-	 * @param remoteAddress the remote address of the client
-	 * @param attributes initial attributes for the WebSocket session
-	 * @param logPrefix the log prefix for the handshake request.
+	 * @param uri 端点 URL
+	 * @param headers 服务器请求头
+	 * @param principal 会话的 principal
+	 * @param protocol 协商的子协议（可能为 {@code null}）
+	 * @param remoteAddress 客户端的远程地址
+	 * @param attributes WebSocket 会话的初始属性
+	 * @param logPrefix 握手请求的日志前缀。
 	 * @since 5.1
 	 * @deprecated as of 5.3.5 in favor of
 	 * {@link #HandshakeInfo(URI, HttpHeaders, MultiValueMap, Mono, String, InetSocketAddress, Map, String)}
@@ -99,14 +99,14 @@ public class HandshakeInfo {
 	/**
 	 * 针对服务器端使用的构造函数，包含 Cookie、远程地址、属性和日志前缀等
 	 * 额外信息。
-	 * @param uri the endpoint URL
-	 * @param headers server request headers
-	 * @param cookies server request cookies
-	 * @param principal the principal for the session
-	 * @param protocol the negotiated sub-protocol (may be {@code null})
-	 * @param remoteAddress the remote address of the client
-	 * @param attributes initial attributes for the WebSocket session
-	 * @param logPrefix the log prefix for the handshake request.
+	 * @param uri 端点 URL
+	 * @param headers 服务器请求头
+	 * @param cookies 服务器请求 Cookie
+	 * @param principal 会话的 principal
+	 * @param protocol 协商的子协议（可能为 {@code null}）
+	 * @param remoteAddress 客户端的远程地址
+	 * @param attributes WebSocket 会话的初始属性
+	 * @param logPrefix 握手请求的日志前缀。
 	 * @since 5.3.5
 	 */
 	public HandshakeInfo(URI uri, HttpHeaders headers, MultiValueMap<String, HttpCookie> cookies,
@@ -190,7 +190,7 @@ public class HandshakeInfo {
 
 	/**
 	 * 在握手中用于关联日志消息的日志前缀（如果有）。
-	 * @return a log prefix, or {@code null} if not specified
+	 * @return 日志前缀；如果未指定则为 {@code null}
 	 * @since 5.1
 	 */
 	@Nullable

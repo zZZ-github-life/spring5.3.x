@@ -40,10 +40,10 @@ public interface ExecutorChannelInterceptor extends ChannelInterceptor {
 	 * 在提交给 Executor 的 {@link Runnable} 内部、调用目标 MessageHandler 处理
 	 * 消息之前调用。如有必要可以修改 Message；如果返回 {@code null}，
 	 * 则不会调用 MessageHandler。
-	 * @param message the message to be handled
-	 * @param channel the channel on which the message was sent to
-	 * @param handler the target handler to handle the message
-	 * @return the input message, or a new instance, or {@code null}
+	 * @param message 要处理的消息
+	 * @param channel 消息被发送到的通道
+	 * @param handler 处理该消息的目标处理器
+	 * @return 输入消息，或新实例，或 {@code null}
 	 */
 	@Nullable
 	default Message<?> beforeHandle(Message<?> message, MessageChannel channel, MessageHandler handler) {
@@ -55,10 +55,10 @@ public interface ExecutorChannelInterceptor extends ChannelInterceptor {
 	 * 无论结果如何（即是否抛出异常），从而允许进行适当的资源清理。
 	 * <p>请注意，仅当 beforeHandle 成功完成并返回 Message（即未返回
 	 * {@code null}）时才会调用此方法。
-	 * @param message the message handled
-	 * @param channel the channel on which the message was sent to
-	 * @param handler the target handler that handled the message
-	 * @param ex any exception that may have been raised by the handler
+	 * @param message 已处理的消息
+	 * @param channel 消息被发送到的通道
+	 * @param handler 处理该消息的目标处理器
+	 * @param ex 处理器可能抛出的任何异常
 	 */
 	default void afterMessageHandled(Message<?> message, MessageChannel channel, MessageHandler handler,
 			@Nullable Exception ex) {

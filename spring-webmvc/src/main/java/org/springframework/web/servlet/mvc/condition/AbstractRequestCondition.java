@@ -26,15 +26,14 @@ import org.springframework.lang.Nullable;
  * {@link #equals(Object)}、{@link #hashCode()} 和 {@link #toString()} 提供实现。
  * @author Rossen Stoyanchev
  * @since 3.1
- * @param <T> the type of objects that this RequestCondition can be combined
- * with and compared to
+ * @param <T> 该 RequestCondition 可与之组合和比较的对象类型
  */
 public abstract class AbstractRequestCondition<T extends AbstractRequestCondition<T>> implements RequestCondition<T> {
 
 	/**
 	 * 指示此条件是否为空，即是否
 	 * 包含任何离散项。
-	 * @return {@code true} if empty; {@code false} otherwise
+	 * @return 为空时为 {@code true}；否则为 {@code false}
 	 */
 	public boolean isEmpty() {
 		return getContent().isEmpty();
@@ -43,7 +42,7 @@ public abstract class AbstractRequestCondition<T extends AbstractRequestConditio
 	/**
 	 * 返回组成请求条件的各个离散项。
 	 * <p>例如 URL 模式、HTTP 请求方法、参数表达式等。
-	 * @return a collection of objects (never {@code null})
+	 * @return 对象集合（永不为 {@code null}）
 	 */
 	protected abstract Collection<?> getContent();
 

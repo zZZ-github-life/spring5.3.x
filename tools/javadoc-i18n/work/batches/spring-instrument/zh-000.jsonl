@@ -1,4 +1,0 @@
-{"id": "spring-instrument/src/main/java/org/springframework/instrument/InstrumentationSavingAgent.java::21::0", "zh": ["Java agent，用于保存来自 JVM 的 {@link Instrumentation} 接口，以供后续使用。"]}
-{"id": "spring-instrument/src/main/java/org/springframework/instrument/InstrumentationSavingAgent.java::39::0", "zh": ["保存 JVM 暴露的 {@link Instrumentation} 接口。"]}
-{"id": "spring-instrument/src/main/java/org/springframework/instrument/InstrumentationSavingAgent.java::46::0", "zh": ["保存 JVM 暴露的 {@link Instrumentation} 接口。使用 Attach API 动态加载此 Agent 时需要此方法。"]}
-{"id": "spring-instrument/src/main/java/org/springframework/instrument/InstrumentationSavingAgent.java::54::0", "zh": ["返回 JVM 暴露的 {@link Instrumentation} 接口。", "<p>请注意，除非在 JVM 启动时实际指定了该 agent，否则此类通常不会出现在 classpath 中。如果希望根据 agent 是否可用进行条件检查，请考虑改用 {@link org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver#getInstrumentation()}，它在 classpath 中没有 agent 类时同样可以工作。"]}

@@ -34,13 +34,12 @@ public interface ParameterMapper {
 
 	/**
 	 * 创建输入参数的Map，以名称为键。
-	 * @param con a JDBC connection. This is useful (and the purpose of this interface)
-	 * if we need to do something RDBMS-specific with a proprietary Connection
-	 * implementation class. This class conceals such proprietary details. However,
-	 * it is best to avoid using such proprietary RDBMS features if possible.
-	 * @return a Map of input parameters, keyed by name (never {@code null})
-	 * @throws SQLException if an SQLException is encountered setting
-	 * parameter values (that is, there's no need to catch SQLException)
+	 * @param con 一个 JDBC 连接。如果需要对专有的 Connection 实现类执行
+	 * 特定于 RDBMS 的操作，这会很有用（这也是本接口的目的）。
+	 * 本类会隐藏此类专有细节。不过，最好尽可能避免使用此类专有的 RDBMS 特性。
+	 * @return 以名称为键的输入参数 Map（永不为 {@code null}）
+	 * @throws SQLException 如果在设置参数值时遇到 SQLException
+	 * （也就是说，无需捕获 SQLException）
 	 */
 	Map<String, ?> createMap(Connection con) throws SQLException;
 

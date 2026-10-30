@@ -28,7 +28,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Stephane Nicoll
  * @since 4.1
- * @param <T> the instance type
+ * @param <T> 实例类型
  */
 public class InstanceFilter<T> {
 
@@ -49,10 +49,10 @@ public class InstanceFilter<T> {
 	 * 个元素相等，则二者匹配。
 	 *
 	 * <p>如果两个集合都为空，则由 {@code matchIfEmpty} 决定元素是否匹配。
-	 * @param includes the collection of includes
-	 * @param excludes the collection of excludes
-	 * @param matchIfEmpty the matching result if both the includes and the excludes
-	 * collections are empty
+	 * @param includes 包含项的集合
+	 * @param excludes 排除项的集合
+	 * @param matchIfEmpty 当包含项和排除项集合均为空时的
+	 * 匹配结果
 	 */
 	public InstanceFilter(@Nullable Collection<? extends T> includes,
 			@Nullable Collection<? extends T> excludes, boolean matchIfEmpty) {
@@ -88,9 +88,9 @@ public class InstanceFilter<T> {
 
 	/**
 	 * 确定指定的 {@code instance} 是否等于指定的 {@code candidate}。
-	 * @param instance the instance to handle
-	 * @param candidate a candidate defined by this filter
-	 * @return {@code true} if the instance matches the candidate
+	 * @param instance 要处理的实例
+	 * @param candidate 此过滤器中定义的候选对象
+	 * @return 如果该实例与候选对象匹配，则返回 {@code true}
 	 */
 	protected boolean match(T instance, T candidate) {
 		return instance.equals(candidate);
@@ -100,9 +100,9 @@ public class InstanceFilter<T> {
 	 * 确定指定的 {@code instance} 是否匹配其中一个候选。
 	 *
 	 * <p>如果候选集合为 {@code null}，则返回 {@code false}。
-	 * @param instance the instance to check
-	 * @param candidates a list of candidates
-	 * @return {@code true} if the instance match or the candidates collection is null
+	 * @param instance 要检查的实例
+	 * @param candidates 候选对象列表
+	 * @return 如果实例匹配或候选对象集合为 null，则返回 {@code true}
 	 */
 	protected boolean match(T instance, Collection<? extends T> candidates) {
 		for (T candidate : candidates) {

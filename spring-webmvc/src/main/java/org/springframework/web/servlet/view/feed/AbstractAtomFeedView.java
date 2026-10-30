@@ -95,11 +95,11 @@ public abstract class AbstractAtomFeedView extends AbstractFeedView<Feed> {
 	 * 子类必须实现此方法，以便根据 model 构建 feed 条目。
 	 * <p>注意，传入的 HTTP response 仅应用于设置 cookie 或其他 HTTP 头。
 	 * 构建好的 feed 本身将在该方法返回后自动写入 response。
-	 * @param model	the model Map
-	 * @param request in case we need locale etc. Shouldn't look at attributes.
-	 * @param response in case we need to set cookies. Shouldn't write to it.
-	 * @return the feed entries to be added to the feed
-	 * @throws Exception any exception that occurred during document building
+	 * @param model 模型 Map
+	 * @param request 在需要 Locale 等情况下使用。不应查看属性。
+	 * @param response 在需要设置 Cookie 的情况下使用。不应向其写入。
+	 * @return 要添加到 feed 的条目
+	 * @throws Exception 文档构建期间发生的任何异常
 	 * @see Entry
 	 */
 	protected abstract List<Entry> buildFeedEntries(

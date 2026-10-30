@@ -62,7 +62,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	 * <p>注意：与 {@link FileSystemResource} 不同，通过 {@link #createRelative} 构建相对资源时，相对路
 	 * 径将构建在给定根路径<i>之下</i>：例如 Paths.get(“C:/dir1/”)，相对路径 “dir2” &rarr;
 	 * “C:/dir1/dir2”！
-	 * @param path a Path handle
+	 * @param path Path 句柄
 	 */
 	public PathResource(Path path) {
 		Assert.notNull(path, "Path must not be null");
@@ -74,7 +74,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	 * <p>注意：与 {@link FileSystemResource} 不同，通过 {@link #createRelative} 构建相对资源时，相对路
 	 * 径将构建在给定根路径<i>之下</i>：例如 Paths.get(“C:/dir1/”)，相对路径 “dir2” &rarr;
 	 * “C:/dir1/dir2”！
-	 * @param path a path
+	 * @param path 路径
 	 * @see java.nio.file.Paths#get(String, String...)
 	 */
 	public PathResource(String path) {
@@ -87,7 +87,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	 * <p>注意：与 {@link FileSystemResource} 不同，通过 {@link #createRelative} 构建相对资源时，相对路
 	 * 径将构建在给定根路径<i>之下</i>：例如 Paths.get(“C:/dir1/”)，相对路径 “dir2” &rarr;
 	 * “C:/dir1/dir2”！
-	 * @param uri a path URI
+	 * @param uri 路径 URI
 	 * @see java.nio.file.Paths#get(URI)
 	 */
 	public PathResource(URI uri) {

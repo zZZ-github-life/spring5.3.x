@@ -28,9 +28,9 @@ public class FixedDelayTask extends IntervalTask {
 
 	/**
 	 * 创建一个新的 {@code FixedDelayTask}。
-	 * @param runnable the underlying task to execute
-	 * @param interval how often in milliseconds the task should be executed
-	 * @param initialDelay the initial delay before first execution of the task
+	 * @param runnable 要执行的底层任务
+	 * @param interval 任务执行频率（毫秒）
+	 * @param initialDelay 任务首次执行之前的初始延迟
 	 */
 	public FixedDelayTask(Runnable runnable, long interval, long initialDelay) {
 		super(runnable, interval, initialDelay);

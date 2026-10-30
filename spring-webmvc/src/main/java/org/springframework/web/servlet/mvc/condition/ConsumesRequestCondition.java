@@ -59,9 +59,8 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 
 	/**
 	 * 从 0 个或多个 "consumes" 表达式创建一个新实例。
-	 * @param consumes expressions with the syntax described in
-	 * {@link RequestMapping#consumes()}; if 0 expressions are provided,
-	 * the condition will match to every request
+	 * @param consumes 使用 {@link RequestMapping#consumes()} 中所述语法的表达式；
+	 * 如果提供 0 个表达式，则该条件将匹配每个请求
 	 */
 	public ConsumesRequestCondition(String... consumes) {
 		this(consumes, null);
@@ -72,8 +71,8 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 	 * 头名称不是 'Content-Type' 或未定义头值的 "header" 表达式
 	 * 将被忽略。如果总共提供了 0 个表达式，
 	 * 则该条件将匹配所有请求
-	 * @param consumes as described in {@link RequestMapping#consumes()}
-	 * @param headers as described in {@link RequestMapping#headers()}
+	 * @param consumes 如 {@link RequestMapping#consumes()} 中所述
+	 * @param headers 如 {@link RequestMapping#headers()} 中所述
 	 */
 	public ConsumesRequestCondition(String[] consumes, @Nullable String[] headers) {
 		this.expressions = parseExpressions(consumes, headers);
@@ -158,7 +157,7 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 	 * 头，或回退到 "Content-Type: application/octet-stream"。
 	 * <p>如果设为 {@code false}，且请求没有请求体，则此
 	 * 条件会自动匹配，即无需检查表达式。
-	 * @param bodyRequired whether requests are expected to have a body
+	 * @param bodyRequired 是否预期请求带有请求体
 	 * @since 5.2
 	 */
 	public void setBodyRequired(boolean bodyRequired) {
@@ -189,10 +188,9 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 	 * 请求的 'Content-Type' 头，并返回一个保证
 	 * 只包含匹配表达式的实例。匹配通过
 	 * {@link MediaType#includes(MediaType)} 执行。
-	 * @param request the current request
-	 * @return the same instance if the condition contains no expressions;
-	 * or a new condition with matching expressions only;
-	 * or {@code null} if no expressions match
+	 * @param request 当前请求
+	 * @return 如果条件不包含表达式，则为同一实例；或仅包含匹配表达式的新条件；
+	 * 如果无表达式匹配，则为 {@code null}
 	 */
 	@Override
 	@Nullable

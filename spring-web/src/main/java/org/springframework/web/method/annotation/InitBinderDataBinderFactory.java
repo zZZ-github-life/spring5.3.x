@@ -43,8 +43,8 @@ public class InitBinderDataBinderFactory extends DefaultDataBinderFactory {
 
 	/**
 	 * 创建一个新的 InitBinderDataBinderFactory 实例。
-	 * @param binderMethods {@code @InitBinder} methods
-	 * @param initializer for global data binder initialization
+	 * @param binderMethods {@code @InitBinder} 方法
+	 * @param initializer 用于全局数据绑定器初始化
 	 */
 	public InitBinderDataBinderFactory(@Nullable List<InvocableHandlerMethod> binderMethods,
 			@Nullable WebBindingInitializer initializer) {
@@ -58,7 +58,7 @@ public class InitBinderDataBinderFactory extends DefaultDataBinderFactory {
 	 * 使用 {@code @InitBinder} 方法初始化 WebDataBinder。
 	 * <p>如果 {@code @InitBinder} 注解指定了属性名称，
 	 * 则仅当这些名称包含目标对象名称时才会调用该方法。
-	 * @throws Exception if one of the invoked @{@link InitBinder} methods fails
+	 * @throws Exception 如果某个被调用的 @{@link InitBinder} 方法失败
 	 * @see #isBinderMethodApplicable
 	 */
 	@Override

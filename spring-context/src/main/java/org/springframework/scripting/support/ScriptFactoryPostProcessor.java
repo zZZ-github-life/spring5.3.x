@@ -192,7 +192,7 @@ public class ScriptFactoryPostProcessor implements SmartInstantiationAwareBeanPo
 
 	/**
 	 * 用于表示应创建可刷新代理、以代理目标类而非其接口的标志。
-	 * @param defaultProxyTargetClass the flag value to set
+	 * @param defaultProxyTargetClass 要设置的标志值
 	 */
 	public void setDefaultProxyTargetClass(boolean defaultProxyTargetClass) {
 		this.defaultProxyTargetClass = defaultProxyTargetClass;
@@ -343,9 +343,9 @@ public class ScriptFactoryPostProcessor implements SmartInstantiationAwareBeanPo
 	/**
 	 * 在此后处理器所使用的内部 BeanFactory 中准备脚本 Bean。每个原始 Bean 定义都将被拆分为一个
 	 * ScriptFactory 定义和一个脚本化对象定义。
-	 * @param bd the original bean definition in the main BeanFactory
-	 * @param scriptFactoryBeanName the name of the internal ScriptFactory bean
-	 * @param scriptedObjectBeanName the name of the internal scripted object bean
+	 * @param bd 主 BeanFactory 中的原始 Bean 定义
+	 * @param scriptFactoryBeanName 内部 ScriptFactory Bean 的名称
+	 * @param scriptedObjectBeanName 内部脚本化对象 Bean 的名称
 	 */
 	protected void prepareScriptBeans(BeanDefinition bd, String scriptFactoryBeanName, String scriptedObjectBeanName) {
 		// Avoid recreation of the script bean definition in case of a prototype.
@@ -383,8 +383,8 @@ public class ScriptFactoryPostProcessor implements SmartInstantiationAwareBeanPo
 	 * {@link BeanDefinition} 在键 {@link #REFRESH_CHECK_DELAY_ATTRIBUTE} 下有一个类型为有效
 	 * {@link Number} 的 {@link org.springframework.core.AttributeAccessor metadata attribute}，则使用
 	 * 该值。否则使用 {@link #defaultRefreshCheckDelay} 值。
-	 * @param beanDefinition the BeanDefinition to check
-	 * @return the refresh check delay
+	 * @param beanDefinition 要检查的 BeanDefinition
+	 * @return 刷新检查延迟
 	 */
 	protected long resolveRefreshCheckDelay(BeanDefinition beanDefinition) {
 		long refreshCheckDelay = this.defaultRefreshCheckDelay;
@@ -423,8 +423,8 @@ public class ScriptFactoryPostProcessor implements SmartInstantiationAwareBeanPo
 	/**
 	 * 根据给定的脚本定义创建一个 ScriptFactory Bean 定义，仅提取与 ScriptFactory 相关的定义数据（即仅
 	 * Bean 类和构造器参数）。
-	 * @param bd the full script bean definition
-	 * @return the extracted ScriptFactory bean definition
+	 * @param bd 完整的脚本 Bean 定义
+	 * @return 提取出的 ScriptFactory Bean 定义
 	 * @see org.springframework.scripting.ScriptFactory
 	 */
 	protected BeanDefinition createScriptFactoryBeanDefinition(BeanDefinition bd) {
@@ -436,9 +436,9 @@ public class ScriptFactoryPostProcessor implements SmartInstantiationAwareBeanPo
 
 	/**
 	 * 获取给定 Bean 的 ScriptSource，如果尚未缓存则延迟创建它。
-	 * @param beanName the name of the scripted bean
-	 * @param scriptSourceLocator the script source locator associated with the bean
-	 * @return the corresponding ScriptSource instance
+	 * @param beanName 脚本化 Bean 的名称
+	 * @param scriptSourceLocator 与该 Bean 关联的脚本源定位符
+	 * @return 对应的 ScriptSource 实例
 	 * @see #convertToScriptSource
 	 */
 	protected ScriptSource getScriptSource(String beanName, String scriptSourceLocator) {
@@ -451,10 +451,10 @@ public class ScriptFactoryPostProcessor implements SmartInstantiationAwareBeanPo
 	 *
 	 * <p>默认情况下，支持的定位符包括 Spring 资源位置（如 "file:C:/myScript.bsh" 或
 	 * "classpath:myPackage/myScript.bsh"）以及内联脚本（"inline:myScriptText..."）。
-	 * @param beanName the name of the scripted bean
-	 * @param scriptSourceLocator the script source locator
-	 * @param resourceLoader the ResourceLoader to use (if necessary)
-	 * @return the ScriptSource instance
+	 * @param beanName 脚本化 Bean 的名称
+	 * @param scriptSourceLocator 脚本源定位符
+	 * @param resourceLoader 要使用的 ResourceLoader（如有必要）
+	 * @return ScriptSource 实例
 	 */
 	protected ScriptSource convertToScriptSource(String beanName, String scriptSourceLocator,
 			ResourceLoader resourceLoader) {
@@ -472,11 +472,10 @@ public class ScriptFactoryPostProcessor implements SmartInstantiationAwareBeanPo
 	 * 方法（如果已定义）。
 	 *
 	 * <p>此实现通过 CGLIB 的 InterfaceMaker 创建接口，并尽可能从给定接口中确定属性类型。
-	 * @param bd the bean definition (property values etc) to create a
-	 * config interface for
-	 * @param interfaces the interfaces to check against (might define
-	 * getters corresponding to the setters we're supposed to generate)
-	 * @return the config interface
+	 * @param bd 要为其创建配置接口的 Bean 定义（属性值等）
+	 * @param interfaces 要对照检查的接口（可能定义了与我们应生成的 setter
+	 * 相对应的 getter）
+	 * @return 配置接口
 	 * @see org.springframework.cglib.proxy.InterfaceMaker
 	 * @see org.springframework.beans.BeanUtils#findPropertyType
 	 */
@@ -505,8 +504,8 @@ public class ScriptFactoryPostProcessor implements SmartInstantiationAwareBeanPo
 	 * 为给定接口创建一个组合接口 Class，在单个 Class 中实现给定接口。
 	 *
 	 * <p>默认实现为给定接口构建一个 JDK 代理类。
-	 * @param interfaces the interfaces to merge
-	 * @return the merged interface as Class
+	 * @param interfaces 要合并的接口
+	 * @return 合并后的接口（以 Class 形式表示）
 	 * @see java.lang.reflect.Proxy#getProxyClass
 	 */
 	protected Class<?> createCompositeInterface(Class<?>[] interfaces) {
@@ -516,11 +515,11 @@ public class ScriptFactoryPostProcessor implements SmartInstantiationAwareBeanPo
 	/**
 	 * 根据给定的脚本定义创建脚本化对象的 Bean 定义，提取与脚本化对象相关的定义数据（即除 Bean 类和构造
 	 * 器参数之外的所有内容）。
-	 * @param bd the full script bean definition
-	 * @param scriptFactoryBeanName the name of the internal ScriptFactory bean
-	 * @param scriptSource the ScriptSource for the scripted bean
-	 * @param interfaces the interfaces that the scripted bean is supposed to implement
-	 * @return the extracted ScriptFactory bean definition
+	 * @param bd 完整的脚本 Bean 定义
+	 * @param scriptFactoryBeanName 内部 ScriptFactory Bean 的名称
+	 * @param scriptSource 脚本化 Bean 的 ScriptSource
+	 * @param interfaces 脚本化 Bean 应实现的接口
+	 * @return 提取出的 ScriptFactory Bean 定义
 	 * @see org.springframework.scripting.ScriptFactory#getScriptedObject
 	 */
 	protected BeanDefinition createScriptedObjectBeanDefinition(BeanDefinition bd, String scriptFactoryBeanName,
@@ -537,10 +536,10 @@ public class ScriptFactoryPostProcessor implements SmartInstantiationAwareBeanPo
 
 	/**
 	 * 为给定的 AOP TargetSource 创建一个可刷新的代理。
-	 * @param ts the refreshable TargetSource
-	 * @param interfaces the proxy interfaces (may be {@code null} to
-	 * indicate proxying of all interfaces implemented by the target class)
-	 * @return the generated proxy
+	 * @param ts 可刷新的 TargetSource
+	 * @param interfaces 代理接口（可为 {@code null}，表示代理目标类实现的
+	 * 所有接口）
+	 * @return 生成的代理
 	 * @see RefreshableScriptTargetSource
 	 */
 	protected Object createRefreshableProxy(TargetSource ts, @Nullable Class<?>[] interfaces, boolean proxyTargetClass) {

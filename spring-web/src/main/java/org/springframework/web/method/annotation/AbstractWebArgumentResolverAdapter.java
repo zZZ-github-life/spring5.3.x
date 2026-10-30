@@ -89,8 +89,7 @@ public abstract class AbstractWebArgumentResolverAdapter implements HandlerMetho
 
 	/**
 	 * 委托给 {@link WebArgumentResolver} 实例。
-	 * @throws IllegalStateException if the resolved value is not assignable
-	 * to the method parameter.
+	 * @throws IllegalStateException 如果解析出的值无法赋值给方法参数。
 	 */
 	@Override
 	@Nullable

@@ -242,7 +242,7 @@ public class PasswordInputTag extends InputTag {
 
 	/**
 	 * 是否渲染密码值？
-	 * @param showPassword {@code true} if the password value is to be rendered
+	 * @param showPassword 如果要渲染密码值则为 {@code true}
 	 */
 	public void setShowPassword(boolean showPassword) {
 		this.showPassword = showPassword;
@@ -250,7 +250,7 @@ public class PasswordInputTag extends InputTag {
 
 	/**
 	 * 是否渲染密码值？
-	 * @return {@code true} if the password value to be rendered
+	 * @return 如果要渲染密码值则为 {@code true}
 	 */
 	public boolean isShowPassword() {
 		return this.showPassword;

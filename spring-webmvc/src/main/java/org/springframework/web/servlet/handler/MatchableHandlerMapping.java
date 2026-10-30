@@ -47,9 +47,9 @@ public interface MatchableHandlerMapping extends HandlerMapping {
 	 * 确定请求是否匹配给定模式。当 {@link #getPatternParser()}
 	 * 返回 {@code null}（表示 {@code HandlerMapping} 正在使用字符串
 	 * 模式匹配）时，请使用此方法。
-	 * @param request the current request
-	 * @param pattern the pattern to match
-	 * @return the result from request matching, or {@code null} if none
+	 * @param request 当前请求
+	 * @param pattern 要匹配的模式
+	 * @return 请求匹配的结果，若无则为 {@code null}
 	 */
 	@Nullable
 	RequestMatchResult match(HttpServletRequest request, String pattern);

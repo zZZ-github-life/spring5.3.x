@@ -29,8 +29,8 @@ public interface MessageHandler {
 
 	/**
 	 * 处理给定消息。
-	 * @param message the message to be handled
-	 * @throws MessagingException if the handler failed to process the message
+	 * @param message 要处理的消息
+	 * @throws MessagingException 如果处理器无法处理该消息
 	 */
 	void handleMessage(Message<?> message) throws MessagingException;
 

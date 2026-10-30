@@ -27,10 +27,10 @@ public interface BeanResolver {
 
 	/**
 	 * 按给定名称查找 Bean，并返回与之对应的实例。若要尝试访问工厂 Bean，名称需要带有 {@code &} 前缀。
-	 * @param context the current evaluation context
-	 * @param beanName the name of the bean to look up
-	 * @return an object representing the bean
-	 * @throws AccessException if there is an unexpected problem resolving the bean
+	 * @param context 当前的求值上下文
+	 * @param beanName 要查找的 Bean 名称
+	 * @return 表示该 Bean 的对象
+	 * @throws AccessException 如果解析该 Bean 时出现意外问题
 	 */
 	Object resolve(EvaluationContext context, String beanName) throws AccessException;
 

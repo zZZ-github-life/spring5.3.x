@@ -38,7 +38,7 @@ public interface BeanClassLoaderAware extends Aware {
 	 * <p>在填充普通 Bean 属性<i>之后</i>、但在初始化回调（如
 	 * {@link InitializingBean InitializingBean's} 的 {@link InitializingBean#afterPropertiesSet()} 方
 	 * 法或自定义 init-method）<i>之前</i>调用。
-	 * @param classLoader the owning class loader
+	 * @param classLoader 所属的类加载器
 	 */
 	void setBeanClassLoader(ClassLoader classLoader);
 

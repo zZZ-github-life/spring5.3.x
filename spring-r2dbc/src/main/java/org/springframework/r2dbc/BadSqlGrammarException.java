@@ -40,9 +40,9 @@ public class BadSqlGrammarException extends InvalidDataAccessResourceUsageExcept
 
 	/**
 	 * BadSqlGrammarException 的构造函数。
-	 * @param task name of current task
-	 * @param sql the offending SQL statement
-	 * @param ex the root cause
+	 * @param task 当前任务的名称
+	 * @param sql 出错的 SQL 语句
+	 * @param ex 根本原因
 	 */
 	public BadSqlGrammarException(String task, String sql, R2dbcException ex) {
 		super(task + "; bad SQL grammar [" + sql + "]", ex);

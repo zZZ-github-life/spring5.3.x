@@ -105,11 +105,9 @@ public interface WebSocketHandler {
 	 * 在建立新的 WebSocket 连接时调用，允许处理该会话。
 	 *
 	 * <p>有关如何处理会话的更多详细信息和示例，请参见类级文档和参考手册。
-	 * @param session the session to handle
-	 * @return indicates when application handling of the session is complete,
-	 * which should reflect the completion of the inbound message stream
-	 * (i.e. connection closing) and possibly the completion of the outbound
-	 * message stream and the writing of messages
+	 * @param session 要处理的会话
+	 * @return 指示应用对会话的处理何时完成，它应反映入站消息流的完成
+	 * （即连接关闭），并可能反映出站消息流的完成以及消息的写入
 	 */
 	Mono<Void> handle(WebSocketSession session);
 

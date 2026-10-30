@@ -37,7 +37,7 @@ public class HttpMessageNotReadableException extends HttpMessageConversionExcept
 
 	/**
 	 * 创建一个新的 HttpMessageNotReadableException。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 * @deprecated as of 5.1, in favor of {@link #HttpMessageNotReadableException(String, HttpInputMessage)}
 	 */
 	@Deprecated
@@ -48,8 +48,8 @@ public class HttpMessageNotReadableException extends HttpMessageConversionExcept
 
 	/**
 	 * 创建一个新的 HttpMessageNotReadableException。
-	 * @param msg the detail message
-	 * @param cause the root cause (if any)
+	 * @param msg 详细消息
+	 * @param cause 根本原因（如果有）
 	 * @deprecated as of 5.1, in favor of {@link #HttpMessageNotReadableException(String, Throwable, HttpInputMessage)}
 	 */
 	@Deprecated
@@ -60,8 +60,8 @@ public class HttpMessageNotReadableException extends HttpMessageConversionExcept
 
 	/**
 	 * 创建一个新的 HttpMessageNotReadableException。
-	 * @param msg the detail message
-	 * @param httpInputMessage the original HTTP message
+	 * @param msg 详细消息
+	 * @param httpInputMessage 原始 HTTP 消息
 	 * @since 5.1
 	 */
 	public HttpMessageNotReadableException(String msg, HttpInputMessage httpInputMessage) {
@@ -71,9 +71,9 @@ public class HttpMessageNotReadableException extends HttpMessageConversionExcept
 
 	/**
 	 * 创建一个新的 HttpMessageNotReadableException。
-	 * @param msg the detail message
-	 * @param cause the root cause (if any)
-	 * @param httpInputMessage the original HTTP message
+	 * @param msg 详细消息
+	 * @param cause 根本原因（如果有）
+	 * @param httpInputMessage 原始 HTTP 消息
 	 * @since 5.1
 	 */
 	public HttpMessageNotReadableException(String msg, @Nullable Throwable cause, HttpInputMessage httpInputMessage) {

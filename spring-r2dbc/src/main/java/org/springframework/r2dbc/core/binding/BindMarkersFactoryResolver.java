@@ -46,9 +46,9 @@ public final class BindMarkersFactoryResolver {
 
 	/**
 	 * 通过检查 {@link ConnectionFactory} 及其元数据来获取 {@link BindMarkersFactory}。
-	 * @param connectionFactory the connection factory to inspect
-	 * @return the resolved {@link BindMarkersFactory}
-	 * @throws NoBindMarkersFactoryException if no {@link BindMarkersFactory} can be resolved
+	 * @param connectionFactory 要检查的连接工厂
+	 * @return 解析后的 {@link BindMarkersFactory}
+	 * @throws NoBindMarkersFactoryException 如果无法解析出 {@link BindMarkersFactory}
 	 */
 	public static BindMarkersFactory resolve(ConnectionFactory connectionFactory) {
 		for (BindMarkerFactoryProvider detector : DETECTORS) {
@@ -77,9 +77,10 @@ public final class BindMarkersFactoryResolver {
 
 		/**
 		 * 返回用于 {@link ConnectionFactory} 的 {@link BindMarkersFactory}。
-		 * @param connectionFactory the connection factory to be used with the {@link BindMarkersFactory}
-		 * @return the {@link BindMarkersFactory} if the {@link BindMarkerFactoryProvider}
-		 * can provide a bind marker factory object, otherwise {@code null}
+		 * @param connectionFactory 要与 {@link BindMarkersFactory} 一起使用的连接工厂
+		 * @return 如果 {@link BindMarkerFactoryProvider} 能提供
+		 * 绑定标记工厂对象，则为 {@link BindMarkersFactory}，
+		 * 否则为 {@code null}
 		 */
 		@Nullable
 		BindMarkersFactory getBindMarkers(ConnectionFactory connectionFactory);
@@ -95,7 +96,7 @@ public final class BindMarkersFactoryResolver {
 
 		/**
 		 * NoBindMarkersFactoryException 的构造函数。
-		 * @param msg the detail message
+		 * @param msg 详细消息
 		 */
 		public NoBindMarkersFactoryException(String msg) {
 			super(msg);

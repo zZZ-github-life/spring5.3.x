@@ -69,9 +69,9 @@ public abstract class Literal extends SpelNodeImpl {
 	/**
 	 * 处理数字的字符串形式，若提供了指定进制则使用该进制，并返回合适的字面值来保存它。将考虑用于表示
 	 * long 的任何后缀（支持 'l' 或 'L'）。
-	 * @param numberToken the token holding the number as its payload (eg. 1234 or 0xCAFE)
-	 * @param radix the base of number
-	 * @return a subtype of Literal that can represent it
+	 * @param numberToken 以数字为载荷的 token（例如 1234 或 0xCAFE）
+	 * @param radix 数字的进制基数
+	 * @return 能够表示该值的 Literal 子类型
 	 */
 	public static Literal getIntLiteral(String numberToken, int startPos, int endPos, int radix) {
 		try {

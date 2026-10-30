@@ -49,9 +49,9 @@ public abstract class DomUtils {
 	/**
 	 * 检索给定 DOM 元素中与任一给定元素名匹配的所有子元素。只查看给定元素的直接子级，不会进一步深入
 	 * （与 DOM API 的 {@code getElementsByTagName} 方法相反）。
-	 * @param ele the DOM element to analyze
-	 * @param childEleNames the child element names to look for
-	 * @return a List of child {@code org.w3c.dom.Element} instances
+	 * @param ele 要分析的 DOM 元素
+	 * @param childEleNames 要查找的子元素名称
+	 * @return 子 {@code org.w3c.dom.Element} 实例的 List
 	 * @see org.w3c.dom.Element
 	 * @see org.w3c.dom.Element#getElementsByTagName
 	 */
@@ -73,9 +73,9 @@ public abstract class DomUtils {
 	/**
 	 * 检索给定 DOM 元素中与给定元素名匹配的所有子元素。只查看给定元素的直接子级，不会进一步深入（与
 	 * DOM API 的 {@code getElementsByTagName} 方法相反）。
-	 * @param ele the DOM element to analyze
-	 * @param childEleName the child element name to look for
-	 * @return a List of child {@code org.w3c.dom.Element} instances
+	 * @param ele 要分析的 DOM 元素
+	 * @param childEleName 要查找的子元素名称
+	 * @return 子 {@code org.w3c.dom.Element} 实例的 List
 	 * @see org.w3c.dom.Element
 	 * @see org.w3c.dom.Element#getElementsByTagName
 	 */
@@ -85,9 +85,9 @@ public abstract class DomUtils {
 
 	/**
 	 * 返回按名称标识的第一个子元素的工具方法。
-	 * @param ele the DOM element to analyze
-	 * @param childEleName the child element name to look for
-	 * @return the {@code org.w3c.dom.Element} instance, or {@code null} if none found
+	 * @param ele 要分析的 DOM 元素
+	 * @param childEleName 要查找的子元素名称
+	 * @return {@code org.w3c.dom.Element} 实例，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public static Element getChildElementByTagName(Element ele, String childEleName) {
@@ -105,9 +105,9 @@ public abstract class DomUtils {
 
 	/**
 	 * 返回按名称标识的第一个子元素值的工具方法。
-	 * @param ele the DOM element to analyze
-	 * @param childEleName the child element name to look for
-	 * @return the extracted text value, or {@code null} if no child element found
+	 * @param ele 要分析的 DOM 元素
+	 * @param childEleName 要查找的子元素名称
+	 * @return 提取出的文本值，如果未找到子元素则为 {@code null}
 	 */
 	@Nullable
 	public static String getChildElementValueByTagName(Element ele, String childEleName) {
@@ -117,8 +117,8 @@ public abstract class DomUtils {
 
 	/**
 	 * 检索给定 DOM 元素的所有子元素。
-	 * @param ele the DOM element to analyze
-	 * @return a List of child {@code org.w3c.dom.Element} instances
+	 * @param ele 要分析的 DOM 元素
+	 * @return 子 {@code org.w3c.dom.Element} 实例的 List
 	 */
 	public static List<Element> getChildElements(Element ele) {
 		Assert.notNull(ele, "Element must not be null");
@@ -166,8 +166,8 @@ public abstract class DomUtils {
 
 	/**
 	 * 返回一个将回调调用转换为 DOM {@code Node} 的 SAX {@code ContentHandler}。
-	 * @param node the node to publish events to
-	 * @return the content handler
+	 * @param node 要向其发布事件的节点
+	 * @return 内容处理器
 	 */
 	public static ContentHandler createContentHandler(Node node) {
 		return new DomContentHandler(node);

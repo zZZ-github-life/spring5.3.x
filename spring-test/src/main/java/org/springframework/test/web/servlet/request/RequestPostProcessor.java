@@ -35,8 +35,8 @@ public interface RequestPostProcessor {
 	/**
 	 * 在通过 {@code MockHttpServletRequestBuilder} 创建并初始化给定的
 	 * {@code MockHttpServletRequest} 之后对其进行后处理。
-	 * @param request the request to initialize
-	 * @return the request to use, either the one passed in or a wrapped one
+	 * @param request 要初始化的请求
+	 * @return 要使用的请求，可以是传入的请求，也可以是包装后的请求
 	 */
 	MockHttpServletRequest postProcessRequest(MockHttpServletRequest request);
 

@@ -80,11 +80,10 @@ public abstract class MessageSourceSupport {
 	 * 息。
 	 * <p>默认实现将该字符串传给 {@code formatMessage}，解析其中找到的所有参数占位符。子类可覆盖此方法
 	 * 以插入对默认消息的自定义处理。
-	 * @param defaultMessage the passed-in default message String
-	 * @param args array of arguments that will be filled in for params within
-	 * the message, or {@code null} if none.
-	 * @param locale the Locale used for formatting
-	 * @return the rendered default message (with resolved arguments)
+	 * @param defaultMessage 传入的默认消息 String
+	 * @param args 用于填充消息内参数的参数数组；如果没有则为 {@code null}。
+	 * @param locale 用于格式化的 Locale
+	 * @return 渲染后的默认消息（参数已解析）
 	 * @see #formatMessage(String, Object[], java.util.Locale)
 	 */
 	protected String renderDefaultMessage(String defaultMessage, @Nullable Object[] args, Locale locale) {
@@ -94,11 +93,10 @@ public abstract class MessageSourceSupport {
 	/**
 	 * 使用缓存的 MessageFormat 格式化给定的消息字符串。默认情况下会针对传入的默认消息调用，以解析其中
 	 * 找到的所有参数占位符。
-	 * @param msg the message to format
-	 * @param args array of arguments that will be filled in for params within
-	 * the message, or {@code null} if none
-	 * @param locale the Locale used for formatting
-	 * @return the formatted message (with resolved arguments)
+	 * @param msg 要格式化的消息
+	 * @param args 用于填充消息内参数的参数数组；如果没有则为 {@code null}
+	 * @param locale 用于格式化的 Locale
+	 * @return 格式化后的消息（参数已解析）
 	 */
 	protected String formatMessage(String msg, @Nullable Object[] args, Locale locale) {
 		if (!isAlwaysUseMessageFormat() && ObjectUtils.isEmpty(args)) {
@@ -140,9 +138,9 @@ public abstract class MessageSourceSupport {
 
 	/**
 	 * 为给定的消息和 Locale 创建一个 {@code MessageFormat}。
-	 * @param msg the message to create a {@code MessageFormat} for
-	 * @param locale the Locale to create a {@code MessageFormat} for
-	 * @return the {@code MessageFormat} instance
+	 * @param msg 要为其创建 {@code MessageFormat} 的消息
+	 * @param locale 要为其创建 {@code MessageFormat} 的 Locale
+	 * @return {@code MessageFormat} 实例
 	 */
 	protected MessageFormat createMessageFormat(String msg, Locale locale) {
 		return new MessageFormat(msg, locale);
@@ -151,9 +149,9 @@ public abstract class MessageSourceSupport {
 	/**
 	 * 用于解析参数对象的模板方法。
 	 * <p>默认实现只是原样返回给定的参数数组。可在子类中覆盖，以解析特殊类型的参数。
-	 * @param args the original argument array
-	 * @param locale the Locale to resolve against
-	 * @return the resolved argument array
+	 * @param args 原始参数数组
+	 * @param locale 用于解析的 Locale
+	 * @return 解析后的参数数组
 	 */
 	protected Object[] resolveArguments(@Nullable Object[] args, Locale locale) {
 		return (args != null ? args : new Object[0]);

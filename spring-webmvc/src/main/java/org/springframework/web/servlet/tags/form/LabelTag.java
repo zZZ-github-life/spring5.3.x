@@ -237,7 +237,7 @@ public class LabelTag extends AbstractHtmlElementTag {
 	/**
 	 * 重写 {@code #getName()} 以始终返回 {@code null}，
 	 * 因为 '{@code label}' 标签不支持 '{@code name}' 属性。
-	 * @return the value for the HTML '{@code name}' attribute
+	 * @return HTML '{@code name}' 属性的值
 	 */
 	@Override
 	@Nullable

@@ -89,8 +89,7 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	/**
 	 * 为给定的 DataSource 创建 SQL 错误码转换器。
 	 * 调用此构造函数会导致从 DataSource 获取 Connection 以读取元数据。
-	 * @param dataSource the DataSource to use to find meta-data and establish
-	 * which error codes are usable
+	 * @param dataSource 用于查找元数据并确定哪些错误码可用的 DataSource
 	 * @see SQLErrorCodesFactory
 	 */
 	public SQLErrorCodeSQLExceptionTranslator(DataSource dataSource) {
@@ -101,7 +100,7 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	/**
 	 * 为给定的数据库产品名称创建 SQL 错误码转换器。
 	 * 调用此构造函数可避免从 DataSource 获取 Connection 来读取元数据。
-	 * @param dbName the database product name that identifies the error codes entry
+	 * @param dbName 标识错误码条目的数据库产品名称
 	 * @see SQLErrorCodesFactory
 	 * @see java.sql.DatabaseMetaData#getDatabaseProductName()
 	 */
@@ -113,7 +112,7 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	/**
 	 * 使用给定的错误码创建 SQLErrorCode 转换器。
 	 * 无需使用连接执行数据库元数据查找。
-	 * @param sec error codes
+	 * @param sec 错误码
 	 */
 	public SQLErrorCodeSQLExceptionTranslator(SQLErrorCodes sec) {
 		this();
@@ -124,8 +123,7 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	/**
 	 * 设置此转换器使用的 DataSource。
 	 * <p>设置此属性会导致从 DataSource 获取 Connection 以读取元数据。
-	 * @param dataSource the DataSource to use to find meta-data and establish
-	 * which error codes are usable
+	 * @param dataSource 用于查找元数据并确定哪些错误码可用的 DataSource
 	 * @see SQLErrorCodesFactory#getErrorCodes(javax.sql.DataSource)
 	 * @see java.sql.DatabaseMetaData#getDatabaseProductName()
 	 */
@@ -138,7 +136,7 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	/**
 	 * 设置此转换器使用的数据库产品名称。
 	 * <p>设置此属性可避免从 DataSource 获取 Connection 来读取元数据。
-	 * @param dbName the database product name that identifies the error codes entry
+	 * @param dbName 标识错误码条目的数据库产品名称
 	 * @see SQLErrorCodesFactory#getErrorCodes(String)
 	 * @see java.sql.DatabaseMetaData#getDatabaseProductName()
 	 */
@@ -148,7 +146,7 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 
 	/**
 	 * 设置用于转换的自定义错误码。
-	 * @param sec custom error codes to use
+	 * @param sec 要使用的自定义错误码
 	 */
 	public void setSqlErrorCodes(@Nullable SQLErrorCodes sec) {
 		this.sqlErrorCodes = SingletonSupplier.ofNullable(sec);
@@ -288,13 +286,14 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	/**
 	 * 子类可以重写此方法，尝试将 {@link SQLException} 自定义映射为
 	 * {@link DataAccessException}。
-	 * @param task readable text describing the task being attempted
-	 * @param sql the SQL query or update that caused the problem (may be {@code null})
-	 * @param sqlEx the offending SQLException
-	 * @return {@code null} if no custom translation applies, otherwise a {@link DataAccessException}
-	 * resulting from custom translation. This exception should include the {@code sqlEx} parameter
-	 * as a nested root cause. This implementation always returns {@code null}, meaning that the
-	 * translator always falls back to the default error codes.
+	 * @param task 描述所尝试任务的可读文本
+	 * @param sql 导致问题的 SQL 查询或更新（可以为 {@code null}）
+	 * @param sqlEx 导致问题的 SQLException
+	 * @return 如果自定义转换不适用则为 {@code null}，
+	 * 否则为自定义转换得到的 {@link DataAccessException}。
+	 * 该异常应将 {@code sqlEx} 参数作为嵌套根本原因包含在内。
+	 * 此实现始终返回 {@code null}，
+	 * 意味着转换器始终回退到默认错误码。
 	 */
 	@Nullable
 	protected DataAccessException customTranslate(String task, @Nullable String sql, SQLException sqlEx) {
@@ -304,14 +303,14 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	/**
 	 * 根据 {@link CustomSQLErrorCodesTranslation} 定义中给定的异常类，
 	 * 创建自定义的 {@link DataAccessException}。
-	 * @param task readable text describing the task being attempted
-	 * @param sql the SQL query or update that caused the problem (may be {@code null})
-	 * @param sqlEx the offending SQLException
-	 * @param exceptionClass the exception class to use, as defined in the
-	 * {@link CustomSQLErrorCodesTranslation} definition
-	 * @return {@code null} if the custom exception could not be created, otherwise
-	 * the resulting {@link DataAccessException}. This exception should include the
-	 * {@code sqlEx} parameter as a nested root cause.
+	 * @param task 描述所尝试任务的可读文本
+	 * @param sql 导致问题的 SQL 查询或更新（可以为 {@code null}）
+	 * @param sqlEx 导致问题的 SQLException
+	 * @param exceptionClass 要使用的异常类，
+	 * 定义于 {@link CustomSQLErrorCodesTranslation} 中
+	 * @return 如果无法创建自定义异常则为 {@code null}，
+	 * 否则为所得的 {@link DataAccessException}。
+	 * 该异常应将 {@code sqlEx} 参数作为嵌套根本原因包含在内。
 	 * @see CustomSQLErrorCodesTranslation#setExceptionClass
 	 */
 	@Nullable

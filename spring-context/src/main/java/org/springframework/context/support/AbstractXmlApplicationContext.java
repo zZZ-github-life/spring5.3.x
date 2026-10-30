@@ -54,7 +54,7 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 
 	/**
 	 * 使用给定的父上下文创建一个新的 AbstractXmlApplicationContext。
-	 * @param parent the parent context
+	 * @param parent 父上下文
 	 */
 	public AbstractXmlApplicationContext(@Nullable ApplicationContext parent) {
 		super(parent);
@@ -96,7 +96,7 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 	 * 初始化用于加载此上下文 Bean 定义的 Bean 定义读取器。默认实现为空。
 	 *
 	 * <p>可以在子类中重写，例如关闭 XML 验证或使用不同的 XmlBeanDefinitionParser 实现。
-	 * @param reader the bean definition reader used by this context
+	 * @param reader 此上下文使用的 Bean 定义读取器
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader#setDocumentReaderClass
 	 */
 	protected void initBeanDefinitionReader(XmlBeanDefinitionReader reader) {
@@ -108,9 +108,9 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 	 *
 	 * <p>Bean 工厂的生命周期由 {@link #refreshBeanFactory} 方法处理；因此，此方法只应负责加载和/或注册
 	 * Bean 定义。
-	 * @param reader the XmlBeanDefinitionReader to use
-	 * @throws BeansException in case of bean registration errors
-	 * @throws IOException if the required XML document isn't found
+	 * @param reader 要使用的 XmlBeanDefinitionReader
+	 * @throws BeansException 如果发生 Bean 注册错误
+	 * @throws IOException 如果找不到所需的 XML 文档
 	 * @see #refreshBeanFactory
 	 * @see #getConfigLocations
 	 * @see #getResources
@@ -132,7 +132,7 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 	 *
 	 * <p>默认实现返回 {@code null}。子类可以重写此方法，提供预先构建的 Resource 对象，而不是位置
 	 * String。
-	 * @return an array of Resource objects, or {@code null} if none
+	 * @return Resource 对象数组；如果没有则为 {@code null}
 	 * @see #getConfigLocations()
 	 */
 	@Nullable

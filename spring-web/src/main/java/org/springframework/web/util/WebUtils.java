@@ -178,9 +178,9 @@ public abstract class WebUtils {
 
 	/**
 	 * 将系统属性设置为 Web 应用根目录。系统属性的键可以通过 {@code web.xml} 中的 "webAppRootKey" context-param 定义。默认为 "webapp.root"。<p>可用于支持以 {@code System.getProperty} 值进行替换的工具，例如 log4j 在日志文件位置中的 "${key}" 语法。
-	 * @param servletContext the servlet context of the web application
-	 * @throws IllegalStateException if the system property is already set,
-	 * or if the WAR file is not expanded
+	 * @param servletContext Web 应用的 servlet 上下文
+	 * @throws IllegalStateException 如果该系统属性已设置，
+	 * 或者 WAR 文件未展开
 	 * @see #WEB_APP_ROOT_KEY_PARAM
 	 * @see #DEFAULT_WEB_APP_ROOT_KEY
 	 * @see WebAppRootListener
@@ -206,7 +206,7 @@ public abstract class WebUtils {
 
 	/**
 	 * 移除指向 Web 应用根目录的系统属性。应在 Web 应用关闭时调用。
-	 * @param servletContext the servlet context of the web application
+	 * @param servletContext Web 应用的 servlet 上下文
 	 * @see #setWebAppRootSystemProperty
 	 */
 	public static void removeWebAppRootSystemProperty(ServletContext servletContext) {
@@ -218,9 +218,9 @@ public abstract class WebUtils {
 
 	/**
 	 * 返回是否为 Web 应用启用了默认 HTML 转义，即 {@code web.xml} 中 "defaultHtmlEscape" context-param 的值（如果有）。<p>此方法区分完全未指定参数和指定了实际布尔值的情况，从而允许在全局级别未设置时使用上下文特定的默认值。
-	 * @param servletContext the servlet context of the web application
-	 * @return whether default HTML escaping is enabled for the given application
-	 * ({@code null} = no explicit default)
+	 * @param servletContext Web 应用的 servlet 上下文
+	 * @return 给定应用是否启用了默认的 HTML 转义
+	 * （{@code null} 表示没有显式的默认值）
 	 */
 	@Nullable
 	public static Boolean getDefaultHtmlEscape(@Nullable ServletContext servletContext) {
@@ -233,9 +233,9 @@ public abstract class WebUtils {
 
 	/**
 	 * 返回在 HTML 转义字符时是否应使用响应编码，即在使用 UTF-* 编码时仅转义对 XML 标记有重要意义的字符。此选项通过 ServletContext 参数为 Web 应用启用，即 {@code web.xml} 中 "responseEncodedHtmlEscape" context-param 的值（如果有）。<p>此方法区分完全未指定参数和指定了实际布尔值的情况，从而允许在全局级别未设置时使用上下文特定的默认值。
-	 * @param servletContext the servlet context of the web application
-	 * @return whether response encoding is to be used for HTML escaping
-	 * ({@code null} = no explicit default)
+	 * @param servletContext Web 应用的 servlet 上下文
+	 * @return 是否将响应编码用于 HTML 转义
+	 * （{@code null} 表示没有显式的默认值）
 	 * @since 4.1.2
 	 */
 	@Nullable
@@ -249,8 +249,8 @@ public abstract class WebUtils {
 
 	/**
 	 * 返回当前 Web 应用的临时目录，由 servlet 容器提供。
-	 * @param servletContext the servlet context of the web application
-	 * @return the File representing the temporary directory
+	 * @param servletContext Web 应用的 servlet 上下文
+	 * @return 表示临时目录的 File
 	 */
 	public static File getTempDir(ServletContext servletContext) {
 		Assert.notNull(servletContext, "ServletContext must not be null");
@@ -259,10 +259,10 @@ public abstract class WebUtils {
 
 	/**
 	 * 返回 Web 应用中给定路径的真实路径，由 servlet 容器提供。<p>如果路径尚未以斜杠开头，则前置一个斜杠；如果无法将路径解析为资源（与 ServletContext 的 {@code getRealPath} 相对，后者返回 null），则抛出 FileNotFoundException。
-	 * @param servletContext the servlet context of the web application
-	 * @param path the path within the web application
-	 * @return the corresponding real path
-	 * @throws FileNotFoundException if the path cannot be resolved to a resource
+	 * @param servletContext Web 应用的 servlet 上下文
+	 * @param path Web 应用内的路径
+	 * @return 对应的真实路径
+	 * @throws FileNotFoundException 如果该路径无法解析为资源
 	 * @see javax.servlet.ServletContext#getRealPath
 	 */
 	public static String getRealPath(ServletContext servletContext, String path) throws FileNotFoundException {
@@ -282,8 +282,8 @@ public abstract class WebUtils {
 
 	/**
 	 * 确定给定请求的会话 id（如果有）。
-	 * @param request current HTTP request
-	 * @return the session id, or {@code null} if none
+	 * @param request 当前 HTTP 请求
+	 * @return 会话 ID，如果没有则为 {@code null}
 	 */
 	@Nullable
 	public static String getSessionId(HttpServletRequest request) {
@@ -294,9 +294,9 @@ public abstract class WebUtils {
 
 	/**
 	 * 检查给定请求是否具有给定名称的会话属性。如果没有会话或会话没有此属性，则返回 null。如果之前不存在会话，则不会创建新会话！
-	 * @param request current HTTP request
-	 * @param name the name of the session attribute
-	 * @return the value of the session attribute, or {@code null} if not found
+	 * @param request 当前 HTTP 请求
+	 * @param name 会话属性的名称
+	 * @return 会话属性的值，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public static Object getSessionAttribute(HttpServletRequest request, String name) {
@@ -307,10 +307,10 @@ public abstract class WebUtils {
 
 	/**
 	 * 检查给定请求是否具有给定名称的会话属性。如果没有会话或会话没有此属性，则抛出异常。如果之前不存在会话，则不会创建新会话！
-	 * @param request current HTTP request
-	 * @param name the name of the session attribute
-	 * @return the value of the session attribute, or {@code null} if not found
-	 * @throws IllegalStateException if the session attribute could not be found
+	 * @param request 当前 HTTP 请求
+	 * @param name 会话属性的名称
+	 * @return 会话属性的值，如果未找到则为 {@code null}
+	 * @throws IllegalStateException 如果找不到该会话属性
 	 */
 	public static Object getRequiredSessionAttribute(HttpServletRequest request, String name)
 			throws IllegalStateException {
@@ -324,9 +324,9 @@ public abstract class WebUtils {
 
 	/**
 	 * 将给定名称的会话属性设置为给定值。如果值为 null，则移除该会话属性（如果存在会话的话）。如无必要，不会创建新会话！
-	 * @param request current HTTP request
-	 * @param name the name of the session attribute
-	 * @param value the value of the session attribute
+	 * @param request 当前 HTTP 请求
+	 * @param name 会话属性的名称
+	 * @param value 会话属性的值
 	 */
 	public static void setSessionAttribute(HttpServletRequest request, String name, @Nullable Object value) {
 		Assert.notNull(request, "Request must not be null");
@@ -343,8 +343,8 @@ public abstract class WebUtils {
 
 	/**
 	 * 返回给定会话可用的最佳互斥对象：即用于对给定会话进行同步的对象。<p>如果可用，返回会话互斥属性；通常这意味着需要在 {@code web.xml} 中定义 HttpSessionMutexListener。如果未找到互斥属性，则回退到 HttpSession 本身。<p>会话互斥对象在整个会话生命周期内保证是同一个对象，可通过 {@code SESSION_MUTEX_ATTRIBUTE} 常量定义的键获取。它可作为对当前会话加锁时进行同步的安全引用。<p>在许多情况下，HttpSession 引用本身也是安全的互斥对象，因为对于同一个活动逻辑会话，它始终是相同的对象引用。不过，这在不同的 servlet 容器之间并无保证；唯一 100% 安全的方式是使用会话互斥对象。
-	 * @param session the HttpSession to find a mutex for
-	 * @return the mutex object (never {@code null})
+	 * @param session 要为其查找互斥对象的 HttpSession
+	 * @return 互斥对象（永不为 {@code null}）
 	 * @see #SESSION_MUTEX_ATTRIBUTE
 	 * @see HttpSessionMutexListener
 	 */
@@ -360,10 +360,10 @@ public abstract class WebUtils {
 
 	/**
 	 * 如果可用，返回指定类型的适当请求对象，必要时对给定请求进行尽可能的解包。
-	 * @param request the servlet request to introspect
-	 * @param requiredType the desired type of request object
-	 * @return the matching request object, or {@code null} if none
-	 * of that type is available
+	 * @param request 要内省的 servlet 请求
+	 * @param requiredType 期望的请求对象类型
+	 * @return 匹配的请求对象；如果没有该类型的对象可用，
+	 * 则为 {@code null}
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable
@@ -381,10 +381,10 @@ public abstract class WebUtils {
 
 	/**
 	 * 如果可用，返回指定类型的适当响应对象，必要时对给定响应进行尽可能的解包。
-	 * @param response the servlet response to introspect
-	 * @param requiredType the desired type of response object
-	 * @return the matching response object, or {@code null} if none
-	 * of that type is available
+	 * @param response 要内省的 servlet 响应
+	 * @param requiredType 期望的响应对象类型
+	 * @return 匹配的响应对象；如果没有该类型的对象可用，
+	 * 则为 {@code null}
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable
@@ -402,8 +402,8 @@ public abstract class WebUtils {
 
 	/**
 	 * 确定给定请求是否为包含请求，即不是来自外部的顶层 HTTP 请求。<p>检查 "javax.servlet.include.request_uri" 请求属性是否存在。也可以检查任何仅在包含请求中存在的请求属性。
-	 * @param request current servlet request
-	 * @return whether the given request is an include request
+	 * @param request 当前 servlet 请求
+	 * @return 给定的请求是否为 include 请求
 	 */
 	public static boolean isIncludeRequest(ServletRequest request) {
 		return (request.getAttribute(INCLUDE_REQUEST_URI_ATTRIBUTE) != null);
@@ -411,9 +411,9 @@ public abstract class WebUtils {
 
 	/**
 	 * 按照 Servlet 2.3 规范定义的键，将 Servlet 规范的错误属性作为 {@link javax.servlet.http.HttpServletRequest} 属性公开，用于直接渲染的错误页，而不是通过 Servlet 容器的错误页解析机制：{@code javax.servlet.error.status_code}、{@code javax.servlet.error.exception_type}、{@code javax.servlet.error.message}、{@code javax.servlet.error.exception}、{@code javax.servlet.error.request_uri}、{@code javax.servlet.error.servlet_name}。<p>如果值已存在则不覆盖，以尊重之前显式公开的属性值。<p>默认公开状态码 200。可在（之前或之后）显式设置 "javax.servlet.error.status_code" 属性，以公开不同的状态码。
-	 * @param request current servlet request
-	 * @param ex the exception encountered
-	 * @param servletName the name of the offending servlet
+	 * @param request 当前 servlet 请求
+	 * @param ex 遇到的异常
+	 * @param servletName 出错的 servlet 的名称
 	 */
 	public static void exposeErrorRequestAttributes(HttpServletRequest request, Throwable ex,
 			@Nullable String servletName) {
@@ -430,9 +430,9 @@ public abstract class WebUtils {
 
 	/**
 	 * 如果指定请求属性尚不存在，则将其公开。
-	 * @param request current servlet request
-	 * @param name the name of the attribute
-	 * @param value the suggested value of the attribute
+	 * @param request 当前 servlet 请求
+	 * @param name 属性的名称
+	 * @param value 属性的建议值
 	 */
 	private static void exposeRequestAttributeIfNotPresent(ServletRequest request, String name, Object value) {
 		if (request.getAttribute(name) == null) {
@@ -442,7 +442,7 @@ public abstract class WebUtils {
 
 	/**
 	 * 按照 Servlet 2.3 规范定义的键，清除 Servlet 规范的错误属性：{@code javax.servlet.error.status_code}、{@code javax.servlet.error.exception_type}、{@code javax.servlet.error.message}、{@code javax.servlet.error.exception}、{@code javax.servlet.error.request_uri}、{@code javax.servlet.error.servlet_name}。
-	 * @param request current servlet request
+	 * @param request 当前 servlet 请求
 	 */
 	public static void clearErrorRequestAttributes(HttpServletRequest request) {
 		request.removeAttribute(ERROR_STATUS_CODE_ATTRIBUTE);
@@ -455,9 +455,9 @@ public abstract class WebUtils {
 
 	/**
 	 * 获取具有给定名称的第一个 cookie。请注意，多个 cookie 可以具有相同的名称但不同的路径或域。
-	 * @param request current servlet request
-	 * @param name cookie name
-	 * @return the first cookie with the given name, or {@code null} if none is found
+	 * @param request 当前 servlet 请求
+	 * @param name Cookie 名称
+	 * @return 具有给定名称的第一个 Cookie，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public static Cookie getCookie(HttpServletRequest request, String name) {
@@ -475,9 +475,9 @@ public abstract class WebUtils {
 
 	/**
 	 * 检查请求中是否发送了特定的 input type="submit" 参数，无论是通过按钮（直接使用名称）还是通过图像（名称 + ".x" 或名称 + ".y"）。
-	 * @param request current HTTP request
-	 * @param name the name of the parameter
-	 * @return if the parameter was sent
+	 * @param request 当前 HTTP 请求
+	 * @param name 参数的名称
+	 * @return 该参数是否已发送
 	 * @see #SUBMIT_IMAGE_SUFFIXES
 	 */
 	public static boolean hasSubmitParameter(ServletRequest request, String name) {
@@ -495,10 +495,10 @@ public abstract class WebUtils {
 
 	/**
 	 * 从给定请求参数中获取指定名称的参数。<p>查找算法的说明请参见 {@link #findParameterValue(java.util.Map, String)}。
-	 * @param request current HTTP request
-	 * @param name the <i>logical</i> name of the request parameter
-	 * @return the value of the parameter, or {@code null}
-	 * if the parameter does not exist in given request
+	 * @param request 当前 HTTP 请求
+	 * @param name 请求参数的<i>逻辑</i>名称
+	 * @return 参数的值；如果给定请求中不存在该参数，
+	 * 则为 {@code null}
 	 */
 	@Nullable
 	public static String findParameterValue(ServletRequest request, String name) {
@@ -507,10 +507,10 @@ public abstract class WebUtils {
 
 	/**
 	 * 从给定请求参数中获取指定名称的参数。<p>此方法将尝试使用以下算法获取参数值：<ol> <li>尝试仅使用给定的<i>逻辑</i>名称获取参数值。这处理 {@code logicalName = value} 形式的参数。对于普通参数（例如通过隐藏 HTML 表单字段提交），这将返回所请求的值。</li> <li>尝试从参数名中获取参数值，其中请求中的参数名形式为 {@code logicalName_value = xyz}，"_" 为配置的分隔符。这处理通过 HTML 表单提交按钮提交的参数值。</li> <li>如果上一步获得的值带有 ".x" 或 ".y" 后缀，则将其移除。这处理通过 HTML 表单图像按钮提交值的情况。此时请求中的参数实际上形式为 {@code logicalName_value.x = 123}。</li> </ol>
-	 * @param parameters the available parameter map
-	 * @param name the <i>logical</i> name of the request parameter
-	 * @return the value of the parameter, or {@code null}
-	 * if the parameter does not exist in given request
+	 * @param parameters 可用的参数映射
+	 * @param name 请求参数的<i>逻辑</i>名称
+	 * @return 参数的值；如果给定请求中不存在该参数，
+	 * 则为 {@code null}
 	 */
 	@Nullable
 	public static String findParameterValue(Map<String, ?> parameters, String name) {
@@ -542,11 +542,11 @@ public abstract class WebUtils {
 
 	/**
 	 * 返回包含所有具有给定前缀的参数的 Map。单个值映射为 String，多个值映射为 String 数组。<p>例如，前缀为 "spring_" 时，"spring_param1" 和 "spring_param2" 会得到以 "param1" 和 "param2" 为键的 Map。
-	 * @param request the HTTP request in which to look for parameters
-	 * @param prefix the beginning of parameter names
-	 * (if this is null or the empty string, all parameters will match)
-	 * @return map containing request parameters <b>without the prefix</b>,
-	 * containing either a String or a String array as values
+	 * @param request 要在其中查找参数的 HTTP 请求
+	 * @param prefix 参数名称的开头部分
+	 * （如果为 null 或空字符串，则所有参数都会匹配）
+	 * @return 包含<b>不带前缀</b>的请求参数的映射，
+	 * 其值为 String 或 String 数组
 	 * @see javax.servlet.ServletRequest#getParameterNames
 	 * @see javax.servlet.ServletRequest#getParameterValues
 	 * @see javax.servlet.ServletRequest#getParameterMap
@@ -579,8 +579,8 @@ public abstract class WebUtils {
 
 	/**
 	 * 解析带矩阵变量的给定字符串。示例字符串如 {@code "q1=a;q1=b;q2=a,b,c"}。结果 Map 将包含键 {@code "q1"} 和 {@code "q2"}，值分别为 {@code ["a","b"]} 和 {@code ["a","b","c"]}。
-	 * @param matrixVariables the unparsed matrix variables string
-	 * @return a map with matrix variable names and values (never {@code null})
+	 * @param matrixVariables 未解析的矩阵变量字符串
+	 * @return 包含矩阵变量名称和值的映射（永不为 {@code null}）
 	 * @since 3.2
 	 */
 	public static MultiValueMap<String, String> parseMatrixVariables(String matrixVariables) {
@@ -611,7 +611,7 @@ public abstract class WebUtils {
 
 	/**
 	 * 根据允许的来源列表检查给定请求来源。包含 "*" 的列表表示允许所有来源。空列表表示仅允许同源。<p><strong>注意：</strong>自 5.1 起，此方法忽略指定客户端发起地址的 {@code "Forwarded"} 和 {@code "X-Forwarded-*"} 头。可考虑使用 {@code ForwardedHeaderFilter} 提取并使用这些头，或将其丢弃。
-	 * @return {@code true} if the request origin is valid, {@code false} otherwise
+	 * @return 如果请求来源有效则返回 {@code true}，否则返回 {@code false}
 	 * @since 4.1.5
 	 * @see <a href="https://tools.ietf.org/html/rfc6454">RFC 6454: The Web Origin Concept</a>
 	 */
@@ -634,8 +634,8 @@ public abstract class WebUtils {
 	/**
 	 * 基于 {@code Origin}、{@code Host}、{@code Forwarded}、{@code X-Forwarded-Proto}、{@code X-Forwarded-Host} 和 {@code X-Forwarded-Port} 头，检查请求是否为同源请求。<p><strong>注意：</strong>自 5.1 起，此方法忽略指定客户端发起地址的 {@code "Forwarded"} 和 {@code "X-Forwarded-*"} 头。可考虑使用 {@code ForwardedHeaderFilter} 提取并使用这些头，或将其丢弃。
 
-	 * @return {@code true} if the request is a same-origin one, {@code false} in case
-	 * of cross-origin request
+	 * @return 如果请求是同源的则返回 {@code true}，
+	 * 对于跨源请求则返回 {@code false}
 	 * @since 4.2
 	 */
 	public static boolean isSameOrigin(HttpRequest request) {

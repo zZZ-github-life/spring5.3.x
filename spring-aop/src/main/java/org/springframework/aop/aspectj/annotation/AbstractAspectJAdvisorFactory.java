@@ -160,7 +160,7 @@ public abstract class AbstractAspectJAdvisorFactory implements AspectJAdvisorFac
 
 	/**
 	 * 对 AspectJ 注解建模的类，对外暴露其类型枚举和切点字符串。
-	 * @param <A> the annotation type
+	 * @param <A> 注解类型
 	 */
 	protected static class AspectJAnnotation<A extends Annotation> {
 

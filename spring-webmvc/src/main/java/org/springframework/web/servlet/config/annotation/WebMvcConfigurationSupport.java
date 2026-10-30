@@ -807,7 +807,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * <p>自定义参数解析器会在内置解析器之前调用，但那些依赖注解存在的解析器
 	 * （例如 {@code @RequestParameter}、{@code @PathVariable} 等）除外。
 	 * 后者可以通过直接配置 {@link RequestMappingHandlerAdapter} 来自定义。
-	 * @param argumentResolvers the list of custom converters (initially an empty list)
+	 * @param argumentResolvers 自定义转换器的列表（初始为空列表）
 	 */
 	protected void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
 	}
@@ -832,7 +832,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * <p>自定义返回值处理器会在内置处理器之前调用，但那些依赖注解存在的处理器
 	 * （例如 {@code @ResponseBody}、{@code @ModelAttribute} 等）除外。
 	 * 后者可以通过直接配置 {@link RequestMappingHandlerAdapter} 来自定义。
-	 * @param returnValueHandlers the list of custom handlers (initially an empty list)
+	 * @param returnValueHandlers 自定义处理器的列表（初始为空列表）
 	 */
 	protected void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> returnValueHandlers) {
 	}
@@ -862,7 +862,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * {@link ExceptionHandlerExceptionResolver} 使用。
 	 * <p>向列表中添加转换器会关闭原本会默认注册的转换器。
 	 * 另请参见 {@link #addDefaultHttpMessageConverters} 以添加默认消息转换器。
-	 * @param converters a list to add message converters to (initially an empty list)
+	 * @param converters 要向其添加消息转换器的列表（初始为空列表）
 	 */
 	protected void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 	}
@@ -870,7 +870,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * 重写此方法以在转换器列表配置完成后扩展或修改该列表。
 	 * 例如，这对于先注册默认转换器，然后通过此方法插入自定义转换器很有用。
-	 * @param converters the list of configured converters to extend
+	 * @param converters 要扩展的已配置转换器列表
 	 * @since 4.1.3
 	 */
 	protected void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -879,7 +879,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * 向给定列表添加一组默认 HttpMessageConverter 实例。
 	 * 子类可以从 {@link #configureMessageConverters} 调用此方法。
-	 * @param messageConverters the list to add the default message converters to
+	 * @param messageConverters 要向其添加默认消息转换器的列表
 	 */
 	protected final void addDefaultHttpMessageConverters(List<HttpMessageConverter<?>> messageConverters) {
 		messageConverters.add(new ByteArrayHttpMessageConverter());
@@ -1026,7 +1026,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * <p>向列表中添加解析器会关闭原本会默认注册的默认解析器。
 	 * 另请参见 {@link #addDefaultHandlerExceptionResolvers}，
 	 * 它可用于添加默认异常解析器。
-	 * @param exceptionResolvers a list to add exception resolvers to (initially an empty list)
+	 * @param exceptionResolvers 要向其添加异常解析器的列表（初始为空列表）
 	 */
 	protected void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
 	}
@@ -1035,7 +1035,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * 重写此方法以在
 	 * {@link HandlerExceptionResolver HandlerExceptionResolvers} 列表配置完成后扩展或修改该列表。
 	 * <p>例如，这对于先注册默认解析器，然后通过此方法插入自定义解析器很有用。
-	 * @param exceptionResolvers the list of configured resolvers to extend.
+	 * @param exceptionResolvers 要扩展的已配置解析器列表。
 	 * @since 4.3
 	 */
 	protected void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {

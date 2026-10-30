@@ -69,8 +69,8 @@ public class HeuristicCompletionException extends TransactionException {
 
 	/**
 	 * HeuristicCompletionException 的构造函数。
-	 * @param outcomeState the outcome state of the transaction
-	 * @param cause the root cause from the transaction API in use
+	 * @param outcomeState 事务的结果状态
+	 * @param cause 来自所用事务 API 的根本原因
 	 */
 	public HeuristicCompletionException(int outcomeState, Throwable cause) {
 		super("Heuristic completion: outcome state is " + getStateString(outcomeState), cause);

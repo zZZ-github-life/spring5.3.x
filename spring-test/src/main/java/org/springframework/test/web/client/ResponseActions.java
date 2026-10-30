@@ -26,13 +26,13 @@ public interface ResponseActions {
 
 	/**
 	 * 添加请求预期。
-	 * @return the expectation
+	 * @return 该期望
 	 */
 	ResponseActions andExpect(RequestMatcher requestMatcher);
 
 	/**
 	 * 定义响应。
-	 * @param responseCreator the creator of the response
+	 * @param responseCreator 响应的创建器
 	 */
 	void andRespond(ResponseCreator responseCreator);
 

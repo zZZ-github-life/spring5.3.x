@@ -140,7 +140,7 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 
 	/**
 	 * 创建一个新的 JpaTransactionManager 实例。
-	 * @param emf the EntityManagerFactory to manage transactions for
+	 * @param emf 要为其管理事务的 EntityManagerFactory
 	 */
 	public JpaTransactionManager(EntityManagerFactory emf) {
 		this();
@@ -170,8 +170,8 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 
 	/**
 	 * 获取供实际使用的 EntityManagerFactory。
-	 * @return the EntityManagerFactory (never {@code null})
-	 * @throws IllegalStateException in case of no EntityManagerFactory set
+	 * @return EntityManagerFactory（永不为 {@code null}）
+	 * @throws IllegalStateException 如果未设置 EntityManagerFactory
 	 * @since 5.0
 	 */
 	protected final EntityManagerFactory obtainEntityManagerFactory() {
@@ -490,7 +490,7 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 	/**
 	 * 关闭当前事务的 EntityManager。
 	 * 在事务开启尝试失败后调用。
-	 * @param txObject the current transaction
+	 * @param txObject 当前事务
 	 */
 	protected void closeEntityManagerAfterFailedBegin(JpaTransactionObject txObject) {
 		if (txObject.isNewEntityManagerHolder()) {

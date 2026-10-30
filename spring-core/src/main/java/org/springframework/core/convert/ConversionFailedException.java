@@ -40,10 +40,10 @@ public class ConversionFailedException extends ConversionException {
 
 	/**
 	 * 创建一个新的转换异常。
-	 * @param sourceType the value's original type
-	 * @param targetType the value's target type
-	 * @param value the value we tried to convert
-	 * @param cause the cause of the conversion failure
+	 * @param sourceType 值的原始类型
+	 * @param targetType 值的目标类型
+	 * @param value 我们尝试转换的值
+	 * @param cause 转换失败的原因
 	 */
 	public ConversionFailedException(@Nullable TypeDescriptor sourceType, TypeDescriptor targetType,
 			@Nullable Object value, Throwable cause) {

@@ -30,9 +30,9 @@ public interface WebFilter {
 	/**
 	 * 处理 Web 请求，并（可选地）通过给定的 {@link WebFilterChain}
 	 * 委托给下一个 {@code WebFilter}。
-	 * @param exchange the current server exchange
-	 * @param chain provides a way to delegate to the next filter
-	 * @return {@code Mono<Void>} to indicate when request processing is complete
+	 * @param exchange 当前服务器交换
+	 * @param chain 提供委托给下一个过滤器的方式
+	 * @return 用于指示请求处理何时完成的 {@code Mono<Void>}
 	 */
 	Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain);
 

@@ -102,9 +102,9 @@ public abstract class RequestContextAwareTag extends TagSupport implements TryCa
 
 	/**
 	 * 由 doStartTag 调用以执行实际工作。
-	 * @return same as TagSupport.doStartTag
-	 * @throws Exception any exception, any checked one other than
-	 * a JspException gets wrapped in a JspException by doStartTag
+	 * @return 与 TagSupport.doStartTag 相同
+	 * @throws Exception 任何异常；除 JspException 之外的受检异常
+	 * 会被 doStartTag 包装为 JspException
 	 * @see javax.servlet.jsp.tagext.TagSupport#doStartTag
 	 */
 	protected abstract int doStartTagInternal() throws Exception;

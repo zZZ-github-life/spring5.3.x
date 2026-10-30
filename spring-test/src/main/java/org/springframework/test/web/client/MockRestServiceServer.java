@@ -78,8 +78,8 @@ public final class MockRestServiceServer {
 	 * {@link ResponseActions} 可用于设置更多预期以及定义响应。
 	 * <p>在开始通过底层 {@code RestTemplate} 发出请求之前，可以多次调用此方法，
 	 * 以设置所有预期请求。
-	 * @param matcher request matcher
-	 * @return a representation of the expectation
+	 * @param matcher 请求匹配器
+	 * @return 该期望的表示
 	 */
 	public ResponseActions expect(RequestMatcher matcher) {
 		return expect(ExpectedCount.once(), matcher);
@@ -89,9 +89,9 @@ public final class MockRestServiceServer {
 	 * 对 {@link #expect(RequestMatcher)} 的替代方法，同时指示预期请求的执行次数。
 	 * <p>当请求预期的预期次数大于一时，只有第一次执行需要遵循声明顺序。后续
 	 * 请求执行可以插入到其后的任意位置。
-	 * @param count the expected count
-	 * @param matcher request matcher
-	 * @return a representation of the expectation
+	 * @param count 期望的计数
+	 * @param matcher 请求匹配器
+	 * @return 该期望的表示
 	 * @since 4.3
 	 */
 	public ResponseActions expect(ExpectedCount count, RequestMatcher matcher) {
@@ -100,7 +100,7 @@ public final class MockRestServiceServer {
 
 	/**
 	 * 验证通过 {@link #expect(RequestMatcher)} 设置的所有预期请求确实都已执行。
-	 * @throws AssertionError if not all expectations are met
+	 * @throws AssertionError 如果并非所有期望都得到满足。
 	 */
 	public void verify() {
 		this.expectationManager.verify();
@@ -109,9 +109,9 @@ public final class MockRestServiceServer {
 	/**
 	 * {@link #verify()} 的变体，最多等待指定时间直到所有预期都得到满足。
 	 * 这对于涉及异步请求的测试很有用。
-	 * @param timeout how long to wait for all expectations to be met
-	 * @throws AssertionError if not all expectations are met by the specified
-	 * timeout, or if any expectation fails at any time before that.
+	 * @param timeout 等待所有期望得到满足的时间
+	 * @throws AssertionError 如果在指定超时时间内并非所有期望都得到满足，
+	 * 或在此之前任何时刻有期望失败。
 	 * @since 5.3.4
 	 */
 	public void verify(Duration timeout) {
@@ -157,8 +157,8 @@ public final class MockRestServiceServer {
 
 	/**
 	 * {@code bindTo(restTemplate).build()} 的快捷方式。
-	 * @param restTemplate the RestTemplate to set up for mock testing
-	 * @return the mock server
+	 * @param restTemplate 要为其设置模拟测试的 RestTemplate
+	 * @return 模拟服务器
 	 */
 	public static MockRestServiceServer createServer(RestTemplate restTemplate) {
 		return bindTo(restTemplate).build();
@@ -166,8 +166,8 @@ public final class MockRestServiceServer {
 
 	/**
 	 * {@code bindTo(asyncRestTemplate).build()} 的快捷方式。
-	 * @param asyncRestTemplate the AsyncRestTemplate to set up for mock testing
-	 * @return the created mock server
+	 * @param asyncRestTemplate 要为其设置模拟测试的 AsyncRestTemplate
+	 * @return 创建的模拟服务器
 	 * @deprecated see deprecation notice on
 	 * {@link org.springframework.web.client.AsyncRestTemplate} itself
 	 */
@@ -178,8 +178,8 @@ public final class MockRestServiceServer {
 
 	/**
 	 * {@code bindTo(restGateway).build()} 的快捷方式。
-	 * @param restGateway the REST gateway to set up for mock testing
-	 * @return the created mock server
+	 * @param restGateway 要为其设置模拟测试的 REST 网关
+	 * @return 创建的模拟服务器
 	 */
 	public static MockRestServiceServer createServer(RestGatewaySupport restGateway) {
 		return bindTo(restGateway).build();
@@ -196,7 +196,7 @@ public final class MockRestServiceServer {
 		 * <p>实际上是以下代码的快捷方式：<br>
 		 * {@code builder.build(new UnorderedRequestExpectationManager)}。
 		 * <p>默认设置为 {@code false}。
-		 * @param ignoreExpectOrder whether to ignore the order of expectations
+		 * @param ignoreExpectOrder 是否忽略期望的顺序
 		 */
 		MockRestServiceServerBuilder ignoreExpectOrder(boolean ignoreExpectOrder);
 

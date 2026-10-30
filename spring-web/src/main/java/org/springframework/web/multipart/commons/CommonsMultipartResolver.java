@@ -100,7 +100,7 @@ public class CommonsMultipartResolver extends CommonsFileUploadSupport
 	/**
 	 * 供独立使用时调用的构造函数。通过给定的 ServletContext
 	 * 确定 Servlet 容器的临时目录。
-	 * @param servletContext the ServletContext to use
+	 * @param servletContext 要使用的 ServletContext
 	 */
 	public CommonsMultipartResolver(ServletContext servletContext) {
 		this();
@@ -131,8 +131,8 @@ public class CommonsMultipartResolver extends CommonsFileUploadSupport
 	/**
 	 * 初始化底层的 {@code org.apache.commons.fileupload.servlet.ServletFileUpload}
 	 * 实例。可以重写以使用自定义子类，例如用于测试目的。
-	 * @param fileItemFactory the Commons FileItemFactory to use
-	 * @return the new ServletFileUpload instance
+	 * @param fileItemFactory 要使用的 Commons FileItemFactory
+	 * @return 新的 ServletFileUpload 实例
 	 */
 	@Override
 	protected FileUpload newFileUpload(FileItemFactory fileItemFactory) {
@@ -178,9 +178,9 @@ public class CommonsMultipartResolver extends CommonsFileUploadSupport
 
 	/**
 	 * 解析给定的 Servlet 请求，解析其中的 multipart 元素。
-	 * @param request the request to parse
-	 * @return the parsing result
-	 * @throws MultipartException if multipart resolution failed.
+	 * @param request 要解析的请求
+	 * @return 解析结果
+	 * @throws MultipartException 如果 multipart 解析失败。
 	 */
 	protected MultipartParsingResult parseRequest(HttpServletRequest request) throws MultipartException {
 		String encoding = determineEncoding(request);
@@ -204,8 +204,8 @@ public class CommonsMultipartResolver extends CommonsFileUploadSupport
 	 * 确定给定请求的编码。可以在子类中重写。
 	 * <p>默认实现检查请求的编码，
 	 * 若不存在则回退到为此解析器指定的默认编码。
-	 * @param request current HTTP request
-	 * @return the encoding for the request (never {@code null})
+	 * @param request 当前 HTTP 请求
+	 * @return 该请求的编码（永不为 {@code null}）
 	 * @see javax.servlet.ServletRequest#getCharacterEncoding
 	 * @see #setDefaultEncoding
 	 */

@@ -62,9 +62,9 @@ public class SqlRowSetResultSetExtractor implements ResultSetExtractor<SqlRowSet
 	 * 以断开连接的方式表示其数据。
 	 * <p>此实现创建一个Spring {@link ResultSetWrappingSqlRowSet}实例，
 	 * 包装标准JDBC {@link CachedRowSet}实例。可以重写以使用不同的实现。
-	 * @param rs the original ResultSet (connected)
-	 * @return the disconnected SqlRowSet
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param rs 原始 ResultSet（已连接）
+	 * @return 已断开的 SqlRowSet
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see #newCachedRowSet()
 	 * @see org.springframework.jdbc.support.rowset.ResultSetWrappingSqlRowSet
 	 */
@@ -77,8 +77,8 @@ public class SqlRowSetResultSetExtractor implements ResultSetExtractor<SqlRowSet
 	/**
 	 * 创建新的{@link CachedRowSet}实例，由{@code createSqlRowSet}实现填充。
 	 * <p>默认实现使用JDBC 4.1的{@link RowSetFactory}。
-	 * @return a new CachedRowSet instance
-	 * @throws SQLException if thrown by JDBC methods
+	 * @return 新的 CachedRowSet 实例
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see #createSqlRowSet
 	 * @see RowSetProvider#newFactory()
 	 * @see RowSetFactory#createCachedRowSet()

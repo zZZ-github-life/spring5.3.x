@@ -32,7 +32,7 @@ public class CannotGetJdbcConnectionException extends DataAccessResourceFailureE
 
 	/**
 	 * 创建{@code CannotGetJdbcConnectionException}实例。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 * @since 5.0
 	 */
 	public CannotGetJdbcConnectionException(String msg) {
@@ -41,8 +41,8 @@ public class CannotGetJdbcConnectionException extends DataAccessResourceFailureE
 
 	/**
 	 * 创建{@code CannotGetJdbcConnectionException}实例。
-	 * @param msg the detail message
-	 * @param ex the root cause SQLException
+	 * @param msg 详细消息
+	 * @param ex 根本原因 SQLException
 	 */
 	public CannotGetJdbcConnectionException(String msg, @Nullable SQLException ex) {
 		super(msg, ex);
@@ -50,8 +50,8 @@ public class CannotGetJdbcConnectionException extends DataAccessResourceFailureE
 
 	/**
 	 * 创建{@code CannotGetJdbcConnectionException}实例。
-	 * @param msg the detail message
-	 * @param ex the root cause IllegalStateException
+	 * @param msg 详细消息
+	 * @param ex 根本原因 IllegalStateException
 	 * @since 5.3.22
 	 */
 	public CannotGetJdbcConnectionException(String msg, IllegalStateException ex) {

@@ -184,7 +184,7 @@ public abstract class AbstractTemplateView extends AbstractUrlBasedView {
 	 * 应用到给定的响应。
 	 * <p>仅在响应尚未设置内容类型时才应用视图的 contentType。
 	 * 这允许处理器事先覆盖默认的内容类型。
-	 * @param response current HTTP response
+	 * @param response 当前 HTTP 响应
 	 * @see #setContentType
 	 */
 	protected void applyContentType(HttpServletResponse response)	{
@@ -195,11 +195,10 @@ public abstract class AbstractTemplateView extends AbstractUrlBasedView {
 
 	/**
 	 * 子类必须实现此方法以实际渲染视图。
-	 * @param model combined output Map, with request attributes and
-	 * session attributes merged into it if required
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @throws Exception if rendering failed
+	 * @param model 合并后的输出 Map，必要时已合并请求属性和会话属性
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @throws Exception 如果渲染失败
 	 */
 	protected abstract void renderMergedTemplateModel(
 			Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception;

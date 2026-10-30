@@ -73,7 +73,7 @@ public class ForwardedHeaderTransformer implements Function<ServerHttpRequest, S
 	/**
 	 * 启用一种模式：仅移除任何 "Forwarded" 或 "X-Forwarded-*" 头部，
 	 * 并忽略其中的信息。
-	 * @param removeOnly whether to discard and ignore forwarded headers
+	 * @param removeOnly 是否丢弃并忽略转发头
 	 */
 	public void setRemoveOnly(boolean removeOnly) {
 		this.removeOnly = removeOnly;
@@ -90,7 +90,7 @@ public class ForwardedHeaderTransformer implements Function<ServerHttpRequest, S
 
 	/**
 	 * 应用并移除 Forwarded 类型的头部，或仅移除它们。
-	 * @param request the request
+	 * @param request 该请求
 	 */
 	@Override
 	public ServerHttpRequest apply(ServerHttpRequest request) {
@@ -118,7 +118,7 @@ public class ForwardedHeaderTransformer implements Function<ServerHttpRequest, S
 
 	/**
 	 * 请求是否包含任何 Forwarded 头部。
-	 * @param request the request
+	 * @param request 该请求
 	 */
 	protected boolean hasForwardedHeaders(ServerHttpRequest request) {
 		HttpHeaders headers = request.getHeaders();

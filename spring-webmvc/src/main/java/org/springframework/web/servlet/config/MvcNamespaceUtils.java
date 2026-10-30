@@ -84,7 +84,7 @@ public abstract class MvcNamespaceUtils {
 	/**
 	 * 为现有的众所周知名称添加别名，或者在该众所周知名称下注册一个新的
 	 * {@link UrlPathHelper} 实例（如果尚未注册）。
-	 * @return a RuntimeBeanReference to this {@link UrlPathHelper} instance
+	 * @return 指向此 {@link UrlPathHelper} 实例的 RuntimeBeanReference
 	 */
 	public static RuntimeBeanReference registerUrlPathHelper(
 			@Nullable RuntimeBeanReference urlPathHelperRef, ParserContext context, @Nullable Object source) {
@@ -109,7 +109,7 @@ public abstract class MvcNamespaceUtils {
 	/**
 	 * 为现有的众所周知名称添加别名，或者在该众所周知名称下注册一个新的
 	 * {@link PathMatcher} 实例（如果尚未注册）。
-	 * @return a RuntimeBeanReference to this {@link PathMatcher} instance
+	 * @return 指向此 {@link PathMatcher} 实例的 RuntimeBeanReference
 	 */
 	public static RuntimeBeanReference registerPathMatcher(@Nullable RuntimeBeanReference pathMatcherRef,
 			ParserContext context, @Nullable Object source) {
@@ -177,7 +177,7 @@ public abstract class MvcNamespaceUtils {
 	 * 在众所周知名称下注册一个 {@code Map<String, CorsConfiguration>}（映射后的
 	 * {@code CorsConfiguration}）（如果尚未注册）。如果提供了非空的 CORS 配置，
 	 * 则可能更新该 bean 定义。
-	 * @return a RuntimeBeanReference to this {@code Map<String, CorsConfiguration>} instance
+	 * @return 指向此 {@code Map<String, CorsConfiguration>} 实例的 RuntimeBeanReference
 	 */
 	public static RuntimeBeanReference registerCorsConfigurations(
 			@Nullable Map<String, CorsConfiguration> corsConfigurations,
@@ -271,7 +271,8 @@ public abstract class MvcNamespaceUtils {
 	/**
 	 * 查找由 {@code annotation-driven} 元素创建或与之注册的
 	 * {@code ContentNegotiationManager} bean。
-	 * @return a bean definition, bean reference, or {@code null} if none defined
+	 * @return Bean 定义或 Bean 引用；
+	 * 如果未定义则为 {@code null}
 	 */
 	@Nullable
 	public static Object getContentNegotiationManager(ParserContext context) {

@@ -54,8 +54,8 @@ public interface ResourceLoader {
 	 * </ul>
 	 * <p>请注意，{@code Resource} 句柄并不意味着资源一定存在；需要调用 {@link Resource#exists} 检查其
 	 * 是否存在。
-	 * @param location the resource location
-	 * @return a corresponding {@code Resource} handle (never {@code null})
+	 * @param location 资源位置
+	 * @return 对应的 {@code Resource} 句柄（永不为 {@code null}）
 	 * @see #CLASSPATH_URL_PREFIX
 	 * @see Resource#exists()
 	 * @see Resource#getInputStream()
@@ -66,8 +66,8 @@ public interface ResourceLoader {
 	 * 暴露此 {@code ResourceLoader} 使用的 {@link ClassLoader}。
 	 * <p>需要直接访问 {@code ClassLoader} 的客户端可以以统一的方式通过 {@code ResourceLoader} 进行访问，
 	 * 而无需依赖线程上下文 {@code ClassLoader}。
-	 * @return the {@code ClassLoader}
-	 * (only {@code null} if even the system {@code ClassLoader} isn't accessible)
+	 * @return 该 {@code ClassLoader}
+	 * （仅当连系统 {@code ClassLoader} 都不可访问时才为 {@code null}）
 	 * @see org.springframework.util.ClassUtils#getDefaultClassLoader()
 	 * @see org.springframework.util.ClassUtils#forName(String, ClassLoader)
 	 */

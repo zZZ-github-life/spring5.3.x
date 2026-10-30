@@ -140,9 +140,9 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 	 * <p>如果方法参数使用 {@code @javax.validation.Valid} 或
 	 * {@link org.springframework.validation.annotation.Validated} 注解，则会应用校验。
 	 * 校验失败会导致 {@link MethodArgumentNotValidException}。
-	 * @param parameter the target method argument that we are decoding to
-	 * @param message the message from which the content was extracted
-	 * @return a Mono with the result of argument resolution
+	 * @param parameter 我们要解码成的目标方法参数
+	 * @param message 从中提取内容的消息
+	 * @return 包含参数解析结果的 Mono
 	 * @see #extractContent(MethodParameter, Message)
 	 * @see #getMimeType(Message)
 	 */
@@ -190,7 +190,7 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 	 * 返回内容的 MIME 类型。默认情况下，此方法检查
 	 * {@link MessageHeaders#CONTENT_TYPE} 头，期望找到 {@link MimeType} 值
 	 * 或可解析为 {@link MimeType} 的 String。
-	 * @param message the input message
+	 * @param message 输入消息
 	 */
 	@Nullable
 	protected MimeType getMimeType(Message<?> message) {

@@ -44,7 +44,7 @@ public class PatternEditor extends PropertyEditorSupport {
 
 	/**
 	 * 使用给定设置创建一个新的 PatternEditor。
-	 * @param flags the {@code java.util.regex.Pattern} flags to apply
+	 * @param flags 要应用的 {@code java.util.regex.Pattern} 标志
 	 * @see java.util.regex.Pattern#compile(String, int)
 	 * @see java.util.regex.Pattern#CASE_INSENSITIVE
 	 * @see java.util.regex.Pattern#MULTILINE

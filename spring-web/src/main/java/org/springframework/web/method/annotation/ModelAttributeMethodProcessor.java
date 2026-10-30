@@ -92,9 +92,8 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 
 	/**
 	 * 类构造函数。
-	 * @param annotationNotRequired if "true", non-simple method arguments and
-	 * return values are considered model attributes with or without a
-	 * {@code @ModelAttribute} annotation
+	 * @param annotationNotRequired 如果为 "true"，非简单方法参数和返回值无论
+	 * 是否带有 {@code @ModelAttribute} 注解都被视为模型属性
 	 */
 	public ModelAttributeMethodProcessor(boolean annotationNotRequired) {
 		this.annotationNotRequired = annotationNotRequired;
@@ -115,9 +114,9 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	 * 从模型中解析参数；如果未找到，则在可用时使用默认值实例化它。
 	 * 随后通过数据绑定用请求值填充模型属性，并在参数上存在
 	 * {@code @java.validation.Valid} 时可选地进行校验。
-	 * @throws BindException if data binding and validation result in an error
-	 * and the next method parameter is not of type {@link Errors}
-	 * @throws Exception if WebDataBinder initialization fails
+	 * @throws BindException 如果数据绑定和校验产生错误，
+	 * 且下一个方法参数不是 {@link Errors} 类型
+	 * @throws Exception 如果 WebDataBinder 初始化失败
 	 */
 	@Override
 	@Nullable
@@ -197,13 +196,13 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	 * 也理解字节码中保留的运行时参数名，从而按名称将请求参数与构造函数参数关联起来。
 	 * 如果找不到这样的构造函数，则使用默认构造函数（即使不是公共的），
 	 * 假定随后通过 setter 方法进行 Bean 属性绑定。
-	 * @param attributeName the name of the attribute (never {@code null})
-	 * @param parameter the method parameter declaration
-	 * @param binderFactory for creating WebDataBinder instance
-	 * @param webRequest the current request
-	 * @return the created model attribute (never {@code null})
-	 * @throws BindException in case of constructor argument binding failure
-	 * @throws Exception in case of constructor invocation failure
+	 * @param attributeName 属性的名称（永不为 {@code null}）
+	 * @param parameter 方法参数声明
+	 * @param binderFactory 用于创建 WebDataBinder 实例
+	 * @param webRequest 当前请求
+	 * @return 创建的模型属性（永不为 {@code null}）
+	 * @throws BindException 如果构造器参数绑定失败
+	 * @throws Exception 如果构造器调用失败
 	 * @see #constructAttribute(Constructor, String, MethodParameter, WebDataBinderFactory, NativeWebRequest)
 	 * @see BeanUtils#findPrimaryConstructor(Class)
 	 */
@@ -226,13 +225,13 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	 * <p>在构造函数解析之后由
 	 * {@link #createAttribute(String, MethodParameter, WebDataBinderFactory, NativeWebRequest)}
 	 * 调用。
-	 * @param ctor the constructor to use
-	 * @param attributeName the name of the attribute (never {@code null})
-	 * @param binderFactory for creating WebDataBinder instance
-	 * @param webRequest the current request
-	 * @return the created model attribute (never {@code null})
-	 * @throws BindException in case of constructor argument binding failure
-	 * @throws Exception in case of constructor invocation failure
+	 * @param ctor 要使用的构造器
+	 * @param attributeName 属性的名称（永不为 {@code null}）
+	 * @param binderFactory 用于创建 WebDataBinder 实例
+	 * @param webRequest 当前请求
+	 * @return 创建的模型属性（永不为 {@code null}）
+	 * @throws BindException 如果构造器参数绑定失败
+	 * @throws Exception 如果构造器调用失败
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -331,8 +330,8 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 
 	/**
 	 * 扩展点：将请求绑定到目标对象。
-	 * @param binder the data binder instance to use for the binding
-	 * @param request the current request
+	 * @param binder 用于绑定的数据绑定器实例
+	 * @param request 当前请求
 	 */
 	protected void bindRequestParameters(WebDataBinder binder, NativeWebRequest request) {
 		((WebRequestDataBinder) binder).bind(request);
@@ -367,8 +366,8 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	 * <p>默认实现会检查 {@code @javax.validation.Valid}、
 	 * Spring 的 {@link org.springframework.validation.annotation.Validated}，
 	 * 以及名称以 "Valid" 开头的自定义注解。
-	 * @param binder the DataBinder to be used
-	 * @param parameter the method parameter declaration
+	 * @param binder 要使用的 DataBinder
+	 * @param parameter 方法参数声明
 	 * @see WebDataBinder#validate(Object...)
 	 * @see SmartValidator#validate(Object, Errors, Object...)
 	 */
@@ -387,11 +386,11 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	 * <p>默认实现会检查 {@code @javax.validation.Valid}、
 	 * Spring 的 {@link org.springframework.validation.annotation.Validated}，
 	 * 以及名称以 "Valid" 开头的自定义注解。
-	 * @param binder the DataBinder to be used
-	 * @param parameter the method parameter declaration
-	 * @param targetType the target type
-	 * @param fieldName the name of the field
-	 * @param value the candidate value
+	 * @param binder 要使用的 DataBinder
+	 * @param parameter 方法参数声明
+	 * @param targetType 目标类型
+	 * @param fieldName 字段的名称
+	 * @param value 候选值
 	 * @since 5.1
 	 * @see #validateIfApplicable(WebDataBinder, MethodParameter)
 	 * @see SmartValidator#validateValue(Class, String, Object, Errors, Object...)
@@ -421,9 +420,9 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	/**
 	 * 是否在校验出错时抛出致命的数据绑定异常。
 	 * <p>默认实现委托给 {@link #isBindExceptionRequired(MethodParameter)}。
-	 * @param binder the data binder used to perform data binding
-	 * @param parameter the method parameter declaration
-	 * @return {@code true} if the next method parameter is not of type {@link Errors}
+	 * @param binder 用于执行数据绑定的数据绑定器
+	 * @param parameter 方法参数声明
+	 * @return 如果下一个方法参数不是 {@link Errors} 类型则返回 {@code true}
 	 * @see #isBindExceptionRequired(MethodParameter)
 	 */
 	protected boolean isBindExceptionRequired(WebDataBinder binder, MethodParameter parameter) {
@@ -432,8 +431,8 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 
 	/**
 	 * 是否在校验出错时抛出致命的数据绑定异常。
-	 * @param parameter the method parameter declaration
-	 * @return {@code true} if the next method parameter is not of type {@link Errors}
+	 * @param parameter 方法参数声明
+	 * @return 如果下一个方法参数不是 {@link Errors} 类型则返回 {@code true}
 	 * @since 5.0
 	 */
 	protected boolean isBindExceptionRequired(MethodParameter parameter) {

@@ -33,8 +33,8 @@ public abstract class JavaScriptUtils {
 
 	/**
 	 * 将 JavaScript 特殊字符转换为转义字符。
-	 * @param input the input string
-	 * @return the string with escaped characters
+	 * @param input 输入字符串
+	 * @return 字符已转义的字符串
 	 */
 	public static String javaScriptEscape(String input) {
 		StringBuilder filtered = new StringBuilder(input.length());

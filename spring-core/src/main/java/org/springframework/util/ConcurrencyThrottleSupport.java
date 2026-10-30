@@ -83,7 +83,7 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 
 	/**
 	 * 返回此节流器当前是否处于活动状态。
-	 * @return {@code true} if the concurrency limit for this instance is active
+	 * @return 如果此实例的并发限制处于激活状态，则返回 {@code true}
 	 * @see #getConcurrencyLimit()
 	 */
 	public boolean isThrottleActive() {

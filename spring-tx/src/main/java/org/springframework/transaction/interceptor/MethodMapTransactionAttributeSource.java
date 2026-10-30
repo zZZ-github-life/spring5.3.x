@@ -76,7 +76,7 @@ public class MethodMapTransactionAttributeSource
 	 * (例如"com.mycompany.mycode.MyClass.myMethod")和{@link TransactionAttribute}实例
 	 * (或要转换为{@code TransactionAttribute}实例的字符串)组成。
 	 * <p>用于通过setter注入进行配置, 通常在Spring bean工厂中。依赖于之后调用{@link #afterPropertiesSet()}。
-	 * @param methodMap said {@link Map} from method name to attribute value
+	 * @param methodMap 所述从方法名称到属性值的 {@link Map}
 	 * @see TransactionAttribute
 	 * @see TransactionAttributeEditor
 	 */
@@ -108,7 +108,7 @@ public class MethodMapTransactionAttributeSource
 
 	/**
 	 * 初始化指定的{@link #setMethodMap(java.util.Map) "methodMap"}(如果有)。
-	 * @param methodMap a Map from method names to {@code TransactionAttribute} instances
+	 * @param methodMap 从方法名称到 {@code TransactionAttribute} 实例的 Map
 	 * @see #setMethodMap
 	 */
 	protected void initMethodMap(@Nullable Map<String, TransactionAttribute> methodMap) {
@@ -121,9 +121,9 @@ public class MethodMapTransactionAttributeSource
 	/**
 	 * 为事务方法添加属性。
 	 * <p>方法名可以以"*"结尾或开头, 以匹配多个方法。
-	 * @param name class and method name, separated by a dot
-	 * @param attr attribute associated with the method
-	 * @throws IllegalArgumentException in case of an invalid name
+	 * @param name 类名和方法名，以点号分隔
+	 * @param attr 与方法关联的属性
+	 * @throws IllegalArgumentException 名称无效时
 	 */
 	public void addTransactionalMethod(String name, TransactionAttribute attr) {
 		Assert.notNull(name, "Name must not be null");
@@ -140,9 +140,9 @@ public class MethodMapTransactionAttributeSource
 	/**
 	 * 为事务方法添加属性。
 	 * 方法名可以以"*"结尾或开头, 以匹配多个方法。
-	 * @param clazz target interface or class
-	 * @param mappedName mapped method name
-	 * @param attr attribute associated with the method
+	 * @param clazz 目标接口或类
+	 * @param mappedName 映射的方法名称
+	 * @param attr 与方法关联的属性
 	 */
 	public void addTransactionalMethod(Class<?> clazz, String mappedName, TransactionAttribute attr) {
 		Assert.notNull(clazz, "Class must not be null");
@@ -185,8 +185,8 @@ public class MethodMapTransactionAttributeSource
 
 	/**
 	 * 为事务方法添加属性。
-	 * @param method the method
-	 * @param attr attribute associated with the method
+	 * @param method 该方法
+	 * @param attr 与方法关联的属性
 	 */
 	public void addTransactionalMethod(Method method, TransactionAttribute attr) {
 		Assert.notNull(method, "Method must not be null");
@@ -203,9 +203,9 @@ public class MethodMapTransactionAttributeSource
 	/**
 	 * 返回给定的方法名是否匹配映射名称。
 	 * <p>默认实现检查"xxx*"、"*xxx"和"*xxx*"匹配, 以及直接相等。
-	 * @param methodName the method name of the class
-	 * @param mappedName the name in the descriptor
-	 * @return if the names match
+	 * @param methodName 该类的方法名称
+	 * @param mappedName 描述符中的名称
+	 * @return 名称是否匹配
 	 * @see org.springframework.util.PatternMatchUtils#simpleMatch(String, String)
 	 */
 	protected boolean isMatch(String methodName, String mappedName) {

@@ -78,9 +78,8 @@ public class RuleBasedTransactionAttribute extends DefaultTransactionAttribute i
 	/**
 	 * 使用给定的传播行为创建一个新的DefaultTransactionAttribute。
 	 * 可以通过bean属性setter进行修改。
-	 * @param propagationBehavior one of the propagation constants in the
-	 * TransactionDefinition interface
-	 * @param rollbackRules the list of RollbackRuleAttributes to apply
+	 * @param propagationBehavior TransactionDefinition 接口中的某个传播常量
+	 * @param rollbackRules 要应用的 RollbackRuleAttribute 列表
 	 * @see #setIsolationLevel
 	 * @see #setTimeout
 	 * @see #setReadOnly

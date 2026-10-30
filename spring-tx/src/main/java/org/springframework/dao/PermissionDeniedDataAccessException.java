@@ -27,9 +27,8 @@ public class PermissionDeniedDataAccessException extends NonTransientDataAccessE
 
 	/**
 	 * PermissionDeniedDataAccessException 的构造方法。
-	 * @param msg the detail message
-	 * @param cause the root cause from the underlying data access API,
-	 * such as JDBC
+	 * @param msg 详细信息
+	 * @param cause 来自底层数据访问 API（例如 JDBC）的根本原因
 	 */
 	public PermissionDeniedDataAccessException(String msg, Throwable cause) {
 		super(msg, cause);

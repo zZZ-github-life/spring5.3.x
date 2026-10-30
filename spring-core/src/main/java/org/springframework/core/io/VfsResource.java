@@ -45,8 +45,8 @@ public class VfsResource extends AbstractResource {
 
 	/**
 	 * 创建一个包装给定资源句柄的新 {@code VfsResource}。
-	 * @param resource a {@code org.jboss.vfs.VirtualFile} instance
-	 * (untyped in order to avoid a static dependency on the VFS API)
+	 * @param resource 一个 {@code org.jboss.vfs.VirtualFile} 实例
+	 * （未使用具体类型，以避免对 VFS API 的静态依赖）
 	 */
 	public VfsResource(Object resource) {
 		Assert.notNull(resource, "VirtualFile must not be null");

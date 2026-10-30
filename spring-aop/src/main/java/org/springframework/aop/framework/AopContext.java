@@ -52,10 +52,9 @@ public final class AopContext {
 	/**
 	 * 尝试返回当前的 AOP 代理。仅当调用方法通过 AOP 调用，并且 AOP 框架已设置为暴露代理时，此方法才可
 	 * 用。否则，此方法将抛出 IllegalStateException。
-	 * @return the current AOP proxy (never returns {@code null})
-	 * @throws IllegalStateException if the proxy cannot be found, because the
-	 * method was invoked outside an AOP invocation context, or because the
-	 * AOP framework has not been configured to expose the proxy
+	 * @return 当前的 AOP 代理（永不返回 {@code null}）
+	 * @throws IllegalStateException 如果找不到代理，因为该方法是在 AOP 调用上下文之外调用的，
+	 * 或者因为 AOP 框架未配置为暴露代理
 	 */
 	public static Object currentProxy() throws IllegalStateException {
 		Object proxy = currentProxy.get();
@@ -70,8 +69,8 @@ public final class AopContext {
 	/**
 	 * 使给定的代理可通过 {@code currentProxy()} 方法获取。
 	 * <p>请注意，调用方应小心，酌情保留旧值。
-	 * @param proxy the proxy to expose (or {@code null} to reset it)
-	 * @return the old proxy, which may be {@code null} if none was bound
+	 * @param proxy 要暴露的代理（或 {@code null} 以重置它）
+	 * @return 原来的代理，如果没有绑定任何代理则为 {@code null}
 	 * @see #currentProxy()
 	 */
 	@Nullable

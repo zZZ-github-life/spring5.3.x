@@ -61,7 +61,7 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
 
 	/**
 	 * 为给定的编码创建一个 {@code CharacterEncodingFilter}。
-	 * @param encoding the encoding to apply
+	 * @param encoding 要应用的编码
 	 * @since 4.2.3
 	 * @see #setEncoding
 	 */
@@ -71,9 +71,8 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
 
 	/**
 	 * 为给定的编码创建一个 {@code CharacterEncodingFilter}。
-	 * @param encoding the encoding to apply
-	 * @param forceEncoding whether the specified encoding is supposed to
-	 * override existing request and response encodings
+	 * @param encoding 要应用的编码
+	 * @param forceEncoding 指定的编码是否应覆盖现有的请求和响应编码
 	 * @since 4.2.3
 	 * @see #setEncoding
 	 * @see #setForceEncoding
@@ -84,11 +83,9 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
 
 	/**
 	 * 为给定的编码创建一个 {@code CharacterEncodingFilter}。
-	 * @param encoding the encoding to apply
-	 * @param forceRequestEncoding whether the specified encoding is supposed to
-	 * override existing request encodings
-	 * @param forceResponseEncoding whether the specified encoding is supposed to
-	 * override existing response encodings
+	 * @param encoding 要应用的编码
+	 * @param forceRequestEncoding 指定的编码是否应覆盖现有的请求编码
+	 * @param forceResponseEncoding 指定的编码是否应覆盖现有的响应编码
 	 * @since 4.3
 	 * @see #setEncoding
 	 * @see #setForceRequestEncoding(boolean)

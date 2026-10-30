@@ -165,9 +165,9 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	 * 理。
 	 * <p>只有在 {@link BeanFactory} 中使用此外后处理器，并触发其 {@link BeanFactoryAware} 回调时，才能
 	 * 调用 {@code TargetSourceCreators}。
-	 * @param targetSourceCreators the list of {@code TargetSourceCreators}.
-	 * Ordering is significant: The {@code TargetSource} returned from the first matching
-	 * {@code TargetSourceCreator} (that is, the first that returns non-null) will be used.
+	 * @param targetSourceCreators {@code TargetSourceCreators} 列表。顺序很重要：将使用第一个匹配的
+	 * {@code TargetSourceCreator}（即第一个返回非 null 的）所返回的
+	 * {@code TargetSource}。
 	 */
 	public void setCustomTargetSourceCreators(TargetSourceCreator... targetSourceCreators) {
 		this.customTargetSourceCreators = targetSourceCreators;
@@ -285,9 +285,9 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	 * <p>注意：自 4.2.3 起，此实现不再返回拼接的类/名称字符串，而是返回尽可能高效的缓存键：一个纯 Bean
 	 * 名称；对于 {@code FactoryBean}，会在前面加上 {@link BeanFactory#FACTORY_BEAN_PREFIX}；如果未指定
 	 * Bean 名称，则直接使用给定的 Bean {@code Class}。
-	 * @param beanClass the bean class
-	 * @param beanName the bean name
-	 * @return the cache key for the given class and name
+	 * @param beanClass Bean 类
+	 * @param beanName Bean 名称
+	 * @return 给定类和名称的缓存键
 	 */
 	protected Object getCacheKey(Class<?> beanClass, @Nullable String beanName) {
 		if (StringUtils.hasLength(beanName)) {
@@ -301,10 +301,10 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 
 	/**
 	 * 如有必要（即有资格被代理），包装给定 Bean。
-	 * @param bean the raw bean instance
-	 * @param beanName the name of the bean
-	 * @param cacheKey the cache key for metadata access
-	 * @return a proxy wrapping the bean, or the raw bean instance as-is
+	 * @param bean 原始 Bean 实例
+	 * @param beanName Bean 的名称
+	 * @param cacheKey 用于元数据访问的缓存键
+	 * @return 包装该 Bean 的代理，或原样的原始 Bean 实例
 	 */
 	protected Object wrapIfNecessary(Object bean, String beanName, Object cacheKey) {
 		if (StringUtils.hasLength(beanName) && this.targetSourcedBeans.contains(beanName)) {
@@ -335,8 +335,8 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	/**
 	 * 返回给定 Bean 类是否表示一个绝不应被代理的基础设施类。
 	 * <p>默认实现将 Advice、Advisor 和 AopInfrastructureBeans 视为基础设施类。
-	 * @param beanClass the class of the bean
-	 * @return whether the bean represents an infrastructure class
+	 * @param beanClass Bean 的类
+	 * @return 该 Bean 是否表示基础设施类
 	 * @see org.aopalliance.aop.Advice
 	 * @see org.springframework.aop.Advisor
 	 * @see org.springframework.aop.framework.AopInfrastructureBean
@@ -358,9 +358,9 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	 * <p>有时我们需要避免这种情况发生，例如，如果它会导致循环引用，或者需要保留现有的目标实例。除非
 	 * Bean 名称按照 {@code AutowireCapableBeanFactory} 约定表示“原始实例”，否则此实现返回
 	 * {@code false}。
-	 * @param beanClass the class of the bean
-	 * @param beanName the name of the bean
-	 * @return whether to skip the given bean
+	 * @param beanClass Bean 的类
+	 * @param beanName Bean 的名称
+	 * @return 是否跳过给定的 Bean
 	 * @see org.springframework.beans.factory.config.AutowireCapableBeanFactory#ORIGINAL_INSTANCE_SUFFIX
 	 */
 	protected boolean shouldSkip(Class<?> beanClass, String beanName) {
@@ -371,9 +371,9 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	 * 为 Bean 实例创建目标源。如果设置了任何 TargetSourceCreators，则使用它们。如果不应使用自定义
 	 * TargetSource，则返回 {@code null}。
 	 * <p>此实现使用 "customTargetSourceCreators" 属性。子类可以覆盖此方法以使用不同的机制。
-	 * @param beanClass the class of the bean to create a TargetSource for
-	 * @param beanName the name of the bean
-	 * @return a TargetSource for this bean
+	 * @param beanClass 要为其创建 TargetSource 的 Bean 的类
+	 * @param beanName Bean 的名称
+	 * @return 该 Bean 的 TargetSource
 	 * @see #setCustomTargetSourceCreators
 	 */
 	@Nullable
@@ -400,13 +400,11 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 
 	/**
 	 * 为给定 Bean 创建 AOP 代理。
-	 * @param beanClass the class of the bean
-	 * @param beanName the name of the bean
-	 * @param specificInterceptors the set of interceptors that is
-	 * specific to this bean (may be empty, but not null)
-	 * @param targetSource the TargetSource for the proxy,
-	 * already pre-configured to access the bean
-	 * @return the AOP proxy for the bean
+	 * @param beanClass Bean 的类
+	 * @param beanName Bean 的名称
+	 * @param specificInterceptors 特定于此 Bean 的拦截器集合（可以为空，但不能为 null）
+	 * @param targetSource 代理的 TargetSource，已预先配置好以访问该 Bean
+	 * @return 该 Bean 的 AOP 代理
 	 * @see #buildAdvisors
 	 */
 	protected Object createProxy(Class<?> beanClass, @Nullable String beanName,
@@ -460,9 +458,9 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	 * 确定给定 Bean 是应使用其目标类还是其接口进行代理。
 	 * <p>检查相应 Bean 定义的
 	 * {@link AutoProxyUtils#PRESERVE_TARGET_CLASS_ATTRIBUTE "preserveTargetClass" attribute} 属性。
-	 * @param beanClass the class of the bean
-	 * @param beanName the name of the bean
-	 * @return whether the given bean should be proxied with its target class
+	 * @param beanClass Bean 的类
+	 * @param beanName Bean 的名称
+	 * @return 给定 Bean 是否应使用其目标类进行代理
 	 * @see AutoProxyUtils#shouldProxyTargetClass
 	 */
 	protected boolean shouldProxyTargetClass(Class<?> beanClass, @Nullable String beanName) {
@@ -474,7 +472,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	 * 返回子类返回的 Advisor 是否已经预筛选以匹配 Bean 的目标类，从而在为 AOP 调用构建通知器链时可以跳
 	 * 过 ClassFilter 检查。
 	 * <p>默认值为 {@code false}。如果子类始终返回预筛选的 Advisor，则可以覆盖此方法。
-	 * @return whether the Advisors are pre-filtered
+	 * @return Advisor 是否已预先过滤
 	 * @see #getAdvicesAndAdvisorsForBean
 	 * @see org.springframework.aop.framework.Advised#setPreFiltered
 	 */
@@ -484,10 +482,9 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 
 	/**
 	 * 确定给定 Bean 的通知器，包括特定拦截器以及公共拦截器，全部适配为 Advisor 接口。
-	 * @param beanName the name of the bean
-	 * @param specificInterceptors the set of interceptors that is
-	 * specific to this bean (may be empty, but not null)
-	 * @return the list of Advisors for the given bean
+	 * @param beanName Bean 的名称
+	 * @param specificInterceptors 特定于此 Bean 的拦截器集合（可以为空，但不能为 null）
+	 * @return 给定 Bean 的 Advisor 列表
 	 */
 	protected Advisor[] buildAdvisors(@Nullable String beanName, @Nullable Object[] specificInterceptors) {
 		// Handle prototypes correctly...
@@ -543,9 +540,8 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	/**
 	 * 子类可以选择实现此方法：例如，更改暴露的接口。
 	 * <p>默认实现为空。
-	 * @param proxyFactory a ProxyFactory that is already configured with
-	 * TargetSource and interfaces and will be used to create the proxy
-	 * immediately after this method returns
+	 * @param proxyFactory 已配置好 TargetSource 和接口的 ProxyFactory，
+	 * 它将在该方法返回后立即用于创建代理
 	 */
 	protected void customizeProxyFactory(ProxyFactory proxyFactory) {
 	}
@@ -553,16 +549,15 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 
 	/**
 	 * 返回给定 Bean 是否要被代理，以及要应用哪些附加 advice（例如 AOP Alliance 拦截器）和通知器。
-	 * @param beanClass the class of the bean to advise
-	 * @param beanName the name of the bean
-	 * @param customTargetSource the TargetSource returned by the
-	 * {@link #getCustomTargetSource} method: may be ignored.
-	 * Will be {@code null} if no custom target source is in use.
-	 * @return an array of additional interceptors for the particular bean;
-	 * or an empty array if no additional interceptors but just the common ones;
-	 * or {@code null} if no proxy at all, not even with the common interceptors.
-	 * See constants DO_NOT_PROXY and PROXY_WITHOUT_ADDITIONAL_INTERCEPTORS.
-	 * @throws BeansException in case of errors
+	 * @param beanClass 要通知的 Bean 的类
+	 * @param beanName Bean 的名称
+	 * @param customTargetSource 由 {@link #getCustomTargetSource} 方法返回的 TargetSource：可以被忽略。
+	 * 如果没有使用自定义目标源，则为 {@code null}。
+	 * @return 针对特定 Bean 的附加拦截器数组；如果没有附加拦截器而只有公共拦截器，
+	 * 则为空数组；如果根本没有代理，甚至连公共拦截器都没有，
+	 * 则为 {@code null}。参见常量 DO_NOT_PROXY 和
+	 * PROXY_WITHOUT_ADDITIONAL_INTERCEPTORS。
+	 * @throws BeansException 如果发生错误
 	 * @see #DO_NOT_PROXY
 	 * @see #PROXY_WITHOUT_ADDITIONAL_INTERCEPTORS
 	 */

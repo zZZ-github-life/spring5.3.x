@@ -30,14 +30,14 @@ public interface MBeanExporterListener {
 	/**
 	 * 在 MBean 已<i>成功</i>注册到 {@link javax.management.MBeanServer} 之后由 {@link MBeanExporter}
 	 * 调用。
-	 * @param objectName the {@code ObjectName} of the registered MBean
+	 * @param objectName 已注册 MBean 的 {@code ObjectName}
 	 */
 	void mbeanRegistered(ObjectName objectName);
 
 	/**
 	 * 在 MBean 已<i>成功</i>从 {@link javax.management.MBeanServer} 注销之后由 {@link MBeanExporter}
 	 * 调用。
-	 * @param objectName the {@code ObjectName} of the unregistered MBean
+	 * @param objectName 已注销 MBean 的 {@code ObjectName}
 	 */
 	void mbeanUnregistered(ObjectName objectName);
 

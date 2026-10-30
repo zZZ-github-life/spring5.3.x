@@ -59,7 +59,7 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * 创建新工厂。需要通过{@link #addParameter}方法添加参数，或者没有参数。
-	 * @param sql the SQL statement to execute
+	 * @param sql 要执行的 SQL 语句
 	 */
 	public PreparedStatementCreatorFactory(String sql) {
 		this.sql = sql;
@@ -68,8 +68,8 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * 使用给定的SQL和JDBC类型创建新工厂。
-	 * @param sql the SQL statement to execute
-	 * @param types int array of JDBC types
+	 * @param sql 要执行的 SQL 语句
+	 * @param types JDBC 类型的 int 数组
 	 */
 	public PreparedStatementCreatorFactory(String sql, int... types) {
 		this.sql = sql;
@@ -78,8 +78,8 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * 使用给定的SQL和参数创建新工厂。
-	 * @param sql the SQL statement to execute
-	 * @param declaredParameters list of {@link SqlParameter} objects
+	 * @param sql 要执行的 SQL 语句
+	 * @param declaredParameters {@link SqlParameter} 对象列表
 	 */
 	public PreparedStatementCreatorFactory(String sql, List<SqlParameter> declaredParameters) {
 		this.sql = sql;
@@ -98,7 +98,7 @@ public class PreparedStatementCreatorFactory {
 	/**
 	 * 添加新的声明参数。
 	 * <p>参数添加的顺序很重要。
-	 * @param param the parameter to add to the list of declared parameters
+	 * @param param 要添加到已声明参数列表的参数
 	 */
 	public void addParameter(SqlParameter param) {
 		this.declaredParameters.add(param);
@@ -106,7 +106,7 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * 设置是否使用返回特定类型ResultSet的预编译语句。
-	 * @param resultSetType the ResultSet type
+	 * @param resultSetType ResultSet 类型
 	 * @see java.sql.ResultSet#TYPE_FORWARD_ONLY
 	 * @see java.sql.ResultSet#TYPE_SCROLL_INSENSITIVE
 	 * @see java.sql.ResultSet#TYPE_SCROLL_SENSITIVE
@@ -139,7 +139,7 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * 根据给定参数返回新的PreparedStatementSetter。
-	 * @param params list of parameters (may be {@code null})
+	 * @param params 参数列表（可以为 {@code null}）
 	 */
 	public PreparedStatementSetter newPreparedStatementSetter(@Nullable List<?> params) {
 		return new PreparedStatementCreatorImpl(params != null ? params : Collections.emptyList());
@@ -147,7 +147,7 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * 根据给定参数返回新的PreparedStatementSetter。
-	 * @param params the parameter array (may be {@code null})
+	 * @param params 参数数组（可以为 {@code null}）
 	 */
 	public PreparedStatementSetter newPreparedStatementSetter(@Nullable Object[] params) {
 		return new PreparedStatementCreatorImpl(params != null ? Arrays.asList(params) : Collections.emptyList());
@@ -155,7 +155,7 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * 根据给定参数返回新的PreparedStatementCreator。
-	 * @param params list of parameters (may be {@code null})
+	 * @param params 参数列表（可以为 {@code null}）
 	 */
 	public PreparedStatementCreator newPreparedStatementCreator(@Nullable List<?> params) {
 		return new PreparedStatementCreatorImpl(params != null ? params : Collections.emptyList());
@@ -163,7 +163,7 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * 根据给定参数返回新的PreparedStatementCreator。
-	 * @param params the parameter array (may be {@code null})
+	 * @param params 参数数组（可以为 {@code null}）
 	 */
 	public PreparedStatementCreator newPreparedStatementCreator(@Nullable Object[] params) {
 		return new PreparedStatementCreatorImpl(params != null ? Arrays.asList(params) : Collections.emptyList());
@@ -171,9 +171,9 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * 根据给定参数返回新的PreparedStatementCreator。
-	 * @param sqlToUse the actual SQL statement to use (if different from
-	 * the factory's, for example because of named parameter expanding)
-	 * @param params the parameter array (may be {@code null})
+	 * @param sqlToUse 要使用的实际 SQL 语句（如果与工厂的不同，
+	 * 例如由于命名参数展开）
+	 * @param params 参数数组（可以为 {@code null}）
 	 */
 	public PreparedStatementCreator newPreparedStatementCreator(String sqlToUse, @Nullable Object[] params) {
 		return new PreparedStatementCreatorImpl(

@@ -80,10 +80,10 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 
 	/**
 	 * 使用给定消息通道和目标前缀创建 SimpleBrokerMessageHandler 实例。
-	 * @param clientInboundChannel the channel for receiving messages from clients (e.g. WebSocket clients)
-	 * @param clientOutboundChannel the channel for sending messages to clients (e.g. WebSocket clients)
-	 * @param brokerChannel the channel for the application to send messages to the broker
-	 * @param destinationPrefixes prefixes to use to filter out messages
+	 * @param clientInboundChannel 用于接收来自客户端（例如 WebSocket 客户端）消息的通道
+	 * @param clientOutboundChannel 用于向客户端（例如 WebSocket 客户端）发送消息的通道
+	 * @param brokerChannel 供应用向 Broker 发送消息的通道
+	 * @param destinationPrefixes 用于过滤消息的前缀
 	 */
 	public SimpleBrokerMessageHandler(SubscribableChannel clientInboundChannel, MessageChannel clientOutboundChannel,
 			SubscribableChannel brokerChannel, Collection<String> destinationPrefixes) {
@@ -159,7 +159,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	 * </pre>
 	 * <p>默认设置为 "selector"。可以将其设置为其他名称，或设置为 {@code null}
 	 * 以关闭对选择器头的支持。
-	 * @param selectorHeaderName the name to use for a selector header
+	 * @param selectorHeaderName 用于选择器消息头的名称
 	 * @since 4.3.17
 	 * @see #setSubscriptionRegistry
 	 * @see DefaultSubscriptionRegistry#setSelectorHeaderName(String)

@@ -104,7 +104,7 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	 * 配置一个自定义的 {@link WebSessionManager}，用于管理 Web 会话。
 	 * 所提供的实例会被设置到每个创建的 {@link DefaultServerWebExchange} 上。
 	 * <p>默认设置为 {@link DefaultWebSessionManager}。
-	 * @param sessionManager the session manager to use
+	 * @param sessionManager 要使用的会话管理器
 	 */
 	public void setSessionManager(WebSessionManager sessionManager) {
 		Assert.notNull(sessionManager, "WebSessionManager must not be null");
@@ -122,7 +122,7 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	 * 配置一个自定义的 {@link ServerCodecConfigurer}。所提供的实例会被设置到
 	 * 每个创建的 {@link DefaultServerWebExchange} 上。
 	 * <p>默认设置为 {@link ServerCodecConfigurer#create()}。
-	 * @param codecConfigurer the codec configurer to use
+	 * @param codecConfigurer 要使用的编解码器配置器
 	 */
 	public void setCodecConfigurer(ServerCodecConfigurer codecConfigurer) {
 		Assert.notNull(codecConfigurer, "ServerCodecConfigurer is required");
@@ -153,7 +153,7 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	 * 每个创建的 {@link DefaultServerWebExchange} 上。
 	 * <p>默认设置为
 	 * {@link org.springframework.web.server.i18n.AcceptHeaderLocaleContextResolver}。
-	 * @param resolver the locale context resolver to use
+	 * @param resolver 要使用的区域上下文解析器
 	 */
 	public void setLocaleContextResolver(LocaleContextResolver resolver) {
 		Assert.notNull(resolver, "LocaleContextResolver is required");
@@ -170,7 +170,7 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	/**
 	 * 启用转发头部的处理：要么提取并移除，要么仅移除。
 	 * <p>默认情况下不设置。
-	 * @param transformer the transformer to use
+	 * @param transformer 要使用的转换器
 	 * @since 5.1
 	 */
 	public void setForwardedHeaderTransformer(ForwardedHeaderTransformer transformer) {
@@ -191,7 +191,7 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	 * 配置与 Web 应用关联的 {@code ApplicationContext}（如果已通过
 	 * {@link org.springframework.web.server.adapter.WebHttpHandlerBuilder#applicationContext(ApplicationContext)}
 	 * 使用某个应用上下文进行了初始化）。
-	 * @param applicationContext the context
+	 * @param applicationContext 该上下文
 	 * @since 5.0.3
 	 */
 	public void setApplicationContext(ApplicationContext applicationContext) {
@@ -255,8 +255,8 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	/**
 	 * 为日志记录目的格式化请求，包括 HTTP 方法和 URL。
 	 * <p>默认情况下会输出 HTTP 方法、URL 路径以及查询字符串。
-	 * @param request the request to format
-	 * @return the String to display, never empty or {@code null}
+	 * @param request 要格式化的请求
+	 * @return 要显示的 String，永不为空或 {@code null}
 	 */
 	protected String formatRequest(ServerHttpRequest request) {
 		String rawQuery = request.getURI().getRawQuery();

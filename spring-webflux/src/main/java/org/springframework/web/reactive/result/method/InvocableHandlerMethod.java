@@ -118,10 +118,10 @@ public class InvocableHandlerMethod extends HandlerMethod {
 
 	/**
 	 * 为给定交换调用该方法。
-	 * @param exchange the current exchange
-	 * @param bindingContext the binding context to use
-	 * @param providedArgs optional list of argument values to match by type
-	 * @return a Mono with a {@link HandlerResult}
+	 * @param exchange 当前交换
+	 * @param bindingContext 要使用的绑定上下文
+	 * @param providedArgs 可按类型匹配的可选参数值列表
+	 * @return 包含 {@link HandlerResult} 的 Mono
 	 */
 	@SuppressWarnings({"KotlinInternalInJava", "unchecked"})
 	public Mono<HandlerResult> invoke(

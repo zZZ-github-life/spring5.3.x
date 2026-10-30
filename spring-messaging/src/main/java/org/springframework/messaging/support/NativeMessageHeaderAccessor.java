@@ -56,7 +56,7 @@ public class NativeMessageHeaderAccessor extends MessageHeaderAccessor {
 
 	/**
 	 * 使用给定原生头部创建实例的受保护构造函数。
-	 * @param nativeHeaders native headers to create the message with (may be {@code null})
+	 * @param nativeHeaders 用于创建消息的原生消息头（可以为 {@code null}）
 	 */
 	protected NativeMessageHeaderAccessor(@Nullable Map<String, List<String>> nativeHeaders) {
 		if (!CollectionUtils.isEmpty(nativeHeaders)) {
@@ -144,7 +144,7 @@ public class NativeMessageHeaderAccessor extends MessageHeaderAccessor {
 
 	/**
 	 * 原生头部映射是否包含给定头部名称。
-	 * @param headerName the name of the header
+	 * @param headerName 消息头名称
 	 */
 	public boolean containsNativeHeader(String headerName) {
 		Map<String, List<String>> map = getNativeHeaders();
@@ -153,8 +153,8 @@ public class NativeMessageHeaderAccessor extends MessageHeaderAccessor {
 
 	/**
 	 * 返回指定原生头部的所有值（如果存在）。
-	 * @param headerName the name of the header
-	 * @return the associated values, or {@code null} if none
+	 * @param headerName 消息头名称
+	 * @return 关联的值，如果没有则为 {@code null}
 	 */
 	@Nullable
 	public List<String> getNativeHeader(String headerName) {
@@ -164,8 +164,8 @@ public class NativeMessageHeaderAccessor extends MessageHeaderAccessor {
 
 	/**
 	 * 返回指定原生头部的第一个值（如果存在）。
-	 * @param headerName the name of the header
-	 * @return the associated value, or {@code null} if none
+	 * @param headerName 消息头名称
+	 * @return 关联的值，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public String getFirstNativeHeader(String headerName) {
@@ -234,8 +234,8 @@ public class NativeMessageHeaderAccessor extends MessageHeaderAccessor {
 	 * 将指定的原生头部值添加到现有值中。
 	 * <p>为此，访问器必须是 {@link #isMutable() mutable} 的。
 	 * 详情请参阅 {@link MessageHeaderAccessor}。
-	 * @param name the name of the header
-	 * @param value the header value to set
+	 * @param name 消息头名称
+	 * @param value 要设置的消息头值
 	 */
 	public void addNativeHeader(String name, @Nullable String value) {
 		Assert.state(isMutable(), "Already immutable");
@@ -254,7 +254,7 @@ public class NativeMessageHeaderAccessor extends MessageHeaderAccessor {
 
 	/**
 	 * 将指定的原生头部添加到现有值中。
-	 * @param headers the headers to set
+	 * @param headers 要设置的消息头
 	 */
 	public void addNativeHeaders(@Nullable MultiValueMap<String, String> headers) {
 		if (headers == null) {
@@ -267,8 +267,8 @@ public class NativeMessageHeaderAccessor extends MessageHeaderAccessor {
 	 * 移除指定的原生头部值，替换现有值。
 	 * <p>为此，访问器必须是 {@link #isMutable() mutable} 的。
 	 * 详情请参阅 {@link MessageHeaderAccessor}。
-	 * @param headerName the name of the header
-	 * @return the associated values, or {@code null} if the header was not present
+	 * @param headerName 消息头名称
+	 * @return 关联的值，如果该消息头不存在则为 {@code null}
 	 */
 	@Nullable
 	public List<String> removeNativeHeader(String headerName) {
@@ -283,9 +283,9 @@ public class NativeMessageHeaderAccessor extends MessageHeaderAccessor {
 
 	/**
 	 * 返回指定原生头部的第一个值，如果没有则返回 {@code null}。
-	 * @param headerName the name of the header
-	 * @param headers the headers map to introspect
-	 * @return the associated value, or {@code null} if none
+	 * @param headerName 消息头名称
+	 * @param headers 要内省的消息头映射
+	 * @return 关联的值，如果未找到则为 {@code null}
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable

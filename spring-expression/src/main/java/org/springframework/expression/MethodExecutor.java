@@ -30,13 +30,11 @@ public interface MethodExecutor {
 
 	/**
 	 * 使用指定的参数并基于指定的表达式状态执行命令。
-	 * @param context the evaluation context in which the command is being executed
-	 * @param target the target object of the call - null for static methods
-	 * @param arguments the arguments to the executor, should match (in terms of number
-	 * and type) whatever the command will need to run
-	 * @return the value returned from execution
-	 * @throws AccessException if there is a problem executing the command or the
-	 * MethodExecutor is no longer valid
+	 * @param context 执行该命令所在的求值上下文
+	 * @param target 调用的目标对象，对于静态方法为 null
+	 * @param arguments 传给执行器的参数，其数量和类型应与该命令运行所需匹配
+	 * @return 执行返回的值
+	 * @throws AccessException 如果执行命令时出现问题，或 MethodExecutor 已不再有效
 	 */
 	TypedValue execute(EvaluationContext context, Object target, Object... arguments) throws AccessException;
 

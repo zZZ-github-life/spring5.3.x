@@ -42,9 +42,9 @@ public abstract class PayloadUtils {
 	 * 使用此方法对 {@code Payload} 的数据部分进行切片、保留和包装，并释放
 	 * {@code Payload}。这里假设 Payload 元数据此时已被读取，从而确保下游代码
 	 * 只需关注 {@code DataBuffer}。
-	 * @param payload the payload to process
-	 * @param bufferFactory the DataBufferFactory to wrap with
-	 * @return the created {@code DataBuffer} instance
+	 * @param payload 要处理的负载
+	 * @param bufferFactory 用于包装的 DataBufferFactory
+	 * @return 创建的 {@code DataBuffer} 实例
 	 */
 	public static DataBuffer retainDataAndReleasePayload(Payload payload, DataBufferFactory bufferFactory) {
 		try {
@@ -69,9 +69,9 @@ public abstract class PayloadUtils {
 	 * 其中要么获取底层原生 {@link ByteBuf}，要么在必要时使用
 	 * {@link Unpooled#wrappedBuffer(ByteBuffer...)}。否则，如果两者都是
 	 * {@link DefaultDataBuffer}，则创建 {@link DefaultPayload}。
-	 * @param data the data part for the payload
-	 * @param metadata the metadata part for the payload
-	 * @return the created payload
+	 * @param data 负载的数据部分
+	 * @param metadata 负载的元数据部分
+	 * @return 创建的负载
 	 */
 	public static Payload createPayload(DataBuffer data, DataBuffer metadata) {
 		return data instanceof NettyDataBuffer || metadata instanceof NettyDataBuffer ?
@@ -82,8 +82,8 @@ public abstract class PayloadUtils {
 	/**
 	 * 仅使用数据创建 Payload。如果输入是 {@link NettyDataBuffer}，则创建
 	 * {@link ByteBufPayload}，否则创建 {@link DefaultPayload}。
-	 * @param data the data part for the payload
-	 * @return created payload
+	 * @param data 负载的数据部分
+	 * @return 创建的负载
 	 */
 	public static Payload createPayload(DataBuffer data) {
 		return data instanceof NettyDataBuffer ?

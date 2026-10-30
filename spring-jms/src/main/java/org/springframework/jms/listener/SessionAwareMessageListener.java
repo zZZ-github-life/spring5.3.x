@@ -34,7 +34,7 @@ import javax.jms.Session;
  *
  * @author Juergen Hoeller
  * @since 2.0
- * @param <M> the message type
+ * @param <M> 消息类型
  * @see AbstractMessageListenerContainer#setMessageListener
  * @see DefaultMessageListenerContainer
  * @see SimpleMessageListenerContainer
@@ -48,9 +48,9 @@ public interface SessionAwareMessageListener<M extends Message> {
 	 * 处理接收到的 JMS 消息的回调。
 	 * <p>实现者应处理给定的 Message，
 	 * 通常通过给定的 Session 发送回复消息。
-	 * @param message the received JMS message (never {@code null})
-	 * @param session the underlying JMS Session (never {@code null})
-	 * @throws JMSException if thrown by JMS methods
+	 * @param message 收到的 JMS 消息（永不为 {@code null}）
+	 * @param session 底层 JMS Session（永不为 {@code null}）
+	 * @throws JMSException 如果由 JMS 方法抛出
 	 */
 	void onMessage(M message, Session session) throws JMSException;
 

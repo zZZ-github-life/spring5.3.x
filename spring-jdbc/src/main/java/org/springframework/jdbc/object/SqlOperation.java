@@ -88,7 +88,7 @@ public abstract class SqlOperation extends RdbmsOperation {
 
 	/**
 	 * 返回用于使用给定参数执行操作的 PreparedStatementSetter。
-	 * @param params the parameter array (may be {@code null})
+	 * @param params 参数数组（可以为 {@code null}）
 	 */
 	protected final PreparedStatementSetter newPreparedStatementSetter(@Nullable Object[] params) {
 		Assert.state(this.preparedStatementFactory != null, "No PreparedStatementFactory available");
@@ -97,7 +97,7 @@ public abstract class SqlOperation extends RdbmsOperation {
 
 	/**
 	 * 返回用于使用给定参数执行操作的 PreparedStatementCreator。
-	 * @param params the parameter array (may be {@code null})
+	 * @param params 参数数组（可以为 {@code null}）
 	 */
 	protected final PreparedStatementCreator newPreparedStatementCreator(@Nullable Object[] params) {
 		Assert.state(this.preparedStatementFactory != null, "No PreparedStatementFactory available");
@@ -106,9 +106,9 @@ public abstract class SqlOperation extends RdbmsOperation {
 
 	/**
 	 * 返回用于使用给定参数执行操作的 PreparedStatementCreator。
-	 * @param sqlToUse the actual SQL statement to use (if different from
-	 * the factory's, for example because of named parameter expanding)
-	 * @param params the parameter array (may be {@code null})
+	 * @param sqlToUse 要使用的实际 SQL 语句（如果与工厂的不同，
+	 * 例如由于命名参数展开）
+	 * @param params 参数数组（可以为 {@code null}）
 	 */
 	protected final PreparedStatementCreator newPreparedStatementCreator(String sqlToUse, @Nullable Object[] params) {
 		Assert.state(this.preparedStatementFactory != null, "No PreparedStatementFactory available");

@@ -207,7 +207,7 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 
 	/**
 	 * 为此拦截器初始化 Hessian 代理。
-	 * @throws RemoteLookupFailureException if the service URL is invalid
+	 * @throws RemoteLookupFailureException 如果服务 URL 无效则抛出
 	 */
 	public void prepare() throws RemoteLookupFailureException {
 		try {
@@ -220,9 +220,9 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 
 	/**
 	 * 创建由此拦截器包装的 Hessian 代理。
-	 * @param proxyFactory the proxy factory to use
-	 * @return the Hessian proxy
-	 * @throws MalformedURLException if thrown by the proxy factory
+	 * @param proxyFactory 要使用的代理工厂
+	 * @return Hessian 代理
+	 * @throws MalformedURLException 如果由代理工厂抛出则传播
 	 * @see com.caucho.hessian.client.HessianProxyFactory#create
 	 */
 	protected Object createHessianProxy(HessianProxyFactory proxyFactory) throws MalformedURLException {
@@ -275,8 +275,8 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 
 	/**
 	 * 将给定的 Hessian 访问异常转换为相应的 Spring RemoteAccessException。
-	 * @param ex the exception to convert
-	 * @return the RemoteAccessException to throw
+	 * @param ex 要转换的异常
+	 * @return 要抛出的 RemoteAccessException
 	 */
 	protected RemoteAccessException convertHessianAccessException(Throwable ex) {
 		if (ex instanceof HessianConnectionException || ex instanceof ConnectException) {

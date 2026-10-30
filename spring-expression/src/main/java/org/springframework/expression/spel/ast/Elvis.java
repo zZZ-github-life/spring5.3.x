@@ -43,9 +43,9 @@ public class Elvis extends SpelNodeImpl {
 
 	/**
 	 * 对条件求值，若不为 null 则返回它。若为 null，则返回另一个值。
-	 * @param state the expression state
-	 * @throws EvaluationException if the condition does not evaluate correctly
-	 * to a boolean or there is a problem executing the chosen alternative
+	 * @param state 表达式状态
+	 * @throws EvaluationException 如果条件无法正确求值为 boolean，
+	 * 或执行所选分支时出现问题
 	 */
 	@Override
 	public TypedValue getValueInternal(ExpressionState state) throws EvaluationException {

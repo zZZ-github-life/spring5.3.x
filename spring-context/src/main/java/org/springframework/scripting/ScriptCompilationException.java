@@ -34,7 +34,7 @@ public class ScriptCompilationException extends NestedRuntimeException {
 
 	/**
 	 * ScriptCompilationException 的构造器。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public ScriptCompilationException(String msg) {
 		super(msg);
@@ -43,8 +43,8 @@ public class ScriptCompilationException extends NestedRuntimeException {
 
 	/**
 	 * ScriptCompilationException 的构造器。
-	 * @param msg the detail message
-	 * @param cause the root cause (usually from using an underlying script compiler API)
+	 * @param msg 详细消息
+	 * @param cause 根本原因（通常来自使用底层脚本编译器 API）
 	 */
 	public ScriptCompilationException(String msg, Throwable cause) {
 		super(msg, cause);
@@ -53,8 +53,8 @@ public class ScriptCompilationException extends NestedRuntimeException {
 
 	/**
 	 * ScriptCompilationException 的构造器。
-	 * @param scriptSource the source for the offending script
-	 * @param msg the detail message
+	 * @param scriptSource 出错脚本的源
+	 * @param msg 详细消息
 	 * @since 4.2
 	 */
 	public ScriptCompilationException(ScriptSource scriptSource, String msg) {
@@ -64,8 +64,8 @@ public class ScriptCompilationException extends NestedRuntimeException {
 
 	/**
 	 * ScriptCompilationException 的构造器。
-	 * @param scriptSource the source for the offending script
-	 * @param cause the root cause (usually from using an underlying script compiler API)
+	 * @param scriptSource 出错脚本的源
+	 * @param cause 根本原因（通常来自使用底层脚本编译器 API）
 	 */
 	public ScriptCompilationException(ScriptSource scriptSource, Throwable cause) {
 		super("Could not compile " + scriptSource, cause);
@@ -74,9 +74,9 @@ public class ScriptCompilationException extends NestedRuntimeException {
 
 	/**
 	 * ScriptCompilationException 的构造器。
-	 * @param scriptSource the source for the offending script
-	 * @param msg the detail message
-	 * @param cause the root cause (usually from using an underlying script compiler API)
+	 * @param scriptSource 出错脚本的源
+	 * @param msg 详细消息
+	 * @param cause 根本原因（通常来自使用底层脚本编译器 API）
 	 */
 	public ScriptCompilationException(ScriptSource scriptSource, String msg, Throwable cause) {
 		super("Could not compile " + scriptSource + ": " + msg, cause);
@@ -86,7 +86,7 @@ public class ScriptCompilationException extends NestedRuntimeException {
 
 	/**
 	 * 返回出错脚本的源。
-	 * @return the source, or {@code null} if not available
+	 * @return 源，如果不可用则为 {@code null}
 	 */
 	@Nullable
 	public ScriptSource getScriptSource() {

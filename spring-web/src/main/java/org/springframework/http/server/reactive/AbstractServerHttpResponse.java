@@ -129,7 +129,7 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 
 	/**
 	 * 设置响应的 HTTP 状态码。
-	 * @param statusCode the HTTP status as an integer value
+	 * @param statusCode 作为整数值的 HTTP 状态
 	 * @since 5.0.1
 	 * @deprecated as of 5.2.4 in favor of {@link ServerHttpResponse#setRawStatusCode(Integer)}.
 	 */
@@ -142,7 +142,7 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 
 	/**
 	 * 返回响应的 HTTP 状态码。
-	 * @return the HTTP status as an integer value
+	 * @return 作为整数值的 HTTP 状态
 	 * @since 5.0.1
 	 * @deprecated as of 5.2.4 in favor of {@link ServerHttpResponse#getRawStatusCode()}.
 	 */
@@ -254,7 +254,7 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 
 	/**
 	 * {@link #doCommit(Supplier)} 的变体，用于没有正文的响应。
-	 * @return a completion publisher
+	 * @return 完成发布者
 	 */
 	protected Mono<Void> doCommit() {
 		return doCommit(null);
@@ -263,8 +263,8 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 	/**
 	 * 执行 {@link #beforeCommit(Supplier) beforeCommit} 操作，应用
 	 * 响应状态和头/cookie，并写入响应体。
-	 * @param writeAction the action to write the response body (may be {@code null})
-	 * @return a completion publisher
+	 * @param writeAction 写入响应主体的操作（可以为 {@code null}）
+	 * @return 完成发布者
 	 */
 	protected Mono<Void> doCommit(@Nullable Supplier<? extends Mono<Void>> writeAction) {
 		Flux<Void> allActions = Flux.empty();
@@ -302,13 +302,13 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 
 	/**
 	 * 写入底层响应。
-	 * @param body the publisher to write with
+	 * @param body 用于写入的发布者
 	 */
 	protected abstract Mono<Void> writeWithInternal(Publisher<? extends DataBuffer> body);
 
 	/**
 	 * 写入底层响应，并在每个 {@code Publisher<DataBuffer>} 之后刷新。
-	 * @param body the publisher to write and flush with
+	 * @param body 用于写入并刷新的发布者
 	 */
 	protected abstract Mono<Void> writeAndFlushWithInternal(Publisher<? extends Publisher<? extends DataBuffer>> body);
 
@@ -336,7 +336,7 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 	/**
 	 * 如果数据缓冲区是池化缓冲区并支持泄漏跟踪，
 	 * 允许子类为其关联一个提示。
-	 * @param buffer the buffer to attach a hint to
+	 * @param buffer 要附加提示的缓冲区
 	 * @since 5.3.2
 	 */
 	protected void touchDataBuffer(DataBuffer buffer) {

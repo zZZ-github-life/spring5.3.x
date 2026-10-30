@@ -41,7 +41,7 @@ public interface ApplicationEvents {
 
 	/**
 	 * 流式获取测试执行期间发布的所有应用程序事件。
-	 * @return a stream of all application events
+	 * @return 所有应用事件组成的流
 	 * @see #stream(Class)
 	 * @see #clear()
 	 */
@@ -49,10 +49,9 @@ public interface ApplicationEvents {
 
 	/**
 	 * 流式获取测试执行期间发布的指定类型的所有应用程序事件或事件负载。
-	 * @param <T> the event type
-	 * @param type the type of events or payloads to stream; never {@code null}
-	 * @return a stream of all application events or event payloads of the
-	 * specified type
+	 * @param <T> 事件类型
+	 * @param type 要流式传输的事件或负载的类型；从不为 {@code null}
+	 * @return 所有应用事件或指定类型的事件负载组成的流
 	 * @see #stream()
 	 * @see #clear()
 	 */

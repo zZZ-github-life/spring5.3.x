@@ -56,10 +56,10 @@ public abstract class FileCopyUtils {
 
 	/**
 	 * 将给定输入 File 的内容复制到给定输出 File。
-	 * @param in the file to copy from
-	 * @param out the file to copy to
-	 * @return the number of bytes copied
-	 * @throws IOException in case of I/O errors
+	 * @param in 要从中复制的文件
+	 * @param out 要复制到的文件
+	 * @return 复制的字节数
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	public static int copy(File in, File out) throws IOException {
 		Assert.notNull(in, "No input File specified");
@@ -69,9 +69,9 @@ public abstract class FileCopyUtils {
 
 	/**
 	 * 将给定字节数组的内容复制到给定输出 File。
-	 * @param in the byte array to copy from
-	 * @param out the file to copy to
-	 * @throws IOException in case of I/O errors
+	 * @param in 要从中复制的字节数组
+	 * @param out 要复制到的文件
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	public static void copy(byte[] in, File out) throws IOException {
 		Assert.notNull(in, "No input byte array specified");
@@ -81,9 +81,9 @@ public abstract class FileCopyUtils {
 
 	/**
 	 * 将给定输入 File 的内容复制到新的字节数组中。
-	 * @param in the file to copy from
-	 * @return the new byte array that has been copied to
-	 * @throws IOException in case of I/O errors
+	 * @param in 要从中复制的文件
+	 * @return 已复制到的新字节数组
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	public static byte[] copyToByteArray(File in) throws IOException {
 		Assert.notNull(in, "No input File specified");
@@ -97,10 +97,10 @@ public abstract class FileCopyUtils {
 
 	/**
 	 * 将给定 InputStream 的内容复制到给定 OutputStream。完成后关闭两个流。
-	 * @param in the stream to copy from
-	 * @param out the stream to copy to
-	 * @return the number of bytes copied
-	 * @throws IOException in case of I/O errors
+	 * @param in 要从中复制的流
+	 * @param out 要复制到的流
+	 * @return 复制的字节数
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	public static int copy(InputStream in, OutputStream out) throws IOException {
 		Assert.notNull(in, "No InputStream specified");
@@ -117,9 +117,9 @@ public abstract class FileCopyUtils {
 
 	/**
 	 * 将给定字节数组的内容复制到给定 OutputStream。完成后关闭该流。
-	 * @param in the byte array to copy from
-	 * @param out the OutputStream to copy to
-	 * @throws IOException in case of I/O errors
+	 * @param in 要从中复制的字节数组
+	 * @param out 要复制到的 OutputStream
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	public static void copy(byte[] in, OutputStream out) throws IOException {
 		Assert.notNull(in, "No input byte array specified");
@@ -135,9 +135,9 @@ public abstract class FileCopyUtils {
 
 	/**
 	 * 将给定 InputStream 的内容复制到新的字节数组中。完成后关闭该流。
-	 * @param in the stream to copy from (may be {@code null} or empty)
-	 * @return the new byte array that has been copied to (possibly empty)
-	 * @throws IOException in case of I/O errors
+	 * @param in 要从中复制的流（可以为 {@code null} 或为空）
+	 * @return 已复制到的新字节数组（可能为空）
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	public static byte[] copyToByteArray(@Nullable InputStream in) throws IOException {
 		if (in == null) {
@@ -156,10 +156,10 @@ public abstract class FileCopyUtils {
 
 	/**
 	 * 将给定 Reader 的内容复制到给定 Writer。完成后关闭两者。
-	 * @param in the Reader to copy from
-	 * @param out the Writer to copy to
-	 * @return the number of characters copied
-	 * @throws IOException in case of I/O errors
+	 * @param in 要从中复制的 Reader
+	 * @param out 要复制到的 Writer
+	 * @return 复制的字符数
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	public static int copy(Reader in, Writer out) throws IOException {
 		Assert.notNull(in, "No Reader specified");
@@ -184,9 +184,9 @@ public abstract class FileCopyUtils {
 
 	/**
 	 * 将给定 String 的内容复制到给定 Writer。完成后关闭该 writer。
-	 * @param in the String to copy from
-	 * @param out the Writer to copy to
-	 * @throws IOException in case of I/O errors
+	 * @param in 要从中复制的 String
+	 * @param out 要复制到的 Writer
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	public static void copy(String in, Writer out) throws IOException {
 		Assert.notNull(in, "No input String specified");
@@ -202,9 +202,9 @@ public abstract class FileCopyUtils {
 
 	/**
 	 * 将给定 Reader 的内容复制到 String 中。完成后关闭该 reader。
-	 * @param in the reader to copy from (may be {@code null} or empty)
-	 * @return the String that has been copied to (possibly empty)
-	 * @throws IOException in case of I/O errors
+	 * @param in 要从中复制的 reader（可以为 {@code null} 或为空）
+	 * @return 已复制到的 String（可能为空）
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	public static String copyToString(@Nullable Reader in) throws IOException {
 		if (in == null) {
@@ -218,7 +218,7 @@ public abstract class FileCopyUtils {
 
 	/**
 	 * 尝试关闭给定的 {@link Closeable}，并静默忽略任何异常。
-	 * @param closeable the {@code Closeable} to close
+	 * @param closeable 要关闭的 {@code Closeable}
 	 */
 	private static void close(Closeable closeable) {
 		try {

@@ -67,7 +67,7 @@ public class PersistenceExceptionTranslationPostProcessor extends AbstractBeanFa
 	 * 默认的 repository 注解类型是 {@link Repository} 注解。
 	 * <p>此 setter 属性的存在使开发者可以提供自己的
 	 * （非 Spring 特定的）注解类型来指示一个类具有仓储角色。
-	 * @param repositoryAnnotationType the desired annotation type
+	 * @param repositoryAnnotationType 所需的注解类型
 	 */
 	public void setRepositoryAnnotationType(Class<? extends Annotation> repositoryAnnotationType) {
 		Assert.notNull(repositoryAnnotationType, "'repositoryAnnotationType' must not be null");

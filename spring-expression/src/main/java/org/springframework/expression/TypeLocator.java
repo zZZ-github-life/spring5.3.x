@@ -30,9 +30,9 @@ public interface TypeLocator {
 
 	/**
 	 * 按名称查找类型。名称可以带完整限定，也可以不带（例如 {@code String} 或 {@code java.lang.String}）。
-	 * @param typeName the type to be located
-	 * @return the {@code Class} object representing that type
-	 * @throws EvaluationException if there is a problem finding the type
+	 * @param typeName 要定位的类型
+	 * @return 表示该类型的 {@code Class} 对象
+	 * @throws EvaluationException 如果查找类型时出现问题
 	 */
 	Class<?> findType(String typeName) throws EvaluationException;
 

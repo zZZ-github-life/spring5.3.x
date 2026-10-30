@@ -86,8 +86,7 @@ public class WebDataBinder extends DataBinder {
 
 	/**
 	 * 创建一个新的 WebDataBinder 实例，使用默认对象名称。
-	 * @param target the target object to bind onto (or {@code null}
-	 * if the binder is just used to convert a plain parameter value)
+	 * @param target 要绑定的目标对象（如果绑定器仅用于转换普通参数值，则可为 {@code null}）
 	 * @see #DEFAULT_OBJECT_NAME
 	 */
 	public WebDataBinder(@Nullable Object target) {
@@ -96,9 +95,8 @@ public class WebDataBinder extends DataBinder {
 
 	/**
 	 * 创建一个新的 WebDataBinder 实例。
-	 * @param target the target object to bind onto (or {@code null}
-	 * if the binder is just used to convert a plain parameter value)
-	 * @param objectName the name of the target object
+	 * @param target 要绑定的目标对象（如果绑定器仅用于转换普通参数值，则可为 {@code null}）
+	 * @param objectName 目标对象的名称
 	 */
 	public WebDataBinder(@Nullable Object target, String objectName) {
 		super(target, objectName);
@@ -193,7 +191,7 @@ public class WebDataBinder extends DataBinder {
 	 * 检查给定的属性值中的字段默认值，即以字段默认值前缀开头的字段。
 	 * <p>字段默认值的存在表明，如果该字段在其他情况下不存在，
 	 * 则应使用指定的值。
-	 * @param mpvs the property values to be bound (can be modified)
+	 * @param mpvs 要绑定的属性值（可修改）
 	 * @see #getFieldDefaultPrefix
 	 */
 	protected void checkFieldDefaults(MutablePropertyValues mpvs) {
@@ -216,7 +214,7 @@ public class WebDataBinder extends DataBinder {
 	 * 检查给定的属性值中的字段标记，即以字段标记前缀开头的字段。
 	 * <p>字段标记的存在表明该字段存在于表单中。如果属性值中不包含
 	 * 对应的字段值，则该字段将被视为空，并会被相应地重置。
-	 * @param mpvs the property values to be bound (can be modified)
+	 * @param mpvs 要绑定的属性值（可修改）
 	 * @see #getFieldMarkerPrefix
 	 * @see #getEmptyValue(String, Class)
 	 */
@@ -241,7 +239,7 @@ public class WebDataBinder extends DataBinder {
 	 * 检查名称以 {@code "[]"} 结尾的属性值。某些客户端使用这种数组语法而
 	 * 不带显式索引值。如果发现此类值，则去掉方括号，以符合数据绑定所期望的
 	 * 表达方式。
-	 * @param mpvs the property values to be bound (can be modified)
+	 * @param mpvs 要绑定的属性值（可修改）
 	 * @since 5.3
 	 */
 	protected void adaptEmptyArrayIndices(MutablePropertyValues mpvs) {
@@ -261,9 +259,9 @@ public class WebDataBinder extends DataBinder {
 	 * 确定指定字段的空值。
 	 * <p>如果已知字段类型，默认实现委托给 {@link #getEmptyValue(Class)}，
 	 * 否则回退为 {@code null}。
-	 * @param field the name of the field
-	 * @param fieldType the type of the field
-	 * @return the empty value (for most fields: {@code null})
+	 * @param field 字段的名称
+	 * @param fieldType 字段的类型
+	 * @return 空值（对于大多数字段为 {@code null}）
 	 */
 	@Nullable
 	protected Object getEmptyValue(String field, @Nullable Class<?> fieldType) {
@@ -280,8 +278,8 @@ public class WebDataBinder extends DataBinder {
 	 * <li>对于 Map 类型，返回 Map 实现
 	 * <li>否则，使用 {@code null} 作为默认值
 	 * </ul>
-	 * @param fieldType the type of the field
-	 * @return the empty value (for most fields: {@code null})
+	 * @param fieldType 字段的类型
+	 * @return 空值（对于大多数字段为 {@code null}）
 	 * @since 5.0
 	 */
 	@Nullable
@@ -317,8 +315,8 @@ public class WebDataBinder extends DataBinder {
 	 * 由子类调用。
 	 * <p>仅当 multipart 文件不为空，或者配置为也绑定空的 multipart 文件时，
 	 * 才会将其添加到属性值中。
-	 * @param multipartFiles a Map of field name String to MultipartFile object
-	 * @param mpvs the property values to be bound (can be modified)
+	 * @param multipartFiles 从字段名 String 到 MultipartFile 对象的 Map
+	 * @param mpvs 要绑定的属性值（可修改）
 	 * @see org.springframework.web.multipart.MultipartFile
 	 * @see #setBindEmptyMultipartFiles
 	 */

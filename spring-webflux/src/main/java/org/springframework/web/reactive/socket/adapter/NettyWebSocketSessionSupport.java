@@ -40,7 +40,7 @@ import org.springframework.web.reactive.socket.WebSocketSession;
  *
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <T> the native delegate type
+ * @param <T> 原生委托类型
  */
 public abstract class NettyWebSocketSessionSupport<T> extends AbstractWebSocketSession<T> {
 

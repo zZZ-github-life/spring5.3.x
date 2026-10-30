@@ -42,7 +42,7 @@ public class ServletContextResourceLoader extends DefaultResourceLoader {
 
 	/**
 	 * 创建一个新的 ServletContextResourceLoader。
-	 * @param servletContext the ServletContext to load resources with
+	 * @param servletContext 用于加载资源的 ServletContext
 	 */
 	public ServletContextResourceLoader(ServletContext servletContext) {
 		this.servletContext = servletContext;

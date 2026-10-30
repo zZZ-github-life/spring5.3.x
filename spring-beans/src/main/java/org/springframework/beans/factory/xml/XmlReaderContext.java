@@ -51,12 +51,12 @@ public class XmlReaderContext extends ReaderContext {
 
 	/**
 	 * 构造一个新的 {@code XmlReaderContext}。
-	 * @param resource the XML bean definition resource
-	 * @param problemReporter the problem reporter in use
-	 * @param eventListener the event listener in use
-	 * @param sourceExtractor the source extractor in use
-	 * @param reader the XML bean definition reader in use
-	 * @param namespaceHandlerResolver the XML namespace resolver
+	 * @param resource XML Bean 定义资源
+	 * @param problemReporter 正在使用的问题报告器
+	 * @param eventListener 正在使用的事件监听器
+	 * @param sourceExtractor 正在使用的源提取器
+	 * @param reader 正在使用的 XML Bean 定义读取器
+	 * @param namespaceHandlerResolver XML 命名空间解析器
 	 */
 	public XmlReaderContext(
 			Resource resource, ProblemReporter problemReporter,

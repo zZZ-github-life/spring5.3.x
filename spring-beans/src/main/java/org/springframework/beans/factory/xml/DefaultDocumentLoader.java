@@ -76,11 +76,11 @@ public class DefaultDocumentLoader implements DocumentLoader {
 
 	/**
 	 * 创建 {@link DocumentBuilderFactory} 实例。
-	 * @param validationMode the type of validation: {@link XmlValidationModeDetector#VALIDATION_DTD DTD}
-	 * or {@link XmlValidationModeDetector#VALIDATION_XSD XSD})
-	 * @param namespaceAware whether the returned factory is to provide support for XML namespaces
-	 * @return the JAXP DocumentBuilderFactory
-	 * @throws ParserConfigurationException if we failed to build a proper DocumentBuilderFactory
+	 * @param validationMode 验证类型：{@link XmlValidationModeDetector#VALIDATION_DTD DTD}
+	 * 或 {@link XmlValidationModeDetector#VALIDATION_XSD XSD}
+	 * @param namespaceAware 返回的工厂是否要提供对 XML 命名空间的支持
+	 * @return JAXP 的 DocumentBuilderFactory
+	 * @throws ParserConfigurationException 如果无法构建合适的 DocumentBuilderFactory
 	 */
 	protected DocumentBuilderFactory createDocumentBuilderFactory(int validationMode, boolean namespaceAware)
 			throws ParserConfigurationException {
@@ -113,12 +113,11 @@ public class DefaultDocumentLoader implements DocumentLoader {
 	/**
 	 * 创建一个 JAXP DocumentBuilder，此 Bean 定义读取器将用它解析 XML 文档。可以在子类中覆盖，以添加对
 	 * builder 的进一步初始化。
-	 * @param factory the JAXP DocumentBuilderFactory that the DocumentBuilder
-	 * should be created with
-	 * @param entityResolver the SAX EntityResolver to use
-	 * @param errorHandler the SAX ErrorHandler to use
-	 * @return the JAXP DocumentBuilder
-	 * @throws ParserConfigurationException if thrown by JAXP methods
+	 * @param factory 用于创建 DocumentBuilder 的 JAXP DocumentBuilderFactory
+	 * @param entityResolver 要使用的 SAX EntityResolver
+	 * @param errorHandler 要使用的 SAX ErrorHandler
+	 * @return JAXP 的 DocumentBuilder
+	 * @throws ParserConfigurationException 如果由 JAXP 方法抛出
 	 */
 	protected DocumentBuilder createDocumentBuilder(DocumentBuilderFactory factory,
 			@Nullable EntityResolver entityResolver, @Nullable ErrorHandler errorHandler)

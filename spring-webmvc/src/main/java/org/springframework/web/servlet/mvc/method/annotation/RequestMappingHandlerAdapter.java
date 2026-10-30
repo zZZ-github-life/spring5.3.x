@@ -422,7 +422,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 	 * 到请求被再次分派以进一步处理并发产生的结果时结束。
 	 * <p>如果未设置此值，则使用底层实现的
 	 * 默认超时。
-	 * @param timeout the timeout value in milliseconds
+	 * @param timeout 超时值，单位为毫秒
 	 */
 	public void setAsyncRequestTimeout(long timeout) {
 		this.asyncRequestTimeout = timeout;
@@ -430,7 +430,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 
 	/**
 	 * 配置要在异步请求上注册的 {@code CallableProcessingInterceptor}。
-	 * @param interceptors the interceptors to register
+	 * @param interceptors 要注册的拦截器
 	 */
 	public void setCallableInterceptors(List<CallableProcessingInterceptor> interceptors) {
 		this.callableInterceptors = interceptors.toArray(new CallableProcessingInterceptor[0]);
@@ -438,7 +438,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 
 	/**
 	 * 配置要在异步请求上注册的 {@code DeferredResultProcessingInterceptor}。
-	 * @param interceptors the interceptors to register
+	 * @param interceptors 要注册的拦截器
 	 */
 	public void setDeferredResultInterceptors(List<DeferredResultProcessingInterceptor> interceptors) {
 		this.deferredResultInterceptors = interceptors.toArray(new DeferredResultProcessingInterceptor[0]);
@@ -900,8 +900,8 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 	/**
 	 * 根据给定的 {@link HandlerMethod} 定义创建
 	 * {@link ServletInvocableHandlerMethod}。
-	 * @param handlerMethod the {@link HandlerMethod} definition
-	 * @return the corresponding {@link ServletInvocableHandlerMethod} (or custom subclass thereof)
+	 * @param handlerMethod {@link HandlerMethod} 定义
+	 * @return 对应的 {@link ServletInvocableHandlerMethod}（或其自定义子类）
 	 * @since 4.2
 	 */
 	protected ServletInvocableHandlerMethod createInvocableHandlerMethod(HandlerMethod handlerMethod) {
@@ -981,9 +981,9 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 	 * 创建新的 InitBinderDataBinderFactory 实例的模板方法。
 	 * <p>默认实现创建 ServletRequestDataBinderFactory。
 	 * 可以为自定义 ServletRequestDataBinder 子类覆盖此方法。
-	 * @param binderMethods {@code @InitBinder} methods
-	 * @return the InitBinderDataBinderFactory instance to use
-	 * @throws Exception in case of invalid state or arguments
+	 * @param binderMethods {@code @InitBinder} 方法
+	 * @return 要使用的 InitBinderDataBinderFactory 实例
+	 * @throws Exception 状态或参数无效的情况下
 	 */
 	protected InitBinderDataBinderFactory createDataBinderFactory(List<InvocableHandlerMethod> binderMethods)
 			throws Exception {

@@ -86,16 +86,15 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 
 	/**
 	 * 使用给定参数构造一个新的 ReflectiveMethodInvocation。
-	 * @param proxy the proxy object that the invocation was made on
-	 * @param target the target object to invoke
-	 * @param method the method to invoke
-	 * @param arguments the arguments to invoke the method with
-	 * @param targetClass the target class, for MethodMatcher invocations
-	 * @param interceptorsAndDynamicMethodMatchers interceptors that should be applied,
-	 * along with any InterceptorAndDynamicMethodMatchers that need evaluation at runtime.
-	 * MethodMatchers included in this struct must already have been found to have matched
-	 * as far as was possibly statically. Passing an array might be about 10% faster,
-	 * but would complicate the code. And it would work only for static pointcuts.
+	 * @param proxy 发起调用的代理对象
+	 * @param target 要调用的目标对象
+	 * @param method 要调用的方法
+	 * @param arguments 调用方法时使用的参数
+	 * @param targetClass 目标类，用于 MethodMatcher 调用
+	 * @param interceptorsAndDynamicMethodMatchers 应应用的拦截器，以及需要在运行时求值的所有
+	 * InterceptorAndDynamicMethodMatchers。此结构中包含的 MethodMatchers
+	 * 必须已被判定为尽可能静态匹配。传入数组可能快约 10%，
+	 * 但会使代码复杂化，而且只适用于静态切点。
 	 */
 	protected ReflectiveMethodInvocation(
 			Object proxy, @Nullable Object target, Method method, @Nullable Object[] arguments,
@@ -179,8 +178,8 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 
 	/**
 	 * 使用反射调用连接点。子类可以覆盖此方法以使用自定义调用方式。
-	 * @return the return value of the joinpoint
-	 * @throws Throwable if invoking the joinpoint resulted in an exception
+	 * @return 连接点的返回值
+	 * @throws Throwable 如果调用连接点导致异常
 	 */
 	@Nullable
 	protected Object invokeJoinpoint() throws Throwable {
@@ -253,8 +252,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 	/**
 	 * 返回与此调用关联的用户属性。此方法提供了绑定到调用的 ThreadLocal 替代方案。
 	 * <p>此映射采用延迟初始化，AOP 框架本身并不使用它。
-	 * @return any user attributes associated with this invocation
-	 * (never {@code null})
+	 * @return 与此调用关联的所有用户属性（永不为 {@code null}）
 	 */
 	public Map<String, Object> getUserAttributes() {
 		if (this.userAttributes == null) {

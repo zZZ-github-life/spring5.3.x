@@ -63,8 +63,8 @@ class ConditionEvaluator {
 	/**
 	 * 根据 {@code @Conditional} 注解判断是否应跳过某个项。{@link ConfigurationPhase} 将从项的类型推断
 	 * （即 {@code @Configuration} 类会对应 {@link ConfigurationPhase#PARSE_CONFIGURATION}）。
-	 * @param metadata the meta data
-	 * @return if the item should be skipped
+	 * @param metadata 元数据
+	 * @return 如果该项应被跳过
 	 */
 	public boolean shouldSkip(AnnotatedTypeMetadata metadata) {
 		return shouldSkip(metadata, null);
@@ -72,9 +72,9 @@ class ConditionEvaluator {
 
 	/**
 	 * 根据 {@code @Conditional} 注解判断是否应跳过某个项。
-	 * @param metadata the meta data
-	 * @param phase the phase of the call
-	 * @return if the item should be skipped
+	 * @param metadata 元数据
+	 * @param phase 调用的阶段
+	 * @return 如果该项应被跳过
 	 */
 	public boolean shouldSkip(@Nullable AnnotatedTypeMetadata metadata, @Nullable ConfigurationPhase phase) {
 		if (metadata == null || !metadata.isAnnotated(Conditional.class.getName())) {
@@ -152,7 +152,7 @@ class ConditionEvaluator {
 		 * 5.设置classLoader 实例为 ClassLoader.getSystemClassLoader(); AppClassLoader
 		 * @param registry 实例为AnnotationConfigApplicationContext
 		 * @param environment 实例为StandardEnvironment
-		 * @param resourceLoader null
+		 * @param resourceLoader 为 null
 		 */
 		public ConditionContextImpl(@Nullable BeanDefinitionRegistry registry,
 				@Nullable Environment environment, @Nullable ResourceLoader resourceLoader) {

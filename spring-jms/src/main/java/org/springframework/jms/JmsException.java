@@ -33,7 +33,7 @@ public abstract class JmsException extends NestedRuntimeException {
 
 	/**
 	 * 接受消息的构造函数。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public JmsException(String msg) {
 		super(msg);
@@ -41,10 +41,9 @@ public abstract class JmsException extends NestedRuntimeException {
 
 	/**
 	 * 接受消息和根本原因的构造函数。
-	 * @param msg the detail message
-	 * @param cause the cause of the exception. This argument is generally
-	 * expected to be a proper subclass of {@link javax.jms.JMSException},
-	 * but can also be a JNDI NamingException or the like.
+	 * @param msg 详细消息
+	 * @param cause 异常的原因。该参数通常应为 {@link javax.jms.JMSException}
+	 * 的适当子类，但也可以是 JNDI NamingException 等类似异常。
 	 */
 	public JmsException(String msg, @Nullable Throwable cause) {
 		super(msg, cause);
@@ -52,8 +51,7 @@ public abstract class JmsException extends NestedRuntimeException {
 
 	/**
 	 * 仅接受根本原因的构造函数，用于对应 {@code javax.jms} 异常的子类。
-	 * @param cause the cause of the exception. This argument is generally
-	 * expected to be a proper subclass of {@link javax.jms.JMSException}.
+	 * @param cause 异常的原因。该参数通常应为 {@link javax.jms.JMSException} 的适当子类。
 	 */
 	public JmsException(@Nullable Throwable cause) {
 		super(cause != null ? cause.getMessage() : null, cause);
@@ -63,8 +61,8 @@ public abstract class JmsException extends NestedRuntimeException {
 	/**
 	 * 便捷方法：如果根本原因是 JMSException 的实例，
 	 * 则获取厂商特定的错误代码。
-	 * @return a string specifying the vendor-specific error code if the
-	 * root cause is an instance of JMSException, or {@code null}
+	 * @return 如果根本原因是 JMSException 的实例，
+	 * 则返回指定供应商特定错误代码的字符串，否则返回 {@code null}。
 	 */
 	@Nullable
 	public String getErrorCode() {

@@ -35,13 +35,13 @@ public interface SmartApplicationListener extends ApplicationListener<Applicatio
 
 	/**
 	 * 判断此监听器是否实际支持给定的事件类型。
-	 * @param eventType the event type (never {@code null})
+	 * @param eventType 事件类型（永不为 {@code null}）
 	 */
 	boolean supportsEventType(Class<? extends ApplicationEvent> eventType);
 
 	/**
 	 * 判断此监听器是否实际支持给定的源类型。<p>默认实现始终返回 {@code true}。
-	 * @param sourceType the source type, or {@code null} if no source
+	 * @param sourceType 源类型，如果没有源则为 {@code null}
 	 */
 	default boolean supportsSourceType(@Nullable Class<?> sourceType) {
 		return true;

@@ -44,7 +44,7 @@ public class SimpleSecurityContextProvider implements SecurityContextProvider {
 	/**
 	 * 构造一个新的 {@code SimpleSecurityContextProvider} 实例。<p>如果给定的控制上下文为 null，则每次
 	 * 调用时都会从当前线程获取安全上下文。
-	 * @param acc access control context (can be {@code null})
+	 * @param acc 访问控制上下文（可以为 {@code null}）
 	 * @see AccessController#getContext()
 	 */
 	public SimpleSecurityContextProvider(@Nullable AccessControlContext acc) {

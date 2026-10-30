@@ -176,7 +176,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	 * 或 {@link #setContentType(String)} 显式设置响应的
 	 * {@linkplain #getCharacterEncoding() 字符编码}，
 	 * 则响应的字符编码将设置为提供的默认字符编码。
-	 * @param characterEncoding the default character encoding
+	 * @param characterEncoding 默认字符编码
 	 * @since 5.3.10
 	 * @see #setCharacterEncoding(String)
 	 * @see #setContentType(String)
@@ -254,8 +254,8 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	 * {@link HttpServletResponse} 方法或 {@code Content-Type} 上的
 	 * charset 参数）。如果未显式定义字符集，将使用
 	 * {@linkplain #setDefaultCharacterEncoding(String) 默认字符编码}。
-	 * @return the content as a {@code String}
-	 * @throws UnsupportedEncodingException if the character encoding is not supported
+	 * @return 内容，类型为 {@code String}
+	 * @throws UnsupportedEncodingException 如果不支持该字符编码
 	 * @see #getContentAsString(Charset)
 	 * @see #setCharacterEncoding(String)
 	 * @see #setContentType(String)
@@ -269,8 +269,8 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	 * 则使用提供的 {@code fallbackCharset}，否则
 	 * 使用应用程序为响应指定的字符集（通过
 	 * {@link HttpServletResponse} 方法或 {@code Content-Type} 上的 charset 参数）。
-	 * @return the content as a {@code String}
-	 * @throws UnsupportedEncodingException if the character encoding is not supported
+	 * @return 内容，类型为 {@code String}
+	 * @throws UnsupportedEncodingException 如果不支持该字符编码
 	 * @since 5.2
 	 * @see #getContentAsString()
 	 * @see #setCharacterEncoding(String)
@@ -477,7 +477,8 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	/**
 	 * 以字符串 Set 形式返回所有已指定头的名称。
 	 * <p>从 Servlet 3.0 开始，此方法也在 {@link HttpServletResponse} 中定义。
-	 * @return the {@code Set} of header name {@code Strings}, or an empty {@code Set} if none
+	 * @return 头名称 {@code String} 的 {@code Set}，
+	 * 如果没有则为空 {@code Set}
 	 */
 	@Override
 	public Collection<String> getHeaderNames() {
@@ -490,8 +491,8 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	 * <p>从 Servlet 3.0 开始，此方法也在 {@link HttpServletResponse} 中定义。
 	 * 从 Spring 3.1 开始，为兼容 Servlet 3.0，它返回字符串化后的值。
 	 * 如需原始 Object 访问，请考虑使用 {@link #getHeaderValue(String)}。
-	 * @param name the name of the header
-	 * @return the associated header value, or {@code null} if none
+	 * @param name 头的名称
+	 * @return 关联的头值，如果没有则为 {@code null}
 	 */
 	@Override
 	@Nullable
@@ -505,8 +506,8 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	 * <p>从 Servlet 3.0 开始，此方法也在 {@link HttpServletResponse} 中定义。
 	 * 从 Spring 3.1 开始，为兼容 Servlet 3.0，它返回字符串化值的 List。
 	 * 如需原始 Object 访问，请考虑使用 {@link #getHeaderValues(String)}。
-	 * @param name the name of the header
-	 * @return the associated header values, or an empty List if none
+	 * @param name 头的名称
+	 * @return 关联的头值，如果没有则为空 List
 	 */
 	@Override
 	public List<String> getHeaders(String name) {
@@ -522,8 +523,8 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	/**
 	 * 返回给定头的主值（如果有）。
 	 * <p>若有多个值，将返回第一个值。
-	 * @param name the name of the header
-	 * @return the associated header value, or {@code null} if none
+	 * @param name 头的名称
+	 * @return 关联的头值，如果没有则为 {@code null}
 	 */
 	@Nullable
 	public Object getHeaderValue(String name) {
@@ -533,8 +534,8 @@ public class MockHttpServletResponse implements HttpServletResponse {
 
 	/**
 	 * 以值对象 List 形式返回给定头的所有值。
-	 * @param name the name of the header
-	 * @return the associated header values, or an empty List if none
+	 * @param name 头的名称
+	 * @return 关联的头值，如果没有则为空 List
 	 */
 	public List<Object> getHeaderValues(String name) {
 		HeaderValueHolder header = this.headers.get(name);
@@ -735,7 +736,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	/**
 	 * 将 {@code Set-Cookie} 头设置为提供的 {@link Cookie}，
 	 * 覆盖之前的任何 Cookie。
-	 * @param cookie the {@code Cookie} to set
+	 * @param cookie 要设置的 {@code Cookie}
 	 * @since 5.1.10
 	 * @see #addCookie(Cookie)
 	 */

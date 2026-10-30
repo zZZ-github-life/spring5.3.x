@@ -50,7 +50,7 @@ public class BshScriptEvaluator implements ScriptEvaluator, BeanClassLoaderAware
 
 	/**
 	 * 构造一个新的 BshScriptEvaluator。
-	 * @param classLoader the ClassLoader to use for the {@link Interpreter}
+	 * @param classLoader 用于 {@link Interpreter} 的 ClassLoader
 	 */
 	public BshScriptEvaluator(ClassLoader classLoader) {
 		this.classLoader = classLoader;

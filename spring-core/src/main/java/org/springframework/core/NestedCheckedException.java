@@ -47,7 +47,7 @@ public abstract class NestedCheckedException extends Exception {
 
 	/**
 	 * 使用指定的详细消息构造一个 {@code NestedCheckedException}。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public NestedCheckedException(String msg) {
 		super(msg);
@@ -55,8 +55,8 @@ public abstract class NestedCheckedException extends Exception {
 
 	/**
 	 * 使用指定的详细消息和嵌套异常构造一个 {@code NestedCheckedException}。
-	 * @param msg the detail message
-	 * @param cause the nested exception
+	 * @param msg 详细消息
+	 * @param cause 嵌套异常
 	 */
 	public NestedCheckedException(@Nullable String msg, @Nullable Throwable cause) {
 		super(msg, cause);
@@ -75,7 +75,7 @@ public abstract class NestedCheckedException extends Exception {
 
 	/**
 	 * 获取此异常的最内层原因（如果有）。
-	 * @return the innermost exception, or {@code null} if none
+	 * @return 最内层异常，如果没有则为 {@code null}
 	 */
 	@Nullable
 	public Throwable getRootCause() {
@@ -86,7 +86,7 @@ public abstract class NestedCheckedException extends Exception {
 	 * 获取此异常最具体的原因，即最内层原因（根因）或此异常本身。
 	 *
 	 * <p>与 {@link #getRootCause()} 的不同之处在于：如果没有根因，则回退到当前异常。
-	 * @return the most specific cause (never {@code null})
+	 * @return 最具体的根本原因（永不为 {@code null}）
 	 * @since 2.0.3
 	 */
 	public Throwable getMostSpecificCause() {
@@ -96,8 +96,8 @@ public abstract class NestedCheckedException extends Exception {
 
 	/**
 	 * 检查此异常是否包含给定类型的异常：它本身属于给定的类，或包含给定类型的嵌套原因。
-	 * @param exType the exception type to look for
-	 * @return whether there is a nested exception of the specified type
+	 * @param exType 要查找的异常类型
+	 * @return 是否存在指定类型的嵌套异常
 	 */
 	public boolean contains(@Nullable Class<?> exType) {
 		if (exType == null) {

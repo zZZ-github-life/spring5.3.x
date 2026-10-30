@@ -93,8 +93,8 @@ public class HandlerResultMatchers {
 	 * mockMvc.perform(get("/"))
 	 *     .andExpect(handler().methodCall(on(SimpleController.class).handle()));
 	 * </pre>
-	 * @param obj either the value returned from a "mock" controller invocation
-	 * or the "mock" controller itself after an invocation
+	 * @param obj “mock”控制器调用返回的值，
+	 * 或调用后的“mock”控制器本身
 	 */
 	public ResultMatcher methodCall(Object obj) {
 		return result -> {

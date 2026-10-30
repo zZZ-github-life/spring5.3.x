@@ -44,8 +44,8 @@ public class Problem {
 
 	/**
 	 * 创建 {@link Problem} 类的新实例。
-	 * @param message a message detailing the problem
-	 * @param location the location within a bean configuration source that triggered the error
+	 * @param message 详细描述该问题的消息
+	 * @param location 触发该错误的 Bean 配置源中的位置
 	 */
 	public Problem(String message, Location location) {
 		this(message, location, null, null);
@@ -53,9 +53,9 @@ public class Problem {
 
 	/**
 	 * 创建 {@link Problem} 类的新实例。
-	 * @param message a message detailing the problem
-	 * @param parseState the {@link ParseState} at the time of the error
-	 * @param location the location within a bean configuration source that triggered the error
+	 * @param message 详细描述该问题的消息
+	 * @param parseState 出错时的 {@link ParseState}
+	 * @param location 触发该错误的 Bean 配置源中的位置
 	 */
 	public Problem(String message, Location location, ParseState parseState) {
 		this(message, location, parseState, null);
@@ -63,10 +63,10 @@ public class Problem {
 
 	/**
 	 * 创建 {@link Problem} 类的新实例。
-	 * @param message a message detailing the problem
-	 * @param rootCause the underlying exception that caused the error (may be {@code null})
-	 * @param parseState the {@link ParseState} at the time of the error
-	 * @param location the location within a bean configuration source that triggered the error
+	 * @param message 详细描述该问题的消息
+	 * @param rootCause 导致该错误的底层异常（可能为 {@code null}）
+	 * @param parseState 出错时的 {@link ParseState}
+	 * @param location 触发该错误的 Bean 配置源中的位置
 	 */
 	public Problem(String message, Location location, @Nullable ParseState parseState, @Nullable Throwable rootCause) {
 		Assert.notNull(message, "Message must not be null");

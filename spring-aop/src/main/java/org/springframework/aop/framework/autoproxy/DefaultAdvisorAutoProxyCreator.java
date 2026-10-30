@@ -63,7 +63,7 @@ public class DefaultAdvisorAutoProxyCreator extends AbstractAdvisorAutoProxyCrea
 	/**
 	 * 设置 Bean 名称的前缀，带有该前缀的 Bean 将被此对象纳入自动代理。应设置该前缀以避免循环引用。默认
 	 * 值为本对象的 Bean 名称加一个点。
-	 * @param advisorBeanNamePrefix the exclusion prefix
+	 * @param advisorBeanNamePrefix 排除前缀
 	 */
 	public void setAdvisorBeanNamePrefix(@Nullable String advisorBeanNamePrefix) {
 		this.advisorBeanNamePrefix = advisorBeanNamePrefix;

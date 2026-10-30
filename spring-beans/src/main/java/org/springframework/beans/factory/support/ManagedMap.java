@@ -30,8 +30,8 @@ import org.springframework.lang.Nullable;
  * @author Juergen Hoeller
  * @author Rob Harrop
  * @since 27.05.2003
- * @param <K> the key type
- * @param <V> the value type
+ * @param <K> 键类型
+ * @param <V> 值类型
  */
 @SuppressWarnings("serial")
 public class ManagedMap<K, V> extends LinkedHashMap<K, V> implements Mergeable, BeanMetadataElement {
@@ -58,11 +58,10 @@ public class ManagedMap<K, V> extends LinkedHashMap<K, V> implements Mergeable, 
 
 	/**
 	 * 返回一个新实例，其中包含从给定条目中提取的键和值。这些条目本身不会存储在 map 中。
-	 * @param entries {@code Map.Entry}s containing the keys and values
-	 * from which the map is populated
-	 * @param <K> the {@code Map}'s key type
-	 * @param <V> the {@code Map}'s value type
-	 * @return a {@code Map} containing the specified mappings
+	 * @param entries 包含用于填充该 Map 的键和值的 {@code Map.Entry}
+	 * @param <K> {@code Map} 的键类型
+	 * @param <V> {@code Map} 的值类型
+	 * @return 包含指定映射关系的 {@code Map}
 	 * @since 5.3.16
 	 */
 	@SafeVarargs

@@ -46,7 +46,7 @@ public interface GenericApplicationListener extends SmartApplicationListener {
 
 	/**
 	 * 判断此监听器是否实际支持给定的事件类型。
-	 * @param eventType the event type (never {@code null})
+	 * @param eventType 事件类型（永不为 {@code null}）
 	 */
 	boolean supportsEventType(ResolvableType eventType);
 

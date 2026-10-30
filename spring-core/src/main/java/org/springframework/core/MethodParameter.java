@@ -100,10 +100,8 @@ public class MethodParameter {
 
 	/**
 	 * 为给定的方法创建一个新的 {@code MethodParameter}，嵌套层级为 1。
-	 * @param method the Method to specify a parameter for
-	 * @param parameterIndex the index of the parameter: -1 for the method
-	 * return type; 0 for the first method parameter; 1 for the second method
-	 * parameter, etc.
+	 * @param method 要为其指定参数的方法
+	 * @param parameterIndex 参数的索引：-1 表示方法返回类型；0 表示第一个方法参数；1 表示第二个方法参数，依此类推
 	 */
 	public MethodParameter(Method method, int parameterIndex) {
 		this(method, parameterIndex, 1);
@@ -111,13 +109,10 @@ public class MethodParameter {
 
 	/**
 	 * 为给定的方法创建一个新的 {@code MethodParameter}。
-	 * @param method the Method to specify a parameter for
-	 * @param parameterIndex the index of the parameter: -1 for the method
-	 * return type; 0 for the first method parameter; 1 for the second method
-	 * parameter, etc.
-	 * @param nestingLevel the nesting level of the target type
-	 * (typically 1; e.g. in case of a List of Lists, 1 would indicate the
-	 * nested List, whereas 2 would indicate the element of the nested List)
+	 * @param method 要为其指定参数的方法
+	 * @param parameterIndex 参数的索引：-1 表示方法返回类型；0 表示第一个方法参数；1 表示第二个方法参数，依此类推
+	 * @param nestingLevel 目标类型的嵌套层级（通常为 1；例如对于 List 的 List，1 表示嵌套的 List，
+	 * 而 2 表示嵌套 List 的元素）
 	 */
 	public MethodParameter(Method method, int parameterIndex, int nestingLevel) {
 		Assert.notNull(method, "Method must not be null");
@@ -128,8 +123,8 @@ public class MethodParameter {
 
 	/**
 	 * 为给定的构造函数创建一个新的 MethodParameter，嵌套层级为 1。
-	 * @param constructor the Constructor to specify a parameter for
-	 * @param parameterIndex the index of the parameter
+	 * @param constructor 要为其指定参数的构造器
+	 * @param parameterIndex 参数的索引
 	 */
 	public MethodParameter(Constructor<?> constructor, int parameterIndex) {
 		this(constructor, parameterIndex, 1);
@@ -137,11 +132,10 @@ public class MethodParameter {
 
 	/**
 	 * 为给定的构造函数创建一个新的 MethodParameter。
-	 * @param constructor the Constructor to specify a parameter for
-	 * @param parameterIndex the index of the parameter
-	 * @param nestingLevel the nesting level of the target type
-	 * (typically 1; e.g. in case of a List of Lists, 1 would indicate the
-	 * nested List, whereas 2 would indicate the element of the nested List)
+	 * @param constructor 要为其指定参数的构造器
+	 * @param parameterIndex 参数的索引
+	 * @param nestingLevel 目标类型的嵌套层级（通常为 1；例如对于 List 的 List，1 表示嵌套的 List，
+	 * 而 2 表示嵌套 List 的元素）
 	 */
 	public MethodParameter(Constructor<?> constructor, int parameterIndex, int nestingLevel) {
 		Assert.notNull(constructor, "Constructor must not be null");
@@ -152,9 +146,9 @@ public class MethodParameter {
 
 	/**
 	 * 内部构造函数，用于创建已设置所属类的 {@link MethodParameter}。
-	 * @param executable the Executable to specify a parameter for
-	 * @param parameterIndex the index of the parameter
-	 * @param containingClass the containing class
+	 * @param executable 要为其指定参数的可执行对象
+	 * @param parameterIndex 参数的索引
+	 * @param containingClass 包含类
 	 * @since 5.2
 	 */
 	MethodParameter(Executable executable, int parameterIndex, @Nullable Class<?> containingClass) {
@@ -167,7 +161,7 @@ public class MethodParameter {
 
 	/**
 	 * 复制构造函数，基于原对象所处的相同元数据和缓存状态生成一个独立的 MethodParameter 对象。
-	 * @param original the original MethodParameter object to copy from
+	 * @param original 要从中复制的原始 MethodParameter 对象
 	 */
 	public MethodParameter(MethodParameter original) {
 		Assert.notNull(original, "Original must not be null");
@@ -189,7 +183,7 @@ public class MethodParameter {
 	 * 返回所包装的 Method（如果有）。
 	 *
 	 * <p>注意：Method 或 Constructor 二者只有其一可用。
-	 * @return the Method, or {@code null} if none
+	 * @return 该方法，如果没有则为 {@code null}
 	 */
 	@Nullable
 	public Method getMethod() {
@@ -200,7 +194,7 @@ public class MethodParameter {
 	 * 返回所包装的 Constructor（如果有）。
 	 *
 	 * <p>注意：Method 或 Constructor 二者只有其一可用。
-	 * @return the Constructor, or {@code null} if none
+	 * @return 该构造器，如果没有则为 {@code null}
 	 */
 	@Nullable
 	public Constructor<?> getConstructor() {
@@ -216,7 +210,7 @@ public class MethodParameter {
 
 	/**
 	 * 返回所包装的成员。
-	 * @return the Method or Constructor as Member
+	 * @return 作为 Member 的方法或构造器
 	 */
 	public Member getMember() {
 		return this.executable;
@@ -226,7 +220,7 @@ public class MethodParameter {
 	 * 返回所包装的注解元素。
 	 *
 	 * <p>注意：此方法暴露的是在方法/构造函数自身上声明的注解（即在方法/构造函数级别，而非参数级别）。
-	 * @return the Method or Constructor as AnnotatedElement
+	 * @return 作为 AnnotatedElement 的方法或构造器
 	 */
 	public AnnotatedElement getAnnotatedElement() {
 		return this.executable;
@@ -234,7 +228,7 @@ public class MethodParameter {
 
 	/**
 	 * 返回所包装的可执行对象。
-	 * @return the Method or Constructor as Executable
+	 * @return 作为 Executable 的方法或构造器
 	 * @since 5.0
 	 */
 	public Executable getExecutable() {
@@ -259,7 +253,7 @@ public class MethodParameter {
 
 	/**
 	 * 返回方法/构造函数参数的索引。
-	 * @return the parameter index (-1 in case of the return type)
+	 * @return 参数索引（对于返回类型为 -1）
 	 */
 	public int getParameterIndex() {
 		return this.parameterIndex;
@@ -297,7 +291,7 @@ public class MethodParameter {
 
 	/**
 	 * 返回此 {@code MethodParameter} 的一个变体，其当前层级的类型设置为指定值。
-	 * @param typeIndex the new type index
+	 * @param typeIndex 新的类型索引
 	 * @since 5.2
 	 */
 	public MethodParameter withTypeIndex(int typeIndex) {
@@ -306,8 +300,7 @@ public class MethodParameter {
 
 	/**
 	 * 设置当前嵌套层级的类型索引。
-	 * @param typeIndex the corresponding type index
-	 * (or {@code null} for the default type index)
+	 * @param typeIndex 对应的类型索引（或 {@code null} 表示默认类型索引）
 	 * @see #getNestingLevel()
 	 * @deprecated since 5.2 in favor of {@link #withTypeIndex}
 	 */
@@ -318,8 +311,7 @@ public class MethodParameter {
 
 	/**
 	 * 返回当前嵌套层级的类型索引。
-	 * @return the corresponding type index, or {@code null}
-	 * if none specified (indicating the default type index)
+	 * @return 对应的类型索引，如果未指定则为 {@code null}（表示默认类型索引）
 	 * @see #getNestingLevel()
 	 */
 	@Nullable
@@ -329,9 +321,8 @@ public class MethodParameter {
 
 	/**
 	 * 返回指定嵌套层级的类型索引。
-	 * @param nestingLevel the nesting level to check
-	 * @return the corresponding type index, or {@code null}
-	 * if none specified (indicating the default type index)
+	 * @param nestingLevel 要检查的嵌套层级
+	 * @return 对应的类型索引，如果未指定则为 {@code null}（表示默认类型索引）
 	 */
 	@Nullable
 	public Integer getTypeIndexForLevel(int nestingLevel) {
@@ -358,7 +349,7 @@ public class MethodParameter {
 
 	/**
 	 * 返回此 {@code MethodParameter} 的一个变体，它指向同一参数，但嵌套层级深一层。
-	 * @param typeIndex the type index for the new nesting level
+	 * @param typeIndex 新嵌套层级的类型索引
 	 * @since 5.2
 	 */
 	public MethodParameter nested(@Nullable Integer typeIndex) {
@@ -426,8 +417,7 @@ public class MethodParameter {
 
 	/**
 	 * 返回此 {@code MethodParameter} 的一个变体，它引用给定的所属类。
-	 * @param containingClass a specific containing class (potentially a
-	 * subclass of the declaring class, e.g. substituting a type variable)
+	 * @param containingClass 特定的包含类（可能是声明类的子类，例如替换类型变量）
 	 * @since 5.2
 	 * @see #getParameterType()
 	 */
@@ -449,8 +439,7 @@ public class MethodParameter {
 
 	/**
 	 * 返回此方法参数的所属类。
-	 * @return a specific containing class (potentially a subclass of the
-	 * declaring class), or otherwise simply the declaring class itself
+	 * @return 特定的包含类（可能是声明类的子类），否则就是声明类本身
 	 * @see #getDeclaringClass()
 	 */
 	public Class<?> getContainingClass() {
@@ -468,7 +457,7 @@ public class MethodParameter {
 
 	/**
 	 * 返回方法/构造函数参数的类型。
-	 * @return the parameter type (never {@code null})
+	 * @return 参数类型（永不为 {@code null}）
 	 */
 	public Class<?> getParameterType() {
 		Class<?> paramType = this.parameterType;
@@ -487,7 +476,7 @@ public class MethodParameter {
 
 	/**
 	 * 返回方法/构造函数参数的泛型类型。
-	 * @return the parameter type (never {@code null})
+	 * @return 参数类型（永不为 {@code null}）
 	 * @since 3.0
 	 */
 	public Type getGenericParameterType() {
@@ -534,7 +523,7 @@ public class MethodParameter {
 
 	/**
 	 * 返回方法/构造函数参数的嵌套类型。
-	 * @return the parameter type (never {@code null})
+	 * @return 参数类型（永不为 {@code null}）
 	 * @since 3.1
 	 * @see #getNestingLevel()
 	 */
@@ -567,7 +556,7 @@ public class MethodParameter {
 
 	/**
 	 * 返回方法/构造函数参数的嵌套泛型类型。
-	 * @return the parameter type (never {@code null})
+	 * @return 参数类型（永不为 {@code null}）
 	 * @since 4.2
 	 * @see #getNestingLevel()
 	 */
@@ -597,8 +586,8 @@ public class MethodParameter {
 
 	/**
 	 * 返回给定类型的方法/构造函数注解（如果可用）。
-	 * @param annotationType the annotation type to look for
-	 * @return the annotation object, or {@code null} if not found
+	 * @param annotationType 要查找的注解类型
+	 * @return 注解对象，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public <A extends Annotation> A getMethodAnnotation(Class<A> annotationType) {
@@ -608,7 +597,7 @@ public class MethodParameter {
 
 	/**
 	 * 返回方法/构造函数是否带有给定类型的注解。
-	 * @param annotationType the annotation type to look for
+	 * @param annotationType 要查找的注解类型
 	 * @since 4.3
 	 * @see #getMethodAnnotation(Class)
 	 */
@@ -648,8 +637,8 @@ public class MethodParameter {
 
 	/**
 	 * 返回给定类型的参数注解（如果可用）。
-	 * @param annotationType the annotation type to look for
-	 * @return the annotation object, or {@code null} if not found
+	 * @param annotationType 要查找的注解类型
+	 * @return 注解对象，如果未找到则为 {@code null}
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable
@@ -665,7 +654,7 @@ public class MethodParameter {
 
 	/**
 	 * 返回该参数是否以给定注解类型声明。
-	 * @param annotationType the annotation type to look for
+	 * @param annotationType 要查找的注解类型
 	 * @see #getParameterAnnotation(Class)
 	 */
 	public <A extends Annotation> boolean hasParameterAnnotation(Class<A> annotationType) {
@@ -684,10 +673,8 @@ public class MethodParameter {
 
 	/**
 	 * 返回方法/构造函数参数的名称。
-	 * @return the parameter name (may be {@code null} if no
-	 * parameter name metadata is contained in the class file or no
-	 * {@link #initParameterNameDiscovery ParameterNameDiscoverer}
-	 * has been set to begin with)
+	 * @return 参数名称（如果类文件中不包含参数名称元数据，或最初未设置
+	 * {@link #initParameterNameDiscovery ParameterNameDiscoverer}，则可能为 {@code null}）
 	 */
 	@Nullable
 	public String getParameterName() {
@@ -716,8 +703,8 @@ public class MethodParameter {
 	 * 在将给定注解实例返回给调用方之前对其进行后处理的模板方法。
 	 *
 	 * <p>默认实现只是原样返回给定注解。
-	 * @param annotation the annotation about to be returned
-	 * @return the post-processed annotation (or simply the original one)
+	 * @param annotation 即将返回的注解
+	 * @return 后处理后的注解（或就是原始注解）
 	 * @since 4.2
 	 */
 	protected <A extends Annotation> A adaptAnnotation(A annotation) {
@@ -728,8 +715,8 @@ public class MethodParameter {
 	 * 在将给定注解数组返回给调用方之前对其进行后处理的模板方法。
 	 *
 	 * <p>默认实现只是原样返回给定注解数组。
-	 * @param annotations the annotation array about to be returned
-	 * @return the post-processed annotation array (or simply the original one)
+	 * @param annotations 即将返回的注解数组
+	 * @return 后处理后的注解数组（或就是原始数组）
 	 * @since 4.2
 	 */
 	protected Annotation[] adaptAnnotationArray(Annotation[] annotations) {
@@ -774,9 +761,9 @@ public class MethodParameter {
 	 * 为给定的方法或构造函数创建一个新的 MethodParameter。
 	 *
 	 * <p>对于以通用方式处理方法或构造函数引用的场景，这是一个便捷工厂方法。
-	 * @param methodOrConstructor the Method or Constructor to specify a parameter for
-	 * @param parameterIndex the index of the parameter
-	 * @return the corresponding MethodParameter instance
+	 * @param methodOrConstructor 要为其指定参数的方法或构造器
+	 * @param parameterIndex 参数的索引
+	 * @return 对应的 MethodParameter 实例
 	 * @deprecated as of 5.0, in favor of {@link #forExecutable}
 	 */
 	@Deprecated
@@ -792,9 +779,9 @@ public class MethodParameter {
 	 * 为给定的方法或构造函数创建一个新的 MethodParameter。
 	 *
 	 * <p>对于以通用方式处理方法或构造函数引用的场景，这是一个便捷工厂方法。
-	 * @param executable the Method or Constructor to specify a parameter for
-	 * @param parameterIndex the index of the parameter
-	 * @return the corresponding MethodParameter instance
+	 * @param executable 要为其指定参数的方法或构造器
+	 * @param parameterIndex 参数的索引
+	 * @return 对应的 MethodParameter 实例
 	 * @since 5.0
 	 */
 	public static MethodParameter forExecutable(Executable executable, int parameterIndex) {
@@ -813,8 +800,8 @@ public class MethodParameter {
 	 * 为给定的参数描述符创建一个新的 MethodParameter。
 	 *
 	 * <p>对于已经获得 Java 8 {@link Parameter} 描述符的场景，这是一个便捷工厂方法。
-	 * @param parameter the parameter descriptor
-	 * @return the corresponding MethodParameter instance
+	 * @param parameter 参数描述符
+	 * @return 对应的 MethodParameter 实例
 	 * @since 5.0
 	 */
 	public static MethodParameter forParameter(Parameter parameter) {

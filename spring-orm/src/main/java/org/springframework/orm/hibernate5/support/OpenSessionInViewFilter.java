@@ -168,8 +168,8 @@ public class OpenSessionInViewFilter extends OncePerRequestFilter {
 	 * 查找此过滤器应使用的 SessionFactory，
 	 * 并将当前 HTTP 请求作为参数。
 	 * <p>默认实现委托给不带参数的 {@link #lookupSessionFactory()} 变体。
-	 * @param request the current request
-	 * @return the SessionFactory to use
+	 * @param request 当前请求
+	 * @return 要使用的 SessionFactory
 	 */
 	protected SessionFactory lookupSessionFactory(HttpServletRequest request) {
 		return lookupSessionFactory();
@@ -179,7 +179,7 @@ public class OpenSessionInViewFilter extends OncePerRequestFilter {
 	 * 查找此过滤器应使用的 SessionFactory。
 	 * <p>默认实现在 Spring 的根应用上下文中
 	 * 查找具有指定名称的 bean。
-	 * @return the SessionFactory to use
+	 * @return 要使用的 SessionFactory
 	 * @see #getSessionFactoryBeanName
 	 */
 	protected SessionFactory lookupSessionFactory() {
@@ -194,9 +194,9 @@ public class OpenSessionInViewFilter extends OncePerRequestFilter {
 	 * 为此过滤器使用的 SessionFactory 打开一个 Session。
 	 * <p>默认实现委托给 {@link SessionFactory#openSession} 方法，
 	 * 并将 {@link Session} 的 flush 模式设置为 "MANUAL"。
-	 * @param sessionFactory the SessionFactory that this filter uses
-	 * @return the Session to use
-	 * @throws DataAccessResourceFailureException if the Session could not be created
+	 * @param sessionFactory 此过滤器使用的 SessionFactory
+	 * @return 要使用的 Session
+	 * @throws DataAccessResourceFailureException 如果无法创建 Session
 	 * @see FlushMode#MANUAL
 	 */
 	protected Session openSession(SessionFactory sessionFactory) throws DataAccessResourceFailureException {

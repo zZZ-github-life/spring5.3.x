@@ -119,7 +119,7 @@ public abstract class AbstractClientHttpRequest implements ClientHttpRequest {
 
 	/**
 	 * 不带正文的请求的 {@link #doCommit(Supplier)} 变体。
-	 * @return a completion publisher
+	 * @return 表示完成的 Publisher
 	 */
 	protected Mono<Void> doCommit() {
 		return doCommit(null);
@@ -128,8 +128,8 @@ public abstract class AbstractClientHttpRequest implements ClientHttpRequest {
 	/**
 	 * 应用 {@link #beforeCommit(Supplier) beforeCommit} 操作，应用
 	 * 请求头部/Cookie，并写入请求正文。
-	 * @param writeAction the action to write the request body (may be {@code null})
-	 * @return a completion publisher
+	 * @param writeAction 写入请求体的动作（可以为 {@code null}）
+	 * @return 表示完成的 Publisher
 	 */
 	protected Mono<Void> doCommit(@Nullable Supplier<? extends Publisher<Void>> writeAction) {
 		if (!this.state.compareAndSet(State.NEW, State.COMMITTING)) {

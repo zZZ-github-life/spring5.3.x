@@ -55,7 +55,7 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 
 	/**
 	 * 创建给定 ServletUriComponentsBuilder 的深拷贝。
-	 * @param other the other builder to copy from
+	 * @param other 要从中复制的另一个构建器
 	 */
 	protected ServletUriComponentsBuilder(ServletUriComponentsBuilder other) {
 		super(other);
@@ -180,7 +180,7 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 	 * String uri = builder.path("/pages/1.{ext}").buildAndExpand(ext).toUriString();
 	 * assertEquals("http://www.foo.example/rest/books/6/pages/1.json", result);
 	 * </pre>
-	 * @return the removed path extension for possible re-use, or {@code null}
+	 * @return 移除的路径扩展名（以便复用），或 {@code null}
 	 * @since 4.0
 	 */
 	@Nullable

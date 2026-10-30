@@ -76,11 +76,11 @@ public class StandardWebSocketSession extends AbstractWebSocketSession<Session> 
 
 	/**
 	 * 标准 WebSocket 会话的构造函数。
-	 * @param headers the headers of the handshake request
-	 * @param attributes the attributes from the HTTP handshake to associate with the WebSocket
-	 * session; the provided attributes are copied, the original map is not used.
-	 * @param localAddress the address on which the request was received
-	 * @param remoteAddress the address of the remote client
+	 * @param headers 握手请求的头
+	 * @param attributes 要与 WebSocket 会话关联的、来自 HTTP 握手的属性；
+	 * 提供的属性会被复制，不使用原始 Map。
+	 * @param localAddress 接收请求时所使用的地址
+	 * @param remoteAddress 远程客户端的地址
 	 */
 	public StandardWebSocketSession(@Nullable HttpHeaders headers, @Nullable Map<String, Object> attributes,
 			@Nullable InetSocketAddress localAddress, @Nullable InetSocketAddress remoteAddress) {
@@ -90,12 +90,12 @@ public class StandardWebSocketSession extends AbstractWebSocketSession<Session> 
 
 	/**
 	 * 将用户与 WebSocket 会话关联的构造函数。
-	 * @param headers the headers of the handshake request
-	 * @param attributes the attributes from the HTTP handshake to associate with the WebSocket session
-	 * @param localAddress the address on which the request was received
-	 * @param remoteAddress the address of the remote client
-	 * @param user the user associated with the session; if {@code null} we'll
-	 * fall back on the user available in the underlying WebSocket session
+	 * @param headers 握手请求的头
+	 * @param attributes 要与 WebSocket 会话关联的、来自 HTTP 握手的属性
+	 * @param localAddress 接收请求时所使用的地址
+	 * @param remoteAddress 远程客户端的地址
+	 * @param user 与会话关联的用户；如果为 {@code null}，
+	 * 则回退到底层 WebSocket 会话中可用的用户
 	 */
 	public StandardWebSocketSession(@Nullable HttpHeaders headers, @Nullable Map<String, Object> attributes,
 			@Nullable InetSocketAddress localAddress, @Nullable InetSocketAddress remoteAddress,

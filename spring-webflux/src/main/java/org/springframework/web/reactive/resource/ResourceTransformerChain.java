@@ -35,9 +35,9 @@ public interface ResourceTransformerChain {
 
 	/**
 	 * 转换给定资源。
-	 * @param exchange the current exchange
-	 * @param resource the candidate resource to transform
-	 * @return the transformed or the same resource, never empty
+	 * @param exchange 当前交换
+	 * @param resource 要转换的候选资源
+	 * @return 转换后的资源或原资源，永不为空
 	 */
 	Mono<Resource> transform(ServerWebExchange exchange, Resource resource);
 

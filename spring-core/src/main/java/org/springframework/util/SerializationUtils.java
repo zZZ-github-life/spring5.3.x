@@ -42,8 +42,8 @@ public abstract class SerializationUtils {
 
 	/**
 	 * 将给定对象序列化为字节数组。
-	 * @param object the object to serialize
-	 * @return an array of bytes representing the object in a portable fashion
+	 * @param object 要序列化的对象
+	 * @return 以可移植方式表示该对象的字节数组
 	 */
 	@Nullable
 	public static byte[] serialize(@Nullable Object object) {
@@ -66,8 +66,8 @@ public abstract class SerializationUtils {
 	 * <p><strong>警告</strong>：此工具将在 Spring Framework 6.0 中弃用，因为它使用 Java Object
 	 * Serialization，该机制允许运行任意代码，并已知是许多远程代码执行（RCE）漏洞的来源。建议使用外部工
 	 * 具（序列化为 JSON、XML 或任何其他格式），并定期检查更新以避免允许 RCE。
-	 * @param bytes a serialized object
-	 * @return the result of deserializing the bytes
+	 * @param bytes 已序列化的对象
+	 * @return 反序列化这些字节的结果
 	 */
 	@Nullable
 	public static Object deserialize(@Nullable byte[] bytes) {

@@ -35,7 +35,7 @@ public class BufferingClientHttpRequestFactory extends AbstractClientHttpRequest
 
 	/**
 	 * 为给定的 {@link ClientHttpRequestFactory} 创建缓冲包装器。
-	 * @param requestFactory the target request factory to wrap
+	 * @param requestFactory 要包装的目标请求工厂
 	 */
 	public BufferingClientHttpRequestFactory(ClientHttpRequestFactory requestFactory) {
 		super(requestFactory);
@@ -59,9 +59,9 @@ public class BufferingClientHttpRequestFactory extends AbstractClientHttpRequest
 	 * 指示给定 URI 和方法的请求/响应交换是否应在内存中缓冲。
 	 * <p>默认实现对所有 URI 和方法返回 {@code true}。
 	 * 子类可以覆盖此方法以更改此行为。
-	 * @param uri the URI
-	 * @param httpMethod the method
-	 * @return {@code true} if the exchange should be buffered; {@code false} otherwise
+	 * @param uri 该 URI
+	 * @param httpMethod HTTP 方法
+	 * @return 如果应缓冲该交换则返回 {@code true}；否则返回 {@code false}
 	 */
 	protected boolean shouldBuffer(URI uri, HttpMethod httpMethod) {
 		return true;

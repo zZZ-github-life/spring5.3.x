@@ -241,13 +241,13 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	 * <p>默认实现会记录一条警告、发送 HTTP 405 错误、设置 "Allow" 头，
 	 * 并返回空的 {@code ModelAndView}。或者，可以选择一个回退视图，
 	 * 或者将 HttpRequestMethodNotSupportedException 原样重新抛出。
-	 * @param ex the HttpRequestMethodNotSupportedException to be handled
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler, or {@code null} if none chosen
-	 * at the time of the exception (for example, if multipart resolution failed)
-	 * @return an empty ModelAndView indicating the exception was handled
-	 * @throws IOException potentially thrown from {@link HttpServletResponse#sendError}
+	 * @param ex 要处理的 HttpRequestMethodNotSupportedException
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器；如果在抛出异常时尚未选择处理器
+	 * （例如 multipart 解析失败），则为 {@code null}
+	 * @return 表示异常已处理的空 ModelAndView
+	 * @throws IOException 可能由 {@link HttpServletResponse#sendError} 抛出
 	 */
 	protected ModelAndView handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex,
 			HttpServletRequest request, HttpServletResponse response, @Nullable Object handler) throws IOException {
@@ -266,12 +266,12 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	 * <p>默认实现会发送 HTTP 415 错误、设置 "Accept" 头，
 	 * 并返回空的 {@code ModelAndView}。或者，可以选择一个回退视图，
 	 * 或者将 HttpMediaTypeNotSupportedException 原样重新抛出。
-	 * @param ex the HttpMediaTypeNotSupportedException to be handled
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler
-	 * @return an empty ModelAndView indicating the exception was handled
-	 * @throws IOException potentially thrown from {@link HttpServletResponse#sendError}
+	 * @param ex 要处理的 HttpMediaTypeNotSupportedException
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器
+	 * @return 表示异常已处理的空 ModelAndView
+	 * @throws IOException 可能由 {@link HttpServletResponse#sendError} 抛出
 	 */
 	protected ModelAndView handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex,
 			HttpServletRequest request, HttpServletResponse response, @Nullable Object handler) throws IOException {
@@ -293,12 +293,12 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	 * <p>默认实现会发送 HTTP 406 错误并返回空的 {@code ModelAndView}。
 	 * 或者，可以选择一个回退视图，或者将 HttpMediaTypeNotAcceptableException
 	 * 原样重新抛出。
-	 * @param ex the HttpMediaTypeNotAcceptableException to be handled
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler
-	 * @return an empty ModelAndView indicating the exception was handled
-	 * @throws IOException potentially thrown from {@link HttpServletResponse#sendError}
+	 * @param ex 要处理的 HttpMediaTypeNotAcceptableException
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器
+	 * @return 表示异常已处理的空 ModelAndView
+	 * @throws IOException 可能由 {@link HttpServletResponse#sendError} 抛出
 	 */
 	protected ModelAndView handleHttpMediaTypeNotAcceptable(HttpMediaTypeNotAcceptableException ex,
 			HttpServletRequest request, HttpServletResponse response, @Nullable Object handler) throws IOException {
@@ -312,12 +312,12 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	 * <p>默认实现会发送 HTTP 500 错误，并返回空的 {@code ModelAndView}。
 	 * 或者，可以选择一个回退视图，或者将 MissingPathVariableException
 	 * 原样重新抛出。
-	 * @param ex the MissingPathVariableException to be handled
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler
-	 * @return an empty ModelAndView indicating the exception was handled
-	 * @throws IOException potentially thrown from {@link HttpServletResponse#sendError}
+	 * @param ex 要处理的 MissingPathVariableException
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器
+	 * @return 表示异常已处理的空 ModelAndView
+	 * @throws IOException 可能由 {@link HttpServletResponse#sendError} 抛出
 	 * @since 4.2
 	 */
 	protected ModelAndView handleMissingPathVariable(MissingPathVariableException ex,
@@ -332,12 +332,12 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	 * <p>默认实现会发送 HTTP 400 错误，并返回空的 {@code ModelAndView}。
 	 * 或者，可以选择一个回退视图，或者将 MissingServletRequestParameterException
 	 * 原样重新抛出。
-	 * @param ex the MissingServletRequestParameterException to be handled
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler
-	 * @return an empty ModelAndView indicating the exception was handled
-	 * @throws IOException potentially thrown from {@link HttpServletResponse#sendError}
+	 * @param ex 要处理的 MissingServletRequestParameterException
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器
+	 * @return 表示异常已处理的空 ModelAndView
+	 * @throws IOException 可能由 {@link HttpServletResponse#sendError} 抛出
 	 */
 	protected ModelAndView handleMissingServletRequestParameter(MissingServletRequestParameterException ex,
 			HttpServletRequest request, HttpServletResponse response, @Nullable Object handler) throws IOException {
@@ -350,12 +350,12 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	 * 处理发生不可恢复的绑定异常的情况——例如缺少必需的请求头、必需的 cookie。
 	 * <p>默认实现会发送 HTTP 400 错误，并返回空的 {@code ModelAndView}。
 	 * 或者，可以选择一个回退视图，或者将异常原样重新抛出。
-	 * @param ex the exception to be handled
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler
-	 * @return an empty ModelAndView indicating the exception was handled
-	 * @throws IOException potentially thrown from {@link HttpServletResponse#sendError}
+	 * @param ex 要处理的异常
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器
+	 * @return 表示异常已处理的空 ModelAndView
+	 * @throws IOException 可能由 {@link HttpServletResponse#sendError} 抛出
 	 */
 	protected ModelAndView handleServletRequestBindingException(ServletRequestBindingException ex,
 			HttpServletRequest request, HttpServletResponse response, @Nullable Object handler) throws IOException {
@@ -369,12 +369,12 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	 * <p>默认实现会发送 HTTP 500 错误，并返回空的 {@code ModelAndView}。
 	 * 或者，可以选择一个回退视图，或者将 ConversionNotSupportedException
 	 * 原样重新抛出。
-	 * @param ex the ConversionNotSupportedException to be handled
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler
-	 * @return an empty ModelAndView indicating the exception was handled
-	 * @throws IOException potentially thrown from {@link HttpServletResponse#sendError}
+	 * @param ex 要处理的 ConversionNotSupportedException
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器
+	 * @return 表示异常已处理的空 ModelAndView
+	 * @throws IOException 可能由 {@link HttpServletResponse#sendError} 抛出
 	 */
 	protected ModelAndView handleConversionNotSupported(ConversionNotSupportedException ex,
 			HttpServletRequest request, HttpServletResponse response, @Nullable Object handler) throws IOException {
@@ -387,12 +387,12 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	 * 处理发生 {@link org.springframework.web.bind.WebDataBinder} 转换错误的情况。
 	 * <p>默认实现会发送 HTTP 400 错误，并返回空的 {@code ModelAndView}。
 	 * 或者，可以选择一个回退视图，或者将 TypeMismatchException 原样重新抛出。
-	 * @param ex the TypeMismatchException to be handled
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler
-	 * @return an empty ModelAndView indicating the exception was handled
-	 * @throws IOException potentially thrown from {@link HttpServletResponse#sendError}
+	 * @param ex 要处理的 TypeMismatchException
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器
+	 * @return 表示异常已处理的空 ModelAndView
+	 * @throws IOException 可能由 {@link HttpServletResponse#sendError} 抛出
 	 */
 	protected ModelAndView handleTypeMismatch(TypeMismatchException ex,
 			HttpServletRequest request, HttpServletResponse response, @Nullable Object handler) throws IOException {
@@ -408,12 +408,12 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	 * <p>默认实现会发送 HTTP 400 错误，并返回空的 {@code ModelAndView}。
 	 * 或者，可以选择一个回退视图，或者将 HttpMessageNotReadableException
 	 * 原样重新抛出。
-	 * @param ex the HttpMessageNotReadableException to be handled
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler
-	 * @return an empty ModelAndView indicating the exception was handled
-	 * @throws IOException potentially thrown from {@link HttpServletResponse#sendError}
+	 * @param ex 要处理的 HttpMessageNotReadableException
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器
+	 * @return 表示异常已处理的空 ModelAndView
+	 * @throws IOException 可能由 {@link HttpServletResponse#sendError} 抛出
 	 */
 	protected ModelAndView handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
 			HttpServletRequest request, HttpServletResponse response, @Nullable Object handler) throws IOException {
@@ -429,12 +429,12 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	 * <p>默认实现会发送 HTTP 500 错误，并返回空的 {@code ModelAndView}。
 	 * 或者，可以选择一个回退视图，或者将 HttpMessageNotWritableException
 	 * 原样重新抛出。
-	 * @param ex the HttpMessageNotWritableException to be handled
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler
-	 * @return an empty ModelAndView indicating the exception was handled
-	 * @throws IOException potentially thrown from {@link HttpServletResponse#sendError}
+	 * @param ex 要处理的 HttpMessageNotWritableException
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器
+	 * @return 表示异常已处理的空 ModelAndView
+	 * @throws IOException 可能由 {@link HttpServletResponse#sendError} 抛出
 	 */
 	protected ModelAndView handleHttpMessageNotWritable(HttpMessageNotWritableException ex,
 			HttpServletRequest request, HttpServletResponse response, @Nullable Object handler) throws IOException {
@@ -447,11 +447,11 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	 * 处理带有 {@code @Valid} 注解的参数（例如
 	 * {@link RequestBody} 或 {@link RequestPart} 参数）校验失败的情况。
 	 * <p>默认情况下，向客户端返回 HTTP 400 错误。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler
-	 * @return an empty ModelAndView indicating the exception was handled
-	 * @throws IOException potentially thrown from {@link HttpServletResponse#sendError}
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器
+	 * @return 表示异常已处理的空 ModelAndView
+	 * @throws IOException 可能由 {@link HttpServletResponse#sendError} 抛出
 	 */
 	protected ModelAndView handleMethodArgumentNotValidException(MethodArgumentNotValidException ex,
 			HttpServletRequest request, HttpServletResponse response, @Nullable Object handler) throws IOException {
@@ -464,11 +464,11 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	 * 处理需要 {@linkplain RequestPart @RequestPart}、{@link MultipartFile}
 	 * 或 {@code javax.servlet.http.Part} 参数但该参数缺失的情况。
 	 * <p>默认情况下，向客户端返回 HTTP 400 错误。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler
-	 * @return an empty ModelAndView indicating the exception was handled
-	 * @throws IOException potentially thrown from {@link HttpServletResponse#sendError}
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器
+	 * @return 表示异常已处理的空 ModelAndView
+	 * @throws IOException 可能由 {@link HttpServletResponse#sendError} 抛出
 	 */
 	protected ModelAndView handleMissingServletRequestPartException(MissingServletRequestPartException ex,
 			HttpServletRequest request, HttpServletResponse response, @Nullable Object handler) throws IOException {
@@ -482,11 +482,11 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	 * 存在绑定或校验错误，且其后没有另一个
 	 * {@link BindingResult} 类型的方法参数的情况。
 	 * <p>默认情况下，向客户端返回 HTTP 400 错误。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler
-	 * @return an empty ModelAndView indicating the exception was handled
-	 * @throws IOException potentially thrown from {@link HttpServletResponse#sendError}
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器
+	 * @return 表示异常已处理的空 ModelAndView
+	 * @throws IOException 可能由 {@link HttpServletResponse#sendError} 抛出
 	 */
 	protected ModelAndView handleBindException(BindException ex, HttpServletRequest request,
 			HttpServletResponse response, @Nullable Object handler) throws IOException {
@@ -500,13 +500,13 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	 * <p>默认实现会发送 HTTP 404 错误并返回空的
 	 * {@code ModelAndView}。或者，可以选择一个回退视图，
 	 * 或者将 NoHandlerFoundException 原样重新抛出。
-	 * @param ex the NoHandlerFoundException to be handled
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler, or {@code null} if none chosen
-	 * at the time of the exception (for example, if multipart resolution failed)
-	 * @return an empty ModelAndView indicating the exception was handled
-	 * @throws IOException potentially thrown from {@link HttpServletResponse#sendError}
+	 * @param ex 要处理的 NoHandlerFoundException
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器；如果在抛出异常时尚未选择处理器
+	 * （例如 multipart 解析失败），则为 {@code null}
+	 * @return 表示异常已处理的空 ModelAndView
+	 * @throws IOException 可能由 {@link HttpServletResponse#sendError} 抛出
 	 * @since 4.0
 	 */
 	protected ModelAndView handleNoHandlerFoundException(NoHandlerFoundException ex,
@@ -520,13 +520,13 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	/**
 	 * 处理异步请求超时的情况。
 	 * <p>默认实现会发送 HTTP 503 错误。
-	 * @param ex the {@link AsyncRequestTimeoutException} to be handled
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @param handler the executed handler, or {@code null} if none chosen
-	 * at the time of the exception (for example, if multipart resolution failed)
-	 * @return an empty ModelAndView indicating the exception was handled
-	 * @throws IOException potentially thrown from {@link HttpServletResponse#sendError}
+	 * @param ex 要处理的 {@link AsyncRequestTimeoutException}
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @param handler 已执行的处理器；如果在抛出异常时尚未选择处理器
+	 * （例如 multipart 解析失败），则为 {@code null}
+	 * @return 表示异常已处理的空 ModelAndView
+	 * @throws IOException 可能由 {@link HttpServletResponse#sendError} 抛出
 	 * @since 4.2.8
 	 */
 	protected ModelAndView handleAsyncRequestTimeoutException(AsyncRequestTimeoutException ex,

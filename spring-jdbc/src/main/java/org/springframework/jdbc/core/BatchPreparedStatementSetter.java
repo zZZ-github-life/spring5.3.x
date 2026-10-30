@@ -38,16 +38,15 @@ public interface BatchPreparedStatementSetter {
 
 	/**
 	 * 在给定的PreparedStatement上设置参数值。
-	 * @param ps the PreparedStatement to invoke setter methods on
-	 * @param i index of the statement we're issuing in the batch, starting from 0
-	 * @throws SQLException if an SQLException is encountered
-	 * (i.e. there is no need to catch SQLException)
+	 * @param ps 要在其上调用 setter 方法的 PreparedStatement
+	 * @param i 我们在批次中发出语句的索引，从 0 开始
+	 * @throws SQLException 如果遇到 SQLException（即无需捕获 SQLException）
 	 */
 	void setValues(PreparedStatement ps, int i) throws SQLException;
 
 	/**
 	 * 返回批量的大小。
-	 * @return the number of statements in the batch
+	 * @return 批次中的语句数量
 	 */
 	int getBatchSize();
 

@@ -99,9 +99,9 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 
 	/**
 	 * 构造一个新的 ApplicationListenerMethodAdapter。
-	 * @param beanName the name of the bean to invoke the listener method on
-	 * @param targetClass the target class that the method is declared on
-	 * @param method the listener method to invoke
+	 * @param beanName 要在其上调用监听器方法的 Bean 的名称
+	 * @param targetClass 声明该方法的目标类
+	 * @param method 要调用的监听器方法
 	 */
 	public ApplicationListenerMethodAdapter(String beanName, Class<?> targetClass, Method method) {
 		this.beanName = beanName;
@@ -383,7 +383,7 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 
 	/**
 	 * 向给定错误消息添加额外细节，如 Bean 类型和方法签名。
-	 * @param message error message to append the HandlerMethod details to
+	 * @param message 要追加 HandlerMethod 详情的错误消息
 	 */
 	protected String getDetailedErrorMessage(Object bean, String message) {
 		StringBuilder sb = new StringBuilder(message).append('\n');

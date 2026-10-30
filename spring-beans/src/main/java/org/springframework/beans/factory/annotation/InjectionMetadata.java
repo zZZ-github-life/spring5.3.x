@@ -76,8 +76,8 @@ public class InjectionMetadata {
 	/**
 	 * 创建一个新的 {@code InjectionMetadata instance}。
 	 * <p>在没有元素的情况下，最好使用 {@link #forElements} 复用 {@link #EMPTY} 实例。
-	 * @param targetClass the target class
-	 * @param elements the associated elements to inject
+	 * @param targetClass 目标类
+	 * @param elements 要注入的关联元素
 	 * @see #forElements
 	 */
 	public InjectionMetadata(Class<?> targetClass, Collection<InjectedElement> elements) {
@@ -88,8 +88,8 @@ public class InjectionMetadata {
 
 	/**
 	 * 确定此元数据实例是否需要刷新。
-	 * @param clazz the current target class
-	 * @return {@code true} indicating a refresh, {@code false} otherwise
+	 * @param clazz 当前目标类
+	 * @return 如果表示需要刷新则返回 {@code true}，否则返回 {@code false}
 	 * @since 5.2.4
 	 */
 	protected boolean needsRefresh(Class<?> clazz) {
@@ -137,9 +137,9 @@ public class InjectionMetadata {
 
 	/**
 	 * 返回一个 {@code InjectionMetadata} 实例，可能用于空元素。
-	 * @param elements the elements to inject (possibly empty)
-	 * @param clazz the target class
-	 * @return a new {@link #InjectionMetadata(Class, Collection)} instance
+	 * @param elements 要注入的元素（可能为空）
+	 * @param clazz 目标类
+	 * @return 新的 {@link #InjectionMetadata(Class, Collection)} 实例
 	 * @since 5.2
 	 */
 	public static InjectionMetadata forElements(Collection<InjectedElement> elements, Class<?> clazz) {
@@ -149,9 +149,9 @@ public class InjectionMetadata {
 
 	/**
 	 * 检查给定的注入元数据是否需要刷新。
-	 * @param metadata the existing metadata instance
-	 * @param clazz the current target class
-	 * @return {@code true} indicating a refresh, {@code false} otherwise
+	 * @param metadata 现有的元数据实例
+	 * @param clazz 当前目标类
+	 * @return 如果表示需要刷新则返回 {@code true}，否则返回 {@code false}
 	 * @see #needsRefresh(Class)
 	 */
 	public static boolean needsRefresh(@Nullable InjectionMetadata metadata, Class<?> clazz) {

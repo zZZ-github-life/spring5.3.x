@@ -147,10 +147,9 @@ public final class CronExpression {
 	 * <li>{@code "@daily"}（或 {@code "@midnight"}）每天运行一次，即 {@code "0 0 0 * * *"}，</li>
 	 * <li>{@code "@hourly"} 每小时运行一次，即 {@code "0 0 * * * *"}。</li>
 	 * </ul>
-	 * @param expression the expression string to parse
-	 * @return the parsed {@code CronExpression} object
-	 * @throws IllegalArgumentException in the expression does not conform to
-	 * the cron format
+	 * @param expression 要解析的表达式字符串
+	 * @return 解析得到的 {@code CronExpression} 对象
+	 * @throws IllegalArgumentException 如果表达式不符合 cron 格式
 	 */
 	public static CronExpression parse(String expression) {
 		Assert.hasLength(expression, "Expression string must not be empty");
@@ -180,8 +179,8 @@ public final class CronExpression {
 
 	/**
 	 * 判断给定字符串是否表示有效的 cron 表达式。
-	 * @param expression the expression to evaluate
-	 * @return {@code true} if the given expression is a valid cron expression
+	 * @param expression 要评估的表达式
+	 * @return 如果给定表达式是有效的 cron 表达式，则返回 {@code true}
 	 * @since 5.3.8
 	 */
 	public static boolean isValidExpression(@Nullable String expression) {
@@ -211,10 +210,10 @@ public final class CronExpression {
 
 	/**
 	 * 计算与此表达式匹配的下一个 {@link Temporal}。
-	 * @param temporal the seed value
-	 * @param <T> the type of temporal
-	 * @return the next temporal that matches this expression, or {@code null}
-	 * if no such temporal can be found
+	 * @param temporal 种子值
+	 * @param <T> temporal 的类型
+	 * @return 与该表达式匹配的下一个 temporal；
+	 * 如果找不到这样的 temporal，则为 {@code null}
 	 */
 	@Nullable
 	public <T extends Temporal & Comparable<? super T>> T next(T temporal) {
@@ -267,7 +266,7 @@ public final class CronExpression {
 
 	/**
 	 * 返回用于创建此 {@code CronExpression} 的表达式字符串。
-	 * @return the expression string
+	 * @return 表达式字符串
 	 */
 	@Override
 	public String toString() {

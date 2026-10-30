@@ -180,10 +180,9 @@ public final class PathPatternsRequestCondition extends AbstractRequestCondition
 	/**
 	 * 检查是否有任何模式匹配给定请求，并返回一个
 	 * 保证包含匹配模式且已排序的实例。
-	 * @param request the current request
-	 * @return the same instance if the condition contains no patterns;
-	 * or a new condition with sorted matching patterns;
-	 * or {@code null} if no patterns match.
+	 * @param request 当前请求
+	 * @return 如果条件不包含模式，则为同一实例；或包含已排序匹配模式的新条件；
+	 * 如果无模式匹配，则为 {@code null}。
 	 */
 	@Override
 	@Nullable

@@ -41,9 +41,9 @@ public interface ConditionalConverter {
 
 	/**
 	 * 当前考虑的从 {@code sourceType} 到 {@code targetType} 的转换是否应被选中？
-	 * @param sourceType the type descriptor of the field we are converting from
-	 * @param targetType the type descriptor of the field we are converting to
-	 * @return true if conversion should be performed, false otherwise
+	 * @param sourceType 我们要从中转换的字段的类型描述符
+	 * @param targetType 我们要转换到的字段的类型描述符
+	 * @return 如果应执行转换则返回 true，否则返回 false
 	 */
 	boolean matches(TypeDescriptor sourceType, TypeDescriptor targetType);
 

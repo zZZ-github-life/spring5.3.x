@@ -31,7 +31,7 @@ public class ResourceAccessException extends RestClientException {
 
 	/**
 	 * 使用给定消息构造一个新的 {@code ResourceAccessException}。
-	 * @param msg the message
+	 * @param msg 消息
 	 */
 	public ResourceAccessException(String msg) {
 		super(msg);
@@ -39,8 +39,8 @@ public class ResourceAccessException extends RestClientException {
 
 	/**
 	 * 使用给定消息和 {@link IOException} 构造一个新的 {@code ResourceAccessException}。
-	 * @param msg the message
-	 * @param ex the {@code IOException}
+	 * @param msg 消息
+	 * @param ex 该 {@code IOException}
 	 */
 	public ResourceAccessException(String msg, IOException ex) {
 		super(msg, ex);

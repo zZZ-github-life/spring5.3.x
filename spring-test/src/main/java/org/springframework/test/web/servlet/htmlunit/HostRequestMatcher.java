@@ -60,7 +60,7 @@ public final class HostRequestMatcher implements WebRequestMatcher {
 	/**
 	 * 为给定主机创建新的 {@code HostRequestMatcher} &mdash;
 	 * 例如：{@code "localhost"}、{@code "example.com:443"} 等。
-	 * @param hosts the hosts to match on
+	 * @param hosts 要匹配的主机
 	 */
 	public HostRequestMatcher(String... hosts) {
 		Collections.addAll(this.hosts, hosts);

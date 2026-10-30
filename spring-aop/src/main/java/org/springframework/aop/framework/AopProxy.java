@@ -33,7 +33,7 @@ public interface AopProxy {
 	/**
 	 * 创建一个新的代理对象。
 	 * <p>使用 AopProxy 的默认类加载器（如果代理创建需要）：通常是线程上下文类加载器。
-	 * @return the new proxy object (never {@code null})
+	 * @return 新的代理对象（永不为 {@code null}）
 	 * @see Thread#getContextClassLoader()
 	 */
 	Object getProxy();
@@ -42,9 +42,9 @@ public interface AopProxy {
 	 * 创建一个新的代理对象。
 	 * <p>使用给定的类加载器（如果代理创建需要）。{@code null} 会被直接向下传递，从而采用底层代理设施的
 	 * 默认值，这通常不同于 AopProxy 实现的 {@link #getProxy()} 方法所选择的默认值。
-	 * @param classLoader the class loader to create the proxy with
-	 * (or {@code null} for the low-level proxy facility's default)
-	 * @return the new proxy object (never {@code null})
+	 * @param classLoader 用于创建代理的类加载器（或 {@code null} 表示
+	 * 使用底层代理设施的默认值）
+	 * @return 新的代理对象（永不为 {@code null}）
 	 */
 	Object getProxy(@Nullable ClassLoader classLoader);
 

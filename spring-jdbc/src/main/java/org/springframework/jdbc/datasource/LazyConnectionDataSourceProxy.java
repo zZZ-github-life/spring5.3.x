@@ -93,7 +93,7 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 
 	/**
 	 * 创建一个新的 LazyConnectionDataSourceProxy。
-	 * @param targetDataSource the target DataSource
+	 * @param targetDataSource 目标 DataSource
 	 */
 	public LazyConnectionDataSourceProxy(DataSource targetDataSource) {
 		setTargetDataSource(targetDataSource);
@@ -131,7 +131,7 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 	/**
 	 * 通过 {@link java.sql.Connection} 中相应常量的名称设置默认事务隔离级别，
 	 * 例如 "TRANSACTION_SERIALIZABLE"。
-	 * @param constantName name of the constant
+	 * @param constantName 常量的名称
 	 * @see #setDefaultTransactionIsolation
 	 * @see java.sql.Connection#TRANSACTION_READ_UNCOMMITTED
 	 * @see java.sql.Connection#TRANSACTION_READ_COMMITTED
@@ -167,8 +167,8 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 	 * 的情况下也能正确地暴露这些属性。
 	 * <p>此方法会在启动时调用一次，在每次获取目标 Connection 时也会调用。
 	 * 如果启动时检查失败（因为数据库已关闭），我们会延迟获取这些设置。
-	 * @param con the Connection to use for checking
-	 * @throws SQLException if thrown by Connection methods
+	 * @param con 用于检查的 Connection
+	 * @throws SQLException 如果由 Connection 方法抛出
 	 */
 	protected synchronized void checkDefaultConnectionProperties(Connection con) throws SQLException {
 		if (this.defaultAutoCommit == null) {
@@ -201,7 +201,7 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 	 * 或 CallableStatement）时才延迟获取实际的 JDBC Connection。
 	 * <p>返回的 Connection 句柄实现 ConnectionProxy 接口，
 	 * 从而可以获取底层的目标 Connection。
-	 * @return a lazy Connection handle
+	 * @return 延迟的 Connection 句柄
 	 * @see ConnectionProxy#getTargetConnection()
 	 */
 	@Override
@@ -217,9 +217,9 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 	 * 或 CallableStatement）时才延迟获取实际的 JDBC Connection。
 	 * <p>返回的 Connection 句柄实现 ConnectionProxy 接口，
 	 * 从而可以获取底层的目标 Connection。
-	 * @param username the per-Connection username
-	 * @param password the per-Connection password
-	 * @return a lazy Connection handle
+	 * @param username 每个 Connection 的用户名
+	 * @param password 每个 Connection 的密码
+	 * @return 延迟的 Connection 句柄
 	 * @see ConnectionProxy#getTargetConnection()
 	 */
 	@Override

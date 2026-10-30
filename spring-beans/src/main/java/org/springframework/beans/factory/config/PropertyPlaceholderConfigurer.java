@@ -74,7 +74,7 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 
 	/**
 	 * 通过对应常量的名称设置系统属性模式，例如 "SYSTEM_PROPERTIES_MODE_OVERRIDE"。
-	 * @param constantName name of the constant
+	 * @param constantName 常量的名称
 	 * @see #setSystemPropertiesMode
 	 */
 	public void setSystemPropertiesModeName(String constantName) throws IllegalArgumentException {
@@ -112,11 +112,11 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 	 * 使用给定属性解析给定占位符，并根据给定模式执行系统属性检查。
 	 * <p>默认实现在系统属性检查之前/之后委托给 {@code resolvePlaceholder(placeholder, props)}。
 	 * <p>子类可以覆盖此方法以使用自定义解析策略，包括自定义系统属性检查的时机。
-	 * @param placeholder the placeholder to resolve
-	 * @param props the merged properties of this configurer
-	 * @param systemPropertiesMode the system properties mode,
-	 * according to the constants in this class
-	 * @return the resolved value, of null if none
+	 * @param placeholder 要解析的占位符
+	 * @param props 此配置器合并后的属性
+	 * @param systemPropertiesMode 系统属性模式，
+	 * 参见本类中的常量
+	 * @return 解析后的值；如果没有则为 null
 	 * @see #setSystemPropertiesMode
 	 * @see System#getProperty
 	 * @see #resolvePlaceholder(String, java.util.Properties)
@@ -140,9 +140,9 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 	 * 使用给定属性解析给定占位符。默认实现仅检查对应的属性键。
 	 * <p>子类可以覆盖此方法以自定义占位符到键的映射或自定义解析策略，例如仅使用给定属性作为回退。
 	 * <p>请注意，根据系统属性模式，仍会在调用此方法之前或之后相应地检查系统属性。
-	 * @param placeholder the placeholder to resolve
-	 * @param props the merged properties of this configurer
-	 * @return the resolved value, of {@code null} if none
+	 * @param placeholder 要解析的占位符
+	 * @param props 此配置器合并后的属性
+	 * @return 解析后的值；如果没有则为 {@code null}
 	 * @see #setSystemPropertiesMode
 	 */
 	@Nullable
@@ -152,8 +152,8 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 
 	/**
 	 * 将给定键解析为 JVM 系统属性；如果未找到匹配的系统属性，还可以选择解析为系统环境变量。
-	 * @param key the placeholder to resolve as system property key
-	 * @return the system property value, or {@code null} if not found
+	 * @param key 要作为系统属性键解析的占位符
+	 * @return 系统属性值；如果未找到则为 {@code null}
 	 * @see #setSearchSystemEnvironment
 	 * @see System#getProperty(String)
 	 * @see System#getenv(String)

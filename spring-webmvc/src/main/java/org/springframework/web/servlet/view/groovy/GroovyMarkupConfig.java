@@ -31,7 +31,7 @@ public interface GroovyMarkupConfig {
 	/**
 	 * 返回当前 Web 应用上下文的 Groovy {@link MarkupTemplateEngine}。
 	 * 它可能专属于某个 servlet，也可能在根上下文中共享。
-	 * @return the Groovy MarkupTemplateEngine engine
+	 * @return Groovy 的 MarkupTemplateEngine 引擎
 	 */
 	MarkupTemplateEngine getTemplateEngine();
 

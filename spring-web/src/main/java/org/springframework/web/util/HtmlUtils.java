@@ -56,8 +56,8 @@ public abstract class HtmlUtils {
 	 * <a href="https://www.w3.org/TR/html4/sgml/entities.html">
 	 * https://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
-	 * @param input the (unescaped) input string
-	 * @return the escaped string
+	 * @param input （未转义的）输入字符串
+	 * @return 转义后的字符串
 	 */
 	public static String htmlEscape(String input) {
 		return htmlEscape(input, WebUtils.DEFAULT_CHARACTER_ENCODING);
@@ -73,9 +73,9 @@ public abstract class HtmlUtils {
 	 * <a href="https://www.w3.org/TR/html4/sgml/entities.html">
 	 * https://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
-	 * @param input the (unescaped) input string
-	 * @param encoding the name of a supported {@link java.nio.charset.Charset charset}
-	 * @return the escaped string
+	 * @param input （未转义的）输入字符串
+	 * @param encoding 受支持的 {@link java.nio.charset.Charset charset} 名称
+	 * @return 转义后的字符串
 	 * @since 4.1.2
 	 */
 	public static String htmlEscape(String input, String encoding) {
@@ -104,8 +104,8 @@ public abstract class HtmlUtils {
 	 * <a href="https://www.w3.org/TR/html4/sgml/entities.html">
 	 * https://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
-	 * @param input the (unescaped) input string
-	 * @return the escaped string
+	 * @param input （未转义的）输入字符串
+	 * @return 转义后的字符串
 	 */
 	public static String htmlEscapeDecimal(String input) {
 		return htmlEscapeDecimal(input, WebUtils.DEFAULT_CHARACTER_ENCODING);
@@ -121,9 +121,9 @@ public abstract class HtmlUtils {
 	 * <a href="https://www.w3.org/TR/html4/sgml/entities.html">
 	 * https://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
-	 * @param input the (unescaped) input string
-	 * @param encoding the name of a supported {@link java.nio.charset.Charset charset}
-	 * @return the escaped string
+	 * @param input （未转义的）输入字符串
+	 * @param encoding 受支持的 {@link java.nio.charset.Charset charset} 名称
+	 * @return 转义后的字符串
 	 * @since 4.1.2
 	 */
 	public static String htmlEscapeDecimal(String input, String encoding) {
@@ -153,8 +153,8 @@ public abstract class HtmlUtils {
 	 * <a href="https://www.w3.org/TR/html4/sgml/entities.html">
 	 * https://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
-	 * @param input the (unescaped) input string
-	 * @return the escaped string
+	 * @param input （未转义的）输入字符串
+	 * @return 转义后的字符串
 	 */
 	public static String htmlEscapeHex(String input) {
 		return htmlEscapeHex(input, WebUtils.DEFAULT_CHARACTER_ENCODING);
@@ -170,9 +170,9 @@ public abstract class HtmlUtils {
 	 * <a href="https://www.w3.org/TR/html4/sgml/entities.html">
 	 * https://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
-	 * @param input the (unescaped) input string
-	 * @param encoding the name of a supported {@link java.nio.charset.Charset charset}
-	 * @return the escaped string
+	 * @param input （未转义的）输入字符串
+	 * @param encoding 受支持的 {@link java.nio.charset.Charset charset} 名称
+	 * @return 转义后的字符串
 	 * @since 4.1.2
 	 */
 	public static String htmlEscapeHex(String input, String encoding) {
@@ -209,8 +209,8 @@ public abstract class HtmlUtils {
 	 * <a href="https://www.w3.org/TR/html4/sgml/entities.html">
 	 * https://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
-	 * @param input the (escaped) input string
-	 * @return the unescaped string
+	 * @param input （已转义的）输入字符串
+	 * @return 未转义的字符串
 	 */
 	public static String htmlUnescape(String input) {
 		return new HtmlCharacterEntityDecoder(characterEntityReferences, input).decode();

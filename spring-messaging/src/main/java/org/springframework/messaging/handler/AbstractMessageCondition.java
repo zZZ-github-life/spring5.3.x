@@ -28,7 +28,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <T> the kind of condition that this condition can be combined with or compared to
+ * @param <T> 此条件可以与之组合或比较的条件类型
  */
 public abstract class AbstractMessageCondition<T extends AbstractMessageCondition<T>> implements MessageCondition<T> {
 

@@ -62,12 +62,12 @@ public interface View {
 
 	/**
 	 * 基于给定 {@link HandlerResult} 渲染视图。实现可以访问并使用模型，或仅使用其中的特定属性。
-	 * @param model a Map with name Strings as keys and corresponding model
-	 * objects as values (Map can also be {@code null} in case of empty model)
-	 * @param contentType the content type selected to render with which should
-	 * match one of the {@link #getSupportedMediaTypes() supported media types}.
-	 * @param exchange the current exchange
-	 * @return {@code Mono} to represent when and if rendering succeeds
+	 * @param model 以名称字符串为键、对应模型对象为值的 Map
+	 * （在模型为空时 Map 也可以为 {@code null}）
+	 * @param contentType 选择用于渲染的内容类型，
+	 * 它应匹配 {@link #getSupportedMediaTypes() supported media types}。
+	 * @param exchange 当前交换
+	 * @return 表示渲染何时成功以及是否成功的 {@code Mono}
 	 */
 	Mono<Void> render(@Nullable Map<String, ?> model, @Nullable MediaType contentType, ServerWebExchange exchange);
 

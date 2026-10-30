@@ -30,17 +30,17 @@ public interface UriTemplateHandler {
 
 	/**
 	 * 使用 URI 变量映射展开给定的 URI 模板。
-	 * @param uriTemplate the URI template
-	 * @param uriVariables variable values
-	 * @return the created URI instance
+	 * @param uriTemplate URI 模板
+	 * @param uriVariables 变量值
+	 * @return 创建的 URI 实例
 	 */
 	URI expand(String uriTemplate, Map<String, ?> uriVariables);
 
 	/**
 	 * 使用 URI 变量数组展开给定的 URI 模板。
-	 * @param uriTemplate the URI template
-	 * @param uriVariables variable values
-	 * @return the created URI instance
+	 * @param uriTemplate URI 模板
+	 * @param uriVariables 变量值
+	 * @return 创建的 URI 实例
 	 */
 	URI expand(String uriTemplate, Object... uriVariables);
 

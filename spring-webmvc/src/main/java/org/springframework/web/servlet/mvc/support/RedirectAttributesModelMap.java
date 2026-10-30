@@ -50,7 +50,7 @@ public class RedirectAttributesModelMap extends ModelMap implements RedirectAttr
 
 	/**
 	 * 带 DataBinder 的构造函数。
-	 * @param dataBinder used to format attribute values as Strings
+	 * @param dataBinder 用于将属性值格式化为字符串
 	 */
 	public RedirectAttributesModelMap(@Nullable DataBinder dataBinder) {
 		this.dataBinder = dataBinder;

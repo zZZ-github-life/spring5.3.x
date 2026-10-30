@@ -127,15 +127,15 @@ public class SimpleTaskWorkManager implements WorkManager {
 
 	/**
 	 * 在指定的 TaskExecutor 上执行给定的 Work。
-	 * @param taskExecutor the TaskExecutor to use
-	 * @param work the Work to execute
-	 * @param startTimeout the time duration within which the Work is supposed to start
-	 * @param blockUntilStarted whether to block until the Work has started
-	 * @param executionContext the JCA ExecutionContext for the given Work
-	 * @param workListener the WorkListener to clal for the given Work
-	 * @return the time elapsed from Work acceptance until start of execution
-	 * (or -1 if not applicable or not known)
-	 * @throws WorkException if the TaskExecutor did not accept the Work
+	 * @param taskExecutor 要使用的 TaskExecutor
+	 * @param work 要执行的 Work
+	 * @param startTimeout Work 预期启动的时间期限
+	 * @param blockUntilStarted 是否阻塞直到 Work 已启动
+	 * @param executionContext 给定 Work 的 JCA ExecutionContext
+	 * @param workListener 为给定 Work 调用的 WorkListener
+	 * @return 从接受 Work 到开始执行所经过的时间
+	 * （如果不适用或未知则为 -1）
+	 * @throws WorkException 如果 TaskExecutor 未接受该 Work
 	 */
 	@SuppressWarnings("deprecation")
 	protected long executeWork(TaskExecutor taskExecutor, Work work, long startTimeout, boolean blockUntilStarted,

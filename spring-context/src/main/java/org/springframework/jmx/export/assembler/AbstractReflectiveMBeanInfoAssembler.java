@@ -262,11 +262,11 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	/**
 	 * 遍历 MBean 类上的所有属性，并让子类有机会对访问器和修改器两者的包含进行投票。如果某个访问器或修
 	 * 改器被投票赞成包含，则装配相应的元数据并将其传递给子类以填充描述符。
-	 * @param managedBean the bean instance (might be an AOP proxy)
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
-	 * @return the attribute metadata
-	 * @throws JMException in case of errors
+	 * @param managedBean Bean 实例（可能是 AOP 代理）
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
+	 * @return 属性元数据
+	 * @throws JMException 如果发生错误
 	 * @see #populateAttributeDescriptor
 	 */
 	@Override
@@ -314,10 +314,10 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	/**
 	 * 遍历 MBean 类上的所有方法，并让子类有机会对其包含进行投票。如果某个方法对应于管理接口中包含的某
 	 * 个属性的访问器或修改器，则暴露相应的操作，并将 &quot;role&quot; 描述符字段设置为适当的值。
-	 * @param managedBean the bean instance (might be an AOP proxy)
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
-	 * @return the operation metadata
+	 * @param managedBean Bean 实例（可能是 AOP 代理）
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
+	 * @return 操作元数据
 	 * @see #populateOperationDescriptor
 	 */
 	@Override
@@ -376,12 +376,13 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 
 	/**
 	 * 为给定方法创建 {@code ModelMBeanOperationInfo} 实例。填充该操作的参数信息。
-	 * @param method the {@code Method} to create a {@code ModelMBeanOperationInfo} for
-	 * @param name the logical name for the operation (method name or property name);
-	 * not used by the default implementation but possibly by subclasses
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
-	 * @return the {@code ModelMBeanOperationInfo}
+	 * @param method 要为其创建 {@code ModelMBeanOperationInfo} 的
+	 * {@code Method}
+	 * @param name 操作的逻辑名称（方法名或属性名）；
+	 * 默认实现不使用，但子类可能会使用
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
+	 * @return 该 {@code ModelMBeanOperationInfo}
 	 */
 	protected ModelMBeanOperationInfo createModelMBeanOperationInfo(Method method, String name, String beanKey) {
 		MBeanParameterInfo[] params = getOperationParameters(method, beanKey);
@@ -400,8 +401,8 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	/**
 	 * 返回用于 JMX 描述符字段 "class" 的类。仅在 "exposeClassDescriptor" 属性为 "true" 时应用。
 	 * <p>默认实现对于 JDK 代理返回第一个实现的接口，否则返回目标类。
-	 * @param managedBean the bean instance (might be an AOP proxy)
-	 * @return the class to expose in the descriptor field "class"
+	 * @param managedBean Bean 实例（可能是 AOP 代理）
+	 * @return 要在描述符字段 "class" 中公开的类
 	 * @see #setExposeClassDescriptor
 	 * @see #getClassToExpose(Class)
 	 * @see org.springframework.aop.framework.AopProxyUtils#proxiedUserInterfaces(Object)
@@ -416,40 +417,40 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 
 	/**
 	 * 允许子类对某个属性访问器的包含进行投票。
-	 * @param method the accessor {@code Method}
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
-	 * @return {@code true} if the accessor should be included in the management interface,
-	 * otherwise {@code false}
+	 * @param method 访问器 {@code Method}
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
+	 * @return 如果该访问器应包含在管理接口中则返回 {@code true}，
+	 * 否则返回 {@code false}
 	 */
 	protected abstract boolean includeReadAttribute(Method method, String beanKey);
 
 	/**
 	 * 允许子类对某个属性修改器的包含进行投票。
-	 * @param method the mutator {@code Method}.
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
-	 * @return {@code true} if the mutator should be included in the management interface,
-	 * otherwise {@code false}
+	 * @param method 修改器 {@code Method}。
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
+	 * @return 如果该修改器应包含在管理接口中则返回 {@code true}，
+	 * 否则返回 {@code false}
 	 */
 	protected abstract boolean includeWriteAttribute(Method method, String beanKey);
 
 	/**
 	 * 允许子类对某个操作的包含进行投票。
-	 * @param method the operation method
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
-	 * @return whether the operation should be included in the management interface
+	 * @param method 操作方法
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
+	 * @return 该操作是否应包含在管理接口中
 	 */
 	protected abstract boolean includeOperation(Method method, String beanKey);
 
 	/**
 	 * 获取某个属性的描述。
 	 * <p>默认实现返回该操作的描述，即对应 {@code Method} 的名称。
-	 * @param propertyDescriptor the PropertyDescriptor for the attribute
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
-	 * @return the description for the attribute
+	 * @param propertyDescriptor 该属性的 PropertyDescriptor
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
+	 * @return 该属性的描述
 	 */
 	protected String getAttributeDescription(PropertyDescriptor propertyDescriptor, String beanKey) {
 		return propertyDescriptor.getDisplayName();
@@ -458,10 +459,10 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	/**
 	 * 获取某个操作的描述。
 	 * <p>默认实现返回该操作的描述，即对应 {@code Method} 的名称。
-	 * @param method the operation method
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
-	 * @return the description for the operation
+	 * @param method 操作方法
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
+	 * @return 该操作的描述
 	 */
 	protected String getOperationDescription(Method method, String beanKey) {
 		return method.getName();
@@ -470,10 +471,10 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	/**
 	 * 为给定方法创建参数信息。
 	 * <p>默认实现返回空的 {@code MBeanParameterInfo} 数组。
-	 * @param method the {@code Method} to get the parameter information for
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
-	 * @return the {@code MBeanParameterInfo} array
+	 * @param method 要获取参数信息的 {@code Method}
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
+	 * @return {@code MBeanParameterInfo} 数组
 	 */
 	protected MBeanParameterInfo[] getOperationParameters(Method method, String beanKey) {
 		ParameterNameDiscoverer paramNameDiscoverer = getParameterNameDiscoverer();
@@ -495,10 +496,10 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	 * 允许子类为 MBean 的 {@code Descriptor} 添加额外字段。
 	 * <p>默认实现将 {@code currencyTimeLimit} 字段设置为指定的 "defaultCurrencyTimeLimit"（如果有；默
 	 * 认没有）。
-	 * @param descriptor the {@code Descriptor} for the MBean resource.
-	 * @param managedBean the bean instance (might be an AOP proxy)
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
+	 * @param descriptor MBean 资源的 {@code Descriptor}。
+	 * @param managedBean Bean 实例（可能是 AOP 代理）
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
 	 * @see #setDefaultCurrencyTimeLimit(Integer)
 	 * @see #applyDefaultCurrencyTimeLimit(javax.management.Descriptor)
 	 */
@@ -511,11 +512,11 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	 * 允许子类为某个属性的 {@code Descriptor} 添加额外字段。
 	 * <p>默认实现将 {@code currencyTimeLimit} 字段设置为指定的 "defaultCurrencyTimeLimit"（如果有；默
 	 * 认没有）。
-	 * @param desc the attribute descriptor
-	 * @param getter the accessor method for the attribute
-	 * @param setter the mutator method for the attribute
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
+	 * @param desc 属性描述符
+	 * @param getter 该属性的访问器方法
+	 * @param setter 该属性的修改器方法
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
 	 * @see #setDefaultCurrencyTimeLimit(Integer)
 	 * @see #applyDefaultCurrencyTimeLimit(javax.management.Descriptor)
 	 */
@@ -529,10 +530,10 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	 * 允许子类为某个操作的 {@code Descriptor} 添加额外字段。
 	 * <p>默认实现将 {@code currencyTimeLimit} 字段设置为指定的 "defaultCurrencyTimeLimit"（如果有；默
 	 * 认没有）。
-	 * @param desc the operation descriptor
-	 * @param method the method corresponding to the operation
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
+	 * @param desc 操作描述符
+	 * @param method 与该操作相对应的方法
+	 * @param beanKey MBean 在 {@code MBeanExporter} 的 beans 映射中
+	 * 关联的键
 	 * @see #setDefaultCurrencyTimeLimit(Integer)
 	 * @see #applyDefaultCurrencyTimeLimit(javax.management.Descriptor)
 	 */
@@ -542,7 +543,7 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 
 	/**
 	 * 将 {@code currencyTimeLimit} 字段设置为指定的 "defaultCurrencyTimeLimit"（如果有；默认没有）。
-	 * @param desc the JMX attribute or operation descriptor
+	 * @param desc JMX 属性或操作描述符
 	 * @see #setDefaultCurrencyTimeLimit(Integer)
 	 */
 	protected final void applyDefaultCurrencyTimeLimit(Descriptor desc) {
@@ -556,8 +557,8 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	 * <p>默认实现将 {@code >0} 的值原样设置（作为缓存秒数），将 {@code 0} 的值转换为
 	 * {@code Integer.MAX_VALUE}（“始终缓存”），并在值为 {@code <0} 时设置 "defaultCurrencyTimeLimit"
 	 * （如果有，表示“从不缓存”）。这遵循 JMX 1.2 规范的建议。
-	 * @param desc the JMX attribute or operation descriptor
-	 * @param currencyTimeLimit the "currencyTimeLimit" value to apply
+	 * @param desc JMX 属性或操作描述符
+	 * @param currencyTimeLimit 要应用的 "currencyTimeLimit" 值
 	 * @see #setDefaultCurrencyTimeLimit(Integer)
 	 * @see #applyDefaultCurrencyTimeLimit(javax.management.Descriptor)
 	 */

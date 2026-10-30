@@ -25,7 +25,7 @@ import reactor.core.publisher.Flux;
  * {@code ExchangeResult} 变体。
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <T> the type of elements in the response body
+ * @param <T> 响应体中元素的类型
  * @see EntityExchangeResult
  */
 public class FluxExchangeResult<T> extends ExchangeResult {
@@ -80,7 +80,7 @@ public class FluxExchangeResult<T> extends ExchangeResult {
 	 * .returnResult()
 	 * .consumeWith(result -&gt; assertThat(...);
 	 * </pre>
-	 * @param consumer the consumer for {@code "this"} instance
+	 * @param consumer 用于 {@code "this"} 实例的消费者
 	 */
 	public void consumeWith(Consumer<FluxExchangeResult<T>> consumer) {
 		assertWithDiagnostics(() -> consumer.accept(this));

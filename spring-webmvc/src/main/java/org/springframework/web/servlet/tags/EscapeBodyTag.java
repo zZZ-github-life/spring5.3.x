@@ -121,8 +121,8 @@ public class EscapeBodyTag extends HtmlEscapingAwareTag implements BodyTag {
 
 	/**
 	 * 从页面读取未转义的正文内容。
-	 * @return the original content
-	 * @throws IOException if reading failed
+	 * @return 原始内容
+	 * @throws IOException 如果读取失败
 	 */
 	protected String readBodyContent() throws IOException {
 		Assert.state(this.bodyContent != null, "No BodyContent set");
@@ -132,8 +132,8 @@ public class EscapeBodyTag extends HtmlEscapingAwareTag implements BodyTag {
 	/**
 	 * 将转义后的正文内容写入页面。
 	 * <p>可在子类中重写，例如用于测试目的。
-	 * @param content the content to write
-	 * @throws IOException if writing failed
+	 * @param content 要写入的内容
+	 * @throws IOException 如果写入失败
 	 */
 	protected void writeBodyContent(String content) throws IOException {
 		Assert.state(this.bodyContent != null, "No BodyContent set");

@@ -29,7 +29,7 @@ public class SqlReturnUpdateCount extends SqlParameter {
 
 	/**
 	 * 创建新的SqlReturnUpdateCount。
-	 * @param name the name of the parameter, as used in input and output maps
+	 * @param name 参数名称，用于输入和输出 Map 中
 	 */
 	public SqlReturnUpdateCount(String name) {
 		super(name, Types.INTEGER);

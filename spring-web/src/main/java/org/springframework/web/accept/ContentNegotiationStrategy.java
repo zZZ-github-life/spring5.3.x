@@ -43,11 +43,9 @@ public interface ContentNegotiationStrategy {
 	/**
 	 * 将给定请求解析为媒体类型列表。返回的列表首先按特异性排序，
 	 * 其次按质量参数排序。
-	 * @param webRequest the current request
-	 * @return the requested media types, or {@link #MEDIA_TYPE_ALL_LIST} if none
-	 * were requested.
-	 * @throws HttpMediaTypeNotAcceptableException if the requested media
-	 * types cannot be parsed
+	 * @param webRequest 当前请求
+	 * @return 请求的媒体类型；如果未请求任何类型，则为 {@link #MEDIA_TYPE_ALL_LIST}。
+	 * @throws HttpMediaTypeNotAcceptableException 如果请求的媒体类型无法解析
 	 */
 	List<MediaType> resolveMediaTypes(NativeWebRequest webRequest)
 			throws HttpMediaTypeNotAcceptableException;

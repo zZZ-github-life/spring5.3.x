@@ -42,8 +42,9 @@ public interface BindMarkers {
 	 * 创建一个接受 {@code hint} 的新的 {@link BindMarker}。
 	 * 允许实现考虑、忽略或过滤名称提示，
 	 * 以创建更具表现力的绑定标记。
-	 * @param hint an optional name hint that can be used as part of the bind marker
-	 * @return a new {@link BindMarker}
+	 * @param hint 可选名称提示，可作为绑定标记的
+	 * 一部分使用
+	 * @return 新的 {@link BindMarker}
 	 */
 	default BindMarker next(String hint) {
 		return next();

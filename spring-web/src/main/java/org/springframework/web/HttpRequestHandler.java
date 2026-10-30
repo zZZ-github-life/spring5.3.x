@@ -74,10 +74,10 @@ public interface HttpRequestHandler {
 
 	/**
 	 * 处理给定的请求，生成响应。
-	 * @param request current HTTP request
-	 * @param response current HTTP response
-	 * @throws ServletException in case of general errors
-	 * @throws IOException in case of I/O errors
+	 * @param request 当前 HTTP 请求
+	 * @param response 当前 HTTP 响应
+	 * @throws ServletException 发生一般错误时
+	 * @throws IOException 发生 I/O 错误时
 	 */
 	void handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException;

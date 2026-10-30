@@ -36,7 +36,7 @@ import org.springframework.lang.Nullable;
  * @author Thierry Templier
  * @author Juergen Hoeller
  * @since 1.2
- * @param <T> the result type
+ * @param <T> 结果类型
  * @see CciTemplate#execute(InteractionCallback)
  * @see CciTemplate#execute(javax.resource.cci.InteractionSpec, javax.resource.cci.Record)
  * @see CciTemplate#execute(javax.resource.cci.InteractionSpec, RecordCreator, RecordExtractor)
@@ -57,15 +57,15 @@ public interface InteractionCallback<T> {
 	 * <p>允许返回在回调中创建的结果对象，即领域对象或领域对象的集合。
 	 * 注意对单步操作有特殊支持：参见 {@code CciTemplate.execute} 的各种变体。
 	 * 抛出的 RuntimeException 被视为应用程序异常：它会传播到模板的调用者。
-	 * @param interaction active CCI Interaction
-	 * @param connectionFactory the CCI ConnectionFactory that the Connection was
-	 * created with (gives access to RecordFactory and ResourceAdapterMetaData)
-	 * @return a result object, or {@code null} if none
-	 * @throws ResourceException if thrown by a CCI method, to be auto-converted
-	 * to a DataAccessException
-	 * @throws SQLException if thrown by a ResultSet method, to be auto-converted
-	 * to a DataAccessException
-	 * @throws DataAccessException in case of custom exceptions
+	 * @param interaction 活动的 CCI Interaction
+	 * @param connectionFactory 创建该 Connection 所用的 CCI ConnectionFactory
+	 * （提供对 RecordFactory 和 ResourceAdapterMetaData 的访问）
+	 * @return 结果对象；如果没有则为 {@code null}
+	 * @throws ResourceException 如果由 CCI 方法抛出，
+	 * 将自动转换为 DataAccessException
+	 * @throws SQLException 如果由 ResultSet 方法抛出，
+	 * 将自动转换为 DataAccessException
+	 * @throws DataAccessException 在出现自定义异常的情况下
 	 * @see javax.resource.cci.ConnectionFactory#getRecordFactory()
 	 * @see javax.resource.cci.ConnectionFactory#getMetaData()
 	 * @see CciTemplate#execute(javax.resource.cci.InteractionSpec, RecordCreator, RecordExtractor)

@@ -40,7 +40,7 @@ import org.springframework.web.socket.WebSocketSession;
  *
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <T> the native session type
+ * @param <T> 原生会话类型
  */
 public abstract class AbstractWebSocketSession<T> implements NativeWebSocketSession {
 
@@ -57,8 +57,8 @@ public abstract class AbstractWebSocketSession<T> implements NativeWebSocketSess
 
 	/**
 	 * 创建一个新实例并将给定的属性与其关联。
-	 * @param attributes the attributes from the HTTP handshake to associate with the WebSocket
-	 * session; the provided attributes are copied, the original map is not used.
+	 * @param attributes 要与 WebSocket 会话关联的、来自 HTTP 握手的属性；
+	 * 提供的属性会被复制，不使用原始 Map。
 	 */
 	public AbstractWebSocketSession(@Nullable Map<String, Object> attributes) {
 		if (attributes != null) {

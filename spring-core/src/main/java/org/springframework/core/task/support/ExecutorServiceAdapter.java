@@ -47,7 +47,7 @@ public class ExecutorServiceAdapter extends AbstractExecutorService {
 
 	/**
 	 * 使用给定的目标执行器创建一个新的 ExecutorServiceAdapter。
-	 * @param taskExecutor the target executor to delegate to
+	 * @param taskExecutor 要委托的目标执行器
 	 */
 	public ExecutorServiceAdapter(TaskExecutor taskExecutor) {
 		Assert.notNull(taskExecutor, "TaskExecutor must not be null");

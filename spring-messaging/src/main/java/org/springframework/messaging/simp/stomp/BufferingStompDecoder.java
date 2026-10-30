@@ -57,8 +57,8 @@ public class BufferingStompDecoder {
 
 	/**
 	 * 创建一个包装给定 {@code StompDecoder} 的新 {@code BufferingStompDecoder}。
-	 * @param stompDecoder the target decoder to wrap
-	 * @param bufferSizeLimit the buffer size limit
+	 * @param stompDecoder 要包装的目标解码器
+	 * @param bufferSizeLimit 缓冲区大小限制
 	 */
 	public BufferingStompDecoder(StompDecoder stompDecoder, int bufferSizeLimit) {
 		Assert.notNull(stompDecoder, "StompDecoder is required");
@@ -91,9 +91,9 @@ public class BufferingStompDecoder {
 	 * <p>如果没有足够的数据解析 "content-length"，或者不存在 "content-length" 头，
 	 * 则后续每次 decode 调用都会尝试使用所有可用数据再次解析。
 	 * 因此，"content-length" 头的存在有助于优化大消息的解码。
-	 * @param newBuffer a buffer containing new data to decode
-	 * @return decoded messages or an empty list
-	 * @throws StompConversionException raised in case of decoding issues
+	 * @param newBuffer 包含待解码新数据的缓冲区
+	 * @return 解码后的消息或空列表
+	 * @throws StompConversionException 在解码出现问题时抛出
 	 */
 	public List<Message<byte[]>> decode(ByteBuffer newBuffer) {
 		this.chunks.add(newBuffer);

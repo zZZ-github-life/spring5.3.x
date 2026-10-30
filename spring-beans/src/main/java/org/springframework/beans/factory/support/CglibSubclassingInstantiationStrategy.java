@@ -101,11 +101,10 @@ public class CglibSubclassingInstantiationStrategy extends SimpleInstantiationSt
 
 		/**
 		 * 创建动态生成的子类的新实例，该子类实现所需的查找。
-		 * @param ctor constructor to use. If this is {@code null}, use the
-		 * no-arg constructor (no parameterization, or Setter Injection)
-		 * @param args arguments to use for the constructor.
-		 * Ignored if the {@code ctor} parameter is {@code null}.
-		 * @return new instance of the dynamically generated subclass
+		 * @param ctor 要使用的构造器。如果为 {@code null}，则使用无参构造器
+		 * （不进行参数化，或使用 Setter 注入）
+		 * @param args 用于构造器的参数。如果 {@code ctor} 参数为 {@code null}，则忽略。
+		 * @return 动态生成的子类的新实例
 		 */
 		public Object instantiate(@Nullable Constructor<?> ctor, Object... args) {
 			Class<?> subclass = createEnhancedSubclass(this.beanDefinition);

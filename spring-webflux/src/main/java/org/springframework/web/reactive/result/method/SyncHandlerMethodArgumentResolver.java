@@ -43,10 +43,10 @@ public interface SyncHandlerMethodArgumentResolver extends HandlerMethodArgument
 
 	/**
 	 * 同步解析方法参数的值。
-	 * @param parameter the method parameter
-	 * @param bindingContext the binding context to use
-	 * @param exchange the current exchange
-	 * @return the resolved value, if any
+	 * @param parameter 方法参数
+	 * @param bindingContext 要使用的绑定上下文
+	 * @param exchange 当前交换
+	 * @return 解析出的值（如果有）
 	 */
 	@Nullable
 	Object resolveArgumentValue(

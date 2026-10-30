@@ -30,8 +30,8 @@ public interface HttpRequest extends HttpMessage {
 
 	/**
 	 * 返回请求的 HTTP 方法。
-	 * @return the HTTP method as an HttpMethod enum value, or {@code null}
-	 * if not resolvable (e.g. in case of a non-standard HTTP method)
+	 * @return 以 HttpMethod 枚举值表示的 HTTP 方法；
+	 * 如果无法解析（例如非标准 HTTP 方法）则为 {@code null}
 	 * @see #getMethodValue()
 	 * @see HttpMethod#resolve(String)
 	 */
@@ -42,7 +42,7 @@ public interface HttpRequest extends HttpMessage {
 
 	/**
 	 * 以字符串值的形式返回请求的 HTTP 方法。
-	 * @return the HTTP method as a plain String
+	 * @return 以普通 String 表示的 HTTP 方法
 	 * @since 5.0
 	 * @see #getMethod()
 	 */
@@ -50,7 +50,7 @@ public interface HttpRequest extends HttpMessage {
 
 	/**
 	 * 返回请求的 URI（如果存在查询字符串也会包含在内，但前提是它符合 URI 表示形式的规范）。
-	 * @return the URI of the request (never {@code null})
+	 * @return 请求的 URI（永不为 {@code null}）
 	 */
 	URI getURI();
 

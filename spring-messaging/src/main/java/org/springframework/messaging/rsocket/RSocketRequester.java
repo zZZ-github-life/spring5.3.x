@@ -88,20 +88,20 @@ public interface RSocketRequester extends Disposable {
 	 * <p>如果连接设置为使用复合元数据，则路由编码为
 	 * {@code "message/x.rsocket.routing.v0"}。否则，路由按照连接的
 	 * mime 类型进行编码。
-	 * @param route the route expressing a remote handler mapping
-	 * @param routeVars variables to be expanded into the route template
-	 * @return a spec for further defining and executing the request
+	 * @param route 表示远程处理器映射的路由
+	 * @param routeVars 要展开到路由模板中的变量
+	 * @return 用于进一步定义和执行该请求的 spec
 	 */
 	RequestSpec route(String route, Object... routeVars);
 
 	/**
 	 * 开始指定一个带有给定元数据值的新请求，该值可以是具体值，也可以是任何
 	 * 可通过 {@link ReactiveAdapterRegistry} 适配为 {@link Publisher} 的单值生产者。
-	 * @param metadata the metadata value to encode
-	 * @param mimeType the mime type that describes the metadata;
-	 * This is required for connection using composite metadata. Otherwise, the
-	 * value is encoded according to the mime type for the connection and this
-	 * argument may be left as {@code null}.
+	 * @param metadata 要编码的元数据值
+	 * @param mimeType 描述该元数据的 MIME 类型；
+	 * 使用复合元数据（composite metadata）的连接必须提供该参数。
+	 * 否则，值将按连接的 MIME 类型编码，
+	 * 该参数可保留为 {@code null}。
 	 */
 	RequestSpec metadata(Object metadata, @Nullable MimeType mimeType);
 
@@ -194,7 +194,7 @@ public interface RSocketRequester extends Disposable {
 		 * <p>这有助于更改默认设置，同时仍允许通过
 		 * {@link #rsocketStrategies(Consumer)} 进行进一步自定义。
 		 * 如果未设置，则从 {@link RSocketStrategies#builder()} 获取默认值。
-		 * @param strategies the strategies to use
+		 * @param strategies 要使用的策略
 		 */
 		RSocketRequester.Builder rsocketStrategies(@Nullable RSocketStrategies strategies);
 
@@ -229,7 +229,7 @@ public interface RSocketRequester extends Disposable {
 		/**
 		 * 通过 {@code Consumer} 配置此构建器。这使 Spring Security 等库能够
 		 * 提供应用一组相关自定义配置的快捷方式。
-		 * @param configurer the configurer to apply
+		 * @param configurer 要应用的配置器
 		 */
 		RSocketRequester.Builder apply(Consumer<RSocketRequester.Builder> configurer);
 
@@ -238,9 +238,9 @@ public interface RSocketRequester extends Disposable {
 		 * {@link io.rsocket.core.RSocketClient} 构建一个 {@link RSocketRequester}。
 		 * 该请求者可用于并发发出请求。请求通过共享连接发出，并且在后续请求时
 		 * 会按需重新建立该连接。
-		 * @param host the host to connect to
-		 * @param port the port to connect to
-		 * @return the created {@code RSocketRequester}
+		 * @param host 要连接的主机
+		 * @param port 要连接的端口
+		 * @return 创建的 {@code RSocketRequester}
 		 * @since 5.3
 		 */
 		RSocketRequester tcp(String host, int port);
@@ -250,8 +250,8 @@ public interface RSocketRequester extends Disposable {
 		 * {@link io.rsocket.core.RSocketClient} 构建一个 {@link RSocketRequester}。
 		 * 该请求者可用于并发发出请求。请求通过共享连接发出，并且在后续请求时
 		 * 会按需重新建立该连接。
-		 * @param uri the URL to connect to
-		 * @return the created {@code RSocketRequester}
+		 * @param uri 要连接的 URL
+		 * @return 创建的 {@code RSocketRequester}
 		 * @since 5.3
 		 */
 		RSocketRequester websocket(URI uri);
@@ -259,8 +259,8 @@ public interface RSocketRequester extends Disposable {
 		/**
 		 * {@link #tcp(String, int)} 和 {@link #websocket(URI)} 的变体，
 		 * 使用已初始化的 {@link ClientTransport}。
-		 * @param transport the transport to connect with
-		 * @return the created {@code RSocketRequester}
+		 * @param transport 用于连接的传输层
+		 * @return 创建的 {@code RSocketRequester}
 		 * @since 5.3
 		 */
 		RSocketRequester transport(ClientTransport transport);
@@ -269,12 +269,10 @@ public interface RSocketRequester extends Disposable {
 		 * 使用 {@link io.rsocket.loadbalance.LoadbalanceRSocketClient} 构建一个
 		 * {@link RSocketRequester}，该客户端会连接到通过给定
 		 * {@link io.rsocket.loadbalance.LoadbalanceRSocketClient} 选出的多个目标之一。
-		 * @param targetPublisher a {@code Publisher} that supplies a list of
-		 * target transports to loadbalance against; the given list may be
-		 * periodically updated by the {@code Publisher}.
-		 * @param loadbalanceStrategy the strategy to use for selecting from
-		 * the list of loadbalance targets.
-		 * @return the created {@code RSocketRequester}
+		 * @param targetPublisher 提供一组用于负载均衡的目标传输层的 {@code Publisher}；
+		 * 给定的列表可能由该 {@code Publisher} 定期更新。
+		 * @param loadbalanceStrategy 从负载均衡目标列表中进行选择所使用的策略。
+		 * @return 创建的 {@code RSocketRequester}
 		 * @since 5.3
 		 */
 		RSocketRequester transports(
@@ -283,9 +281,9 @@ public interface RSocketRequester extends Disposable {
 
 		/**
 		 * 通过 TCP 连接到服务器。
-		 * @param host the server host
-		 * @param port the server port
-		 * @return an {@code RSocketRequester} for the connection
+		 * @param host 服务器主机
+		 * @param port 服务器端口
+		 * @return 用于该连接的 {@code RSocketRequester}
 		 * @see TcpClientTransport
 		 * @deprecated as of 5.3 in favor of {@link #tcp(String, int)}
 		 */
@@ -294,8 +292,8 @@ public interface RSocketRequester extends Disposable {
 
 		/**
 		 * 通过 WebSocket 连接到服务器。
-		 * @param uri the RSocket server endpoint URI
-		 * @return an {@code RSocketRequester} for the connection
+		 * @param uri RSocket 服务器端点 URI
+		 * @return 用于该连接的 {@code RSocketRequester}
 		 * @see WebsocketClientTransport
 		 * @deprecated as of 5.3 in favor of {@link #websocket(URI)}
 		 */
@@ -304,8 +302,8 @@ public interface RSocketRequester extends Disposable {
 
 		/**
 		 * 使用给定的 {@code ClientTransport} 连接到服务器。
-		 * @param transport the client transport to use
-		 * @return an {@code RSocketRequester} for the connection
+		 * @param transport 要使用的客户端传输层
+		 * @return 用于该连接的 {@code RSocketRequester}
 		 * @deprecated as of 5.3 in favor of {@link #transport(ClientTransport)}
 		 */
 		@Deprecated
@@ -321,8 +319,8 @@ public interface RSocketRequester extends Disposable {
 		/**
 		 * 通过 {@code Consumer} 追加额外的元数据条目。
 		 * 这使 Spring Security 等库能够提供应用一组自定义配置的快捷方式。
-		 * @param configurer the configurer to apply
-		 * @throws IllegalArgumentException if not using composite metadata.
+		 * @param configurer 要应用的配置器
+		 * @throws IllegalArgumentException 如果未使用复合元数据。
 		 */
 		RequestSpec metadata(Consumer<MetadataSpec<?>> configurer);
 
@@ -340,30 +338,28 @@ public interface RSocketRequester extends Disposable {
 		 * <li>任何其他可通过 {@link ReactiveAdapterRegistry} 适配为
 		 * {@link Publisher} 的值生产者
 		 * </ul>
-		 * @param data the Object value for the payload data
-		 * @return spec to declare the expected response
+		 * @param data 负载数据的 Object 值
+		 * @return 用于声明预期响应的 spec
 		 */
 		RetrieveSpec data(Object data);
 
 		/**
 		 * {@link #data(Object)} 的变体，还接受关于将要产生的值类型的提示。
 		 * 该类型提示用于一次性预先查找兼容的 {@code Encoder}，而不是为每个值查找。
-		 * @param producer the source of payload data value(s). This must be a
-		 * {@link Publisher} or another producer adaptable to a
-		 * {@code Publisher} via {@link ReactiveAdapterRegistry}
-		 * @param elementClass the type of values to be produced
-		 * @return spec to declare the expected response
+		 * @param producer 负载数据值的来源。必须是 {@link Publisher}，
+		 * 或可通过 {@link ReactiveAdapterRegistry} 适配为 {@code Publisher} 的其他生产者
+		 * @param elementClass 要产生的值的类型
+		 * @return 用于声明预期响应的 spec
 		 */
 		RetrieveSpec data(Object producer, Class<?> elementClass);
 
 		/**
 		 * {@link #data(Object, Class)} 的变体，适用于类型提示必须包含泛型的情况。
 		 * 请参阅 {@link ParameterizedTypeReference}。
-		 * @param producer the source of payload data value(s). This must be a
-		 * {@link Publisher} or another producer adaptable to a
-		 * {@code Publisher} via {@link ReactiveAdapterRegistry}
-		 * @param elementTypeRef the type of values to be produced
-		 * @return spec to declare the expected response
+		 * @param producer 负载数据值的来源。必须是 {@link Publisher}，
+		 * 或可通过 {@link ReactiveAdapterRegistry} 适配为 {@code Publisher} 的其他生产者
+		 * @param elementTypeRef 要产生的值的类型
+		 * @return 用于声明预期响应的 spec
 		 */
 		RetrieveSpec data(Object producer, ParameterizedTypeReference<?> elementTypeRef);
 	}
@@ -372,7 +368,7 @@ public interface RSocketRequester extends Disposable {
 	/**
 	 * 用于提供额外复合元数据条目的规范。
 	 *
-	 * @param <S> a self reference to the spec type
+	 * @param <S> 对 spec 类型的自引用
 	 */
 	interface MetadataSpec<S extends MetadataSpec<S>> {
 
@@ -382,10 +378,9 @@ public interface RSocketRequester extends Disposable {
 		 * {@link IllegalArgumentException}。
 		 * 元数据值可以是具体值，也可以是任何可通过
 		 * {@link ReactiveAdapterRegistry} 适配为 {@link Publisher} 的单值生产者。
-		 * @param metadata an Object to be encoded with a suitable
-		 * {@link org.springframework.core.codec.Encoder Encoder}, or a
-		 * {@link org.springframework.core.io.buffer.DataBuffer DataBuffer}
-		 * @param mimeType the mime type that describes the metadata
+		 * @param metadata 要用合适的 {@link org.springframework.core.codec.Encoder Encoder} 编码的 Object，
+		 * 或一个 {@link org.springframework.core.io.buffer.DataBuffer DataBuffer}
+		 * @param mimeType 描述该元数据的 MIME 类型
 		 */
 		S metadata(Object metadata, MimeType mimeType);
 	}
@@ -399,10 +394,8 @@ public interface RSocketRequester extends Disposable {
 
 		/**
 		 * 执行 {@link RSocket#fireAndForget fireAndForget}，发送提供的数据和元数据。
-		 * @return a completion that indicates if the payload was sent
-		 * successfully or not. Note, however that is a one-way send and there
-		 * is no indication of whether or how the even was handled on the
-		 * remote end.
+		 * @return 指示负载是否成功发送的完成信号。但请注意，这是单向发送，
+		 * 无法得知对端是否处理了该事件，也无法得知处理方式。
 		 */
 		Mono<Void> send();
 
@@ -412,9 +405,9 @@ public interface RSocketRequester extends Disposable {
 		 * 被消费后完成。
 		 * <p><strong>注意：</strong>如果请求负载是多值 {@link Publisher}，
 		 * 此方法会抛出错误，因为 RSocket 没有多对一的交互方式。
-		 * @param dataType the expected data type for the response
-		 * @param <T> parameter for the expected data type
-		 * @return the decoded response
+		 * @param dataType 响应的预期数据类型
+		 * @param <T> 预期数据类型的类型参数
+		 * @return 解码后的响应
 		 */
 		<T> Mono<T> retrieveMono(Class<T> dataType);
 
@@ -430,9 +423,9 @@ public interface RSocketRequester extends Disposable {
 		 * {@link RSocket#requestChannel requestChannel} 交换。
 		 * <p>如果返回类型是 {@code Flux<Void>}，则 {@code Flux} 将在所有数据
 		 * 被消费后完成。
-		 * @param dataType the expected type for values in the response
-		 * @param <T> parameterize the expected type of values
-		 * @return the decoded response
+		 * @param dataType 响应中值的预期类型
+		 * @param <T> 将值的预期类型参数化
+		 * @return 解码后的响应
 		 */
 		<T> Flux<T> retrieveFlux(Class<T> dataType);
 

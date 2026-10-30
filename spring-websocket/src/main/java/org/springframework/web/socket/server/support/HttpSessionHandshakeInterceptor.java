@@ -71,7 +71,7 @@ public class HttpSessionHandshakeInterceptor implements HandshakeInterceptor {
 
 	/**
 	 * 用于复制特定 HTTP 会话属性及 HTTP 会话 ID 的构造函数。
-	 * @param attributeNames session attributes to copy
+	 * @param attributeNames 要复制的会话属性
 	 * @see #setCopyAllAttributes
 	 * @see #setCopyHttpSessionId
 	 */
@@ -93,7 +93,7 @@ public class HttpSessionHandshakeInterceptor implements HandshakeInterceptor {
 	 * 则忽略任何显式配置的属性名称。
 	 * <p>默认情况下，此值根据所使用的构造函数（分别为默认构造函数或带属性名称的构造函数）
 	 * 设置为 "true" 或 "false"。
-	 * @param copyAllAttributes whether to copy all attributes
+	 * @param copyAllAttributes 是否复制所有属性
 	 */
 	public void setCopyAllAttributes(boolean copyAllAttributes) {
 		this.copyAllAttributes = copyAllAttributes;
@@ -110,7 +110,7 @@ public class HttpSessionHandshakeInterceptor implements HandshakeInterceptor {
 	 * 是否应将 HTTP 会话 ID 复制到握手属性中
 	 * 键 {@link #HTTP_SESSION_ID_ATTR_NAME} 下。
 	 * <p>默认情况下为 "true"。
-	 * @param copyHttpSessionId whether to copy the HTTP session id.
+	 * @param copyHttpSessionId 是否复制 HTTP 会话 ID。
 	 */
 	public void setCopyHttpSessionId(boolean copyHttpSessionId) {
 		this.copyHttpSessionId = copyHttpSessionId;

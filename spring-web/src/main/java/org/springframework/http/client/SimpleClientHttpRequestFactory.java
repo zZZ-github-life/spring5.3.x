@@ -124,7 +124,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	 * 如果禁用输出流式传输，则底层连接的
 	 * {@link HttpURLConnection#setFixedLengthStreamingMode} 和
 	 * {@link HttpURLConnection#setChunkedStreamingMode} 方法将永远不会被调用。
-	 * @param outputStreaming if output streaming is enabled
+	 * @param outputStreaming 是否启用输出流式传输
 	 */
 	public void setOutputStreaming(boolean outputStreaming) {
 		this.outputStreaming = outputStreaming;
@@ -133,7 +133,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	/**
 	 * 设置此请求工厂的任务执行器。要为
 	 * {@linkplain #createAsyncRequest(URI, HttpMethod) 创建异步请求}，必须设置此属性。
-	 * @param taskExecutor the task executor
+	 * @param taskExecutor 任务执行器
 	 */
 	public void setTaskExecutor(AsyncListenableTaskExecutor taskExecutor) {
 		this.taskExecutor = taskExecutor;
@@ -178,10 +178,10 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	 * 打开并返回到给定 URL 的连接。
 	 * <p>默认实现使用给定的 {@linkplain #setProxy(java.net.Proxy) 代理}
 	 * （如果有）来打开连接。
-	 * @param url the URL to open a connection to
-	 * @param proxy the proxy to use, may be {@code null}
-	 * @return the opened connection
-	 * @throws IOException in case of I/O errors
+	 * @param url 要打开连接的 URL
+	 * @param proxy 要使用的代理，可以为 {@code null}
+	 * @return 已打开的连接
+	 * @throws IOException 如果发生 I/O 错误
 	 */
 	protected HttpURLConnection openConnection(URL url, @Nullable Proxy proxy) throws IOException {
 		URLConnection urlConnection = (proxy != null ? url.openConnection(proxy) : url.openConnection());
@@ -196,9 +196,9 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	 * 用于准备给定 {@link HttpURLConnection} 的模板方法。
 	 * <p>默认实现为输入和输出准备连接，并设置 HTTP 方法。
 	 *
-	 * @param connection the connection to prepare
-	 * @param httpMethod the HTTP request method ({@code GET}, {@code POST}, etc.)
-	 * @throws IOException in case of I/O errors
+	 * @param connection 要准备的连接
+	 * @param httpMethod HTTP 请求方法（{@code GET}、{@code POST} 等）
+	 * @throws IOException 如果发生 I/O 错误
 	 */
 	protected void prepareConnection(HttpURLConnection connection, String httpMethod) throws IOException {
 		if (this.connectTimeout >= 0) {

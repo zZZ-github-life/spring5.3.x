@@ -32,7 +32,7 @@ public class NotAnAtAspectException extends AopConfigException {
 
 	/**
 	 * 为给定的类创建一个新的 NotAnAtAspectException。
-	 * @param nonAspectClass the offending class
+	 * @param nonAspectClass 有问题的类
 	 */
 	public NotAnAtAspectException(Class<?> nonAspectClass) {
 		super(nonAspectClass.getName() + " is not an @AspectJ aspect");

@@ -40,8 +40,8 @@ public class EmbeddedValueResolutionSupport implements EmbeddedValueResolverAwar
 
 	/**
 	 * 通过此实例的 {@link StringValueResolver} 解析给定的嵌入式值。
-	 * @param value the value to resolve
-	 * @return the resolved value, or always the original value if no resolver is available
+	 * @param value 要解析的值
+	 * @return 解析后的值；如果没有可用的解析器，则始终为原始值
 	 * @see #setEmbeddedValueResolver
 	 */
 	@Nullable

@@ -89,7 +89,7 @@ public class JstlView extends InternalResourceView {
 
 	/**
 	 * 使用给定 URL 创建一个新的 JstlView。
-	 * @param url the URL to forward to
+	 * @param url 要转发到的 URL
 	 */
 	public JstlView(String url) {
 		super(url);
@@ -97,10 +97,10 @@ public class JstlView extends InternalResourceView {
 
 	/**
 	 * 使用给定 URL 创建一个新的 JstlView。
-	 * @param url the URL to forward to
-	 * @param messageSource the MessageSource to expose to JSTL tags
-	 * (will be wrapped with a JSTL-aware MessageSource that is aware of JSTL's
-	 * {@code javax.servlet.jsp.jstl.fmt.localizationContext} context-param)
+	 * @param url 要转发到的 URL
+	 * @param messageSource 要暴露给 JSTL 标签的 MessageSource
+	 * （将被包装为感知 JSTL 的 MessageSource，它能识别 JSTL 的
+	 * {@code javax.servlet.jsp.jstl.fmt.localizationContext} context-param）
 	 * @see JstlUtils#getJstlAwareMessageSource
 	 */
 	public JstlView(String url, MessageSource messageSource) {

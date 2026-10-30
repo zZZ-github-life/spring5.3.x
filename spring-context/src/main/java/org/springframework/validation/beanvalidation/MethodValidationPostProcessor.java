@@ -68,7 +68,7 @@ public class MethodValidationPostProcessor extends AbstractBeanFactoryAwareAdvis
 	 * 设置 'validated' 注解类型。默认的 validated 注解类型是 {@link Validated} 注解。
 	 * <p>此 setter 属性之所以存在，是为了让开发者可以提供自己的（非 Spring 特有的）注解类型，用以表明
 	 * 某个类应按照应用方法校验的方式接受校验。
-	 * @param validatedAnnotationType the desired annotation type
+	 * @param validatedAnnotationType 期望的注解类型。
 	 */
 	public void setValidatedAnnotationType(Class<? extends Annotation> validatedAnnotationType) {
 		Assert.notNull(validatedAnnotationType, "'validatedAnnotationType' must not be null");
@@ -110,9 +110,9 @@ public class MethodValidationPostProcessor extends AbstractBeanFactoryAwareAdvis
 
 	/**
 	 * 创建用于方法校验目的的 AOP 通知，以便通过针对指定 'validated' 注解的切点来应用。
-	 * @param validator the JSR-303 Validator to delegate to
-	 * @return the interceptor to use (typically, but not necessarily,
-	 * a {@link MethodValidationInterceptor} or subclass thereof)
+	 * @param validator 要委托给的 JSR-303 Validator。
+	 * @return 要使用的拦截器（通常但不一定是
+	 * 一个 {@link MethodValidationInterceptor} 或其子类）。
 	 * @since 4.2
 	 */
 	protected Advice createMethodValidationAdvice(@Nullable Validator validator) {

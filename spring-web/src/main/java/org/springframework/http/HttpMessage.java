@@ -26,7 +26,7 @@ public interface HttpMessage {
 
 	/**
 	 * 返回此消息的头。
-	 * @return a corresponding HttpHeaders object (never {@code null})
+	 * @return 对应的 HttpHeaders 对象（永不为 {@code null}）
 	 */
 	HttpHeaders getHeaders();
 

@@ -24,7 +24,7 @@ import org.springframework.messaging.Message;
  *
  * @author Rossen Stoyanchev
  * @since 4.2
- * @param <P> the message payload type
+ * @param <P> 消息负载类型
  */
 public interface SubProtocolErrorHandler<P> {
 
@@ -34,11 +34,11 @@ public interface SubProtocolErrorHandler<P> {
 	 * <p>请注意，STOMP 协议要求服务器在发送 ERROR 帧后关闭连接。
 	 * 要阻止发送 ERROR 帧，处理器可以返回 {@code null}，
 	 * 并改为通过代理发送通知消息，例如通过用户目标。
-	 * @param clientMessage the client message related to the error, possibly
-	 * {@code null} if error occurred while parsing a WebSocket message
-	 * @param ex the cause for the error, never {@code null}
-	 * @return the error message to send to the client, or {@code null} in which
-	 * case no message will be sent.
+	 * @param clientMessage 与该错误相关的客户端消息；
+	 * 如果错误发生在解析 WebSocket 消息时，可能为 {@code null}
+	 * @param ex 错误的原因，永不为 {@code null}
+	 * @return 要发送给客户端的错误消息；
+	 * 如果为 {@code null}，则不会发送任何消息。
 	 */
 	@Nullable
 	Message<P> handleClientMessageProcessingError(@Nullable Message<P> clientMessage, Throwable ex);
@@ -48,9 +48,9 @@ public interface SubProtocolErrorHandler<P> {
 	 * 发送了错误消息等原因，导致
 	 * {@link org.springframework.messaging.simp.stomp.StompBrokerRelayMessageHandler
 	 * “代理中继”}产生的错误等。
-	 * @param errorMessage the error message, never {@code null}
-	 * @return the error message to send to the client, or {@code null} in which
-	 * case no message will be sent.
+	 * @param errorMessage 错误消息，永不为 {@code null}
+	 * @return 要发送给客户端的错误消息；
+	 * 如果为 {@code null}，则不会发送任何消息。
 	 */
 	@Nullable
 	Message<P> handleErrorMessageToClient(Message<P> errorMessage);

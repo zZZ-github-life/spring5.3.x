@@ -40,8 +40,8 @@ public class MapBindingResult extends AbstractBindingResult implements Serializa
 
 	/**
 	 * 创建一个新的 MapBindingResult 实例。
-	 * @param target the target Map to bind onto
-	 * @param objectName the name of the target object
+	 * @param target 要绑定到的目标 Map。
+	 * @param objectName 目标对象的名称。
 	 */
 	public MapBindingResult(Map<?, ?> target, String objectName) {
 		super(objectName);

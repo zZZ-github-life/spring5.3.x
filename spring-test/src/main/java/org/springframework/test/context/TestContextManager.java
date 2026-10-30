@@ -79,7 +79,7 @@ public class TestContextManager {
 	/**
 	 * 为提供的{@linkplain Class 测试类}构造一个新的 {@code TestContextManager}。
 	 * <p>使用为该测试类配置的 {@link TestContextBootstrapper} 委托给 {@link #TestContextManager(TestContextBootstrapper)}。如果测试类上直接或作为元注解存在 {@link BootstrapWith @BootstrapWith} 注解，则使用其 {@link BootstrapWith#value value} 作为引导器类型；否则使用 {@link org.springframework.test.context.support.DefaultTestContextBootstrapper DefaultTestContextBootstrapper}。
-	 * @param testClass the test class to be managed
+	 * @param testClass 要管理的测试类
 	 * @see #TestContextManager(TestContextBootstrapper)
 	 */
 	public TestContextManager(Class<?> testClass) {
@@ -89,7 +89,7 @@ public class TestContextManager {
 	/**
 	 * 使用提供的 {@link TestContextBootstrapper} 构造一个新的 {@code TestContextManager}，并{@linkplain #registerTestExecutionListeners 注册}所需的 {@link TestExecutionListener TestExecutionListeners}。
 	 * <p>由提供的 {@code TestContextBootstrapper} 负责构建 {@code TestContext} 并获取 {@code TestExecutionListeners}。
-	 * @param testContextBootstrapper the bootstrapper to use
+	 * @param testContextBootstrapper 要使用的引导器
 	 * @see TestContextBootstrapper#buildTestContext
 	 * @see TestContextBootstrapper#getTestExecutionListeners
 	 * @see #registerTestExecutionListeners
@@ -146,8 +146,7 @@ public class TestContextManager {
 	/**
 	 * 用于在类中任何测试执行<em>之前</em>预处理测试类的钩子。应在任何特定于框架的<em>before class 方法</em>（例如使用 JUnit 4 的 {@link org.junit.BeforeClass @BeforeClass} 注解的方法）之前调用。
 	 * <p>将尝试让每个已注册的 {@link TestExecutionListener} 有机会预处理测试类的执行。但是，如果某个监听器抛出异常，则其余已注册的监听器将<strong>不会</strong>被调用。
-	 * @throws Exception if a registered TestExecutionListener throws an
-	 * exception
+	 * @throws Exception 如果已注册的 TestExecutionListener 抛出异常
 	 * @since 3.0
 	 * @see #getTestExecutionListeners()
 	 */
@@ -174,8 +173,8 @@ public class TestContextManager {
 	 * <p>此方法应在测试类实例化之后立即调用，或尽可能在实例化之后尽快调用（{@link org.springframework.test.context.junit4.rules.SpringMethodRule SpringMethodRule} 就是如此）。无论如何，此方法必须在任何特定于框架的生命周期回调之前调用。
 	 * <p>受管理的 {@link TestContext} 将使用提供的 {@code testInstance} 进行更新。
 	 * <p>将尝试让每个已注册的 {@link TestExecutionListener} 有机会准备测试实例。但是，如果某个监听器抛出异常，则其余已注册的监听器将<strong>不会</strong>被调用。
-	 * @param testInstance the test instance to prepare (never {@code null})
-	 * @throws Exception if a registered TestExecutionListener throws an exception
+	 * @param testInstance 要准备的测试实例（永不为 {@code null}）
+	 * @throws Exception 如果已注册的 TestExecutionListener 抛出异常
 	 * @see #getTestExecutionListeners()
 	 */
 	public void prepareTestInstance(Object testInstance) throws Exception {
@@ -203,10 +202,9 @@ public class TestContextManager {
 	 * <p>此方法<strong>必须</strong>在特定于框架的 <em>before</em> 生命周期回调（例如使用 JUnit 4 的 {@link org.junit.Before @Before} 注解的方法）之前立即调用。由于历史原因，此方法被命名为 {@code beforeTestMethod}。自引入 {@link #beforeTestExecution} 以来，此方法更合适的名称也许是 {@code beforeTestSetUp} 或 {@code beforeEach}；然而，出于向后兼容性方面的顾虑，遗憾的是无法重命名此方法。
 	 * <p>受管理的 {@link TestContext} 将使用提供的 {@code testInstance} 和 {@code testMethod} 进行更新。
 	 * <p>将尝试让每个已注册的 {@link TestExecutionListener} 有机会执行其预处理。但是，如果某个监听器抛出异常，则其余已注册的监听器将<strong>不会</strong>被调用。
-	 * @param testInstance the current test instance (never {@code null})
-	 * @param testMethod the test method which is about to be executed on the
-	 * test instance
-	 * @throws Exception if a registered TestExecutionListener throws an exception
+	 * @param testInstance 当前测试实例（永不为 {@code null}）
+	 * @param testMethod 即将在该测试实例上执行的测试方法
+	 * @throws Exception 如果已注册的 TestExecutionListener 抛出异常
 	 * @see #afterTestMethod
 	 * @see #beforeTestExecution
 	 * @see #afterTestExecution
@@ -231,10 +229,9 @@ public class TestContextManager {
 	 * <p>此方法<strong>必须</strong>在特定于框架的 <em>before</em> 生命周期回调（例如使用 JUnit 4 的 {@link org.junit.Before @Before} 注解的方法）之后调用。
 	 * <p>受管理的 {@link TestContext} 将使用提供的 {@code testInstance} 和 {@code testMethod} 进行更新。
 	 * <p>将尝试让每个已注册的 {@link TestExecutionListener} 有机会执行其预处理。但是，如果某个监听器抛出异常，则其余已注册的监听器将<strong>不会</strong>被调用。
-	 * @param testInstance the current test instance (never {@code null})
-	 * @param testMethod the test method which is about to be executed on the
-	 * test instance
-	 * @throws Exception if a registered TestExecutionListener throws an exception
+	 * @param testInstance 当前测试实例（永不为 {@code null}）
+	 * @param testMethod 即将在该测试实例上执行的测试方法
+	 * @throws Exception 如果已注册的 TestExecutionListener 抛出异常
 	 * @since 5.0
 	 * @see #beforeTestMethod
 	 * @see #afterTestMethod
@@ -262,13 +259,11 @@ public class TestContextManager {
 	 * <p>受管理的 {@link TestContext} 将使用提供的 {@code testInstance}、{@code testMethod} 和 {@code exception} 进行更新。
 	 * <p>每个已注册的 {@link TestExecutionListener} 都将有机会执行其后处理。如果某个监听器抛出异常，其余已注册的监听器仍将被调用。在所有监听器执行完毕后，将重新抛出第一个捕获的异常，并将后续异常{@linkplain Throwable#addSuppressed 抑制}到第一个异常中。
 	 * <p>请注意，已注册的监听器将按其注册顺序的相反顺序执行。
-	 * @param testInstance the current test instance (never {@code null})
-	 * @param testMethod the test method which has just been executed on the
-	 * test instance
-	 * @param exception the exception that was thrown during execution of the
-	 * test method or by a TestExecutionListener, or {@code null} if none
-	 * was thrown
-	 * @throws Exception if a registered TestExecutionListener throws an exception
+	 * @param testInstance 当前测试实例（永不为 {@code null}）
+	 * @param testMethod 刚在该测试实例上执行的测试方法
+	 * @param exception 在测试方法执行期间或由 TestExecutionListener
+	 * 抛出的异常，如果未抛出则为 {@code null}
+	 * @throws Exception 如果已注册的 TestExecutionListener 抛出异常
 	 * @since 5.0
 	 * @see #beforeTestMethod
 	 * @see #afterTestMethod
@@ -311,12 +306,11 @@ public class TestContextManager {
 	 * <p>受管理的 {@link TestContext} 将使用提供的 {@code testInstance}、{@code testMethod} 和 {@code exception} 进行更新。
 	 * <p>每个已注册的 {@link TestExecutionListener} 都将有机会执行其后处理。如果某个监听器抛出异常，其余已注册的监听器仍将被调用。在所有监听器执行完毕后，将重新抛出第一个捕获的异常，并将后续异常{@linkplain Throwable#addSuppressed 抑制}到第一个异常中。
 	 * <p>请注意，已注册的监听器将按其注册顺序的相反顺序执行。
-	 * @param testInstance the current test instance (never {@code null})
-	 * @param testMethod the test method which has just been executed on the
-	 * test instance
-	 * @param exception the exception that was thrown during execution of the test
-	 * method or by a TestExecutionListener, or {@code null} if none was thrown
-	 * @throws Exception if a registered TestExecutionListener throws an exception
+	 * @param testInstance 当前测试实例（永不为 {@code null}）
+	 * @param testMethod 刚在该测试实例上执行的测试方法
+	 * @param exception 在测试方法执行期间或由 TestExecutionListener
+	 * 抛出的异常，如果未抛出则为 {@code null}
+	 * @throws Exception 如果已注册的 TestExecutionListener 抛出异常
 	 * @see #beforeTestMethod
 	 * @see #beforeTestExecution
 	 * @see #afterTestExecution
@@ -356,7 +350,7 @@ public class TestContextManager {
 	 * 用于在类中所有测试执行<em>之后</em>后处理测试类的钩子。应在任何特定于框架的 <em>after class 方法</em>（例如使用 JUnit 4 的 {@link org.junit.AfterClass @AfterClass} 注解的方法）之后调用。
 	 * <p>每个已注册的 {@link TestExecutionListener} 都将有机会执行其后处理。如果某个监听器抛出异常，其余已注册的监听器仍将被调用。在所有监听器执行完毕后，将重新抛出第一个捕获的异常，并将后续异常{@linkplain Throwable#addSuppressed 抑制}到第一个异常中。
 	 * <p>请注意，已注册的监听器将按其注册顺序的相反顺序执行。
-	 * @throws Exception if a registered TestExecutionListener throws an exception
+	 * @throws Exception 如果已注册的 TestExecutionListener 抛出异常
 	 * @since 3.0
 	 * @see #getTestExecutionListeners()
 	 * @see Throwable#addSuppressed(Throwable)

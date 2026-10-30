@@ -81,7 +81,7 @@ public final class DataSize implements Comparable<DataSize>, Serializable {
 
 	/**
 	 * 获取一个表示指定字节数的 {@link DataSize}。
-	 * @param bytes the number of bytes, positive or negative
+	 * @param bytes 字节数，可正可负
 	 * @return a {@link DataSize}
 	 */
 	public static DataSize ofBytes(long bytes) {
@@ -90,7 +90,7 @@ public final class DataSize implements Comparable<DataSize>, Serializable {
 
 	/**
 	 * 获取一个表示指定千字节数的 {@link DataSize}。
-	 * @param kilobytes the number of kilobytes, positive or negative
+	 * @param kilobytes 千字节数，可正可负
 	 * @return a {@link DataSize}
 	 */
 	public static DataSize ofKilobytes(long kilobytes) {
@@ -99,7 +99,7 @@ public final class DataSize implements Comparable<DataSize>, Serializable {
 
 	/**
 	 * 获取一个表示指定兆字节数的 {@link DataSize}。
-	 * @param megabytes the number of megabytes, positive or negative
+	 * @param megabytes 兆字节数，可正可负
 	 * @return a {@link DataSize}
 	 */
 	public static DataSize ofMegabytes(long megabytes) {
@@ -108,7 +108,7 @@ public final class DataSize implements Comparable<DataSize>, Serializable {
 
 	/**
 	 * 获取一个表示指定吉字节数的 {@link DataSize}。
-	 * @param gigabytes the number of gigabytes, positive or negative
+	 * @param gigabytes 吉字节数，可正可负
 	 * @return a {@link DataSize}
 	 */
 	public static DataSize ofGigabytes(long gigabytes) {
@@ -117,7 +117,7 @@ public final class DataSize implements Comparable<DataSize>, Serializable {
 
 	/**
 	 * 获取一个表示指定太字节数的 {@link DataSize}。
-	 * @param terabytes the number of terabytes, positive or negative
+	 * @param terabytes 太字节数，可正可负
 	 * @return a {@link DataSize}
 	 */
 	public static DataSize ofTerabytes(long terabytes) {
@@ -126,9 +126,9 @@ public final class DataSize implements Comparable<DataSize>, Serializable {
 
 	/**
 	 * 获取一个表示指定 {@link DataUnit} 中数量的 {@link DataSize}。
-	 * @param amount the amount of the size, measured in terms of the unit,
-	 * positive or negative
-	 * @return a corresponding {@link DataSize}
+	 * @param amount 以该单位度量的大小数量，
+	 * 可正可负
+	 * @return 对应的 {@link DataSize}
 	 */
 	public static DataSize of(long amount, DataUnit unit) {
 		Assert.notNull(unit, "Unit must not be null");
@@ -145,8 +145,8 @@ public final class DataSize implements Comparable<DataSize>, Serializable {
 	 * "5MB"  -- parses as "5 megabytes"
 	 * "20"   -- parses as "20 bytes"
 	 * </pre>
-	 * @param text the text to parse
-	 * @return the parsed {@link DataSize}
+	 * @param text 要解析的文本
+	 * @return 解析得到的 {@link DataSize}
 	 * @see #parse(CharSequence, DataUnit)
 	 */
 	public static DataSize parse(CharSequence text) {
@@ -165,8 +165,8 @@ public final class DataSize implements Comparable<DataSize>, Serializable {
 	 * "5MB"  -- parses as "5 megabytes"
 	 * "20"   -- parses as "20 kilobytes" (where the {@code defaultUnit} is {@link DataUnit#KILOBYTES})
 	 * </pre>
-	 * @param text the text to parse
-	 * @return the parsed {@link DataSize}
+	 * @param text 要解析的文本
+	 * @return 解析得到的 {@link DataSize}
 	 */
 	public static DataSize parse(CharSequence text, @Nullable DataUnit defaultUnit) {
 		Assert.notNull(text, "Text must not be null");
@@ -184,7 +184,7 @@ public final class DataSize implements Comparable<DataSize>, Serializable {
 
 	/**
 	 * 检查此大小是否为负数，不包括零。
-	 * @return true if this size has a size less than zero bytes
+	 * @return 如果该大小小于零字节则返回 true。
 	 */
 	public boolean isNegative() {
 		return this.bytes < 0;
@@ -192,7 +192,7 @@ public final class DataSize implements Comparable<DataSize>, Serializable {
 
 	/**
 	 * 返回此实例中的字节数。
-	 * @return the number of bytes
+	 * @return 字节数
 	 */
 	public long toBytes() {
 		return this.bytes;
@@ -200,7 +200,7 @@ public final class DataSize implements Comparable<DataSize>, Serializable {
 
 	/**
 	 * 返回此实例中的千字节数。
-	 * @return the number of kilobytes
+	 * @return 千字节数
 	 */
 	public long toKilobytes() {
 		return this.bytes / BYTES_PER_KB;
@@ -208,7 +208,7 @@ public final class DataSize implements Comparable<DataSize>, Serializable {
 
 	/**
 	 * 返回此实例中的兆字节数。
-	 * @return the number of megabytes
+	 * @return 兆字节数
 	 */
 	public long toMegabytes() {
 		return this.bytes / BYTES_PER_MB;
@@ -216,7 +216,7 @@ public final class DataSize implements Comparable<DataSize>, Serializable {
 
 	/**
 	 * 返回此实例中的吉字节数。
-	 * @return the number of gigabytes
+	 * @return 吉字节数
 	 */
 	public long toGigabytes() {
 		return this.bytes / BYTES_PER_GB;
@@ -224,7 +224,7 @@ public final class DataSize implements Comparable<DataSize>, Serializable {
 
 	/**
 	 * 返回此实例中的太字节数。
-	 * @return the number of terabytes
+	 * @return 太字节数
 	 */
 	public long toTerabytes() {
 		return this.bytes / BYTES_PER_TB;

@@ -78,10 +78,9 @@ public abstract class AbstractAdvisorAutoProxyCreator extends AbstractAutoProxyC
 
 	/**
 	 * 查找所有有资格为此类进行自动代理的 Advisor。
-	 * @param beanClass the clazz to find advisors for
-	 * @param beanName the name of the currently proxied bean
-	 * @return the empty List, not {@code null},
-	 * if there are no pointcuts or interceptors
+	 * @param beanClass 要为其查找通知器的类
+	 * @param beanName 当前被代理的 Bean 的名称
+	 * @return 如果没有切点或拦截器，则返回空 List，而不是 {@code null}
 	 * @see #findCandidateAdvisors
 	 * @see #sortAdvisors
 	 * @see #extendAdvisors
@@ -98,7 +97,7 @@ public abstract class AbstractAdvisorAutoProxyCreator extends AbstractAutoProxyC
 
 	/**
 	 * 查找所有可用于自动代理的候选 Advisor。
-	 * @return the List of candidate Advisors
+	 * @return 候选 Advisor 的 List
 	 */
 	protected List<Advisor> findCandidateAdvisors() {
 		Assert.state(this.advisorRetrievalHelper != null, "No BeanFactoryAdvisorRetrievalHelper available");
@@ -107,10 +106,10 @@ public abstract class AbstractAdvisorAutoProxyCreator extends AbstractAutoProxyC
 
 	/**
 	 * 搜索给定的候选 Advisor，找出所有可应用于指定 Bean 的 Advisor。
-	 * @param candidateAdvisors the candidate Advisors
-	 * @param beanClass the target's bean class
-	 * @param beanName the target's bean name
-	 * @return the List of applicable Advisors
+	 * @param candidateAdvisors 候选 Advisor
+	 * @param beanClass 目标的 Bean 类
+	 * @param beanName 目标的 Bean 名称
+	 * @return 适用的 Advisor 的 List
 	 * @see ProxyCreationContext#getCurrentProxiedBeanName()
 	 */
 	protected List<Advisor> findAdvisorsThatCanApply(
@@ -127,8 +126,8 @@ public abstract class AbstractAdvisorAutoProxyCreator extends AbstractAutoProxyC
 
 	/**
 	 * 返回具有给定名称的 Advisor Bean 是否首先有资格进行代理。
-	 * @param beanName the name of the Advisor bean
-	 * @return whether the bean is eligible
+	 * @param beanName Advisor Bean 的名称
+	 * @return 该 Bean 是否符合条件
 	 */
 	protected boolean isEligibleAdvisorBean(String beanName) {
 		return true;
@@ -136,8 +135,8 @@ public abstract class AbstractAdvisorAutoProxyCreator extends AbstractAutoProxyC
 
 	/**
 	 * 根据顺序对通知器排序。子类可以选择覆盖此方法以自定义排序策略。
-	 * @param advisors the source List of Advisors
-	 * @return the sorted List of Advisors
+	 * @param advisors 源 Advisor 的 List
+	 * @return 排序后的 Advisor 的 List
 	 * @see org.springframework.core.Ordered
 	 * @see org.springframework.core.annotation.Order
 	 * @see org.springframework.core.annotation.AnnotationAwareOrderComparator
@@ -151,8 +150,7 @@ public abstract class AbstractAdvisorAutoProxyCreator extends AbstractAutoProxyC
 	 * 扩展钩子，子类可以覆盖它，以便基于目前获得的有序 Advisor 注册额外的 Advisor。
 	 * <p>默认实现为空。
 	 * <p>通常用于添加 Advisor，以暴露某些后续通知器所需的上下文信息。
-	 * @param candidateAdvisors the Advisors that have already been identified as
-	 * applying to a given bean
+	 * @param candidateAdvisors 已确定应用于给定 Bean 的 Advisor
 	 */
 	protected void extendAdvisors(List<Advisor> candidateAdvisors) {
 	}

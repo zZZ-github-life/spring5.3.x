@@ -29,7 +29,7 @@ import org.springframework.util.Assert;
  * @author Keith Donald
  * @author Juergen Hoeller
  * @since 1.2.2
- * @param <T> the type of objects that may be compared by this comparator
+ * @param <T> 该比较器可以比较的对象类型
  * @deprecated as of Spring Framework 5.0, in favor of the standard JDK 8
  * {@link Comparator#reversed()}
  */
@@ -44,7 +44,7 @@ public class InvertibleComparator<T> implements Comparator<T>, Serializable {
 
 	/**
 	 * 创建一个默认按升序排序的 InvertibleComparator。实际比较时将使用指定的 Comparator。
-	 * @param comparator the comparator to decorate
+	 * @param comparator 要装饰的比较器
 	 */
 	public InvertibleComparator(Comparator<T> comparator) {
 		Assert.notNull(comparator, "Comparator must not be null");
@@ -53,8 +53,8 @@ public class InvertibleComparator<T> implements Comparator<T>, Serializable {
 
 	/**
 	 * 创建一个根据提供的顺序排序的 InvertibleComparator。实际比较时将使用指定的 Comparator。
-	 * @param comparator the comparator to decorate
-	 * @param ascending the sort order: ascending (true) or descending (false)
+	 * @param comparator 要装饰的比较器
+	 * @param ascending 排序顺序：升序（true）或降序（false）
 	 */
 	public InvertibleComparator(Comparator<T> comparator, boolean ascending) {
 		Assert.notNull(comparator, "Comparator must not be null");

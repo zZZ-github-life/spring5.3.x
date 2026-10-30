@@ -28,8 +28,8 @@ public interface VersionPathStrategy {
 
 	/**
 	 * 从请求路径中提取资源版本。
-	 * @param requestPath the request path to check
-	 * @return the version string or {@code null} if none was found
+	 * @param requestPath 要检查的请求路径
+	 * @return 版本字符串；如果未找到，则为 {@code null}
 	 */
 	@Nullable
 	String extractVersion(String requestPath);
@@ -37,17 +37,17 @@ public interface VersionPathStrategy {
 	/**
 	 * 从请求路径中移除版本。假定给定
 	 * 版本是通过 {@link #extractVersion(String)} 提取的。
-	 * @param requestPath the request path of the resource being resolved
-	 * @param version the version obtained from {@link #extractVersion(String)}
-	 * @return the request path with the version removed
+	 * @param requestPath 正在解析的资源的请求路径
+	 * @param version 从 {@link #extractVersion(String)} 获取的版本
+	 * @return 移除版本后的请求路径
 	 */
 	String removeVersion(String requestPath, String version);
 
 	/**
 	 * 向给定请求路径添加版本。
-	 * @param requestPath the requestPath
-	 * @param version the version
-	 * @return the requestPath updated with a version string
+	 * @param requestPath 请求路径
+	 * @param version 版本
+	 * @return 添加版本字符串后的请求路径
 	 */
 	String addVersion(String requestPath, String version);
 

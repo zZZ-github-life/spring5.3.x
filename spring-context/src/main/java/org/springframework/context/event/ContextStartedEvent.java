@@ -31,8 +31,7 @@ public class ContextStartedEvent extends ApplicationContextEvent {
 
 	/**
 	 * 创建一个新的 ContextStartedEvent。
-	 * @param source the {@code ApplicationContext} that has been started
-	 * (must not be {@code null})
+	 * @param source 已启动的 {@code ApplicationContext}（不能为 {@code null}）
 	 */
 	public ContextStartedEvent(ApplicationContext source) {
 		super(source);

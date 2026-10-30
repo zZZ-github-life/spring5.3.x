@@ -38,7 +38,7 @@ public final class TestTransaction {
 
 	/**
 	 * 确定测试管理的事务当前是否<em>活动</em>。
-	 * @return {@code true} if a test-managed transaction is currently active
+	 * @return 如果当前有测试管理的事务处于活动状态，则为 {@code true}
 	 * @see #start()
 	 * @see #end()
 	 */
@@ -53,11 +53,9 @@ public final class TestTransaction {
 
 	/**
 	 * 确定当前测试管理的事务已被{@linkplain #flagForRollback() 标记为回滚}还是被{@linkplain #flagForCommit() 标记为提交}。
-	 * @return {@code true} if the current test-managed transaction is flagged
-	 * to be rolled back; {@code false} if the current test-managed transaction
-	 * is flagged to be committed
-	 * @throws IllegalStateException if a transaction is not active for the
-	 * current test
+	 * @return 如果当前测试管理的事务被标记为回滚，则为 {@code true}；
+	 * 如果当前测试管理的事务被标记为提交，则为 {@code false}
+	 * @throws IllegalStateException 如果当前测试没有活动的事务
 	 * @see #isActive()
 	 * @see #flagForRollback()
 	 * @see #flagForCommit()
@@ -69,7 +67,7 @@ public final class TestTransaction {
 	/**
 	 * 将当前测试管理的事务标记为<em>回滚</em>。
 	 * <p>调用此方法<em>不会</em>结束当前事务。相反，该标志的值将用于确定当前测试管理的事务在{@linkplain #end 结束}后应回滚还是提交。
-	 * @throws IllegalStateException if no transaction is active for the current test
+	 * @throws IllegalStateException 如果当前测试没有活动的事务
 	 * @see #isActive()
 	 * @see #isFlaggedForRollback()
 	 * @see #start()
@@ -82,7 +80,7 @@ public final class TestTransaction {
 	/**
 	 * 将当前测试管理的事务标记为<em>提交</em>。
 	 * <p>调用此方法<em>不会</em>结束当前事务。相反，该标志的值将用于确定当前测试管理的事务在{@linkplain #end 结束}后应回滚还是提交。
-	 * @throws IllegalStateException if no transaction is active for the current test
+	 * @throws IllegalStateException 如果当前测试没有活动的事务
 	 * @see #isActive()
 	 * @see #isFlaggedForRollback()
 	 * @see #start()
@@ -95,8 +93,8 @@ public final class TestTransaction {
 	/**
 	 * 启动一个新的测试管理的事务。
 	 * <p>仅在已调用 {@link #end} 或之前未启动任何事务时调用此方法。
-	 * @throws IllegalStateException if the transaction context could not be
-	 * retrieved or if a transaction is already active for the current test
+	 * @throws IllegalStateException 如果无法检索事务上下文，
+	 * 或者当前测试已有活动的事务
 	 * @see #isActive()
 	 * @see #end()
 	 */
@@ -106,8 +104,8 @@ public final class TestTransaction {
 
 	/**
 	 * 根据{@linkplain #isFlaggedForRollback 回滚标志}，立即强制<em>提交</em>或<em>回滚</em>当前测试管理的事务。
-	 * @throws IllegalStateException if the transaction context could not be
-	 * retrieved or if a transaction is not active for the current test
+	 * @throws IllegalStateException 如果无法检索事务上下文，
+	 * 或者当前测试没有活动的事务
 	 * @see #isActive()
 	 * @see #start()
 	 */

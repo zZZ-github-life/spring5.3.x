@@ -129,7 +129,7 @@ public class MessageHeaderAccessor {
 
 	/**
 	 * 接受现有消息头部进行复制的构造函数。
-	 * @param message a message to copy the headers from, or {@code null} if none
+	 * @param message 要从中复制消息头的消息，如果没有则为 {@code null}
 	 */
 	public MessageHeaderAccessor(@Nullable Message<?> message) {
 		this.headers = new MutableMessageHeaders(message != null ? message.getHeaders() : null);
@@ -138,8 +138,8 @@ public class MessageHeaderAccessor {
 
 	/**
 	 * 为给定消息构建“嵌套”访问器。
-	 * @param message the message to build a new accessor for
-	 * @return the nested accessor (typically a specific subclass)
+	 * @param message 要为其构建新访问器的消息
+	 * @return 嵌套的访问器（通常是特定的子类）
 	 */
 	protected MessageHeaderAccessor createAccessor(Message<?> message) {
 		return new MessageHeaderAccessor(message);
@@ -188,7 +188,7 @@ public class MessageHeaderAccessor {
 
 	/**
 	 * 将底层消息头部标记为已修改。
-	 * @param modified typically {@code true}, or {@code false} to reset the flag
+	 * @param modified 通常为 {@code true}，或 {@code false} 以重置该标志
 	 * @since 4.1
 	 */
 	protected void setModified(boolean modified) {
@@ -197,7 +197,7 @@ public class MessageHeaderAccessor {
 
 	/**
 	 * 检查底层消息头部是否已被标记为已修改。
-	 * @return {@code true} if the flag has been set, {@code false} otherwise
+	 * @return 如果已设置该标志则为 {@code true}，否则为 {@code false}
 	 */
 	public boolean isModified() {
 		return this.modified;
@@ -266,8 +266,8 @@ public class MessageHeaderAccessor {
 
 	/**
 	 * 检索具有给定名称的头部值。
-	 * @param headerName the name of the header
-	 * @return the associated value, or {@code null} if none found
+	 * @param headerName 消息头名称
+	 * @return 关联的值，如果未找到则为 {@code null}
 	 */
 	@Nullable
 	public Object getHeader(String headerName) {
@@ -470,8 +470,8 @@ public class MessageHeaderAccessor {
 
 	/**
 	 * 返回用于日志记录目的的简洁消息。
-	 * @param payload the payload that corresponds to the headers.
-	 * @return the message
+	 * @param payload 与消息头对应的负载。
+	 * @return 消息
 	 */
 	public String getShortLogMessage(Object payload) {
 		return "headers=" + this.headers.toString() + getShortPayloadLogMessage(payload);
@@ -479,8 +479,8 @@ public class MessageHeaderAccessor {
 
 	/**
 	 * 返回用于日志记录目的的更详细消息。
-	 * @param payload the payload that corresponds to the headers.
-	 * @return the message
+	 * @param payload 与消息头对应的负载。
+	 * @return 消息
 	 */
 	public String getDetailedLogMessage(@Nullable Object payload) {
 		return "headers=" + this.headers.toString() + getDetailedPayloadLogMessage(payload);
@@ -552,8 +552,8 @@ public class MessageHeaderAccessor {
 	 * 返回用于创建给定 {@code Message} 头部的原始 {@code MessageHeaderAccessor}，
 	 * 如果不可用或其类型与所需类型不匹配，则返回 {@code null}。
 	 * <p>这适用于强烈预期访问器存在（后续会进行断言）或否则将创建访问器的情况。
-	 * @param message the message to get an accessor for
-	 * @return an accessor instance of the specified type, or {@code null} if none
+	 * @param message 要获取访问器的消息
+	 * @return 指定类型的访问器实例，如果没有则为 {@code null}
 	 * @since 5.1.19
 	 */
 	@Nullable
@@ -565,9 +565,9 @@ public class MessageHeaderAccessor {
 	 * 返回用于创建给定 {@code Message} 头部的原始 {@code MessageHeaderAccessor}，
 	 * 如果不可用或其类型与所需类型不匹配，则返回 {@code null}。
 	 * <p>这适用于强烈预期访问器存在（后续会进行断言）或否则将创建访问器的情况。
-	 * @param message the message to get an accessor for
-	 * @param requiredType the required accessor type (or {@code null} for any)
-	 * @return an accessor instance of the specified type, or {@code null} if none
+	 * @param message 要获取访问器的消息
+	 * @param requiredType 所需的访问器类型（或 {@code null} 表示任意类型）
+	 * @return 指定类型的访问器实例，如果没有则为 {@code null}
 	 * @since 4.1
 	 */
 	@Nullable
@@ -579,9 +579,9 @@ public class MessageHeaderAccessor {
 	 * {@link #getAccessor(org.springframework.messaging.Message, Class)} 的变体，
 	 * 使用 {@code MessageHeaders} 实例而不是 {@code Message}。
 	 * <p>这适用于完整消息可能尚未创建的情况。
-	 * @param messageHeaders the message headers to get an accessor for
-	 * @param requiredType the required accessor type (or {@code null} for any)
-	 * @return an accessor instance of the specified type, or {@code null} if none
+	 * @param messageHeaders 要获取访问器的消息头
+	 * @param requiredType 所需的访问器类型（或 {@code null} 表示任意类型）
+	 * @return 指定类型的访问器实例，如果没有则为 {@code null}
 	 * @since 4.1
 	 */
 	@SuppressWarnings("unchecked")
@@ -603,7 +603,7 @@ public class MessageHeaderAccessor {
 	 * 为给定消息返回可变的 {@code MessageHeaderAccessor}，尝试匹配用于创建该消息
 	 * 头部的访问器类型，否则使用 {@code MessageHeaderAccessor} 实例包装该消息。
 	 * <p>这适用于通用代码中需要更新头部、同时为下游处理保留访问器类型的情况。
-	 * @return an accessor of the required type (never {@code null})
+	 * @return 所需类型的访问器（永不为 {@code null}）
 	 * @since 4.1
 	 */
 	public static MessageHeaderAccessor getMutableAccessor(Message<?> message) {

@@ -34,7 +34,7 @@ public interface ScopedObject extends RawTargetAccess {
 	/**
 	 * 返回此作用域对象代理背后的当前目标对象，即其原始形式（与存储在目标作用域中的形式一致）。
 	 * <p>例如，可将原始目标对象传递给无法处理作用域代理对象的持久化提供者。
-	 * @return the current target object behind this scoped object proxy
+	 * @return 该作用域对象代理背后的当前目标对象
 	 */
 	Object getTargetObject();
 

@@ -66,8 +66,8 @@ public class ResourceEditor extends PropertyEditorSupport {
 	/**
 	 * 使用给定的 {@link ResourceLoader} 和 {@link PropertyResolver} 创建 {@link ResourceEditor} 类的新
 	 * 实例。
-	 * @param resourceLoader the {@code ResourceLoader} to use
-	 * @param propertyResolver the {@code PropertyResolver} to use
+	 * @param resourceLoader 要使用的 {@code ResourceLoader}
+	 * @param propertyResolver 要使用的 {@code PropertyResolver}
 	 */
 	public ResourceEditor(ResourceLoader resourceLoader, @Nullable PropertyResolver propertyResolver) {
 		this(resourceLoader, propertyResolver, true);
@@ -75,10 +75,10 @@ public class ResourceEditor extends PropertyEditorSupport {
 
 	/**
 	 * 使用给定的 {@link ResourceLoader} 创建 {@link ResourceEditor} 类的新实例。
-	 * @param resourceLoader the {@code ResourceLoader} to use
-	 * @param propertyResolver the {@code PropertyResolver} to use
-	 * @param ignoreUnresolvablePlaceholders whether to ignore unresolvable placeholders
-	 * if no corresponding property could be found in the given {@code propertyResolver}
+	 * @param resourceLoader 要使用的 {@code ResourceLoader}
+	 * @param propertyResolver 要使用的 {@code PropertyResolver}
+	 * @param ignoreUnresolvablePlaceholders 是否忽略无法解析的占位符，
+	 * 如果在给定的 {@code propertyResolver} 中找不到对应的属性
 	 */
 	public ResourceEditor(ResourceLoader resourceLoader, @Nullable PropertyResolver propertyResolver,
 			boolean ignoreUnresolvablePlaceholders) {
@@ -103,8 +103,8 @@ public class ResourceEditor extends PropertyEditorSupport {
 
 	/**
 	 * 解析给定路径，如有必要，用来自 {@code environment} 的相应属性值替换占位符。
-	 * @param path the original file path
-	 * @return the resolved file path
+	 * @param path 原始文件路径
+	 * @return 解析后的文件路径
 	 * @see PropertyResolver#resolvePlaceholders
 	 * @see PropertyResolver#resolveRequiredPlaceholders
 	 */

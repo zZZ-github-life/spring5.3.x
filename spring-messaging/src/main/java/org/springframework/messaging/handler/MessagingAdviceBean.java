@@ -47,7 +47,7 @@ public interface MessagingAdviceBean extends Ordered {
 
 	/**
 	 * 此 {@link MessagingAdviceBean} 是否适用于给定 Bean 类型。
-	 * @param beanType the type of the bean to check
+	 * @param beanType 要检查的 Bean 类型
 	 */
 	boolean isApplicableToBeanType(Class<?> beanType);
 

@@ -66,10 +66,10 @@ public abstract class AbstractNamedValueArgumentResolver extends HandlerMethodAr
 
 	/**
 	 * 创建新的 {@link AbstractNamedValueArgumentResolver} 实例。
-	 * @param factory a bean factory to use for resolving {@code ${...}} placeholder
-	 * and {@code #{...}} SpEL expressions in default values, or {@code null} if default
-	 * values are not expected to contain expressions
-	 * @param registry for checking reactive type wrappers
+	 * @param factory 用于解析默认值中的 {@code ${...}} 占位符
+	 * 和 {@code #{...}} SpEL 表达式的 Bean 工厂；
+	 * 如果默认值预计不包含表达式则为 {@code null}
+	 * @param registry 用于检查响应式类型包装
 	 */
 	public AbstractNamedValueArgumentResolver(@Nullable ConfigurableBeanFactory factory,
 			ReactiveAdapterRegistry registry) {
@@ -123,8 +123,8 @@ public abstract class AbstractNamedValueArgumentResolver extends HandlerMethodAr
 
 	/**
 	 * 为给定方法参数创建 {@link NamedValueInfo} 对象。实现通常通过 {@link MethodParameter#getParameterAnnotation(Class)} 获取方法注解。
-	 * @param parameter the method parameter
-	 * @return the named value information
+	 * @param parameter 方法参数
+	 * @return 命名值信息
 	 */
 	protected abstract NamedValueInfo createNamedValueInfo(MethodParameter parameter);
 
@@ -163,11 +163,11 @@ public abstract class AbstractNamedValueArgumentResolver extends HandlerMethodAr
 
 	/**
 	 * 将给定的参数类型和值名称解析为参数值。
-	 * @param name the name of the value being resolved
-	 * @param parameter the method parameter to resolve to an argument value
-	 * (pre-nested in case of a {@link java.util.Optional} declaration)
-	 * @param exchange the current exchange
-	 * @return the resolved argument (may be empty {@link Mono})
+	 * @param name 正在解析的值的名称
+	 * @param parameter 要解析为参数值的方法参数
+	 * （在 {@link java.util.Optional} 声明的情况下已预先嵌套）
+	 * @param exchange 当前交换
+	 * @return 解析后的参数（可能为空 {@link Mono}）
 	 */
 	protected abstract Mono<Object> resolveName(String name, MethodParameter parameter, ServerWebExchange exchange);
 
@@ -214,9 +214,9 @@ public abstract class AbstractNamedValueArgumentResolver extends HandlerMethodAr
 
 	/**
 	 * 在需要命名值，但 {@link #resolveName(String, MethodParameter, ServerWebExchange)} 返回 {@code null} 且没有默认值时调用。子类通常在此情况下抛出异常。
-	 * @param name the name for the value
-	 * @param parameter the method parameter
-	 * @param exchange the current exchange
+	 * @param name 值的名称
+	 * @param parameter 方法参数
+	 * @param exchange 当前交换
 	 */
 	@SuppressWarnings("UnusedParameters")
 	protected void handleMissingValue(String name, MethodParameter parameter, ServerWebExchange exchange) {
@@ -225,8 +225,8 @@ public abstract class AbstractNamedValueArgumentResolver extends HandlerMethodAr
 
 	/**
 	 * 在需要命名值，但 {@link #resolveName(String, MethodParameter, ServerWebExchange)} 返回 {@code null} 且没有默认值时调用。子类通常在此情况下抛出异常。
-	 * @param name the name for the value
-	 * @param parameter the method parameter
+	 * @param name 值的名称
+	 * @param parameter 方法参数
 	 */
 	protected void handleMissingValue(String name, MethodParameter parameter) {
 		String typeName = parameter.getNestedParameterType().getSimpleName();
@@ -255,11 +255,11 @@ public abstract class AbstractNamedValueArgumentResolver extends HandlerMethodAr
 
 	/**
 	 * 在值解析后调用。
-	 * @param arg the resolved argument value
-	 * @param name the argument name
-	 * @param parameter the argument parameter type
-	 * @param model the model
-	 * @param exchange the current exchange
+	 * @param arg 解析后的参数值
+	 * @param name 参数名称
+	 * @param parameter 参数的类型
+	 * @param model 模型
+	 * @param exchange 当前交换
 	 */
 	@SuppressWarnings("UnusedParameters")
 	protected void handleResolvedValue(

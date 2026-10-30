@@ -34,7 +34,7 @@ import org.springframework.util.Assert;
  *
  * @author Juergen Hoeller
  * @since 5.3
- * @param <E> the specific {@code ApplicationEvent} subclass to listen to
+ * @param <E> 要监听的具体 {@code ApplicationEvent} 子类
  * @see TransactionalApplicationListener
  * @see TransactionalEventListener
  * @see TransactionalApplicationListenerMethodAdapter
@@ -55,7 +55,7 @@ public class TransactionalApplicationListenerAdapter<E extends ApplicationEvent>
 
 	/**
 	 * 构造一个新的TransactionalApplicationListenerAdapter。
-	 * @param targetListener the actual listener to invoke in the specified transaction phase
+	 * @param targetListener 在指定事务阶段要调用的实际监听器
 	 * @see #setTransactionPhase
 	 * @see TransactionalApplicationListener#forPayload
 	 */

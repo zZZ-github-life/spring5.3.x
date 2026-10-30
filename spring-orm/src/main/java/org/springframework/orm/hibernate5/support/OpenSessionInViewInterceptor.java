@@ -178,8 +178,8 @@ public class OpenSessionInViewInterceptor implements AsyncWebRequestInterceptor 
 	 * 为此拦截器使用的 SessionFactory 打开一个 Session。
 	 * <p>默认实现委托给 {@link SessionFactory#openSession} 方法，
 	 * 并将 {@link Session} 的 flush 模式设置为 "MANUAL"。
-	 * @return the Session to use
-	 * @throws DataAccessResourceFailureException if the Session could not be created
+	 * @return 要使用的 Session
+	 * @throws DataAccessResourceFailureException 如果无法创建 Session
 	 * @see FlushMode#MANUAL
 	 */
 	protected Session openSession() throws DataAccessResourceFailureException {

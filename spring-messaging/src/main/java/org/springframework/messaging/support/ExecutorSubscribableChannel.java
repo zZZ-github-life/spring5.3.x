@@ -53,8 +53,8 @@ public class ExecutorSubscribableChannel extends AbstractSubscribableChannel {
 	/**
 	 * 创建一个新的 {@link ExecutorSubscribableChannel} 实例，
 	 * 消息将通过指定的执行器发送。
-	 * @param executor the executor used to send the message,
-	 * or {@code null} to execute in the callers thread.
+	 * @param executor 用于发送消息的执行器，
+	 * 或 {@code null} 表示在调用者线程中执行。
 	 */
 	public ExecutorSubscribableChannel(@Nullable Executor executor) {
 		this.executor = executor;

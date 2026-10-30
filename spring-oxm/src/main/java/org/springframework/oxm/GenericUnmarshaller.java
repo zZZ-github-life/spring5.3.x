@@ -28,9 +28,8 @@ public interface GenericUnmarshaller extends Unmarshaller {
 
 	/**
 	 * 指示此 unmarshaller 是否能够 unmarshal 所提供泛型类型的实例。
-	 * @param genericType the type that this marshaller is being asked if it can marshal
-	 * @return {@code true} if this marshaller can indeed marshal instances of the supplied type;
-	 * {@code false} otherwise
+	 * @param genericType 询问此 marshaller 是否能编组的类型
+	 * @return 如果此 marshaller 确实能编组所提供类型的实例，则返回 {@code true}；否则返回 {@code false}
 	 */
 	boolean supports(Type genericType);
 

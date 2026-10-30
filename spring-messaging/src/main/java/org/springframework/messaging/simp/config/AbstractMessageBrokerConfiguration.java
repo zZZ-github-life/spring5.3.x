@@ -480,9 +480,9 @@ public abstract class AbstractMessageBrokerConfiguration implements ApplicationC
 
 	/**
 	 * 重写此方法以添加自定义消息转换器。
-	 * @param messageConverters the list to add converters to, initially empty
-	 * @return {@code true} if default message converters should be added to list,
-	 * {@code false} if no more converters should be added
+	 * @param messageConverters 要添加转换器的列表，初始为空
+	 * @return 如果应将默认消息转换器添加到列表则为 {@code true}，
+	 * 如果不应再添加转换器则为 {@code false}
 	 */
 	protected boolean configureMessageConverters(List<MessageConverter> messageConverters) {
 		return true;
@@ -528,7 +528,7 @@ public abstract class AbstractMessageBrokerConfiguration implements ApplicationC
 
 	/**
 	 * 创建提供本地用户访问的用户注册表。
-	 * @param order the order to use as a {@link SmartApplicationListener}.
+	 * @param order 用作 {@link SmartApplicationListener} 的顺序值。
 	 * @since 5.1
 	 */
 	protected abstract SimpUserRegistry createLocalUserRegistry(@Nullable Integer order);

@@ -32,8 +32,8 @@ public interface NamespaceHandlerResolver {
 
 	/**
 	 * 解析命名空间 URI 并返回定位到的 {@link NamespaceHandler} 实现。
-	 * @param namespaceUri the relevant namespace URI
-	 * @return the located {@link NamespaceHandler} (may be {@code null})
+	 * @param namespaceUri 相关的命名空间 URI
+	 * @return 定位到的 {@link NamespaceHandler}（可以为 {@code null}）
 	 */
 	@Nullable
 	NamespaceHandler resolve(String namespaceUri);

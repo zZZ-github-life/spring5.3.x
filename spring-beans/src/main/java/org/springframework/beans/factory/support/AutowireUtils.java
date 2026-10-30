@@ -59,7 +59,7 @@ abstract class AutowireUtils {
 	/**
 	 * 对给定的构造函数排序，优先选择公共构造函数以及参数数量最多的“贪婪”构造函数。结果将包含公共构造函
 	 * 数在前（参数数量递减），然后是非公共构造函数（同样参数数量递减）。
-	 * @param constructors the constructor array to sort
+	 * @param constructors 要排序的构造器数组
 	 */
 	public static void sortConstructors(Constructor<?>[] constructors) {
 		Arrays.sort(constructors, EXECUTABLE_COMPARATOR);
@@ -68,7 +68,7 @@ abstract class AutowireUtils {
 	/**
 	 * 对给定的工厂方法排序，优先选择公共方法以及参数数量最多的“贪婪”方法。结果将包含公共方法在前（参数
 	 * 数量递减），然后是非公共方法（同样参数数量递减）。
-	 * @param factoryMethods the factory method array to sort
+	 * @param factoryMethods 要排序的工厂方法数组
 	 */
 	public static void sortFactoryMethods(Method[] factoryMethods) {
 		Arrays.sort(factoryMethods, EXECUTABLE_COMPARATOR);
@@ -76,8 +76,8 @@ abstract class AutowireUtils {
 
 	/**
 	 * 确定给定的 Bean 属性是否被排除在依赖检查之外。<p>此实现排除由 CGLIB 定义的属性。
-	 * @param pd the PropertyDescriptor of the bean property
-	 * @return whether the bean property is excluded
+	 * @param pd 该 Bean 属性的 PropertyDescriptor
+	 * @return 该 Bean 属性是否被排除
 	 */
 	public static boolean isExcludedFromDependencyCheck(PropertyDescriptor pd) {
 		Method wm = pd.getWriteMethod();
@@ -96,9 +96,9 @@ abstract class AutowireUtils {
 
 	/**
 	 * 返回给定 Bean 属性的 setter 方法是否定义在任何给定接口中。
-	 * @param pd the PropertyDescriptor of the bean property
-	 * @param interfaces the Set of interfaces (Class objects)
-	 * @return whether the setter method is defined by an interface
+	 * @param pd 该 Bean 属性的 PropertyDescriptor
+	 * @param interfaces 接口的 Set（Class 对象）
+	 * @return setter 方法是否由某个接口定义
 	 */
 	public static boolean isSetterDefinedInInterface(PropertyDescriptor pd, Set<Class<?>> interfaces) {
 		Method setter = pd.getWriteMethod();
@@ -115,9 +115,9 @@ abstract class AutowireUtils {
 
 	/**
 	 * 根据给定的必需类型解析给定的自动装配值，例如将 {@link ObjectFactory} 值解析为其实际对象结果。
-	 * @param autowiringValue the value to resolve
-	 * @param requiredType the type to assign the result to
-	 * @return the resolved value
+	 * @param autowiringValue 要解析的值
+	 * @param requiredType 要将结果赋给的类型
+	 * @return 已解析的值
 	 */
 	public static Object resolveAutowiringValue(Object autowiringValue, Class<?> requiredType) {
 		if (autowiringValue instanceof ObjectFactory && !requiredType.isInstance(autowiringValue)) {
@@ -146,12 +146,10 @@ abstract class AutowireUtils {
 	 * <li>{@linkplain Method#getReturnType() 标准返回类型}（如果无法推断目标返回类型，例如由于类型擦除）</li>
 	 * <li>{@code null}（如果给定参数数组的长度小于给定方法的 {@linkplain Method#getGenericParameterTypes() 形式参数列表}长度）</li>
 	 * </ul>
-	 * @param method the method to introspect (never {@code null})
-	 * @param args the arguments that will be supplied to the method when it is
-	 * invoked (never {@code null})
-	 * @param classLoader the ClassLoader to resolve class names against,
-	 * if necessary (never {@code null})
-	 * @return the resolved target return type or the standard method return type
+	 * @param method 要内省的方法（永不为 {@code null}）
+	 * @param args 调用该方法时将提供给它的参数（永不为 {@code null}）
+	 * @param classLoader 必要时用于解析类名的 ClassLoader（永不为 {@code null}）
+	 * @return 已解析的目标返回类型或标准方法返回类型
 	 * @since 3.2.5
 	 */
 	public static Class<?> resolveReturnTypeForFactoryMethod(

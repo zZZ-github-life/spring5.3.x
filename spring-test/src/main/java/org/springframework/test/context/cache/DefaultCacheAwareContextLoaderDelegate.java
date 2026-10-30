@@ -120,7 +120,7 @@ public class DefaultCacheAwareContextLoaderDelegate implements CacheAwareContext
 	/**
 	 * 为提供的合并上下文配置加载 {@code ApplicationContext}。
 	 * <p>同时支持 {@link SmartContextLoader} 和 {@link ContextLoader} SPI。
-	 * @throws Exception if an error occurs while loading the application context
+	 * @throws Exception 如果加载应用上下文时发生错误
 	 */
 	protected ApplicationContext loadContextInternal(MergedContextConfiguration mergedContextConfiguration)
 			throws Exception {

@@ -30,7 +30,7 @@ public class RecoverableDataAccessException extends DataAccessException {
 
 	/**
 	 * RecoverableDataAccessException 的构造方法。
-	 * @param msg the detail message
+	 * @param msg 详细信息
 	 */
 	public RecoverableDataAccessException(String msg) {
 		super(msg);
@@ -38,9 +38,8 @@ public class RecoverableDataAccessException extends DataAccessException {
 
 	/**
 	 * RecoverableDataAccessException 的构造方法。
-	 * @param msg the detail message
-	 * @param cause the root cause (usually from using an underlying
-	 * data access API such as JDBC)
+	 * @param msg 详细信息
+	 * @param cause 根本原因（通常来自使用底层数据访问 API，例如 JDBC）
 	 */
 	public RecoverableDataAccessException(String msg, Throwable cause) {
 		super(msg, cause);

@@ -39,50 +39,46 @@ public interface RequestBodyAdvice {
 
 	/**
 	 * 最先调用，用于确定此拦截器是否适用。
-	 * @param methodParameter the method parameter
-	 * @param targetType the target type, not necessarily the same as the method
-	 * parameter type, e.g. for {@code HttpEntity<String>}.
-	 * @param converterType the selected converter type
-	 * @return whether this interceptor should be invoked or not
+	 * @param methodParameter 方法参数
+	 * @param targetType 目标类型，不一定与方法参数类型相同，例如对于 {@code HttpEntity<String>}。
+	 * @param converterType 选定的转换器类型
+	 * @return 是否应调用该拦截器
 	 */
 	boolean supports(MethodParameter methodParameter, Type targetType,
 			Class<? extends HttpMessageConverter<?>> converterType);
 
 	/**
 	 * 第二个调用，在读取并转换请求体之前。
-	 * @param inputMessage the request
-	 * @param parameter the target method parameter
-	 * @param targetType the target type, not necessarily the same as the method
-	 * parameter type, e.g. for {@code HttpEntity<String>}.
-	 * @param converterType the converter used to deserialize the body
-	 * @return the input request or a new instance (never {@code null})
+	 * @param inputMessage 请求
+	 * @param parameter 目标方法参数
+	 * @param targetType 目标类型，不一定与方法参数类型相同，例如对于 {@code HttpEntity<String>}。
+	 * @param converterType 用于反序列化请求体的转换器
+	 * @return 输入请求或新实例（永不为 {@code null}）
 	 */
 	HttpInputMessage beforeBodyRead(HttpInputMessage inputMessage, MethodParameter parameter,
 			Type targetType, Class<? extends HttpMessageConverter<?>> converterType) throws IOException;
 
 	/**
 	 * 第三个（也是最后一个）调用，在请求体转换为 Object 之后。
-	 * @param body set to the converter Object before the first advice is called
-	 * @param inputMessage the request
-	 * @param parameter the target method parameter
-	 * @param targetType the target type, not necessarily the same as the method
-	 * parameter type, e.g. for {@code HttpEntity<String>}.
-	 * @param converterType the converter used to deserialize the body
-	 * @return the same body or a new instance
+	 * @param body 在调用第一个通知之前设置为转换器产生的对象
+	 * @param inputMessage 请求
+	 * @param parameter 目标方法参数
+	 * @param targetType 目标类型，不一定与方法参数类型相同，例如对于 {@code HttpEntity<String>}。
+	 * @param converterType 用于反序列化请求体的转换器
+	 * @return 相同的请求体或新实例
 	 */
 	Object afterBodyRead(Object body, HttpInputMessage inputMessage, MethodParameter parameter,
 			Type targetType, Class<? extends HttpMessageConverter<?>> converterType);
 
 	/**
 	 * 如果请求体为空，则第二个（也是最后一个）调用。
-	 * @param body usually set to {@code null} before the first advice is called
-	 * @param inputMessage the request
-	 * @param parameter the method parameter
-	 * @param targetType the target type, not necessarily the same as the method
-	 * parameter type, e.g. for {@code HttpEntity<String>}.
-	 * @param converterType the selected converter type
-	 * @return the value to use, or {@code null} which may then raise an
-	 * {@code HttpMessageNotReadableException} if the argument is required
+	 * @param body 通常在调用第一个通知之前设置为 {@code null}
+	 * @param inputMessage 请求
+	 * @param parameter 方法参数
+	 * @param targetType 目标类型，不一定与方法参数类型相同，例如对于 {@code HttpEntity<String>}。
+	 * @param converterType 选定的转换器类型
+	 * @return 要使用的值，或 {@code null}，
+	 * 此时若参数是必需的可能会抛出 {@code HttpMessageNotReadableException}
 	 */
 	@Nullable
 	Object handleEmptyBody(@Nullable Object body, HttpInputMessage inputMessage, MethodParameter parameter,

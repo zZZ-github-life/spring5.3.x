@@ -64,7 +64,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Rossen Stoyanchev
  * @since 5.2
- * @param <T> the type of the Object that contains information mapping information
+ * @param <T> 包含映射信息的对象类型
  */
 public abstract class AbstractMethodMessageHandler<T>
 		implements ReactiveMessageHandler, ApplicationContextAware, InitializingBean, BeanNameAware {
@@ -129,7 +129,7 @@ public abstract class AbstractMethodMessageHandler<T>
 	 * 手动配置要检查是否存在消息处理方法的处理器，这也会禁用通过
 	 * {@link #setHandlerPredicate(Predicate) handlerPredicate} 进行的自动检测。
 	 * 如果你不想禁用自动检测，请先调用此方法，然后再设置处理器谓词。
-	 * @param handlers the handlers to check
+	 * @param handlers 要检查的处理器
 	 */
 	public void setHandlers(List<Object> handlers) {
 		this.handlers = handlers;
@@ -310,7 +310,7 @@ public abstract class AbstractMethodMessageHandler<T>
 	 * 则使用提取的映射信息注册它。
 	 * <p><strong>注意：</strong>此方法为 protected，可由子类调用，
 	 * 但按照 {@link #registerHandlerMethod} 的说明，只应在启动时调用。
-	 * @param handler the handler to check, either an instance of a Spring bean name
+	 * @param handler 要检查的处理器，可以是实例或 Spring Bean 名称
 	 */
 	protected final void detectHandlerMethods(Object handler) {
 		Class<?> handlerType;
@@ -353,9 +353,9 @@ public abstract class AbstractMethodMessageHandler<T>
 
 	/**
 	 * 获取给定方法的映射（如果有）。
-	 * @param method the method to check
-	 * @param handlerType the handler type, possibly a subtype of the method's declaring class
-	 * @return the mapping, or {@code null} if the method is not mapped
+	 * @param method 要检查的方法
+	 * @param handlerType 处理器类型，可能是该方法声明类的子类型
+	 * @return 映射；如果该方法未被映射则返回 {@code null}
 	 */
 	@Nullable
 	protected abstract T getMappingForMethod(Method method, Class<?> handlerType);
@@ -364,11 +364,10 @@ public abstract class AbstractMethodMessageHandler<T>
 	 * 注册处理器方法及其唯一映射。
 	 * <p><strong>注意：</strong>从 5.3 开始，此方法为 public（而不是 protected），
 	 * 既可以在启动时使用，也可以在运行时使用。
-	 * @param handler the bean name of the handler or the handler instance
-	 * @param method the method to register
-	 * @param mapping the mapping conditions associated with the handler method
-	 * @throws IllegalStateException if another method was already registered
-	 * under the same mapping
+	 * @param handler 处理器的 Bean 名称或处理器实例
+	 * @param method 要注册的方法
+	 * @param mapping 与处理器方法关联的映射条件
+	 * @throws IllegalStateException 如果已在同一映射下注册了其他方法
 	 */
 	public final void registerHandlerMethod(Object handler, Method method, T mapping) {
 		Assert.notNull(mapping, "Mapping must not be null");
@@ -413,9 +412,9 @@ public abstract class AbstractMethodMessageHandler<T>
 	 * 更新映射。当使用方法签名来细化映射时（例如根据输入和输出的基数），
 	 * 这可能很有用。
 	 * <p>默认情况下，此方法返回传入的映射。
-	 * @param mapping the mapping to be added
-	 * @param handlerMethod the target handler for the mapping
-	 * @return a new mapping or the same
+	 * @param mapping 要添加的映射
+	 * @param handlerMethod 该映射的目标处理器
+	 * @return 新的映射，或原映射
 	 * @since 5.2.2
 	 */
 	protected T extendMapping(T mapping, HandlerMethod handlerMethod) {
@@ -509,9 +508,9 @@ public abstract class AbstractMethodMessageHandler<T>
 
 	/**
 	 * 检查映射是否匹配当前消息，并返回一个可能包含与当前请求相关条件的新映射。
-	 * @param mapping the mapping to get a match for
-	 * @param message the message being handled
-	 * @return the match or {@code null} if there is no match
+	 * @param mapping 要为其获取匹配项的映射
+	 * @param message 正在处理的消息
+	 * @return 匹配项；如果没有匹配则返回 {@code null}
 	 */
 	@Nullable
 	protected abstract T getMatchingMapping(T mapping, Message<?> message);
@@ -519,15 +518,15 @@ public abstract class AbstractMethodMessageHandler<T>
 	/**
 	 * 返回用于对匹配映射排序的比较器。
 	 * 返回的比较器应将“更好”的匹配排在前面。
-	 * @param message the current Message
-	 * @return the comparator, never {@code null}
+	 * @param message 当前消息
+	 * @return 比较器，永远不会为 {@code null}
 	 */
 	protected abstract Comparator<T> getMappingComparator(Message<?> message);
 
 	/**
 	 * 未找到匹配的处理器时调用。
-	 * @param destination the destination
-	 * @param message the message
+	 * @param destination 目的地
+	 * @param message 消息
 	 */
 	protected void handleNoMatch(@Nullable RouteMatcher.Route destination, Message<?> message) {
 		logger.debug("No handlers for destination '" +
@@ -538,8 +537,8 @@ public abstract class AbstractMethodMessageHandler<T>
 	 * 创建 {@link AbstractExceptionHandlerMethodResolver} 的具体实例，
 	 * 它基于某种条件（例如是否存在 {@code @MessageExceptionHandler}）
 	 * 查找异常处理方法。
-	 * @param beanType the class in which an exception occurred during handling
-	 * @return the resolver to use
+	 * @param beanType 处理期间发生异常的类
+	 * @return 要使用的解析器
 	 */
 	protected abstract AbstractExceptionHandlerMethodResolver createExceptionMethodResolverFor(Class<?> beanType);
 

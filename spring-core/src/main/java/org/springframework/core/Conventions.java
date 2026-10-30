@@ -54,8 +54,8 @@ public final class Conventions {
 	 * {@code com.myapp.UKProduct} 变为 {@code "UKProduct"}<br>
 	 * <p>对于数组，使用数组组件类型的复数形式。对于 {@code Collection}，
 	 * 会尝试“向前查看”以确定组件类型，并返回其复数形式。
-	 * @param value the value to generate a variable name for
-	 * @return the generated variable name
+	 * @param value 要为其生成变量名的值
+	 * @return 生成的变量名
 	 */
 	public static String getVariableName(Object value) {
 		Assert.notNull(value, "Value must not be null");
@@ -90,8 +90,8 @@ public final class Conventions {
 	 * {@code Mono<com.myapp.Product>} 变为 {@code "productMono"}<br>
 	 * {@code Flux<com.myapp.MyProduct>} 变为 {@code "myProductFlux"}<br>
 	 * {@code Observable<com.myapp.MyProduct>} 变为 {@code "myProductObservable"}<br>
-	 * @param parameter the method or constructor parameter
-	 * @return the generated variable name
+	 * @param parameter 方法或构造方法参数
+	 * @return 生成的变量名
 	 */
 	public static String getVariableNameForParameter(MethodParameter parameter) {
 		Assert.notNull(parameter, "MethodParameter must not be null");
@@ -126,8 +126,8 @@ public final class Conventions {
 
 	/**
 	 * 确定给定方法返回类型的常规变量名，并考虑泛型集合类型（如果有）。
-	 * @param method the method to generate a variable name for
-	 * @return the generated variable name
+	 * @param method 要为其生成变量名的方法
+	 * @return 生成的变量名
 	 */
 	public static String getVariableNameForReturnType(Method method) {
 		return getVariableNameForReturnType(method, method.getReturnType(), null);
@@ -137,9 +137,9 @@ public final class Conventions {
 	 * 确定给定方法返回类型的常规变量名，并考虑泛型集合类型（如果有）；
 	 * 如果方法声明不够具体（例如返回类型为 {@code Object} 或未指定类型的集合），
 	 * 则回退使用给定的实际返回值。
-	 * @param method the method to generate a variable name for
-	 * @param value the return value (may be {@code null} if not available)
-	 * @return the generated variable name
+	 * @param method 要为其生成变量名的方法
+	 * @param value 返回值（不可用时可以为 {@code null}）
+	 * @return 生成的变量名
 	 */
 	public static String getVariableNameForReturnType(Method method, @Nullable Object value) {
 		return getVariableNameForReturnType(method, method.getReturnType(), value);
@@ -153,10 +153,10 @@ public final class Conventions {
 	 * {@code Mono<com.myapp.Product>} 变为 {@code "productMono"}<br>
 	 * {@code Flux<com.myapp.MyProduct>} 变为 {@code "myProductFlux"}<br>
 	 * {@code Observable<com.myapp.MyProduct>} 变为 {@code "myProductObservable"}<br>
-	 * @param method the method to generate a variable name for
-	 * @param resolvedType the resolved return type of the method
-	 * @param value the return value (may be {@code null} if not available)
-	 * @return the generated variable name
+	 * @param method 要为其生成变量名的方法
+	 * @param resolvedType 方法解析后的返回类型
+	 * @param value 返回值（不可用时可以为 {@code null}）
+	 * @return 生成的变量名
 	 */
 	public static String getVariableNameForReturnType(Method method, Class<?> resolvedType, @Nullable Object value) {
 		Assert.notNull(method, "Method must not be null");
@@ -251,8 +251,8 @@ public final class Conventions {
 	/**
 	 * 确定用于为包含给定值的变量命名的类。
 	 * <p>将返回给定值的类，但在遇到 JDK 代理时除外；此时它确定该代理所实现的“主要”接口。
-	 * @param value the value to check
-	 * @return the class to use for naming a variable
+	 * @param value 要检查的值
+	 * @return 用于为变量命名的类
 	 */
 	private static Class<?> getClassForValue(Object value) {
 		Class<?> valueClass = value.getClass();

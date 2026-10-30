@@ -28,7 +28,7 @@ public class InvalidIsolationLevelException extends TransactionUsageException {
 
 	/**
 	 * InvalidIsolationLevelException 的构造函数。
-	 * @param msg the detail message
+	 * @param msg 详细信息
 	 */
 	public InvalidIsolationLevelException(String msg) {
 		super(msg);

@@ -29,9 +29,8 @@ public class BeanIsNotAFactoryException extends BeanNotOfRequiredTypeException {
 
 	/**
 	 * 创建一个新的 BeanIsNotAFactoryException。
-	 * @param name the name of the bean requested
-	 * @param actualType the actual type returned, which did not match
-	 * the expected type
+	 * @param name 所请求的 Bean 名称
+	 * @param actualType 返回的实际类型，它与预期类型不匹配
 	 */
 	public BeanIsNotAFactoryException(String name, Class<?> actualType) {
 		super(name, FactoryBean.class, actualType);

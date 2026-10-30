@@ -72,7 +72,7 @@ public class SimpleRemoteStatelessSessionProxyFactoryBean extends SimpleRemoteSl
 	 * 接口是一种最佳实践。
 	 * <p>也可以指定一个匹配的非 RMI 业务接口，即一个镜像 EJB 业务方法但不声明 RemoteExceptions 的接口。
 	 * 在这种情况下，EJB 桩抛出的 RemoteExceptions 会自动转换为 Spring 的通用 RemoteAccessException。
-	 * @param businessInterface the business interface of the EJB
+	 * @param businessInterface 该 EJB 的业务接口
 	 */
 	public void setBusinessInterface(@Nullable Class<?> businessInterface) {
 		this.businessInterface = businessInterface;

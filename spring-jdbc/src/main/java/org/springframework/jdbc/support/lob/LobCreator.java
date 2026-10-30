@@ -62,10 +62,10 @@ public interface LobCreator extends Closeable {
 	 * 使用给定参数索引将给定内容以字节形式设置到给定语句上。
 	 * 可能只是调用 {@code PreparedStatement.setBytes}，
 	 * 也可能为其创建 Blob 实例，具体取决于数据库和驱动。
-	 * @param ps the PreparedStatement to the set the content on
-	 * @param paramIndex the parameter index to use
-	 * @param content the content as byte array, or {@code null} for SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param ps 要为其设置内容的 PreparedStatement
+	 * @param paramIndex 要使用的参数索引
+	 * @param content 以字节数组表示的内容，对于 SQL NULL 为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.PreparedStatement#setBytes
 	 */
 	void setBlobAsBytes(PreparedStatement ps, int paramIndex, @Nullable byte[] content)
@@ -75,10 +75,10 @@ public interface LobCreator extends Closeable {
 	 * 使用给定参数索引将给定内容以二进制流形式设置到给定语句上。
 	 * 可能只是调用 {@code PreparedStatement.setBinaryStream}，
 	 * 也可能为其创建 Blob 实例，具体取决于数据库和驱动。
-	 * @param ps the PreparedStatement to the set the content on
-	 * @param paramIndex the parameter index to use
-	 * @param contentStream the content as binary stream, or {@code null} for SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param ps 要为其设置内容的 PreparedStatement
+	 * @param paramIndex 要使用的参数索引
+	 * @param contentStream 以二进制流表示的内容，对于 SQL NULL 为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.PreparedStatement#setBinaryStream
 	 */
 	void setBlobAsBinaryStream(
@@ -89,10 +89,10 @@ public interface LobCreator extends Closeable {
 	 * 使用给定参数索引将给定内容以 String 形式设置到给定语句上。
 	 * 可能只是调用 {@code PreparedStatement.setString}，
 	 * 也可能为其创建 Clob 实例，具体取决于数据库和驱动。
-	 * @param ps the PreparedStatement to the set the content on
-	 * @param paramIndex the parameter index to use
-	 * @param content the content as String, or {@code null} for SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param ps 要为其设置内容的 PreparedStatement
+	 * @param paramIndex 要使用的参数索引
+	 * @param content 以 String 表示的内容，对于 SQL NULL 为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.PreparedStatement#setBytes
 	 */
 	void setClobAsString(PreparedStatement ps, int paramIndex, @Nullable String content)
@@ -102,10 +102,10 @@ public interface LobCreator extends Closeable {
 	 * 使用给定参数索引将给定内容以 ASCII 流形式设置到给定语句上。
 	 * 可能只是调用 {@code PreparedStatement.setAsciiStream}，
 	 * 也可能为其创建 Clob 实例，具体取决于数据库和驱动。
-	 * @param ps the PreparedStatement to the set the content on
-	 * @param paramIndex the parameter index to use
-	 * @param asciiStream the content as ASCII stream, or {@code null} for SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param ps 要为其设置内容的 PreparedStatement
+	 * @param paramIndex 要使用的参数索引
+	 * @param asciiStream 以 ASCII 流表示的内容，对于 SQL NULL 为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.PreparedStatement#setAsciiStream
 	 */
 	void setClobAsAsciiStream(
@@ -116,10 +116,10 @@ public interface LobCreator extends Closeable {
 	 * 使用给定参数索引将给定内容以字符流形式设置到给定语句上。
 	 * 可能只是调用 {@code PreparedStatement.setCharacterStream}，
 	 * 也可能为其创建 Clob 实例，具体取决于数据库和驱动。
-	 * @param ps the PreparedStatement to the set the content on
-	 * @param paramIndex the parameter index to use
-	 * @param characterStream the content as character stream, or {@code null} for SQL NULL
-	 * @throws SQLException if thrown by JDBC methods
+	 * @param ps 要为其设置内容的 PreparedStatement
+	 * @param paramIndex 要使用的参数索引
+	 * @param characterStream 以字符流表示的内容，对于 SQL NULL 为 {@code null}
+	 * @throws SQLException 如果由 JDBC 方法抛出
 	 * @see java.sql.PreparedStatement#setCharacterStream
 	 */
 	void setClobAsCharacterStream(

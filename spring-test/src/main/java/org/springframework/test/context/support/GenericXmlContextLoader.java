@@ -37,7 +37,7 @@ public class GenericXmlContextLoader extends AbstractGenericContextLoader {
 
 	/**
 	 * 创建一个新的 {@link XmlBeanDefinitionReader}。
-	 * @return a new {@code XmlBeanDefinitionReader}
+	 * @return 新的 {@code XmlBeanDefinitionReader}
 	 */
 	@Override
 	protected BeanDefinitionReader createBeanDefinitionReader(GenericApplicationContext context) {

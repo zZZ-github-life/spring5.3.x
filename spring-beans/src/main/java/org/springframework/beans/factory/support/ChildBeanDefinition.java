@@ -46,7 +46,7 @@ public class ChildBeanDefinition extends AbstractBeanDefinition {
 
 	/**
 	 * 为给定父级创建一个新的 ChildBeanDefinition，将通过其 Bean 属性和配置方法进行配置。
-	 * @param parentName the name of the parent bean
+	 * @param parentName 父 Bean 的名称
 	 * @see #setBeanClass
 	 * @see #setScope
 	 * @see #setConstructorArgumentValues
@@ -59,8 +59,8 @@ public class ChildBeanDefinition extends AbstractBeanDefinition {
 
 	/**
 	 * 为给定父级创建一个新的 ChildBeanDefinition。
-	 * @param parentName the name of the parent bean
-	 * @param pvs the additional property values of the child
+	 * @param parentName 父 Bean 的名称
+	 * @param pvs 子 Bean 的附加属性值
 	 */
 	public ChildBeanDefinition(String parentName, MutablePropertyValues pvs) {
 		super(null, pvs);
@@ -69,9 +69,9 @@ public class ChildBeanDefinition extends AbstractBeanDefinition {
 
 	/**
 	 * 为给定父级创建一个新的 ChildBeanDefinition。
-	 * @param parentName the name of the parent bean
-	 * @param cargs the constructor argument values to apply
-	 * @param pvs the additional property values of the child
+	 * @param parentName 父 Bean 的名称
+	 * @param cargs 要应用的构造器参数值
+	 * @param pvs 子 Bean 的附加属性值
 	 */
 	public ChildBeanDefinition(
 			String parentName, ConstructorArgumentValues cargs, MutablePropertyValues pvs) {
@@ -82,10 +82,10 @@ public class ChildBeanDefinition extends AbstractBeanDefinition {
 
 	/**
 	 * 为给定父级创建一个新的 ChildBeanDefinition，并提供构造参数和属性值。
-	 * @param parentName the name of the parent bean
-	 * @param beanClass the class of the bean to instantiate
-	 * @param cargs the constructor argument values to apply
-	 * @param pvs the property values to apply
+	 * @param parentName 父 Bean 的名称
+	 * @param beanClass 要实例化的 Bean 的类
+	 * @param cargs 要应用的构造器参数值
+	 * @param pvs 要应用的属性值
 	 */
 	public ChildBeanDefinition(
 			String parentName, Class<?> beanClass, ConstructorArgumentValues cargs, MutablePropertyValues pvs) {
@@ -98,10 +98,10 @@ public class ChildBeanDefinition extends AbstractBeanDefinition {
 	/**
 	 * 为给定父级创建一个新的 ChildBeanDefinition，并提供构造参数和属性值。接收 Bean 类名以避免 Bean 类
 	 * 的急切加载。
-	 * @param parentName the name of the parent bean
-	 * @param beanClassName the name of the class to instantiate
-	 * @param cargs the constructor argument values to apply
-	 * @param pvs the property values to apply
+	 * @param parentName 父 Bean 的名称
+	 * @param beanClassName 要实例化的类的名称
+	 * @param cargs 要应用的构造器参数值
+	 * @param pvs 要应用的属性值
 	 */
 	public ChildBeanDefinition(
 			String parentName, String beanClassName, ConstructorArgumentValues cargs, MutablePropertyValues pvs) {
@@ -113,7 +113,7 @@ public class ChildBeanDefinition extends AbstractBeanDefinition {
 
 	/**
 	 * 创建给定 Bean 定义的深拷贝，作为新的 ChildBeanDefinition。
-	 * @param original the original bean definition to copy from
+	 * @param original 要从中复制的原始 Bean 定义
 	 */
 	public ChildBeanDefinition(ChildBeanDefinition original) {
 		super(original);

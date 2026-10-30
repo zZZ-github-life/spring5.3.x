@@ -50,7 +50,7 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	/**
 	 * 为给定的 R2DBC {@link Connection} 创建一个新的 ConnectionHolder，
 	 * 假定当前没有正在进行的事务。
-	 * @param connection the R2DBC {@link Connection} to hold
+	 * @param connection 要持有的 R2DBC {@link Connection}
 	 * @see #ConnectionHolder(Connection, boolean)
 	 */
 	public ConnectionHolder(Connection connection) {
@@ -59,9 +59,9 @@ public class ConnectionHolder extends ResourceHolderSupport {
 
 	/**
 	 * 为给定的 R2DBC {@link Connection} 创建一个新的 ConnectionHolder。
-	 * @param connection the R2DBC {@link Connection} to hold
-	 * @param transactionActive whether the given {@link Connection} is involved
-	 * in an ongoing transaction
+	 * @param connection 要持有的 R2DBC {@link Connection}
+	 * @param transactionActive 给定的 {@link Connection} 是否参与
+	 * 正在进行的事务
 	 */
 	public ConnectionHolder(Connection connection, boolean transactionActive) {
 		this.currentConnection = connection;

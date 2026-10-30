@@ -226,9 +226,9 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	/**
 	 * 便捷方法，返回此 Method 的 String 表示形式，用于日志记录。可以在子类中覆盖，以为给定方法提供不同
 	 * 的标识符。
-	 * @param method the method we're interested in
-	 * @param targetClass class the method is on
-	 * @return log message identifying this method
+	 * @param method 我们关注的方法
+	 * @param targetClass 该方法所在的类
+	 * @return 用于标识此方法的日志消息
 	 * @see org.springframework.util.ClassUtils#getQualifiedMethodName
 	 */
 	protected String methodIdentification(Method method, Class<?> targetClass) {
@@ -258,10 +258,10 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	/**
 	 * 返回指定操作的 {@link CacheOperationMetadata}。
 	 * <p>解析要用于该操作的 {@link CacheResolver} 和 {@link KeyGenerator}。
-	 * @param operation the operation
-	 * @param method the method on which the operation is invoked
-	 * @param targetClass the target type
-	 * @return the resolved metadata for the operation
+	 * @param operation 该操作
+	 * @param method 调用该操作所针对的方法
+	 * @param targetClass 目标类型
+	 * @return 为该操作解析出的元数据
 	 */
 	protected CacheOperationMetadata getCacheOperationMetadata(
 			CacheOperation operation, Method method, Class<?> targetClass) {
@@ -297,10 +297,10 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 
 	/**
 	 * 返回具有指定名称和类型的 Bean。用于解析在 {@link CacheOperation} 中按名称引用的服务。
-	 * @param beanName the name of the bean, as defined by the operation
-	 * @param expectedType type for the bean
-	 * @return the bean matching that name
-	 * @throws org.springframework.beans.factory.NoSuchBeanDefinitionException if such bean does not exist
+	 * @param beanName 该操作所定义的 Bean 名称
+	 * @param expectedType Bean 的类型
+	 * @return 与该名称匹配的 Bean
+	 * @throws org.springframework.beans.factory.NoSuchBeanDefinitionException 如果该 Bean 不存在
 	 * @see CacheOperation#getKeyGenerator()
 	 * @see CacheOperation#getCacheManager()
 	 * @see CacheOperation#getCacheResolver()
@@ -343,8 +343,8 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	 * 执行底层操作（通常在缓存未命中的情况下）并返回调用的结果。如果发生异常，它将被包装在
 	 * {@link CacheOperationInvoker.ThrowableWrapper} 中：异常可以被处理或修改，但也<em>必须</em>包装在
 	 * {@link CacheOperationInvoker.ThrowableWrapper} 中。
-	 * @param invoker the invoker handling the operation being cached
-	 * @return the result of the invocation
+	 * @param invoker 处理被缓存操作的 invoker
+	 * @return 调用的结果
 	 * @see CacheOperationInvoker#invoke()
 	 */
 	@Nullable
@@ -509,9 +509,8 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 
 	/**
 	 * 仅针对通过条件的 {@link CacheableOperation} 查找缓存项。
-	 * @param contexts the cacheable operations
-	 * @return a {@link Cache.ValueWrapper} holding the cached item,
-	 * or {@code null} if none is found
+	 * @param contexts 可缓存的操作
+	 * @return 持有缓存项的 {@link Cache.ValueWrapper}；如果未找到，则为 {@code null}
 	 */
 	@Nullable
 	private Cache.ValueWrapper findCachedItem(Collection<CacheOperationContext> contexts) {
@@ -535,9 +534,9 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 
 	/**
 	 * 使用指定的结果项为所有 {@link CacheOperation} 收集 {@link CachePutRequest}。
-	 * @param contexts the contexts to handle
-	 * @param result the result item (never {@code null})
-	 * @param putRequests the collection to update
+	 * @param contexts 要处理的上下文
+	 * @param result 结果项（永不为 {@code null}）
+	 * @param putRequests 要更新的集合
 	 */
 	private void collectPutRequests(Collection<CacheOperationContext> contexts,
 			@Nullable Object result, Collection<CachePutRequest> putRequests) {

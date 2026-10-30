@@ -64,8 +64,8 @@ public class CustomScopeConfigurer implements BeanFactoryPostProcessor, BeanClas
 
 	/**
 	 * 将给定作用域添加到此配置器的作用域映射中。
-	 * @param scopeName the name of the scope
-	 * @param scope the scope implementation
+	 * @param scopeName 作用域的名称
+	 * @param scope 作用域实现
 	 * @since 4.1.1
 	 */
 	public void addScope(String scopeName, Scope scope) {

@@ -35,9 +35,9 @@ public class XmlBeanDefinitionStoreException extends BeanDefinitionStoreExceptio
 
 	/**
 	 * 创建一个新的 XmlBeanDefinitionStoreException。
-	 * @param resourceDescription description of the resource that the bean definition came from
-	 * @param msg the detail message (used as exception message as-is)
-	 * @param cause the SAXException (typically a SAXParseException) root cause
+	 * @param resourceDescription Bean 定义来源资源的描述
+	 * @param msg 详细消息（原样用作异常消息）
+	 * @param cause SAXException（通常是 SAXParseException）根本原因
 	 * @see org.xml.sax.SAXParseException
 	 */
 	public XmlBeanDefinitionStoreException(String resourceDescription, String msg, SAXException cause) {
@@ -46,7 +46,7 @@ public class XmlBeanDefinitionStoreException extends BeanDefinitionStoreExceptio
 
 	/**
 	 * 返回失败的 XML 资源中的行号。
-	 * @return the line number if available (in case of a SAXParseException); -1 else
+	 * @return 如果可用则返回行号（在出现 SAXParseException 的情况下）；否则返回 -1
 	 * @see org.xml.sax.SAXParseException#getLineNumber()
 	 */
 	public int getLineNumber() {

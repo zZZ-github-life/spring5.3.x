@@ -89,7 +89,7 @@ public class CustomBooleanEditor extends PropertyEditorSupport {
 	 * 创建一个新的 CustomBooleanEditor 实例，将 "true"/"on"/"yes" 和 "false"/"off"/"no" 作为可识别的
 	 * String 值。<p>"allowEmpty" 参数表明解析时是否应允许空 String，即将其解释为 null 值。否则，在这种
 	 * 情况下将抛出 IllegalArgumentException。
-	 * @param allowEmpty if empty strings should be allowed
+	 * @param allowEmpty 是否应允许空字符串
 	 */
 	public CustomBooleanEditor(boolean allowEmpty) {
 		this(null, null, allowEmpty);
@@ -99,13 +99,13 @@ public class CustomBooleanEditor extends PropertyEditorSupport {
 	 * 创建一个新的 CustomBooleanEditor 实例，可为 true 和 false 配置 String 值。<p>"allowEmpty" 参数表
 	 * 明解析时是否应允许空 String，即将其解释为 null 值。否则，在这种情况下将抛出
 	 * IllegalArgumentException。
-	 * @param trueString the String value that represents true:
-	 * for example, "true" (VALUE_TRUE), "on" (VALUE_ON),
-	 * "yes" (VALUE_YES) or some custom value
-	 * @param falseString the String value that represents false:
-	 * for example, "false" (VALUE_FALSE), "off" (VALUE_OFF),
-	 * "no" (VALUE_NO) or some custom value
-	 * @param allowEmpty if empty strings should be allowed
+	 * @param trueString 表示 true 的 String 值：
+	 * 例如 "true"（VALUE_TRUE）、"on"（VALUE_ON）、
+	 * "yes"（VALUE_YES）或某个自定义值
+	 * @param falseString 表示 false 的 String 值：
+	 * 例如 "false"（VALUE_FALSE）、"off"（VALUE_OFF）、
+	 * "no"（VALUE_NO）或某个自定义值
+	 * @param allowEmpty 是否应允许空字符串
 	 * @see #VALUE_TRUE
 	 * @see #VALUE_FALSE
 	 * @see #VALUE_ON

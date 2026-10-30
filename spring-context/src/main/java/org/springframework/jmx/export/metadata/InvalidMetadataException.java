@@ -31,7 +31,7 @@ public class InvalidMetadataException extends JmxException {
 
 	/**
 	 * 使用提供的错误消息创建一个新的 {@code InvalidMetadataException}。
-	 * @param msg the detail message
+	 * @param msg 详细消息
 	 */
 	public InvalidMetadataException(String msg) {
 		super(msg);

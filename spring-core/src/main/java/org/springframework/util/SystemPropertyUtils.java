@@ -53,9 +53,9 @@ public abstract class SystemPropertyUtils {
 
 	/**
 	 * 解析给定文本中的 {@code ${...}} 占位符，将其替换为相应的系统属性值。
-	 * @param text the String to resolve
-	 * @return the resolved String
-	 * @throws IllegalArgumentException if there is an unresolvable placeholder
+	 * @param text 要解析的 String
+	 * @return 解析后的 String
+	 * @throws IllegalArgumentException 如果存在无法解析的占位符
 	 * @see #PLACEHOLDER_PREFIX
 	 * @see #PLACEHOLDER_SUFFIX
 	 */
@@ -66,10 +66,10 @@ public abstract class SystemPropertyUtils {
 	/**
 	 * 解析给定文本中的 {@code ${...}} 占位符，将其替换为相应的系统属性值。如果标志设置为 {@code true}，
 	 * 则没有默认值的无法解析的占位符会被忽略并原样传递。
-	 * @param text the String to resolve
-	 * @param ignoreUnresolvablePlaceholders whether unresolved placeholders are to be ignored
-	 * @return the resolved String
-	 * @throws IllegalArgumentException if there is an unresolvable placeholder
+	 * @param text 要解析的 String
+	 * @param ignoreUnresolvablePlaceholders 是否忽略无法解析的占位符
+	 * @return 解析后的 String
+	 * @throws IllegalArgumentException 如果存在无法解析的占位符
 	 * @see #PLACEHOLDER_PREFIX
 	 * @see #PLACEHOLDER_SUFFIX
 	 * and the "ignoreUnresolvablePlaceholders" flag is {@code false}

@@ -234,10 +234,9 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 
 	/**
 	 * 如有必要，将给定值转换为指定的目标类型。
-	 * @param value the original property value
-	 * @param targetType the specified target type for property retrieval
-	 * @return the converted value, or the original value if no conversion
-	 * is necessary
+	 * @param value 原始属性值
+	 * @param targetType 用于属性获取的指定目标类型
+	 * @return 转换后的值；如果无需转换，则为原始值
 	 * @since 4.3.5
 	 */
 	@SuppressWarnings("unchecked")
@@ -261,8 +260,8 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 
 	/**
 	 * 以原始 String 形式获取指定属性，即不解析嵌套占位符。
-	 * @param key the property name to resolve
-	 * @return the property value or {@code null} if none found
+	 * @param key 要解析的属性名
+	 * @return 属性值；如果未找到则为 {@code null}
 	 */
 	@Nullable
 	protected abstract String getPropertyAsRawString(String key);

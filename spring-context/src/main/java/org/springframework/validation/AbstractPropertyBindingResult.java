@@ -47,7 +47,7 @@ public abstract class AbstractPropertyBindingResult extends AbstractBindingResul
 
 	/**
 	 * 创建新的 AbstractPropertyBindingResult 实例。
-	 * @param objectName the name of the target object
+	 * @param objectName 目标对象的名称
 	 * @see DefaultMessageCodesResolver
 	 */
 	protected AbstractPropertyBindingResult(String objectName) {
@@ -133,8 +133,8 @@ public abstract class AbstractPropertyBindingResult extends AbstractBindingResul
 
 	/**
 	 * 检索给定字段的自定义 PropertyEditor（如果有）。
-	 * @param fixedField the fully qualified field name
-	 * @return the custom PropertyEditor, or {@code null}
+	 * @param fixedField 完全限定的字段名
+	 * @return 自定义 PropertyEditor，或 {@code null}
 	 */
 	@Nullable
 	protected PropertyEditor getCustomEditor(String fixedField) {

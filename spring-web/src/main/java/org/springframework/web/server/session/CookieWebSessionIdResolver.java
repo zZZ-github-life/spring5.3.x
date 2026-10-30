@@ -49,7 +49,7 @@ public class CookieWebSessionIdResolver implements WebSessionIdResolver {
 	/**
 	 * 设置用于保存会话 ID 的 Cookie 名称。
 	 * <p>默认设置为 "SESSION"。
-	 * @param cookieName the cookie name
+	 * @param cookieName Cookie 名称
 	 */
 	public void setCookieName(String cookieName) {
 		Assert.hasText(cookieName, "'cookieName' must not be empty");
@@ -67,7 +67,7 @@ public class CookieWebSessionIdResolver implements WebSessionIdResolver {
 	 * 设置保存会话 ID 的 Cookie 的 "Max-Age" 属性值。
 	 * <p>取值范围参见 {@link ResponseCookie#getMaxAge()}。
 	 * <p>默认设置为 -1。
-	 * @param maxAge the maxAge duration value
+	 * @param maxAge maxAge 时长值
 	 */
 	public void setCookieMaxAge(Duration maxAge) {
 		this.cookieMaxAge = maxAge;
@@ -83,7 +83,7 @@ public class CookieWebSessionIdResolver implements WebSessionIdResolver {
 	/**
 	 * 为 {@code ResponseCookieBuilder} 添加一个 {@link Consumer}，它将在每个 Cookie
 	 * 构建过程中、调用 {@code build()} 之前被调用。
-	 * @param initializer consumer for a cookie builder
+	 * @param initializer 用于 Cookie 构建器的消费者
 	 * @since 5.1
 	 */
 	public void addCookieInitializer(Consumer<ResponseCookie.ResponseCookieBuilder> initializer) {

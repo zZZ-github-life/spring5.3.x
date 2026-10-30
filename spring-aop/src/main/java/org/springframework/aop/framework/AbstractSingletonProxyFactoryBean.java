@@ -179,9 +179,9 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 
 	/**
 	 * 为给定的目标（或 TargetSource）确定一个 TargetSource。
-	 * @param target the target. If this is an implementation of TargetSource it is
-	 * used as our TargetSource; otherwise it is wrapped in a SingletonTargetSource.
-	 * @return a TargetSource for this object
+	 * @param target 目标。如果它是 TargetSource 的实现，则用作我们的 TargetSource；
+	 * 否则会被包装在 SingletonTargetSource 中。
+	 * @return 该对象的 TargetSource
 	 */
 	protected TargetSource createTargetSource(Object target) {
 		if (target instanceof TargetSource) {
@@ -194,7 +194,7 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 
 	/**
 	 * 供子类在使用 {@link ProxyFactory} 创建代理实例之前对其进行后处理的钩子。
-	 * @param proxyFactory the AOP ProxyFactory about to be used
+	 * @param proxyFactory 即将使用的 AOP ProxyFactory
 	 * @since 4.2
 	 */
 	protected void postProcessProxyFactory(ProxyFactory proxyFactory) {

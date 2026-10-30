@@ -145,8 +145,8 @@ public @interface NestedTestConfiguration {
 		/**
 		 * 获取具有提供名称的 {@code EnclosingConfiguration} 枚举常量，
 		 * 忽略大小写。
-		 * @param name the name of the enum constant to retrieve
-		 * @return the corresponding enum constant or {@code null} if not found
+		 * @param name 要检索的枚举常量的名称
+		 * @return 对应的枚举常量，如果未找到则为 {@code null}
 		 * @see EnclosingConfiguration#valueOf(String)
 		 */
 		@Nullable

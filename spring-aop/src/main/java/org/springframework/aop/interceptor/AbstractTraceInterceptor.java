@@ -128,8 +128,8 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 	 * 返回用于给定 {@code MethodInvocation} 的适当 {@code Log} 实例。如果设置了
 	 * {@code useDynamicLogger} 标志，则该 {@code Log} 实例对应 {@code MethodInvocation} 的目标类；否则
 	 * {@code Log} 将是默认的静态日志记录器。
-	 * @param invocation the {@code MethodInvocation} being traced
-	 * @return the {@code Log} instance to use
+	 * @param invocation 正在跟踪的 {@code MethodInvocation}
+	 * @return 要使用的 {@code Log} 实例
 	 * @see #setUseDynamicLogger
 	 */
 	protected Log getLoggerForInvocation(MethodInvocation invocation) {
@@ -145,8 +145,8 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 
 	/**
 	 * 确定为日志记录目的而使用的类。
-	 * @param target the target object to introspect
-	 * @return the target class for the given object
+	 * @param target 要内省的目标对象
+	 * @return 给定对象的目标类
 	 * @see #setHideProxyClassNames
 	 */
 	protected Class<?> getClassForLogging(Object target) {
@@ -157,8 +157,8 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 	 * 确定拦截器是否应生效，即是否应调用 {@code invokeUnderTrace} 方法。
 	 * <p>默认行为是检查给定的 {@code Log} 实例是否已启用。子类可以覆盖此方法，以便在其他情况下也应用拦
 	 * 截器。
-	 * @param invocation the {@code MethodInvocation} being traced
-	 * @param logger the {@code Log} instance to check
+	 * @param invocation 正在跟踪的 {@code MethodInvocation}
+	 * @param logger 要检查的 {@code Log} 实例
 	 * @see #invokeUnderTrace
 	 * @see #isLogEnabled
 	 */
@@ -169,7 +169,7 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 	/**
 	 * 确定给定的 {@link Log} 实例是否已启用。
 	 * <p>当启用 "trace" 级别时，默认返回 {@code true}。子类可以覆盖此方法，以更改发生“跟踪”的级别。
-	 * @param logger the {@code Log} instance to check
+	 * @param logger 要检查的 {@code Log} 实例
 	 */
 	protected boolean isLogEnabled(Log logger) {
 		return logger.isTraceEnabled();
@@ -212,10 +212,9 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 	 * <p>默认情况下，传入的 {@code Log} 实例将启用 "trace" 日志级别。子类无需再次检查这一点，除非它们
 	 * 覆盖 {@code isInterceptorEnabled} 方法以修改默认行为，并且可以将实际要写入的消息委托给
 	 * {@code writeToLog}。
-	 * @param logger the {@code Log} to write trace messages to
-	 * @return the result of the call to {@code MethodInvocation.proceed()}
-	 * @throws Throwable if the call to {@code MethodInvocation.proceed()}
-	 * encountered any errors
+	 * @param logger 用于写入跟踪消息的 {@code Log}
+	 * @return 调用 {@code MethodInvocation.proceed()} 的结果
+	 * @throws Throwable 如果调用 {@code MethodInvocation.proceed()} 时遇到任何错误
 	 * @see #isLogEnabled
 	 * @see #writeToLog(Log, String)
 	 * @see #writeToLog(Log, String, Throwable)

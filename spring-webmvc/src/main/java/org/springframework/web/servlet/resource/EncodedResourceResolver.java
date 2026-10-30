@@ -80,7 +80,7 @@ public class EncodedResourceResolver extends AbstractResourceResolver {
 	 * 应与 {@link CachingResourceResolver} 中同一列表的自定义保持一致，
 	 * 以确保资源的编码变体被分别缓存到不同的键下。
 	 * <p>默认情况下此属性设置为 {@literal ["br", "gzip"]}。
-	 * @param codings one or more supported content codings
+	 * @param codings 一个或多个支持的内容编码
 	 */
 	public void setContentCodings(List<String> codings) {
 		Assert.notEmpty(codings, "At least one content coding expected");
@@ -100,7 +100,7 @@ public class EncodedResourceResolver extends AbstractResourceResolver {
 	 * 将为其添加该点。
 	 * <p>默认配置为 {@literal ["br" -> ".br"]} 和
 	 * {@literal ["gzip" -> ".gz"]}。
-	 * @param extensions the extensions to use.
+	 * @param extensions 要使用的扩展名。
 	 * @see #registerExtension(String, String)
 	 */
 	public void setExtensions(Map<String, String> extensions) {
@@ -116,8 +116,8 @@ public class EncodedResourceResolver extends AbstractResourceResolver {
 
 	/**
 	 * {@link #setExtensions(Map)} 的 Java 配置友好替代方案。
-	 * @param coding the content coding
-	 * @param extension the associated file extension
+	 * @param coding 内容编码
+	 * @param extension 关联的文件扩展名
 	 */
 	public void registerExtension(String coding, String extension) {
 		this.extensions.put(coding, (extension.startsWith(".") ? extension : "." + extension));

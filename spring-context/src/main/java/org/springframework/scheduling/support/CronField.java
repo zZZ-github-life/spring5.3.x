@@ -146,8 +146,8 @@ abstract class CronField {
 
 	/**
 	 * 获取此 cron 字段匹配序列中下一个或相同的 {@link Temporal}。
-	 * @param temporal the seed value
-	 * @return the next or same temporal matching the pattern
+	 * @param temporal 种子值
+	 * @return 与该模式匹配的下一个或同一 temporal
 	 */
 	@Nullable
 	public abstract <T extends Temporal & Comparable<? super T>> T nextOrSame(T temporal);
@@ -192,7 +192,7 @@ abstract class CronField {
 
 		/**
 		 * 返回此类型在给定 temporal 中的值。
-		 * @return the value of this type
+		 * @return 此类型对应的值
 		 */
 		public int get(Temporal date) {
 			return date.get(this.field);
@@ -200,7 +200,7 @@ abstract class CronField {
 
 		/**
 		 * 返回此类型的一般范围。例如，对于 {@link #MONTH}，此方法将返回 0-31。
-		 * @return the range of this field
+		 * @return 此字段的范围
 		 */
 		public ValueRange range() {
 			return this.field.range();
@@ -208,9 +208,9 @@ abstract class CronField {
 
 		/**
 		 * 检查给定值是否有效，即是否落在 {@linkplain #range() range} 中。
-		 * @param value the value to check
-		 * @return the value that was passed in
-		 * @throws IllegalArgumentException if the given value is invalid
+		 * @param value 要检查的值
+		 * @return 传入的值
+		 * @throws IllegalArgumentException 如果给定的值无效
 		 */
 		public int checkValidValue(int value) {
 			if (this == DAY_OF_WEEK && value == 0) {
@@ -229,11 +229,10 @@ abstract class CronField {
 		/**
 		 * 使给定的 temporal 按照此字段当前值与目标值之间的差值向前推进。通常，返回的 temporal 会以给定目标
 		 * 作为此类型的当前值，但对于 {@link #DAY_OF_MONTH} 并非如此。
-		 * @param temporal the temporal to elapse
-		 * @param goal the goal value
-		 * @param <T> the type of temporal
-		 * @return the elapsed temporal, typically with {@code goal} as value
-		 * for this type.
+		 * @param temporal 要推进的 temporal
+		 * @param goal 目标值
+		 * @param <T> temporal 的类型
+		 * @return 推进后的 temporal，通常此类型的值为 {@code goal}。
 		 */
 		public <T extends Temporal & Comparable<? super T>> T elapseUntil(T temporal, int goal) {
 			int current = get(temporal);
@@ -257,9 +256,9 @@ abstract class CronField {
 		/**
 		 * 将给定的 temporal 向前滚动，直到到达下一个更高阶的字段。调用此方法等价于调用
 		 * {@link #elapseUntil(Temporal, int)}，并将目标设为该字段范围的最小值。
-		 * @param temporal the temporal to roll forward
-		 * @param <T> the type of temporal
-		 * @return the rolled forward temporal
+		 * @param temporal 要向前滚动的 temporal
+		 * @param <T> temporal 的类型
+		 * @return 向前滚动后的 temporal
 		 */
 		public <T extends Temporal & Comparable<? super T>> T rollForward(T temporal) {
 			T result = this.higherOrder.addTo(temporal, 1);
@@ -270,9 +269,9 @@ abstract class CronField {
 		/**
 		 * 将给定 temporal 的此字段及所有更低阶字段重置为其最小值。例如对于 {@link #MINUTE}，此方法会将纳秒、
 		 * 秒<strong>和</strong>分钟重置为 0。
-		 * @param temporal the temporal to reset
-		 * @param <T> the type of temporal
-		 * @return the reset temporal
+		 * @param temporal 要重置的 temporal
+		 * @param <T> temporal 的类型
+		 * @return 重置后的 temporal
 		 */
 		public <T extends Temporal> T reset(T temporal) {
 			for (ChronoField lowerOrder : this.lowerOrders) {

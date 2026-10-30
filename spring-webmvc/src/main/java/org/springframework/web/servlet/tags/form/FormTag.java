@@ -535,7 +535,7 @@ public class FormTag extends AbstractHtmlElementTag {
 	/**
 	 * 写入块	'{@code form}' 标签的开头部分，并在
 	 * {@link javax.servlet.jsp.PageContext} 中暴露表单对象名称。
-	 * @param tagWriter the {@link TagWriter} to which the form content is to be written
+	 * @param tagWriter 用于写入表单内容的 {@link TagWriter}
 	 * @return {@link javax.servlet.jsp.tagext.Tag#EVAL_BODY_INCLUDE}
 	 */
 	@Override
@@ -603,7 +603,7 @@ public class FormTag extends AbstractHtmlElementTag {
 
 	/**
 	 * {@link #evaluate 解析}并返回表单对象的名称。
-	 * @throws IllegalArgumentException if the form object resolves to {@code null}
+	 * @throws IllegalArgumentException 如果表单对象解析为 {@code null}
 	 */
 	protected String resolveModelAttribute() throws JspException {
 		Object resolvedModelAttribute = evaluate(MODEL_ATTRIBUTE, getModelAttribute());
@@ -621,7 +621,7 @@ public class FormTag extends AbstractHtmlElementTag {
 	 * 否则，使用
 	 * {@link org.springframework.web.servlet.support.RequestContext#getRequestUri()
 	 * originating URI}。
-	 * @return the value that is to be used for the '{@code action}' attribute
+	 * @return 用于 '{@code action}' 属性的值
 	 */
 	protected String resolveAction() throws JspException {
 		String action = getAction();
@@ -742,7 +742,7 @@ public class FormTag extends AbstractHtmlElementTag {
 
 	/**
 	 * 不支持 form。
-	 * @throws UnsupportedOperationException always
+	 * @throws UnsupportedOperationException 始终抛出
 	 */
 	@Override
 	public void setPath(String path) {
@@ -751,7 +751,7 @@ public class FormTag extends AbstractHtmlElementTag {
 
 	/**
 	 * 不支持 form。
-	 * @throws UnsupportedOperationException always
+	 * @throws UnsupportedOperationException 始终抛出
 	 */
 	@Override
 	public void setCssErrorClass(String cssErrorClass) {

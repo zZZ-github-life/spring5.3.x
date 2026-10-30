@@ -50,8 +50,8 @@ public abstract class ExposeBeanNameAdvisors {
 	/**
 	 * 查找当前调用的 Bean 名称。假定拦截器链中已包含 ExposeBeanNameAdvisor，并且调用已通过
 	 * ExposeInvocationInterceptor 暴露。
-	 * @return the bean name (never {@code null})
-	 * @throws IllegalStateException if the bean name has not been exposed
+	 * @return Bean 名称（永不为 {@code null}）
+	 * @throws IllegalStateException 如果 Bean 名称尚未暴露
 	 */
 	public static String getBeanName() throws IllegalStateException {
 		return getBeanName(ExposeInvocationInterceptor.currentInvocation());
@@ -59,9 +59,9 @@ public abstract class ExposeBeanNameAdvisors {
 
 	/**
 	 * 查找给定调用的 Bean 名称。假定拦截器链中已包含 ExposeBeanNameAdvisor。
-	 * @param mi the MethodInvocation that should contain the bean name as an attribute
-	 * @return the bean name (never {@code null})
-	 * @throws IllegalStateException if the bean name has not been exposed
+	 * @param mi 应包含 Bean 名称属性的 MethodInvocation
+	 * @return Bean 名称（永不为 {@code null}）
+	 * @throws IllegalStateException 如果 Bean 名称尚未暴露
 	 */
 	public static String getBeanName(MethodInvocation mi) throws IllegalStateException {
 		if (!(mi instanceof ProxyMethodInvocation)) {
@@ -77,7 +77,7 @@ public abstract class ExposeBeanNameAdvisors {
 
 	/**
 	 * 创建一个新的通知器，用于暴露给定的 Bean 名称，且不包含引入。
-	 * @param beanName bean name to expose
+	 * @param beanName 要暴露的 Bean 名称
 	 */
 	public static Advisor createAdvisorWithoutIntroduction(String beanName) {
 		return new DefaultPointcutAdvisor(new ExposeBeanNameInterceptor(beanName));
@@ -86,7 +86,7 @@ public abstract class ExposeBeanNameAdvisors {
 	/**
 	 * 创建一个新的通知器，用于暴露给定的 Bean 名称，并引入 NamedBean 接口，使 Bean 名称可被访问，而无
 	 * 需让目标对象感知这一 Spring IoC 概念。
-	 * @param beanName the bean name to expose
+	 * @param beanName 要暴露的 Bean 名称
 	 */
 	public static Advisor createAdvisorIntroducingNamedBean(String beanName) {
 		return new DefaultIntroductionAdvisor(new ExposeBeanNameIntroduction(beanName));

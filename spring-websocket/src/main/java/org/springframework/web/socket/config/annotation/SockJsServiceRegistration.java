@@ -264,7 +264,7 @@ public class SockJsServiceRegistration {
 	 * 用于编码和解码 SockJS 消息的编解码器。
 	 * <p>默认使用 {@code Jackson2SockJsMessageCodec}，
 	 * 这要求类路径上存在 Jackson 库。
-	 * @param codec the codec to use.
+	 * @param codec 要使用的编解码器。
 	 * @since 4.1
 	 */
 	public SockJsServiceRegistration setMessageCodec(SockJsMessageCodec codec) {

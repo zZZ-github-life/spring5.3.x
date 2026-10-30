@@ -54,7 +54,7 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	 *
 	 * <p>支持常规 properties 文件和 XML properties 文件：例如 "messages" 会找到 "messages.properties"、
 	 * "messages_en.properties" 等组合，以及 "messages.xml"、"messages_en.xml" 等。
-	 * @param basename the single basename
+	 * @param basename 单个基名
 	 * @see #setBasenames
 	 * @see org.springframework.core.io.ResourceEditor
 	 * @see java.util.ResourceBundle
@@ -74,7 +74,7 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	 * 息定义将覆盖后一个资源包中的定义。
 	 *
 	 * <p>注意：与 {@link #addBasenames} 不同，此方法会使用给定名称替换现有条目，因此也可用于重置配置。
-	 * @param basenames an array of basenames
+	 * @param basenames 基名数组
 	 * @see #setBasename
 	 * @see java.util.ResourceBundle
 	 */
@@ -119,7 +119,7 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	 * 台默认编码。
 	 *
 	 * <p>仅适用于经典 properties 文件，不适用于 XML 文件。
-	 * @param defaultEncoding the default charset
+	 * @param defaultEncoding 默认字符集
 	 */
 	public void setDefaultEncoding(@Nullable String defaultEncoding) {
 		this.defaultEncoding = defaultEncoding;

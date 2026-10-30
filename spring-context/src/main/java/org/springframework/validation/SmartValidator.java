@@ -38,20 +38,20 @@ public interface SmartValidator extends Validator {
 	 *
 	 * <p>注意：校验提示可能会被实际的目标 {@code Validator} 忽略，此时此方法的行为应与其常规的
 	 * {@link #validate(Object, Errors)} 同级方法相同。
-	 * @param target the object that is to be validated
-	 * @param errors contextual state about the validation process
-	 * @param validationHints one or more hint objects to be passed to the validation engine
+	 * @param target 要校验的对象。
+	 * @param errors 关于校验过程的上下文状态。
+	 * @param validationHints 要传递给校验引擎的一个或多个提示对象。
 	 * @see javax.validation.Validator#validate(Object, Class[])
 	 */
 	void validate(Object target, Errors errors, Object... validationHints);
 
 	/**
 	 * 校验目标类型上指定字段的所提供值，报告与将该值绑定到目标类实例上的该字段时相同的校验错误。
-	 * @param targetType the target type
-	 * @param fieldName the name of the field
-	 * @param value the candidate value
-	 * @param errors contextual state about the validation process
-	 * @param validationHints one or more hint objects to be passed to the validation engine
+	 * @param targetType 目标类型。
+	 * @param fieldName 字段的名称。
+	 * @param value 候选值。
+	 * @param errors 关于校验过程的上下文状态。
+	 * @param validationHints 要传递给校验引擎的一个或多个提示对象。
 	 * @since 5.1
 	 * @see javax.validation.Validator#validateValue(Class, String, Object, Class[])
 	 */

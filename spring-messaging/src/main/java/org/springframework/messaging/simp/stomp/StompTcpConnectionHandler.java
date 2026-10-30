@@ -24,7 +24,7 @@ import org.springframework.messaging.tcp.TcpConnectionHandler;
  *
  * @author Rossen Stoyanchev
  * @since 5.3
- * @param <P> the type of payload for inbound and outbound messages
+ * @param <P> 入站和出站消息的负载类型
  */
 public interface StompTcpConnectionHandler<P> extends TcpConnectionHandler<P> {
 

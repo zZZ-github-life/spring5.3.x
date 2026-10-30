@@ -250,8 +250,8 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	 * <p>注意：消息监听器可以在运行时替换，监听器容器会立即采用新的监听器对象
 	 * （例如 DefaultMessageListenerContainer 可以做到这一点，只要缓存级别低于
 	 * CACHE_CONSUMER）。不过，这属于高级用法；请谨慎使用！
-	 * @throws IllegalArgumentException if the supplied listener is not a
-	 * {@link MessageListener} or a {@link SessionAwareMessageListener}
+	 * @throws IllegalArgumentException 如果提供的监听器不是 {@link MessageListener}
+	 * 或 {@link SessionAwareMessageListener}
 	 * @see javax.jms.MessageListener
 	 * @see SessionAwareMessageListener
 	 */
@@ -275,9 +275,9 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	 * 检查给定的消息监听器，如果它不符合受支持的监听器类型则抛出异常。
 	 * <p>默认情况下，只接受标准的 JMS {@link MessageListener} 对象
 	 * 或 Spring 的 {@link SessionAwareMessageListener} 对象。
-	 * @param messageListener the message listener object to check
-	 * @throws IllegalArgumentException if the supplied listener is not a
-	 * {@link MessageListener} or a {@link SessionAwareMessageListener}
+	 * @param messageListener 要检查的消息监听器对象
+	 * @throws IllegalArgumentException 如果提供的监听器不是 {@link MessageListener}
+	 * 或 {@link SessionAwareMessageListener}
 	 * @see javax.jms.MessageListener
 	 * @see SessionAwareMessageListener
 	 */
@@ -292,8 +292,8 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 
 	/**
 	 * 确定给定消息监听器的默认订阅名称。
-	 * @param messageListener the message listener object to check
-	 * @return the default subscription name
+	 * @param messageListener 要检查的消息监听器对象
+	 * @return 默认的订阅名称
 	 * @see SubscriptionNameProvider
 	 */
 	protected String getDefaultSubscriptionName(Object messageListener) {
@@ -434,8 +434,8 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	 * 配置回复目的地类型。默认情况下，使用配置的 {@code pubSubDomain} 值
 	 * （参见 {@link #isPubSubDomain()}）。
 	 * <p>如果启用了动态目的地，此设置主要指示要解析的目的地类型。
-	 * @param replyPubSubDomain "true" for the Publish/Subscribe domain ({@link Topic Topics}),
-	 * "false" for the Point-to-Point domain ({@link Queue Queues})
+	 * @param replyPubSubDomain Publish/Subscribe 域（{@link Topic Topics}）取 “true”，
+	 * Point-to-Point 域（{@link Queue Queues}）取 “false”
 	 * @since 4.2
 	 * @see #setDestinationResolver
 	 */
@@ -461,8 +461,8 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	/**
 	 * 配置发送回复时要使用的 {@link QosSettings}。可以设置为 {@code null}，
 	 * 表示应使用代理的默认值。
-	 * @param replyQosSettings the QoS settings to use when sending a reply or {@code null}
-	 * to use the default vas.
+	 * @param replyQosSettings 发送回复时要使用的 QoS 设置，
+	 * 或 {@code null} 表示使用默认值。
 	 * @since 5.0
 	 */
 	public void setReplyQosSettings(@Nullable QosSettings replyQosSettings) {
@@ -585,8 +585,8 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 
 	/**
 	 * 执行指定的监听器，之后（如有必要）提交或回滚事务。
-	 * @param session the JMS Session to operate on
-	 * @param message the received JMS Message
+	 * @param session 要操作的 JMS Session
+	 * @param message 接收到的 JMS Message
 	 * @see #invokeListener
 	 * @see #commitIfNecessary
 	 * @see #rollbackOnExceptionIfNecessary
@@ -603,9 +603,9 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 
 	/**
 	 * 执行指定的监听器，之后（如有必要）提交或回滚事务。
-	 * @param session the JMS Session to operate on
-	 * @param message the received JMS Message
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param session 要操作的 JMS Session
+	 * @param message 接收到的 JMS Message
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 * @see #invokeListener
 	 * @see #commitIfNecessary
 	 * @see #rollbackOnExceptionIfNecessary
@@ -634,9 +634,9 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	/**
 	 * 调用指定的监听器：可以作为标准的 JMS MessageListener，
 	 * 也可以（更可取地）作为 Spring 的 SessionAwareMessageListener。
-	 * @param session the JMS Session to operate on
-	 * @param message the received JMS Message
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param session 要操作的 JMS Session
+	 * @param message 接收到的 JMS Message
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 * @see #setMessageListener
 	 */
 	@SuppressWarnings("rawtypes")
@@ -661,10 +661,10 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	/**
 	 * 将指定的监听器作为 Spring 的 SessionAwareMessageListener 调用，
 	 * 并在监听器需要时向其暴露一个新的 JMS Session（可能带有自己的事务）。
-	 * @param listener the Spring SessionAwareMessageListener to invoke
-	 * @param session the JMS Session to operate on
-	 * @param message the received JMS Message
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param listener 要调用的 Spring SessionAwareMessageListener
+	 * @param session 要操作的 JMS Session
+	 * @param message 收到的 JMS 消息
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 * @see SessionAwareMessageListener
 	 * @see #setExposeListenerSession
 	 */
@@ -701,9 +701,9 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	/**
 	 * 将指定的监听器作为标准的 JMS MessageListener 调用。
 	 * <p>默认实现只是简单地调用 {@code onMessage} 方法。
-	 * @param listener the JMS MessageListener to invoke
-	 * @param message the received JMS Message
-	 * @throws JMSException if thrown by JMS API methods
+	 * @param listener 要调用的 JMS MessageListener
+	 * @param message 收到的 JMS 消息
+	 * @throws JMSException 如果由 JMS API 方法抛出
 	 * @see javax.jms.MessageListener#onMessage
 	 */
 	protected void doInvokeListener(MessageListener listener, Message message) throws JMSException {
@@ -712,9 +712,9 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 
 	/**
 	 * 视情况执行提交或消息确认。
-	 * @param session the JMS Session to commit
-	 * @param message the Message to acknowledge
-	 * @throws javax.jms.JMSException in case of commit failure
+	 * @param session 要提交的 JMS Session
+	 * @param message 要确认的 Message
+	 * @throws javax.jms.JMSException 提交失败时
 	 */
 	protected void commitIfNecessary(Session session, @Nullable Message message) throws JMSException {
 		// Commit session or acknowledge message.
@@ -732,8 +732,8 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 
 	/**
 	 * 视情况执行回滚。
-	 * @param session the JMS Session to rollback
-	 * @throws javax.jms.JMSException in case of a rollback error
+	 * @param session 要回滚的 JMS Session
+	 * @throws javax.jms.JMSException 发生回滚错误时
 	 */
 	protected void rollbackIfNecessary(Session session) throws JMSException {
 		if (session.getTransacted()) {
@@ -749,9 +749,9 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 
 	/**
 	 * 执行回滚，并正确处理回滚异常。
-	 * @param session the JMS Session to rollback
-	 * @param ex the thrown application exception or error
-	 * @throws javax.jms.JMSException in case of a rollback error
+	 * @param session 要回滚的 JMS Session
+	 * @param ex 抛出的应用异常或错误
+	 * @throws javax.jms.JMSException 发生回滚错误时
 	 */
 	protected void rollbackOnExceptionIfNecessary(Session session, Throwable ex) throws JMSException {
 		try {
@@ -782,8 +782,8 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	 * Session 处理机制管理，而不是由外部事务协调器管理。
 	 * <p>注意：Session 自身的 transacted 标志此前已经检查过。此方法用于判断
 	 * Session 的事务是本地事务还是外部协调的事务。
-	 * @param session the Session to check
-	 * @return whether the given Session is locally transacted
+	 * @param session 要检查的 Session
+	 * @return 给定的 Session 是否在本地进行事务处理
 	 * @see #isSessionTransacted()
 	 * @see org.springframework.jms.connection.ConnectionFactoryUtils#isSessionTransactional
 	 */
@@ -794,10 +794,10 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	/**
 	 * 为给定的 Session 和 Destination 创建 JMS MessageConsumer。
 	 * <p>此实现使用 JMS 1.1 API。
-	 * @param session the JMS Session to create a MessageConsumer for
-	 * @param destination the JMS Destination to create a MessageConsumer for
-	 * @return the new JMS MessageConsumer
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
+	 * @param session 用于创建 MessageConsumer 的 JMS Session
+	 * @param destination 用于创建 MessageConsumer 的 JMS Destination
+	 * @return 新的 JMS MessageConsumer
+	 * @throws javax.jms.JMSException 如果由 JMS API 方法抛出
 	 */
 	protected MessageConsumer createConsumer(Session session, Destination destination) throws JMSException {
 		if (isPubSubDomain() && destination instanceof Topic) {
@@ -827,7 +827,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	 * <p>默认实现以 warn 级别记录该异常，而不将其传播给 JMS 提供者
 	 * ——假定确认和/或事务的全部处理都由本监听器容器完成。
 	 * 可以在子类中重写。
-	 * @param ex the exception to handle
+	 * @param ex 要处理的异常
 	 */
 	protected void handleListenerException(Throwable ex) {
 		if (ex instanceof MessageRejectedWhileStoppingException) {
@@ -851,7 +851,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 
 	/**
 	 * 调用已注册的 JMS ExceptionListener（如果有）。
-	 * @param ex the exception that arose during JMS processing
+	 * @param ex JMS 处理过程中出现的异常
 	 * @see #setExceptionListener
 	 */
 	protected void invokeExceptionListener(JMSException ex) {
@@ -863,7 +863,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 
 	/**
 	 * 调用已注册的 ErrorHandler（如果有）。否则以 warn 级别记录日志。
-	 * @param ex the uncaught error that arose during JMS processing.
+	 * @param ex JMS 处理过程中出现的未捕获错误。
 	 * @see #setErrorHandler
 	 */
 	protected void invokeErrorHandler(Throwable ex) {

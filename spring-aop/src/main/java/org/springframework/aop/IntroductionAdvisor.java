@@ -32,15 +32,14 @@ public interface IntroductionAdvisor extends Advisor, IntroductionInfo {
 	/**
 	 * 返回确定此引入应应用于哪些目标类的过滤器。
 	 * <p>这表示切点的类部分。请注意，方法匹配对引入没有意义。
-	 * @return the class filter
+	 * @return 类过滤器
 	 */
 	ClassFilter getClassFilter();
 
 	/**
 	 * 被通知的接口能否由引入通知实现？
 	 * 在添加 IntroductionAdvisor 之前调用。
-	 * @throws IllegalArgumentException if the advised interfaces can't be
-	 * implemented by the introduction advice
+	 * @throws IllegalArgumentException 如果被通知的接口无法由引入通知实现
 	 */
 	void validateInterfaces() throws IllegalArgumentException;
 

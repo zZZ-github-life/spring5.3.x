@@ -77,8 +77,8 @@ public class MockServerHttpResponse extends AbstractServerHttpResponse {
 	 * <p>默认情况下，响应正文内容会被完整消费并缓存，
 	 * 以便在测试中后续访问。使用此选项可以控制
 	 * 响应体的消费方式。
-	 * @param writeHandler the write handler to use returning {@code Mono<Void>}
-	 * when the body has been "written" (i.e. consumed).
+	 * @param writeHandler 要使用的写处理器，在正文被“写入”（即被消费）后
+	 * 返回 {@code Mono<Void>}。
 	 */
 	public void setWriteHandler(Function<Flux<DataBuffer>, Mono<Void>> writeHandler) {
 		Assert.notNull(writeHandler, "'writeHandler' is required");

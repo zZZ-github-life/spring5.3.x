@@ -58,7 +58,7 @@ import org.springframework.util.xml.StaxUtils;
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @since 3.2
- * @param <T> the converted object type
+ * @param <T> 转换后的对象类型
  */
 @SuppressWarnings("rawtypes")
 public class Jaxb2CollectionHttpMessageConverter<T extends Collection>
@@ -183,8 +183,8 @@ public class Jaxb2CollectionHttpMessageConverter<T extends Collection>
 	/**
 	 * 创建给定类型的 Collection，并使用给定的初始容量
 	 * （如果该 Collection 类型支持）。
-	 * @param collectionClass the type of Collection to instantiate
-	 * @return the created Collection instance
+	 * @param collectionClass 要实例化的 Collection 类型
+	 * @return 创建的 Collection 实例
 	 */
 	@SuppressWarnings("unchecked")
 	protected T createCollection(Class<?> collectionClass) {

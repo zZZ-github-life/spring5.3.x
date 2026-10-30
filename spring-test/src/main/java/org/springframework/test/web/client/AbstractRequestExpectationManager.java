@@ -128,9 +128,9 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 	 * 从 5.0.3 开始，子类应实现此方法而不是
 	 * {@link #validateRequestInternal(ClientHttpRequest)}，以便将请求与预期进行匹配，
 	 * 而将创建响应的调用留作单独的步骤（由此类调用）。
-	 * @param request the current request
-	 * @return the matched expectation with its request count updated via
-	 * {@link RequestExpectation#incrementAndValidate()}.
+	 * @param request 当前请求
+	 * @return 匹配的期望，其请求计数已通过
+	 * {@link RequestExpectation#incrementAndValidate()} 更新。
 	 * @since 5.0.3
 	 */
 	protected RequestExpectation matchRequest(ClientHttpRequest request) throws IOException {

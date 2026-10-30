@@ -28,20 +28,20 @@ import java.util.concurrent.Future;
  * @author Sebastien Deleuze
  * @author Juergen Hoeller
  * @since 4.0
- * @param <T> the result type returned by this Future's {@code get} method
+ * @param <T> 该 Future 的 {@code get} 方法返回的结果类型
  */
 public interface ListenableFuture<T> extends Future<T> {
 
 	/**
 	 * 注册给定的 {@code ListenableFutureCallback}。
-	 * @param callback the callback to register
+	 * @param callback 要注册的回调
 	 */
 	void addCallback(ListenableFutureCallback<? super T> callback);
 
 	/**
 	 * 对 Java 8 lambda 友好的替代方案，提供成功和失败回调。
-	 * @param successCallback the success callback
-	 * @param failureCallback the failure callback
+	 * @param successCallback 成功回调
+	 * @param failureCallback 失败回调
 	 * @since 4.1
 	 */
 	void addCallback(SuccessCallback<? super T> successCallback, FailureCallback failureCallback);

@@ -73,7 +73,7 @@ public class LocaleChangeInterceptor implements HandlerInterceptor {
 
 	/**
 	 * 配置可以更改区域设置的 HTTP 方法。
-	 * @param httpMethods the methods
+	 * @param httpMethods HTTP 方法
 	 * @since 4.2
 	 */
 	public void setHttpMethods(@Nullable String... httpMethods) {
@@ -176,8 +176,8 @@ public class LocaleChangeInterceptor implements HandlerInterceptor {
 
 	/**
 	 * 解析来自请求参数的给定区域设置值。<p>默认实现调用 {@link StringUtils#parseLocale(String)}，接受 {@link Locale#toString} 格式以及 BCP 47 语言标签。
-	 * @param localeValue the locale value to parse
-	 * @return the corresponding {@code Locale} instance
+	 * @param localeValue 要解析的 Locale 值
+	 * @return 对应的 {@code Locale} 实例
 	 * @since 4.3
 	 */
 	@Nullable

@@ -69,7 +69,7 @@ public class MethodOverrides {
 
 	/**
 	 * 返回此对象包含的所有方法覆盖。
-	 * @return a Set of MethodOverride objects
+	 * @return MethodOverride 对象的 Set
 	 * @see MethodOverride
 	 */
 	public Set<MethodOverride> getOverrides() {
@@ -85,8 +85,8 @@ public class MethodOverrides {
 
 	/**
 	 * 返回给定方法的覆盖（如果有）。
-	 * @param method method to check for overrides for
-	 * @return the method override, or {@code null} if none
+	 * @param method 要检查覆盖的方法
+	 * @return 方法覆盖，如果没有则为 {@code null}
 	 */
 	@Nullable
 	public MethodOverride getOverride(Method method) {

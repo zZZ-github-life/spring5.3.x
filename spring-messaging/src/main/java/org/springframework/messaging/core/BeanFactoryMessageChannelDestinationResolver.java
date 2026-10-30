@@ -47,7 +47,7 @@ public class BeanFactoryMessageChannelDestinationResolver
 	/**
 	 * 接受 {@link BeanFactory} 的构造函数，适用于手动实例化此解析器
 	 * 而不是将其定义为 Spring 管理的 Bean 的情况。
-	 * @param beanFactory the bean factory to perform lookups against
+	 * @param beanFactory 用于执行查找的 Bean 工厂
 	 */
 	public BeanFactoryMessageChannelDestinationResolver(BeanFactory beanFactory) {
 		Assert.notNull(beanFactory, "beanFactory must not be null");

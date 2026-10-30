@@ -78,7 +78,7 @@ public abstract class RequestMappingInfoHandlerMapping extends AbstractHandlerMe
 
 	/**
 	 * 检查给定 RequestMappingInfo 是否匹配当前请求，并返回一个（可能是新的）实例，其条件与当前请求匹配——例如包含 URL 模式的子集。
-	 * @return an info in case of a match; or {@code null} otherwise.
+	 * @return 匹配时的信息；否则为 {@code null}。
 	 */
 	@Override
 	protected RequestMappingInfo getMatchingMapping(RequestMappingInfo info, ServerWebExchange exchange) {
@@ -149,13 +149,13 @@ public abstract class RequestMappingInfoHandlerMapping extends AbstractHandlerMe
 
 	/**
 	 * 再次遍历所有 RequestMappingInfo，至少检查是否有任何 URL 匹配，并相应抛出异常。
-	 * @throws MethodNotAllowedException for matches by URL but not by HTTP method
-	 * @throws UnsupportedMediaTypeStatusException if there are matches by URL
-	 * and HTTP method but not by consumable media types
-	 * @throws NotAcceptableStatusException if there are matches by URL and HTTP
-	 * method but not by producible media types
-	 * @throws ServerWebInputException if there are matches by URL and HTTP
-	 * method but not by query parameter conditions
+	 * @throws MethodNotAllowedException 用于按 URL 匹配但未按 HTTP 方法匹配的情况
+	 * @throws UnsupportedMediaTypeStatusException 如果按 URL 和 HTTP 方法匹配，
+	 * 但未按可消费的媒体类型匹配
+	 * @throws NotAcceptableStatusException 如果按 URL 和 HTTP 方法匹配，
+	 * 但未按可生成的媒体类型匹配
+	 * @throws ServerWebInputException 如果按 URL 和 HTTP 方法匹配，
+	 * 但未按查询参数条件匹配
 	 */
 	@Override
 	protected HandlerMethod handleNoMatch(Set<RequestMappingInfo> infos,
@@ -335,8 +335,8 @@ public abstract class RequestMappingInfoHandlerMapping extends AbstractHandlerMe
 
 			/**
 			 * 创建新的 {@link PartialMatch} 实例。
-			 * @param info the RequestMappingInfo that matches the URL path
-			 * @param exchange the current exchange
+			 * @param info 与该 URL 路径匹配的 RequestMappingInfo
+			 * @param exchange 当前交换
 			 */
 			public PartialMatch(RequestMappingInfo info, ServerWebExchange exchange) {
 				this.info = info;

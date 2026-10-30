@@ -80,7 +80,7 @@ public class PathMatchConfigurer {
 	 * {@link #setUrlPathHelper(UrlPathHelper)} 和
 	 * {@link #setPathMatcher(PathMatcher)} 互斥。
 	 * <p>默认不启用。
-	 * @param patternParser the parser to pre-parse patterns with
+	 * @param patternParser 用于预解析模式的解析器
 	 * @since 5.3
 	 */
 	public PathMatchConfigurer setPatternParser(PathPatternParser patternParser) {
@@ -105,8 +105,8 @@ public class PathMatchConfigurer {
 	 * 使用第一个匹配的谓词所对应的前缀。
 	 * <p>考虑使用 {@link org.springframework.web.method.HandlerTypePredicate
 	 * HandlerTypePredicate} 对控制器进行分组。
-	 * @param prefix the prefix to apply
-	 * @param predicate a predicate for matching controller types
+	 * @param prefix 要应用的前缀
+	 * @param predicate 用于匹配控制器类型的谓词
 	 * @since 5.1
 	 */
 	public PathMatchConfigurer addPathPrefix(String prefix, Predicate<Class<?>> predicate) {

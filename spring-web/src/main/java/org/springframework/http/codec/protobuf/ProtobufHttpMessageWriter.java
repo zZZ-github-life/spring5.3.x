@@ -67,7 +67,7 @@ public class ProtobufHttpMessageWriter extends EncoderHttpMessageWriter<Message>
 
 	/**
 	 * 使用给定的编码器创建一个新的 {@code ProtobufHttpMessageWriter}。
-	 * @param encoder the Protobuf message encoder to use
+	 * @param encoder 要使用的 Protobuf 消息编码器
 	 */
 	public ProtobufHttpMessageWriter(Encoder<Message> encoder) {
 		super(encoder);

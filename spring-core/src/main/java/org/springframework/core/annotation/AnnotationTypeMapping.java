@@ -403,7 +403,7 @@ final class AnnotationTypeMapping {
 
 	/**
 	 * 获取根映射。
-	 * @return the root mapping
+	 * @return 根映射
 	 */
 	AnnotationTypeMapping getRoot() {
 		return this.root;
@@ -411,7 +411,7 @@ final class AnnotationTypeMapping {
 
 	/**
 	 * 获取映射的来源，或 {@code null}。
-	 * @return the source of the mapping
+	 * @return 该映射的来源
 	 */
 	@Nullable
 	AnnotationTypeMapping getSource() {
@@ -420,7 +420,7 @@ final class AnnotationTypeMapping {
 
 	/**
 	 * 获取此映射的距离。
-	 * @return the distance of the mapping
+	 * @return 该映射的距离
 	 */
 	int getDistance() {
 		return this.distance;
@@ -428,7 +428,7 @@ final class AnnotationTypeMapping {
 
 	/**
 	 * 获取被映射注解的类型。
-	 * @return the annotation type
+	 * @return 注解类型
 	 */
 	Class<? extends Annotation> getAnnotationType() {
 		return this.annotationType;
@@ -440,7 +440,7 @@ final class AnnotationTypeMapping {
 
 	/**
 	 * 获取此映射的源注解。它将是元注解；如果这是根映射，则为 {@code null}。
-	 * @return the source annotation of the mapping
+	 * @return 该映射的源注解
 	 */
 	@Nullable
 	Annotation getAnnotation() {
@@ -449,7 +449,7 @@ final class AnnotationTypeMapping {
 
 	/**
 	 * 获取映射注解类型的注解属性。
-	 * @return the attribute methods
+	 * @return 属性方法
 	 */
 	AttributeMethods getAttributes() {
 		return this.attributes;
@@ -458,8 +458,8 @@ final class AnnotationTypeMapping {
 	/**
 	 * 获取别名映射属性的关联索引；如果不存在映射，则为 {@code -1}。结果值是根注解上该属性的索引，调用
 	 * 该属性可获取实际值。
-	 * @param attributeIndex the attribute index of the source attribute
-	 * @return the mapped attribute index or {@code -1}
+	 * @param attributeIndex 源属性的属性索引
+	 * @return 映射后的属性索引，或 {@code -1}
 	 */
 	int getAliasMapping(int attributeIndex) {
 		return this.aliasMappings[attributeIndex];
@@ -468,8 +468,8 @@ final class AnnotationTypeMapping {
 	/**
 	 * 获取约定映射属性的关联索引；如果不存在映射，则为 {@code -1}。结果值是根注解上该属性的索引，调用
 	 * 该属性可获取实际值。
-	 * @param attributeIndex the attribute index of the source attribute
-	 * @return the mapped attribute index or {@code -1}
+	 * @param attributeIndex 源属性的属性索引
+	 * @return 映射后的属性索引，或 {@code -1}
 	 */
 	int getConventionMapping(int attributeIndex) {
 		return this.conventionMappings[attributeIndex];
@@ -479,11 +479,11 @@ final class AnnotationTypeMapping {
 	 * 从最合适的 {@link #getAnnotation() 元注解}获取映射的属性值。
 	 * <p>结果值取自最近的元注解，同时考虑基于约定和基于别名的映射规则。对于根映射，此方法始终返回
 	 * {@code null}。
-	 * @param attributeIndex the attribute index of the source attribute
-	 * @param metaAnnotationsOnly if only meta annotations should be considered.
-	 * If this parameter is {@code false} then aliases within the annotation will
-	 * also be considered.
-	 * @return the mapped annotation value, or {@code null}
+	 * @param attributeIndex 源属性的属性索引
+	 * @param metaAnnotationsOnly 是否只考虑元注解。
+	 * 如果该参数为 {@code false}，则注解内部的别名
+	 * 也会被考虑。
+	 * @return 映射后的注解值，或 {@code null}
 	 */
 	@Nullable
 	Object getMappedAnnotationValue(int attributeIndex, boolean metaAnnotationsOnly) {
@@ -500,11 +500,11 @@ final class AnnotationTypeMapping {
 
 	/**
 	 * 判断指定值是否等同于给定索引处属性的默认值。
-	 * @param attributeIndex the attribute index of the source attribute
-	 * @param value the value to check
-	 * @param valueExtractor the value extractor used to extract values from any
-	 * nested annotations
-	 * @return {@code true} if the value is equivalent to the default value
+	 * @param attributeIndex 源属性的属性索引
+	 * @param value 要检查的值
+	 * @param valueExtractor 用于从任意嵌套注解中提取值的
+	 * 值提取器
+	 * @return 如果该值与默认值等价则返回 {@code true}
 	 */
 	boolean isEquivalentToDefaultValue(int attributeIndex, Object value, ValueExtractor valueExtractor) {
 		Method attribute = this.attributes.get(attributeIndex);
@@ -513,7 +513,7 @@ final class AnnotationTypeMapping {
 
 	/**
 	 * 获取此类型映射的镜像集。
-	 * @return the attribute mirror sets
+	 * @return 属性镜像集
 	 */
 	MirrorSets getMirrorSets() {
 		return this.mirrorSets;
@@ -522,7 +522,7 @@ final class AnnotationTypeMapping {
 	/**
 	 * 判断被映射的注解是否<em>可合成</em>。
 	 * <p>有关何种情况被视为可合成的说明，请参见 {@link MergedAnnotation#synthesize()} 的文档。
-	 * @return {@code true} if the mapped annotation is synthesizable
+	 * @return 如果映射的注解可合成则返回 {@code true}
 	 * @since 5.2.6
 	 */
 	boolean isSynthesizable() {
